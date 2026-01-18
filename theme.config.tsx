@@ -4,15 +4,13 @@ import type { DocsThemeConfig } from "nextra-theme-docs";
 const config: DocsThemeConfig = {
   logo: <span>Aescia Health</span>,
 
-  project: {
-    link: "https://github.com/aesciahealth",
-  },
+  // Remove GitHub icon by deleting project.link
+  // project: { link: "https://github.com/aesciahealth" },
 
   docsRepositoryBase: "https://github.com/aesciahealth/aescia-site",
 
-  chat: {
-    link: "mailto:contact@aesciahealth.com",
-  },
+  // Remove Discord icon by deleting chat.link
+  // chat: { link: "mailto:contact@aesciahealth.com" },
 
   footer: {
     text: (
@@ -22,12 +20,9 @@ const config: DocsThemeConfig = {
     ),
   },
 
-  useNextSeoProps() {
-    return {
-      openGraph: {
-        siteName: "Aescia Health",
-      },
-    };
+  // Search placeholder (see section 2)
+  search: {
+    placeholder: "Search",
   },
 };
 
