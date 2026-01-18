@@ -1,44 +1,56 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 
-const SITE_URL = 'https://aesciahealth.com'
-
 export default function App({ Component, pageProps }: AppProps) {
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Aescia Health",
-    "legalName": "Aescia Pty Ltd",
-    "url": SITE_URL,
-    "sameAs": [
-      "https://www.linkedin.com/company/aescia",
-      "https://abr.business.gov.au/ABN/View?id=96687840517"
-    ],
-    "identifier": [
-      {
-        "@type": "PropertyValue",
-        "propertyID": "ABN",
-        "value": "96 687 840 517"
-      }
-    ],
-    "areaServed": "AU",
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "contactType": "sales",
-        "url": `${SITE_URL}/contact`
-      }
-    ]
-  }
-
   return (
     <>
       <Head>
+        {/* Canonical root */}
+        <link rel="canonical" href="https://aesciahealth.com" />
+
+        {/* Primary metadata */}
+        <meta name="application-name" content="Aescia" />
+        <meta name="author" content="Aescia" />
+        <meta name="publisher" content="Aescia" />
+        <meta name="robots" content="index, follow" />
+
+        {/* JSON-LD: Organization */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Aescia",
+              "url": "https://aesciahealth.com",
+              "description":
+                "Aescia is a digital health platform focused on post-discharge monitoring and escalation workflows in public hospital settings.",
+              "industry": "Digital Health",
+              "foundingLocation": "Australia",
+              "sameAs": [
+                "https://www.linkedin.com/company/aescia-health"
+              ]
+            }),
+          }}
+        />
+
+        {/* JSON-LD: MedicalEntity (non-claiming, conservative) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MedicalEntity",
+              "name": "Aescia",
+              "description":
+                "Aescia is undergoing early clinical evaluation and is not a routine clinical deployment.",
+              "medicalSpecialty": "Cardiothoracic Surgery",
+              "status": "Clinical evaluation"
+            }),
+          }}
         />
       </Head>
+
       <Component {...pageProps} />
     </>
   )
