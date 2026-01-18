@@ -13,9 +13,6 @@ const config: DocsThemeConfig = {
     placeholder: "Search",
   },
 
-  // Remove breadcrumb "Home" / page title chrome
-  breadcrumb: false,
-
   // Remove right-side "Question? Give us feedback" and "Edit this page"
   feedback: {
     content: null,
