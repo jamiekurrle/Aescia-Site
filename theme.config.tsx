@@ -1,8 +1,6 @@
 import React from "react";
 import type { DocsThemeConfig } from "nextra-theme-docs";
 
-const SITE_URL = "https://aesciahealth.com";
-
 const config: DocsThemeConfig = {
   logo: <span>Aescia Health</span>,
 
@@ -24,12 +22,13 @@ const config: DocsThemeConfig = {
     ),
   },
 
-useNextSeoProps() {
-  return {
-    openGraph: {
-      siteName: "Aescia Health",
-    },
-  };
-}
+  useNextSeoProps() {
+    return {
+      openGraph: {
+        siteName: "Aescia Health",
+      },
+    };
+  },
+};
 
 export default config;
