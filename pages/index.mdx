@@ -3,44 +3,195 @@ title: "Aescia Health — Post-Discharge Monitoring & Escalation Workflows"
 description: "Aescia is a digital health platform for post-discharge monitoring and escalation workflows, designed to support scalable follow-up across hospitals and clinics."
 ---
 
-# Post-discharge monitoring that scales
+<div style={{maxWidth: 960, margin: "0 auto"}}>
 
-Aescia supports structured patient follow-up after discharge, helping clinical teams detect deterioration earlier and standardise escalation pathways.
+  {/* HERO */}
+  <div style={{padding: "3.5rem 0 2rem 0"}}>
+    <div style={{display: "flex", flexDirection: "column", gap: "1rem"}}>
+      <p style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.5rem",
+        fontSize: "0.9rem",
+        color: "var(--nextra-content-color, #4b5563)",
+        margin: 0
+      }}>
+        <span style={{
+          display: "inline-block",
+          width: 10,
+          height: 10,
+          borderRadius: 999,
+          background: "currentColor",
+          opacity: 0.35
+        }} />
+        Digital health · Monitoring · Escalation workflows
+      </p>
 
-## What Aescia does
+      <h1 style={{
+        fontSize: "2.4rem",
+        lineHeight: 1.1,
+        letterSpacing: "-0.02em",
+        margin: 0
+      }}>
+        Post-discharge monitoring that scales.
+      </h1>
 
-- **Daily check-ins** aligned to a patient’s discharge context and recovery pathway
-- **Escalation workflows** when symptoms cross predefined thresholds
-- **Clinician-facing triage views** to support prioritisation and follow-up
-- **Audit-friendly reporting** to support governance, safety, and evaluation
+      <p style={{
+        fontSize: "1.15rem",
+        lineHeight: 1.6,
+        color: "var(--nextra-content-color, #4b5563)",
+        margin: 0,
+        maxWidth: 720
+      }}>
+        Aescia supports structured follow-up after discharge, helping teams detect deterioration earlier and standardise escalation pathways — across hospitals, private hospitals, and clinics.
+      </p>
 
-## Where it fits
+      <div style={{display: "flex", gap: "0.75rem", flexWrap: "wrap", paddingTop: "0.25rem"}}>
+        <a
+          href="./contact"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0.7rem 1rem",
+            borderRadius: 12,
+            background: "black",
+            color: "white",
+            textDecoration: "none",
+            fontWeight: 600
+          }}
+        >
+          Talk to us
+        </a>
+        <a
+          href="./evidence"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0.7rem 1rem",
+            borderRadius: 12,
+            border: "1px solid rgba(0,0,0,0.15)",
+            textDecoration: "none",
+            fontWeight: 600
+          }}
+        >
+          Evidence & evaluation
+        </a>
+      </div>
+    </div>
+  </div>
 
-Aescia is designed to support follow-up and recovery monitoring across a range of care settings, including:
+  {/* VALUE PROPS */}
+  <div style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: "1rem",
+    padding: "1rem 0 1.5rem 0"
+  }}>
+    {[
+      {
+        title: "Structured patient check-ins",
+        body: "Daily symptom and recovery check-ins aligned to the discharge context and pathway."
+      },
+      {
+        title: "Escalation workflows",
+        body: "Predefined thresholds trigger escalation steps for follow-up, review, or advice."
+      },
+      {
+        title: "Audit-friendly reporting",
+        body: "Designed to support governance, safety review, and clinical evaluation."
+      }
+    ].map((c) => (
+      <div key={c.title} style={{
+        border: "1px solid rgba(0,0,0,0.10)",
+        borderRadius: 16,
+        padding: "1rem",
+        background: "rgba(0,0,0,0.02)"
+      }}>
+        <h3 style={{margin: "0 0 0.35rem 0"}}>{c.title}</h3>
+        <p style={{margin: 0, color: "var(--nextra-content-color, #4b5563)", lineHeight: 1.6}}>
+          {c.body}
+        </p>
+      </div>
+    ))}
+  </div>
 
-- **Hospital services** with high follow-up burden (for example cardiothoracic surgery and other high-risk cohorts)
-- **Private hospitals** seeking scalable discharge support and reduced avoidable re-presentations
-- **Clinics and day procedures** that want a consistent recovery experience and earlier identification of complications
+  {/* WHERE IT FITS */}
+  <div style={{padding: "1rem 0 1.25rem 0"}}>
+    <h2 style={{margin: "0 0 0.75rem 0"}}>Where it fits</h2>
+    <div style={{
+      border: "1px solid rgba(0,0,0,0.10)",
+      borderRadius: 16,
+      padding: "1rem"
+    }}>
+      <ul style={{margin: 0, paddingLeft: "1.2rem", lineHeight: 1.8}}>
+        <li><strong>Hospitals</strong> with high follow-up burden (for example cardiothoracic surgery and other high-risk cohorts).</li>
+        <li><strong>Private hospitals</strong> seeking scalable discharge support and reduced avoidable re-presentations.</li>
+        <li><strong>Clinics and day procedures</strong> that want a consistent recovery experience and earlier identification of complications.</li>
+      </ul>
+    </div>
+  </div>
 
-## How it’s different
+  {/* TRUST STRIP */}
+  <div style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "0.75rem",
+    padding: "1.25rem 0"
+  }}>
+    {[
+      {title: "Governance", href: "./governance", body: "Safety approach and oversight."},
+      {title: "Security", href: "./security", body: "Privacy and data handling."},
+      {title: "Clinical & regulatory", href: "./clinical-regulatory", body: "Evaluation and compliance posture."},
+      {title: "Evidence", href: "./evidence", body: "How impact will be measured."}
+    ].map((t) => (
+      <a key={t.title} href={t.href} style={{
+        textDecoration: "none",
+        border: "1px solid rgba(0,0,0,0.10)",
+        borderRadius: 16,
+        padding: "0.9rem",
+        display: "block"
+      }}>
+        <div style={{fontWeight: 700, marginBottom: "0.2rem"}}>{t.title}</div>
+        <div style={{color: "var(--nextra-content-color, #4b5563)", lineHeight: 1.5}}>{t.body}</div>
+      </a>
+    ))}
+  </div>
 
-Aescia focuses on practical, lightweight workflows that can integrate with real-world clinical operations:
+  {/* CTA */}
+  <div style={{
+    margin: "1.5rem 0 3rem 0",
+    padding: "1.25rem",
+    borderRadius: 18,
+    border: "1px solid rgba(0,0,0,0.10)",
+    background: "rgba(0,0,0,0.02)",
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.75rem"
+  }}>
+    <h2 style={{margin: 0}}>Pilot or partnership inquiry</h2>
+    <p style={{margin: 0, color: "var(--nextra-content-color, #4b5563)", lineHeight: 1.6}}>
+      If you’re exploring a pilot, evaluation partnership, or implementation pathway, we’d like to hear from you.
+    </p>
+    <div>
+      <a
+        href="./contact"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0.7rem 1rem",
+          borderRadius: 12,
+          background: "black",
+          color: "white",
+          textDecoration: "none",
+          fontWeight: 700
+        }}
+      >
+        Contact Aescia
+      </a>
+    </div>
+  </div>
 
-- **Low-friction patient experience** designed for high completion rates
-- **Configurable pathways** that can be tailored to service needs
-- **Conservative escalation logic** with clinician oversight (early-stage evaluation focus)
-
-## Evidence, privacy, and governance
-
-Aescia is being developed with a conservative approach to safety, privacy, and clinical evaluation.
-
-- [Evidence](./evidence)
-- [Governance](./governance)
-- [Security](./security)
-- [Clinical and regulatory](./clinical-regulatory)
-
-## Contact
-
-If you are exploring a pilot, evaluation partnership, or implementation pathway:
-
-- [Contact us](./contact)
+</div>
