@@ -1,21 +1,22 @@
 import React from "react";
+import Image from "next/image";
 import type { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-import Image from "next/image";
+  // Header logo (top-left)
+  logo: (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+      <Image
+        src="/aescia_logo_cropped.png"
+        alt="Aescia Health"
+        width={140}
+        height={28}
+        priority
+      />
+    </span>
+  ),
 
-logo: (
-  <Image
-    src="/aescia_logo_cropped.png"
-    alt="Aescia Health"
-    width={140}
-    height={28}
-    priority
-  />
-),
-
-
-  // Remove icons (you already did this earlier)
+  // Remove GitHub + Discord icons by not defining these
   // project: { link: "..." },
   // chat: { link: "..." },
 
@@ -24,34 +25,42 @@ logo: (
     placeholder: "Search",
   },
 
-  // Remove right-side "Question? Give us feedback" and "Edit this page"
+  // Remove right-side "Question? Give us feedback"
   feedback: {
     content: null,
   },
+
+  // Remove right-side "Edit this page"
   editLink: {
     text: null,
   },
 
-  // Remove "Last updated ..."
+  // Remove "Last updated..." block (we’ll show it in footer instead)
   gitTimestamp: false,
 
-  // Remove the bottom “About >” next/prev navigation
-  navigation: false,
-
+  // Footer nav + last-updated
   footer: {
     text: (
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "1rem",
+          alignItems: "center",
+        }}
+      >
         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.9rem" }}>
           <a href="/">Home</a>
           <a href="/about">About</a>
           <a href="/governance">Governance</a>
           <a href="/security">Security</a>
-          <a href="/clinical-regulatory">Clinical & Regulatory</a>
+          <a href="/clinical-regulatory">Clinical &amp; Regulatory</a>
           <a href="/evidence">Evidence</a>
           <a href="/contact">Contact</a>
         </div>
+
         <div style={{ marginLeft: "auto", opacity: 0.8 }}>
-          © 2026 Aescia Pty Ltd · Last updated January 18, 2026
+          © {new Date().getFullYear()} Aescia Pty Ltd · Last updated January 18, 2026
         </div>
       </div>
     ),
