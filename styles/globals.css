@@ -3,6 +3,11 @@
   text-rendering: optimizeLegibility;
 }
 
+/* Hide top breadcrumb/page title row ("Home") */
+.nextra-breadcrumb {
+  display: none !important;
+}
+
 /* Hide Nextra docs sidebar (make it feel like a normal site) */
 .nextra-sidebar-container {
   display: none !important;
