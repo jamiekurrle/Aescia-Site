@@ -18,11 +18,7 @@
   display: none !important;
 }
 
-/* Reduce excess spacing below main content so footer sits close */
-.nextra-content {
-  padding-bottom: 0 !important;
-}
-/* Remove layout offset created for sidebar + reduce unnecessary bottom space */
+/* Remove layout offset created for sidebar + pull footer closer */
 .nextra-content {
   margin-left: 0 !important;
   padding-bottom: 0 !important;
@@ -33,6 +29,17 @@
   max-width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+/* Remove any bottom margin from the last element in main (tighten gap above footer) */
+.nextra-content main > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Pull the footer up (reduce extra spacing and keep it readable) */
+.nextra-footer {
+  margin-top: 0 !important;
+  padding-top: 16px !important; /* keep footer readable but tight */
 }
 
 /* Optional: if the page still has a lot of padding around content, uncomment this
