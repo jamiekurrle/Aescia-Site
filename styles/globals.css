@@ -1,0 +1,19 @@
+/* Global typography baseline */
+:root {
+  text-rendering: optimizeLegibility;
+}
+
+/* Hide Nextra docs sidebar to make it feel like a normal site */
+.nextra-sidebar-container {
+  display: none !important;
+}
+
+/* Remove layout offset created for sidebar */
+.nextra-content {
+  margin-left: 0 !important;
+}
+
+/* Wider content like a marketing site */
+.nextra-content main {
+  max-width: 1100px;
+}
