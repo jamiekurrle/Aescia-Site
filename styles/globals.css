@@ -24,6 +24,11 @@
   display: none !important;
 }
 
+/* Some Nextra themes render a "page footer" link like "About →" separately */
+.nextra-page-footer {
+  display: none !important;
+}
+
 /* ================================
    Layout: make it feel like a website
 ================================ */
@@ -32,6 +37,7 @@
 .nextra-content {
   margin-left: 0 !important;
   padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Full-width content (hero can go edge-to-edge) */
@@ -39,6 +45,8 @@
   max-width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Remove extra gap above footer */
@@ -46,10 +54,30 @@
   margin-bottom: 0 !important;
 }
 
+/* If Nextra injects a divider / spacer before the footer, remove it */
+.nextra-content hr {
+  display: none !important;
+}
+
+/* Remove empty blocks that sometimes create a "black bar" gap */
+.nextra-content main > div:empty {
+  display: none !important;
+}
+
+/* Also collapse any empty sections (rare but happens with MDX wrappers) */
+.nextra-content main > section:empty {
+  display: none !important;
+}
+
 /* Footer spacing (tight but readable) */
 .nextra-footer {
   margin-top: 0 !important;
   padding-top: 16px !important;
+}
+
+/* Ensure footer doesn't get pushed down by default theme spacing */
+footer {
+  margin-top: 0 !important;
 }
 
 /* ================================
