@@ -24,21 +24,12 @@ const config: DocsThemeConfig = {
     ),
   },
 
-  useNextSeoProps() {
-    return {
-      canonical: SITE_URL,
-      openGraph: {
-        url: SITE_URL,
-        siteName: "Aescia Health",
-      },
-      additionalLinkTags: [
-        {
-          rel: "canonical",
-          href: SITE_URL,
-        },
-      ],
-    };
-  },
-};
+useNextSeoProps() {
+  return {
+    openGraph: {
+      siteName: "Aescia Health",
+    },
+  };
+}
 
 export default config;
