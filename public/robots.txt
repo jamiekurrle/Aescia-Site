@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aescia-site-osgdyv8dm-jamiekurrle-4595s-projects.vercel.app/sitemap.xml
+Sitemap: https://aescia-site.vercel.app/sitemap.xml
