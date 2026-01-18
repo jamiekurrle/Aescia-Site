@@ -2,7 +2,18 @@ import React from "react";
 import type { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
-  logo: <span>Aescia Health</span>,
+import Image from "next/image";
+
+logo: (
+  <Image
+    src="/aescia_logo_cropped.png"
+    alt="Aescia Health"
+    width={140}
+    height={28}
+    priority
+  />
+),
+
 
   // Remove icons (you already did this earlier)
   // project: { link: "..." },
