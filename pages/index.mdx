@@ -1,151 +1,183 @@
-{/* HERO WITH VIDEO */}
+---
+title: "Aescia Health — Post-Discharge Monitoring & Escalation"
+description: "Aescia is a digital health platform supporting post-discharge monitoring and escalation workflows across hospitals and clinics."
+---
+
+{/* This prevents the theme from inserting its own visible page title ("Home") */}
+# <span style={{ position: "absolute", left: "-9999px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>Aescia Health</span>
+
 <div
   style={{
-    position: "relative",
-    width: "100%",
-    height: "72vh",
-    minHeight: 520,
-    maxHeight: 760,
-    overflow: "hidden",
-    borderRadius: 24,
-    marginBottom: "3rem",
+    width: "100vw",
+    marginLeft: "calc(50% - 50vw)",  // true full-bleed inside Nextra
+    marginRight: "calc(50% - 50vw)",
   }}
 >
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    style={{
-      position: "absolute",
-      inset: 0,
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-    }}
-  >
-    <source src="/Morning Sequence.mp4" type="video/mp4" />
-  </video>
-
-  {/* Overlay: darker bottom-left, softer elsewhere */}
-  <div
-    style={{
-      position: "absolute",
-      inset: 0,
-      background:
-        "radial-gradient(900px 520px at 18% 65%, rgba(0,0,0,0.72), rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.25) 100%), linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.30), rgba(0,0,0,0.55))",
-    }}
-  />
-
-  {/* Content grid */}
   <div
     style={{
       position: "relative",
-      zIndex: 2,
-      height: "100%",
-      maxWidth: 1120,
-      margin: "0 auto",
-      padding: "3.25rem 2rem",
-      display: "grid",
-      gridTemplateColumns: "minmax(0, 560px) 1fr",
-      alignItems: "end",
-      gap: "2rem",
-      color: "white",
+      width: "100%",
+      height: "78vh",
+      minHeight: 540,
+      maxHeight: 820,
+      overflow: "hidden",
+      borderRadius: 0,              // wall-to-wall look
     }}
   >
-    {/* Left column */}
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <div
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.6rem",
-          fontSize: "0.78rem",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          opacity: 0.9,
-        }}
-      >
-        <span
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      style={{
+        position: "absolute",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
+    >
+      <source src="/Morning Sequence.mp4" type="video/mp4" />
+    </video>
+
+    {/* Overlay tuned for readability */}
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        background:
+          "radial-gradient(900px 520px at 18% 65%, rgba(0,0,0,0.72), rgba(0,0,0,0.25) 60%, rgba(0,0,0,0.25) 100%), linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.25), rgba(0,0,0,0.55))",
+      }}
+    />
+
+    <div
+      style={{
+        position: "relative",
+        zIndex: 2,
+        height: "100%",
+        maxWidth: 1120,
+        margin: "0 auto",
+        padding: "3.25rem 2rem",
+        display: "grid",
+        gridTemplateColumns: "minmax(0, 560px) 1fr",
+        alignItems: "end",
+        gap: "2rem",
+        color: "white",
+      }}
+    >
+      <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div
           style={{
-            width: 10,
-            height: 10,
-            borderRadius: 999,
-            background: "rgba(255,255,255,0.7)",
-            display: "inline-block",
-          }}
-        />
-        Digital health · Post-discharge care
-      </div>
-
-<h1
-  style={{
-    fontSize: "clamp(2.2rem, 4.2vw, 3.2rem)",
-    lineHeight: 1.12,
-    letterSpacing: "-0.02em",
-    margin: 0,
-    maxWidth: 560,
-  }}
->
-  Post-discharge monitoring that fits real clinical workflows
-</h1>
-
-
-      <p
-        style={{
-          margin: 0,
-          maxWidth: 520,
-          fontSize: "1.08rem",
-          lineHeight: 1.6,
-          opacity: 0.95,
-        }}
-      >
-        Aescia supports structured follow-up after discharge, helping clinical teams
-        identify risk earlier and respond through consistent escalation pathways.
-      </p>
-
-      <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", paddingTop: "0.25rem" }}>
-        <a
-          href="./contact"
-          style={{
-            background: "white",
-            color: "black",
-            padding: "0.8rem 1.1rem",
-            borderRadius: 14,
-            fontWeight: 800,
-            textDecoration: "none",
             display: "inline-flex",
             alignItems: "center",
-            justifyContent: "center",
-            minWidth: 140,
+            gap: "0.6rem",
+            fontSize: "0.78rem",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            opacity: 0.9,
           }}
         >
-          Contact us
-        </a>
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: 999,
+              background: "rgba(255,255,255,0.7)",
+              display: "inline-block",
+            }}
+          />
+          Digital health · Post-discharge care
+        </div>
 
-        <a
-          href="./evidence"
+        {/* FIX: increase line-height so it doesn't write over itself */}
+        <h1
           style={{
-            border: "1px solid rgba(255,255,255,0.55)",
-            color: "white",
-            padding: "0.8rem 1.1rem",
-            borderRadius: 14,
-            fontWeight: 700,
-            textDecoration: "none",
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            minWidth: 190,
-            background: "rgba(0,0,0,0.15)",
-            backdropFilter: "blur(6px)",
+            fontSize: "clamp(2.2rem, 4.2vw, 3.2rem)",
+            lineHeight: 1.12,
+            letterSpacing: "-0.02em",
+            margin: 0,
+            maxWidth: 560,
           }}
         >
-          Evidence & evaluation
-        </a>
+          Post-discharge monitoring that fits real clinical workflows
+        </h1>
+
+        <p
+          style={{
+            margin: 0,
+            maxWidth: 520,
+            fontSize: "1.08rem",
+            lineHeight: 1.6,
+            opacity: 0.95,
+          }}
+        >
+          Aescia supports structured follow-up after discharge, helping clinical teams
+          identify risk earlier and respond through consistent escalation pathways.
+        </p>
+
+        {/* Buttons: Contact, About, Evidence */}
+        <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", paddingTop: "0.25rem" }}>
+          <a
+            href="./contact"
+            style={{
+              background: "white",
+              color: "black",
+              padding: "0.8rem 1.1rem",
+              borderRadius: 14,
+              fontWeight: 800,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minWidth: 140,
+            }}
+          >
+            Contact us
+          </a>
+
+          <a
+            href="./about"
+            style={{
+              border: "1px solid rgba(255,255,255,0.55)",
+              color: "white",
+              padding: "0.8rem 1.1rem",
+              borderRadius: 14,
+              fontWeight: 700,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minWidth: 120,
+              background: "rgba(0,0,0,0.15)",
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            About
+          </a>
+
+          <a
+            href="./evidence"
+            style={{
+              border: "1px solid rgba(255,255,255,0.55)",
+              color: "white",
+              padding: "0.8rem 1.1rem",
+              borderRadius: 14,
+              fontWeight: 700,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              minWidth: 210,
+              background: "rgba(0,0,0,0.15)",
+              backdropFilter: "blur(6px)",
+            }}
+          >
+            Evidence & evaluation
+          </a>
+        </div>
       </div>
+
+      <div />
     </div>
-
-    {/* Right column intentionally empty (lets the video breathe) */}
-    <div />
   </div>
 </div>
