@@ -5,8 +5,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        {/* Canonical root */}
-        <link rel="canonical" href="https://aesciahealth.com" />
 
         {/* Primary metadata */}
         <meta name="application-name" content="Aescia" />
