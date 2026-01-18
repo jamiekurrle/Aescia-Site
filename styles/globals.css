@@ -13,6 +13,15 @@
   display: none !important;
 }
 
+/* Hide next/prev pagination ("About >") */
+.nextra-pagination {
+  display: none !important;
+}
+
+/* Reduce excess spacing below main content so footer sits close */
+.nextra-content {
+  padding-bottom: 0 !important;
+}
 /* Remove layout offset created for sidebar + reduce unnecessary bottom space */
 .nextra-content {
   margin-left: 0 !important;
