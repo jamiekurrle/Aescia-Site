@@ -1,9 +1,15 @@
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { Inter } from "next/font/google";
 import "../styles/globals.css";
 
 const SITE_URL = "https://aesciahealth.com";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -17,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const webpageId = `${pageUrl}#webpage`;
 
   return (
-    <>
+    <div className={inter.className}>
       <Head>
         {/* Primary metadata */}
         <meta name="application-name" content="Aescia Health" />
@@ -36,7 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
               name: "Aescia Health",
               url: SITE_URL,
               description:
-                "Aescia is a digital health platform focused on post-discharge monitoring and escalation workflows in public hospital settings.",
+                "Aescia is a digital health platform focused on post-discharge monitoring and escalation workflows across hospitals and clinics.",
               foundingLocation: "Australia",
               sameAs: ["https://www.linkedin.com/company/aescia-health"],
             }),
@@ -76,6 +82,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
