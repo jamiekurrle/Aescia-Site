@@ -1,18 +1,44 @@
-import React from 'react'
-import { DocsThemeConfig } from 'nextra-theme-docs'
+import React from "react";
+import type { DocsThemeConfig } from "nextra-theme-docs";
+
+const SITE_URL = "https://aesciahealth.com";
 
 const config: DocsThemeConfig = {
-  logo: <span>My Project</span>,
-  project: {
-    link: 'https://github.com/shuding/nextra-docs-template',
-  },
-  chat: {
-    link: 'https://discord.com',
-  },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
-  footer: {
-    text: 'Nextra Docs Template',
-  },
-}
+  logo: <span>Aescia Health</span>,
 
-export default config
+  project: {
+    link: "https://github.com/aesciahealth",
+  },
+
+  docsRepositoryBase: "https://github.com/aesciahealth/aescia-site",
+
+  chat: {
+    link: "mailto:contact@aesciahealth.com",
+  },
+
+  footer: {
+    text: (
+      <span>
+        © {new Date().getFullYear()} Aescia Pty Ltd · Australian Registered Company
+      </span>
+    ),
+  },
+
+  useNextSeoProps() {
+    return {
+      canonical: SITE_URL,
+      openGraph: {
+        url: SITE_URL,
+        siteName: "Aescia Health",
+      },
+      additionalLinkTags: [
+        {
+          rel: "canonical",
+          href: SITE_URL,
+        },
+      ],
+    };
+  },
+};
+
+export default config;
