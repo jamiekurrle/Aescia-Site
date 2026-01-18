@@ -4,36 +4,49 @@ import type { DocsThemeConfig } from "nextra-theme-docs";
 const config: DocsThemeConfig = {
   logo: <span>Aescia Health</span>,
 
-  // Remove GitHub icon by deleting project.link
-  // project: { link: "https://github.com/aesciahealth" },
+  // Remove icons (you already did this earlier)
+  // project: { link: "..." },
+  // chat: { link: "..." },
 
-  docsRepositoryBase: "https://github.com/aesciahealth/aescia-site",
-
-  // Remove Discord icon by deleting chat.link
-  // chat: { link: "mailto:contact@aesciahealth.com" },
-
-footer: {
-  text: (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.9rem" }}>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/governance">Governance</a>
-        <a href="/security">Security</a>
-        <a href="/clinical-regulatory">Clinical & Regulatory</a>
-        <a href="/evidence">Evidence</a>
-        <a href="/contact">Contact</a>
-      </div>
-      <div style={{ marginLeft: "auto", opacity: 0.8 }}>
-        © {new Date().getFullYear()} Aescia Pty Ltd
-      </div>
-    </div>
-  ),
-},
-
-  // Search placeholder (see section 2)
+  // Search placeholder
   search: {
     placeholder: "Search",
+  },
+
+  // Remove breadcrumb "Home" / page title chrome
+  breadcrumb: false,
+
+  // Remove right-side "Question? Give us feedback" and "Edit this page"
+  feedback: {
+    content: null,
+  },
+  editLink: {
+    text: null,
+  },
+
+  // Remove "Last updated ..."
+  gitTimestamp: false,
+
+  // Remove the bottom “About >” next/prev navigation
+  navigation: false,
+
+  footer: {
+    text: (
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.9rem" }}>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/governance">Governance</a>
+          <a href="/security">Security</a>
+          <a href="/clinical-regulatory">Clinical & Regulatory</a>
+          <a href="/evidence">Evidence</a>
+          <a href="/contact">Contact</a>
+        </div>
+        <div style={{ marginLeft: "auto", opacity: 0.8 }}>
+          © 2026 Aescia Pty Ltd · Last updated January 18, 2026
+        </div>
+      </div>
+    ),
   },
 };
 
