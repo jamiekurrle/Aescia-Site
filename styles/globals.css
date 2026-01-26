@@ -9,12 +9,10 @@
    Remove docs chrome we do not want
 ================================ */
 
-/* Breadcrumb row */
 .nextra-breadcrumb {
   display: none !important;
 }
 
-/* Safety: pagination containers should not show */
 .nextra-pagination {
   display: none !important;
 }
@@ -33,7 +31,6 @@ body,
   min-height: 0 !important;
 }
 
-/* Nextra wrappers: avoid viewport-filling defaults */
 .nextra-body,
 .nextra-content,
 .nextra-main {
@@ -41,14 +38,12 @@ body,
   height: auto !important;
 }
 
-/* Some builds use flex layouts that can push footer down */
 .nextra-body,
 .nextra-content,
 .nextra-main {
   display: block !important;
 }
 
-/* Content: no sidebar offset, no extra bottom spacing */
 .nextra-content {
   margin-left: 0 !important;
   padding-bottom: 0 !important;
@@ -65,12 +60,10 @@ body,
   height: auto !important;
 }
 
-/* Remove divider/spacer before footer */
 .nextra-content hr {
   display: none !important;
 }
 
-/* Footer spacing */
 .nextra-footer {
   margin-top: 0 !important;
   padding-top: 16px !important;
@@ -103,40 +96,28 @@ footer {
 
 /* ================================
    Section navigation (left sidebar)
-   Goal:
-   - Mobile: hamburger opens drawer (default Nextra behaviour)
-   - Desktop: show a clean, flat list on non-home pages
-   - Desktop Home: hide the left sidebar entirely
+   - Mobile: hamburger opens drawer
+   - Desktop: show clean list on non-home
+   - Desktop Home: hide persistent sidebar
 ================================ */
 
-/* 1) Ensure the sidebar exists (do not hide it globally). */
 .nextra-sidebar-container {
   display: block !important;
 }
 
-/* 2) Hide the left sidebar on the homepage ONLY (desktop).
-   We keep it available for mobile drawer, but remove the persistent column on home. */
 @media (min-width: 1024px) {
   [data-home="true"] .nextra-sidebar-container {
     display: none !important;
   }
 }
 
-/* 3) Make the sidebar look like a website section navigation, not docs. */
 @media (min-width: 1024px) {
-  /* Container spacing and width */
   .nextra-sidebar-container {
     width: 240px !important;
     padding-top: 20px !important;
     padding-right: 12px !important;
   }
 
-  /* Remove docs-y styling */
-  .nextra-sidebar-container * {
-    text-decoration: none;
-  }
-
-  /* Keep the list flat and readable */
   .nextra-sidebar-container ul {
     margin: 0 !important;
     padding: 0 !important;
@@ -148,7 +129,6 @@ footer {
     padding: 0 !important;
   }
 
-  /* Link styling */
   .nextra-sidebar-container a {
     display: block !important;
     padding: 10px 10px !important;
@@ -163,7 +143,6 @@ footer {
     color: rgba(255, 255, 255, 0.92) !important;
   }
 
-  /* Active page: rely on aria-current where possible */
   .nextra-sidebar-container a[aria-current="page"] {
     background: rgba(255, 255, 255, 0.10) !important;
     color: rgba(255, 255, 255, 0.98) !important;
@@ -171,13 +150,119 @@ footer {
   }
 }
 
-/* 4) Mobile drawer: make it feel like a simple menu list.
-   We avoid heavy overrides — just small readability tweaks. */
 @media (max-width: 1023px) {
   .nextra-sidebar-container a {
     font-size: 1.05rem !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+  }
+}
+
+/* ================================
+   Homepage desktop "Menu" button next to Search
+   This is separate from Nextra’s mobile hamburger.
+================================ */
+
+/* Hidden by default (mobile + non-home pages handled by component & media queries) */
+.aesciaMenuRoot {
+  display: none;
+}
+
+/* Show only on desktop widths */
+@media (min-width: 1024px) {
+  .aesciaMenuRoot {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .aesciaMenuButton {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 650;
+    border-radius: 10px;
+    padding: 8px 12px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .aesciaMenuButton:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.30);
+  }
+
+  .aesciaMenuOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .aesciaMenuBackdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .aesciaMenuPanel {
+    position: absolute;
+    top: 72px;
+    right: 18px;
+    width: 320px;
+    max-width: calc(100vw - 36px);
+    border-radius: 14px;
+    background: rgba(20, 20, 20, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .aesciaMenuHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  }
+
+  .aesciaMenuTitle {
+    font-weight: 750;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .aesciaMenuClose {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .aesciaMenuClose:hover {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .aesciaMenuNav {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .aesciaMenuLink {
+    display: block;
+    padding: 10px 10px;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .aesciaMenuLink:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
   }
 }
 
