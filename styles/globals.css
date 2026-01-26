@@ -150,7 +150,13 @@ footer {
   }
 }
 
+/* Mobile: remove chapter/hash links from the hamburger drawer */
 @media (max-width: 1023px) {
+  /* Keep page navigation; remove internal "#heading" links */
+  .nextra-sidebar-container a[href^="#"] {
+    display: none !important;
+  }
+
   .nextra-sidebar-container a {
     font-size: 1.05rem !important;
     padding-top: 10px !important;
@@ -159,20 +165,26 @@ footer {
 }
 
 /* ================================
-   Homepage desktop "Menu" button next to Search
-   This is separate from Nextra’s mobile hamburger.
+   Homepage desktop "Menu" button near Search
+   Requirement:
+   - Show on homepage desktop
+   - Position to the LEFT of the search input
 ================================ */
 
-/* Hidden by default (mobile + non-home pages handled by component & media queries) */
 .aesciaMenuRoot {
   display: none;
 }
 
-/* Show only on desktop widths */
 @media (min-width: 1024px) {
   .aesciaMenuRoot {
     display: inline-flex;
     align-items: center;
+  }
+
+  /* Nextra header right-side group is flex; set ordering so Menu comes before Search */
+  .aesciaMenuRoot {
+    order: -10;
+    margin-right: 10px;
   }
 
   .aesciaMenuButton {
