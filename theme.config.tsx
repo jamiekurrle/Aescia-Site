@@ -22,7 +22,7 @@ const config: DocsThemeConfig = {
     placeholder: "Search",
   },
 
-  // Add a homepage-only desktop menu button next to the search bar
+  // Add a homepage-only desktop menu button near the search bar
   navbar: {
     extraContent: <SiteMenu />,
   },
@@ -67,7 +67,7 @@ const config: DocsThemeConfig = {
         </div>
 
         <div style={{ marginLeft: "auto", opacity: 0.8 }}>
-          © {new Date().getFullYear()} Aescia Pty Ltd · Last updated January 18, 2026
+          © {new Date().getFullYear()} Aescia Pty Ltd · Last updated January 26, 2026
         </div>
       </div>
     ),
