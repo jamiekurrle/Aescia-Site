@@ -22,8 +22,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const websiteId = `${SITE_URL}/#website`;
   const webpageId = `${pageUrl}#webpage`;
 
+  const isHome = path === "/";
+
   return (
-    <div className={inter.className}>
+    <div
+      className={inter.className}
+      data-route={path}
+      data-home={isHome ? "true" : "false"}
+    >
       <Head>
         {/* Primary metadata */}
         <meta name="application-name" content="Aescia Health" />
