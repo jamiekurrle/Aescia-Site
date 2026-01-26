@@ -152,7 +152,6 @@ footer {
 
 /* Mobile: remove chapter/hash links from the hamburger drawer */
 @media (max-width: 1023px) {
-  /* Keep page navigation; remove internal "#heading" links */
   .nextra-sidebar-container a[href^="#"] {
     display: none !important;
   }
@@ -165,10 +164,11 @@ footer {
 }
 
 /* ================================
-   Homepage desktop "Menu" button near Search
+   Homepage desktop hamburger icon near Search
    Requirement:
    - Show on homepage desktop
    - Position to the LEFT of the search input
+   - Overlay panel opens on the LEFT side
 ================================ */
 
 .aesciaMenuRoot {
@@ -179,27 +179,25 @@ footer {
   .aesciaMenuRoot {
     display: inline-flex;
     align-items: center;
-  }
-
-  /* Nextra header right-side group is flex; set ordering so Menu comes before Search */
-  .aesciaMenuRoot {
     order: -10;
     margin-right: 10px;
   }
 
-  .aesciaMenuButton {
+  .aesciaMenuIconButton {
     appearance: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.22);
     background: rgba(255, 255, 255, 0.06);
     color: rgba(255, 255, 255, 0.92);
-    font-weight: 650;
-    border-radius: 10px;
-    padding: 8px 12px;
-    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
   }
 
-  .aesciaMenuButton:hover {
+  .aesciaMenuIconButton:hover {
     background: rgba(255, 255, 255, 0.10);
     border-color: rgba(255, 255, 255, 0.30);
   }
@@ -216,10 +214,11 @@ footer {
     background: rgba(0, 0, 0, 0.55);
   }
 
+  /* Open on the LEFT side now */
   .aesciaMenuPanel {
     position: absolute;
     top: 72px;
-    right: 18px;
+    left: 18px;
     width: 320px;
     max-width: calc(100vw - 36px);
     border-radius: 14px;
