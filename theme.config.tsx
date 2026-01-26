@@ -16,10 +16,6 @@ const config: DocsThemeConfig = {
     </span>
   ),
 
-  // Remove GitHub + Discord icons by not defining these
-  // project: { link: "..." },
-  // chat: { link: "..." },
-
   // Search placeholder
   search: {
     placeholder: "Search",
@@ -37,6 +33,13 @@ const config: DocsThemeConfig = {
 
   // Remove "Last updated..." block (we’ll show it in footer instead)
   gitTimestamp: false,
+
+  /**
+   * Critical: remove bottom prev/next navigation (“About →”).
+   * Nextra docs theme calls this “navigation” (the component that renders prev/next links).
+   * This is the structural fix (not CSS).
+   */
+  navigation: false,
 
   // Footer nav + last-updated
   footer: {
