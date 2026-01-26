@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import type { DocsThemeConfig } from "nextra-theme-docs";
+import SiteMenu from "./components/SiteMenu";
 
 const config: DocsThemeConfig = {
   // Header logo (top-left)
@@ -21,6 +22,11 @@ const config: DocsThemeConfig = {
     placeholder: "Search",
   },
 
+  // Add a homepage-only desktop menu button next to the search bar
+  navbar: {
+    extraContent: <SiteMenu />,
+  },
+
   // Remove right-side "Question? Give us feedback"
   feedback: {
     content: null,
@@ -35,9 +41,7 @@ const config: DocsThemeConfig = {
   gitTimestamp: false,
 
   /**
-   * Critical: remove bottom prev/next navigation (“About →”).
-   * Nextra docs theme calls this “navigation” (the component that renders prev/next links).
-   * This is the structural fix (not CSS).
+   * Remove bottom prev/next navigation injected by the docs theme.
    */
   navigation: false,
 
