@@ -6,78 +6,97 @@
 }
 
 /* ================================
-   Remove Nextra "docs" chrome
+   Nextra: remove docs chrome (as a website)
+   (Structural removal for prev/next is done via theme.config navigation:false)
 ================================ */
 
-/* Hide top breadcrumb/page title row ("Home") */
+/* Hide breadcrumb/page title row ("Home") */
 .nextra-breadcrumb {
   display: none !important;
 }
 
-/* Hide left docs sidebar */
+/* Hide left docs sidebar container */
 .nextra-sidebar-container {
   display: none !important;
 }
 
-/* Hide next/prev pagination ("About >") */
+/* If any legacy pagination container still renders, ensure it is not visible */
 .nextra-pagination {
   display: none !important;
 }
 
-/* Some Nextra themes render a "page footer" link like "About →" separately */
+/* Some versions render a separate "page footer" area */
 .nextra-page-footer {
   display: none !important;
 }
 
 /* ================================
-   Layout: make it feel like a website
+   Critical: eliminate the "black gap"
+   (Usually caused by min-height / flex fill in docs layout wrappers)
 ================================ */
 
-/* Remove sidebar offset + pull footer closer */
+/* Ensure the docs content wrapper does NOT force viewport height. */
 .nextra-content {
-  margin-left: 0 !important;
+  min-height: unset !important;
+  height: auto !important;
+  margin-left: 0 !important; /* no sidebar offset */
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* Full-width content (hero can go edge-to-edge) */
+/* Ensure main does not add large bottom padding and does not stretch. */
 .nextra-content main {
-  max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  min-height: unset !important;
+  height: auto !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* Remove extra gap above footer */
-.nextra-content main > :last-child {
-  margin-bottom: 0 !important;
-}
-
-/* If Nextra injects a divider / spacer before the footer, remove it */
+/* Remove any divider/spacer before footer that can create visual gaps */
 .nextra-content hr {
   display: none !important;
 }
 
-/* Remove empty blocks that sometimes create a "black bar" gap */
-.nextra-content main > div:empty {
-  display: none !important;
-}
-
-/* Also collapse any empty sections (rare but happens with MDX wrappers) */
-.nextra-content main > section:empty {
-  display: none !important;
-}
-
-/* Footer spacing (tight but readable) */
+/* Tight but readable footer spacing */
 .nextra-footer {
   margin-top: 0 !important;
   padding-top: 16px !important;
 }
 
-/* Ensure footer doesn't get pushed down by default theme spacing */
+/* Avoid generic footer margin causing separation */
 footer {
   margin-top: 0 !important;
+}
+
+/* ================================
+   Page width + padding rules
+   Goal:
+   - Homepage: full-bleed (hero edge-to-edge)
+   - Non-home pages: comfortable left padding + max-width
+================================ */
+
+/* Default: keep main full width (lets homepage hero be full-bleed). */
+.nextra-content main {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Non-home pages: add padding + constrain line length */
+[data-home="false"] .nextra-content main {
+  max-width: 980px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* Slightly larger gutters on wide screens */
+@media (min-width: 1024px) {
+  [data-home="false"] .nextra-content main {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
 }
 
 /* ================================
