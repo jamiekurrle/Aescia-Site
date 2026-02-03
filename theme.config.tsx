@@ -6,7 +6,7 @@ import SiteMenu from "./components/SiteMenu";
 const config: DocsThemeConfig = {
   // Header logo (top-left)
   logo: (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
+    <span className="aesciaHeaderLogo">
       <Image
         src="/aescia_logo_cropped.png"
         alt="Aescia Health"
@@ -45,29 +45,34 @@ const config: DocsThemeConfig = {
    */
   navigation: false,
 
-  // Footer nav + last-updated
+  // Footer nav + last-updated (now includes bottom-left logo)
   footer: {
     text: (
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "1rem",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.9rem" }}>
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/governance">Governance</a>
-          <a href="/security">Security</a>
-          <a href="/clinical-regulatory">Clinical &amp; Regulatory</a>
-          <a href="/evidence">Evidence</a>
-          <a href="/contact">Contact</a>
+      <div className="aesciaFooter">
+        <div className="aesciaFooterLeft">
+          <a className="aesciaFooterLogo" href="/" aria-label="Aescia Home">
+            <Image
+              src="/aescia_logo_cropped.png"
+              alt="Aescia"
+              width={120}
+              height={24}
+            />
+          </a>
+
+          <nav className="aesciaFooterNav" aria-label="Footer navigation">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/governance">Governance</a>
+            <a href="/security">Security</a>
+            <a href="/clinical-regulatory">Clinical &amp; Regulatory</a>
+            <a href="/evidence">Evidence</a>
+            <a href="/contact">Contact</a>
+          </nav>
         </div>
 
-        <div style={{ marginLeft: "auto", opacity: 0.8 }}>
-          © {new Date().getFullYear()} Aescia Pty Ltd · Last updated January 26, 2026
+        <div className="aesciaFooterMeta">
+          © {new Date().getFullYear()} Aescia Pty Ltd · Last updated January 26,
+          2026
         </div>
       </div>
     ),
