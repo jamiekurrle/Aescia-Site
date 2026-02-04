@@ -1,40 +1,78 @@
-/* ================================
-   Global typography baseline
-================================ */
-:root {
-  text-rendering: optimizeLegibility;
+import React from "react";
+import type { DocsThemeConfig } from "nextra-theme-docs";
 
-  /* Stronger “real” dark blue for light mode bars */
-  --aescia-bar: #0a2540;
+/**
+ * Nextra theme configuration (TypeScript/React only).
+ * DO NOT put CSS in this file — keep CSS in styles/globals.css.
+ */
+const config: DocsThemeConfig = {
+  logo: (
+    <span className="aesciaHeaderLogo" style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem" }}>
+      <span style={{ fontWeight: 850, letterSpacing: "-0.02em" }}>Aescia</span>
+      <span style={{ opacity: 0.8, fontWeight: 650 }}>Health</span>
+    </span>
+  ),
 
-  /* Text + borders on the blue */
-  --aescia-bar-text: rgba(255, 255, 255, 0.92);
-  --aescia-bar-muted: rgba(255, 255, 255, 0.74);
-  --aescia-bar-border: rgba(255, 255, 255, 0.14);
-}
+  project: {
+    link: "https://github.com/jamiekurrle/Aescia-Site",
+  },
 
-/* ================================
-   Remove docs chrome we do not want
-================================ */
-.nextra-breadcrumb {
-  display: none !important;
-}
+  docsRepositoryBase: "https://github.com/jamiekurrle/Aescia-Site/tree/main",
 
-.nextra-pagination {
-  display: none !important;
-}
+  // These are safe defaults; you can expand later.
+  sidebar: {
+    toggleButton: true,
+    defaultMenuCollapseLevel: 1,
+  },
 
-.nextra-page-footer {
-  display: none !important;
-}
+  toc: {
+    float: true,
+  },
 
-/* ================================
-   Critical: eliminate phantom space / "black gap"
-================================ */
-html,
-body,
-#__next {
-  height: auto !important;
+  navigation: {
+    prev: true,
+    next: true,
+  },
+
+  // You can turn these on later if you want.
+  // feedback: { content: "Feedback" },
+  // editLink: { text: "Edit this page" },
+
+  footer: {
+    text: (
+      <div className="aesciaFooter">
+        <div className="aesciaFooterInner">
+          <div className="aesciaFooterLeft">
+            <a className="aesciaFooterLogo" href="/" aria-label="Aescia home">
+              {/* If you have an actual logo image/svg component, swap it in here */}
+              <span style={{ fontWeight: 850, letterSpacing: "-0.02em" }}>Aescia</span>
+            </a>
+
+            <nav className="aesciaFooterNav" aria-label="Footer navigation">
+              <a href="/">Home</a>
+              <a href="/about">About</a>
+              <a href="/governance">Governance</a>
+              <a href="/clinical-regulatory">Clinical &amp; Regulatory</a>
+              <a href="/contact">Contact</a>
+            </nav>
+          </div>
+
+          <div className="aesciaFooterMeta">© {new Date().getFullYear()} Aescia</div>
+        </div>
+      </div>
+    ),
+  },
+
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="theme-color" content="#0a2540" />
+      <meta name="description" content="Aescia is a post-discharge monitoring and escalation platform supporting safer recovery and better hospital flow." />
+    </>
+  ),
+};
+
+export default config;  height: auto !important;
   min-height: 0 !important;
 }
 
