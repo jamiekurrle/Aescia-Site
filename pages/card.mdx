@@ -16,7 +16,7 @@ import { Callout } from "nextra/components"
 
   .hero {
     border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 1.25rem;
     background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.00));
   }
@@ -26,37 +26,22 @@ import { Callout } from "nextra/components"
     background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00));
   }
 
-  .kicker {
-    display: inline-flex;
-    gap: .5rem;
-    align-items: center;
-    border: 1px solid rgba(0,0,0,0.10);
-    border-radius: 999px;
-    padding: .35rem .7rem;
-    font-size: .85rem;
-    opacity: .95;
-  }
-
-  html.dark .kicker {
-    border-color: rgba(255,255,255,0.14);
-  }
-
   .h1 {
-    margin: .85rem 0 .25rem 0;
-    font-size: 2.0rem;
-    line-height: 1.15;
+    margin: 0 0 .35rem 0;
+    font-size: 2.05rem;
+    line-height: 1.12;
     letter-spacing: -0.02em;
   }
 
   @media (min-width: 900px) {
-    .h1 { font-size: 2.4rem; }
+    .h1 { font-size: 2.55rem; }
   }
 
   .sub {
-    margin: 0.25rem 0 1rem 0;
+    margin: 0.35rem 0 1rem 0;
     font-size: 1.05rem;
     opacity: .9;
-    max-width: 70ch;
+    max-width: 72ch;
   }
 
   .ctaRow {
@@ -75,7 +60,7 @@ import { Callout } from "nextra/components"
     border-radius: 12px;
     border: 1px solid rgba(0,0,0,0.14);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 650;
     transition: transform .08s ease, opacity .08s ease;
   }
 
@@ -97,21 +82,25 @@ import { Callout } from "nextra/components"
     border-color: rgba(255,255,255,0.92);
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 1rem;
+  .mini {
+    font-size: .94rem;
+    opacity: .85;
   }
 
-  @media (min-width: 900px) {
-    .grid { grid-template-columns: 1.2fr .8fr; }
+  .hr {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 1.1rem 0;
+  }
+
+  html.dark .hr {
+    background: rgba(255,255,255,0.12);
   }
 
   .panel {
     border: 1px solid rgba(0,0,0,0.10);
     border-radius: 16px;
-    padding: 1.05rem 1.1rem;
+    padding: 1.0rem 1.05rem;
     background: rgba(0,0,0,0.01);
   }
 
@@ -120,9 +109,9 @@ import { Callout } from "nextra/components"
     background: rgba(255,255,255,0.04);
   }
 
-  .panel h3 {
+  .panel h2 {
     margin: 0 0 .35rem 0;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     letter-spacing: -0.01em;
   }
 
@@ -130,57 +119,86 @@ import { Callout } from "nextra/components"
     opacity: .92;
   }
 
-  .mini {
-    font-size: .92rem;
-    opacity: .85;
-  }
-
-  .bullets {
-    margin: .5rem 0 0 0;
-  }
-
+  .bullets { margin: .5rem 0 0 0; }
   .bullets li { margin: .35rem 0; }
 
-  .hr {
-    height: 1px;
-    background: rgba(0,0,0,0.08);
-    margin: 1.25rem 0;
-  }
-
-  html.dark .hr {
-    background: rgba(255,255,255,0.12);
-  }
-
-  .faq {
+  .stack {
+    display: grid;
+    gap: 1rem;
     margin-top: 1rem;
   }
 
-  .faq details {
+  .folds details {
     border: 1px solid rgba(0,0,0,0.10);
     border-radius: 14px;
-    padding: .8rem .9rem;
+    padding: .85rem .95rem;
     background: rgba(0,0,0,0.01);
-    margin: .6rem 0;
+    margin: .7rem 0;
   }
 
-  html.dark .faq details {
+  html.dark .folds details {
     border-color: rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
   }
 
-  .faq summary {
+  .folds summary {
     cursor: pointer;
-    font-weight: 650;
+    font-weight: 700;
     list-style: none;
   }
 
-  .faq summary::-webkit-details-marker { display:none; }
+  .folds summary::-webkit-details-marker { display:none; }
+
+  .calloutTight :global(.nextra-callout) {
+    margin-top: .8rem;
+  }
+
+  .metricGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .8rem;
+    margin-top: .8rem;
+  }
+
+  @media (min-width: 900px) {
+    .metricGrid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .metric {
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 14px;
+    padding: .85rem .9rem;
+    background: rgba(0,0,0,0.01);
+  }
+
+  html.dark .metric {
+    border-color: rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .metric .k {
+    font-size: .85rem;
+    opacity: .85;
+    margin-bottom: .25rem;
+  }
+
+  .metric .v {
+    font-size: 1.05rem;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+  }
+
+  .metric .n {
+    margin-top: .35rem;
+    font-size: .9rem;
+    opacity: .85;
+  }
 
   .footerCta {
-    margin-top: 1.25rem;
+    margin-top: 1.2rem;
     border: 1px solid rgba(0,0,0,0.10);
     border-radius: 16px;
-    padding: 1rem 1.1rem;
+    padding: 1rem 1.05rem;
     background: rgba(0,0,0,0.01);
   }
 
@@ -194,133 +212,171 @@ import { Callout } from "nextra/components"
 
 <div className="cardWrap">
   <div className="hero">
-    <div className="kicker">
-      <span>MEDTEQ+ • Trial partner brief</span>
-      <span aria-hidden="true">•</span>
-      <span>Post-discharge monitoring + escalation</span>
-    </div>
-
-    <h1 className="h1">Aescia helps clinical teams spot post-discharge risk earlier — without breaking workflows.</h1>
+    <h1 className="h1">Post-discharge monitoring that surfaces risk early and keeps escalation clinician-led.</h1>
 
     <p className="sub">
-      Structured patient check-ins, consistent escalation pathways, and a clinician-friendly view of who needs attention first.
-      Built for real-world adoption: minimal friction, clear governance, and measurable outcomes.
+      Aescia runs structured patient check-ins after discharge, flags concerning trajectories, and presents a simple
+      “who needs attention first” view to the clinical team. The goal is safer discharge, fewer avoidable returns,
+      and more predictable follow-up.
     </p>
 
     <div className="ctaRow">
-      <a className="btn btnPrimary" href="/contact">Talk to us about a trial</a>
-      <a className="btn" href="/evidence">Evidence & evaluation approach</a>
+      <a className="btn btnPrimary" href="/contact">Book a discussion</a>
+      <a className="btn" href="/evidence">Evidence and evaluation</a>
       <a className="btn" href="/security">Security posture</a>
       <a
         className="btn"
-        href="mailto:james@aescia.com?subject=Aescia%20trial%20discussion%20(from%20MEDTEQ%2B)&body=Hi%20James%2C%0A%0AI%20scanned%20your%20card%20at%20MEDTEQ%2B.%20We%E2%80%99d%20like%20to%20explore%20a%20trial.%0A%0AOrg%3A%0ARole%3A%0ACohort%20of%20interest%3A%20(e.g.%20CTS%2C%20HF%2C%20COPD%2C%20peds)%0ABest%20contact%3A%0A%0AThanks%2C"
+        href="mailto:james@aescia.com?subject=Aescia%20trial%20discussion%20(from%20MEDTEQ%2B)&body=Hi%20James%2C%0A%0AI%20scanned%20your%20card%20at%20MEDTEQ%2B.%20We%E2%80%99d%20like%20to%20explore%20a%20trial.%0A%0AOrg%3A%0ARole%3A%0ACohort%20of%20interest%3A%20(e.g.%20CTS%2C%20HF%2C%20COPD%2C%20peds)%0AEscalation%20owner%3A%0ABest%20contact%3A%0A%0AThanks%2C"
       >
         Email directly
       </a>
     </div>
 
-    <p className="mini" style={{ marginTop: ".8rem" }}>
-      Short on time? The fastest path is: <strong>pick a cohort</strong> → <strong>define escalation</strong> → <strong>run a 8–12 week pilot</strong> with workflow + outcomes metrics.
+    <p className="mini" style={{ marginTop: ".85rem" }}>
+      Fastest pilot path: choose a cohort, agree escalation ownership, run an 8 to 12 week pilot with workflow and outcomes metrics.
     </p>
   </div>
 
-  <div className="grid">
-    <div className="panel">
-      <h3>What Aescia actually does</h3>
+  <div className="stack">
+    <div className="panel calloutTight">
+      <h2>Expected impact, in plain language</h2>
       <ul className="bullets">
-        <li><strong>Captures patient-reported outcomes</strong> after discharge using structured prompts (not “random chat”).</li>
-        <li><strong>Flags concerning trajectories</strong> so clinicians see who needs attention first.</li>
-        <li><strong>Supports consistent escalation pathways</strong> (site-specific rules, transparent logic).</li>
-        <li><strong>Creates an auditable trail</strong> of follow-up attempts, responses, and escalation events.</li>
+        <li><strong>Fewer avoidable representations and readmissions</strong> through earlier detection and consistent follow-up.</li>
+        <li><strong>More throughput</strong> when saved bed-days are reutilised for additional cases.</li>
+        <li><strong>Lower avoidable cost</strong> when events are prevented or managed earlier in the community.</li>
       </ul>
 
-      <div className="hr" />
+      <div className="metricGrid">
+        <div className="metric">
+          <div className="k">Throughput lever</div>
+          <div className="v">Bed-days saved and reused</div>
+          <div className="n">Index length of stay reduction and fewer readmission bed-days.</div>
+        </div>
 
-      <h3>Why teams care</h3>
-      <ul className="bullets">
-        <li>Earlier detection of deterioration → fewer avoidable representations and complications.</li>
-        <li>More consistent follow-up → less “who called whom, when?” chaos.</li>
-        <li>Clear evaluation metrics → easier to justify scale-up and funding.</li>
-      </ul>
-    </div>
+        <div className="metric">
+          <div className="k">Avoided cost lever</div>
+          <div className="v">Fewer returns and complications</div>
+          <div className="n">Less Emergency Department use, fewer admissions, earlier intervention.</div>
+        </div>
 
-    <div className="panel">
-      <h3>Where we are today</h3>
-      <ul className="bullets">
-        <li><strong>Actively progressing a first trial</strong> (cardiothoracic surgery pathway) with a focus on real-world feasibility + outcomes.</li>
-        <li><strong>Built to be clinician-in-the-loop</strong>, with conservative safety and escalation design.</li>
-        <li><strong>Designed for governance</strong>: traceability, pathway versioning, and evaluation readiness.</li>
-      </ul>
+        <div className="metric">
+          <div className="k">Operational lever</div>
+          <div className="v">Less chaotic follow-up</div>
+          <div className="n">Clear record of contacts, responses, escalations and outcomes.</div>
+        </div>
+      </div>
 
       <Callout type="info">
-        We’re looking for trial partners who want to improve discharge safety without adding an unsustainable workload.
+        We can model your local value using your cohort volume, baseline readmission rate, average length of stay, and a bed-day value.
+        Aescia pricing can be aligned to outcomes via gainshare.
       </Callout>
-
-      <h3>Ideal pilot partner profile</h3>
-      <ul className="bullets">
-        <li>Has a high-impact cohort (e.g., major surgery, heart failure, complex respiratory, pediatrics).</li>
-        <li>Has an existing escalation owner (nurse navigator, CNC, NP, registrar team, virtual ward).</li>
-        <li>Wants measurable results (readmissions, length of stay, ED re-presentations, workload).</li>
-      </ul>
     </div>
-  </div>
 
-  <div className="hr" />
+    <div className="panel folds">
+      <h2>Details you can expand</h2>
 
-  <div className="panel">
-    <h3>What a trial could look like (simple + credible)</h3>
-    <ul className="bullets">
-      <li><strong>Duration:</strong> 8–12 weeks</li>
-      <li><strong>Cohort:</strong> 100–300 discharges (or smaller to start if governance is heavy)</li>
-      <li><strong>Workflow metrics:</strong> response rate, time-to-escalation, clinician time per escalated patient</li>
-      <li><strong>Outcome metrics:</strong> ED re-presentations, readmissions, complications caught earlier, patient experience</li>
-      <li><strong>Operational metrics:</strong> bed-day impact (where measurable), discharge confidence, escalations resolved remotely</li>
-    </ul>
-  </div>
+      <details open>
+        <summary>Impact model: throughput and avoided costs</summary>
+        <div style={{ marginTop: ".7rem" }}>
+          <p className="mini">
+            Below is a practical, conservative template that we tailor to your site. It separates two buckets because finance teams often treat them differently.
+          </p>
 
-  <div className="faq">
-    <details>
-      <summary>Is this “AI making clinical decisions”?</summary>
-      <div style={{ marginTop: ".6rem" }}>
-        No. The core product is structured follow-up + escalation workflow. Where AI can help is summarisation,
-        signal extraction, and helping clinicians triage attention — but escalation remains clinician-controlled.
+          <ul className="bullets">
+            <li>
+              <strong>Throughput gains</strong> (reutilised capacity): saved bed-days that are used for additional admissions or surgery.
+            </li>
+            <li>
+              <strong>Avoided costs</strong> (cash releasing): preventable returns, admissions, and complication pathways.
+            </li>
+          </ul>
+
+          <div className="hr" />
+
+          <p><strong>Example structure (site-specific numbers plug in):</strong></p>
+          <ul className="bullets">
+            <li><strong>Eligible discharges per year:</strong> N</li>
+            <li><strong>Engagement rate:</strong> 50 to 70 percent (pilot-measured)</li>
+            <li><strong>Index length of stay reduction:</strong> 0.25 to 1.0 days in engaged patients (cohort dependent)</li>
+            <li><strong>Readmission reduction:</strong> 10 to 25 percent relative reduction (cohort dependent)</li>
+            <li><strong>Bed-day value:</strong> your local finance figure or proxy (varies by jurisdiction and accounting method)</li>
+            <li><strong>Reutilisation fraction:</strong> often 50 to 80 percent (how much saved capacity becomes real throughput)</li>
+          </ul>
+
+          <div className="hr" />
+
+          <p><strong>Outputs we calculate with your inputs:</strong></p>
+          <ul className="bullets">
+            <li><strong>Bed-days saved:</strong> from shorter index stays plus fewer readmission days</li>
+            <li><strong>Additional cases enabled:</strong> bed-days saved × reutilisation ÷ average length of stay</li>
+            <li><strong>Financial value range:</strong> throughput value plus avoided cost value</li>
+          </ul>
+
+          <Callout type="warning">
+            We do not claim guaranteed savings. The pilot is designed to measure engagement, escalation load, and early signals of outcome lift in your context.
+          </Callout>
+        </div>
+      </details>
+
+      <details>
+        <summary>What Aescia actually does</summary>
+        <div style={{ marginTop: ".7rem" }}>
+          <ul className="bullets">
+            <li><strong>Structured check-ins</strong> using prompts that map to your pathway.</li>
+            <li><strong>Trajectory flags</strong> so clinicians see who needs attention first.</li>
+            <li><strong>Consistent escalation</strong> with site-specific rules and transparent logic.</li>
+            <li><strong>Auditable trail</strong> of follow-up attempts, responses, and escalations.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>What a credible pilot looks like</summary>
+        <div style={{ marginTop: ".7rem" }}>
+          <ul className="bullets">
+            <li><strong>Duration:</strong> 8 to 12 weeks</li>
+            <li><strong>Cohort size:</strong> 100 to 300 discharges (or smaller if governance is heavy)</li>
+            <li><strong>Workflow metrics:</strong> response rate, time-to-escalation, clinician time per escalated patient</li>
+            <li><strong>Outcome metrics:</strong> Emergency Department representations, readmissions, complications caught earlier, patient experience</li>
+            <li><strong>Operational metrics:</strong> escalations resolved remotely, discharge confidence, burden on follow-up staff</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is this clinical decision-making by AI?</summary>
+        <div style={{ marginTop: ".7rem" }}>
+          No. Aescia is structured follow-up and escalation workflow. Where automation helps is summarisation and prioritisation.
+          Escalation remains clinician-controlled.
+        </div>
+      </details>
+
+      <details>
+        <summary>Implementation effort</summary>
+        <div style={{ marginTop: ".7rem" }}>
+          A pilot can run without deep integration at first. If it works and the workflow is validated, integration becomes worth doing and easier to justify internally.
+        </div>
+      </details>
+    </div>
+
+    <div className="footerCta">
+      <h2 style={{ margin: 0 }}>Want a one-page pilot outline for your site?</h2>
+      <p className="mini" style={{ margin: ".35rem 0 .8rem 0" }}>
+        Send cohort, approximate discharge volume, and who owns escalation. We reply with a concrete pilot plan and an impact model range.
+      </p>
+      <div className="ctaRow" style={{ marginTop: 0 }}>
+        <a className="btn btnPrimary" href="/contact">Contact</a>
+        <a
+          className="btn"
+          href="mailto:james@aescia.com?subject=Aescia%20pilot%20inputs&body=Hi%20James%2C%0A%0AWe%E2%80%99d%20like%20a%20pilot%20outline.%0A%0ACohort%3A%0ADischarges%20per%20month%20(estimate)%3A%0AWho%20owns%20escalation%3A%0ASite%3A%0A%0AThanks%2C"
+        >
+          Email inputs
+        </a>
       </div>
-    </details>
+    </div>
 
-    <details>
-      <summary>How hard is implementation?</summary>
-      <div style={{ marginTop: ".6rem" }}>
-        The design goal is minimal friction. A pilot can run without deep integration at first.
-        If it works, integration becomes worth doing (and easier to justify internally).
-      </div>
-    </details>
-
-    <details>
-      <summary>What do you need from a hospital to start?</summary>
-      <div style={{ marginTop: ".6rem" }}>
-        A cohort owner, an escalation pathway, a small working group (clinical + ops + governance),
-        and agreement on what “success” looks like. We’ll do the heavy lifting on setup and evaluation design.
-      </div>
-    </details>
-  </div>
-
-  <div className="footerCta">
-    <h3 style={{ margin: 0 }}>Want to explore a trial?</h3>
-    <p className="mini" style={{ margin: ".35rem 0 .8rem 0" }}>
-      Send a one-liner with your cohort of interest and who owns escalation. We’ll reply with a concrete pilot outline.
+    <p className="mini" style={{ marginTop: "1rem" }}>
+      © 2026 Aescia • <a href="/governance">Governance</a> • <a href="/clinical-regulatory">Clinical and regulatory</a> • <a href="/contact">Contact</a>
     </p>
-    <div className="ctaRow" style={{ marginTop: 0 }}>
-      <a className="btn btnPrimary" href="/contact">Contact / book a discussion</a>
-      <a
-        className="btn"
-        href="mailto:james@aescia.com?subject=Aescia%20pilot%20idea&body=Hi%20James%2C%0A%0AWe%E2%80%99re%20interested%20in%20a%20pilot.%0A%0ACohort%3A%0AEscalation%20owner%3A%0ASite%3A%0ATiming%3A%0A%0AThanks%2C"
-      >
-        Email the pilot details
-      </a>
-    </div>
   </div>
-
-  <p className="mini" style={{ marginTop: "1rem" }}>
-    © 2026 Aescia • <a href="/governance">Governance</a> • <a href="/clinical-regulatory">Clinical & Regulatory</a> • <a href="/contact">Contact</a>
-  </p>
 </div>
