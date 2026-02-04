@@ -5,7 +5,9 @@ description: "Aescia helps clinical teams identify post-discharge risk earlier t
 
 import { Callout } from "nextra/components"
 
-<style>{`
+<style
+  dangerouslySetInnerHTML={{
+    __html: `
   .cardWrap {
     max-width: 980px;
     margin: 0 auto;
@@ -19,7 +21,7 @@ import { Callout } from "nextra/components"
     background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.00));
   }
 
-  :global(html.dark) .hero {
+  html.dark .hero {
     border-color: rgba(255,255,255,0.12);
     background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.00));
   }
@@ -35,7 +37,7 @@ import { Callout } from "nextra/components"
     opacity: .95;
   }
 
-  :global(html.dark) .kicker {
+  html.dark .kicker {
     border-color: rgba(255,255,255,0.14);
   }
 
@@ -77,7 +79,7 @@ import { Callout } from "nextra/components"
     transition: transform .08s ease, opacity .08s ease;
   }
 
-  :global(html.dark) .btn {
+  html.dark .btn {
     border-color: rgba(255,255,255,0.16);
   }
 
@@ -89,7 +91,7 @@ import { Callout } from "nextra/components"
     border-color: rgba(0,0,0,0.92);
   }
 
-  :global(html.dark) .btnPrimary {
+  html.dark .btnPrimary {
     background: rgba(255,255,255,0.92);
     color: black;
     border-color: rgba(255,255,255,0.92);
@@ -113,7 +115,7 @@ import { Callout } from "nextra/components"
     background: rgba(0,0,0,0.01);
   }
 
-  :global(html.dark) .panel {
+  html.dark .panel {
     border-color: rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
   }
@@ -145,7 +147,7 @@ import { Callout } from "nextra/components"
     margin: 1.25rem 0;
   }
 
-  :global(html.dark) .hr {
+  html.dark .hr {
     background: rgba(255,255,255,0.12);
   }
 
@@ -161,7 +163,7 @@ import { Callout } from "nextra/components"
     margin: .6rem 0;
   }
 
-  :global(html.dark) .faq details {
+  html.dark .faq details {
     border-color: rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
   }
@@ -182,11 +184,13 @@ import { Callout } from "nextra/components"
     background: rgba(0,0,0,0.01);
   }
 
-  :global(html.dark) .footerCta {
+  html.dark .footerCta {
     border-color: rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.04);
   }
-`}</style>
+`,
+  }}
+/>
 
 <div className="cardWrap">
   <div className="hero">
@@ -207,7 +211,12 @@ import { Callout } from "nextra/components"
       <a className="btn btnPrimary" href="/contact">Talk to us about a trial</a>
       <a className="btn" href="/evidence">Evidence & evaluation approach</a>
       <a className="btn" href="/security">Security posture</a>
-      <a className="btn" href="mailto:james@aescia.com?subject=Aescia%20trial%20discussion%20(from%20MEDTEQ%2B)&body=Hi%20James%2C%0A%0AI%20scanned%20your%20card%20at%20MEDTEQ%2B.%20We%E2%80%99d%20like%20to%20explore%20a%20trial.%0A%0AOrg%3A%0ARole%3A%0ACohort%20of%20interest%3A%20(e.g.%20CTS%2C%20HF%2C%20COPD%2C%20peds)%0ABest%20contact%3A%0A%0AThanks%2C">Email directly</a>
+      <a
+        className="btn"
+        href="mailto:james@aescia.com?subject=Aescia%20trial%20discussion%20(from%20MEDTEQ%2B)&body=Hi%20James%2C%0A%0AI%20scanned%20your%20card%20at%20MEDTEQ%2B.%20We%E2%80%99d%20like%20to%20explore%20a%20trial.%0A%0AOrg%3A%0ARole%3A%0ACohort%20of%20interest%3A%20(e.g.%20CTS%2C%20HF%2C%20COPD%2C%20peds)%0ABest%20contact%3A%0A%0AThanks%2C"
+      >
+        Email directly
+      </a>
     </div>
 
     <p className="mini" style={{ marginTop: ".8rem" }}>
@@ -302,7 +311,12 @@ import { Callout } from "nextra/components"
     </p>
     <div className="ctaRow" style={{ marginTop: 0 }}>
       <a className="btn btnPrimary" href="/contact">Contact / book a discussion</a>
-      <a className="btn" href="mailto:james@aescia.com?subject=Aescia%20pilot%20idea&body=Hi%20James%2C%0A%0AWe%E2%80%99re%20interested%20in%20a%20pilot.%0A%0ACohort%3A%0AEscalation%20owner%3A%0ASite%3A%0ATiming%3A%0A%0AThanks%2C">Email the pilot details</a>
+      <a
+        className="btn"
+        href="mailto:james@aescia.com?subject=Aescia%20pilot%20idea&body=Hi%20James%2C%0A%0AWe%E2%80%99re%20interested%20in%20a%20pilot.%0A%0ACohort%3A%0AEscalation%20owner%3A%0ASite%3A%0ATiming%3A%0A%0AThanks%2C"
+      >
+        Email the pilot details
+      </a>
     </div>
   </div>
 
