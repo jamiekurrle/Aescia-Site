@@ -47,11 +47,23 @@ const config: DocsThemeConfig = {
 
             <nav className="aesciaFooterNav" aria-label="Footer navigation">
               <a href="/">Home</a>
+              <a href="/for-hospitals">For Hospitals</a>
+              <a href="/how-it-works">How It Works</a>
+              <a href="/use-cases">Use Cases</a>
+              <a href="/implementation">Implementation</a>
+              <a href="/clinical-evidence">Clinical Evidence</a>
+              <a href="/measured-outcomes">Measured Outcomes</a>
+              <a href="/team">Team</a>
+              <a href="/trust-centre">Trust Centre</a>
+              <a href="/request-info">Request Information</a>
+            </nav>
+
+            <nav className="aesciaFooterNav" aria-label="Company navigation">
               <a href="/about">About</a>
               <a href="/governance">Governance</a>
+              <a href="/security">Security</a>
               <a href="/clinical-regulatory">Clinical &amp; Regulatory</a>
               <a href="/contact">Contact</a>
-              <a href="/card">Card</a>
             </nav>
           </div>
 
