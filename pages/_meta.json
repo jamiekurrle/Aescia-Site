@@ -1,9 +1,21 @@
 {
   "index": "Home",
+  "for-hospitals": "For Hospitals",
+  "how-it-works": "How It Works",
+  "use-cases": "Use Cases",
+  "implementation": "Implementation",
+  "clinical-evidence": "Clinical Evidence",
+  "measured-outcomes": "Measured Outcomes",
+  "team": "Team",
+  "trust-centre": "Trust Centre",
+  "request-info": "Request Information",
+  "-- separator --": {
+    "type": "separator",
+    "title": "Company"
+  },
   "about": "About",
   "governance": "Governance",
   "security": "Security",
   "clinical-regulatory": "Clinical & Regulatory",
-  "evidence": "Evidence",
   "contact": "Contact"
 }
