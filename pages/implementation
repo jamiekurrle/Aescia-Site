@@ -1,0 +1,221 @@
+---
+title: "Implementation & Pilot Model — Aescia"
+description: "How Aescia runs a controlled pilot. Five-phase structure, hospital inputs, governance touchpoints, and what a pilot produces at close."
+---
+
+import { Callout } from 'nextra/components'
+
+# Implementation & Pilot Model
+
+**Aescia is designed for phased implementation — structured, scoped, and subject to site governance and approval at every stage.**
+
+This page describes how a pilot engagement is structured, what each party contributes, and what a pilot produces at close. No two sites are identical; everything here is configurable to local protocols.
+
+---
+
+## Pilot prerequisites
+
+Before a pilot begins, the following need to be in place:
+
+- A defined patient cohort and eligibility criteria agreed between the clinical lead and Aescia
+- Site governance approvals: digital health review, clinical governance, and privacy assessment as required by the health service
+- Ethics review, where required by the institution or state health service framework
+- A nominated clinical lead with authority over pathway configuration and escalation procedures
+- Documented escalation pathways (existing protocols that Aescia will support)
+- Basic IT coordination — no deep EMR integration is required to begin
+
+<Callout type="info">
+Deep technical integration is not required for an initial pilot. Aescia can operate alongside existing clinical systems without EMR connectivity. Integration options can be explored as an optional enhancement once the core workflow is established.
+</Callout>
+
+---
+
+## The five phases
+
+### Phase 1 — Scoping
+
+**Duration:** 2–4 weeks
+
+**Goal:** Establish a shared understanding of the problem, the cohort, and what a successful pilot would demonstrate.
+
+**Activities:**
+- Review of the target pathway and patient population
+- Assessment of existing follow-up infrastructure and gaps
+- Agreement on pilot scope, size, and duration
+- Identification of governance requirements and likely approvals pathway
+- Preliminary timeline and stakeholder mapping
+
+**Outputs:**
+- Scoping summary document
+- Draft pilot outline
+- Governance checklist for the site
+
+**Inputs required from hospital:**
+- Clinical lead time (2–3 meetings)
+- Access to pathway documentation and discharge volumes
+- Identification of IT and governance contacts
+
+---
+
+### Phase 2 — Clinical pathway configuration
+
+**Duration:** 2–4 weeks
+
+**Goal:** Configure Aescia to the site's pathway, protocols, and escalation model.
+
+**Activities:**
+- Clinician review and sign-off of check-in question sets for the target cohort
+- Configuration of urgency classification rules to site clinical standards
+- Definition of escalation tiers and corresponding response protocols
+- Review of patient-facing communication and consent materials
+- Configuration of worklist display to match team workflow preferences
+
+**Outputs:**
+- Configured platform instance for the pilot cohort
+- Clinical sign-off documentation for the configured rules
+- Patient communication materials reviewed and approved
+
+**Inputs required from hospital:**
+- Clinical lead time for rule review and sign-off (approximately 3–5 hours)
+- Review of patient materials by site governance/ethics as required
+- Any site-specific communication requirements (logo, language, tone)
+
+<Callout type="default">
+Aescia's escalation rules are authored and owned by clinicians. Configuration is a collaborative process — the platform reflects what the clinical team defines, not what a vendor algorithm decides.
+</Callout>
+
+---
+
+### Phase 3 — Governance and security review
+
+**Duration:** 4–8 weeks (site-dependent)
+
+**Goal:** Complete all required approvals before patient contact begins.
+
+**Activities:**
+- Submission of data governance and privacy impact assessment to site
+- Submission of security summary and architecture overview
+- Completion of any institutional digital health or clinical governance review process
+- Ethics submission preparation (where required)
+- Execution of evaluation agreement and data sharing arrangements
+
+**Outputs:**
+- Executed data governance agreement
+- Site governance approval documentation
+- Ethics approval (if required)
+- Signed evaluation agreement
+
+**Inputs required from hospital:**
+- Site governance and privacy contacts engaged
+- Internal review processes initiated and tracked
+- Ethics committee submission if applicable
+
+**Aescia provides:**
+- Data governance summary
+- Security and privacy documentation package
+- Architecture overview
+- Risk assessment documentation
+- Draft evaluation agreement
+
+---
+
+### Phase 4 — Pilot launch
+
+**Duration:** Typically 3–6 months
+
+**Goal:** Operate the platform with eligible patients and generate evaluation data.
+
+**Activities:**
+- Patient enrolment against agreed eligibility criteria
+- Daily check-in delivery and response collection
+- Worklist review by clinical team on agreed cadence
+- Escalation management through site-defined pathways
+- Ongoing monitoring of engagement rates and alert quality
+- Regular operational check-ins between clinical lead and Aescia
+
+**Operational model:**
+- Patients receive a daily structured check-in via SMS or web link
+- Responses are processed and classified within the agreed timeframe
+- The clinical team reviews the worklist at agreed intervals
+- All escalations, reviews, and clinical actions are logged
+- Aescia provides support contacts and operational troubleshooting throughout
+
+**Inputs required from hospital:**
+- Clinical team time for worklist review (estimated 15–30 minutes per shift for a cohort of 20–50 active patients)
+- Escalation through existing clinical channels
+- Flagging of any adverse events or concerns to Aescia operational contact
+
+---
+
+### Phase 5 — Evaluation and next-step decision
+
+**Duration:** 2–4 weeks post-pilot
+
+**Goal:** Produce an honest evaluation report and agree next steps.
+
+**Activities:**
+- Analysis of engagement, escalation, and clinical outcomes data
+- Clinician and patient experience review
+- Production of evaluation report including neutral and negative findings
+- Presentation to site clinical and governance leads
+- Discussion of options: close, extend, expand, or next evaluation phase
+
+**Deliverables at pilot close:**
+- Evaluation report covering all pre-agreed endpoints
+- Worklist and escalation metrics summary
+- Clinician feedback summary
+- Patient experience data
+- Recommendations for next steps (with rationale)
+- Any adverse event documentation
+
+<Callout type="warning">
+Evaluation findings — including neutral or negative results — are reported to the site as agreed. Aescia does not selectively report outcomes.
+</Callout>
+
+---
+
+## Workflow ownership
+
+| Activity | Owner |
+|---|---|
+| Patient eligibility | Hospital clinical lead |
+| Check-in question configuration | Aescia (with clinical sign-off) |
+| Urgency rule definition | Clinician-led, Aescia-supported |
+| Worklist review | Hospital clinical team |
+| Escalation decision | Hospital clinician |
+| Escalation execution | Hospital clinical pathway |
+| Data governance | Joint — site and Aescia |
+| Evaluation reporting | Aescia (with site review) |
+| Adverse event reporting | Hospital lead, with Aescia notification |
+
+Clinical responsibility for all patient management decisions rests with the treating clinical team at all times.
+
+---
+
+## Governance touchpoints
+
+| Stage | Governance activity |
+|---|---|
+| Scoping | Governance requirements scoped and checklist produced |
+| Configuration | Clinical sign-off on rule set and patient materials |
+| Pre-launch | Privacy impact assessment, data governance agreement, ethics (if required) |
+| During pilot | Adverse event monitoring, operational safety review |
+| Close | Evaluation report, site governance debrief |
+
+---
+
+## Integration options
+
+**No integration (default for initial pilots)**
+Aescia operates as a standalone system. Patient enrolment is managed directly. Worklist access is via the Aescia platform. No EMR read/write is required.
+
+**Optional lightweight integration**
+Where available, integration options may include: automated enrolment from discharge data, worklist display within existing clinical tools, or discharge summary flagging. These are scoped as enhancements after the core pilot workflow is validated.
+
+---
+
+## Ready to begin scoping?
+
+A scoping conversation is the first step. No commitment required — the outcome is a shared understanding of whether and how a pilot would work for your service.
+
+[Request a scoping conversation →](/request-info)
