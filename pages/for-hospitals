@@ -1,0 +1,149 @@
+---
+title: "For Hospitals — Aescia"
+description: "How Aescia supports hospital discharge pathways, post-discharge follow-up teams, and operational goals around bed flow, readmissions, and clinical safety."
+---
+
+import { Callout } from 'nextra/components'
+
+# For Hospitals
+
+**Aescia is designed to be the structured baseline layer between discharge and the next clinical contact — scalable, auditable, and configurable to local pathways.**
+
+---
+
+## The operational problem
+
+Unplanned readmissions are costly, preventable, and often predictable. Post-surgical and post-medical patients regularly deteriorate in the days following discharge, before any follow-up appointment has occurred. When they return — to emergency, unannounced — the cost is borne in length of stay, bed pressure, and avoidable clinical risk.
+
+Current follow-up models typically rely on:
+
+- Nurse-initiated phone calls at set intervals, which are difficult to scale and often poorly documented
+- Patient-initiated contact through GP or emergency, which arrives late and at higher acuity
+- Outpatient appointments at fixed intervals that may not align with the window of deterioration
+- Hospital-in-the-home services that are resource-intensive and not universally applicable
+
+None of these models systematically surface the patients who are deteriorating before they reach a critical threshold.
+
+---
+
+## Which patient pathways fit first
+
+Aescia is best suited to patient cohorts where:
+
+- Deterioration risk is concentrated in the first 7–21 days post-discharge
+- Symptoms are identifiable through structured patient-reported questions
+- Escalation pathways are defined and there is a clinical team able to act on alerts
+- Volume is sufficient to justify systematic follow-up infrastructure
+
+**Early-fit pathways include:**
+
+- Post-cardiothoracic surgery — atrial fibrillation, wound complications, respiratory function
+- Post-general surgery — wound infection, ileus, pain trajectory
+- Heart failure discharge — fluid status, weight gain, symptom progression
+- Respiratory discharge — breathlessness, oxygen saturation trends, symptom burden
+- High-risk medical cohorts — falls risk, medication-related deterioration, delirium sequelae
+
+[See pathway detail →](/use-cases)
+
+---
+
+## Why existing follow-up is insufficient
+
+The evidence base for transitional care and post-discharge monitoring is consistent: structured, proactive follow-up reduces unplanned presentations and improves patient outcomes. But the infrastructure to deliver it at scale does not exist in most public hospitals.
+
+The gaps are:
+
+**Inconsistency.** Phone-based follow-up varies by nurse availability, call scripts, and documentation standards. High-acuity periods receive the same follow-up intensity as stable periods.
+
+**Lack of prioritization.** Without structured data, teams cannot distinguish the patient who is genuinely deteriorating from the one who is mildly symptomatic. Resources are not directed where they are most needed.
+
+**No systematic record.** Ad hoc follow-up contacts are rarely integrated into clinical records in a way that allows pattern recognition across a cohort.
+
+**Scalability ceiling.** Phone-based models do not scale to the discharge volumes of a busy hospital unit without significant additional staffing.
+
+---
+
+## What Aescia changes operationally
+
+Aescia does not replace clinical follow-up. It creates the structured visibility layer that makes follow-up scalable and consistent.
+
+**What changes:**
+
+- Each patient receives a daily structured check-in, configured to their pathway
+- Responses are automatically assessed against clinician-authored rules
+- Cases are classified by urgency — green (routine), amber (review), red (escalate)
+- The clinical team sees a prioritized worklist each shift, not an uncontrolled alert queue
+- Escalation is through existing site-defined pathways — Aescia does not prescribe the clinical response
+- All check-in responses, classifications, and clinical actions are logged and auditable
+
+**What does not change:**
+
+- Clinical responsibility — this remains with the treating team at all times
+- Escalation pathways — Aescia supports them, it does not replace them
+- Governance and privacy requirements — Aescia is designed to operate within these
+
+---
+
+## What hospitals need to provide
+
+A pilot engagement requires the following inputs from the health service:
+
+- **Clinical lead** — a nominated clinician responsible for pathway configuration and evaluation oversight
+- **Governance approvals** — digital health, privacy, and clinical governance review processes as required by the site
+- **Patient cohort definition** — agreed eligibility criteria for the evaluation population
+- **Escalation pathway documentation** — existing protocols that Aescia will support, not replace
+- **Ethics review** — where required by the institution or state health service
+- **IT coordination** — minimal; deep EMR integration is not required to begin
+
+[Full pilot model and prerequisites →](/implementation)
+
+---
+
+## What success would be measured by
+
+Aescia pilot evaluations are designed to generate evidence across the following domains:
+
+- **Engagement and adherence** — proportion of patients completing daily check-ins, drop-off patterns
+- **Escalation signal quality** — proportion of escalated cases reviewed, clinician agreement with urgency classification
+- **Clinical safety signals** — unplanned presentations, readmissions, adverse events in the evaluation period
+- **Workflow integration** — clinical team time-on-task, worklist adoption, process feedback
+- **Patient experience** — acceptability, burden, and satisfaction with the monitoring model
+
+Evaluation endpoints, reporting format, and data governance are agreed in advance. Where permitted, neutral or negative findings will be shared.
+
+[See full outcomes framework →](/measured-outcomes)
+
+---
+
+## What procurement and governance teams usually ask
+
+**Is Aescia classified as a medical device?**
+Aescia is positioned as Software as a Medical Device (SaMD) for regulatory purposes. Use of the platform is limited to approved evaluation contexts pending completion of evidence generation and regulatory pathways.
+
+**Where is patient data held?**
+Patient data is held within Australian jurisdiction by default. Data handling, hosting, and residency details are available in the security and privacy summary, available on request.
+
+**Does this require EMR integration?**
+No. An initial pilot can operate without deep integration into existing clinical systems. Where integration is available, it can be scoped as an optional enhancement.
+
+**What if the evaluation returns neutral or negative results?**
+Evaluation reporting agreements include the expectation that neutral or negative findings will be reported where permitted. Aescia's credibility depends on honest evaluation, not selective reporting.
+
+**Is there a published governance framework?**
+Yes. Governance documentation — including evaluation framework, data governance summary, risk assessment approach, and software lifecycle posture — is available on request.
+
+[Request documentation →](/request-info)
+
+---
+
+<Callout type="info">
+Aescia is preparing for its initial clinical feasibility evaluation in Australia, expected to begin in 2026, subject to site governance and approvals. The company is engaging clinicians and health-system stakeholders to refine pilot design. Institutional details will be published when public disclosure is appropriate.
+</Callout>
+
+---
+
+## Ready to discuss a pilot?
+
+If you are exploring whether Aescia could be a fit for your discharge pathway, the first step is a scoping conversation — no commitment required.
+
+[Request a pilot discussion →](/request-info)
