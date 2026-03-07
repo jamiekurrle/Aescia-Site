@@ -1,61 +1,43 @@
-const items = [
-  {
-    title: 'Time-limited evaluations',
-    desc: 'Aescia engages with public health services through scoped, time-limited clinical evaluations with predefined endpoints and transparent reporting.',
-  },
-  {
-    title: 'Ethics & governance-first',
-    desc: 'Site-specific governance and privacy approvals are obtained before any deployment. Ethics review is conducted where required under Australian frameworks.',
-  },
-  {
-    title: 'SaMD regulatory posture',
-    desc: 'Aescia is positioned as Software as a Medical Device (SaMD). Use is limited to approved evaluation contexts pending regulatory pathway completion.',
-  },
-  {
-    title: 'Transparent outcomes',
-    desc: 'Evaluation endpoints and results are reported openly. We do not seek routine clinical deployment without appropriate evidence and approvals.',
-  },
-]
-
 export function EvidenceSection() {
-  return (
-    <section id="evidence" className="py-28 md:py-36 px-6 md:px-10">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-12 md:gap-20">
-          {/* Left */}
-          <div className="md:col-span-4 space-y-6">
-            <p className="text-xs tracking-widest uppercase text-accent font-medium">03 / Evidence</p>
-            <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-tight text-foreground text-balance">
-              Evidence-driven from the ground up.
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              We believe clinical technology must be earned through evidence, not asserted through marketing. Every engagement is structured to generate real-world outcomes data.
-            </p>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-foreground border-b border-foreground pb-0.5 hover:text-accent hover:border-accent transition-colors duration-200"
-            >
-              Request evaluation info
-              <span aria-hidden>→</span>
-            </a>
-          </div>
+  const outcomes = [
+    {
+      metric: '30–50%',
+      label: 'of readmissions are potentially preventable',
+    },
+    {
+      metric: '5–15%',
+      label: 'readmission rate within 30 days',
+    },
+    {
+      metric: '70%',
+      label: 'reutilization of freed bed-days',
+    },
+  ]
 
-          {/* Right — grid */}
-          <div className="md:col-span-8 grid sm:grid-cols-2 gap-0 border border-border">
-            {items.map((item, i) => {
-              const borderRight = i % 2 === 0 ? 'sm:border-r' : ''
-              const borderBottom = i < 2 ? 'border-b' : ''
-              return (
-                <div
-                  key={item.title}
-                  className={`p-7 space-y-4 border-border ${borderRight} ${borderBottom}`}
-                >
-                  <h3 className="text-xs tracking-widest uppercase text-foreground font-medium">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-                </div>
-              )
-            })}
-          </div>
+  return (
+    <section id="impact" className="py-20 md:py-28 px-6 bg-background">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-balance">
+          Clinical evidence & health impact
+        </h2>
+
+        <div className="space-y-8 mb-12">
+          <p className="text-foreground/70 leading-relaxed">
+            Early identification of emerging problems allows deterioration to be managed sooner, often through outpatient review, community-based care, or targeted telephone advice—before emergency presentation or readmission is required.
+          </p>
+
+          <p className="text-foreground/70 leading-relaxed">
+            Reliable post-discharge visibility supports timely discharge once patients are medically ready, reducing unnecessary length of stay and freeing inpatient bed capacity. In cardiothoracic surgery alone, conservative estimates suggest Aescia could prevent 25–30 readmissions annually at a typical large hospital, recovering 100–150 bed-days worth $8.1M+ in combined operational value.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mt-12">
+          {outcomes.map((item) => (
+            <div key={item.metric} className="p-6 bg-secondary rounded border border-border">
+              <div className="text-3xl font-bold text-accent mb-3">{item.metric}</div>
+              <p className="text-sm text-foreground/70">{item.label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

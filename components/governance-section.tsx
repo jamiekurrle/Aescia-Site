@@ -1,60 +1,47 @@
-const pillars = [
-  { label: 'Clinical governance', icon: '⊕' },
-  { label: 'Risk management', icon: '⊘' },
-  { label: 'Data security & privacy', icon: '⊙' },
-  { label: 'Evaluation reporting', icon: '⊛' },
-]
-
 export function GovernanceSection() {
-  return (
-    <section id="governance" className="py-28 md:py-36 px-6 md:px-10 bg-secondary">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-16">
-          {/* Left */}
-          <div className="md:max-w-sm space-y-6 flex-shrink-0">
-            <p className="text-xs tracking-widest uppercase text-accent font-medium">04 / Governance</p>
-            <h2 className="font-serif text-[clamp(2rem,3.5vw,3rem)] leading-tight text-foreground text-balance">
-              Transparency is not optional.
-            </h2>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Aescia maintains documented approaches across all dimensions of clinical and operational governance. We do not promote deployment without appropriate approvals.
-            </p>
-          </div>
+  const principles = [
+    'Patient data stored in-country, encrypted in transit and at rest',
+    'All escalation logic is rule-based, transparent, and auditable',
+    'Development follows IEC 62304 medical device software lifecycle practices',
+    'Complies with ISO 27001 information security principles',
+    'Configurable to local clinical protocols and governance requirements',
+    'All outputs reviewed by clinicians—no autonomous decisions',
+  ]
 
-          {/* Right — pillars */}
-          <div className="flex-1 space-y-0 border border-border">
-            {pillars.map((p, i) => (
-              <div
-                key={p.label}
-                className={`flex items-center justify-between px-7 py-5 group hover:bg-background transition-colors duration-200 ${
-                  i < pillars.length - 1 ? 'border-b border-border' : ''
-                }`}
-              >
-                <span className="text-sm text-foreground font-medium tracking-wide">{p.label}</span>
-                <span
-                  className="text-2xl text-muted-foreground group-hover:text-accent transition-colors duration-200"
-                  aria-hidden
-                >
-                  {p.icon}
-                </span>
-              </div>
-            ))}
-          </div>
+  return (
+    <section className="py-20 md:py-28 px-6 bg-foreground text-primary-foreground">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-balance">
+          Built for regulated environments
+        </h2>
+
+        <p className="text-lg text-primary-foreground/80 mb-12 leading-relaxed">
+          Aescia is designed to operate in regulated clinical environments with full transparency and governance.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {principles.map((principle) => (
+            <div key={principle} className="flex gap-4">
+              <div className="flex-shrink-0 w-5 h-5 rounded-full bg-accent mt-1" />
+              <p className="text-primary-foreground/90">{principle}</p>
+            </div>
+          ))}
         </div>
 
-        {/* Company details */}
-        <div className="mt-20 pt-12 border-t border-border flex flex-col sm:flex-row gap-8 sm:gap-16 text-sm text-muted-foreground">
-          <div>
-            <p className="text-xs tracking-widest uppercase text-foreground mb-2">Legal name</p>
-            <p>Aescia Pty Ltd</p>
-          </div>
-          <div>
-            <p className="text-xs tracking-widest uppercase text-foreground mb-2">ABN</p>
-            <p>96 687 840 517</p>
-          </div>
-          <div>
-            <p className="text-xs tracking-widest uppercase text-foreground mb-2">Jurisdiction</p>
-            <p>Australian proprietary company</p>
+        <div className="mt-12 pt-8 border-t border-primary-foreground/20">
+          <div className="grid sm:grid-cols-3 gap-8 text-sm">
+            <div>
+              <p className="text-primary-foreground/60 text-xs mb-2">Legal Entity</p>
+              <p className="font-medium">Aescia Pty Ltd</p>
+            </div>
+            <div>
+              <p className="text-primary-foreground/60 text-xs mb-2">ABN</p>
+              <p className="font-medium">96 687 840 517</p>
+            </div>
+            <div>
+              <p className="text-primary-foreground/60 text-xs mb-2">Based</p>
+              <p className="font-medium">Sydney, Australia</p>
+            </div>
           </div>
         </div>
       </div>

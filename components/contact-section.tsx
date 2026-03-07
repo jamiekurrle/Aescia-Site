@@ -2,87 +2,74 @@
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-28 md:py-36 px-6 md:px-10 bg-foreground text-primary-foreground">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-12 gap-12 md:gap-20 items-center">
-          {/* Left */}
-          <div className="md:col-span-5 space-y-6">
-            <p className="text-xs tracking-widest uppercase text-accent font-medium">05 / Contact</p>
-            <h2 className="font-serif text-[clamp(2.2rem,5vw,4.5rem)] leading-tight text-primary-foreground text-balance">
-              Let's talk.
-            </h2>
-            <p className="text-sm text-primary-foreground/60 leading-relaxed max-w-xs">
-              For evaluation enquiries, governance discussions, or to learn more about Aescia, reach out directly.
-            </p>
+    <section id="contact" className="py-20 md:py-28 px-6 bg-background">
+      <div className="max-w-3xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+          Get in touch
+        </h2>
+        <p className="text-foreground/70 mb-12">
+          For evaluation enquiries, governance discussions, or to learn more about Aescia, reach out directly.
+        </p>
+
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="space-y-6"
+        >
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+              Full name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Dr. Jane Smith"
+              className="w-full px-4 py-3 border border-border rounded bg-background text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent"
+            />
           </div>
 
-          {/* Right — form */}
-          <div className="md:col-span-7">
-            <form
-              className="space-y-0 border border-primary-foreground/10"
-              onSubmit={(e) => e.preventDefault()}
-              aria-label="Contact form"
-            >
-              {[
-                { id: 'name', label: 'Full name', type: 'text', placeholder: 'Dr. Jane Smith' },
-                { id: 'org', label: 'Organisation', type: 'text', placeholder: 'Royal Melbourne Hospital' },
-                { id: 'email', label: 'Email address', type: 'email', placeholder: 'j.smith@hospital.org.au' },
-              ].map((field, i) => (
-                <div
-                  key={field.id}
-                  className={`flex flex-col sm:flex-row sm:items-center ${
-                    i < 2 ? 'border-b border-primary-foreground/10' : ''
-                  }`}
-                >
-                  <label
-                    htmlFor={field.id}
-                    className="text-[10px] tracking-widest uppercase text-primary-foreground/40 px-6 py-4 sm:w-36 flex-shrink-0"
-                  >
-                    {field.label}
-                  </label>
-                  <div className="flex-1 border-t sm:border-t-0 sm:border-l border-primary-foreground/10">
-                    <input
-                      id={field.id}
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      required
-                      className="w-full bg-transparent px-6 py-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 outline-none focus:bg-primary-foreground/5 transition-colors duration-200"
-                    />
-                  </div>
-                </div>
-              ))}
-
-              {/* Message */}
-              <div className="flex flex-col sm:flex-row border-t border-primary-foreground/10">
-                <label
-                  htmlFor="message"
-                  className="text-[10px] tracking-widest uppercase text-primary-foreground/40 px-6 py-4 sm:w-36 flex-shrink-0"
-                >
-                  Message
-                </label>
-                <div className="flex-1 border-t sm:border-t-0 sm:border-l border-primary-foreground/10">
-                  <textarea
-                    id="message"
-                    rows={4}
-                    placeholder="Tell us about your institution and interest in Aescia..."
-                    className="w-full bg-transparent px-6 py-4 text-sm text-primary-foreground placeholder:text-primary-foreground/25 outline-none resize-none focus:bg-primary-foreground/5 transition-colors duration-200"
-                  />
-                </div>
-              </div>
-
-              {/* Submit */}
-              <div className="border-t border-primary-foreground/10 p-6 flex justify-end">
-                <button
-                  type="submit"
-                  className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-7 py-3.5 text-xs tracking-widest uppercase hover:bg-primary-foreground hover:text-foreground transition-colors duration-300"
-                >
-                  Send enquiry
-                  <span aria-hidden>→</span>
-                </button>
-              </div>
-            </form>
+          <div>
+            <label htmlFor="org" className="block text-sm font-medium text-foreground mb-2">
+              Organisation
+            </label>
+            <input
+              id="org"
+              type="text"
+              placeholder="Hospital or Health Service"
+              className="w-full px-4 py-3 border border-border rounded bg-background text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent"
+            />
           </div>
-        </div>
+
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="you@hospital.org.au"
+              className="w-full px-4 py-3 border border-border rounded bg-background text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+              Message
+            </label>
+            <textarea
+              id="message"
+              rows={5}
+              placeholder="Tell us about your interest in Aescia..."
+              className="w-full px-4 py-3 border border-border rounded bg-background text-foreground placeholder:text-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-accent text-accent-foreground font-medium px-6 py-3 rounded hover:opacity-90"
+          >
+            Send
+          </button>
+        </form>
       </div>
     </section>
   )

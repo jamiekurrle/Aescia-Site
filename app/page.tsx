@@ -1,22 +1,18 @@
-import { Nav } from '@/components/nav'
-import { Hero } from '@/components/hero'
-import { AboutSection } from '@/components/about-section'
-import { HowItWorks } from '@/components/how-it-works'
-import { EvidenceSection } from '@/components/evidence-section'
-import { GovernanceSection } from '@/components/governance-section'
-import { ContactSection } from '@/components/contact-section'
+import { SiteNav } from '@/components/site-nav'
+import { VideoHero } from '@/components/video-hero'
+import { WorkflowDiagram } from '@/components/workflow-diagram'
+import { ValueProps } from '@/components/value-props'
+import { CTASection } from '@/components/cta-section'
 import { Footer } from '@/components/footer'
 
 export default function Home() {
   return (
     <main className="bg-background min-h-screen">
-      <Nav />
-      <Hero />
-      <AboutSection />
-      <HowItWorks />
-      <EvidenceSection />
-      <GovernanceSection />
-      <ContactSection />
+      <SiteNav />
+      <VideoHero />
+      <WorkflowDiagram />
+      <ValueProps />
+      <CTASection />
       <Footer />
     </main>
   )

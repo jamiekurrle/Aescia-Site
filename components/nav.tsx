@@ -1,101 +1,91 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Image from 'next/image'
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const links = ['About', 'Evidence', 'Governance', 'Contact']
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-background/90 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
+    <nav className="bg-background border-b border-border sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" aria-label="Aescia Health home" className="flex items-center gap-2.5 group">
-          <span className="w-6 h-6 rounded-sm bg-foreground flex items-center justify-center flex-shrink-0 transition-opacity group-hover:opacity-70">
-            <span className="block w-2.5 h-2.5 rounded-sm bg-accent" />
-          </span>
-          <span className="text-sm font-medium tracking-wide text-foreground">Aescia Health</span>
+        <a href="#" className="flex items-center gap-2.5">
+          <Image src="/ae-mark.png" alt="Aescia" width={28} height={28} />
+          <span className="text-sm font-semibold text-foreground">Aescia</span>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
-            >
-              {l}
-            </a>
-          ))}
-        </nav>
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-12">
+          <a href="#problem" className="text-sm text-foreground/70 hover:text-foreground">
+            Problem
+          </a>
+          <a href="#solution" className="text-sm text-foreground/70 hover:text-foreground">
+            Solution
+          </a>
+          <a href="#impact" className="text-sm text-foreground/70 hover:text-foreground">
+            Impact
+          </a>
+          <a href="#contact" className="text-sm text-foreground/70 hover:text-foreground">
+            Contact
+          </a>
+        </div>
 
-        {/* CTA */}
+        {/* Desktop CTA */}
         <a
           href="#contact"
-          className="hidden md:inline-flex items-center gap-2 text-xs tracking-widest uppercase bg-foreground text-primary-foreground px-5 py-2.5 hover:bg-accent transition-colors duration-300"
+          className="hidden md:inline-block bg-accent text-accent-foreground text-sm font-medium px-6 py-2 rounded hover:opacity-90"
         >
-          Contact us
+          Get in touch
         </a>
 
-        {/* Mobile hamburger */}
+        {/* Mobile Menu Toggle */}
         <button
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          onClick={() => setMenuOpen((o) => !o)}
-          className="md:hidden flex flex-col gap-1.5 p-1"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden p-2"
+          aria-label="Toggle menu"
         >
-          <span
-            className={`block h-px w-6 bg-foreground transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2.5' : ''}`}
-          />
-          <span
-            className={`block h-px w-6 bg-foreground transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`}
-          />
-          <span
-            className={`block h-px w-6 bg-foreground transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}
-          />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={mobileOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+            />
+          </svg>
         </button>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden bg-background border-b border-border overflow-hidden transition-all duration-400 ${
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <nav className="flex flex-col px-6 py-6 gap-5" aria-label="Mobile navigation">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              onClick={() => setMenuOpen(false)}
-              className="text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {l}
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-border bg-background">
+          <div className="px-6 py-4 space-y-4">
+            <a href="#problem" className="block text-sm text-foreground/70 hover:text-foreground">
+              Problem
             </a>
-          ))}
-          <a
-            href="#contact"
-            onClick={() => setMenuOpen(false)}
-            className="text-xs tracking-widest uppercase bg-foreground text-primary-foreground px-5 py-2.5 text-center mt-2 hover:bg-accent transition-colors duration-300"
-          >
-            Contact us
-          </a>
-        </nav>
-      </div>
-    </header>
+            <a href="#solution" className="block text-sm text-foreground/70 hover:text-foreground">
+              Solution
+            </a>
+            <a href="#impact" className="block text-sm text-foreground/70 hover:text-foreground">
+              Impact
+            </a>
+            <a href="#contact" className="block text-sm text-foreground/70 hover:text-foreground">
+              Contact
+            </a>
+            <a
+              href="#contact"
+              className="block bg-accent text-accent-foreground text-sm font-medium px-6 py-2 rounded text-center hover:opacity-90 mt-4"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
   )
 }

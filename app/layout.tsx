@@ -1,25 +1,20 @@
 import type { Metadata } from 'next'
-import { DM_Sans, DM_Serif_Display } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { I18nProvider } from '@/lib/i18n'
 import './globals.css'
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
-  weight: ['300', '400', '500'],
-})
-
-const dmSerif = DM_Serif_Display({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  weight: '400',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Aescia Health — Post-Discharge Monitoring & Escalation',
+  title: 'Aescia Health — Post-Discharge Monitoring',
   description:
-    'Aescia supports structured follow-up after discharge, helping clinical teams identify risk earlier and respond through consistent escalation pathways.',
-  generator: 'v0.app',
+    'Identify deterioration early, before it becomes a crisis. Aescia enables structured follow-up in the high-risk period after discharge through daily check-ins and clinical escalation pathways.',
+  keywords: 'post-discharge monitoring, clinical escalation, digital health, patient safety',
 }
 
 export default function RootLayout({
@@ -28,9 +23,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${dmSerif.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body className="font-sans antialiased">
-        {children}
+        <I18nProvider>
+          {children}
+        </I18nProvider>
         <Analytics />
       </body>
     </html>
