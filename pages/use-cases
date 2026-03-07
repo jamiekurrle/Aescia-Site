@@ -1,0 +1,153 @@
+---
+title: "Use Cases & Pathways — Aescia"
+description: "Clinical pathways where Aescia post-discharge monitoring is designed to add value — cardiothoracic surgery, general surgery, heart failure, respiratory, and high-risk medical discharge."
+---
+
+import { Callout } from 'nextra/components'
+
+# Use Cases & Pathways
+
+**Executives and clinical champions think in pathways, not platforms. This page describes the patient populations and post-discharge problems Aescia is designed to address.**
+
+<Callout type="info">
+No pathway listed here is currently in live deployment. Aescia is preparing for its initial clinical feasibility evaluation, expected to begin in 2026, subject to approvals. These pathway profiles describe the intended use cases for which the platform is being configured and evaluated.
+</Callout>
+
+---
+
+## Cardiothoracic surgery
+
+### Post-discharge failure points
+Following major cardiac or thoracic procedures, a proportion of patients experience complications in the first 7–21 days at home that are detectable before they become acute. Common failure modes include:
+
+- New or recurrent atrial fibrillation
+- Surgical site complications (wound infection, sternal dehiscence)
+- Respiratory deterioration (pleural effusion, pneumonia)
+- Fluid retention or early heart failure in high-risk patients
+- Cardiac medication side effects or adherence issues
+
+Currently, these patients are typically discharged with a 4–6 week outpatient appointment and limited structured contact in between.
+
+### Why this pathway suits structured follow-up
+Cardiothoracic patients represent a well-characterised high-risk cohort with known deterioration patterns. The complication profile is identifiable through symptom-based questions. Discharge volumes at major surgical units are sufficient to generate a meaningful evaluation signal.
+
+### What Aescia is designed to surface
+- Palpitations, chest discomfort, and irregular heart rhythm symptoms
+- Wound appearance changes, heat, discharge, or swelling
+- Breathlessness trajectory and functional capacity changes
+- Weight gain as a proxy for fluid retention
+- Pain that is not tracking toward expected resolution
+
+### Likely escalation destination
+Cardiothoracic surgical nursing team, outpatient coordinator, GP with specialist advice, or direct surgical review depending on urgency tier and site protocol.
+
+---
+
+## General surgery
+
+### Post-discharge failure points
+Post-surgical complications following general procedures (bowel, colorectal, upper GI, hepatobiliary) concentrate in the first 5–14 days. Common failure modes include:
+
+- Surgical site infection
+- Anastomotic leak or delayed bowel function recovery
+- Deep vein thrombosis and pulmonary embolism risk
+- Dehydration and inadequate nutritional intake
+- Pain trajectory indicating complications
+
+### Why this pathway suits structured follow-up
+General surgical patients are discharged earlier than historical norms due to enhanced recovery pathways. The window between discharge and the first follow-up is wide, and complications in this window frequently present to emergency. Daily structured follow-up fills the gap.
+
+### What Aescia is designed to surface
+- Fever, wound redness, or discharge
+- Abdominal pain not consistent with expected recovery
+- Nausea, vomiting, or inability to tolerate oral intake
+- Leg swelling or calf pain
+- Deviation from expected functional recovery trajectory
+
+### Likely escalation destination
+Surgical nursing review line, GP, outpatient surgical review, or emergency referral depending on urgency tier and site protocol.
+
+---
+
+## Heart failure
+
+### Post-discharge failure points
+Heart failure carries one of the highest 30-day readmission rates of any inpatient diagnosis. Post-discharge deterioration is often slow and progressive before becoming acute. Common failure modes include:
+
+- Fluid retention and weight gain
+- Worsening dyspnoea at reduced exertion thresholds
+- Medication non-adherence or side effects
+- Dietary non-compliance (sodium, fluid)
+- Symptom escalation in the absence of clinical contact
+
+### Why this pathway suits structured follow-up
+Daily monitoring of weight and symptoms is already a recommended component of heart failure management; the barrier is systematic delivery and clinical review. Aescia provides the infrastructure to operationalise this recommendation at scale.
+
+### What Aescia is designed to surface
+- Daily weight gain above agreed threshold
+- Increasing breathlessness with activity or at rest
+- Ankle or leg swelling
+- Orthopnoea or new nocturnal symptoms
+- Fatigue trajectory changes
+
+### Likely escalation destination
+Heart failure nurse specialist, cardiologist outpatient review, GP, or hospital admission assessment pathway depending on urgency and site protocol.
+
+---
+
+## Respiratory discharge pathways
+
+### Post-discharge failure points
+Patients discharged following acute respiratory illness — including community-acquired pneumonia, acute exacerbation of COPD, and asthma — are at risk of deterioration in the first 7–14 days. Common failure modes include:
+
+- Incomplete recovery with symptom relapse
+- Inadequate response to antibiotic or steroid therapy
+- Functional decline not captured by single endpoint discharge criteria
+- Medication adherence and inhaler technique issues
+
+### Why this pathway suits structured follow-up
+Respiratory patients represent a large and heterogeneous post-discharge population. Structured follow-up has a strong theoretical basis for early identification of incomplete recovery and escalation before emergency representation.
+
+### What Aescia is designed to surface
+- Breathlessness score changes against baseline
+- Cough frequency and sputum changes
+- Temperature trajectory
+- Activity tolerance relative to pre-admission baseline
+- Oxygen saturation self-monitoring (where applicable)
+
+### Likely escalation destination
+Respiratory nursing, GP, specialist outpatient review, or assessment unit admission depending on urgency tier and site protocol.
+
+---
+
+## High-risk medical discharge (other cohorts)
+
+### Post-discharge failure points
+Beyond specific surgical pathways, a range of high-risk medical cohorts are candidates for structured post-discharge monitoring. These include patients with:
+
+- Renal impairment with medication adjustment at discharge
+- Frailty with high fall risk and functional decline potential
+- Cognitive impairment where carer-reported changes are the primary signal
+- Complex medication regimens where early monitoring of adherence or side effects adds value
+- Oncology treatment-related complications in patients discharged between cycles
+
+### Why these pathways suit structured follow-up
+The common thread across these cohorts is a high variance in post-discharge trajectory and limited existing infrastructure to capture early signals. Configuring Aescia to these populations requires pathway-specific question sets, but the underlying classification and worklist model is the same.
+
+### Likely escalation destination
+Pathway-dependent — typically the discharging specialty team, specialist nurse, or GP with defined escalation protocol.
+
+---
+
+## Pathway selection for a pilot
+
+Aescia does not prescribe which pathway a site should start with. The right starting cohort depends on:
+
+- Local clinical priorities and unmet need
+- Discharge volume sufficient to generate an evaluation signal
+- Presence of a clinical champion with authority over the pathway
+- Availability of a defined escalation protocol Aescia can support
+
+The scoping phase of a pilot engagement is where this decision is made collaboratively.
+
+[Discuss pathway fit →](/request-info) &nbsp;&nbsp; [See the pilot model →](/implementation)
