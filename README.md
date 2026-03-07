@@ -1,23 +1,35 @@
-# Nextra Docs Template 
+# v0-website-v2
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
+## Built with v0
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
 
-## Quick Start
+[Continue working on v0 →](https://v0.app/chat/projects/prj_QlKts0g8rrLm3GQpdiXxW4IgNZH0)
 
-Click the button to clone this repository and deploy it on Vercel:
+## Getting Started
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+First, run the development server:
 
-## Local Development
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-First, run `pnpm i` to install the dependencies.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## License
+## Learn More
 
-This project is licensed under the MIT License.
+To learn more, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+
+<a href="https://v0.app/chat/api/kiro/clone/jamiekurrle/v0-website-v2" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
