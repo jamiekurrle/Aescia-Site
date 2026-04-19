@@ -182,6 +182,7 @@ export default function GovernancePage() {
                 ['Holding entity', 'Aescia Health Inc. (Ontario, Canada). IP and capitalisation.'],
                 ['R&D entity', '9550-0708 Québec inc. Canadian data residency and R&D operations. NEQ 1181312316.'],
                 ['Regulatory applicant', 'Aescia Pty Ltd (Australia). ABN 96 687 840 517.'],
+                ['Resident director', 'Shannon Kurrle, Aescia Pty Ltd. Statutory requirement under the Australian Corporations Act.'],
                 ['Registered office', 'Sydney, Australia.'],
                 ['Operations', 'Montréal, Canada. Sydney, Australia.'],
               ].map(([k, v]) => (
