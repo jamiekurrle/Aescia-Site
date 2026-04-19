@@ -24,12 +24,27 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Environment variables
+
+The contact form at `/contact` POSTs to `/api/contact`, which sends email via
+[Resend](https://resend.com). Set these in Vercel (Settings → Environment
+Variables) and locally in `.env.local`:
+
+| Variable | Required | Default | Notes |
+|---|---|---|---|
+| `RESEND_API_KEY` | yes | | Create in the Resend dashboard. |
+| `CONTACT_TO_EMAIL` | no | `contact@aesciahealth.com` | Where enquiries are delivered. |
+| `CONTACT_FROM_EMAIL` | no | `Aescia Site <no-reply@aesciahealth.com>` | Must be on a Resend-verified domain. Until `aesciahealth.com` is verified, temporarily set this to `onboarding@resend.dev` for testing. |
+
+Steps to go live:
+
+1. Sign up at `resend.com` and add `aesciahealth.com` as a verified sending domain. Add the DNS records Resend provides to your DNS host.
+2. Create an API key scoped to sending. Paste it into Vercel as `RESEND_API_KEY`.
+3. Redeploy. Enquiries arrive at `contact@aesciahealth.com` with `reply-to` set to the enquirer.
+
 ## Learn More
 
-To learn more, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Resend Documentation](https://resend.com/docs)
 
 <a href="https://v0.app/chat/api/kiro/clone/jamiekurrle/v0-website-v2" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
