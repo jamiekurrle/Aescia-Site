@@ -12,3 +12,4 @@ node_modules/
 # Local tooling
 .claude/
 next-env.d.ts
+.vercel
