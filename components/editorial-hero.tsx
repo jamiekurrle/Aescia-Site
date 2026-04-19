@@ -36,7 +36,8 @@ export function EditorialHero() {
         height="220"
         viewBox="0 0 1440 220"
         preserveAspectRatio="none"
-        aria-hidden
+        aria-hidden="true"
+        focusable="false"
       >
         <defs>
           <linearGradient id="contour" x1="0" x2="1" y1="0" y2="0">
@@ -77,28 +78,27 @@ export function EditorialHero() {
           <div className="mt-12 flex flex-col sm:flex-row gap-3">
             <Link
               href="/platform"
-              className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors"
+              className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
             >
               {t('hero.cta.primary')}
-              <svg className="w-3.5 h-3.5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
               </svg>
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-transparent text-background border border-background/30 px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/5 transition-colors"
+              className="inline-flex items-center justify-center bg-transparent text-background border border-background/40 px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/5 transition-colors min-h-[44px]"
             >
               {t('hero.cta.secondary')}
             </Link>
           </div>
         </div>
 
-        {/* Lower-right trial citation tag. Operational proof, not clinical claim. */}
         <div className="hidden lg:flex absolute right-10 bottom-24 flex-col items-end gap-1.5 text-right">
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/50">Active clinical programme</span>
-          <span className="font-mono text-[13px] text-brass/95 tracking-wide">ACTRN12625001425482</span>
-          <span className="text-[12px] text-background/55">SAFE-Discharge, 500 patients</span>
-          <span className="text-[11px] text-background/40 mt-1">Royal Prince Alfred Hospital, Sydney</span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/75">{t('hero.trial.label')}</span>
+          <span className="font-mono text-[13px] text-brass tracking-wide">ACTRN12625001425482</span>
+          <span className="text-[12px] text-background/80">{t('hero.trial.brief')}</span>
+          <span className="text-[11px] text-background/65 mt-1">{t('hero.trial.site')}</span>
         </div>
       </div>
     </section>
