@@ -64,7 +64,7 @@ export default function EvidencePage() {
                 SAFE-Discharge
               </h2>
               <p className="text-[14px] mt-5 text-foreground/75 leading-relaxed">
-                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp; senior departmental sponsor Professor Paul Bannon. Ethics and governance in final stages at time of writing.
+                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp. Ethics and governance in final stages at time of writing.
               </p>
             </div>
 
@@ -76,7 +76,6 @@ export default function EvidencePage() {
                   ['Site', 'Royal Prince Alfred Hospital, Sydney', false],
                   ['Unit', 'Cardiothoracic Surgery Unit', false],
                   ['Principal Investigator', 'Dr Kei Woldendorp, The Baird Institute', false],
-                  ['Senior Sponsor', 'Professor Paul Bannon, Chair, The Baird Institute', false],
                   ['Population', 'Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)', false],
                   ['Sample size', '500 patients, single centre', false],
                   ['Design', 'Prospective, historically controlled, structured post-discharge monitoring against an 8 to 14 day baseline risk window', false],

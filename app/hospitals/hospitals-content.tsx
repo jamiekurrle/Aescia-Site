@@ -355,11 +355,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Principal Investigator</dt>
-                <dd className="text-[15px] text-foreground">Dr Kei Woldendorp, Baird Institute</dd>
-              </div>
-              <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Senior Sponsor</dt>
-                <dd className="text-[15px] text-foreground">Prof. Paul Bannon, Chair, Baird Institute</dd>
+                <dd className="text-[15px] text-foreground">Dr Kei Woldendorp, The Baird Institute</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>

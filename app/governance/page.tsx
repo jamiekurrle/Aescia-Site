@@ -180,7 +180,7 @@ export default function GovernancePage() {
             <dl className="divide-y divide-border border-y border-border">
               {[
                 ['Holding entity', 'Aescia Health Inc. (Ontario, Canada). IP and capitalisation.'],
-                ['R&D entity', 'Aescia Health Québec Inc. Canadian data residency and R&D operations.'],
+                ['R&D entity', '9550-0708 Québec inc. Canadian data residency and R&D operations. NEQ 1181312316.'],
                 ['Regulatory applicant', 'Aescia Pty Ltd (Australia). ABN 96 687 840 517.'],
                 ['Registered office', 'Sydney, Australia.'],
                 ['Operations', 'Montréal, Canada. Sydney, Australia.'],

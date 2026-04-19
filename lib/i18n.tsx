@@ -16,7 +16,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'brand.name': 'Aescia',
 
     // Regulatory safe-harbor band (persistent)
-    'regband.body': 'Aescia for Hospitals is an investigational Software as a Medical Device. It has not received marketing authorisation in any jurisdiction and is not available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.',
+    'regband.body': 'Aescia for Hospitals is an investigational Software as a Medical Device. A regulatory submission for ARTG inclusion is in preparation; the product is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.',
     'regband.dismiss': 'Dismiss',
 
     // Nav
@@ -87,7 +87,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Evidence ribbon (home)
     'evidence.eyebrow': 'Where we are today',
     'evidence.title': 'Clinical programme in active enrolment.',
-    'evidence.body': 'The SAFE-Discharge trial is a 500-patient, single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Led by Dr Kei Woldendorp, Principal Investigator, with Professor Paul Bannon as senior departmental sponsor. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory application has not yet been lodged. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
+    'evidence.body': 'The SAFE-Discharge trial is a 500-patient, single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
     'evidence.fact2.value': '500',
@@ -115,7 +115,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.contact': 'Contact',
     'footer.rights': 'All rights reserved.',
     'footer.health': 'A continuous-care platform.',
-    'footer.disclosure': 'Aescia for Hospitals is an investigational Software as a Medical Device, intended Class IIa under TGA Rule 3.4, application not yet lodged. It is in clinical evaluation through the SAFE-Discharge trial and is not available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.',
+    'footer.disclosure': 'Aescia for Hospitals is an investigational Software as a Medical Device, intended Class IIa under TGA Rule 3.4. A regulatory submission is in preparation. The product is in clinical evaluation through the SAFE-Discharge trial and is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.',
 
     // Hospitals page
     'hospitals.eyebrow': 'For Hospitals',
@@ -127,22 +127,14 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.status.title': 'In clinical evaluation through the SAFE-Discharge trial.',
     'hospitals.status.body': 'Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4. A regulatory application has not yet been lodged. Engagement today is through evaluation and pilot contracts only. This page does not recruit trial participants.',
 
-    // Leadership
-    'hospitals.leadership.eyebrow': 'Clinical leadership',
-    'hospitals.leadership.title': 'Authored by the people who will read the worklist.',
-    'hospitals.leadership.body': 'The pathway engine for cardiothoracic recovery has been shaped by senior clinicians in active practice. These are the people whose names are on the trial, and whose judgment shapes every rule.',
-    'hospitals.leadership.bannon.name': 'Professor Paul Bannon',
-    'hospitals.leadership.bannon.title': 'Bosch Chair of Surgery, University of Sydney',
-    'hospitals.leadership.bannon.aff': 'Head of Cardiothoracic Surgery, Royal Prince Alfred Hospital and Strathfield Private. Chair, The Baird Institute.',
-    'hospitals.leadership.bannon.role': 'Senior departmental sponsor, SAFE-Discharge trial.',
+    // Trial leadership (single PI, publicly cleared)
+    'hospitals.leadership.eyebrow': 'Trial leadership',
+    'hospitals.leadership.title': 'The Principal Investigator on SAFE-Discharge.',
+    'hospitals.leadership.body': 'Aescia for Hospitals is in clinical evaluation through the SAFE-Discharge trial. The Principal Investigator is a practising cardiothoracic research clinician at the trial site. Further clinical advisors will be named on the site as each of them formally joins the advisory and consents to public acknowledgement.',
     'hospitals.leadership.woldendorp.name': 'Dr Kei Woldendorp',
     'hospitals.leadership.woldendorp.title': 'BMed MBBS MPhil, Cardiothoracic research',
-    'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. 25+ peer-reviewed publications in cardiothoracic care.',
+    'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. Peer-reviewed publications in cardiothoracic care.',
     'hospitals.leadership.woldendorp.role': 'Principal Investigator, SAFE-Discharge trial. Clinical Advisor, Aescia for Hospitals.',
-    'hospitals.leadership.horrigan.name': 'Associate Professor Mark Horrigan',
-    'hospitals.leadership.horrigan.title': 'Cardiology, Austin Health',
-    'hospitals.leadership.horrigan.aff': 'Cardiovascular Clinical Lead, Safer Care Victoria. Post-discharge cardiac monitoring research published in Heart.',
-    'hospitals.leadership.horrigan.role': 'External clinical reviewer for cardiac pathway design.',
 
     'hospitals.complications.title': 'What we listen for after cardiothoracic surgery.',
     'hospitals.complications.body': 'Pathways are authored by surgeons and nurses who live in this population. Each signal carries a named rule and a named escalation. The clinician remains the decision-maker.',
@@ -295,7 +287,7 @@ const translations: Record<Locale, Record<string, string>> = {
   fr: {
     'brand.name': 'Aescia',
 
-    'regband.body': 'Aescia pour les hôpitaux est un logiciel dispositif médical en investigation. Il n\'a reçu aucune autorisation de mise sur le marché et n\'est pas disponible pour la fourniture commerciale. Aescia pour les cliniques est une plateforme de flux de travail et n\'est pas un dispositif médical.',
+    'regband.body': 'Aescia pour les hôpitaux est un logiciel dispositif médical en investigation. Une demande d\'inscription à l\'ARTG est en préparation ; le produit n\'est pas encore disponible pour la fourniture commerciale. Aescia pour les cliniques est une plateforme de flux de travail et n\'est pas un dispositif médical.',
     'regband.dismiss': 'Fermer',
 
     'nav.platform': 'Plateforme',
@@ -359,7 +351,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'evidence.eyebrow': 'Où nous en sommes',
     'evidence.title': 'Programme clinique en recrutement actif.',
-    'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique à 500 patients d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Mené par le Dr Kei Woldendorp, investigateur principal, avec le Professeur Paul Bannon comme parrain départemental senior. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; la demande réglementaire n\'a pas encore été déposée. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
+    'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique à 500 patients d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Mené par le Dr Kei Woldendorp, investigateur principal. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; une demande réglementaire est en préparation. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Enregistrement',
     'evidence.fact2.value': '500',
@@ -385,7 +377,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.contact': 'Contact',
     'footer.rights': 'Tous droits réservés.',
     'footer.health': 'Une plateforme de soins continus.',
-    'footer.disclosure': 'Aescia pour les hôpitaux est un logiciel dispositif médical en investigation, Classe IIa prévue selon la règle TGA 3.4, demande non encore déposée. Il est en évaluation clinique via l\'essai SAFE-Discharge et n\'est pas disponible pour la fourniture commerciale. Aescia pour les cliniques est une plateforme de flux de travail et n\'est pas un dispositif médical.',
+    'footer.disclosure': 'Aescia pour les hôpitaux est un logiciel dispositif médical en investigation, Classe IIa prévue selon la règle TGA 3.4. Une demande réglementaire est en préparation. Le produit est en évaluation clinique via l\'essai SAFE-Discharge et n\'est pas encore disponible pour la fourniture commerciale. Aescia pour les cliniques est une plateforme de flux de travail et n\'est pas un dispositif médical.',
 
     'hospitals.eyebrow': 'Pour les hôpitaux',
     'hospitals.title': 'Les jours les plus silencieux après la chirurgie portent le risque le plus fort.',
@@ -396,21 +388,13 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.status.title': 'En évaluation clinique via l\'essai SAFE-Discharge.',
     'hospitals.status.body': 'Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4. Une demande réglementaire n\'a pas encore été déposée. L\'engagement se fait aujourd\'hui uniquement par contrats d\'évaluation et pilotes. Cette page ne recrute pas de participants à l\'essai.',
 
-    'hospitals.leadership.eyebrow': 'Direction clinique',
-    'hospitals.leadership.title': 'Rédigé par les personnes qui liront la liste de travail.',
-    'hospitals.leadership.body': 'Le moteur de parcours pour la récupération cardiothoracique a été façonné par des cliniciens seniors en exercice. Ce sont les personnes dont les noms figurent sur l\'essai et dont le jugement façonne chaque règle.',
-    'hospitals.leadership.bannon.name': 'Professeur Paul Bannon',
-    'hospitals.leadership.bannon.title': 'Bosch Chair of Surgery, University of Sydney',
-    'hospitals.leadership.bannon.aff': 'Chef de Chirurgie Cardiothoracique, Royal Prince Alfred Hospital et Strathfield Private. Président, The Baird Institute.',
-    'hospitals.leadership.bannon.role': 'Parrain départemental senior, essai SAFE-Discharge.',
+    'hospitals.leadership.eyebrow': 'Direction de l\'essai',
+    'hospitals.leadership.title': 'L\'investigateur principal de SAFE-Discharge.',
+    'hospitals.leadership.body': 'Aescia pour les hôpitaux est en évaluation clinique via l\'essai SAFE-Discharge. L\'investigateur principal est un clinicien-chercheur cardiothoracique en exercice sur le site. D\'autres conseillers cliniques seront nommés sur le site à mesure qu\'ils rejoignent formellement l\'advisory et consentent à une reconnaissance publique.',
     'hospitals.leadership.woldendorp.name': 'Dr Kei Woldendorp',
     'hospitals.leadership.woldendorp.title': 'BMed MBBS MPhil, Recherche cardiothoracique',
-    'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. 25+ publications évaluées par les pairs en soins cardiothoraciques.',
+    'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. Publications évaluées par les pairs en soins cardiothoraciques.',
     'hospitals.leadership.woldendorp.role': 'Investigateur principal, essai SAFE-Discharge. Conseiller clinique, Aescia pour les hôpitaux.',
-    'hospitals.leadership.horrigan.name': 'Professeur associé Mark Horrigan',
-    'hospitals.leadership.horrigan.title': 'Cardiologie, Austin Health',
-    'hospitals.leadership.horrigan.aff': 'Responsable clinique cardiovasculaire, Safer Care Victoria. Recherche publiée dans Heart en surveillance cardiaque post-sortie.',
-    'hospitals.leadership.horrigan.role': 'Relecteur clinique externe pour la conception des parcours cardiaques.',
 
     'hospitals.complications.title': 'Ce que nous écoutons après la chirurgie cardiothoracique.',
     'hospitals.complications.body': 'Les parcours sont rédigés par des chirurgiens et infirmiers qui vivent avec cette population. Chaque signal porte une règle nommée et une escalade nommée. Le clinicien reste le décideur.',

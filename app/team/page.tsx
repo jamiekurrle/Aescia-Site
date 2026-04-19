@@ -5,13 +5,13 @@ import { Footer } from '@/components/footer'
 import { breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'The team and clinical advisors behind Aescia',
+  title: 'The team behind Aescia',
   description:
-    'Clinicians, technologists, and advisors building a continuous-care platform for surgical recovery and specialty-clinic workflow.',
+    'Clinicians and technologists building a continuous-care platform for surgical recovery and specialty-clinic workflow.',
   alternates: { canonical: '/team' },
   openGraph: {
     title: 'Team | Aescia',
-    description: 'The people building Aescia and its clinical advisory.',
+    description: 'The founding team building Aescia.',
     url: '/team',
   },
 }
@@ -42,29 +42,6 @@ const founders = [
   },
 ]
 
-const advisors = [
-  {
-    name: 'Professor Paul Bannon',
-    role: 'Senior departmental sponsor, SAFE-Discharge trial',
-    aff: 'Bosch Chair of Surgery, University of Sydney. Head of Cardiothoracic Surgery, Royal Prince Alfred Hospital and Strathfield Private. Chair, The Baird Institute.',
-  },
-  {
-    name: 'Dr Kei Woldendorp',
-    role: 'Principal Investigator, SAFE-Discharge trial. Clinical Advisor.',
-    aff: 'BMed MBBS MPhil. The Baird Institute, Royal Prince Alfred Hospital. 25+ peer-reviewed publications.',
-  },
-  {
-    name: 'Associate Professor Mark Horrigan',
-    role: 'External clinical reviewer, cardiac pathway design',
-    aff: 'Cardiology, Austin Health. Cardiovascular Clinical Lead, Safer Care Victoria.',
-  },
-  {
-    name: 'Dr Aviv Pudipeddi',
-    role: 'Clinical champion for the Clinic platform',
-    aff: 'Gastroenterologist. Northern Suburbs Gastroenterology. Staff Specialist, Concord Hospital and Sydney Adventist Hospital. GESA Faculty.',
-  },
-]
-
 export default function TeamPage() {
   return (
     <>
@@ -84,10 +61,10 @@ export default function TeamPage() {
               className="font-display text-[44px] sm:text-[58px] lg:text-[76px] leading-[1.04] tracking-[-0.03em] mb-8"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              Clinicians, technologists, advisors.
+              Clinicians building for clinicians.
             </h1>
             <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
-              Aescia is built by a small team that writes its own pathways and ships its own code, supported by an external clinical advisory that signs its name to what we release.
+              Aescia is built by a small team that writes its own pathways and ships its own code.
             </p>
           </div>
         </section>
@@ -122,7 +99,7 @@ export default function TeamPage() {
 
         <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-16 mb-14">
+            <div className="grid lg:grid-cols-12 gap-16">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
                   <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Clinical advisory</span>
@@ -131,26 +108,18 @@ export default function TeamPage() {
                   className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"
                   style={{ fontVariationSettings: "'opsz' 120" }}
                 >
-                  Practising clinicians. Named, credited, accountable.
+                  Named, credited, accountable.
                 </h2>
               </div>
               <div className="lg:col-span-6 lg:col-start-7">
-                <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
-                  We do not publish advisory rosters we cannot stand behind. Each person below has an active role in the trial, a named contribution to the pathways, or a formal commitment to pilot the Clinic platform.
+                <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80 mb-6">
+                  We do not publish advisory rosters we cannot stand behind. A clinical advisory is being formalised alongside the SAFE-Discharge trial at Royal Prince Alfred Hospital. Members will be named here as each of them formally joins and consents to public acknowledgement.
+                </p>
+                <p className="text-[15px] leading-[1.7] text-foreground/70">
+                  For enquiries about the clinical advisory, use the contact page and we will route accordingly.
                 </p>
               </div>
             </div>
-            <dl className="divide-y divide-border border-y border-border">
-              {advisors.map((a) => (
-                <div key={a.name} className="grid lg:grid-cols-[320px_1fr] gap-6 py-7">
-                  <div>
-                    <div className="text-[16px] text-foreground font-medium">{a.name}</div>
-                    <div className="text-[13px] text-brass mt-1 font-mono uppercase tracking-[0.15em]">{a.role}</div>
-                  </div>
-                  <div className="text-[14px] leading-[1.65] text-foreground/80">{a.aff}</div>
-                </div>
-              ))}
-            </dl>
           </div>
         </section>
 
