@@ -2,6 +2,10 @@
 
 import { useI18n } from '@/lib/i18n'
 
+/**
+ * One confident line of security posture, centered, quiet type.
+ * Replaces a 4-cell box grid that fought the calm of the hero below it.
+ */
 export function TrustStrip() {
   const { t } = useI18n()
 
@@ -14,18 +18,15 @@ export function TrustStrip() {
 
   return (
     <section className="bg-background border-y border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-8 lg:py-10">
+        <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-center">
           {items.map((item, i) => (
-            <div
-              key={i}
-              className={`py-8 lg:py-10 px-4 ${i > 0 ? 'md:border-l border-border' : ''} ${i > 1 ? 'border-t md:border-t-0' : ''} ${i === 1 ? 'border-l' : ''} text-center`}
-            >
-              <div className="font-mono text-[13px] text-foreground font-medium tracking-wide">{item.value}</div>
-              <div className="mt-1.5 text-[11px] uppercase tracking-[0.18em] text-foreground/50 font-sans">{item.label}</div>
-            </div>
+            <li key={i} className="inline-flex items-baseline gap-2">
+              <span className="font-mono text-[12px] text-foreground tracking-wide">{item.value}</span>
+              <span className="text-[11px] text-foreground/55 tracking-wide">{item.label}</span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

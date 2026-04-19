@@ -36,7 +36,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Hero (home)
     'hero.eyebrow': 'A continuous-care platform',
     'hero.title': 'Between the discharge and the next appointment, someone should be listening.',
-    'hero.subtitle': 'A platform for structured patient follow-up and specialty-clinic workflow. Two products on one engine: one for surgical recovery, one for procedural preparation.',
+    'hero.subtitle': 'A platform for structured patient follow-up, built for hospitals and specialty clinics.',
     'hero.cta.primary': 'Explore the platform',
     'hero.cta.secondary': 'Talk to our team',
     'hero.trial.label': 'Active clinical programme',
@@ -87,7 +87,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Evidence ribbon (home)
     'evidence.eyebrow': 'Where we are today',
     'evidence.title': 'Clinical programme in active enrolment.',
-    'evidence.body': 'The SAFE-Discharge trial is a 500-patient, single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
+    'evidence.body': 'The SAFE-Discharge trial is a single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
     'evidence.fact2.value': '550',
@@ -305,7 +305,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'hero.eyebrow': 'Une plateforme de soins continus',
     'hero.title': 'Entre la sortie et le prochain rendez-vous, quelqu\'un devrait écouter.',
-    'hero.subtitle': 'Une plateforme pour le suivi structuré des patients et le flux de travail en clinique spécialisée. Deux produits sur un moteur : un pour la récupération chirurgicale, un pour la préparation procédurale.',
+    'hero.subtitle': 'Une plateforme de suivi structuré des patients, conçue pour les hôpitaux et les cliniques spécialisées.',
     'hero.cta.primary': 'Explorer la plateforme',
     'hero.cta.secondary': 'Contacter notre équipe',
     'hero.trial.label': 'Programme clinique actif',
@@ -351,7 +351,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'evidence.eyebrow': 'Où nous en sommes',
     'evidence.title': 'Programme clinique en recrutement actif.',
-    'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique à 500 patients d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Mené par le Dr Kei Woldendorp, investigateur principal. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; une demande réglementaire est en préparation. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
+    'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Une cohorte intérimaire de 50 patients est pré-spécifiée, suivie d\'une cohorte principale de 500 patients, soit 550 patients au total. Mené par le Dr Kei Woldendorp, investigateur principal. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; une demande réglementaire est en préparation. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Enregistrement',
     'evidence.fact2.value': '550',

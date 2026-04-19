@@ -7,22 +7,23 @@ export function CTASection() {
   const { t } = useI18n()
 
   return (
-    <section className="relative bg-foreground text-background py-28 lg:py-36 overflow-hidden">
+    <section className="relative bg-foreground text-background py-32 lg:py-44 overflow-hidden">
       <div
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 120% 80% at 50% 100%, oklch(0.47 0.06 175 / 0.45), transparent 60%), radial-gradient(ellipse 80% 50% at 70% 0%, oklch(0.73 0.09 80 / 0.18), transparent 60%)',
+            'radial-gradient(ellipse 100% 70% at 50% 100%, oklch(0.47 0.06 175 / 0.28), transparent 70%)',
         }}
+        aria-hidden="true"
       />
-      <div className="relative max-w-4xl mx-auto px-6 text-center">
+      <div className="relative max-w-3xl mx-auto px-6 text-center">
         <h2
-          className="font-display text-[38px] lg:text-[56px] leading-[1.05] tracking-[-0.03em] mb-6"
-          style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 30" }}
+          className="font-display text-[38px] lg:text-[56px] leading-[1.05] tracking-[-0.03em] mb-8"
+          style={{ fontVariationSettings: "'opsz' 144" }}
         >
           {t('cta.title')}
         </h2>
-        <p className="text-[16px] lg:text-[18px] leading-[1.6] text-background/70 mb-12 max-w-2xl mx-auto">
+        <p className="text-[16px] lg:text-[18px] leading-[1.6] text-background/75 mb-14 max-w-xl mx-auto">
           {t('cta.subtitle')}
         </p>
         <Link
@@ -30,7 +31,7 @@ export function CTASection() {
           className="inline-flex items-center gap-3 bg-background text-foreground font-medium px-8 py-4 text-[14px] tracking-wide hover:bg-background/90 transition-colors"
         >
           {t('cta.button')}
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
           </svg>
         </Link>
