@@ -64,7 +64,7 @@ export default function EvidencePage() {
                 SAFE-Discharge
               </h2>
               <p className="text-[14px] mt-5 text-foreground/75 leading-relaxed">
-                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp. Ethics and governance in final stages at time of writing.
+                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort; 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp. Ethics and governance in final stages at time of writing.
               </p>
             </div>
 
@@ -77,10 +77,10 @@ export default function EvidencePage() {
                   ['Unit', 'Cardiothoracic Surgery Unit', false],
                   ['Principal Investigator', 'Dr Kei Woldendorp, The Baird Institute', false],
                   ['Population', 'Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)', false],
-                  ['Sample size', '500 patients, single centre', false],
-                  ['Design', 'Prospective, historically controlled, structured post-discharge monitoring against an 8 to 14 day baseline risk window', false],
+                  ['Sample size', '550 patients (50 interim + 500 main), single centre', false],
+                  ['Design', 'Prospective, historically controlled, structured post-discharge monitoring across the 30-day post-discharge window', false],
                   ['Interim analysis', 'Pre-specified at 50 patients enrolled', false],
-                  ['Secondary endpoint', 'Alert burden: fewer than 1 nurse-actionable flag per patient per week', false],
+                  ['Secondary endpoint', 'Alert burden: fewer than 1 nurse-actionable flag per patient per week over the 30-day window', false],
                   ['Status', 'Ethics and governance in final stages; first participants expected following approval', false],
                 ].map(([k, v, mono], i) => (
                   <div key={i} className="grid grid-cols-[180px_1fr] gap-6 py-6">
@@ -107,7 +107,7 @@ export default function EvidencePage() {
               <div className="border-t-2 border-foreground pt-6">
                 <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/70 mb-5 block">What we claim</span>
                 <ul className="space-y-5 text-[15px] leading-[1.65] text-foreground/85">
-                  <li>That structured daily follow-up is a known gap in the first two weeks after a high-acuity surgical discharge, widely described in the published literature.</li>
+                  <li>That structured daily follow-up is a known gap across the first 30 days after a high-acuity surgical discharge, widely described in the published literature.</li>
                   <li>That transparent, rule-based prioritisation, authored by practising clinicians, is a defensible design choice for a safety-focused software layer.</li>
                   <li>That our patient-facing check-ins are built with the nursing workflow in mind, to produce one prioritised list rather than a new inbox.</li>
                   <li>That Aescia for Clinics is a workflow tool for specialty clinics and that it is not a medical device.</li>

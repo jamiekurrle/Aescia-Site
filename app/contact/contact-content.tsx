@@ -158,7 +158,7 @@ export default function ContactContent() {
                   I run or work in a specialty clinic.
                 </h2>
                 <p className="text-[14px] text-foreground/80 leading-[1.6]">
-                  Endoscopy prep, no-show reduction, GLP-1 handling, recall tracking, live in two weeks.
+                  Endoscopy first: prep, no-show reduction, GLP-1 handling, recall tracking. Other specialty clinics welcome where a clinical champion is involved.
                 </p>
                 <span className="inline-flex items-center gap-2 mt-8 text-[13px] group-hover:gap-4 transition-all">
                   Continue

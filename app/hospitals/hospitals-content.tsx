@@ -347,7 +347,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Patients</dt>
-                <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 72" }}>500, single centre</dd>
+                <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 72" }}>550 (50 interim + 500 main), single centre</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>

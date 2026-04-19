@@ -11,7 +11,7 @@
  */
 export function HeroDiagram() {
   const rows = 8
-  const days = 14
+  const days = 30
   const viewW = 520
   const viewH = 420
   const pad = { l: 64, r: 24, t: 36, b: 44 }
@@ -27,43 +27,44 @@ export function HeroDiagram() {
     const pts: string[] = []
     for (let i = 0; i <= days; i++) {
       const x = pad.l + (i / days) * plotW
-      const phase = (i / days) * Math.PI * 4 + seed * Math.PI
+      const phase = (i / days) * Math.PI * 6 + seed * Math.PI
       const y = y0 + Math.sin(phase) * amp + Math.cos(phase * 1.7) * amp * 0.4
       pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`)
     }
     return pts.join(' ')
   }
 
-  // The highlighted trajectory. Gentle baseline, dip around day 6-8, recovery through day 11.
+  // The highlighted trajectory. Gentle baseline, dip around day 9-13 (typical AF or wound window),
+  // flag at day 11 where Aescia surfaces the deterioration, recovery through day 17.
   const hiRowIdx = 3
   const hiY0 = pad.t + hiRowIdx * rowH + rowH / 2
+  const dipCenter = 11
   function highlightedPath(): string {
     const pts: string[] = []
-    const dipCenter = 7
-    const dipWidth = 3.2
+    const dipWidth = 5.2
     const dipDepth = 22
     for (let i = 0; i <= days; i++) {
       const x = pad.l + (i / days) * plotW
       const u = (i - dipCenter) / dipWidth
       const dip = dipDepth * Math.exp(-u * u)
-      const wave = Math.sin((i / days) * Math.PI * 3) * 1.5
+      const wave = Math.sin((i / days) * Math.PI * 4) * 1.3
       const y = hiY0 + dip + wave
       pts.push(`${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`)
     }
     return pts.join(' ')
   }
 
-  // Flag position (where Aescia surfaces the dip). Day 7, at the trough.
-  const flagX = pad.l + (7 / days) * plotW
-  const flagY = hiY0 + 22 // roughly at the trough depth
+  // Flag position (where Aescia surfaces the dip). At the trough, day 11.
+  const flagX = pad.l + (dipCenter / days) * plotW
+  const flagY = hiY0 + 22
 
   // Day markers
-  const dayMarkers = [1, 7, 14]
+  const dayMarkers = [1, 15, 30]
 
   const labels = ['Patient A', 'Patient B', 'Patient C', 'Patient D', 'Patient E', 'Patient F', 'Patient G', 'Patient H']
 
   return (
-    <div className="w-full max-w-[520px] mx-auto" role="img" aria-label="Illustrative cohort trajectory. Seven patients hold a steady recovery; one dips around day seven and is flagged by the platform. Abstract and does not depict clinical data.">
+    <div className="w-full max-w-[520px] mx-auto" role="img" aria-label="Illustrative cohort trajectory over the 30-day post-discharge window. Seven patients hold a steady recovery; one dips around day eleven and is flagged by the platform. Abstract and does not depict clinical data.">
       <svg
         viewBox={`0 0 ${viewW} ${viewH}`}
         className="w-full h-auto"
@@ -206,7 +207,7 @@ export function HeroDiagram() {
             letterSpacing: '0.1em',
           }}
         >
-          DAY 7 · FLAG
+          DAY {dipCenter} · FLAG
         </text>
 
         {/* Sweep line, animated left-to-right */}
@@ -232,7 +233,7 @@ export function HeroDiagram() {
             letterSpacing: '0.18em',
           }}
         >
-          COHORT · 14-DAY POST-DISCHARGE WINDOW
+          COHORT · 30-DAY POST-DISCHARGE WINDOW
         </text>
         <text
           x={viewW - pad.r}

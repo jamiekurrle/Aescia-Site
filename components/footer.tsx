@@ -48,8 +48,10 @@ export function Footer() {
           <div className="md:col-span-3">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.legal')}</p>
             <ul className="space-y-2 text-[13px] text-foreground/75">
-              <li>Aescia Pty Ltd</li>
+              <li>Aescia Pty Ltd (AU)</li>
               <li className="font-mono text-[12px]">ABN 96 687 840 517</li>
+              <li className="pt-2">9550-0708 Québec inc (CA)</li>
+              <li className="font-mono text-[12px]">NEQ 1181312316</li>
               <li className="pt-2">Sydney, Australia</li>
               <li>Montréal, Canada</li>
             </ul>

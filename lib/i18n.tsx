@@ -40,7 +40,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.cta.primary': 'Explore the platform',
     'hero.cta.secondary': 'Talk to our team',
     'hero.trial.label': 'Active clinical programme',
-    'hero.trial.brief': 'SAFE-Discharge, 500 patients',
+    'hero.trial.brief': 'SAFE-Discharge, 550 patients',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
     // Audience split
@@ -90,8 +90,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'evidence.body': 'The SAFE-Discharge trial is a 500-patient, single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
-    'evidence.fact2.value': '500',
-    'evidence.fact2.label': 'Patients, single centre',
+    'evidence.fact2.value': '550',
+    'evidence.fact2.label': 'Patients (50 interim + 500), single centre',
     'evidence.fact3.value': 'Class IIa',
     'evidence.fact3.label': 'Intended classification',
     'evidence.cta': 'Read the evidence page',
@@ -177,7 +177,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Signal to noise
     'hospitals.noise.eyebrow': 'The cost of a false flag',
     'hospitals.noise.title': 'Fewer alerts. Each one earned.',
-    'hospitals.noise.body': 'A post-discharge platform that flags everything is a platform no nurse will read. SAFE-Discharge includes alert burden as a pre-specified secondary outcome: the target is fewer than one nurse-actionable flag per patient per week over the 14-day post-discharge window, with documented review of every higher-urgency signal. We will report the number, whatever it is.',
+    'hospitals.noise.body': 'A post-discharge platform that flags everything is a platform no nurse will read. SAFE-Discharge includes alert burden as a pre-specified secondary outcome: the target is fewer than one nurse-actionable flag per patient per week over the 30-day post-discharge window, with documented review of every higher-urgency signal. We will report the number, whatever it is.',
     'hospitals.noise.target.label': 'Target',
     'hospitals.noise.target.value': '< 1 flag per patient per week',
     'hospitals.noise.endpoint.label': 'Endpoint',
@@ -186,18 +186,18 @@ const translations: Record<Locale, Record<string, string>> = {
     // Roster fit
     'hospitals.roster.eyebrow': 'How this fits your roster',
     'hospitals.roster.title': 'Additive to the day, not additive to the headcount.',
-    'hospitals.roster.body': 'The worklist is owned by existing nursing roles, not a new role. After-hours routing is agreed with your on-call registrar and hospital switchboard before go-live. When a patient is readmitted or a MET is called, Aescia alerts mute automatically. The NUM sees who owns the list by shift, and can audit every routed alert.',
+    'hospitals.roster.body': 'The worklist is owned by existing nursing roles, not a new role. After-hours routing is agreed with your on-call registrar and hospital switchboard before go-live. When a patient is readmitted to hospital, Aescia alerts for that patient mute automatically. The NUM sees who owns the list by shift, and can audit every routed alert.',
     'hospitals.roster.item1.title': 'Shift ownership',
     'hospitals.roster.item1.desc': 'Named nursing role per shift, agreed with the NUM. Handover between shifts routes the list as part of the existing verbal handover.',
     'hospitals.roster.item2.title': 'After-hours routing',
     'hospitals.roster.item2.desc': 'Higher-urgency signals route to the on-call surgical registrar after agreed hours. Configured per site, not a vendor default.',
     'hospitals.roster.item3.title': 'Automatic mute',
-    'hospitals.roster.item3.desc': 'When a patient is readmitted or a MET is active, Aescia alerts for that patient are suppressed until the team re-enables them.',
+    'hospitals.roster.item3.desc': 'When a patient is readmitted to hospital, Aescia alerts for that patient are suppressed until the team re-enables them. The system stops competing for attention while the patient is under inpatient care.',
 
     // Trial
     'hospitals.trial.eyebrow': 'Active clinical programme',
     'hospitals.trial.title': 'The SAFE-Discharge trial.',
-    'hospitals.trial.body': 'A prospective 500-patient single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring. Registered with the Australian New Zealand Clinical Trials Registry. First participants expected following ethics and governance approval. Interim analysis pre-specified at 50 patients, full analysis at 500.',
+    'hospitals.trial.body': 'A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry. First participants expected following ethics and governance approval.',
     'hospitals.trial.not_recruiting': 'This page does not recruit trial participants. Enrolment is through the Royal Prince Alfred Hospital cardiothoracic unit under ethics approval.',
     'hospitals.trial.id': 'ACTRN12625001425482',
     'hospitals.trial.site': 'Royal Prince Alfred Hospital, Sydney',
@@ -245,7 +245,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Integration-friendly',
     'clinics.features.item8.desc': 'Works alongside common endoscopy reporting (Provation, EndoWorks, gGastro) and practice-management systems. Adds a signal layer without a second login for your team.',
     'clinics.features.item9.title': 'Single-site friendly',
-    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Flat monthly pricing per specialty. Live in two weeks, not two quarters.',
+    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Flat monthly pricing per specialty. Designed to go live in weeks once a champion is in place, not quarters.',
 
     'clinics.vocab.title': 'Built for the ambulatory rhythm.',
     'clinics.vocab.body': 'This is not a hospital discharge tool dressed for a clinic. It is a prep and workflow product with its own authored protocols, its own SMS layer, and its own vocabulary: today\'s list, room utilisation, case turnover, prep adequacy, recall compliance.',
@@ -261,8 +261,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.regions.uk.label': 'United Kingdom and EU',
     'clinics.regions.uk.value': 'Plenvu, Moviprep, Citrafleet',
 
-    'clinics.specialties.title': 'Specialties we already support.',
-    'clinics.specialties.body': 'Pathway coverage is live for colonoscopy and gastroscopy, with regional bowel-prep variants and specialty overlays. The same engine is extending into physiotherapy post-discharge, aesthetics, and other efficiency-seeking specialties through 2026 and 2027.',
+    'clinics.specialties.title': 'Specialties in scope.',
+    'clinics.specialties.body': 'Endoscopy is the first clinical focus: colonoscopy and gastroscopy pathway development is active, with regional bowel-prep variants and specialty overlays in build. The same engine extends to physiotherapy post-discharge, aesthetics, and other efficiency-seeking specialties as clinical champions join. If your specialty is not listed, we will build the pathway with you.',
 
     'clinics.pricing.title': 'Pricing posture.',
     'clinics.pricing.body': 'Flat monthly by specialty at the single-site level, consumption-aligned at scale. Starts below the cost of one missed no-show per week. We publish a posture, not a list: clinics pay for a specialty protocol they can deploy inside two weeks, and scale adds protocols, not friction.',
@@ -309,7 +309,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.cta.primary': 'Explorer la plateforme',
     'hero.cta.secondary': 'Contacter notre équipe',
     'hero.trial.label': 'Programme clinique actif',
-    'hero.trial.brief': 'SAFE-Discharge, 500 patients',
+    'hero.trial.brief': 'SAFE-Discharge, 550 patients',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
     'split.hospital.eyebrow': 'Pour les hôpitaux',
@@ -354,8 +354,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique à 500 patients d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Mené par le Dr Kei Woldendorp, investigateur principal. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; une demande réglementaire est en préparation. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Enregistrement',
-    'evidence.fact2.value': '500',
-    'evidence.fact2.label': 'Patients, mono-centrique',
+    'evidence.fact2.value': '550',
+    'evidence.fact2.label': 'Patients (50 intérim + 500), mono-centrique',
     'evidence.fact3.value': 'Classe IIa',
     'evidence.fact3.label': 'Classification prévue',
     'evidence.cta': 'Lire la page preuves',
@@ -442,17 +442,17 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'hospitals.roster.eyebrow': 'Comment cela s\'intègre à votre roster',
     'hospitals.roster.title': 'S\'ajoute à la journée, pas aux effectifs.',
-    'hospitals.roster.body': 'La liste de travail appartient aux rôles infirmiers existants, pas à un nouveau rôle. Le routage hors-heures est convenu avec votre registraire de garde et le standard hospitalier avant la mise en service. Quand un patient est réadmis ou qu\'un MET est appelé, les alertes Aescia se coupent automatiquement. Le NUM voit qui possède la liste par service et peut auditer chaque alerte.',
+    'hospitals.roster.body': 'La liste de travail appartient aux rôles infirmiers existants, pas à un nouveau rôle. Le routage hors-heures est convenu avec votre registraire de garde et le standard hospitalier avant la mise en service. Quand un patient est réadmis à l\'hôpital, les alertes Aescia pour ce patient se coupent automatiquement. Le NUM voit qui possède la liste par service et peut auditer chaque alerte.',
     'hospitals.roster.item1.title': 'Propriété par service',
     'hospitals.roster.item1.desc': 'Rôle infirmier nommé par service, convenu avec le NUM. La transmission entre services route la liste dans le cadre de la transmission verbale existante.',
     'hospitals.roster.item2.title': 'Routage hors-heures',
     'hospitals.roster.item2.desc': 'Les signaux d\'urgence élevée routent vers le registraire chirurgical de garde après les heures convenues. Configuré par site, pas un défaut éditeur.',
     'hospitals.roster.item3.title': 'Coupure automatique',
-    'hospitals.roster.item3.desc': 'Quand un patient est réadmis ou qu\'un MET est actif, les alertes Aescia pour ce patient sont suspendues jusqu\'à ce que l\'équipe les réactive.',
+    'hospitals.roster.item3.desc': 'Quand un patient est réadmis à l\'hôpital, les alertes Aescia pour ce patient sont suspendues jusqu\'à ce que l\'équipe les réactive. Le système cesse de solliciter pendant que le patient est en soins hospitaliers.',
 
     'hospitals.trial.eyebrow': 'Programme clinique actif',
     'hospitals.trial.title': 'L\'essai SAFE-Discharge.',
-    'hospitals.trial.body': 'Une évaluation prospective mono-centrique à 500 patients d\'Aescia pour la surveillance post-sortie cardiothoracique. Enregistrée au registre des essais cliniques ANZ. Premiers participants attendus après approbation éthique et gouvernance. Analyse intérimaire pré-spécifiée à 50 patients, analyse complète à 500.',
+    'hospitals.trial.body': 'Une évaluation prospective mono-centrique d\'Aescia pour la surveillance post-sortie cardiothoracique. Une cohorte intérimaire de 50 patients est pré-spécifiée, suivie d\'une cohorte principale de 500 patients, soit 550 patients au total. Enregistrée au registre des essais cliniques ANZ. Premiers participants attendus après approbation éthique et gouvernance.',
     'hospitals.trial.not_recruiting': 'Cette page ne recrute pas de participants à l\'essai. L\'inscription se fait via l\'unité de chirurgie cardiothoracique du Royal Prince Alfred Hospital sous approbation éthique.',
     'hospitals.trial.id': 'ACTRN12625001425482',
     'hospitals.trial.site': 'Royal Prince Alfred Hospital, Sydney',
@@ -497,7 +497,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Facile à intégrer',
     'clinics.features.item8.desc': 'Fonctionne aux côtés des systèmes de rapport d\'endoscopie habituels (Provation, EndoWorks, gGastro) et des systèmes de gestion de cabinet. Ajoute une couche de signal sans second identifiant.',
     'clinics.features.item9.title': 'Adapté au cabinet',
-    'clinics.features.item9.desc': 'Configuré par un administrateur clinique en une après-midi. Tarif mensuel forfaitaire par spécialité. En ligne en deux semaines, pas en deux trimestres.',
+    'clinics.features.item9.desc': 'Configuré par un administrateur clinique en une après-midi. Tarif mensuel forfaitaire par spécialité. Conçu pour une mise en service en semaines une fois qu\'un champion est en place, pas en trimestres.',
 
     'clinics.vocab.title': 'Fait pour le rythme ambulatoire.',
     'clinics.vocab.body': 'Ce n\'est pas un outil de sortie hospitalière habillé pour la clinique. C\'est un produit de préparation et de flux de travail avec ses propres protocoles, sa propre couche SMS, et son propre vocabulaire : liste du jour, utilisation de salle, rotation, qualité de préparation, conformité de rappel.',
@@ -513,8 +513,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.regions.uk.label': 'Royaume-Uni et UE',
     'clinics.regions.uk.value': 'Plenvu, Moviprep, Citrafleet',
 
-    'clinics.specialties.title': 'Spécialités déjà prises en charge.',
-    'clinics.specialties.body': 'La couverture est en ligne pour la coloscopie et la gastroscopie, avec des variantes régionales de préparation et des superpositions de spécialité. Le même moteur s\'étend à la kinésithérapie post-sortie, l\'esthétique, et d\'autres spécialités cherchant de l\'efficience en 2026 et 2027.',
+    'clinics.specialties.title': 'Spécialités à l\'étude.',
+    'clinics.specialties.body': 'L\'endoscopie est la première priorité clinique : le développement des parcours coloscopie et gastroscopie est actif, avec les variantes régionales de préparation et superpositions de spécialité en construction. Le même moteur s\'étend à la kinésithérapie post-sortie, l\'esthétique, et d\'autres spécialités cherchant de l\'efficience à mesure que des champions cliniques se joignent. Si votre spécialité n\'est pas listée, nous construirons le parcours avec vous.',
 
     'clinics.pricing.title': 'Posture tarifaire.',
     'clinics.pricing.body': 'Mensuel forfaitaire par spécialité au niveau cabinet, aligné sur l\'usage à grande échelle. Démarre sous le coût d\'un absent par semaine. Nous publions une posture, pas une liste : les cliniques paient pour un protocole de spécialité déployable en deux semaines, et l\'échelle ajoute des protocoles, pas des frictions.',

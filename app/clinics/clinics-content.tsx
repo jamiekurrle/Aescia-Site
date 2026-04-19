@@ -184,18 +184,18 @@ export default function ClinicsContent() {
           <div className="lg:col-span-6 lg:col-start-7">
             <div className="divide-y divide-border border-y border-border">
               {[
-                { name: 'Colonoscopy', detail: 'With regional prep variants and clinician-authored overlays' },
-                { name: 'Gastroscopy', detail: 'Pre-procedure fasting, meds review, GLP-1 overlay' },
-                { name: 'Physiotherapy post-discharge', detail: 'Elective orthopaedic, spinal, and joint pathways' },
-                { name: 'Aesthetics and cosmetic', detail: 'Consent, prep, photo capture, follow-up' },
-                { name: 'General specialty workflow', detail: 'Composable pathways for 15+ additional specialties' },
+                { name: 'Colonoscopy', detail: 'With regional prep variants and clinician-authored overlays', tag: 'First focus' },
+                { name: 'Gastroscopy', detail: 'Pre-procedure fasting, meds review, GLP-1 overlay', tag: 'First focus' },
+                { name: 'Physiotherapy post-discharge', detail: 'Elective orthopaedic, spinal, and joint pathways', tag: 'On roadmap' },
+                { name: 'Aesthetics and cosmetic', detail: 'Consent, prep, photo capture, follow-up', tag: 'On roadmap' },
+                { name: 'Your specialty', detail: 'If a clinical champion is in place, we build the pathway with you', tag: 'Open' },
               ].map((row) => (
                 <div key={row.name} className="py-6 flex items-start justify-between gap-6">
                   <div>
                     <div className="text-[16px] text-foreground font-medium">{row.name}</div>
-                    <div className="text-[13px] text-foreground/65 mt-1">{row.detail}</div>
+                    <div className="text-[13px] text-foreground/70 mt-1">{row.detail}</div>
                   </div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent pt-1.5">Live</span>
+                  <span className={`font-mono text-[10px] uppercase tracking-[0.2em] pt-1.5 shrink-0 ${row.tag === 'First focus' ? 'text-accent' : row.tag === 'Open' ? 'text-brass' : 'text-foreground/55'}`}>{row.tag}</span>
                 </div>
               ))}
             </div>
