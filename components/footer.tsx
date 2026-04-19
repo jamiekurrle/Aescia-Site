@@ -1,84 +1,68 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useI18n } from '@/lib/i18n'
 
 export function Footer() {
   const { t } = useI18n()
 
   return (
-    <footer className="py-16 px-6 bg-foreground text-primary-foreground">
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-          {/* Logo */}
-          <div>
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <Image src="/ae-mark.png" alt="Aescia" width={24} height={24} className="invert" />
-              <span className="font-semibold">Aescia</span>
+    <footer className="bg-background border-t border-border pt-20 pb-10 px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-12 mb-16">
+          <div className="md:col-span-4">
+            <Link href="/" className="inline-flex items-baseline gap-1.5 mb-5">
+              <span
+                className="font-display text-[26px] leading-none tracking-tight text-foreground"
+                style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 30" }}
+              >
+                Aescia
+              </span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-foreground/40 -translate-y-0.5">Health</span>
             </Link>
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-[14px] leading-relaxed text-foreground/65 max-w-sm">
               {t('footer.tagline')}
             </p>
           </div>
 
-          {/* Product */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-primary-foreground/40">{t('footer.product')}</p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/problem" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  {t('footer.problem')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/solution" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  {t('footer.solution')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/evidence" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  {t('footer.evidence')}
-                </Link>
-              </li>
+          <div className="md:col-span-2 md:col-start-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/45 mb-5">{t('footer.product')}</p>
+            <ul className="space-y-3 text-[14px]">
+              <li><Link href="/platform" className="text-foreground/75 hover:text-foreground">{t('footer.platform')}</Link></li>
+              <li><Link href="/hospitals" className="text-foreground/75 hover:text-foreground">{t('footer.hospitals')}</Link></li>
+              <li><Link href="/clinics" className="text-foreground/75 hover:text-foreground">{t('footer.clinics')}</Link></li>
+              <li><Link href="/evidence" className="text-foreground/75 hover:text-foreground">{t('footer.evidence')}</Link></li>
             </ul>
           </div>
 
-          {/* Company */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-primary-foreground/40">{t('footer.company')}</p>
-            <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/governance" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  {t('footer.governance')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  {t('footer.contact')}
-                </Link>
-              </li>
-              <li>
-                <a href="mailto:contact@aesciahealth.com" className="text-primary-foreground/70 hover:text-primary-foreground">
-                  contact@aesciahealth.com
-                </a>
-              </li>
+          <div className="md:col-span-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/45 mb-5">{t('footer.company')}</p>
+            <ul className="space-y-3 text-[14px]">
+              <li><Link href="/governance" className="text-foreground/75 hover:text-foreground">{t('footer.governance')}</Link></li>
+              <li><Link href="/contact" className="text-foreground/75 hover:text-foreground">{t('footer.contact')}</Link></li>
+              <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/75 hover:text-foreground">contact@aesciahealth.com</a></li>
             </ul>
           </div>
 
-          {/* Legal */}
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider mb-4 text-primary-foreground/40">{t('footer.legal')}</p>
-            <ul className="space-y-2 text-sm text-primary-foreground/60">
+          <div className="md:col-span-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/45 mb-5">{t('footer.legal')}</p>
+            <ul className="space-y-2 text-[13px] text-foreground/60">
               <li>Aescia Pty Ltd</li>
-              <li>ABN 96 687 840 517</li>
+              <li className="font-mono text-[12px]">ABN 96 687 840 517</li>
+              <li className="pt-2">Sydney, Australia</li>
+              <li>Montréal, Canada</li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/10 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-primary-foreground/40">
-          <p>© {new Date().getFullYear()} Aescia Pty Ltd. {t('footer.rights')}</p>
-          <p>{t('footer.health')}</p>
+        <div className="border-t border-border pt-8">
+          <p className="text-[12px] leading-relaxed text-foreground/55 max-w-3xl mb-6 italic font-display">
+            {t('footer.disclosure')}
+          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] text-foreground/45 font-mono tracking-wide">
+            <p>© {new Date().getFullYear()} Aescia Pty Ltd. {t('footer.rights')}</p>
+            <p>{t('footer.health')}</p>
+          </div>
         </div>
       </div>
     </footer>

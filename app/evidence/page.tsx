@@ -4,9 +4,9 @@ import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
-  title: 'Clinical Evidence | Aescia Health',
+  title: 'Evidence | Aescia',
   description:
-    'Evidence supporting post-discharge monitoring, projected health system impact, and Aescia\'s approach to clinical evaluation and outcome measurement.',
+    'Clinical programme, regulatory posture, and honest statement of what Aescia for Hospitals can and cannot claim today. Includes the SAFE-Discharge trial registration and the governance of Aescia for Clinics.',
 }
 
 export default function EvidencePage() {
@@ -14,158 +14,140 @@ export default function EvidencePage() {
     <>
       <SiteNav />
       <main className="bg-background min-h-screen">
-        {/* Header */}
-        <section className="pt-32 pb-16 px-6 border-b border-border">
-          <div className="max-w-3xl mx-auto">
-            <Link href="/" className="text-sm text-accent mb-8 inline-block hover:underline">
-              ← Back to home
-            </Link>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              Clinical evidence & health system impact
+        <section className="pt-40 pb-20 lg:pt-48 lg:pb-24 px-6 lg:px-10 border-b border-border">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-3 mb-8">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Evidence</span>
+              <span className="h-px w-10 bg-brass/50" />
+            </div>
+            <h1
+              className="font-display text-[44px] sm:text-[58px] lg:text-[76px] leading-[1.04] tracking-[-0.03em] mb-8"
+              style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 30" }}
+            >
+              Where we are today, and what we are careful not to say.
             </h1>
-            <p className="text-xl text-foreground/70 leading-relaxed">
-              The evidence base for post-discharge monitoring, projected outcomes, and our approach to rigorous clinical evaluation.
+            <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/75 max-w-3xl">
+              Aescia for Hospitals is in active clinical evaluation through the SAFE-Discharge trial. It is not yet listed as a medical device, and so it cannot make outcome claims. This page is our public accounting of what is running, what it is measuring, and what we will claim only once it is earned.
             </p>
           </div>
         </section>
 
-        {/* Content */}
-        <article className="py-16 px-6">
-          <div className="max-w-3xl mx-auto prose prose-lg">
-            <h2>Evidence for post-discharge monitoring</h2>
-            <p>
-              The clinical rationale for structured post-discharge monitoring is well-established in the literature:
-            </p>
-            <ul>
-              <li>
-                <strong>Readmission rates:</strong> 5–15% of patients are readmitted within 30 days across most surgical and medical cohorts
-              </li>
-              <li>
-                <strong>Preventability:</strong> Retrospective analyses consistently estimate 30–50% of readmissions are potentially preventable
-              </li>
-              <li>
-                <strong>Timing:</strong> Most preventable readmissions occur in the first 7–14 days post-discharge, when monitoring is most valuable
-              </li>
-              <li>
-                <strong>Intervention points:</strong> Early identification of deterioration allows management through outpatient review, community care, or telephone advice—avoiding emergency presentation
-              </li>
-            </ul>
-
-            <h2>Projected health system impact</h2>
-            <p>
-              Conservative modeling based on published literature suggests the following impact at a typical large hospital:
-            </p>
-
-            <div className="not-prose my-8">
-              <div className="bg-secondary rounded-lg overflow-hidden">
-                <div className="p-6 border-b border-border">
-                  <h3 className="font-semibold text-foreground">Cardiothoracic surgery cohort example</h3>
-                  <p className="text-sm text-foreground/70">Based on 800 annual discharges</p>
-                </div>
-                <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
-                  <div className="p-6">
-                    <div className="text-3xl font-bold text-accent mb-2">25–30</div>
-                    <p className="text-foreground/70">Readmissions prevented annually</p>
-                    <p className="text-sm text-foreground/50 mt-2">Assuming 8% baseline rate, 40% reduction in preventable returns</p>
-                  </div>
-                  <div className="p-6">
-                    <div className="text-3xl font-bold text-accent mb-2">100–150</div>
-                    <p className="text-foreground/70">Bed-days recovered annually</p>
-                    <p className="text-sm text-foreground/50 mt-2">From avoided readmissions plus earlier confident discharge</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <h3>Economic value</h3>
-            <p>
-              The recovered bed capacity translates to significant operational value:
-            </p>
-            <ul>
-              <li><strong>Direct cost avoidance:</strong> Each avoided readmission saves the direct cost of the admission episode</li>
-              <li><strong>Throughput improvement:</strong> Freed bed-days can be reutilized at approximately 70% efficiency</li>
-              <li><strong>Combined value:</strong> $8.1M+ in projected annual operational value for a single high-volume surgical unit</li>
-            </ul>
-            <p>
-              These projections are conservative estimates based on published literature. Actual outcomes will be measured through structured clinical evaluation.
-            </p>
-
-            <h2>Our approach to evaluation</h2>
-            <p>
-              Aescia engages with health services through <strong>scoped, time-limited clinical evaluations</strong> with:
-            </p>
-            <ul>
-              <li>Predefined endpoints and success criteria</li>
-              <li>Transparent outcome reporting</li>
-              <li>Site-specific ethics and governance approvals</li>
-              <li>Comparison against matched historical cohorts where appropriate</li>
-            </ul>
-            <p>
-              We do not seek routine clinical deployment without appropriate evidence. Our commercial model is aligned with demonstrated outcomes.
-            </p>
-
-            <h2>Regulatory posture</h2>
-            <p>
-              Aescia is positioned as <strong>Software as a Medical Device (SaMD)</strong>:
-            </p>
-            <ul>
-              <li>Current use is limited to approved evaluation contexts</li>
-              <li>Development follows IEC 62304 software lifecycle practices</li>
-              <li>Risk classification and regulatory pathway completion is in progress</li>
-              <li>All clinical outputs are advisory and require clinician review</li>
-            </ul>
-
-            <h2>Published references</h2>
-            <p>
-              Key literature supporting the clinical rationale:
-            </p>
-            <ul>
-              <li>
-                Jencks SF, et al. (2009). Rehospitalizations among patients in the Medicare fee-for-service program. <em>NEJM</em>.
-              </li>
-              <li>
-                van Walraven C, et al. (2011). Proportion of hospital readmissions deemed avoidable: a systematic review. <em>CMAJ</em>.
-              </li>
-              <li>
-                Leppin AL, et al. (2014). Preventing 30-day hospital readmissions: a systematic review and meta-analysis. <em>JAMA Internal Medicine</em>.
-              </li>
-              <li>
-                Hansen LO, et al. (2011). Interventions to reduce 30-day rehospitalization: a systematic review. <em>Annals of Internal Medicine</em>.
-              </li>
-            </ul>
-
-            <div className="bg-secondary p-8 rounded-lg mt-12 not-prose">
-              <h3 className="font-semibold text-foreground mb-4">Key projections</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <div className="text-3xl font-bold text-accent">30–50%</div>
-                  <p className="text-sm text-foreground/70">Readmissions potentially preventable</p>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-accent">70%</div>
-                  <p className="text-sm text-foreground/70">Reutilization of freed bed-days</p>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-accent">$8.1M+</div>
-                  <p className="text-sm text-foreground/70">Projected annual value per unit</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 pt-8 border-t border-border not-prose">
-              <p className="text-foreground/70 mb-4">Learn about our governance framework</p>
-              <Link
-                href="/governance"
-                className="inline-flex items-center gap-2 bg-accent text-accent-foreground font-medium px-6 py-3 rounded hover:opacity-90"
+        {/* Trial block */}
+        <section className="py-24 lg:py-32 px-6 lg:px-10">
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Active programme</span>
+              <h2
+                className="font-display text-[32px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6"
+                style={{ fontVariationSettings: "'opsz' 120, 'SOFT' 30" }}
               >
-                Governance & compliance
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+                SAFE-Discharge
+              </h2>
+              <p className="text-[14px] mt-5 text-foreground/65 leading-relaxed">
+                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. Registered in the Australian New Zealand Clinical Trials Registry. Ethics and governance in final stages at time of writing.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 lg:col-start-6">
+              <dl className="divide-y divide-border border-y border-border">
+                {[
+                  ['Registration', 'ACTRN12625001425482', true],
+                  ['Internal identifier', 'AES-SAFE-CTS-001', true],
+                  ['Site', 'Royal Prince Alfred Hospital, Sydney', false],
+                  ['Unit', 'Cardiothoracic Surgery Unit', false],
+                  ['Population', 'Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)', false],
+                  ['Sample size', '500 patients, single centre', false],
+                  ['Design', 'Prospective, historically controlled, structured post-discharge monitoring against an 8 to 14 day baseline risk window', false],
+                  ['Interim readout', 'Pre-specified at 50 patients enrolled', false],
+                  ['Status', 'Ethics and governance in final stages; enrolment through 2026', false],
+                ].map(([k, v, mono], i) => (
+                  <div key={i} className="grid grid-cols-[170px_1fr] gap-6 py-6">
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/50">{k as string}</dt>
+                    <dd className={`text-[15px] text-foreground ${mono ? 'font-mono text-[14px]' : ''}`}>{v as string}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
           </div>
-        </article>
+        </section>
+
+        {/* What we claim vs do not */}
+        <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
+          <div className="max-w-7xl mx-auto">
+            <h2
+              className="font-display text-[32px] lg:text-[48px] leading-[1.08] tracking-[-0.025em] mb-16 max-w-2xl"
+              style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 30" }}
+            >
+              Our honest claim surface.
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+              <div className="border-t-2 border-foreground pt-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/55 mb-5 block">What we claim</span>
+                <ul className="space-y-5 text-[15px] leading-[1.65] text-foreground/80">
+                  <li>That structured daily follow-up is a known gap in the first two weeks after a high-acuity surgical discharge, widely described in the published literature.</li>
+                  <li>That transparent, rule-based triage, authored by practising clinicians, is a defensible design choice for a safety-focused software layer.</li>
+                  <li>That our patient-facing check-ins are built with the nursing workflow in mind, to produce one prioritised list rather than a new inbox.</li>
+                  <li>That Aescia for Clinics is a workflow tool for specialty clinics and that it is not a medical device.</li>
+                </ul>
+              </div>
+              <div className="border-t-2 border-brass pt-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass mb-5 block">What we do not claim</span>
+                <ul className="space-y-5 text-[15px] leading-[1.65] text-foreground/80">
+                  <li>That Aescia for Hospitals has been shown to reduce readmissions. The SAFE-Discharge trial is running. We will report what the trial shows, whatever it shows.</li>
+                  <li>That Aescia for Hospitals is approved or listed as a medical device. It is on a Class IIa pathway and currently deployed only under evaluation or research-use framing.</li>
+                  <li>Specific modelled financial outcomes as if they were observed results. Economic estimates exist for internal planning and are shared on request, labelled as estimates.</li>
+                  <li>That Aescia for Clinics makes or informs clinical decisions. It delivers clinician-authored educational content, reminders, and structured prep, and escalates exceptions to the team.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Literature references */}
+        <section className="py-24 lg:py-32 px-6 lg:px-10">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Background literature</span>
+            <h2
+              className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
+              style={{ fontVariationSettings: "'opsz' 120, 'SOFT' 30" }}
+            >
+              The territory our trial is entering.
+            </h2>
+            <ol className="space-y-6 text-[15px] leading-[1.7] text-foreground/75 list-none">
+              {[
+                ['Jencks SF, Williams MV, Coleman EA (2009)', 'Rehospitalizations among patients in the Medicare fee-for-service program.', 'NEJM', '360:1418-1428'],
+                ['van Walraven C, et al. (2011)', 'Proportion of hospital readmissions deemed avoidable: a systematic review.', 'CMAJ', '183(7):E391-E402'],
+                ['Leppin AL, et al. (2014)', 'Preventing 30-day hospital readmissions: a systematic review and meta-analysis of randomized trials.', 'JAMA Internal Medicine', '174(7):1095-1107'],
+                ['Hansen LO, et al. (2011)', 'Interventions to reduce 30-day rehospitalization: a systematic review.', 'Annals of Internal Medicine', '155(8):520-528'],
+              ].map(([authors, title, journal, vol]) => (
+                <li key={title as string} className="grid grid-cols-[90px_1fr] gap-6 border-b border-border pb-6">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/45 pt-1">Paper</span>
+                  <div>
+                    <div className="text-foreground/95 mb-1">{authors}</div>
+                    <div className="italic">{title}</div>
+                    <div className="text-foreground/55 font-mono text-[12px] mt-1">{journal}, {vol}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        <section className="py-20 px-6 border-t border-border">
+          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6">
+            <p className="text-[15px] text-foreground/70 flex-1">Looking for the governance and security posture?</p>
+            <Link
+              href="/governance"
+              className="inline-flex items-center gap-2.5 bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors self-start sm:self-auto"
+            >
+              Read governance
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+              </svg>
+            </Link>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

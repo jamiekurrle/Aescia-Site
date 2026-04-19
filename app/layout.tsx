@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import './globals.css'
@@ -10,18 +10,33 @@ const inter = Inter({
   display: 'swap',
 })
 
-const display = Playfair_Display({
+const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-display',
+  display: 'swap',
+  axes: ['opsz', 'SOFT'],
+})
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  weight: ['400', '500', '600'],
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Aescia Health — Post-Discharge Monitoring',
+  title: 'Aescia. Between the discharge and the next appointment.',
   description:
-    'Identify deterioration early, before it becomes a crisis. Aescia enables structured follow-up in the high-risk period after discharge through daily check-ins and clinical escalation pathways.',
+    'A platform for structured follow-up and efficient clinic workflow. Aescia for Hospitals supports post-surgical recovery monitoring. Aescia for Clinics streamlines patient preparation and adherence.',
   keywords:
-    'post-discharge monitoring, clinical escalation, digital health, patient safety',
+    'post-surgical monitoring, clinical follow-up, digital health platform, endoscopy workflow, colonoscopy prep, cardiothoracic recovery, specialty clinic software',
+  openGraph: {
+    title: 'Aescia. Between the discharge and the next appointment.',
+    description:
+      'Structured patient follow-up for hospitals. Streamlined workflow for specialty clinics. One platform.',
+    type: 'website',
+    url: 'https://www.aesciahealth.com',
+  },
 }
 
 export default function RootLayout({
@@ -30,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${display.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">
         <I18nProvider>
           {children}
         </I18nProvider>
