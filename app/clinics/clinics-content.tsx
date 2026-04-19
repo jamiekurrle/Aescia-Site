@@ -201,6 +201,71 @@ export default function ClinicsContent() {
             </div>
           </div>
         </div>
+
+        {/* Champion criteria */}
+        <div className="max-w-7xl mx-auto px-0 lg:px-0 mt-24 lg:mt-32">
+          <div className="grid lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">A fit for your practice?</span>
+              </div>
+              <h3
+                className="font-display text-[28px] lg:text-[38px] leading-[1.1] tracking-[-0.025em] mb-6"
+                style={{ fontVariationSettings: "'opsz' 120" }}
+              >
+                What makes a specialty a good candidate.
+              </h3>
+              <p className="text-[15px] lg:text-[16px] leading-[1.65] text-foreground/75">
+                We do not prescribe which specialties belong on the platform. We ask whether the friction is real, whether there is a clinician willing to co-author the pathway, and whether the patient journey has the kind of between-visit gap the engine can bridge.
+              </p>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <ul className="divide-y divide-border border-y border-border">
+                {[
+                  {
+                    title: 'A wait list under pressure',
+                    body: 'Long wait times, over-booked lists, or patients waiting weeks for a procedure where prep quality or no-shows are the rate-limiting step.',
+                  },
+                  {
+                    title: 'No-shows and cancellations eating throughput',
+                    body: 'Empty chairs, same-day cancellations, or inadequate preparation forcing repeat appointments. Any of these costs your team hours and the patient a delay.',
+                  },
+                  {
+                    title: 'Patient education and adherence between visits',
+                    body: 'Specialties where the weeks before or after an appointment carry risk: chronic disease, procedural prep, post-treatment monitoring, rehabilitation, lifestyle-dependent outcomes.',
+                  },
+                  {
+                    title: 'Direct clinician oversight, or hands-off',
+                    body: 'Some clinicians want every flag to route through them. Others want the pathway to handle the routine and surface only exceptions. The engine supports either, and the choice is set per pathway.',
+                  },
+                  {
+                    title: 'A clinician willing to author',
+                    body: 'Someone whose name goes on the rule set. The pathway is only as good as the clinician who authored it, and we do not ship one without a named author.',
+                  },
+                ].map((row, i) => (
+                  <li key={row.title} className="py-6 grid grid-cols-[40px_1fr] gap-4 items-start">
+                    <span className="font-mono text-[11px] text-brass tracking-widest pt-1">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <div className="text-[15px] text-foreground font-medium mb-1.5">{row.title}</div>
+                      <div className="text-[13.5px] text-foreground/75 leading-[1.6]">{row.body}</div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10">
+                <a
+                  href="/contact?intent=clinic"
+                  className="inline-flex items-center gap-2.5 text-[13px] text-foreground font-medium tracking-wide border-b border-brass pb-1.5 hover:border-foreground transition-colors"
+                >
+                  Talk to us about your specialty
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Pricing posture */}
