@@ -276,19 +276,17 @@ export function HeroDiagram() {
           DAY {dipCenter} · FLAG
         </text>
 
-        {/* Auto sweep line (pauses when cursor is active) */}
-        {cursorDay === null && (
-          <g className="hero-sweep" aria-hidden>
-            <line
-              x1={pad.l}
-              x2={pad.l}
-              y1={pad.t - 4}
-              y2={viewH - pad.b + 4}
-              stroke="url(#sweepGrad)"
-              strokeWidth={1.2}
-            />
-          </g>
-        )}
+        {/* One-shot sweep on mount. Hidden after animation completes. */}
+        <g className="hero-sweep" aria-hidden>
+          <line
+            x1={pad.l}
+            x2={pad.l}
+            y1={pad.t - 4}
+            y2={viewH - pad.b + 4}
+            stroke="url(#sweepGrad)"
+            strokeWidth={1.2}
+          />
+        </g>
 
         {/* Cursor-driven column highlight */}
         {cursorX !== null && cursorDay !== null && (
@@ -380,22 +378,21 @@ export function HeroDiagram() {
             opacity: 1;
           }
         }
-        @keyframes sweep {
+        /* One-shot reveals. No continuous loops. */
+        @keyframes sweepOnce {
           0% { transform: translateX(0); opacity: 0; }
-          8% { opacity: 1; }
-          92% { opacity: 1; }
+          12% { opacity: 0.7; }
+          88% { opacity: 0.7; }
           100% { transform: translateX(${plotW}px); opacity: 0; }
         }
-        @keyframes flagReveal {
-          0%, 45% { opacity: 0; transform: scale(0.6); }
-          58% { opacity: 1; transform: scale(1.25); }
-          72% { opacity: 1; transform: scale(1); }
-          92%, 100% { opacity: 1; transform: scale(1); }
+        @keyframes flagAppear {
+          0% { opacity: 0; transform: scale(0.55); }
+          60% { opacity: 1; transform: scale(1.18); }
+          100% { opacity: 1; transform: scale(1); }
         }
-        @keyframes flagLineFade {
-          0%, 58% { opacity: 0; }
-          70% { opacity: 1; }
-          92%, 100% { opacity: 1; }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
         :global(.hero-trace-steady) {
@@ -417,18 +414,21 @@ export function HeroDiagram() {
           animation: drawInHi 2.4s cubic-bezier(0.25, 0.1, 0.25, 1) 0.4s forwards;
         }
 
+        /* Sweep plays once at 3.0s, after trajectories finish drawing in.
+           Takes 3.2s to cross the window, then fades out (opacity 0). */
         :global(.hero-sweep) {
-          animation: sweep 18s ease-in-out infinite;
+          animation: sweepOnce 3.2s cubic-bezier(0.4, 0, 0.2, 1) 3s forwards;
           transform-origin: left center;
         }
+        /* Flag appears as the sweep crosses day 11 (~4.3s total) and stays. */
         :global(.hero-flag) {
           opacity: 0;
-          animation: flagReveal 18s ease-in-out infinite;
+          animation: flagAppear 0.9s cubic-bezier(0.2, 0, 0.2, 1) 4.3s forwards;
         }
         :global(.hero-flag-line),
         :global(.hero-flag-label) {
           opacity: 0;
-          animation: flagLineFade 18s ease-in-out infinite;
+          animation: fadeIn 0.6s ease-out 5.0s forwards;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -441,8 +441,7 @@ export function HeroDiagram() {
           }
           :global(.hero-sweep) {
             animation: none;
-            opacity: 0.3;
-            transform: translateX(${plotW * 0.55}px);
+            opacity: 0;
           }
           :global(.hero-flag),
           :global(.hero-flag-line),

@@ -3,27 +3,27 @@
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 import { HeroDiagram } from './hero-diagram'
-import { HeroShaderBg } from './hero-shader-bg'
 
 export function EditorialHero() {
   const { t } = useI18n()
 
   return (
     <section className="relative overflow-hidden bg-foreground text-background pt-28 lg:pt-32 pb-20 lg:pb-24">
-      {/* WebGL shader backdrop: slow FBM field, cursor-reactive hot-spot */}
-      <HeroShaderBg />
-      {/* Soft darken overlay so text remains legible regardless of shader state */}
+      {/* Calm static gradients. No RAF loop, no mouse-reactive motion. */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            'radial-gradient(ellipse 80% 60% at 50% 40%, transparent 0%, oklch(0.22 0.02 200 / 0.35) 80%), linear-gradient(to bottom, oklch(0.22 0.02 200 / 0.15) 0%, transparent 40%, oklch(0.22 0.02 200 / 0.45) 100%)',
+          background: [
+            'radial-gradient(ellipse 140% 80% at 30% 120%, oklch(0.47 0.06 175 / 0.38), transparent 60%)',
+            'radial-gradient(ellipse 90% 60% at 85% 15%, oklch(0.73 0.09 80 / 0.14), transparent 55%)',
+            'radial-gradient(ellipse 120% 70% at 50% 50%, oklch(0.35 0.04 200 / 0.3), transparent 70%)',
+          ].join(', '),
         }}
         aria-hidden="true"
       />
-      {/* Fine horizontal scan lines for scientific surface texture */}
+      {/* Very soft scan-line texture. Static. */}
       <div
-        className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none"
+        className="absolute inset-0 opacity-[0.07] mix-blend-overlay pointer-events-none"
         style={{
           backgroundImage:
             'repeating-linear-gradient(0deg, transparent 0px, transparent 3px, oklch(0.96 0.01 85) 3px, oklch(0.96 0.01 85) 3.5px)',
