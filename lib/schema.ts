@@ -69,6 +69,7 @@ export const organizationSchema = {
   sameAs: [
     'https://www.linkedin.com/company/aescia',
     'https://www.crunchbase.com/organization/aescia-health',
+    'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
   ],
 }
 
