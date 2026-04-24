@@ -18,9 +18,8 @@ const founders: Person[] = [
 ]
 
 const operating: Person[] = [
-  { initials: 'SK', nameKey: 'team.shannon.name', roleKey: 'team.shannon.role', bioKey: 'team.shannon.bio' },
   { initials: 'JC', nameKey: 'team.josh.name', roleKey: 'team.josh.role', bioKey: 'team.josh.bio' },
-  { initials: 'SN', nameKey: 'team.sara.name', roleKey: 'team.sara.role', bioKey: 'team.sara.bio' },
+  { initials: 'SK', nameKey: 'team.shannon.name', roleKey: 'team.shannon.role', bioKey: 'team.shannon.bio' },
 ]
 
 export function TeamContent() {
