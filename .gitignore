@@ -13,3 +13,4 @@ node_modules/
 .claude/
 next-env.d.ts
 .vercel
+tsconfig.tsbuildinfo

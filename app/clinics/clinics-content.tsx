@@ -268,6 +268,54 @@ export default function ClinicsContent() {
         </div>
       </section>
 
+      {/* Proof / ROI */}
+      <section className="py-24 lg:py-32 px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-12 gap-12 mb-16">
+            <div className="lg:col-span-5">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('clinics.proof.eyebrow')}</span>
+                <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
+              </div>
+              <h2
+                className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"
+                style={{ fontVariationSettings: "'opsz' 120" }}
+              >
+                {t('clinics.proof.title')}
+              </h2>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
+                {t('clinics.proof.body')}
+              </p>
+            </div>
+          </div>
+
+          <dl className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="bg-background p-8 lg:p-10">
+                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-4">
+                  {t(`clinics.proof.stat${n}.label`)}
+                </dt>
+                <dd
+                  className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.018em] text-foreground mb-3"
+                  style={{ fontVariationSettings: "'opsz' 96" }}
+                >
+                  {t(`clinics.proof.stat${n}.value`)}
+                </dd>
+                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brass">
+                  {t(`clinics.proof.stat${n}.source`)}
+                </p>
+              </div>
+            ))}
+          </dl>
+
+          <p className="text-[13px] leading-[1.65] text-foreground/65 italic border-l-2 border-brass/60 pl-4 mt-10 max-w-3xl">
+            {t('clinics.proof.footnote')}
+          </p>
+        </div>
+      </section>
+
       {/* Pricing posture */}
       <section id="pricing" className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-3xl mx-auto text-center">

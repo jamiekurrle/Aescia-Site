@@ -5,6 +5,7 @@ import { TrustStrip } from '@/components/trust-strip'
 import { PlatformBlurb } from '@/components/platform-blurb'
 import { Pillars } from '@/components/pillars'
 import { EvidenceRibbon } from '@/components/evidence-ribbon'
+import { PartnersStrip } from '@/components/partners-strip'
 import { CTASection } from '@/components/cta-section'
 import { Footer } from '@/components/footer'
 
@@ -18,6 +19,7 @@ export default function Home() {
       <PlatformBlurb />
       <Pillars />
       <EvidenceRibbon />
+      <PartnersStrip />
       <CTASection />
       <Footer />
     </main>

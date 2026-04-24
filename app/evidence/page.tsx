@@ -64,7 +64,7 @@ export default function EvidencePage() {
                 SAFE-Discharge
               </h2>
               <p className="text-[14px] mt-5 text-foreground/75 leading-relaxed">
-                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort; 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp. Ethics and governance in final stages at time of writing.
+                A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring at the Royal Prince Alfred Hospital in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort; 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry. Principal Investigator Dr Kei Woldendorp. Ethics approved; site-specific governance in progress at time of writing.
               </p>
             </div>
 
@@ -81,7 +81,7 @@ export default function EvidencePage() {
                   ['Design', 'Prospective, historically controlled, structured post-discharge monitoring across the 30-day post-discharge window', false],
                   ['Interim analysis', 'Pre-specified at 50 patients enrolled', false],
                   ['Secondary endpoint', 'Alert burden: fewer than 1 nurse-actionable flag per patient per week over the 30-day window', false],
-                  ['Status', 'Ethics and governance in final stages; first participants expected following approval', false],
+                  ['Status', 'Ethics approved. Site-specific governance and IT assessment in progress. First participants expected on site activation.', false],
                 ].map(([k, v, mono], i) => (
                   <div key={i} className="grid grid-cols-[180px_1fr] gap-6 py-6">
                     <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">{k as string}</dt>

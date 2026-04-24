@@ -6,6 +6,7 @@ export const organizationSchema = {
   '@id': `${SITE_URL}#organization`,
   name: 'Aescia Health',
   legalName: 'Aescia Pty Ltd',
+  alternateName: ['Aescia', 'Aescia Pty Ltd'],
   url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
@@ -14,8 +15,27 @@ export const organizationSchema = {
     height: 512,
   },
   description:
-    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals is an investigational Software as a Medical Device in clinical evaluation. Aescia for Clinics is a workflow platform.',
+    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals is an investigational Software as a Medical Device in clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital. Aescia for Clinics is a workflow platform for specialty clinics.',
   email: 'contact@aesciahealth.com',
+  foundingDate: '2024',
+  founder: [
+    {
+      '@type': 'Person',
+      name: 'James Kurrle',
+      jobTitle: 'Founder and CEO',
+      description: 'Critical-care physician with ten years of clinical and hospital leadership experience across Montréal and Sydney.',
+    },
+    {
+      '@type': 'Person',
+      name: 'Vasken Dermardiros',
+      jobTitle: 'Co-founder and CTO',
+      description: 'PhD in machine learning from Concordia University. Owns hosting, AI inference, EMR integration, and the pathway-authoring infrastructure.',
+    },
+  ],
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'ABN', value: '96 687 840 517' },
+    { '@type': 'PropertyValue', propertyID: 'NEQ', value: '1181312316' },
+  ],
   address: [
     {
       '@type': 'PostalAddress',
@@ -36,6 +56,31 @@ export const organizationSchema = {
     { '@type': 'Country', name: 'United Kingdom' },
   ],
   medicalSpecialty: ['Cardiovascular', 'CardiothoracicSurgery', 'Gastroenterologic'],
+  knowsAbout: [
+    'post-discharge monitoring',
+    'cardiothoracic surgery recovery',
+    'endoscopy preparation',
+    'colonoscopy preparation',
+    'GLP-1 peri-procedural management',
+    'clinical pathway authoring',
+    'Software as a Medical Device',
+    'TGA Class IIa pathway',
+  ],
+  sameAs: [
+    'https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=ACTRN12625001425482',
+  ],
+}
+
+export const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}#website`,
+  url: SITE_URL,
+  name: 'Aescia',
+  description:
+    'Aescia: a continuous-care platform. Structured patient follow-up for hospitals. Streamlined workflow for specialty clinics.',
+  publisher: { '@id': `${SITE_URL}#organization` },
+  inLanguage: ['en-AU', 'en-CA', 'fr-CA'],
 }
 
 export const medicalStudySchema = {

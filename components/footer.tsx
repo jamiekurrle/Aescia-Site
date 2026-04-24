@@ -39,6 +39,7 @@ export function Footer() {
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.company')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/team" className="text-foreground/80 hover:text-foreground">{t('footer.team')}</Link></li>
+              <li><Link href="/updates" className="text-foreground/80 hover:text-foreground">{t('nav.updates')}</Link></li>
               <li><Link href="/governance" className="text-foreground/80 hover:text-foreground">{t('footer.governance')}</Link></li>
               <li><Link href="/contact" className="text-foreground/80 hover:text-foreground">{t('footer.contact')}</Link></li>
               <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/80 hover:text-foreground">contact@aesciahealth.com</a></li>

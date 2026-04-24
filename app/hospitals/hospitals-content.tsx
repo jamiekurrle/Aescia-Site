@@ -359,7 +359,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
-                <dd className="text-[15px] text-foreground">Ethics and governance in final stages.</dd>
+                <dd className="text-[15px] text-foreground">Ethics approved. Site-specific governance in progress.</dd>
               </div>
             </dl>
           </div>

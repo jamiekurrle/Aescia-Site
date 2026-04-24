@@ -6,27 +6,41 @@ import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 
-type Path = 'hospital' | 'clinic' | ''
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
-const intentMap: Record<string, Path> = {
-  hospital: 'hospital',
-  'trial-protocol': 'hospital',
-  'security-pack': 'hospital',
-  clinic: 'clinic',
-  'clinic-pricing': 'clinic',
+const intentLabels: Record<string, string> = {
+  hospital: 'Hospital evaluation',
+  'trial-protocol': 'Trial protocol summary',
+  'security-pack': 'Security and compliance pack',
+  clinic: 'Clinic demo',
+  'clinic-pricing': 'Clinic pricing and posture',
+  advisory: 'Clinical advisory',
+  press: 'Press or analyst',
+  other: 'Something else',
 }
+
+const reasonOptions: { value: string; label: string }[] = [
+  { value: '', label: 'Select a reason (optional)' },
+  { value: 'hospital', label: 'Hospital evaluation' },
+  { value: 'trial-protocol', label: 'Trial protocol summary' },
+  { value: 'security-pack', label: 'Security and compliance pack' },
+  { value: 'clinic', label: 'Clinic demo' },
+  { value: 'clinic-pricing', label: 'Clinic pricing and posture' },
+  { value: 'advisory', label: 'Clinical advisory' },
+  { value: 'press', label: 'Press or analyst' },
+  { value: 'other', label: 'Something else' },
+]
 
 export default function ContactContent() {
   const params = useSearchParams()
   const urlIntent = params?.get('intent')
-  const [path, setPath] = useState<Path>('')
+  const [reason, setReason] = useState<string>('')
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState<string>('')
 
   useEffect(() => {
-    if (urlIntent && intentMap[urlIntent]) {
-      setPath(intentMap[urlIntent])
+    if (urlIntent && intentLabels[urlIntent]) {
+      setReason(urlIntent)
     }
   }, [urlIntent])
 
@@ -50,8 +64,14 @@ export default function ContactContent() {
       country: String(f.get('country') ?? ''),
       notes: String(f.get('notes') ?? ''),
       hp: String(f.get('hp') ?? ''),
-      path,
+      reason,
       intent: urlIntent ?? '',
+      path:
+        reason === 'hospital' || reason === 'trial-protocol' || reason === 'security-pack'
+          ? 'hospital'
+          : reason === 'clinic' || reason === 'clinic-pricing'
+          ? 'clinic'
+          : '',
     }
 
     try {
@@ -86,17 +106,16 @@ export default function ContactContent() {
             className="font-display text-[44px] sm:text-[58px] lg:text-[76px] leading-[1.04] tracking-[-0.03em] mb-8"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
-            Tell us which door you came through.
+            Write to the team.
           </h1>
           <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
-            A hospital evaluation and a clinic demo are different conversations. Pick the one that matches your team, and we will route it to the right person.
+            One form for hospitals, clinics, clinical advisory, and press. Tell us who you are and what you are looking for. We reply within two business days.
           </p>
         </div>
       </section>
 
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
-          {/* Success state takes over the form area */}
           {status === 'success' && (
             <div className="max-w-2xl border-t-2 border-brass pt-10">
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Thanks</span>
@@ -108,7 +127,9 @@ export default function ContactContent() {
               </h2>
               <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80 mb-8">
                 We reply within two business days. If you need us sooner, write directly to{' '}
-                <a href="mailto:contact@aesciahealth.com" className="underline underline-offset-4 decoration-brass decoration-2">contact@aesciahealth.com</a>
+                <a href="mailto:contact@aesciahealth.com" className="underline underline-offset-4 decoration-brass decoration-2">
+                  contact@aesciahealth.com
+                </a>
                 .
               </p>
               <Link
@@ -123,88 +144,30 @@ export default function ContactContent() {
             </div>
           )}
 
-          {/* Path picker */}
-          {status !== 'success' && !path && (
-            <div className="grid md:grid-cols-2 gap-4">
-              <button
-                onClick={() => setPath('hospital')}
-                className="group bg-foreground text-background p-10 lg:p-12 text-left hover:bg-foreground/92 transition-colors"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">01</span>
-                <h2
-                  className="font-display text-[28px] lg:text-[34px] leading-[1.2] tracking-[-0.02em] mt-6 mb-4"
-                  style={{ fontVariationSettings: "'opsz' 120" }}
-                >
-                  I work at a hospital or health system.
-                </h2>
-                <p className="text-[14px] text-background/80 leading-[1.6]">
-                  Trial protocol requests, evaluation scoping, security pack under NDA, EMR integration.
-                </p>
-                <span className="inline-flex items-center gap-2 mt-8 text-[13px] group-hover:gap-4 transition-all">
-                  Continue
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" /></svg>
-                </span>
-              </button>
-
-              <button
-                onClick={() => setPath('clinic')}
-                className="group bg-background border border-border p-10 lg:p-12 text-left hover:bg-secondary transition-colors"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">02</span>
-                <h2
-                  className="font-display text-[28px] lg:text-[34px] leading-[1.2] tracking-[-0.02em] mt-6 mb-4"
-                  style={{ fontVariationSettings: "'opsz' 120" }}
-                >
-                  I run or work in a specialty clinic.
-                </h2>
-                <p className="text-[14px] text-foreground/80 leading-[1.6]">
-                  Endoscopy first: prep, no-show reduction, GLP-1 handling, recall tracking. Other specialty clinics welcome where a clinical champion is involved.
-                </p>
-                <span className="inline-flex items-center gap-2 mt-8 text-[13px] group-hover:gap-4 transition-all">
-                  Continue
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" /></svg>
-                </span>
-              </button>
-            </div>
-          )}
-
-          {/* Form */}
-          {status !== 'success' && path && (
+          {status !== 'success' && (
             <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
               <div className="lg:col-span-3">
-                <button
-                  onClick={() => {
-                    setPath('')
-                    setStatus('idle')
-                    setErrorMsg('')
-                  }}
-                  className="text-[12px] font-mono uppercase tracking-widest text-foreground/70 hover:text-foreground mb-8 inline-flex items-center gap-2"
-                >
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 12H5m5 5l-5-5 5-5" /></svg>
-                  Change path
-                </button>
-                <h3
-                  className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-8"
-                  style={{ fontVariationSettings: "'opsz' 80" }}
-                >
-                  {path === 'hospital' ? 'Tell us about your health system.' : 'Tell us about your clinic.'}
-                </h3>
                 <form onSubmit={onSubmit} className="space-y-5" noValidate={false}>
-                  {/* Honeypot: must stay empty. Bots fill it; humans do not see it. */}
+                  {/* Honeypot */}
                   <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}>
                     <label htmlFor="hp">Leave this field empty</label>
                     <input id="hp" name="hp" type="text" tabIndex={-1} autoComplete="off" />
                   </div>
 
+                  <SelectField
+                    name="reason"
+                    label="I am reaching out about"
+                    value={reason}
+                    onChange={setReason}
+                    options={reasonOptions}
+                    disabled={status === 'sending'}
+                  />
+
                   <Field name="name" label="Your name" placeholder="Dr Jane Doe" autoComplete="name" required disabled={status === 'sending'} />
                   <Field
                     name="role"
                     label="Role"
-                    placeholder={
-                      path === 'hospital'
-                        ? 'CMIO, Director Perioperative, Nurse Unit Manager, Surgeon'
-                        : 'Clinic owner, practice manager, endoscopist, admin lead'
-                    }
+                    placeholder="e.g. CMIO, clinic owner, endoscopist, practice manager, surgeon"
                     autoComplete="organization-title"
                     required
                     disabled={status === 'sending'}
@@ -212,7 +175,7 @@ export default function ContactContent() {
                   <Field
                     name="org"
                     label="Organisation"
-                    placeholder={path === 'hospital' ? 'Hospital or health system' : 'Clinic name'}
+                    placeholder="Hospital, clinic, health system, or institution"
                     autoComplete="organization"
                     required
                     disabled={status === 'sending'}
@@ -222,11 +185,7 @@ export default function ContactContent() {
                   <TextareaField
                     name="notes"
                     label="Notes (optional)"
-                    placeholder={
-                      path === 'hospital'
-                        ? 'Which service line. Volume per year. Any specific deadline.'
-                        : 'Which specialty. Clinic size. Whether you have a timeline.'
-                    }
+                    placeholder="A few lines on your context: specialty or service line, list volume per year, timeline."
                     disabled={status === 'sending'}
                   />
 
@@ -253,7 +212,9 @@ export default function ContactContent() {
                     ) : (
                       <>
                         Send enquiry
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" /></svg>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                        </svg>
                       </>
                     )}
                   </button>
@@ -267,11 +228,19 @@ export default function ContactContent() {
                 <dl className="space-y-8 text-[14px]">
                   <div>
                     <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Email</dt>
-                    <dd><a href="mailto:contact@aesciahealth.com" className="text-foreground underline underline-offset-4 decoration-brass decoration-2">contact@aesciahealth.com</a></dd>
+                    <dd>
+                      <a href="mailto:contact@aesciahealth.com" className="text-foreground underline underline-offset-4 decoration-brass decoration-2">
+                        contact@aesciahealth.com
+                      </a>
+                    </dd>
                   </div>
                   <div>
                     <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Offices</dt>
-                    <dd className="text-foreground/80 leading-relaxed">Sydney, Australia<br />Montréal, Canada</dd>
+                    <dd className="text-foreground/80 leading-relaxed">
+                      Sydney, Australia
+                      <br />
+                      Montréal, Canada
+                    </dd>
                   </div>
                   <div>
                     <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">What to expect</dt>
@@ -294,13 +263,25 @@ export default function ContactContent() {
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-2">Not sure yet?</p>
             <p className="text-[15px] text-foreground/80 max-w-2xl">
               Read the{' '}
-              <Link href="/platform" className="underline underline-offset-4 decoration-brass decoration-2">platform page</Link>
+              <Link href="/platform" className="underline underline-offset-4 decoration-brass decoration-2">
+                platform page
+              </Link>
               , skim the{' '}
-              <Link href="/evidence" className="underline underline-offset-4 decoration-brass decoration-2">evidence page</Link>
+              <Link href="/evidence" className="underline underline-offset-4 decoration-brass decoration-2">
+                evidence page
+              </Link>
+              , follow the{' '}
+              <Link href="/updates" className="underline underline-offset-4 decoration-brass decoration-2">
+                updates log
+              </Link>
               , or go straight to{' '}
-              <Link href="/hospitals" className="underline underline-offset-4 decoration-brass decoration-2">hospitals</Link>
-              {' '}or{' '}
-              <Link href="/clinics" className="underline underline-offset-4 decoration-brass decoration-2">clinics</Link>
+              <Link href="/hospitals" className="underline underline-offset-4 decoration-brass decoration-2">
+                hospitals
+              </Link>{' '}
+              or{' '}
+              <Link href="/clinics" className="underline underline-offset-4 decoration-brass decoration-2">
+                clinics
+              </Link>
               . Nothing is gated.
             </p>
           </div>
@@ -333,7 +314,8 @@ function Field({
   return (
     <div>
       <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
-        {label}{required ? ' *' : ''}
+        {label}
+        {required ? ' *' : ''}
       </label>
       <input
         id={id}
@@ -375,6 +357,45 @@ function TextareaField({
         disabled={disabled}
         className="w-full border border-border bg-background px-4 py-3 text-[14px] text-foreground placeholder:text-foreground/50 focus:outline-none focus:border-foreground transition-colors resize-none disabled:opacity-60"
       />
+    </div>
+  )
+}
+
+function SelectField({
+  name,
+  label,
+  value,
+  onChange,
+  options,
+  disabled,
+}: {
+  name: string
+  label: string
+  value: string
+  onChange: (v: string) => void
+  options: { value: string; label: string }[]
+  disabled?: boolean
+}) {
+  const id = useId()
+  return (
+    <div>
+      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
+        {label}
+      </label>
+      <select
+        id={id}
+        name={name}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="w-full border border-border bg-background px-4 py-3 text-[14px] text-foreground focus:outline-none focus:border-foreground transition-colors min-h-[44px] disabled:opacity-60"
+      >
+        {options.map((opt) => (
+          <option key={opt.value} value={opt.value}>
+            {opt.label}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

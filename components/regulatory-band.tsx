@@ -20,11 +20,24 @@ export function RegulatoryBand() {
       aria-label="Regulatory notice"
       className="relative z-[60] bg-foreground text-background border-b border-background/10"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-2.5 flex items-start gap-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass flex-shrink-0 pt-[3px]">Investigational</span>
-        <p className="text-[12px] leading-[1.55] text-background/85 flex-1">
-          {t('regband.body')}
-        </p>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-start gap-4">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass flex-shrink-0 pt-[3px]">
+          {t('regband.eyebrow')}
+        </span>
+        <div className="flex-1 grid md:grid-cols-2 gap-x-8 gap-y-2">
+          <p className="text-[12px] leading-[1.55] text-background/85">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-background/65 mr-2">
+              {t('regband.monitor.label')}
+            </span>
+            {t('regband.monitor.body')}
+          </p>
+          <p className="text-[12px] leading-[1.55] text-background/85">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-background/65 mr-2">
+              {t('regband.clinic.label')}
+            </span>
+            {t('regband.clinic.body')}
+          </p>
+        </div>
         <button
           onClick={() => {
             setDismissed(true)

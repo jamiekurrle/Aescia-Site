@@ -55,6 +55,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
           <Link href="/hospitals" className={navLinkClass}>{t('nav.hospitals')}</Link>
           <Link href="/clinics" className={navLinkClass}>{t('nav.clinics')}</Link>
           <Link href="/evidence" className={navLinkClass}>{t('nav.evidence')}</Link>
+          <Link href="/updates" className={navLinkClass}>{t('nav.updates')}</Link>
           <Link href="/team" className={navLinkClass}>{t('nav.team')}</Link>
           <Link href="/contact" className={navLinkClass}>{t('nav.contact')}</Link>
         </div>
@@ -101,6 +102,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
             <Link href="/hospitals" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.hospitals')}</Link>
             <Link href="/clinics" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.clinics')}</Link>
             <Link href="/evidence" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.evidence')}</Link>
+            <Link href="/updates" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.updates')}</Link>
             <Link href="/team" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.team')}</Link>
             <Link href="/contact" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.contact')}</Link>
             <Link

@@ -3,7 +3,7 @@ import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import { RegulatoryBand } from '@/components/regulatory-band'
-import { organizationSchema } from '@/lib/schema'
+import { organizationSchema, websiteSchema } from '@/lib/schema'
 import './globals.css'
 
 const inter = Inter({
@@ -87,6 +87,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
