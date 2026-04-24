@@ -67,7 +67,8 @@ export const organizationSchema = {
     'TGA Class IIa pathway',
   ],
   sameAs: [
-    'https://www.anzctr.org.au/Trial/Registration/TrialReview.aspx?id=ACTRN12625001425482',
+    'https://www.linkedin.com/company/aescia',
+    'https://www.crunchbase.com/organization/aescia-health',
   ],
 }
 
