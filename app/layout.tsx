@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
-import { RegulatoryBand } from '@/components/regulatory-band'
 import { organizationSchema, websiteSchema } from '@/lib/schema'
 import './globals.css'
 
@@ -101,7 +100,6 @@ export default function RootLayout({
           Skip to content
         </a>
         <I18nProvider>
-          <RegulatoryBand />
           {children}
         </I18nProvider>
         <Analytics />

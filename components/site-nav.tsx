@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useI18n, LanguageSwitcher } from '@/lib/i18n'
+import { RegulatoryBand } from '@/components/regulatory-band'
 
 export function SiteNav({ transparent = false }: { transparent?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -27,10 +28,12 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
     : 'bg-background/92 backdrop-blur-md border-b border-border'
 
   return (
-    <nav
-      aria-label={t('nav.primary')}
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-500 ${wrapperClass}`}
-    >
+    <div className="fixed top-0 inset-x-0 z-50">
+      <RegulatoryBand />
+      <nav
+        aria-label={t('nav.primary')}
+        className={`transition-colors duration-500 ${wrapperClass}`}
+      >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-baseline gap-1.5 group">
           <span
@@ -115,6 +118,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
           </div>
         </div>
       )}
-    </nav>
+      </nav>
+    </div>
   )
 }

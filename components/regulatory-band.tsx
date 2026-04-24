@@ -18,7 +18,7 @@ export function RegulatoryBand() {
     <div
       role="note"
       aria-label="Regulatory notice"
-      className="relative z-[60] bg-foreground text-background border-b border-background/10"
+      className="bg-foreground text-background border-b border-background/10"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-3 flex items-start gap-4">
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass flex-shrink-0 pt-[3px]">
