@@ -70,8 +70,21 @@ export default function EvidencePage() {
 
             <div className="lg:col-span-7 lg:col-start-6">
               <dl className="divide-y divide-border border-y border-border">
-                {[
-                  ['Registration', 'ACTRN12625001425482', true],
+                {([
+                  [
+                    'Registration',
+                    <a
+                      key="anzctr"
+                      href="https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482"
+                      target="_blank"
+                      rel="noopener"
+                      className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors"
+                      aria-label="View SAFE-Discharge trial registration on ANZCTR (opens in a new window)"
+                    >
+                      ACTRN12625001425482
+                    </a>,
+                    true,
+                  ],
                   ['Internal identifier', 'AES-SAFE-CTS-001', true],
                   ['Site', 'Royal Prince Alfred Hospital, Sydney', false],
                   ['Unit', 'Cardiothoracic Surgery Unit', false],
@@ -82,10 +95,10 @@ export default function EvidencePage() {
                   ['Interim analysis', 'Pre-specified at 50 patients enrolled', false],
                   ['Secondary endpoint', 'Alert burden: fewer than 1 nurse-actionable flag per patient per week over the 30-day window', false],
                   ['Status', 'Ethics approved. Site-specific governance and IT assessment in progress. First participants expected on site activation.', false],
-                ].map(([k, v, mono], i) => (
+                ] as Array<[string, React.ReactNode, boolean]>).map(([k, v, mono], i) => (
                   <div key={i} className="grid grid-cols-[180px_1fr] gap-6 py-6">
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">{k as string}</dt>
-                    <dd className={`text-[15px] text-foreground ${mono ? 'font-mono text-[14px]' : ''}`}>{v as string}</dd>
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">{k}</dt>
+                    <dd className={`text-[15px] text-foreground ${mono ? 'font-mono text-[14px]' : ''}`}>{v}</dd>
                   </div>
                 ))}
               </dl>

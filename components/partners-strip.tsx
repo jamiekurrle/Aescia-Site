@@ -47,7 +47,15 @@ export function PartnersStrip() {
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
                 {t('partners.trial.label')}
               </span>
-              <span className="font-mono text-[14px] text-foreground">{t('partners.trial.value')}</span>
+              <a
+                href="https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482"
+                target="_blank"
+                rel="noopener"
+                className="font-mono text-[14px] text-foreground underline decoration-accent/40 underline-offset-4 hover:decoration-foreground transition-colors"
+                aria-label="View SAFE-Discharge trial registration on ANZCTR (opens in a new window)"
+              >
+                {t('partners.trial.value')}
+              </a>
             </div>
           </div>
         </div>

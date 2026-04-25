@@ -59,17 +59,32 @@ export default function GovernancePage() {
                 Investigational medical device, on pathway.
               </h2>
               <dl className="divide-y divide-border border-y border-border text-[14px]">
-                {[
+                {([
                   ['Classification', 'Software as a Medical Device (SaMD), intended Class IIa under TGA Rule 3.4. Application not yet lodged.'],
                   ['Regulatory roadmap', 'Under development. No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications have been filed.'],
                   ['Software lifecycle', 'IEC 62304:2006+A1:2015 processes implemented and documented. No third-party conformity assessment yet undertaken.'],
                   ['Quality system', 'ISO 13485:2016 implementation underway. Certification not yet obtained; target 2026.'],
                   ['Information security', 'ISO/IEC 27001:2022 controls implemented. Certification not yet obtained.'],
-                  ['Clinical evaluation', 'Through the SAFE-Discharge trial (ACTRN12625001425482).'],
+                  [
+                    'Clinical evaluation',
+                    <>
+                      Through the SAFE-Discharge trial (
+                      <a
+                        href="https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482"
+                        target="_blank"
+                        rel="noopener"
+                        className="underline decoration-foreground/30 underline-offset-4 hover:decoration-foreground transition-colors"
+                        aria-label="View SAFE-Discharge trial registration on ANZCTR (opens in a new window)"
+                      >
+                        ACTRN12625001425482
+                      </a>
+                      ).
+                    </>,
+                  ],
                   ['Current engagement', 'Evaluation and pilot contracts only, not commercial supply.'],
                   ['Output posture', 'Advisory only. The clinician remains the decision-maker.'],
-                ].map(([k, v]) => (
-                  <div key={k as string} className="grid grid-cols-[130px_1fr] gap-4 py-5">
+                ] as Array<[string, React.ReactNode]>).map(([k, v]) => (
+                  <div key={k} className="grid grid-cols-[130px_1fr] gap-4 py-5">
                     <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">{k}</dt>
                     <dd className="text-foreground/85">{v}</dd>
                   </div>
