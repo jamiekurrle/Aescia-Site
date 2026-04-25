@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     template: '%s | Aescia',
   },
   description:
-    'Between the discharge and the next appointment, someone should be listening. A platform for structured patient follow-up and specialty-clinic workflow.',
+    'Aescia (aesciahealth.com) is a healthtech company building a continuous-care platform for hospitals and specialty clinics. Founded 2025 by James Kurrle MD; headquartered in Sydney, Australia and Montréal, Canada. Investigational SaMD for post-discharge monitoring; non-device workflow for specialty clinics.',
   keywords:
-    'post-surgical monitoring, cardiothoracic discharge, endoscopy prep, colonoscopy prep, GLP-1 prep, clinical follow-up, digital health platform',
+    'Aescia, Aescia Health, healthtech, post-discharge monitoring, cardiothoracic discharge, endoscopy preparation, colonoscopy preparation, GLP-1 peri-procedural, clinical follow-up, specialty clinic workflow, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia, MTAA MedTech Compass',
   alternates: {
     canonical: '/',
     languages: {
