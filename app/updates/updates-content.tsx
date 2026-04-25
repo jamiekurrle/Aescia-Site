@@ -5,18 +5,38 @@ import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { useI18n } from '@/lib/i18n'
 
-// Entries are ordered newest-first. Numbered keys (7..1) reflect chronological index.
-const entryNumbers = [7, 6, 5, 4, 3, 2, 1] as const
+// Entries are ordered newest-first. Numbered keys reflect chronological index
+// (entry1 = oldest, entryN = newest). Display reverses to show newest first.
+const entryNumbers = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as const
+
+// Outbound references for entries with public sources. Keyed by chronological
+// entry number. Labels render the same in both locales — short and factual.
+const entryLinks: Record<number, { url: string; label: { en: string; fr: string } }> = {
+  1: {
+    url: 'https://district3.co',
+    label: { en: 'District 3', fr: 'District 3' },
+  },
+  2: {
+    url: 'https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html',
+    label: { en: 'Concordia News', fr: 'Concordia News' },
+  },
+  10: {
+    url: 'https://www.mtaa.org.au/medtech-compass',
+    label: { en: 'MTAA MedTech Compass', fr: 'MTAA MedTech Compass' },
+  },
+}
 
 export function UpdatesContent() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
 
   const entries = entryNumbers.map((n) => ({
+    n,
     date: t(`updates.entry${n}.date`),
     tag: t(`updates.entry${n}.tag`),
     title: t(`updates.entry${n}.title`),
     body: t(`updates.entry${n}.body`),
     anchor: `e${n}`,
+    link: entryLinks[n] ?? null,
   }))
 
   return (
@@ -60,6 +80,21 @@ export function UpdatesContent() {
                       {entry.title}
                     </h2>
                     <p className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/80 max-w-2xl">{entry.body}</p>
+                    {entry.link && (
+                      <p className="mt-4 text-[13px]">
+                        <a
+                          href={entry.link.url}
+                          target="_blank"
+                          rel="noopener"
+                          className="font-mono uppercase tracking-[0.18em] text-accent hover:text-foreground transition-colors inline-flex items-center gap-1.5"
+                        >
+                          {entry.link.label[locale]}
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </a>
+                      </p>
+                    )}
                   </article>
                 </li>
               ))}

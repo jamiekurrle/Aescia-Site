@@ -142,3 +142,61 @@ export function breadcrumbSchema(crumbs: { name: string; url: string }[]) {
     })),
   }
 }
+
+// Updates page: ItemList of dated company updates. The chronological index
+// (entry1 oldest, entryN newest) is preserved here in display order
+// (newest first) by reversing position assignment.
+export type UpdatesEntry = {
+  n: number
+  date: string
+  title: string
+  body: string
+  url?: string
+}
+
+export function updatesItemListSchema(entries: UpdatesEntry[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/updates#list`,
+    name: 'Aescia updates',
+    description:
+      'A dated log of what Aescia has shipped, what trials and programmes have opened, and what is coming next.',
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    numberOfItems: entries.length,
+    itemListElement: entries.map((e, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'NewsArticle',
+        '@id': `${SITE_URL}/updates#e${e.n}`,
+        headline: e.title,
+        datePublished: e.date,
+        articleBody: e.body,
+        url: e.url ?? `${SITE_URL}/updates#e${e.n}`,
+        publisher: { '@id': `${SITE_URL}#organization` },
+        author: { '@id': `${SITE_URL}#organization` },
+      },
+    })),
+  }
+}
+
+// Standalone Person schema for the founder bio page. Mirrors the Person
+// embedded inside organizationSchema.founder, with a sameAs array so search
+// engines and LLM crawlers can resolve James Kurrle ↔ Aescia.
+export const jamesKurrlePersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${SITE_URL}/team/james-kurrle#person`,
+  name: 'James Kurrle',
+  givenName: 'James',
+  familyName: 'Kurrle',
+  jobTitle: 'Founder and CEO',
+  description:
+    'Critical-care physician and founder of Aescia. Authors the clinical pathway engine and leads company strategy.',
+  worksFor: { '@id': `${SITE_URL}#organization` },
+  url: `${SITE_URL}/team/james-kurrle`,
+  sameAs: [
+    'https://www.linkedin.com/in/jameskurrle/',
+  ],
+}

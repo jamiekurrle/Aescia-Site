@@ -69,6 +69,17 @@ export function TeamContent() {
                   </h3>
                   <p className="text-[13px] text-foreground/75 mb-5 italic">{t(p.roleKey)}</p>
                   <p className="text-[14px] leading-[1.65] text-foreground/80 max-w-md">{t(p.bioKey)}</p>
+                  {p.nameKey === 'team.james.name' && (
+                    <Link
+                      href="/team/james-kurrle"
+                      className="mt-5 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-accent hover:text-foreground transition-colors"
+                    >
+                      Read full bio
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                      </svg>
+                    </Link>
+                  )}
                 </article>
               ))}
             </div>
