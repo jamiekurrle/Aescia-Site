@@ -6,6 +6,7 @@ import { useI18n } from '@/lib/i18n'
 // profiles are clickable; the others render as plain text. This preserves
 // the "publish affiliations we have earned, not logo walls" stance.
 const partnerLinks: Record<number, string | undefined> = {
+  4: 'https://www.cheoresearch.ca',
   5: 'https://district3.co',
   6: 'https://www.mtaa.org.au/industry-members',
 }
