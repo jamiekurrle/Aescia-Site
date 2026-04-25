@@ -8,10 +8,10 @@ import { useI18n } from '@/lib/i18n'
 const partnerLinks: Record<number, string | undefined> = {
   1: 'https://www.slhd.nsw.gov.au/rpa/',
   2: 'https://www.bairdinstitute.org.au',
-  // 3: Institute of Academic Surgery — canonical URL not yet confirmed.
+  3: 'https://www.slhd.nsw.gov.au/rpa/ias/',
   4: 'https://www.cheoresearch.ca',
   5: 'https://district3.co',
-  6: 'https://www.mtaa.org.au/industry-members',
+  6: 'https://medtechcompass.org.au/',
 }
 
 export function PartnersStrip() {

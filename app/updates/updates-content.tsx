@@ -21,8 +21,8 @@ const entryLinks: Record<number, { url: string; label: { en: string; fr: string 
     label: { en: 'Concordia News', fr: 'Concordia News' },
   },
   10: {
-    url: 'https://www.mtaa.org.au/industry-members',
-    label: { en: 'MTAA industry members', fr: 'Membres MTAA' },
+    url: 'https://medtechcompass.org.au/',
+    label: { en: 'MTAA MedTech Compass', fr: 'MTAA MedTech Compass' },
   },
 }
 
