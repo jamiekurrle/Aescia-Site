@@ -51,6 +51,6 @@ trajectory it sits inside, rather than reading as a one-off announcement.
 - "A regulatory submission has not yet been lodged." — matches the /evidence "What we do not claim" block.
 - "Aescia for Clinics is not a medical device." — matches /governance.
 - "Aescia is a District 3 portfolio company; joined September 2025." — matches /updates#e1 and /team/james-kurrle bio.
-- "MTAA MedTech Compass enrolment." — matches /updates#e10.
+- "MTAA MedTech Compass enrolment." — matches /updates#e10. Aescia is also listed on the MTAA industry-members directory at https://www.mtaa.org.au/industry-members (confirmed live).
 
 No financial outcomes, no readmission-reduction claims, no jurisdictional approvals stated.

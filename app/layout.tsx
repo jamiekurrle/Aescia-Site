@@ -53,12 +53,21 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: 'Aescia',
     locale: 'en_AU',
+    images: [
+      {
+        url: `${SITE_URL}/aescia-logo.png`,
+        width: 512,
+        height: 512,
+        alt: 'Aescia',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Aescia. A continuous-care platform.',
     description:
       'Structured patient follow-up for hospitals. Streamlined workflow for specialty clinics. One platform.',
+    images: [`${SITE_URL}/aescia-logo.png`],
   },
   robots: {
     index: true,

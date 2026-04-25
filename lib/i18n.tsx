@@ -302,6 +302,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item4.role': 'Paediatric PMF programme, Ottawa',
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Concordia University, Montréal',
+    'partners.item6.name': 'MTAA',
+    'partners.item6.role': 'Medical Technology Association of Australia',
 
     // Team page
     'team.eyebrow': 'Team',
@@ -674,6 +676,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item4.role': 'Programme PMF pédiatrique, Ottawa',
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Université Concordia, Montréal',
+    'partners.item6.name': 'MTAA',
+    'partners.item6.role': 'Medical Technology Association of Australia',
 
     // Équipe
     'team.eyebrow': 'Équipe',

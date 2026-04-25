@@ -42,6 +42,7 @@ export function Footer() {
               <li><Link href="/team/james-kurrle" className="text-foreground/80 hover:text-foreground">James Kurrle, founder</Link></li>
               <li><Link href="/updates" className="text-foreground/80 hover:text-foreground">{t('nav.updates')}</Link></li>
               <li><Link href="/governance" className="text-foreground/80 hover:text-foreground">{t('footer.governance')}</Link></li>
+              <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">FAQ</Link></li>
               <li><Link href="/contact" className="text-foreground/80 hover:text-foreground">{t('footer.contact')}</Link></li>
               <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/80 hover:text-foreground">contact@aesciahealth.com</a></li>
             </ul>

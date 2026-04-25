@@ -96,6 +96,7 @@ and the LinkedIn copy in this folder.
 |---|---|---|---|
 | 2025-09 | Aescia (own announcement) | (none — site-internal Updates entry; link to https://www.aesciahealth.com/updates#e1) | Aescia joins District 3 at Concordia University |
 | 2025-10-20 | Concordia News | https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html | Concordia News features Aescia in Beat the Odds programme |
+| 2026-04 | MTAA industry members directory (live) | https://www.mtaa.org.au/industry-members | Aescia listed as MTAA industry member |
 | 2026-04 | Aescia (own announcement) | https://www.aesciahealth.com/updates#e10 | Aescia enrols in MTAA MedTech Compass |
 | (existing) | ANZCTR | https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482 | SAFE-Discharge trial registration |
 
@@ -116,7 +117,7 @@ and the LinkedIn copy in this folder.
 | Operations | Sydney, Australia. Montréal, Canada. | All copies match | None |
 | Pricing model (Clinics) | flat monthly by specialty, no seat-based math | All copies use this | None |
 | Founders | James Kurrle (CEO), Vasken Dermardiros (CTO) | LinkedIn founder About is James only by design; Wellfound/Crunchbase reference both | None |
-| Founding year | 2024 (organizationSchema.foundingDate) | Not surfaced in profile copy yet — flag for CB founded-on field | **Set Crunchbase "Founded On" = 2024** |
+| Founding year | 2025 (organizationSchema.foundingDate) | Not surfaced in profile copy yet — flag for CB founded-on field | **Set Crunchbase "Founded On" = 2025** |
 | District 3 | Listed as partner item 5 on homepage; new Updates entry e1 (Sept 2025) | All profile copies say "District 3 portfolio company at Concordia University" | None |
 | MTAA Compass | Updates entry e10 (April 2026) | All profile copies say "enrolled in MTAA MedTech Compass" | None |
 | Concordia article | Linked from /updates#e2 and /team/james-kurrle Press section | Listed in Crunchbase News-items table | None |
@@ -126,6 +127,6 @@ and the LinkedIn copy in this folder.
 
 **Outstanding flags for human review:**
 
-1. **Crunchbase Founded On year** — schema says 2024; verify this is the correct CB field value before updating.
-2. **MTAA Compass URL** — `https://www.mtaa.org.au/medtech-compass` is the public landing page based on MTAA's site convention. Confirm the exact deeplink before publishing.
+1. **Crunchbase Founded On year** — set to 2025 (matches `organizationSchema.foundingDate`).
+2. **MTAA URL confirmed** — Aescia is listed at https://www.mtaa.org.au/industry-members (confirmed live; Aescia's site is linked from that page). The Updates entry, Organization sameAs, and this file all use that URL.
 3. **Crunchbase short-description length cap** — different CB instances enforce different caps. The 167-char and 120-char variants are both included; pick the one that fits.

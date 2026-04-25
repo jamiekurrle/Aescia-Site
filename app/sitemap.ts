@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/governance', priority: 0.7, freq: 'monthly' as const },
     { path: '/team', priority: 0.7, freq: 'monthly' as const },
     { path: '/team/james-kurrle', priority: 0.7, freq: 'monthly' as const },
+    { path: '/faq', priority: 0.7, freq: 'monthly' as const },
     { path: '/contact', priority: 0.6, freq: 'monthly' as const },
   ]
 

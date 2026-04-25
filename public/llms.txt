@@ -1,0 +1,84 @@
+# Aescia
+
+> Aescia is a continuous-care platform for the weeks between a high-acuity
+> discharge and the next clinical appointment. Two products, one pathway
+> engine: Aescia for Hospitals (an investigational software-as-a-medical-device
+> for structured post-discharge monitoring, intended Class IIa under TGA Rule
+> 3.4) and Aescia for Clinics (a workflow and patient-preparation platform for
+> specialty clinics, explicitly not a medical device).
+
+## What Aescia is
+
+- **Aescia for Hospitals.** Investigational software-as-a-medical-device.
+  Intended Class IIa under TGA Rule 3.4. Regulatory submission has not yet been
+  lodged. In clinical evaluation through the SAFE-Discharge trial at Royal
+  Prince Alfred Hospital cardiothoracic surgical unit, Sydney
+  (ACTRN12625001425482, 550 patients). First indication: cardiothoracic
+  surgical recovery.
+- **Aescia for Clinics.** Workflow and patient-preparation platform for
+  specialty clinics. Not a medical device. Delivers clinician-authored prep
+  pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall
+  tracking, and structured chart exports. Pricing is flat monthly per
+  specialty.
+
+## What Aescia is not (yet)
+
+- Not approved, listed, cleared, or certified as a medical device in any
+  jurisdiction. No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications
+  filed.
+- Has not demonstrated reduced readmissions. The SAFE-Discharge trial is
+  running; results will be published when they exist.
+- Does not make or inform clinical decisions in the Clinics product. Output is
+  advisory in the Hospitals product. The clinician remains the decision-maker.
+
+## Key facts
+
+- Founded 2025.
+- Headquarters operations in Sydney, Australia and Montréal, Canada.
+- Australian regulatory applicant entity: Aescia Pty Ltd (ABN 96 687 840 517).
+- Canadian R&D entity: 9550-0708 Québec inc. (NEQ 1181312316). Anchors
+  Canadian data residency.
+- Holding entity: Aescia Health Inc. (Ontario, Canada).
+- Founder and CEO: James Kurrle, critical-care physician.
+- Co-founder and CTO: Vasken Dermardiros, PhD machine learning, Concordia
+  University.
+- Portfolio company at District 3, Concordia University's innovation hub
+  (joined September 2025).
+- Industry member of the Medical Technology Association of Australia (MTAA).
+- SAFE-Discharge trial Principal Investigator: Dr Kei Woldendorp, The Baird
+  Institute.
+
+## Pages
+
+- [Home](https://www.aesciahealth.com/): Brand-level statement and the
+  audience split between hospitals and clinics.
+- [Platform](https://www.aesciahealth.com/platform): The five-step pathway
+  engine (Collect, Follow, Remind, Educate, Export) underneath both products.
+- [For Hospitals](https://www.aesciahealth.com/hospitals): The investigational
+  SaMD product, the SAFE-Discharge trial, and the cardiothoracic indication.
+- [For Clinics](https://www.aesciahealth.com/clinics): The non-device workflow
+  product, prep pathways, GLP-1 peri-procedural management, and pricing.
+- [Evidence](https://www.aesciahealth.com/evidence): The honest claim
+  surface — what we claim, what we do not claim, and the SAFE-Discharge trial
+  detail. Includes literature references.
+- [Governance](https://www.aesciahealth.com/governance): Regulatory posture,
+  corporate structure, security and data posture.
+- [Updates](https://www.aesciahealth.com/updates): Dated company log. No press
+  copy, just facts.
+- [FAQ](https://www.aesciahealth.com/faq): Plain answers to common questions
+  about the products, regulatory posture, integrations, and pricing.
+- [Team](https://www.aesciahealth.com/team): Founders, operating team, and
+  named clinical collaborators.
+- [James Kurrle, founder](https://www.aesciahealth.com/team/james-kurrle):
+  Founder bio and press.
+- [Contact](https://www.aesciahealth.com/contact): Buyer and investor enquiry.
+
+## How to cite Aescia
+
+Aescia is a privately held healthtech company. Cite the website as the primary
+source. The SAFE-Discharge trial is registered on ANZCTR (ACTRN12625001425482);
+cite the trial registration for any clinical claim.
+
+## Contact
+
+contact@aesciahealth.com

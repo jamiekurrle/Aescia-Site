@@ -2,13 +2,22 @@
 
 import { useI18n } from '@/lib/i18n'
 
+// Optional outbound URLs per partner. Only items with confirmed external
+// profiles are clickable; the others render as plain text. This preserves
+// the "publish affiliations we have earned, not logo walls" stance.
+const partnerLinks: Record<number, string | undefined> = {
+  5: 'https://district3.co',
+  6: 'https://www.mtaa.org.au/industry-members',
+}
+
 export function PartnersStrip() {
   const { t } = useI18n()
 
-  const partners = [1, 2, 3, 4, 5].map((n) => ({
+  const partners = [1, 2, 3, 4, 5, 6].map((n) => ({
     name: t(`partners.item${n}.name`),
     role: t(`partners.item${n}.role`),
     n: String(n).padStart(2, '0'),
+    href: partnerLinks[n],
   }))
 
   return (
@@ -42,19 +51,38 @@ export function PartnersStrip() {
           </div>
         </div>
 
-        <ul className="grid md:grid-cols-2 lg:grid-cols-5 gap-px bg-border border-y border-border">
-          {partners.map((p) => (
-            <li key={p.n} className="bg-background p-6 lg:p-7 flex flex-col min-h-[160px]">
-              <span className="font-mono text-[10px] tracking-widest text-brass mb-4">{p.n}</span>
-              <p
-                className="font-display text-[16px] lg:text-[17px] leading-[1.25] tracking-[-0.01em] mb-3 text-foreground"
-                style={{ fontVariationSettings: "'opsz' 72" }}
-              >
-                {p.name}
-              </p>
-              <p className="text-[12.5px] leading-[1.55] text-foreground/70 mt-auto">{p.role}</p>
-            </li>
-          ))}
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-px bg-border border-y border-border">
+          {partners.map((p) => {
+            const inner = (
+              <>
+                <span className="font-mono text-[10px] tracking-widest text-brass mb-4">{p.n}</span>
+                <p
+                  className="font-display text-[16px] lg:text-[17px] leading-[1.25] tracking-[-0.01em] mb-3 text-foreground"
+                  style={{ fontVariationSettings: "'opsz' 72" }}
+                >
+                  {p.name}
+                </p>
+                <p className="text-[12.5px] leading-[1.55] text-foreground/70 mt-auto">{p.role}</p>
+              </>
+            )
+            return (
+              <li key={p.n} className="bg-background flex">
+                {p.href ? (
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="flex flex-col p-6 lg:p-7 min-h-[160px] w-full hover:bg-secondary/50 transition-colors group"
+                  >
+                    {inner}
+                    <span className="sr-only">(opens in a new window)</span>
+                  </a>
+                ) : (
+                  <div className="flex flex-col p-6 lg:p-7 min-h-[160px] w-full">{inner}</div>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </div>
     </section>
