@@ -102,7 +102,35 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How is Aescia priced?',
-        a: 'Aescia for Clinics is priced flat monthly per specialty at the clinic level. There is no per-seat pricing. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
+        a: 'Aescia for Clinics is priced flat monthly per specialty at the clinic level. There is no per-seat pricing. Specific dollar amounts are shared on the first call rather than gated behind forms. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply, so there is no published price list for the Hospitals product.',
+      },
+      {
+        q: 'How is Aescia different from a patient-engagement platform like Klara, Luma Health, or Artera?',
+        a: 'Patient-engagement platforms optimise broad messaging, appointment reminders, and intake across an entire practice. Aescia for Clinics is narrower and deeper: clinician-authored prep pathways for specific procedures, with branched logic for diabetes, anticoagulation, and GLP-1 peri-procedural management; recall tracking; and structured exports back to the chart. Most clinics run Aescia alongside an existing patient-engagement tool, not instead of it.',
+      },
+      {
+        q: 'How is Aescia different from remote patient monitoring (RPM) tools like Cadence, Biofourmis, or CareSimple?',
+        a: 'RPM tools watch chronic-disease vitals continuously over months to years and typically require connected devices. Aescia for Hospitals is a 30-day post-acute window product, focused on structured clinician-authored check-ins for surgical recovery. It does not stream continuous vitals and does not require the patient to wear or own a connected device.',
+      },
+      {
+        q: 'How is Aescia different from an AI scribe like Heidi, Abridge, or Suki?',
+        a: 'Different problem entirely. AI scribes write the clinical note during the appointment. Aescia handles the weeks before and after the appointment — procedural prep on the front side, post-discharge monitoring on the back side. The two are complementary; clinics often use both.',
+      },
+      {
+        q: 'How is Aescia different from EMR-native modules like Epic MyChart Care Companion or Cerner discharge tools?',
+        a: 'EMR-native modules are the safer integration path inside large integrated delivery networks. Aescia is the right answer when the prep or post-discharge problem is specialty-specific (cardiothoracic recovery, endoscopy procedural prep) and the EMR module is generic, or when the clinic is not on Epic or Cerner at all. Aescia integrates with both via HL7 v2 ADT and FHIR R4.',
+      },
+      {
+        q: 'How is Aescia different from autonomous discharge-call services like Hippocratic AI, IRIS, or Cipher Health?',
+        a: 'Autonomous discharge-call services place outbound calls and can autonomously triage some patient responses. Aescia for Hospitals produces a structured, prioritised list for the clinical team rather than acting autonomously on the patient — the clinician remains the decision-maker. The output posture is advisory, not autonomous.',
+      },
+      {
+        q: 'When should I not engage Aescia?',
+        a: 'If you need a Class I-only patient-portal app, a generic patient-engagement marketing tool, an EMR replacement, or an AI scribe, Aescia is not the right product. We do not propose clinical decisions in the Clinics product. We do not yet hold any conformity-assessment certifications (ISO 27001, ISO 13485, MDSAP) or regulatory approvals (TGA, FDA, Health Canada, MHRA, NMPA) — those are work in progress. If your procurement process requires those today, we are not yet a fit.',
+      },
+      {
+        q: 'How long does an evaluation typically take?',
+        a: 'For Aescia for Clinics, a typical evaluation runs one to two weeks of pathway authoring with the clinic\'s own clinicians, then go-live with reminders and recall tracking first, prep pathways second. For Aescia for Hospitals, evaluation is structured around the SAFE-Discharge trial framework and takes longer; current engagements are evaluation and pilot contracts only, not commercial supply.',
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',
