@@ -28,8 +28,8 @@ export const metadata: Metadata = {
 
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
-    q: 'Will the app diagnose me or change my care?',
-    a: 'No. The app does not diagnose conditions or make decisions about your treatment. All medical decisions stay with your treating clinical team.',
+    q: 'Will Aescia diagnose me or change my care?',
+    a: 'No. Aescia does not diagnose conditions or make decisions about your treatment. All medical decisions stay with your treating clinical team.',
   },
   {
     q: 'What if I miss a day?',
@@ -40,23 +40,23 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: 'Yes, at any time. Please tell a member of the research team before you withdraw so they can check there are no clinical issues to address. Withdrawing will not affect your treatment, your relationship with your team, or your relationship with the hospital.',
   },
   {
-    q: 'Is the app monitored 24 hours a day?',
+    q: 'Are my responses monitored 24 hours a day?',
     a: (
       <>
         No. Monitoring is during business hours, Monday to Friday, 8am to 5pm.
         Outside those times, your responses are recorded but may not be
         reviewed until the next business day.{' '}
-        <strong>The app must not be used in an emergency.</strong>
+        <strong>Aescia is not for emergencies.</strong>
       </>
     ),
   },
   {
     q: 'Will it cost me anything?',
-    a: 'No. The app is free, and there are no study-related fees. Your usual care (GP visits, specialist appointments, prescriptions) may still have its usual out-of-pocket costs whether or not you take part.',
+    a: 'No. Access to Aescia is free, and there are no study-related fees. Your usual care (GP visits, specialist appointments, prescriptions) may still have its usual out-of-pocket costs whether or not you take part.',
   },
   {
     q: 'Where does my information go?',
-    a: 'Your information is stored on secure servers in Australia. Only authorised members of the Royal Prince Alfred Hospital cardiothoracic clinical and research team can see information that identifies you. Aescia Pty Ltd, the company that builds the app, only ever receives de-identified information, under a formal data sharing agreement.',
+    a: 'Your information is stored on secure servers in Australia. Only authorised members of the Royal Prince Alfred Hospital cardiothoracic clinical and research team can see information that identifies you. Aescia Pty Ltd, the company that builds the platform, only ever receives de-identified information, under a formal data sharing agreement.',
   },
   {
     q: 'Could the study cause me harm?',
@@ -64,7 +64,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: 'What happens at the end of 30 days?',
-    a: 'The app stops working automatically. We will contact you for a short survey about your experience using it.',
+    a: 'The check-ins stop automatically and your account closes at the end of the 30 days. We will contact you for a short survey about your experience.',
   },
   {
     q: 'What if I have a question or concern that is not on this page?',
@@ -117,12 +117,12 @@ export default function SafeDischargeWelcomePage() {
                 className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-5"
                 style={{ fontVariationSettings: "'opsz' 96" }}
               >
-                The Aescia app is not for emergencies.
+                Aescia is not for emergencies.
               </h2>
               <ul className="space-y-3 text-[15px] leading-[1.7] text-foreground/85">
                 <li>
-                  The app is monitored Monday to Friday, 8am to 5pm. It is not
-                  monitored continuously overnight or on weekends.
+                  Your responses are monitored Monday to Friday, 8am to 5pm.
+                  They are not monitored continuously overnight or on weekends.
                 </li>
                 <li>
                   If you are worried about your health at any time, call your
@@ -131,7 +131,7 @@ export default function SafeDischargeWelcomePage() {
                 </li>
                 <li>
                   Continue your usual discharge instructions and follow-up
-                  appointments. The app does not replace your usual care.
+                  appointments. Aescia does not replace your usual care.
                 </li>
               </ul>
             </div>
@@ -153,11 +153,11 @@ export default function SafeDischargeWelcomePage() {
             <ol className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 list-none">
               <li className="grid grid-cols-[36px_1fr] gap-4">
                 <span className="font-mono text-[11px] tracking-[0.18em] text-brass pt-1">01</span>
-                <p>Download the Aescia app onto your smartphone before you leave hospital. The team will help you set it up using the link and unique token provided to you.</p>
+                <p>You will receive a link to the Aescia website by email and SMS. The same link is also on the sheet given to you at discharge. Open the link and log in using the unique token on your sheet.</p>
               </li>
               <li className="grid grid-cols-[36px_1fr] gap-4">
                 <span className="font-mono text-[11px] tracking-[0.18em] text-brass pt-1">02</span>
-                <p>Each day, the app will send you 5-10 short questions about your recovery, medicines, and follow-up appointments. Most people find it takes only a few minutes.</p>
+                <p>Each day, Aescia will send you a short set of questions about your recovery, medicines, and follow-up appointments. Most people find it takes only a few minutes.</p>
               </li>
               <li className="grid grid-cols-[36px_1fr] gap-4">
                 <span className="font-mono text-[11px] tracking-[0.18em] text-brass pt-1">03</span>
@@ -165,7 +165,7 @@ export default function SafeDischargeWelcomePage() {
               </li>
               <li className="grid grid-cols-[36px_1fr] gap-4">
                 <span className="font-mono text-[11px] tracking-[0.18em] text-brass pt-1">04</span>
-                <p>After 30 days, the app stops working automatically. You will be invited to complete a short survey about your experience using it.</p>
+                <p>After 30 days, the daily check-ins stop automatically and your account closes. You will be invited to complete a short survey about your experience.</p>
               </li>
             </ol>
           </div>
@@ -246,37 +246,38 @@ export default function SafeDischargeWelcomePage() {
             <div className="space-y-8">
               <div className="border-t-2 border-foreground pt-5">
                 <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 mb-2 block">
-                  Medical questions or anything about taking part
+                  First contact: clinical questions or anything about taking part
+                </span>
+                <p className="text-[15px] leading-[1.65] text-foreground">
+                  <strong>Cardiothoracic Surgery Clinical Nurse Consultants (CTS CNCs)</strong>
+                </p>
+                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
+                  Contact details for the cardiothoracic CNC team are on the discharge sheet provided to you. If you cannot find the sheet, call the RPAH switchboard on{' '}
+                  <a href="tel:+61295156111" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors">
+                    02 9515 6111
+                  </a>
+                  {' '}and ask to be put through to the cardiothoracic CNC on call.
+                </p>
+              </div>
+
+              <div className="border-t-2 border-accent pt-5">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-2 block">
+                  If the CNC team is not available
                 </span>
                 <p className="text-[15px] leading-[1.65] text-foreground">
                   <strong>Dr Kei Woldendorp</strong>, Cardiothoracic Registrar and Principal Study Investigator
                 </p>
                 <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
                   Call the RPAH switchboard on{' '}
-                  <a href="tel:+61295156111" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors">
+                  <a href="tel:+61295156111" className="underline decoration-accent/40 underline-offset-4 hover:decoration-foreground transition-colors">
                     02 9515 6111
                   </a>
                   {' '}and ask to be put through.
                 </p>
                 <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
                   Email:{' '}
-                  <a href="mailto:kei.woldendorp@health.nsw.gov.au" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors break-all">
+                  <a href="mailto:kei.woldendorp@health.nsw.gov.au" className="underline decoration-accent/40 underline-offset-4 hover:decoration-foreground transition-colors break-all">
                     kei.woldendorp@health.nsw.gov.au
-                  </a>
-                </p>
-              </div>
-
-              <div className="border-t-2 border-accent pt-5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-2 block">
-                  Complaints or concerns about how the study is being run
-                </span>
-                <p className="text-[15px] leading-[1.65] text-foreground">
-                  <strong>Estelle Ali</strong>, Governance Officer
-                </p>
-                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
-                  Call{' '}
-                  <a href="tel:+61295157899" className="underline decoration-accent/40 underline-offset-4 hover:decoration-foreground transition-colors">
-                    02 9515 7899
                   </a>
                 </p>
               </div>
