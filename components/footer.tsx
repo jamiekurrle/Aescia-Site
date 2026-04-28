@@ -31,7 +31,7 @@ export function Footer() {
               <li><Link href="/platform" className="text-foreground/80 hover:text-foreground">{t('footer.platform')}</Link></li>
               <li><Link href="/hospitals" className="text-foreground/80 hover:text-foreground">{t('footer.hospitals')}</Link></li>
               <li><Link href="/clinics" className="text-foreground/80 hover:text-foreground">{t('footer.clinics')}</Link></li>
-              {/* /evidence link temporarily removed pending TGA-compliant rewrite */}
+              <li><Link href="/evidence" className="text-foreground/80 hover:text-foreground">{t('footer.evidence')}</Link></li>
             </ul>
           </nav>
 

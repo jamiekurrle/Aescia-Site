@@ -57,7 +57,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
           <Link href="/platform" className={navLinkClass}>{t('nav.platform')}</Link>
           <Link href="/hospitals" className={navLinkClass}>{t('nav.hospitals')}</Link>
           <Link href="/clinics" className={navLinkClass}>{t('nav.clinics')}</Link>
-          {/* /evidence link temporarily removed pending TGA-compliant rewrite */}
+          <Link href="/evidence" className={navLinkClass}>{t('nav.evidence')}</Link>
           <Link href="/updates" className={navLinkClass}>{t('nav.updates')}</Link>
           <Link href="/team" className={navLinkClass}>{t('nav.team')}</Link>
           <Link href="/contact" className={navLinkClass}>{t('nav.contact')}</Link>
@@ -104,7 +104,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
             <Link href="/platform" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.platform')}</Link>
             <Link href="/hospitals" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.hospitals')}</Link>
             <Link href="/clinics" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.clinics')}</Link>
-            {/* /evidence link temporarily removed pending TGA-compliant rewrite */}
+            <Link href="/evidence" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.evidence')}</Link>
             <Link href="/updates" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.updates')}</Link>
             <Link href="/team" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.team')}</Link>
             <Link href="/contact" className="block py-3 text-[15px] text-foreground/85 hover:text-foreground" onClick={() => setMobileOpen(false)}>{t('nav.contact')}</Link>
