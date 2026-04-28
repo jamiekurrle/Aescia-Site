@@ -266,10 +266,6 @@ export default function ContactContent() {
               <Link href="/platform" className="underline underline-offset-4 decoration-brass decoration-2">
                 platform page
               </Link>
-              , skim the{' '}
-              <Link href="/evidence" className="underline underline-offset-4 decoration-brass decoration-2">
-                evidence page
-              </Link>
               , follow the{' '}
               <Link href="/updates" className="underline underline-offset-4 decoration-brass decoration-2">
                 updates log

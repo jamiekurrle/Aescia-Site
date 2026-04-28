@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/hospitals', priority: 0.9, freq: 'weekly' as const },
     { path: '/clinics', priority: 0.9, freq: 'weekly' as const },
     { path: '/platform', priority: 0.8, freq: 'monthly' as const },
-    { path: '/evidence', priority: 0.8, freq: 'monthly' as const },
+    // /evidence temporarily removed from sitemap while page is in TGA-compliant rewrite
     { path: '/updates', priority: 0.8, freq: 'weekly' as const },
     { path: '/governance', priority: 0.7, freq: 'monthly' as const },
     { path: '/team', priority: 0.7, freq: 'monthly' as const },

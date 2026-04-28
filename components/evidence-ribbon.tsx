@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 
 export function EvidenceRibbon() {
@@ -28,15 +27,7 @@ export function EvidenceRibbon() {
           <p className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/75 max-w-lg">
             {t('evidence.body')}
           </p>
-          <Link
-            href="/evidence"
-            className="inline-flex items-center gap-2.5 mt-10 text-[14px] text-foreground font-medium tracking-wide group"
-          >
-            {t('evidence.cta')}
-            <svg className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-            </svg>
-          </Link>
+          {/* /evidence CTA temporarily removed pending TGA-compliant rewrite of the page. */}
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">
