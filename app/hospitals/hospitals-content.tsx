@@ -351,7 +351,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>
-                <dd className="text-[15px] text-foreground">RPAH, Cardiothoracic Surgery Department</dd>
+                <dd className="text-[15px] text-foreground">Sydney Local Health District (SLHD)</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Principal Investigator</dt>

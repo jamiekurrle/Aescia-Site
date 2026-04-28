@@ -146,7 +146,7 @@ export const medicalStudySchema = {
   },
   sponsor: {
     '@type': 'MedicalOrganization',
-    name: 'Royal Prince Alfred Hospital, Cardiothoracic Surgery Department',
+    name: 'Sydney Local Health District (SLHD)',
   },
   identifier: [
     { '@type': 'PropertyValue', propertyID: 'ANZCTR', value: 'ACTRN12625001425482' },
