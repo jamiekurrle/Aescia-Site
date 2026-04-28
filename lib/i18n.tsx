@@ -215,7 +215,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.path.step1.title': 'Scoped evaluation',
     'hospitals.path.step1.desc': 'Eight to twelve weeks, single service line, research-use framing, no commercial supply. Used to confirm the pathway fits your population and your escalation structure.',
     'hospitals.path.step2.title': 'Supervised pilot',
-    'hospitals.path.step2.desc': 'Six months, one to two service lines, agreed success metrics, data-sharing agreement, joint publication option. Followed by a decision to continue.',
+    'hospitals.path.step2.desc': 'Six months, one to two service lines, conducted as research-use under site ethics approval. Agreed success metrics, data-sharing agreement, joint publication option. Not a commercial supply arrangement; product remains investigational throughout.',
     'hospitals.path.step3.title': 'Enterprise deployment',
     'hospitals.path.step3.desc': 'Enterprise deployment is available only in jurisdictions where Aescia for Hospitals has received the applicable regulatory authorisation (ARTG inclusion in Australia, equivalent authorisations elsewhere). Not available for commercial supply prior to that authorisation.',
 
@@ -593,7 +593,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.path.step1.title': 'Évaluation cadrée',
     'hospitals.path.step1.desc': 'Huit à douze semaines, une ligne de service, cadre usage-recherche, pas de fourniture commerciale. Pour confirmer l\'adéquation du parcours à votre population et votre structure d\'escalade.',
     'hospitals.path.step2.title': 'Pilote supervisé',
-    'hospitals.path.step2.desc': 'Six mois, une à deux lignes de service, métriques de succès convenues, accord de partage de données, option de publication conjointe. Suivi d\'une décision de continuer.',
+    'hospitals.path.step2.desc': 'Six mois, une à deux lignes de service, mené en cadre usage-recherche sous approbation éthique du site. Métriques de succès convenues, accord de partage de données, option de publication conjointe. Pas un arrangement de fourniture commerciale ; le produit reste en investigation tout au long.',
     'hospitals.path.step3.title': 'Déploiement entreprise',
     'hospitals.path.step3.desc': 'Le déploiement entreprise est disponible uniquement dans les juridictions où Aescia pour les hôpitaux a reçu l\'autorisation réglementaire applicable (inscription ARTG en Australie, autorisations équivalentes ailleurs). Indisponible pour la fourniture commerciale avant cette autorisation.',
 
