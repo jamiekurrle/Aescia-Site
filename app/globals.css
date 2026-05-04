@@ -5,35 +5,35 @@
 
 :root {
   /*
-   * Aescia. Editorial medtech palette.
-   * Deep Pine ground, Bone paper, Clinical Teal accent, Aged Brass premium signal.
+   * Aescia. Clinical medtech palette — aligned with aescia-clinical.vercel.app.
+   * Cool Stone ground, Ink navy primary, Mist teal-blue accent, Brass premium signal.
    */
-  --background: oklch(0.975 0.008 85);           /* Bone #F7F4EE warm off-white */
-  --foreground: oklch(0.22 0.02 200);             /* Deep Pine #0B1F2A */
-  --card: oklch(0.995 0.003 85);
-  --card-foreground: oklch(0.22 0.02 200);
-  --popover: oklch(0.985 0.005 85);
-  --popover-foreground: oklch(0.22 0.02 200);
-  --primary: oklch(0.22 0.02 200);                /* Deep Pine */
-  --primary-foreground: oklch(0.975 0.008 85);
-  --secondary: oklch(0.93 0.015 85);              /* Warm paper */
-  --secondary-foreground: oklch(0.22 0.02 200);
-  --muted: oklch(0.89 0.012 85);
-  --muted-foreground: oklch(0.42 0.015 200);
-  --accent: oklch(0.47 0.06 175);                 /* Clinical Teal #2F6B5D */
-  --accent-foreground: oklch(0.98 0.005 85);
-  --brass: oklch(0.73 0.09 80);                   /* Aged Brass #C9A66B */
-  --brass-foreground: oklch(0.22 0.02 200);
-  --destructive: oklch(0.58 0.18 25);
-  --destructive-foreground: oklch(0.98 0.005 85);
-  --border: oklch(0.88 0.012 85);
-  --input: oklch(0.94 0.008 85);
-  --ring: oklch(0.47 0.06 175);
-  --chart-1: oklch(0.47 0.06 175);                /* Clinical Teal */
-  --chart-2: oklch(0.73 0.09 80);                 /* Aged Brass */
-  --chart-3: oklch(0.35 0.04 200);                /* Mid Pine */
-  --chart-4: oklch(0.58 0.08 175);
-  --chart-5: oklch(0.42 0.02 200);
+  --background: #F4F6FA;                          /* Stone — page background */
+  --foreground: #1B2745;                          /* Ink — navy primary */
+  --card: #FFFFFF;                                /* Paper — card surface */
+  --card-foreground: #1B2745;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B2745;
+  --primary: #1B2745;                             /* Ink */
+  --primary-foreground: #FFFFFF;
+  --secondary: #EBEFF5;                           /* Stone-soft */
+  --secondary-foreground: #1B2745;
+  --muted: #E2E6EE;
+  --muted-foreground: #475A82;                    /* Ink-60 */
+  --accent: #5C7A99;                              /* Mist-deep */
+  --accent-foreground: #FFFFFF;
+  --brass: #B89D6A;                               /* Brass */
+  --brass-foreground: #1B2745;
+  --destructive: #B53A2C;                         /* Status-red */
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E6EE;                              /* Cool neutral border */
+  --input: #EBEFF5;
+  --ring: #5C7A99;                                /* Mist-deep */
+  --chart-1: #5C7A99;                             /* Mist-deep */
+  --chart-2: #B89D6A;                             /* Brass */
+  --chart-3: #2D3A5E;                             /* Ink-70 */
+  --chart-4: #A8C2D8;                             /* Mist */
+  --chart-5: #475A82;                             /* Ink-60 */
   --radius: 0.25rem;
   --sidebar: oklch(0.98 0.001 0);
   --sidebar-foreground: oklch(0.125 0.005 260);
@@ -46,32 +46,32 @@
 }
 
 .dark {
-  --background: oklch(0.22 0.02 200);             /* Deep Pine */
-  --foreground: oklch(0.96 0.01 85);              /* Bone */
-  --card: oklch(0.26 0.02 200);
-  --card-foreground: oklch(0.96 0.01 85);
-  --popover: oklch(0.26 0.02 200);
-  --popover-foreground: oklch(0.96 0.01 85);
-  --primary: oklch(0.96 0.01 85);
-  --primary-foreground: oklch(0.22 0.02 200);
-  --secondary: oklch(0.3 0.02 200);
-  --secondary-foreground: oklch(0.96 0.01 85);
-  --muted: oklch(0.32 0.015 200);
-  --muted-foreground: oklch(0.72 0.012 85);
-  --accent: oklch(0.65 0.08 175);                 /* Lifted Clinical Teal */
-  --accent-foreground: oklch(0.22 0.02 200);
-  --brass: oklch(0.78 0.1 80);
-  --brass-foreground: oklch(0.22 0.02 200);
-  --destructive: oklch(0.62 0.18 25);
-  --destructive-foreground: oklch(0.96 0.01 85);
-  --border: oklch(0.32 0.015 200);
-  --input: oklch(0.3 0.015 200);
-  --ring: oklch(0.65 0.08 175);
-  --chart-1: oklch(0.65 0.08 175);
-  --chart-2: oklch(0.78 0.1 80);
-  --chart-3: oklch(0.55 0.05 175);
-  --chart-4: oklch(0.7 0.05 175);
-  --chart-5: oklch(0.48 0.03 200);
+  --background: #0F1A33;                          /* Ink-90 */
+  --foreground: #F4F6FA;                          /* Stone */
+  --card: #1B2745;
+  --card-foreground: #F4F6FA;
+  --popover: #1B2745;
+  --popover-foreground: #F4F6FA;
+  --primary: #F4F6FA;
+  --primary-foreground: #1B2745;
+  --secondary: #243254;                           /* Ink-soft */
+  --secondary-foreground: #F4F6FA;
+  --muted: #2D3A5E;                               /* Ink-70 */
+  --muted-foreground: #A8C2D8;                    /* Mist */
+  --accent: #A8C2D8;                              /* Mist (lifted) */
+  --accent-foreground: #1B2745;
+  --brass: #DEC9A5;                               /* Brass-soft */
+  --brass-foreground: #1B2745;
+  --destructive: #B53A2C;
+  --destructive-foreground: #F4F6FA;
+  --border: #2D3A5E;
+  --input: #243254;
+  --ring: #A8C2D8;
+  --chart-1: #A8C2D8;
+  --chart-2: #DEC9A5;
+  --chart-3: #5C7A99;
+  --chart-4: #7B8AAA;
+  --chart-5: #475A82;
   --sidebar: oklch(0.16 0.008 260);
   --sidebar-foreground: oklch(0.95 0.002 0);
   --sidebar-primary: oklch(0.68 0.15 254);
@@ -83,9 +83,10 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
+  /* All three roles now point at Geist — single typeface programme */
+  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -165,11 +166,10 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-display), 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
     letter-spacing: -0.025em;
     text-wrap: balance;
-    font-weight: 400;
+    font-weight: 700;
   }
 
   h4,
@@ -178,23 +178,24 @@
     @apply font-sans;
     letter-spacing: -0.01em;
     text-wrap: balance;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .font-display {
-    font-family: var(--font-display), 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-    font-variation-settings: 'opsz' 144, 'SOFT' 30;
+    font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 
   .font-mono,
   .font-metric {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     font-feature-settings: 'tnum', 'zero';
     letter-spacing: 0;
   }
 
   ::selection {
-    background-color: oklch(0.73 0.09 80 / 0.35);
+    background-color: rgba(184, 157, 106, 0.35); /* brass selection */
   }
 }
 
