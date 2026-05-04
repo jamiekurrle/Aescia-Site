@@ -1,29 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import { organizationSchema, websiteSchema } from '@/lib/schema'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  display: 'swap',
-})
-
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  axes: ['opsz'],
-})
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  weight: ['500'],
-  display: 'swap',
-})
+// Single typeface programme (Geist) — matches aescia-clinical.vercel.app.
+// Display, sans, and mono all map to Geist via CSS variables in globals.css.
 
 const SITE_URL = 'https://www.aesciahealth.com'
 
@@ -79,8 +63,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F7F4EE' },
-    { media: '(prefers-color-scheme: dark)', color: '#0B1F2A' },
+    { media: '(prefers-color-scheme: light)', color: '#F4F6FA' },
+    { media: '(prefers-color-scheme: dark)', color: '#1B2745' },
   ],
 }
 
@@ -90,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
