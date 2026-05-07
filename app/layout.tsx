@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces, IBM_Plex_Mono } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
-import { organizationSchema, websiteSchema } from '@/lib/schema'
+import { organizationSchema, websiteSchema, jamesKurrlePersonSchema, SITE_LAST_UPDATED } from '@/lib/schema'
 import './globals.css'
 
 const inter = Inter({
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     template: '%s | Aescia',
   },
   description:
-    'Aescia (aesciahealth.com) is a healthtech company building a continuous-care platform for hospitals and specialty clinics. Founded 2025 by James Kurrle MD; headquartered in Sydney, Australia and Montréal, Canada. Investigational SaMD for post-discharge monitoring; non-device workflow for specialty clinics.',
+    'Aescia: a continuous-care platform. Structured patient follow-up for hospitals (investigational SaMD, intended TGA Class IIa) and specialty-clinic workflow.',
   keywords:
     'Aescia, Aescia Health, healthtech, post-discharge monitoring, cardiothoracic discharge, endoscopy preparation, colonoscopy preparation, GLP-1 peri-procedural, clinical follow-up, specialty clinic workflow, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia, MTAA MedTech Compass',
   alternates: {
@@ -73,6 +75,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // Content-freshness signals for AI retrieval tools (Claude, Perplexity,
+  // Google AI Overviews). Update SITE_LAST_UPDATED in lib/schema.ts when
+  // making substantive content changes; the date appears here automatically.
+  other: {
+    'article:published_time': '2025-09-01T00:00:00+10:00',
+    'article:modified_time': `${SITE_LAST_UPDATED}T00:00:00+10:00`,
+  },
 }
 
 export const viewport: Viewport = {
@@ -90,7 +99,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${plexMono.variable} ${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -99,6 +108,13 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        {/* Founder Person schema embedded site-wide so AI tools landing on any
+            page (not just /team/james-kurrle) get author / authority signals
+            for content attributed to Aescia. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jamesKurrlePersonSchema) }}
         />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">

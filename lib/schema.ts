@@ -1,5 +1,24 @@
 const SITE_URL = 'https://www.aesciahealth.com'
 
+// Auto-updates on every build. Used to populate `dateModified` in WebPage
+// schema and `article:modified_time` Open Graph tag, which AI retrieval tools
+// (Claude, Perplexity, Google AI Overviews) use as a content-freshness signal
+// when ranking citations.
+//
+// Resolution order:
+//   1. process.env.SITE_LAST_UPDATED (set this in Vercel project env vars to
+//      pin a specific date, e.g. for testing or staging parity)
+//   2. Today's date in UTC (computed at module-evaluation time, which is
+//      build time for Next.js static pages — Vercel runs a fresh build per
+//      deploy, so this auto-updates without any manual bump)
+const _BUILD_DATE = new Date().toISOString().split('T')[0]
+export const SITE_LAST_UPDATED = process.env.SITE_LAST_UPDATED || _BUILD_DATE
+
+// Approximate first-publish date of the marketing site, used as `datePublished`
+// on the homepage WebPage schema. Aescia entered the District 3 portfolio in
+// September 2025; the public site went live around that period.
+export const SITE_FIRST_PUBLISHED = '2025-09-01'
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'MedicalOrganization'],
@@ -113,6 +132,26 @@ export const organizationSchema = {
     'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
     'https://www.mtaa.org.au/industry-members',
   ],
+  // Authoritative external references for the regulatory and standards posture
+  // claimed in `knowsAbout`. Helps LLM citation tools verify the regulatory
+  // pathway claims by linking them to first-party government / standards URLs.
+  citation: [
+    {
+      '@type': 'CreativeWork',
+      name: 'TGA: Regulating software-based medical devices',
+      url: 'https://www.tga.gov.au/products/medical-devices/regulating-medical-devices/regulating-software-medical-devices',
+    },
+    {
+      '@type': 'CreativeWork',
+      name: 'TGA: Classification of medical devices',
+      url: 'https://www.tga.gov.au/products/medical-devices/manufacture-medical-device/classification-medical-devices',
+    },
+    {
+      '@type': 'CreativeWork',
+      name: 'ANZCTR registration: SAFE-Discharge (ACTRN12625001425482)',
+      url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
+    },
+  ],
 }
 
 export const websiteSchema = {
@@ -170,6 +209,38 @@ export const softwareApplicationSchema = {
   provider: {
     '@id': `${SITE_URL}#organization`,
   },
+}
+
+// Per-page WebPage schema with publish/modified dates. AI retrieval tools use
+// `datePublished` and `dateModified` as content-freshness signals when ranking
+// citations. Pass page-specific values; defaults are the site-level constants.
+export function webPageSchema(opts: {
+  url: string
+  name: string
+  description: string
+  datePublished?: string
+  dateModified?: string
+  primaryImage?: string
+  breadcrumb?: ReturnType<typeof breadcrumbSchema>
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE_URL}${opts.url}#webpage`,
+    url: `${SITE_URL}${opts.url}`,
+    name: opts.name,
+    description: opts.description,
+    datePublished: opts.datePublished ?? SITE_FIRST_PUBLISHED,
+    dateModified: opts.dateModified ?? SITE_LAST_UPDATED,
+    inLanguage: 'en-AU',
+    isPartOf: { '@id': `${SITE_URL}#website` },
+    about: { '@id': `${SITE_URL}#organization` },
+    publisher: { '@id': `${SITE_URL}#organization` },
+    primaryImageOfPage: opts.primaryImage
+      ? { '@type': 'ImageObject', url: opts.primaryImage }
+      : undefined,
+    breadcrumb: opts.breadcrumb,
+  }
 }
 
 export function breadcrumbSchema(crumbs: { name: string; url: string }[]) {
