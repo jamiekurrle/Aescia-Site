@@ -83,6 +83,9 @@ export default function HospitalsContent() {
       {/* Complications */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-7xl mx-auto">
+          <p className="text-[12.5px] lg:text-[13px] leading-[1.65] text-foreground/65 italic font-display max-w-3xl mb-10 border-l-2 border-brass/40 pl-4">
+            The following describes the investigational intended use of Aescia for Hospitals, which is not yet TGA-registered and not available for commercial supply.
+          </p>
           <div className="grid lg:grid-cols-12 gap-16 mb-20">
             <div className="lg:col-span-5">
               <h2
@@ -351,7 +354,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>
-                <dd className="text-[15px] text-foreground">RPAH, Cardiothoracic Surgery Department</dd>
+                <dd className="text-[15px] text-foreground">Sydney Local Health District (SLHD)</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Principal Investigator</dt>
