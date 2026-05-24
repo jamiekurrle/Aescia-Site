@@ -5,7 +5,16 @@ import Link from 'next/link'
 import { useI18n, LanguageSwitcher } from '@/lib/i18n'
 import { RegulatoryBand } from '@/components/regulatory-band'
 
-export function SiteNav({ transparent = false }: { transparent?: boolean }) {
+export function SiteNav({
+  transparent = false,
+  showRegulatoryBand = true,
+}: {
+  transparent?: boolean
+  // Pages aimed at a known audience (e.g. /safe-discharge for trial
+  // participants) can pass `false` to hide the SaMD-classification band,
+  // which is intended for general public visitors.
+  showRegulatoryBand?: boolean
+}) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { t } = useI18n()
@@ -29,7 +38,7 @@ export function SiteNav({ transparent = false }: { transparent?: boolean }) {
 
   return (
     <div className="fixed top-0 inset-x-0 z-50">
-      <RegulatoryBand />
+      {showRegulatoryBand && <RegulatoryBand />}
       <nav
         aria-label={t('nav.primary')}
         className={`transition-colors duration-500 ${wrapperClass}`}

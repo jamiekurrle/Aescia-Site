@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
+import { PartnerLogos } from '@/components/partner-logos'
 
 // This page is for trial participants who have been emailed the link as part
 // of their onboarding to the SAFE-Discharge study at Royal Prince Alfred
@@ -75,10 +76,15 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 export default function SafeDischargeWelcomePage() {
   return (
     <>
-      <SiteNav />
+      {/* The regulatory band classifies the SaMD audience (hospitals vs.
+          clinics) for general public visitors. Trial participants reaching
+          this page already know the context, and the band visually competes
+          with the partner-institution strip below — hide it here. */}
+      <SiteNav showRegulatoryBand={false} />
       <main id="main" className="bg-background min-h-screen">
+        <PartnerLogos />
         {/* Hero */}
-        <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-10 border-b border-border">
+        <section className="pt-10 pb-12 lg:pt-14 lg:pb-16 px-6 lg:px-10 border-b border-border">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
