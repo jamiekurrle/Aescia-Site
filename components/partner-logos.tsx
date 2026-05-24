@@ -4,9 +4,7 @@ import Image from 'next/image'
 // hospital programme (e.g. /safe-discharge for the RPAH SAFE-Discharge trial).
 // Order: RPAH royal crest tight against the NSW Health / Sydney Local Health
 // District banner (same parent org), then The Baird Institute, then the RPA
-// Institute of Academic Surgery mark. The IAS does not publish a dedicated
-// logo asset, so the file in /public/partners/ias.jpg is their X/Twitter
-// profile mark; swap in a higher-quality version when IAS provides one.
+// Institute of Academic Surgery institutional mark.
 
 export function PartnerLogos() {
   return (
@@ -50,12 +48,12 @@ export function PartnerLogos() {
           />
 
           <Image
-            src="/partners/ias.jpg"
+            src="/partners/ias.png"
             alt="RPA Institute of Academic Surgery"
-            width={56}
-            height={56}
+            width={192}
+            height={72}
             priority
-            className="h-12 lg:h-14 w-auto object-contain rounded"
+            className="h-9 lg:h-12 w-auto object-contain"
           />
         </div>
       </div>
