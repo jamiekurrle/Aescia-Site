@@ -330,3 +330,20 @@
 .prose em {
   font-style: italic;
 }
+
+/* ----------------------------------------------------------------------
+ * Patient-facing text-size controls.
+ *
+ * Used on /safe-discharge for trial participants (older cohort post-CTS
+ * surgery) who often want larger body text. The TextSizeControls component
+ * toggles data-text-size on main[data-page="safe-discharge"], and these
+ * rules zoom that subtree. Browser compatibility note: `zoom` works in
+ * Chrome/Edge/Safari/Firefox 126+ (May 2024) — anyone older silently
+ * falls back to default size, which is acceptable.
+ * ---------------------------------------------------------------------- */
+main[data-page='safe-discharge'][data-text-size='large'] {
+  zoom: 1.125;
+}
+main[data-page='safe-discharge'][data-text-size='xlarge'] {
+  zoom: 1.25;
+}

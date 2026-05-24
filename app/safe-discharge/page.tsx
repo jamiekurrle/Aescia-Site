@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { PartnerLogos } from '@/components/partner-logos'
+import { TextSizeControls } from '@/components/text-size-controls'
 
 // This page is for trial participants who have been emailed the link as part
 // of their onboarding to the SAFE-Discharge study at Royal Prince Alfred
@@ -81,8 +82,13 @@ export default function SafeDischargeWelcomePage() {
           this page already know the context, and the band visually competes
           with the partner-institution strip below — hide it here. */}
       <SiteNav showRegulatoryBand={false} />
-      <main id="main" className="bg-background min-h-screen">
+      <main
+        id="main"
+        data-page="safe-discharge"
+        className="bg-background min-h-screen"
+      >
         <PartnerLogos />
+        <TextSizeControls />
         {/* Hero */}
         <section className="pt-10 pb-12 lg:pt-14 lg:pb-16 px-6 lg:px-10 border-b border-border">
           <div className="max-w-3xl mx-auto">
