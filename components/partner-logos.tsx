@@ -12,8 +12,10 @@ export function PartnerLogos() {
       aria-label="Trial partner institutions"
       className="bg-secondary border-b border-border"
     >
-      <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-6 lg:pb-8">
-        <div className="flex flex-wrap items-center justify-center gap-y-5 gap-x-6 lg:gap-x-10">
+      {/* Match the hero / body column width (max-w-3xl) so the strip's
+          visual centre lines up with the rest of the page content. */}
+      <div className="max-w-3xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-6 lg:pb-8">
+        <div className="flex flex-wrap items-center justify-center gap-y-5 gap-x-5 lg:gap-x-8">
           <div className="flex items-center gap-3 lg:gap-4">
             <Image
               src="/partners/rpah-crest.png"
