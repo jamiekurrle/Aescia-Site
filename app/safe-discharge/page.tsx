@@ -80,9 +80,16 @@ export default function SafeDischargeWelcomePage() {
           clinics) for general public visitors. Trial participants reaching
           this page already know the context, and the band visually competes
           with the partner-institution strip below — hide it here. */}
-      <SiteNav showRegulatoryBand={false} />
-      <main id="main" className="bg-background min-h-screen">
-        <PartnerLogos />
+      <SiteNav showRegulatoryBand={false} showTextSize />
+      {/* PartnerLogos sits OUTSIDE main so the text-size zoom does not
+          scale partner branding — the logos should stay a fixed size
+          regardless of the participant's chosen text scale. */}
+      <PartnerLogos />
+      <main
+        id="main"
+        data-page="safe-discharge"
+        className="bg-background min-h-screen"
+      >
         {/* Hero */}
         <section className="pt-10 pb-12 lg:pt-14 lg:pb-16 px-6 lg:px-10 border-b border-border">
           <div className="max-w-3xl mx-auto">
