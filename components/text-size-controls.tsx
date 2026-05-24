@@ -7,10 +7,11 @@ import { useEffect, useState } from 'react'
 // A++" control to bump body text without sending them into browser settings.
 // The choice persists in localStorage so a reload keeps their preference.
 //
-// Mechanism: we set a data-text-size attribute on the host main element, and
-// globals.css uses CSS `zoom` to scale that subtree. zoom is supported across
-// all modern browsers (Chrome/Edge/Safari forever, Firefox 126+ since 2024)
-// and reflows text properly rather than just clipping like transform: scale.
+// The buttons sit in the SiteNav next to the FR language switcher. They set
+// data-text-size on main[data-page="safe-discharge"], and globals.css uses
+// CSS `zoom` to scale that subtree. zoom is supported across all modern
+// browsers (Chrome/Edge/Safari forever, Firefox 126+ since 2024) and
+// reflows text properly rather than clipping like transform: scale.
 
 type Size = 'default' | 'large' | 'xlarge'
 
@@ -25,8 +26,8 @@ const STORAGE_KEY = 'aescia-text-size'
 export function TextSizeControls() {
   const [size, setSize] = useState<Size>('default')
 
-  // Restore preference on mount. We don't read localStorage during the first
-  // render because that would mismatch SSR — instead we hydrate, then apply.
+  // Restore preference on mount. We don't read localStorage during first
+  // render because that would mismatch SSR — hydrate first, then apply.
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY) as Size | null
@@ -34,13 +35,13 @@ export function TextSizeControls() {
         setSize(saved)
       }
     } catch {
-      // localStorage unavailable (private mode, sandbox); just use default.
+      // localStorage unavailable (private mode, sandbox); use default.
     }
   }, [])
 
-  // Apply the scale to the page main. We look up the main element rather
-  // than passing a ref through because the controls render *inside* main,
-  // and we want to scale main itself so the controls scale with the rest.
+  // Apply the scale to main[data-page="safe-discharge"]. The buttons render
+  // inside the (fixed) SiteNav, which lives outside main, so we look up the
+  // target by selector rather than carrying a ref through.
   useEffect(() => {
     const main = document.querySelector('main[data-page="safe-discharge"]')
     if (main instanceof HTMLElement) {
@@ -54,42 +55,37 @@ export function TextSizeControls() {
   }, [size])
 
   return (
-    <div className="flex items-center justify-center gap-3 py-4 px-6 lg:px-10 border-b border-border bg-background">
-      <span
-        className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65"
-        id="text-size-label"
-      >
-        Text size
-      </span>
-      <div
-        role="group"
-        aria-labelledby="text-size-label"
-        className="inline-flex items-stretch border border-border rounded-sm overflow-hidden"
-      >
-        {SIZES.map((s, i) => {
-          const active = size === s.key
-          return (
-            <button
-              key={s.key}
-              type="button"
-              onClick={() => setSize(s.key)}
-              aria-pressed={active}
-              aria-label={s.description}
-              className={[
-                'px-3 py-1.5 min-h-[36px] min-w-[44px] flex items-center justify-center transition-colors',
-                'font-display leading-none',
-                i === 0 ? 'text-[14px]' : i === 1 ? 'text-[16px]' : 'text-[18px]',
-                active
-                  ? 'bg-foreground text-background'
-                  : 'bg-background text-foreground/80 hover:bg-secondary',
-                i > 0 ? 'border-l border-border' : '',
-              ].join(' ')}
-            >
-              {s.label}
-            </button>
-          )
-        })}
-      </div>
+    <div
+      role="group"
+      aria-label="Text size"
+      className="inline-flex items-stretch"
+    >
+      {SIZES.map((s, i) => {
+        const active = size === s.key
+        return (
+          <button
+            key={s.key}
+            type="button"
+            onClick={() => setSize(s.key)}
+            aria-pressed={active}
+            aria-label={s.description}
+            className={[
+              'font-mono font-medium tracking-wider uppercase',
+              'min-h-[36px] flex items-center justify-center transition-colors',
+              'border border-current/30',
+              i > 0 ? 'border-l-0' : '',
+              i === 0 ? 'text-[10px] px-2 min-w-[30px]'
+                : i === 1 ? 'text-[11px] px-2 min-w-[34px]'
+                : 'text-[12px] px-2 min-w-[40px]',
+              active
+                ? 'bg-foreground text-background border-foreground'
+                : 'opacity-75 hover:opacity-100',
+            ].join(' ')}
+          >
+            {s.label}
+          </button>
+        )
+      })}
     </div>
   )
 }
