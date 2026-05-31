@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
+import { PartnerLogos } from '@/components/partner-logos'
 
 // This page is for trial participants who have been emailed the link as part
 // of their onboarding to the SAFE-Discharge study at Royal Prince Alfred
@@ -75,10 +76,22 @@ const faqs: { q: string; a: React.ReactNode }[] = [
 export default function SafeDischargeWelcomePage() {
   return (
     <>
-      <SiteNav />
-      <main id="main" className="bg-background min-h-screen">
+      {/* The regulatory band classifies the SaMD audience (hospitals vs.
+          clinics) for general public visitors. Trial participants reaching
+          this page already know the context, and the band visually competes
+          with the partner-institution strip below — hide it here. */}
+      <SiteNav showRegulatoryBand={false} showTextSize />
+      {/* PartnerLogos sits OUTSIDE main so the text-size zoom does not
+          scale partner branding — the logos should stay a fixed size
+          regardless of the participant's chosen text scale. */}
+      <PartnerLogos />
+      <main
+        id="main"
+        data-page="safe-discharge"
+        className="bg-background min-h-screen"
+      >
         {/* Hero */}
-        <section className="pt-32 pb-12 lg:pt-40 lg:pb-16 px-6 lg:px-10 border-b border-border">
+        <section className="pt-10 pb-12 lg:pt-14 lg:pb-16 px-6 lg:px-10 border-b border-border">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
@@ -87,10 +100,10 @@ export default function SafeDischargeWelcomePage() {
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
             </div>
             <h1
-              className="font-display text-[44px] sm:text-[58px] lg:text-[68px] leading-[1.04] tracking-[-0.03em] mb-6"
+              className="font-display text-[36px] sm:text-[46px] lg:text-[56px] leading-[1.04] tracking-[-0.03em] mb-6"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              Welcome.
+              Welcome to the RPAH SAFE-Discharge trial.
             </h1>
             <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/85 max-w-2xl">
               You have been invited to take part in a 30-day study running
@@ -114,8 +127,8 @@ export default function SafeDischargeWelcomePage() {
                 Important
               </span>
               <h2
-                className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-5"
-                style={{ fontVariationSettings: "'opsz' 96" }}
+                className="font-display font-bold text-[32px] lg:text-[44px] leading-[1.1] tracking-[-0.02em] mb-6"
+                style={{ fontVariationSettings: "'opsz' 96, 'wght' 700" }}
               >
                 Aescia is not for emergencies.
               </h2>
@@ -194,7 +207,7 @@ export default function SafeDischargeWelcomePage() {
               </li>
               <li className="pl-5 relative">
                 <span className="absolute left-0 top-3 w-2 h-px bg-brass" aria-hidden="true" />
-                Reach out to the contacts at the bottom of this page if anything is unclear or concerning.
+                Reach out if anything is unclear or concerning. The fastest way is to send a message inside the Aescia app — open the app and tap the <strong>Messages</strong> icon in the navigation to write to the cardiothoracic team. Messages are reviewed during business hours (Monday to Friday, 8am to 5pm). The phone and email contacts at the bottom of this page also work, especially if you cannot reach the team through the app.
               </li>
             </ul>
           </div>
@@ -243,16 +256,26 @@ export default function SafeDischargeWelcomePage() {
               The right person depends on the question.
             </h2>
 
-            <div className="space-y-8">
-              <div className="border-t-2 border-foreground pt-5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 mb-2 block">
-                  First contact: clinical questions or anything about taking part
-                </span>
-                <p className="text-[15px] leading-[1.65] text-foreground">
-                  <strong>Cardiothoracic Surgery Clinical Nurse Consultants (CTS CNCs)</strong>
+            <div className="space-y-10">
+              <div className="border-t-4 border-foreground pt-5 bg-background/40 -mx-4 px-4 lg:-mx-6 lg:px-6 py-4 rounded-sm">
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">
+                    Step 1
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70">
+                    Always try this team first
+                  </span>
+                </div>
+                <p className="font-display text-[20px] lg:text-[24px] leading-[1.25] tracking-[-0.015em] text-foreground mb-2"
+                   style={{ fontVariationSettings: "'opsz' 96" }}>
+                  Cardiothoracic Surgery Clinical Nurse Consultants
+                  <span className="text-foreground/65"> (CTS CNCs)</span>
                 </p>
-                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
-                  Contact details for the cardiothoracic CNC team are on the discharge sheet provided to you. If you cannot find the sheet, call the RPAH switchboard on{' '}
+                <p className="text-[14.5px] leading-[1.7] text-foreground/85">
+                  The CTS CNCs are the right first call for almost every question — clinical concerns, recovery, follow-up appointments, study logistics. They will escalate to Dr Woldendorp on your behalf if needed.
+                </p>
+                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-2">
+                  Contact details are on the discharge sheet you were given. If you cannot find the sheet, call the RPAH switchboard on{' '}
                   <a href="tel:+61295156111" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors">
                     02 9515 6111
                   </a>
@@ -260,14 +283,22 @@ export default function SafeDischargeWelcomePage() {
                 </p>
               </div>
 
-              <div className="border-t-2 border-accent pt-5">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-2 block">
-                  If the CNC team is not available
-                </span>
+              <div className="border-t border-border pt-5 opacity-90">
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+                    Step 2
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65">
+                    Backup, only if the CNCs are unreachable
+                  </span>
+                </div>
                 <p className="text-[15px] leading-[1.65] text-foreground">
                   <strong>Dr Kei Woldendorp</strong>, Cardiothoracic Registrar and Principal Study Investigator
                 </p>
-                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-1">
+                <p className="text-[13.5px] leading-[1.7] text-foreground/70 mt-1 italic">
+                  Please try the CTS CNCs first — they cover the clinical work day-to-day. Dr Woldendorp is the right contact for trial-specific questions the CNCs cannot answer, or in the rare case the CNC team is unreachable.
+                </p>
+                <p className="text-[14px] leading-[1.7] text-foreground/80 mt-2">
                   Call the RPAH switchboard on{' '}
                   <a href="tel:+61295156111" className="underline decoration-accent/40 underline-offset-4 hover:decoration-foreground transition-colors">
                     02 9515 6111
