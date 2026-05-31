@@ -59,6 +59,16 @@ export const organizationSchema = {
       },
       startDate: '2025-09',
     },
+    {
+      '@type': 'OrganizationRole',
+      roleName: 'Selected programme participant',
+      memberOf: {
+        '@type': 'Organization',
+        name: 'CHEO Research Institute Product-Market-Fit Programme',
+        url: 'https://www.cheoresearch.ca',
+      },
+      startDate: '2026-04',
+    },
   ],
   founder: [
     {
@@ -344,5 +354,64 @@ export function faqPageSchema(items: FAQItem[]) {
         text: it.a,
       },
     })),
+  }
+}
+
+// JobPosting schema for /careers/[slug]. Lets Google for Jobs and LLM crawlers
+// extract the role cleanly. `description` should be a complete HTML string
+// (built from the role data in lib/careers.ts).
+export function jobPostingSchema(opts: {
+  slug: string
+  title: string
+  description: string
+  datePosted: string
+  employmentType: string[]
+  remote: boolean
+  applicantCountries?: string[]
+  validThrough?: string
+  baseSalary?: { currency: string; min: number; max: number; unit: 'HOUR' | 'DAY' | 'MONTH' | 'YEAR' }
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    '@id': `${SITE_URL}/careers/${opts.slug}#jobposting`,
+    title: opts.title,
+    description: opts.description,
+    datePosted: opts.datePosted,
+    ...(opts.validThrough ? { validThrough: opts.validThrough } : {}),
+    employmentType: opts.employmentType,
+    industry: 'Medical technology',
+    url: `${SITE_URL}/careers/${opts.slug}`,
+    directApply: false,
+    hiringOrganization: {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}#organization`,
+      name: 'Aescia Health',
+      sameAs: SITE_URL,
+      logo: `${SITE_URL}/aescia-logo.png`,
+    },
+    ...(opts.remote
+      ? {
+          jobLocationType: 'TELECOMMUTE',
+          applicantLocationRequirements: (opts.applicantCountries ?? ['Canada']).map((name) => ({
+            '@type': 'Country',
+            name,
+          })),
+        }
+      : {}),
+    ...(opts.baseSalary
+      ? {
+          baseSalary: {
+            '@type': 'MonetaryAmount',
+            currency: opts.baseSalary.currency,
+            value: {
+              '@type': 'QuantitativeValue',
+              minValue: opts.baseSalary.min,
+              maxValue: opts.baseSalary.max,
+              unitText: opts.baseSalary.unit,
+            },
+          },
+        }
+      : {}),
   }
 }

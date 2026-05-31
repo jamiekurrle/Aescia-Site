@@ -3,13 +3,13 @@ import { breadcrumbSchema } from '@/lib/schema'
 import { TeamContent } from './team-content'
 
 export const metadata: Metadata = {
-  title: 'The team behind Aescia',
+  title: 'The Aescia team and how we support customers',
   description:
-    'Founders, operating team, and named clinical collaborators building a continuous-care platform for surgical recovery and specialty-clinic workflow.',
+    'James Kurrle (CEO, critical-care physician) and Vasken Dermardiros (CTO, Concordia PhD) lead Aescia, with named clinical collaborators including Kei Woldendorp at Royal Prince Alfred Hospital. Bootstrapped to date; non-dilutive grants in flight; SAFE round opens Q4 2026. Named implementation contact during the design-partner phase; coverage across Sydney, Barcelona, and US timezones.',
   alternates: { canonical: '/team' },
   openGraph: {
     title: 'Team | Aescia',
-    description: 'Founders, operating team, and named clinical collaborators building Aescia.',
+    description: 'Founders, operating team, and named clinical collaborators. Funding posture and support model.',
     url: '/team',
   },
 }

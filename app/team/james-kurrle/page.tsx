@@ -7,12 +7,12 @@ import { breadcrumbSchema, jamesKurrlePersonSchema } from '@/lib/schema'
 const SITE_URL = 'https://www.aesciahealth.com'
 
 export const metadata: Metadata = {
-  title: 'James Kurrle, founder of Aescia',
+  title: 'James Kurrle | Founder of Aescia',
   description:
     'James Kurrle is a critical-care physician and the founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
   alternates: { canonical: '/team/james-kurrle' },
   openGraph: {
-    title: 'James Kurrle, founder of Aescia',
+    title: 'James Kurrle | Founder of Aescia',
     description:
       'James Kurrle is a critical-care physician and the founder of Aescia, building a continuous-care platform for hospitals and specialty clinics.',
     url: '/team/james-kurrle',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'James Kurrle, founder of Aescia',
+    title: 'James Kurrle | Founder of Aescia',
     description:
       'Critical-care physician and founder of Aescia. Authors the clinical pathway engine; leads company strategy.',
   },
@@ -83,10 +83,10 @@ export default function JamesKurrlePage() {
                 James Kurrle is the founder of Aescia. Aescia is a continuous-care platform built around two products: Aescia for Hospitals, an investigational software-as-a-medical-device for structured post-discharge monitoring, and Aescia for Clinics, a workflow tool for specialty clinics.
               </p>
               <p>
-                A critical-care physician with a decade of clinical and hospital leadership experience, James trained and practised across Montréal and Sydney. The thread through that work is the same one that motivated Aescia: high-acuity patients are watched closely while admitted, then discharged into weeks where structured follow-up is uneven and the burden falls on phones, paper, and memory. Aescia exists to make that interval observable without adding another inbox to the nursing workflow.
+                A critical-care physician with a decade of clinical and hospital leadership experience, James trained and practised across rural and metropolitan New South Wales, including a substantial period in Wagga Wagga and subsequent work in Sydney. The thread through that work is the same one that motivated Aescia: high-acuity patients are watched closely while admitted, then discharged into weeks where structured follow-up is uneven and the burden falls on phones, paper, and memory. Aescia exists to make that interval observable. It does add a surface for the clinical team to attend to; the design intent is for that surface to be one prioritised list rather than a generic alert stream, with the routing and the rule set written by clinicians.
               </p>
               <p>
-                James authors the clinical pathway engine that underpins both products and leads company strategy across regulatory posture, clinical evaluation, and commercial design. Aescia for Hospitals is in clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital, with cardiothoracic surgical recovery as the first indication. Aescia for Clinics is shipping with its first paying specialty clinic, with bowel-preparation pathways and GLP-1 peri-procedural overlays as the working surface. The company is a District 3 portfolio company at Concordia University in Montréal and is enrolled in the Medical Technology Association of Australia's MedTech Compass programme. James is based between Montréal and Sydney, and writes about the company's progress on{' '}
+                James authors the clinical pathway engine that underpins both products and leads company strategy across regulatory posture, clinical evaluation, and commercial design. Aescia for Hospitals is in clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital, with cardiothoracic surgical recovery as the first indication. Aescia for Clinics is pre-first-customer; design-partner pilots in endoscopy, with bowel-preparation pathways and GLP-1 peri-procedural overlays as the working surface, are the structured path to first customers. The company is a District 3 portfolio company at Concordia University in Montréal, is enrolled in the Medical Technology Association of Australia&apos;s MedTech Compass programme, and is selected for the CHEO Research Institute Product-Market-Fit programme. James operates across Sydney, Barcelona, and US timezones, and writes about the company&apos;s progress on{' '}
                 <a
                   href="https://www.linkedin.com/in/jameskurrle/"
                   target="_blank"

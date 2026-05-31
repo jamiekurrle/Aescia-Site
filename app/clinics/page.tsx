@@ -3,13 +3,13 @@ import { breadcrumbSchema } from '@/lib/schema'
 import ClinicsContent from './clinics-content'
 
 export const metadata: Metadata = {
-  title: 'Endoscopy prep, no-show reduction, GLP-1 handling',
+  title: 'Aescia for Clinics — endoscopy prep and no-show reduction for US ASCs',
   description:
-    'Aescia for Clinics is a workflow platform for specialty clinics. Pre-procedure prep pathways, GLP-1 handling, call deflection, surveillance and recall. It is not a medical device.',
+    'Workflow platform for US ambulatory surgery centres and specialty clinics. Pre-procedure prep pathways, GLP-1 peri-procedural handling, call deflection, surveillance and recall. Interactive ROI calculator anchored to Beran 2024, Allen 2023, Mehta 2021 (USD $82K saved over 16 weeks on a prep-focused intervention). HIPAA-aligned; BAA on request. Not a medical device.',
   alternates: { canonical: '/clinics' },
   openGraph: {
-    title: 'Aescia for Clinics | Prep, recall, and workflow',
-    description: 'Better prep. Fewer no-shows. Less phone work. A workflow platform for specialty clinics.',
+    title: 'Aescia for Clinics | ROI calculator and HIPAA-aligned ASC workflow',
+    description: 'Run your own numbers: conservative, expected, and better-case ranges anchored to the prep and no-show literature. Free-until-proof design-partner pilots.',
     url: '/clinics',
   },
 }

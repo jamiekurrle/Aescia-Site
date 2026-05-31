@@ -10,7 +10,7 @@ export function Footer() {
     <footer className="bg-background border-t border-border pt-20 pb-10 px-6 lg:px-10">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-12 gap-12 mb-16">
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <Link href="/" className="inline-flex items-baseline gap-1.5 mb-5">
               <span
                 className="font-display text-[26px] leading-none tracking-tight text-foreground"
@@ -25,23 +25,34 @@ export function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Product" className="md:col-span-2 md:col-start-6">
+          <nav aria-label="Product" className="md:col-span-2">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.product')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/platform" className="text-foreground/80 hover:text-foreground">{t('footer.platform')}</Link></li>
               <li><Link href="/hospitals" className="text-foreground/80 hover:text-foreground">{t('footer.hospitals')}</Link></li>
               <li><Link href="/clinics" className="text-foreground/80 hover:text-foreground">{t('footer.clinics')}</Link></li>
+              <li><Link href="/integrations" className="text-foreground/80 hover:text-foreground">Integrations</Link></li>
               <li><Link href="/evidence" className="text-foreground/80 hover:text-foreground">{t('footer.evidence')}</Link></li>
             </ul>
           </nav>
 
-          <nav aria-label="Company" className="md:col-span-3">
+          <nav aria-label="Buy" className="md:col-span-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Buy</p>
+            <ul className="space-y-3 text-[14px]">
+              <li><Link href="/design-partner" className="text-foreground/80 hover:text-foreground">Design-partner program</Link></li>
+              <li><Link href="/clinics#roi" className="text-foreground/80 hover:text-foreground">ROI calculator</Link></li>
+              <li><Link href="/security" className="text-foreground/80 hover:text-foreground">Security and HIPAA</Link></li>
+              <li><Link href="/governance" className="text-foreground/80 hover:text-foreground">{t('footer.governance')}</Link></li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Company" className="md:col-span-2">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.company')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/team" className="text-foreground/80 hover:text-foreground">{t('footer.team')}</Link></li>
               <li><Link href="/team/james-kurrle" className="text-foreground/80 hover:text-foreground">James Kurrle, founder</Link></li>
               <li><Link href="/updates" className="text-foreground/80 hover:text-foreground">{t('nav.updates')}</Link></li>
-              <li><Link href="/governance" className="text-foreground/80 hover:text-foreground">{t('footer.governance')}</Link></li>
+              <li><Link href="/careers" className="text-foreground/80 hover:text-foreground">{t('nav.careers')}</Link></li>
               <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">FAQ</Link></li>
               <li><Link href="/contact" className="text-foreground/80 hover:text-foreground">{t('footer.contact')}</Link></li>
               <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/80 hover:text-foreground">contact@aesciahealth.com</a></li>

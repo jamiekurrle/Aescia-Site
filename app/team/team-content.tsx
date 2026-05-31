@@ -188,6 +188,79 @@ export function TeamContent() {
           </div>
         </section>
 
+        {/* Company maturity — the question early-stage buyers actually ask:
+            will Aescia exist in 24 months, who calls the customer back when
+            something breaks, how is the company funded. Stated plainly. */}
+        <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-12 gap-12 mb-14">
+              <div className="lg:col-span-5">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Company maturity</span>
+                </div>
+                <h2
+                  className="font-display text-[30px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"
+                  style={{ fontVariationSettings: "'opsz' 120" }}
+                >
+                  Funding, support, and the question of two years from now.
+                </h2>
+              </div>
+              <div className="lg:col-span-6 lg:col-start-7">
+                <p className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/80">
+                  Early-stage buyers underwrite company risk. The honest answers are below: how Aescia is funded, who is on the other end of the line when something is wrong, and what the runway and round timing actually look like.
+                </p>
+              </div>
+            </div>
+
+            <dl className="divide-y divide-border border-y border-border">
+              <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12 py-8">
+                <dt className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em]" style={{ fontVariationSettings: "'opsz' 80" }}>
+                  Funding posture
+                </dt>
+                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+                  Funded to date through founder capital and a non-dilutive grant pipeline, operating at a deliberately low burn rate. Grants in flight or accepted include the NSW Medical Devices Fund R14 (Australia, in preparation), MVP Ventures R3 (Australia, submitted), the Industrial Research Assistance Program (Canada, accepted on a reimbursement basis), the R&amp;D Tax Incentive (Australia, FY-cycle), and SR&amp;ED (Québec, active). A SAFE round is targeted to open Q4 2026 via Australian angels under ESIC eligibility, with a priced Series Seed in early 2027 into the Ontario holding entity. Conversations with prospective angel investors are open; introductions welcome at <a href="mailto:contact@aesciahealth.com?subject=Investor%20introduction" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground">contact@aesciahealth.com</a>.
+                </dd>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12 py-8">
+                <dt className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em]" style={{ fontVariationSettings: "'opsz' 80" }}>
+                  External programmes
+                </dt>
+                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+                  Aescia is a portfolio company at District 3, Concordia University&apos;s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is enrolled in the Medical Technology Association of Australia&apos;s MedTech Compass programme, and is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), which runs from April 2026. These are external diligence and customer-development signals, not capital — they sit alongside the funding posture above rather than substituting for it.
+                </dd>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12 py-8">
+                <dt className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em]" style={{ fontVariationSettings: "'opsz' 80" }}>
+                  Support model
+                </dt>
+                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+                  During the design-partner phase, the named implementation contact is James Kurrle, founder and CEO. Not a queue, not a tier-one ticket triage. The operational coverage is spread across Sydney (AEST), Barcelona (CET), and US East and West Coast timezones, which in practice gives a US ASC effectively 24-hour responsiveness during the pilot window. A named operational counterpart is committed in writing at contract execution. This model evolves as Aescia hires; the named contact in the contract stays consistent for the duration of the design-partner term.
+                </dd>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12 py-8">
+                <dt className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em]" style={{ fontVariationSettings: "'opsz' 80" }}>
+                  Team depth
+                </dt>
+                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+                  Small by design. James is full-time on Aescia, owning the clinical pathway engine and company strategy. Vasken is part-time alongside another role, owning hosting, AI inference, EMR integration, and the authoring infrastructure for both the V1 trial stack and the V2 endoscopy production stack. Beyond the founders, Sara Nejatian is engaged as the UX contractor on the patient-facing flow, Josh Casey contributes fractionally on compliance and cybersecurity, and named clinical collaborators (Kei Woldendorp at Royal Prince Alfred, Paul Bannon at the Baird Institute) extend the engineering work for trial purposes without sitting on the cap table. Shannon Kurrle holds the statutory Resident Director role required by the Australian Corporations Act for the AU OpCo. The hiring roadmap is matched to the SAFE round rather than predicated on it; the V2 frontend contractor is the first planned hire.
+                </dd>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12 py-8">
+                <dt className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em]" style={{ fontVariationSettings: "'opsz' 80" }}>
+                  Will Aescia exist in 24 months
+                </dt>
+                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+                  Runway is multi-year at the current burn. The team is small and the spend is matched to it; both founders are committed to the company and to the SAFE-Discharge trial and the design-partner programme as the next milestones. Independent of the company question, the design-partner contract structure includes data portability terms and a destruction-of-records schedule on exit, so a customer recovers their data in a usable format inside 30 days regardless of what happens to Aescia. The /security page documents the exit terms in writing.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
         <section className="py-20 px-6 border-t border-border">
           <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6">
             <p className="text-[15px] text-foreground/80 flex-1">{t('team.cta.label')}</p>

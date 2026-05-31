@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
+import { ClinicsRoi } from '@/components/clinics-roi'
 import { useI18n } from '@/lib/i18n'
 
 export default function ClinicsContent() {
@@ -268,10 +269,62 @@ export default function ClinicsContent() {
         </div>
       </section>
 
+      {/* Evidence stage — honest distinction between category evidence and
+          Aescia-specific evidence. Sits right before the ROI section so the
+          calculator is read against the right backdrop. */}
+      <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Evidence stage</span>
+            <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
+          </div>
+          <h2
+            className="font-display text-[28px] lg:text-[40px] leading-[1.12] tracking-[-0.022em] mb-8"
+            style={{ fontVariationSettings: "'opsz' 120" }}
+          >
+            What the category has shown. What Aescia has not yet shown.
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="border-l-2 border-accent pl-5">
+              <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>The category has supporting literature.</h3>
+              <p className="text-[15px] leading-[1.7] text-foreground/80">
+                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on base-rate inadequate prep (n=358,257), and Lebwohl 2011 on the downstream adenoma miss rate.
+              </p>
+            </div>
+            <div className="border-l-2 border-brass pl-5">
+              <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia for Clinics is pre-first-customer.</h3>
+              <p className="text-[15px] leading-[1.7] text-foreground/80">
+                Aescia for Clinics has not yet published its own outcomes. The Hospitals product is in active clinical evaluation through SAFE-Discharge at Royal Prince Alfred Hospital, but that trial is cardiothoracic surgical recovery, not endoscopy preparation. The honest position: the calculator below scales the category literature to your site; Aescia-specific outcomes come from the design-partner pilots, measured against your own baseline.
+              </p>
+            </div>
+          </div>
+
+          {/* Pathway-authoring methodology — what makes Aescia's clinician-
+              authored rule sets different from a generic SMS reminder tool. */}
+          <div className="mt-12 pt-10 border-t border-border">
+            <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>How Aescia builds its pathways.</h3>
+            <p className="text-[15px] leading-[1.7] text-foreground/80 max-w-3xl">
+              Pathways start from published evidence-based guidelines for each specialty (USMSTF and NHMRC for surveillance, multi-society guidance for GLP-1 peri-procedural handling, regional bowel-preparation protocols, society anticoagulation guidance). A practising clinician authors the rule set against those guidelines. The rules are then stress-tested against simulated synthetic-patient cohorts before they touch a real patient, so edge cases (diabetic and anticoagulated overlays, prior inadequate preparation, GLP-1 exposure with insulin) surface and are resolved in the rule editor rather than in the front-desk call queue. Every pathway carries a named clinical author and a documented guideline trail.
+            </p>
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/design-partner"
+              className="inline-flex items-center gap-2.5 text-[13px] text-foreground font-medium tracking-wide border-b border-brass pb-1.5 hover:border-foreground transition-colors"
+            >
+              How the design-partner pilots generate that evidence
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Proof / ROI */}
-      <section className="py-24 lg:py-32 px-6 lg:px-10">
+      <section id="roi" className="py-24 lg:py-32 px-6 lg:px-10 scroll-mt-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 mb-16">
+          <div className="grid lg:grid-cols-12 gap-12 mb-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
                 <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('clinics.proof.eyebrow')}</span>
@@ -281,60 +334,153 @@ export default function ClinicsContent() {
                 className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"
                 style={{ fontVariationSettings: "'opsz' 120" }}
               >
-                {t('clinics.proof.title')}
+                Run your own numbers.
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
-                {t('clinics.proof.body')}
+                A busy endoscopy list loses more to cancelled prep, GLP-1 confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through better-case, anchored to the literature beneath.
               </p>
             </div>
           </div>
 
-          <dl className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
-            {[1, 2, 3, 4].map((n) => (
-              <div key={n} className="bg-background p-8 lg:p-10">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-4">
-                  {t(`clinics.proof.stat${n}.label`)}
-                </dt>
-                <dd
-                  className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.018em] text-foreground mb-3"
-                  style={{ fontVariationSettings: "'opsz' 96" }}
-                >
-                  {t(`clinics.proof.stat${n}.value`)}
-                </dd>
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brass">
-                  {t(`clinics.proof.stat${n}.source`)}
-                </p>
-              </div>
-            ))}
-          </dl>
+          <ClinicsRoi />
 
-          <p className="text-[13px] leading-[1.65] text-foreground/65 italic border-l-2 border-brass/60 pl-4 mt-10 max-w-3xl">
-            {t('clinics.proof.footnote')}
-          </p>
+          {/* Crawlable static figures kept alongside the calculator so a
+              shallow LLM pass still sees the load-bearing citations. */}
+          <div className="mt-16">
+            <h3
+              className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.02em] mb-3"
+              style={{ fontVariationSettings: "'opsz' 80" }}
+            >
+              The literature the calculator is anchored to.
+            </h3>
+            <p className="text-[14.5px] text-foreground/75 leading-[1.65] max-w-3xl mb-8">
+              Four published figures the model relies on. They are listed here in plain text so a procurement reviewer, a clinical advisor, or a retrieval-augmented assistant can verify each one without operating the calculator.
+            </p>
+            <dl className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
+              {[1, 2, 3, 4].map((n) => (
+                <div key={n} className="bg-background p-8 lg:p-10">
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-4">
+                    {t(`clinics.proof.stat${n}.label`)}
+                  </dt>
+                  <dd
+                    className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.018em] text-foreground mb-3"
+                    style={{ fontVariationSettings: "'opsz' 96" }}
+                  >
+                    {t(`clinics.proof.stat${n}.value`)}
+                  </dd>
+                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brass">
+                    {t(`clinics.proof.stat${n}.source`)}
+                  </p>
+                </div>
+              ))}
+            </dl>
+            <p className="text-[13px] leading-[1.65] text-foreground/65 italic border-l-2 border-brass/60 pl-4 mt-10 max-w-3xl">
+              {t('clinics.proof.footnote')}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Pricing posture */}
+      {/* Pricing — structured ranges, not "posture only".
+          Crawlable plain-text figures so a shallow LLM read returns
+          numbers, not "contact for pricing". */}
       <section id="pricing" className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('clinics.pricing.title')}</span>
-          <p
-            className="font-display text-[26px] lg:text-[36px] leading-[1.3] tracking-[-0.02em] mt-6 text-background"
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Pricing</span>
+            <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
+          </div>
+          <h2
+            className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-6 text-background max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
           >
-            {t('clinics.pricing.body')}
+            Flat by specialty. Range published, not gated.
+          </h2>
+          <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl mb-14">
+            Aescia for Clinics is flat monthly by specialty at the single-site level. No per-seat pricing. The range below covers the typical single-specialty single-site clinic and the typical US ambulatory surgery centre by physician count. A site-specific quote is generated against your scope volume in the ROI calculator above.
           </p>
-          <Link
-            href="/contact?intent=clinic-pricing"
-            className="inline-flex items-center gap-2.5 mt-12 text-[13px] text-background font-medium tracking-wide border-b border-brass pb-1.5 hover:border-background transition-colors"
-          >
-            Ask about your specialty
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-            </svg>
-          </Link>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-background/10 border-y border-background/15">
+            {/* AU/NZ */}
+            <div className="bg-foreground p-7 lg:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">AU and NZ</span>
+              </div>
+              <h3
+                className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.018em] text-background mb-5"
+                style={{ fontVariationSettings: "'opsz' 80" }}
+              >
+                Flat monthly tiers, AUD.
+              </h3>
+              <ul className="space-y-3 text-[14.5px] leading-[1.6] text-background/85">
+                <li>
+                  <strong className="text-background">Practice tier — A$199 per month.</strong> Base tier for a single practitioner inside a multi-practitioner clinic. A$49 per additional practitioner from two to five.
+                </li>
+                <li>
+                  <strong className="text-background">Clinic tier — A$349 per month.</strong> For larger clinics. A$39 per additional practitioner from six and up.
+                </li>
+              </ul>
+              <p className="text-[12.5px] text-background/65 mt-6">
+                Single-specialty single-site clinic typically falls in <strong className="text-background">A$2,388 to A$4,188 per year</strong>.
+              </p>
+            </div>
+
+            {/* US */}
+            <div className="bg-foreground p-7 lg:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">United States</span>
+              </div>
+              <h3
+                className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.018em] text-background mb-5"
+                style={{ fontVariationSettings: "'opsz' 80" }}
+              >
+                Per-scope at the institutional rate, USD.
+              </h3>
+              <ul className="space-y-3 text-[14.5px] leading-[1.6] text-background/85">
+                <li>
+                  <strong className="text-background">Institutional default — US$8 per scope.</strong> Practice or facility entity contracts; flat post-conversion. During the design-partner pilot, the structure is 15% gainshare against measured value (or free-until-proof; see the design-partner page).
+                </li>
+                <li>
+                  <strong className="text-background">Aggregator volume tier — US$6 per scope.</strong> Multi-state aggregators with more than 50,000 scopes per year on a single contract.
+                </li>
+                <li>
+                  <strong className="text-background">Non-equity individual physician — US$3,800 per year.</strong> Rare edge case (physician with no facility-side capture). Requires signed attestation rider.
+                </li>
+              </ul>
+              <p className="text-[12.5px] text-background/65 mt-6">
+                Single-site single-specialty US ASC typically falls in <strong className="text-background">US$8,000 to US$77,000 per year</strong>, by physician count: solo own-facility ~$8K, 4-MD ASC ~$38K, 8-MD ASC ~$64K.
+              </p>
+            </div>
+
+            {/* What scales it */}
+            <div className="bg-foreground p-7 lg:p-10">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">What scales the price</span>
+              </div>
+              <ul className="space-y-3 text-[14.5px] leading-[1.65] text-background/85">
+                <li><strong className="text-background">Adds the price.</strong> Additional specialties beyond the first. Additional protocols inside a specialty where each requires a new clinician-authored rule set. US: scope volume.</li>
+                <li><strong className="text-background">Does not add the price.</strong> Patient volume within the base tier. Number of front-desk users. SMS volume within reasonable use. Customer support contact time during design-partner phase.</li>
+                <li className="pt-2 border-t border-background/15"><strong className="text-background">Value-floor rule.</strong> Aescia's contracted rate is held below the customer's modelled annual benefit. If the calculator does not show net positive at signature, the contract does not get signed.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-3 sm:items-center">
+            <p className="text-[14px] text-background/75 max-w-2xl">
+              For US design partners the rate is locked for three years with a CPI or 5% capped escalator and no conversion to gain-share during the locked term. See the design-partner program for the full commercial shape.
+            </p>
+            <Link
+              href="/design-partner"
+              className="inline-flex items-center gap-2.5 text-[13px] text-background font-medium tracking-wide border-b border-brass pb-1.5 hover:border-background transition-colors self-start"
+            >
+              Design-partner terms
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
 

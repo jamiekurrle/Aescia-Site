@@ -4,7 +4,7 @@ import { breadcrumbSchema } from '@/lib/schema'
 import ContactContent from './contact-content'
 
 export const metadata: Metadata = {
-  title: 'Request a briefing, evaluation, or security pack',
+  title: 'Request a briefing or security pack',
   description:
     'A hospital evaluation and a clinic demo are different conversations. Pick the one that matches your team, and we will route it to the right person.',
   alternates: { canonical: '/contact' },

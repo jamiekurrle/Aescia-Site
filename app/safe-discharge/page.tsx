@@ -148,7 +148,7 @@ export default function SafeDischargeWelcomePage() {
               className="font-display text-[28px] lg:text-[36px] leading-[1.15] tracking-[-0.02em] mt-4 mb-8"
               style={{ fontVariationSettings: "'opsz' 120" }}
             >
-              The next 30 days.
+              The 30 days after you are discharged.
             </h2>
             <ol className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 list-none">
               <li className="grid grid-cols-[36px_1fr] gap-4">

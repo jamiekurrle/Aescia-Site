@@ -50,9 +50,10 @@ not yet been lodged. The product is in clinical evaluation through the
 SAFE-Discharge trial at Royal Prince Alfred Hospital. First indication:
 cardiothoracic surgical recovery. The product runs daily clinician-authored
 check-ins across the 30-day post-discharge window and produces one prioritised
-list for the unit, rather than a new inbox for the nurse. Output is advisory;
-the clinician remains the decision-maker. Current engagement is evaluation
-and pilot contracts only, not commercial supply.
+list for the unit. It is a surface the team has to attend to; the design intent
+is one ranked list, not a generic alert stream. Output is advisory; the
+clinician remains the decision-maker. Current engagement is evaluation and
+pilot contracts only, not commercial supply.
 
 ## Aescia for Clinics
 
@@ -81,7 +82,7 @@ HONEST CLAIM SURFACE (verbatim from /evidence)
 What Aescia claims:
 - Structured daily follow-up is a known gap across the first 30 days after a high-acuity surgical discharge, widely described in the published literature.
 - Transparent, rule-based prioritisation, authored by practising clinicians, is a defensible design choice for a safety-focused software layer.
-- Patient-facing check-ins are built with the nursing workflow in mind, to produce one prioritised list rather than a new inbox.
+- Patient-facing check-ins are built with the nursing workflow in mind, to produce one prioritised list ordered by rule-based urgency.
 - Aescia for Clinics is a workflow tool for specialty clinics and is not a medical device.
 
 What Aescia does not claim:

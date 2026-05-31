@@ -5,12 +5,12 @@ import { Footer } from '@/components/footer'
 import { breadcrumbSchema } from '@/lib/schema'
 
 export const metadata: Metadata = {
-  title: 'Governance, security posture, and regulatory status',
+  title: 'Governance and regulatory status',
   description:
     'How Aescia is governed. Investigational medical device posture for Hospitals. Non-device workflow posture for Clinics. Certifications not yet obtained. Full security pack available under NDA.',
   alternates: { canonical: '/governance' },
   openGraph: {
-    title: 'Aescia Governance | Honest posture, documented',
+    title: 'Aescia governance and regulatory posture',
     description: 'Regulatory posture, security frameworks, corporate structure, and the boundary between products.',
     url: '/governance',
   },
@@ -40,7 +40,7 @@ export default function GovernancePage() {
               className="font-display text-[44px] sm:text-[58px] lg:text-[76px] leading-[1.04] tracking-[-0.03em] mb-8"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              Honest posture, documented.
+              Aescia's regulatory posture.
             </h1>
             <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
               Aescia runs two products with different regulatory postures. The Hospitals product is an investigational medical device with an intended Class IIa classification; a regulatory application has not yet been lodged. The Clinics product is a workflow tool that is not a medical device and is not represented as one. This page states what each is, and what each is not.
@@ -56,7 +56,7 @@ export default function GovernancePage() {
                 className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-6"
                 style={{ fontVariationSettings: "'opsz' 80" }}
               >
-                Investigational medical device, on pathway.
+                Investigational medical device on the regulatory pathway.
               </h2>
               <dl className="divide-y divide-border border-y border-border text-[14px]">
                 {([
@@ -131,7 +131,7 @@ export default function GovernancePage() {
               className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mt-6 mb-12 max-w-3xl"
               style={{ fontVariationSettings: "'opsz' 120" }}
             >
-              A documented posture, available to buyers under NDA.
+              A documented posture available to buyers under NDA.
             </h2>
 
             <div className="grid md:grid-cols-3 gap-px bg-border">
@@ -150,7 +150,7 @@ export default function GovernancePage() {
                 },
                 {
                   title: 'Integration',
-                  items: ['HL7 v2 ADT and FHIR R4 inbound', 'Optional flowsheet or note write-back', 'Designed to add a signal layer, not a new portal'],
+                  items: ['HL7 v2 ADT and FHIR R4 inbound', 'Optional flowsheet or note write-back', 'A prioritised list for the team, with clinician-authored routing'],
                 },
                 {
                   title: 'Clinical oversight',
@@ -212,12 +212,12 @@ export default function GovernancePage() {
 
         <section className="py-20 px-6 border-t border-border">
           <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6">
-            <p className="text-[15px] text-foreground/80 flex-1">Need the security pack for procurement?</p>
+            <p className="text-[15px] text-foreground/80 flex-1">For HIPAA, BAA, US data residency, sub-processors, breach notification, and exit terms, see the security page.</p>
             <Link
-              href="/contact?intent=security-pack"
+              href="/security"
               className="inline-flex items-center gap-2.5 bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors self-start sm:self-auto min-h-[44px]"
             >
-              Request under NDA
+              Open the security page
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
               </svg>

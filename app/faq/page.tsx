@@ -35,7 +35,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Who founded Aescia?',
-        a: 'Aescia was founded by James Kurrle, a critical-care physician trained and practising across Montréal and Sydney, and Vasken Dermardiros, a machine-learning PhD from Concordia University. James is the CEO and authors the clinical pathway engine. Vasken is the CTO and owns hosting, AI inference, EMR integration, and pathway authoring infrastructure.',
+        a: 'Aescia was founded by James Kurrle, a critical-care physician trained and practising across rural and metropolitan New South Wales (Wagga Wagga and Sydney), and Vasken Dermardiros, a machine-learning PhD from Concordia University. James is the CEO and authors the clinical pathway engine. Vasken is the CTO and owns hosting, AI inference, EMR integration, and pathway authoring infrastructure.',
       },
       {
         q: 'When was Aescia founded?',
@@ -47,7 +47,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Is Aescia in any accelerator or industry programmes?',
-        a: 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is also an industry member of the Medical Technology Association of Australia (MTAA).',
+        a: 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is an industry member of the Medical Technology Association of Australia (MTAA) through the MedTech Compass programme. Aescia is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), running from April 2026.',
       },
     ],
   },
@@ -102,15 +102,15 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How is Aescia priced?',
-        a: 'Aescia for Clinics is priced flat monthly per specialty at the clinic level. There is no per-seat pricing. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
+        a: 'Aescia for Clinics is priced flat monthly per specialty in Australia and New Zealand (A$199 to A$349 per month at the single-site level, so A$2,388 to A$4,188 per year for a single-specialty single-site clinic). In the United States, pricing is per scope at the institutional rate of US$8 per scope, with a US$6 per scope tier for multi-state aggregators above 50,000 scopes per year. A single-site single-specialty US ambulatory surgery centre typically falls in US$8,000 to US$77,000 per year depending on physician count. There is no per-seat pricing. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',
-        a: 'Aescia accepts HL7 v2 ADT and FHIR R4 inbound feeds and supports optional flowsheet and note write-back. The product is designed to add a signal layer for the team, not a new portal for the patient. SSO is supported via SAML 2.0 and OIDC, with role-based access control and tenant-isolated data.',
+        a: 'Aescia accepts HL7 v2 ADT and FHIR R4 inbound feeds and supports optional flowsheet and note write-back. Per-system status for Provation, EndoWorks, ModMed gGastro, and US ambulatory surgery centre practice-management systems is documented on the integrations page: framework-ready today, scoped per customer at engagement, with a one-page integration memo issued before the pilot starts. SSO is supported via SAML 2.0 and OIDC, with role-based access control and tenant-isolated data.',
       },
       {
         q: 'What is Aescia\'s data security and privacy posture?',
-        a: 'Encryption in transit (TLS 1.3) and at rest (AES-256), data residency by deployment region, documented sub-processor list available on request, and minimum-necessary collection by design. ISO/IEC 27001 controls are implemented. A full security pack is available to prospective buyers under mutual NDA.',
+        a: 'Encryption in transit (TLS 1.3) and at rest (AES-256), data residency by deployment region (US region on Google Cloud for US ASC deployments), documented sub-processor list available on request, and minimum-necessary collection by design. ISO/IEC 27001 controls are implemented. The /security page documents HIPAA posture, BAA terms, sub-processors, breach notification, data ownership, and exit terms in full.',
       },
       {
         q: 'Does Aescia use AI or machine learning?',
@@ -118,7 +118,32 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'How can I evaluate Aescia for my hospital or clinic?',
-        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, current engagement is evaluation and pilot contracts. For Clinics, the product is shipping with the first paying specialty clinic and is taking subsequent customers per the pricing model above.',
+        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, current engagement is evaluation and pilot contracts. For Clinics, current customers are taken through the design-partner program documented at aesciahealth.com/design-partner.',
+      },
+    ],
+  },
+  {
+    eyebrow: 'Buyer due diligence',
+    items: [
+      {
+        q: 'You have no clinical customers yet. Why should I be first?',
+        a: 'Aescia for Clinics is pre-first-customer; that is stated plainly. The design-partner program is the structured answer to that question. The pilot runs free or under a money-back rebate until Aescia has delivered measurable net benefit on a metric you choose, measured against your own ASC\'s historical baseline. Design partners then receive a three-year flat-price lock with a capped escalator, no conversion to gain-share during the locked term, and reference and logo arrangements in return. The full program terms are documented at aesciahealth.com/design-partner.',
+      },
+      {
+        q: 'What happens to my data if Aescia shuts down?',
+        a: 'Customer data is exported in a usable structured format (JSON and CSV; FHIR R4 bundle on request) within 30 days of termination. Aescia-side copies are destroyed on a documented schedule after export confirmation, with a certificate of destruction issued. There is no PDF dump. Pathways co-authored with your clinician are returned in a re-deployable format. The /security page documents exit terms in writing and the design-partner contract pre-specifies them before the pilot starts.',
+      },
+      {
+        q: 'Are you HIPAA compliant and will you sign a Business Associate Agreement?',
+        a: 'Aescia operates HIPAA-aligned engineering, hosting, and access controls, and signs a Business Associate Agreement before any PHI is exchanged. The BAA template is available on request to contact@aesciahealth.com with intent=baa, returned within one business day. PHI for US ambulatory surgery centres is hosted in a US region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication), per-tenant Terraform-provisioned. The /security page documents the full posture, including SOC 2 status, sub-processors, breach notification, and data ownership.',
+      },
+      {
+        q: 'Is Aescia for Clinics regulated by the FDA?',
+        a: 'No. Aescia for Clinics is explicitly not a medical device. It does not propose clinical decisions, it does not diagnose, it does not treat. The product delivers clinician-authored prep instructions, reminders, GLP-1 handling, and surveillance recall under a "propose, do not decide" design posture. Aescia for Hospitals (the surgical-recovery product) is investigational and intended to be classified Class IIa under the Australian TGA pathway; no FDA, MDSAP, CE/UKCA, or Health Canada applications have been filed for either product. The /governance page documents the regulatory posture in detail.',
+      },
+      {
+        q: 'What does the design-partner guarantee actually cover, and how does the rebate work?',
+        a: 'The metric, the baseline, the measurement source, and the rebate timing are pre-specified in writing in the design-partner contract before the pilot starts. Aescia commits to deliver net financial benefit to you that exceeds the contracted rate over the pilot window, measured against your ASC\'s own historical data from your scheduling system, reporting platform, or QI dashboard. If the agreed metric is not met, Aescia refunds the pilot in full. The rebate is paid by Aescia directly, in writing, within 30 days of measurement. Third-party escrow for the rebate is available on request for customers whose procurement requires it; it is not the default because the rebate clause is enforceable on its own terms. The /design-partner page documents the program in full.',
       },
     ],
   },
@@ -150,7 +175,7 @@ export default function FAQPage() {
               className="font-display text-[44px] sm:text-[58px] lg:text-[72px] leading-[1.04] tracking-[-0.03em] mb-8"
               style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              Plain answers, kept current.
+              Plain answers kept current.
             </h1>
             <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
               These are the questions buyers, investors, and clinicians ask first. Answers track what is on the rest of the site; if anything here drifts, it is a bug — write to us.

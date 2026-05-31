@@ -1,0 +1,8 @@
+<svg width="800" height="800" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Solid filled square so the liquid-metal shader treats the entire
+       canvas as "shape". The Poisson bevel-mask preprocessor produces a
+       smooth radial gradient from edge (dark) to centre (light), and the
+       liquid-frag shader paints chromatic metal stripes across the whole
+       area instead of only inside an AE silhouette. -->
+  <rect x="40" y="40" width="720" height="720" rx="120" ry="120" fill="#1B2745" />
+</svg>

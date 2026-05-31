@@ -23,6 +23,9 @@ const translations: Record<Locale, Record<string, string>> = {
     'regband.clinic.body': 'Aescia for Clinics is a workflow and patient-preparation tool. It does not propose clinical decisions and is not a medical device.',
     'regband.body': 'Aescia for Hospitals is an investigational Software as a Medical Device. A regulatory submission for ARTG inclusion is in preparation; the product is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.',
     'regband.dismiss': 'Dismiss',
+    'regband.short': 'Investigational software. The Clinics tool is not a medical device.',
+    'regband.more': 'Read the full regulatory notice',
+    'regband.less': 'Show less',
 
     // Nav
     'nav.platform': 'Platform',
@@ -31,6 +34,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'nav.evidence': 'Evidence',
     'nav.updates': 'Updates',
     'nav.team': 'Team',
+    'nav.careers': 'Careers',
     'nav.contact': 'Contact',
     'nav.cta': 'Request a briefing',
     'nav.skip': 'Skip to content',
@@ -52,7 +56,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Audience split
     'split.hospital.eyebrow': 'For Hospitals',
     'split.hospital.regtag': 'Medical device, in evaluation',
-    'split.hospital.title': 'Post-surgical recovery, observed.',
+    'split.hospital.title': 'Post-surgical recovery observed.',
     'split.hospital.desc': 'A structured follow-up layer for cardiothoracic surgery and other high-acuity discharges. Daily patient check-ins, transparent rule-based prioritisation, one prioritised clinical list for the nursing team.',
     'split.hospital.cta': 'Aescia for Hospitals',
     'split.clinic.eyebrow': 'For Clinics',
@@ -73,7 +77,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Platform blurb (home)
     'platform.eyebrow': 'One engine. Two doorways.',
-    'platform.title': 'A composable pathway engine, applied twice.',
+    'platform.title': 'A pathway engine shared by both products.',
     'platform.body': 'Every Aescia pathway is a sequence of five step types: Collect a structured signal, Follow a clinician-authored rule, Remind the patient, Educate at the right moment, Export the structured record. We build the engine once and apply it to the two moments where care most often falls apart: the week after discharge, and the week before a scheduled procedure.',
     'platform.pill.collect': 'Collect',
     'platform.pill.follow': 'Follow',
@@ -82,12 +86,12 @@ const translations: Record<Locale, Record<string, string>> = {
     'platform.pill.export': 'Export',
 
     // Why Aescia (three pillars)
-    'pillars.title': 'Why this, why now.',
+    'pillars.title': 'Why this matters now.',
     'pillars.transparent.title': 'Transparent by design',
     'pillars.transparent.desc': 'Rule-based prioritisation, authored by clinicians. No opaque models. Every flag is explainable to the nurse it lands with and to the committee that asks.',
     'pillars.clinician.title': 'Clinician-authored',
     'pillars.clinician.desc': 'Pathways are written by practising surgeons, gastroenterologists, and nurses. We do not ship a disease we did not learn from the people who treat it.',
-    'pillars.dual.title': 'Two products, one engine',
+    'pillars.dual.title': 'Two products from one engine',
     'pillars.dual.desc': 'A regulated pathway for surgical recovery and a workflow pathway for procedural clinics share the same authoring layer, the same audit trail, the same team.',
 
     // Evidence ribbon (home)
@@ -138,7 +142,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.leadership.title': 'The Principal Investigator on SAFE-Discharge.',
     'hospitals.leadership.body': 'Aescia for Hospitals is in clinical evaluation through the SAFE-Discharge trial. The Principal Investigator is a practising cardiothoracic research clinician at the trial site. Further clinical advisors will be named on the site as each of them formally joins the advisory and consents to public acknowledgement.',
     'hospitals.leadership.woldendorp.name': 'Dr Kei Woldendorp',
-    'hospitals.leadership.woldendorp.title': 'BMed MBBS MPhil, Cardiothoracic research',
+    'hospitals.leadership.woldendorp.title': 'BMed MBBS MPhil in cardiothoracic research',
     'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. Peer-reviewed publications in cardiothoracic care.',
     'hospitals.leadership.woldendorp.role': 'Principal Investigator, SAFE-Discharge trial. Clinical Advisor, Aescia for Hospitals.',
 
@@ -163,7 +167,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Worklist preview
     'hospitals.workflow.title': 'What a nurse sees on Monday morning.',
-    'hospitals.workflow.body': 'Not a new portal, not an inbox. A list of named patients, ordered by rule-based urgency, each with the reason they surfaced, the last response, and a one-tap clinician action.',
+    'hospitals.workflow.body': 'A prioritised list of named patients, ordered by rule-based urgency, with the reason each surfaced, the last response, and a one-tap clinician action. It is a surface the team has to attend to; the design intent is one ranked list, not a generic alert stream.',
     'hospitals.workflow.preview.header': 'Discharge cohort · Mon 14 Apr',
     'hospitals.workflow.preview.count': '42 active',
     'hospitals.workflow.preview.note1': 'Illustrative preview',
@@ -171,7 +175,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Wound photo standalone
     'hospitals.wound.eyebrow': 'Sternal wound protocol',
-    'hospitals.wound.title': 'Every wound, every week, time-stamped to the patient record.',
+    'hospitals.wound.title': 'Weekly wound photos time-stamped to the patient record.',
     'hospitals.wound.body': 'Mandatory at discharge. Weekly thereafter. The patient is prompted, the image is stored against the patient record with time and device metadata, and the operating surgeon can see their own work at day 7, 14, and 30. The rule set looks for expanding erythema, dehiscence, sinus formation, and discharge change.',
     'hospitals.wound.stat1.value': 'Day 0, 7, 14, 30',
     'hospitals.wound.stat1.label': 'Minimum protocol cadence',
@@ -191,7 +195,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Roster fit
     'hospitals.roster.eyebrow': 'How this fits your roster',
-    'hospitals.roster.title': 'Additive to the day, not additive to the headcount.',
+    'hospitals.roster.title': 'Adds to the day without adding to the headcount.',
     'hospitals.roster.body': 'The worklist is owned by existing nursing roles, not a new role. After-hours routing is agreed with your on-call registrar and hospital switchboard before go-live. When a patient is readmitted to hospital, Aescia alerts for that patient mute automatically. The NUM sees who owns the list by shift, and can audit every routed alert.',
     'hospitals.roster.item1.title': 'Shift ownership',
     'hospitals.roster.item1.desc': 'Named nursing role per shift, agreed with the NUM. Handover between shifts routes the list as part of the existing verbal handover.',
@@ -221,7 +225,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Integration
     'hospitals.integration.title': 'It fits where your team already works.',
-    'hospitals.integration.body': 'Single sign-on via SAML or OIDC. Inbound enrolment over HL7 v2 ADT or FHIR R4 Encounter. Optional outbound flowsheet or note write-back. Designed to be an additional signal the nursing team already knows how to route, not a new portal to staff.',
+    'hospitals.integration.body': 'Single sign-on via SAML or OIDC. Inbound enrolment over HL7 v2 ADT or FHIR R4 Encounter. Optional outbound flowsheet or note write-back. Designed as an additional signal the nursing team already knows how to route, with the rule set and routing written by clinicians.',
 
     // Clinics page
     'clinics.eyebrow': 'For Clinics',
@@ -278,17 +282,17 @@ const translations: Record<Locale, Record<string, string>> = {
     'platformpg.title': 'The engine underneath both products.',
     'platformpg.body': 'Aescia is one engine with two doorways. The same composable pathway authoring, the same audit trail, the same patient-facing SMS layer, the same team. The regulated posture of the hospital product lifts the standard of the clinic product, and the workflow velocity of the clinic product keeps the hospital product honest about what a busy team will actually adopt.',
     'platformpg.ls.eyebrow': 'Life sciences adjacency',
-    'platformpg.ls.title': 'A pathway engine, extensible to therapy-specific use.',
+    'platformpg.ls.title': 'A pathway engine adapted per therapy area.',
     'platformpg.ls.body': 'The engine already encodes drug-level rules (GLP-1, SGLT2, DOAC, warfarin). Any clinician-authored pathway extends it. The same primitives (structured collection, authored triage, SMS delivery, audit trail, structured export) are the primitives that underpin modern patient support programs, registries, and real-world evidence collection. We design for this extensibility; we do not name therapies we have not deployed.',
 
     // Governance page
     'governance.eyebrow': 'Governance',
-    'governance.title': 'Honest posture, documented.',
+    'governance.title': 'Honest posture documented.',
     'governance.body': 'Aescia runs two products with different regulatory postures. The Hospitals product is an investigational medical device with an intended Class IIa classification; a regulatory application has not yet been lodged. The Clinics product is a workflow tool that is not a medical device and is not represented as one. This page states what each is, and what each is not.',
 
     // Partners strip (home page)
     'partners.eyebrow': 'Where we work',
-    'partners.title': 'Trial site, research institutes, and programme affiliations.',
+    'partners.title': 'Trial sites and partner programmes.',
     'partners.body': 'Aescia runs its clinical programme through the Royal Prince Alfred Hospital cardiothoracic unit in Sydney, with research collaborations across named institutes in Australia and Canada. We publish affiliations we have earned, not logo walls.',
     'partners.trial.label': 'Trial registration',
     'partners.trial.value': 'ACTRN12625001425482',
@@ -312,7 +316,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'team.founders.eyebrow': 'Founders',
     'team.james.name': 'James Kurrle',
     'team.james.role': 'Founder and CEO',
-    'team.james.bio': 'Critical-care physician with ten years of clinical and hospital leadership experience, dual-trained across Montréal and Sydney. Authors the clinical pathway engine and leads company strategy.',
+    'team.james.bio': 'Critical-care physician with ten years of clinical and hospital leadership experience, trained and practised across rural New South Wales (Wagga Wagga) and Sydney. Authors the clinical pathway engine and leads company strategy.',
     'team.vasken.name': 'Vasken Dermardiros',
     'team.vasken.role': 'Co-founder and CTO',
     'team.vasken.bio': 'PhD from Concordia University in building-energy machine learning. Owns hosting, AI inference, EMR integration, and the pathway authoring infrastructure that underpins both products.',
@@ -320,15 +324,15 @@ const translations: Record<Locale, Record<string, string>> = {
     'team.operating.title': 'Who ships the work.',
     'team.shannon.name': 'Shannon Kurrle',
     'team.shannon.role': 'Resident Director, Aescia Pty Ltd',
-    'team.shannon.bio': 'Resident Director of the Australian entity. ASIC-compliant governance role anchoring Aescia\'s Sydney operations.',
+    'team.shannon.bio': 'Holds the statutory Resident Director role required by the Australian Corporations Act for Aescia Pty Ltd. Not an operational position.',
     'team.josh.name': 'Josh Casey',
     'team.josh.role': 'Compliance and Cybersecurity',
-    'team.josh.bio': 'Owns the SOC 2 readiness programme, privacy impact assessments, cybersecurity posture, and regulatory-classification review for the clinic pathway library.',
+    'team.josh.bio': 'Fractional contributor on compliance and cybersecurity. Privacy impact assessments, cybersecurity posture, and the SOC 2 readiness path that opens with the first US design-partner contract.',
     'team.sara.name': 'Sara Nejatian',
     'team.sara.role': 'Design and User Experience',
     'team.sara.bio': 'Leads product design for the patient-facing web app and the clinician worklist. Turns pathway logic into an interface a tired nurse can use at 22:00.',
     'team.clinical.eyebrow': 'Clinical collaborators',
-    'team.clinical.title': 'Named, attached to specific programmes.',
+    'team.clinical.title': 'Named clinicians on specific programmes.',
     'team.clinical.body': 'Clinical leadership is attached to the programmes where the person actually does the work. Advisors are added here as each of them formally joins and consents to public acknowledgement.',
     'team.kei.name': 'Dr Kei Woldendorp',
     'team.kei.role': 'Clinical Advisor; Principal Investigator, SAFE-Discharge',
@@ -342,7 +346,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Updates page
     'updates.eyebrow': 'Updates',
-    'updates.title': 'A log of what shipped, what opened, and what is next.',
+    'updates.title': 'A log of what shipped and what is next.',
     'updates.subtitle': 'We publish plainly. No press copy, no launch videos, no "we are thrilled" posts. Just dated entries when something real happened.',
     'updates.cta': 'Request a briefing',
     'updates.entry10.date': '24 April 2026',
@@ -364,7 +368,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry6.date': '14 April 2026',
     'updates.entry6.tag': 'Evidence',
     'updates.entry6.title': 'Bowel-preparation evidence base compiled.',
-    'updates.entry6.body': 'Compiled a ten-document evidence base covering international guidelines, digital interventions, operational economics, diabetes and anticoagulant management, GLP-1, and special populations for colonoscopy preparation. Underpins the clinician-authored prep pathway shipping with the first paying clinic.',
+    'updates.entry6.body': 'Compiled a ten-document evidence base covering international guidelines, digital interventions, operational economics, diabetes and anticoagulant management, GLP-1, and special populations for colonoscopy preparation. Underpins the clinician-authored prep pathway going into design-partner pilots.',
     'updates.entry5.date': '13 April 2026',
     'updates.entry5.tag': 'Product',
     'updates.entry5.title': 'Aescia for Clinics MVP feature-complete.',
@@ -418,6 +422,9 @@ const translations: Record<Locale, Record<string, string>> = {
     'regband.clinic.body': 'Aescia pour les cliniques est un outil de flux de travail et de préparation patient. Il ne propose pas de décision clinique et n\'est pas un dispositif médical.',
     'regband.body': 'Aescia pour les hôpitaux est un logiciel dispositif médical en investigation. Une demande d\'inscription à l\'ARTG est en préparation ; le produit n\'est pas encore disponible pour la fourniture commerciale. Aescia pour les cliniques est une plateforme de flux de travail et n\'est pas un dispositif médical.',
     'regband.dismiss': 'Fermer',
+    'regband.short': 'Logiciel en investigation. L\'outil Cliniques n\'est pas un dispositif médical.',
+    'regband.more': 'Lire l\'avis réglementaire complet',
+    'regband.less': 'Réduire',
 
     'nav.platform': 'Plateforme',
     'nav.hospitals': 'Pour les hôpitaux',
@@ -425,6 +432,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'nav.evidence': 'Preuves',
     'nav.updates': 'Journal',
     'nav.team': 'Équipe',
+    'nav.careers': 'Carrières',
     'nav.contact': 'Contact',
     'nav.cta': 'Demander un briefing',
     'nav.skip': 'Aller au contenu',
@@ -546,7 +554,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.complications.item8.desc': 'Capture de signes vitaux, plaie et symptômes constitutionnels qui remonte à l\'équipe selon la filière d\'escalade propre à l\'institution.',
 
     'hospitals.workflow.title': 'Ce qu\'un infirmier voit le lundi matin.',
-    'hospitals.workflow.body': 'Pas un nouveau portail, pas une boîte de réception. Une liste de patients nommés, ordonnée par urgence selon des règles, chacun avec la raison du signal, la dernière réponse, et une action clinique en un geste.',
+    'hospitals.workflow.body': 'Une liste priorisée de patients nommés, ordonnée par urgence selon des règles, avec la raison du signal, la dernière réponse, et une action clinique en un geste. C\'est une surface que l\'équipe doit suivre ; l\'intention de conception est une liste classée unique, pas un flux d\'alertes générique.',
     'hospitals.workflow.preview.header': 'Cohorte de sortie · lun 14 avr',
     'hospitals.workflow.preview.count': '42 actifs',
     'hospitals.workflow.preview.note1': 'Aperçu illustratif',
@@ -598,7 +606,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.path.step3.desc': 'Le déploiement entreprise est disponible uniquement dans les juridictions où Aescia pour les hôpitaux a reçu l\'autorisation réglementaire applicable (inscription ARTG en Australie, autorisations équivalentes ailleurs). Indisponible pour la fourniture commerciale avant cette autorisation.',
 
     'hospitals.integration.title': 'Il s\'insère là où votre équipe travaille déjà.',
-    'hospitals.integration.body': 'Authentification unique via SAML ou OIDC. Entrée d\'inscription via HL7 v2 ADT ou FHIR R4 Encounter. Retour optionnel vers la feuille de soins ou une note. Conçu comme un signal supplémentaire que l\'équipe sait déjà router, pas comme un portail à doter.',
+    'hospitals.integration.body': 'Authentification unique via SAML ou OIDC. Entrée d\'inscription via HL7 v2 ADT ou FHIR R4 Encounter. Retour optionnel vers la feuille de soins ou une note. Conçu comme un signal supplémentaire que l\'équipe sait déjà router, avec l\'ensemble de règles et le routage écrits par les cliniciens.',
 
     'clinics.eyebrow': 'Pour les cliniques',
     'clinics.title': 'Meilleure préparation. Moins d\'absents. Moins de téléphone.',
@@ -686,7 +694,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'team.founders.eyebrow': 'Fondateurs',
     'team.james.name': 'James Kurrle',
     'team.james.role': 'Fondateur et PDG',
-    'team.james.bio': 'Médecin en soins intensifs, dix ans d\'expérience clinique et de leadership hospitalier, double-formé à Montréal et à Sydney. Rédige le moteur de parcours clinique et dirige la stratégie de l\'entreprise.',
+    'team.james.bio': 'Médecin en soins intensifs, dix ans d\'expérience clinique et de leadership hospitalier, formé et exercé en Nouvelle-Galles du Sud rurale (Wagga Wagga) et à Sydney. Rédige le moteur de parcours clinique et dirige la stratégie de l\'entreprise.',
     'team.vasken.name': 'Vasken Dermardiros',
     'team.vasken.role': 'Cofondateur et CTO',
     'team.vasken.bio': 'Doctorat de l\'Université Concordia en apprentissage automatique pour l\'énergie du bâtiment. Responsable de l\'hébergement, de l\'inférence IA, de l\'intégration DME et de l\'infrastructure d\'édition des parcours qui sous-tend les deux produits.',
@@ -694,10 +702,10 @@ const translations: Record<Locale, Record<string, string>> = {
     'team.operating.title': 'Qui livre le travail.',
     'team.shannon.name': 'Shannon Kurrle',
     'team.shannon.role': 'Directrice résidente, Aescia Pty Ltd',
-    'team.shannon.bio': 'Directrice résidente de l\'entité australienne. Rôle de gouvernance conforme à l\'ASIC ancrant les opérations de Sydney.',
+    'team.shannon.bio': 'Occupe le rôle statutaire de Directrice résidente requis par la loi australienne (Corporations Act) pour Aescia Pty Ltd. Pas un rôle opérationnel.',
     'team.josh.name': 'Josh Casey',
     'team.josh.role': 'Conformité et cybersécurité',
-    'team.josh.bio': 'Responsable du programme de préparation SOC 2, des évaluations d\'impact sur la vie privée, de la posture de cybersécurité et de la revue de classification réglementaire de la bibliothèque de parcours cliniques.',
+    'team.josh.bio': 'Contributeur fractionnel sur la conformité et la cybersécurité. Évaluations d\'impact sur la vie privée, posture de cybersécurité, et préparation SOC 2 qui s\'ouvre avec le premier contrat de partenaire de conception américain.',
     'team.sara.name': 'Sara Nejatian',
     'team.sara.role': 'Design et expérience utilisateur',
     'team.sara.bio': 'Dirige le design produit pour l\'application web patient et la liste de travail clinicienne. Transforme la logique des parcours en interface qu\'un infirmier fatigué peut utiliser à 22 h.',
@@ -738,7 +746,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry6.date': '14 avril 2026',
     'updates.entry6.tag': 'Preuves',
     'updates.entry6.title': 'Base de preuves préparation intestinale compilée.',
-    'updates.entry6.body': 'Compilation d\'une base de preuves en dix documents couvrant les recommandations internationales, les interventions numériques, l\'économie opérationnelle, la gestion du diabète et des anticoagulants, les GLP-1 et les populations particulières pour la préparation de coloscopie. Sous-tend le parcours de préparation rédigé par le clinicien livré avec la première clinique payante.',
+    'updates.entry6.body': 'Compilation d\'une base de preuves en dix documents couvrant les recommandations internationales, les interventions numériques, l\'économie opérationnelle, la gestion du diabète et des anticoagulants, les GLP-1 et les populations particulières pour la préparation de coloscopie. Sous-tend le parcours de préparation rédigé par le clinicien et destiné aux pilotes de partenariat de conception.',
     'updates.entry5.date': '13 avril 2026',
     'updates.entry5.tag': 'Produit',
     'updates.entry5.title': 'MVP d\'Aescia pour les cliniques terminé.',
