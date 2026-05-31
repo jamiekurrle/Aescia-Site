@@ -60,7 +60,7 @@ const seniorFrontendEngineer: Role = {
   location: 'Remote, Québec preferred',
   locationNote:
     'Québec preferred, then elsewhere in Canada. We will consider strong candidates anywhere, as long as there is enough timezone overlap to work closely with the CTO.',
-  reportsTo: 'Vasken Dermardiros, Co-founder and CTO',
+  reportsTo: 'the CTO',
   // compensation left unset on purpose. Add a band here to display it.
   stack: [
     'Vue 3',
