@@ -4,11 +4,16 @@ import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { breadcrumbSchema, medicalStudySchema } from '@/lib/schema'
 
-// /evidence — TGA-compliant rewrite. Hard rules followed:
+// /evidence — TGA-compliant. Hard rules followed:
 // - No quantitative benefit claims tied to Aescia. No dollar projections,
 //   no readmission-reduction figures, no bed-day figures, no percent
-//   reductions.
-// - No therapeutic claims about Aescia.
+//   reductions. Third-party study figures stay in the cited references, not
+//   the page body, which describes associations qualitatively.
+// - No therapeutic claims about Aescia. The bed-day / capacity framing is an
+//   inference from the cited readmission literature, explicitly not an Aescia
+//   claim, and the disclaimer says so.
+// - Covers two literatures: post-discharge monitoring (Hospitals) and
+//   pre-procedure preparation / prehabilitation (Clinics, a non-device tool).
 // - Literature-based content only, framed as observations about the
 //   published research, not as outcomes Aescia will deliver.
 // - Same nav, same footer, same regulatory band as /hospitals.
@@ -16,7 +21,7 @@ import { breadcrumbSchema, medicalStudySchema } from '@/lib/schema'
 export const metadata: Metadata = {
   title: 'Clinical evidence',
   description:
-    'The published evidence base for structured post-discharge monitoring, and Aescia\'s approach to generating product-specific evidence through the SAFE-Discharge clinical evaluation.',
+    'The published evidence base for structured post-discharge monitoring and for pre-procedure preparation and prehabilitation, and Aescia\'s approach to generating product-specific evidence through the SAFE-Discharge clinical evaluation.',
   alternates: { canonical: '/evidence' },
   openGraph: {
     title: 'Clinical evidence | Aescia',
@@ -35,6 +40,8 @@ const literature: Array<[string, string, string, string]> = [
   ['van Walraven C, et al. (2011)', 'Proportion of hospital readmissions deemed avoidable: a systematic review.', 'Canadian Medical Association Journal', '183(7):E391-E402'],
   ['Leppin AL, et al. (2014)', 'Preventing 30-day hospital readmissions: a systematic review and meta-analysis of randomized trials.', 'JAMA Internal Medicine', '174(7):1095-1107'],
   ['Hansen LO, et al. (2011)', 'Interventions to reduce 30-day rehospitalization: a systematic review.', 'Annals of Internal Medicine', '155(8):520-528'],
+  ['Skořepa P, et al. (2024)', 'The impact of prehabilitation on outcomes in frail and high-risk patients undergoing major abdominal surgery: a systematic review and meta-analysis.', 'Clinical Nutrition', '2024; doi:10.1016/j.clnu.2024.01.020'],
+  ['Yadlapati R, et al. (2015)', 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.', 'Digestive Diseases and Sciences', '60(11):3482-3490'],
 ]
 
 export default function EvidencePage() {
@@ -87,11 +94,38 @@ export default function EvidencePage() {
                 Leppin and colleagues, in a meta-analysis of randomised trials, reported that interventions involving structured patient contact during the post-discharge window are associated with reduced readmission rates. Hansen and colleagues, in a parallel systematic review, classified the interventions that have been studied and noted that combinations of pre-discharge and post-discharge components tend to outperform single-element approaches.
               </p>
               <p>
+                This bears on hospital capacity as much as on the patient. Because an avoided readmission is an inpatient stay that does not happen, the readmission literature is, in effect, also a literature about bed-days: in high-acuity surgical units, where the bed is the binding constraint, fewer avoidable readmissions and a smoother recovery mean bed-days returned to the service. Whether any particular monitoring approach achieves that, and to what degree, is an empirical question that each product must answer in its own trial.
+              </p>
+              <p>
                 The literature describes the territory; it does not characterise any specific software product, including Aescia. Citations are listed below.
               </p>
             </div>
             <p className="mt-10 text-[13px] leading-[1.7] text-foreground/65 italic font-display border-l-2 border-brass/40 pl-4 max-w-3xl">
-              The findings above are observations about the published literature on post-discharge care. They are not statements about the performance, intended use, or expected outcomes of Aescia for Hospitals.
+              The findings above are observations about the published literature on post-discharge care. They are not statements about the performance, intended use, or expected outcomes of Aescia for Hospitals. Aescia makes no claim to reduce readmissions, length of stay, or bed-days; that is precisely what the SAFE-Discharge trial is designed to evaluate.
+            </p>
+          </div>
+        </section>
+
+        {/* Preparation and length of stay (Clinics, non-device) */}
+        <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Before the procedure</span>
+            <h2
+              className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
+              style={{ fontVariationSettings: "'opsz' 120" }}
+            >
+              What happens before shapes what happens after.
+            </h2>
+            <div className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+              <p>
+                A second body of published research looks at the period before a procedure or operation. Systematic reviews of prehabilitation in higher-risk patients before major surgery have reported associations with shorter hospital stays and fewer severe complications, though the evidence is still developing and not every study finds the same effect. In endoscopy, inadequate bowel preparation has been associated with longer inpatient stays and higher hospitalisation costs.
+              </p>
+              <p>
+                Aescia for Clinics is a workflow and patient-preparation platform. It delivers clinician-authored preparation pathways, medication-hold guidance, and timed reminders into a patient web app, in the patient&rsquo;s own language. It is not a medical device and does not propose clinical decisions. The studies below describe the published evidence on preparation and prehabilitation; Aescia&rsquo;s role is to deliver those clinician-authored steps reliably and at scale, not to claim a clinical outcome of its own.
+              </p>
+            </div>
+            <p className="mt-10 text-[13px] leading-[1.7] text-foreground/65 italic font-display border-l-2 border-brass/40 pl-4 max-w-3xl">
+              These are observations about the published literature on preparation and prehabilitation. They are not statements about the performance or expected outcomes of Aescia for Clinics.
             </p>
           </div>
         </section>
