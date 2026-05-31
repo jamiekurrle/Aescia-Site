@@ -7,7 +7,7 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 export const metadata: Metadata = {
   title: 'Data hosted in country. Privacy law aligned to your jurisdiction.',
   description:
-    'Aescia hosts customer data in the customer\'s jurisdiction on Google Cloud. Privacy-law alignment per jurisdiction: HIPAA (US) with BAA, GDPR (EU/UK) with DPA, Australian Privacy Principles (AU) with the equivalent agreement, PIPEDA (Canada), Privacy Act 2020 (NZ). Sub-processors, breach notification, and exit terms listed in full.',
+    'Aescia hosts customer data in the customer\'s jurisdiction on Google Cloud, with the relevant data agreement signed before any patient data is exchanged. Sub-processors, breach notification, SOC 2 status, and exit terms listed in full. Aescia is pre-first-customer.',
   alternates: { canonical: '/security' },
   openGraph: {
     title: 'Security and compliance | Aescia',
@@ -34,13 +34,13 @@ const subProcessors: Array<{ vendor: string; purpose: string; region: string; no
     vendor: 'Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication)',
     purpose: 'V2 application hosting, API runtime, and authentication',
     region: 'Deployed in-region for the customer\'s jurisdiction',
-    note: 'Per-tenant Terraform-provisioned infrastructure: each customer environment is a discrete Firebase project plus Cloud Run service, spun up in the Google Cloud region closest to the regulator. Available regions include us-central1 / us-east1 / us-west1 (US), australia-southeast1 (Sydney) for AU/NZ, europe-west2 (London) for the UK, europe-west3 (Frankfurt) for the EU, and northamerica-northeast1 (Montreal) for Canada. The relevant data agreement is executed before any patient data exchange.',
+    note: 'Per-tenant Terraform-provisioned infrastructure: each customer environment is a discrete Firebase project plus Cloud Run service, spun up in the Google Cloud region closest to the regulator. Available regions include us-central1 / us-east1 / us-west1 (US), australia-southeast1 (Sydney) for AU/NZ, europe-west2 (London) for the UK, europe-west3 (Frankfurt) for the EU, and northamerica-northeast1 (Montreal) for Canada. The relevant data agreement is put in place before any patient data is exchanged.',
   },
   {
     vendor: 'Twilio',
-    purpose: 'SMS and short-code messaging for patient reminders, prep coaching, and confirmation flows',
+    purpose: 'Intended SMS provider for patient reminders, prep coaching, and confirmation flows',
     region: 'In-region carrier and number plan per customer',
-    note: 'HIPAA-eligible product configuration on US deployments. Australian short-code numbers via Twilio Australia for AU deployments. EU/UK numbers via Twilio EMEA. BAA / DPA / equivalent executed prior to PHI exchange.',
+    note: 'Aescia is pre-first-customer and is not yet sending patient messages through Twilio in production. Regional numbers and the relevant data agreement are put in place before any patient data passes through it.',
   },
   {
     vendor: 'Vercel',
@@ -62,9 +62,8 @@ const subProcessors: Array<{ vendor: string; purpose: string; region: string; no
   },
 ]
 
-// One row per item the page must answer. Each row is plain English. The
-// "answer" is intentionally short and declarative — an LLM should be able to
-// lift any single row as the answer to the matching prospect question.
+// One row per item the page must answer. Each row is plain English and
+// accurate to what Aescia operates today (pre-first-customer).
 const compliance: Array<{ q: string; a: string }> = [
   {
     q: 'In-country data hosting',
@@ -76,7 +75,7 @@ const compliance: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Data agreement',
-    a: 'Aescia executes the relevant data agreement before any patient data is collected, transmitted, or stored: a Business Associate Agreement under HIPAA, a Data Processing Agreement under the GDPR, an APP-equivalent agreement under the Australian Privacy Principles, and the equivalent under PIPEDA and the Privacy Act 2020. A template is available on request to contact@aesciahealth.com — state the jurisdiction in the body; returned within one business day.',
+    a: 'Aescia is pre-first-customer and does not have signed data agreements in place today. Before any patient data is collected, transmitted, or stored for a customer, the relevant agreement is put in place: a Business Associate Agreement under HIPAA, a Data Processing Agreement under the GDPR, an APP-equivalent agreement under the Australian Privacy Principles, and the equivalent under PIPEDA and the Privacy Act 2020. Email contact@aesciahealth.com to start that, stating the jurisdiction.',
   },
   {
     q: 'SOC 2',
@@ -88,7 +87,7 @@ const compliance: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Data ownership',
-    a: 'The customer owns its data. Aescia does not use customer patient data, or de-identified derivatives of it, for product training, marketing analytics, or third-party benchmarking without written, customer-specific consent. On contract exit, customer data is exported in a usable, structured format (JSON and CSV; FHIR R4 bundle on request) within 30 days, and Aescia-side copies are destroyed on a documented schedule.',
+    a: 'The customer owns its data. Aescia does not use customer patient data, or de-identified derivatives of it, for product training, marketing analytics, or third-party benchmarking without written, customer-specific consent. On contract exit, customer data is exported in a usable, structured format (JSON and CSV) within 30 days, and Aescia-side copies are destroyed on a documented schedule.',
   },
   {
     q: 'Sub-processors',
@@ -96,15 +95,15 @@ const compliance: Array<{ q: string; a: string }> = [
   },
   {
     q: 'Encryption and access',
-    a: 'TLS 1.3 in transit and AES-256 at rest. Role-based access control with audit trail. Single sign-on via SAML 2.0 and OIDC. Database-level tenant isolation. Multi-factor authentication is enforced on all staff accounts; Chubb Cyber ERM coverage is bound.',
+    a: 'TLS 1.3 in transit and AES-256 at rest. Role-based access control with an audit trail. Database-level tenant isolation. Multi-factor authentication is enforced on all staff accounts. Cyber insurance (Chubb Cyber ERM) is being arranged.',
   },
   {
     q: 'Software lifecycle',
-    a: 'IEC 62304:2006+A1:2015 software lifecycle processes are implemented and documented for the regulated Hospitals product. ISO/IEC 27001:2022 controls are implemented for both products. ISO 13485:2016 implementation is underway with certification targeted in 2026.',
+    a: 'IEC 62304:2006+A1:2015 software lifecycle processes are implemented and documented for the regulated Hospitals product. ISO/IEC 27001:2022 controls are implemented for both products. ISO 13485:2016 implementation is underway with certification targeted in 2026. No third-party conformity assessment has been undertaken; no certifications are currently held.',
   },
   {
     q: 'Penetration testing',
-    a: 'Independent third-party penetration testing is performed at each material release. Reports are available to prospective customers under mutual NDA.',
+    a: 'Aescia has not yet commissioned an independent third-party penetration test. One is planned ahead of the first production customer, and the report will be made available to that customer under mutual NDA.',
   },
 ]
 
@@ -135,7 +134,7 @@ export default function SecurityPage() {
               Data hosted in country. Privacy law aligned.
             </h1>
             <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
-              Each answer below is short, declarative, and accurate to what Aescia operates today.
+              Each answer below is short, declarative, and accurate to what Aescia operates today. Aescia is pre-first-customer, and the page says so where it matters.
             </p>
             <div className="mt-12 flex flex-col sm:flex-row gap-3">
               <Link
@@ -226,7 +225,7 @@ export default function SecurityPage() {
             <dl className="divide-y divide-border border-y border-border">
               {[
                 ['Notice', 'Month-to-month after the initial pilot. 30-day written notice ends the contract.'],
-                ['Data export', 'Customer data exported in JSON and CSV within 30 days of termination. FHIR R4 bundle export available on request. No PDF dumps.'],
+                ['Data export', 'Customer data exported in JSON and CSV within 30 days of termination. No PDF dumps.'],
                 ['Aescia copies', 'Aescia-side copies destroyed on a documented schedule after export confirmation. Certificate of destruction issued.'],
                 ['Pathway content', 'Pathways co-authored with the customer are returned in a structured, re-deployable format. The clinician who authored the rule set retains attribution and re-use rights.'],
                 ['Pricing', 'No early-termination fee in the design-partner program. See the design-partner page for full commercial terms.'],

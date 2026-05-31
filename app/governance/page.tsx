@@ -138,7 +138,7 @@ export default function GovernancePage() {
               {[
                 {
                   title: 'Identity',
-                  items: ['SAML 2.0 and OIDC single sign-on', 'Role-based access control with audit trail', 'Tenant isolation at the database level'],
+                  items: ['Multi-factor authentication enforced on all staff accounts', 'Role-based access control with an audit trail', 'Tenant isolation at the database level'],
                 },
                 {
                   title: 'Data',
@@ -146,11 +146,11 @@ export default function GovernancePage() {
                 },
                 {
                   title: 'Software',
-                  items: ['ISO/IEC 27001 controls implemented', 'IEC 62304 processes for the regulated product', 'OWASP secure development baseline', 'Independent penetration testing at each release'],
+                  items: ['ISO/IEC 27001 controls implemented (not certified)', 'IEC 62304 processes for the regulated product', 'OWASP secure development baseline'],
                 },
                 {
                   title: 'Integration',
-                  items: ['HL7 v2 ADT and FHIR R4 inbound', 'Optional flowsheet or note write-back', 'A prioritised list for the team, with clinician-authored routing'],
+                  items: ['One prioritised list for the team, not a new portal', 'Clinician-authored rules and routing', 'Quick to set up; any data exchange scoped per site'],
                 },
                 {
                   title: 'Clinical oversight',
@@ -212,7 +212,7 @@ export default function GovernancePage() {
 
         <section className="py-20 px-6 border-t border-border">
           <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6">
-            <p className="text-[15px] text-foreground/80 flex-1">For HIPAA, BAA, US data residency, sub-processors, breach notification, and exit terms, see the security page.</p>
+            <p className="text-[15px] text-foreground/80 flex-1">For data residency, sub-processors, breach notification, and exit terms, see the security page.</p>
             <Link
               href="/security"
               className="inline-flex items-center gap-2.5 bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors self-start sm:self-auto min-h-[44px]"

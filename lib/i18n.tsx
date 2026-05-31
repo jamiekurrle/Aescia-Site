@@ -49,7 +49,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.subtitle': 'A platform for structured patient follow-up, built for hospitals and specialty clinics.',
     'hero.cta.primary': 'Explore the platform',
     'hero.cta.secondary': 'Talk to our team',
-    'hero.trial.label': 'Active clinical programme',
+    'hero.trial.label': 'Clinical programme',
     'hero.trial.brief': 'SAFE-Discharge, 550 patients',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
@@ -72,8 +72,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'trust.item2.label': 'software lifecycle',
     'trust.item3.value': 'In-region',
     'trust.item3.label': 'data residency',
-    'trust.item4.value': 'SSO, SAML, OIDC',
-    'trust.item4.label': 'enterprise identity',
+    'trust.item4.value': 'MFA enforced',
+    'trust.item4.label': 'on all staff accounts',
 
     // Platform blurb (home)
     'platform.eyebrow': 'One engine. Two doorways.',
@@ -96,7 +96,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Evidence ribbon (home)
     'evidence.eyebrow': 'Where we are today',
-    'evidence.title': 'Clinical programme in active enrolment.',
+    'evidence.title': 'Clinical programme opening soon.',
     'evidence.body': 'The SAFE-Discharge trial is a single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
@@ -225,7 +225,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Integration
     'hospitals.integration.title': 'It fits where your team already works.',
-    'hospitals.integration.body': 'Single sign-on via SAML or OIDC. Inbound enrolment over HL7 v2 ADT or FHIR R4 Encounter. Optional outbound flowsheet or note write-back. Designed as an additional signal the nursing team already knows how to route, with the rule set and routing written by clinicians.',
+    'hospitals.integration.body': 'Aescia adds one prioritised list for the nursing team, with the rule set and routing written by clinicians. It is designed to fit the way your team already works and to be quick to set up. Any data exchange with your existing systems is scoped with each site.',
 
     // Clinics page
     'clinics.eyebrow': 'For Clinics',
@@ -253,7 +253,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item7.title': 'Surveillance and recall',
     'clinics.features.item7.desc': 'High-risk polyp follow-up and surveillance intervals do not rely on a spreadsheet anyone might miss. Named patients, named dates, named triggers, aligned with USMSTF and NHMRC interval guidance.',
     'clinics.features.item8.title': 'Integration-friendly',
-    'clinics.features.item8.desc': 'Works alongside common endoscopy reporting (Provation, EndoWorks, gGastro) and practice-management systems. Adds a signal layer without a second login for your team.',
+    'clinics.features.item8.desc': 'Designed to sit alongside the systems your clinic already runs and to be quick to set up, without a second login for your team. We scope any data exchange with you.',
     'clinics.features.item9.title': 'Single-site friendly',
     'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Flat monthly pricing per specialty. Designed to go live in weeks once a champion is in place, not quarters.',
 
@@ -303,7 +303,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item3.name': 'Institute of Academic Surgery',
     'partners.item3.role': 'RPAH academic surgery research and education hub. Provides governance pathway for the SAFE-Discharge implementation evaluation.',
     'partners.item4.name': 'CHEO Research Institute',
-    'partners.item4.role': 'Children\'s Hospital of Eastern Ontario research arm in Ottawa. Collaboration on a paediatric paroxysmal motor fluctuation (PMF) monitoring programme.',
+    'partners.item4.role': 'Children\'s Hospital of Eastern Ontario research arm in Ottawa. Aescia is a selected participant in its Product-Market-Fit (PMF) programme, working on a paediatric respiratory post-discharge pathway.',
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Quebec\'s leading bio/health/tech startup incubator at Concordia University, Montréal. Aescia portfolio company since September 2025.',
     'partners.item6.name': 'MTAA MedTech Compass',
@@ -446,7 +446,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.subtitle': 'Une plateforme de suivi structuré des patients, conçue pour les hôpitaux et les cliniques spécialisées.',
     'hero.cta.primary': 'Explorer la plateforme',
     'hero.cta.secondary': 'Contacter notre équipe',
-    'hero.trial.label': 'Programme clinique actif',
+    'hero.trial.label': 'Programme clinique',
     'hero.trial.brief': 'SAFE-Discharge, 550 patients',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
@@ -467,8 +467,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'trust.item2.label': 'Cycle logiciel',
     'trust.item3.value': 'En région',
     'trust.item3.label': 'Résidence des données',
-    'trust.item4.value': 'SSO, SAML, OIDC',
-    'trust.item4.label': 'Identité entreprise',
+    'trust.item4.value': 'MFA appliquée',
+    'trust.item4.label': 'sur tous les comptes du personnel',
 
     'platform.eyebrow': 'Un moteur. Deux portes.',
     'platform.title': 'Un moteur de parcours composable, appliqué deux fois.',
@@ -488,7 +488,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'pillars.dual.desc': 'Un parcours régulé pour la récupération chirurgicale et un parcours de flux de travail pour les cliniques procédurales partagent la même couche d\'édition, le même journal d\'audit, la même équipe.',
 
     'evidence.eyebrow': 'Où nous en sommes',
-    'evidence.title': 'Programme clinique en recrutement actif.',
+    'evidence.title': 'Programme clinique, ouverture imminente.',
     'evidence.body': 'L\'essai SAFE-Discharge est une évaluation mono-centrique d\'Aescia pour la surveillance post-sortie de chirurgie cardiothoracique au Royal Prince Alfred Hospital à Sydney. Une cohorte intérimaire de 50 patients est pré-spécifiée, suivie d\'une cohorte principale de 500 patients, soit 550 patients au total. Mené par le Dr Kei Woldendorp, investigateur principal. Aescia pour les hôpitaux a une classification Classe IIa prévue selon la règle TGA 3.4 ; une demande réglementaire est en préparation. Aescia pour les cliniques est un outil de flux de travail qui ne propose pas de décision clinique et n\'est pas un dispositif médical.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Enregistrement',
@@ -606,7 +606,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.path.step3.desc': 'Le déploiement entreprise est disponible uniquement dans les juridictions où Aescia pour les hôpitaux a reçu l\'autorisation réglementaire applicable (inscription ARTG en Australie, autorisations équivalentes ailleurs). Indisponible pour la fourniture commerciale avant cette autorisation.',
 
     'hospitals.integration.title': 'Il s\'insère là où votre équipe travaille déjà.',
-    'hospitals.integration.body': 'Authentification unique via SAML ou OIDC. Entrée d\'inscription via HL7 v2 ADT ou FHIR R4 Encounter. Retour optionnel vers la feuille de soins ou une note. Conçu comme un signal supplémentaire que l\'équipe sait déjà router, avec l\'ensemble de règles et le routage écrits par les cliniciens.',
+    'hospitals.integration.body': 'Aescia ajoute une seule liste priorisée pour l\'équipe infirmière, avec l\'ensemble de règles et le routage écrits par les cliniciens. Conçu pour s\'intégrer à la façon dont votre équipe travaille déjà et pour être rapide à mettre en place. Tout échange de données avec vos systèmes existants est défini avec chaque site.',
 
     'clinics.eyebrow': 'Pour les cliniques',
     'clinics.title': 'Meilleure préparation. Moins d\'absents. Moins de téléphone.',
@@ -633,7 +633,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item7.title': 'Surveillance et rappels',
     'clinics.features.item7.desc': 'Les suivis de polypes à haut risque et les intervalles de surveillance ne reposent plus sur une feuille de calcul. Patients nommés, dates nommées, déclencheurs nommés, alignés sur les recommandations USMSTF et NHMRC.',
     'clinics.features.item8.title': 'Facile à intégrer',
-    'clinics.features.item8.desc': 'Fonctionne aux côtés des systèmes de rapport d\'endoscopie habituels (Provation, EndoWorks, gGastro) et des systèmes de gestion de cabinet. Ajoute une couche de signal sans second identifiant.',
+    'clinics.features.item8.desc': 'Conçu pour s\'intégrer aux systèmes que votre clinique utilise déjà et pour être rapide à mettre en place, sans second identifiant pour votre équipe. Nous définissons tout échange de données avec vous.',
     'clinics.features.item9.title': 'Adapté au cabinet',
     'clinics.features.item9.desc': 'Configuré par un administrateur clinique en une après-midi. Tarif mensuel forfaitaire par spécialité. Conçu pour une mise en service en semaines une fois qu\'un champion est en place, pas en trimestres.',
 
@@ -681,7 +681,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item3.name': 'Institute of Academic Surgery',
     'partners.item3.role': 'Pôle de recherche et d\'enseignement en chirurgie académique du RPAH. Fournit le cadre de gouvernance pour l\'évaluation d\'implémentation SAFE-Discharge.',
     'partners.item4.name': 'CHEO Research Institute',
-    'partners.item4.role': 'Bras de recherche du Children\'s Hospital of Eastern Ontario à Ottawa. Collaboration sur un programme pédiatrique de surveillance des fluctuations motrices paroxystiques (PMF).',
+    'partners.item4.role': 'Bras de recherche du Children\'s Hospital of Eastern Ontario à Ottawa. Aescia participe à son programme Product-Market-Fit (PMF), sur un parcours pédiatrique respiratoire post-sortie.',
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Principal incubateur bio/santé/tech du Québec à l\'Université Concordia, Montréal. Aescia est entreprise du portefeuille depuis septembre 2025.',
     'partners.item6.name': 'MTAA MedTech Compass',

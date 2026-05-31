@@ -18,12 +18,12 @@ export function CredibilityFacts() {
       cta: 'Read the security pack',
     },
     {
-      eyebrow: 'Integrations',
-      title: 'Named endoscopy and ASC systems.',
+      eyebrow: 'Getting started',
+      title: 'Designed to deploy quickly.',
       body:
-        'HL7 v2 ADT and FHIR R4 ingestion today. Provation, EndoWorks, ModMed gGastro, and US ASC practice-management systems documented per-system: real-time API, batch, manual, or roadmap.',
-      href: '/integrations',
-      cta: 'See per-system status',
+        'Aescia is pre-first-customer and says so plainly. A clinic can start with manual data entry or a simple export, with no integration required to begin. Any deeper data exchange with your systems is scoped with you.',
+      href: '/design-partner',
+      cta: 'How we start with you',
     },
     {
       eyebrow: 'Economics',

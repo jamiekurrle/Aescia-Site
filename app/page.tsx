@@ -15,7 +15,7 @@ const homePageSchema = webPageSchema({
   url: '/',
   name: 'Aescia. A continuous-care platform.',
   description:
-    'A continuous-care platform for US ambulatory surgery centres and hospital surgical recovery. HIPAA-aligned with BAA on request, US-region hosting on Google Cloud for US ASCs, HL7 v2 ADT and FHIR R4 integration ready, design-partner program with free-until-proof pilots and 3-year price-lock.',
+    'A continuous-care platform: structured patient follow-up for hospitals (investigational software as a medical device, intended TGA Class IIa) and workflow for specialty clinics. Pre-first-customer.',
   primaryImage: 'https://www.aesciahealth.com/aescia-logo.png',
 })
 

@@ -106,11 +106,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',
-        a: 'Aescia accepts HL7 v2 ADT and FHIR R4 inbound feeds and supports optional flowsheet and note write-back. Per-system status for Provation, EndoWorks, ModMed gGastro, and US ambulatory surgery centre practice-management systems is documented on the integrations page: framework-ready today, scoped per customer at engagement, with a one-page integration memo issued before the pilot starts. SSO is supported via SAML 2.0 and OIDC, with role-based access control and tenant-isolated data.',
+        a: 'Aescia is designed to add one prioritised list for the team, not a new portal, and to be quick to set up. Aescia is pre-first-customer, so it does not yet have live integrations with specific electronic medical record or practice-management systems; any data exchange is scoped with each customer rather than claimed in advance. To start, data can be provided by manual entry or a simple export, with no integration required to begin. Access uses multi-factor authentication and role-based access control, with tenant-isolated data.',
       },
       {
         q: 'What is Aescia\'s data security and privacy posture?',
-        a: 'Encryption in transit (TLS 1.3) and at rest (AES-256), data residency by deployment region (US region on Google Cloud for US ASC deployments), documented sub-processor list available on request, and minimum-necessary collection by design. ISO/IEC 27001 controls are implemented. The /security page documents HIPAA posture, BAA terms, sub-processors, breach notification, data ownership, and exit terms in full.',
+        a: 'Encryption in transit (TLS 1.3) and at rest (AES-256), data residency by deployment region (a US region on Google Cloud for US deployments), multi-factor authentication enforced on staff accounts, a documented sub-processor list on request, and minimum-necessary collection by design. ISO/IEC 27001 controls are implemented (certification not yet obtained). The /security page documents the data-handling posture, the agreements signed before any patient data is exchanged, sub-processors, breach notification, data ownership, and exit terms in full.',
       },
       {
         q: 'Does Aescia use AI or machine learning?',
@@ -131,11 +131,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What happens to my data if Aescia shuts down?',
-        a: 'Customer data is exported in a usable structured format (JSON and CSV; FHIR R4 bundle on request) within 30 days of termination. Aescia-side copies are destroyed on a documented schedule after export confirmation, with a certificate of destruction issued. There is no PDF dump. Pathways co-authored with your clinician are returned in a re-deployable format. The /security page documents exit terms in writing and the design-partner contract pre-specifies them before the pilot starts.',
+        a: 'Customer data is exported in a usable structured format (JSON and CSV) within 30 days of termination. Aescia-side copies are destroyed on a documented schedule after export confirmation, with a certificate of destruction issued. There is no PDF dump. Pathways co-authored with your clinician are returned in a re-deployable format. The /security page documents exit terms in writing and the design-partner contract pre-specifies them before the pilot starts.',
       },
       {
         q: 'Are you HIPAA compliant and will you sign a Business Associate Agreement?',
-        a: 'Aescia operates HIPAA-aligned engineering, hosting, and access controls, and signs a Business Associate Agreement before any PHI is exchanged. The BAA template is available on request to contact@aesciahealth.com with intent=baa, returned within one business day. PHI for US ambulatory surgery centres is hosted in a US region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication), per-tenant Terraform-provisioned. The /security page documents the full posture, including SOC 2 status, sub-processors, breach notification, and data ownership.',
+        a: 'Aescia is not a HIPAA-covered entity and does not claim HIPAA certification. Aescia is pre-first-customer and does not have signed Business Associate Agreements in place today. For any US deployment that will handle PHI, a Business Associate Agreement is signed before any patient data is exchanged. PHI for US deployments is hosted in a US region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication), per-tenant. The /security page documents the full posture, including SOC 2 status, sub-processors, breach notification, and data ownership.',
       },
       {
         q: 'Is Aescia for Clinics regulated by the FDA?',

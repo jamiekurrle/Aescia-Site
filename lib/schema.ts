@@ -128,8 +128,6 @@ export const organizationSchema = {
     'GLP-1 peri-procedural management',
     'clinical pathway authoring',
     'patient-reported outcomes',
-    'HL7 v2 ADT',
-    'FHIR R4',
     'Software as a Medical Device',
     'TGA Class IIa pathway',
     'IEC 62304',
@@ -183,7 +181,7 @@ export const medicalStudySchema = {
   name: 'SAFE-Discharge: Post-cardiothoracic-surgery discharge monitoring',
   description:
     'A prospective single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring across the 30-day post-discharge window. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total.',
-  status: 'Recruiting',
+  status: 'NotYetRecruiting',
   studyLocation: {
     '@type': 'Hospital',
     name: 'Royal Prince Alfred Hospital',
@@ -213,7 +211,7 @@ export const softwareApplicationSchema = {
   '@id': `${SITE_URL}/platform#software`,
   name: 'Aescia Platform',
   applicationCategory: 'HealthApplication',
-  operatingSystem: 'Web, iOS, Android',
+  operatingSystem: 'Web',
   description:
     'A composable pathway engine: Collect, Follow, Remind, Educate, Export. One engine, two products.',
   provider: {

@@ -14,13 +14,13 @@ const SITE_URL = 'https://www.aesciahealth.com'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Aescia — HIPAA-ready endoscopy prep, GLP-1 handling, and no-show reduction for US ASCs',
+    default: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
     template: '%s | Aescia',
   },
   description:
-    'Aescia for Clinics: a workflow platform for US ambulatory surgery centres and specialty clinics. HIPAA-aligned with BAA on request, US-region hosting on Google Cloud, HL7 v2 ADT and FHIR R4 integration ready, design-partner program with free-until-proof pilots and 3-year price-lock. Aescia for Hospitals is investigational software-as-a-medical-device under TGA Class IIa.',
+    'Aescia is a continuous-care platform. Structured patient follow-up for hospitals (investigational software as a medical device, intended TGA Class IIa) and workflow for specialty clinics. Pre-first-customer; we say so plainly.',
   keywords:
-    'Aescia, Aescia Health, HIPAA endoscopy software, US ASC endoscopy workflow, colonoscopy prep platform, GLP-1 peri-procedural management, no-show reduction GI ASC, ModMed gGastro integration, Provation integration, EndoWorks integration, BAA, US ambulatory surgery centre software, post-discharge monitoring, cardiothoracic discharge, MIPS quality reporting GI, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia',
+    'Aescia, Aescia Health, endoscopy prep platform, colonoscopy prep, GLP-1 peri-procedural management, no-show reduction, US ambulatory surgery centre software, post-discharge monitoring, cardiothoracic discharge, specialty clinic workflow, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia',
   alternates: {
     canonical: '/',
     languages: {
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Aescia — HIPAA-ready endoscopy prep, GLP-1 handling, and no-show reduction for US ASCs',
+    title: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
     description:
-      'Workflow platform for US ambulatory surgery centres: HIPAA-aligned, BAA on request, US-region hosting, named integrations, free-until-proof design-partner pilots.',
+      'Structured patient follow-up for hospitals and specialty clinics. Investigational software as a medical device for hospitals; intended TGA Class IIa. Pre-first-customer.',
     type: 'website',
     url: SITE_URL,
     siteName: 'Aescia',
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aescia — HIPAA-ready endoscopy prep, GLP-1 handling, and no-show reduction for US ASCs',
+    title: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
     description:
-      'Workflow platform for US ambulatory surgery centres: HIPAA-aligned, BAA on request, US-region hosting, named integrations, free-until-proof design-partner pilots.',
+      'Structured patient follow-up for hospitals and specialty clinics. Investigational software as a medical device for hospitals; intended TGA Class IIa. Pre-first-customer.',
     images: [`${SITE_URL}/aescia-logo.png`],
   },
   robots: {

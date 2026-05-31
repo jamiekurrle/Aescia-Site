@@ -155,8 +155,8 @@ function ProductTiles() {
     {
       kind: 'Hospital Monitor',
       title: 'Cardiothoracic discharge.',
-      status: 'Active trial · RPAH',
-      desc: 'Daily check-ins, escalation triggers tuned to CTS, audit-grade documentation. 500-patient RCT in progress.',
+      status: 'Trial in preparation · RPAH',
+      desc: 'Daily check-ins, escalation triggers tuned to CTS, audit-grade documentation. 500-patient evaluation in preparation.',
     },
     {
       kind: 'Hospital Monitor',

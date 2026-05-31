@@ -128,7 +128,7 @@ function HeroV1() {
           {[
             { k: 'Founded', v: '2025' },
             { k: 'Headquartered', v: 'Sydney · Montréal' },
-            { k: 'Active trial', v: 'RPAH cardiothoracic' },
+            { k: 'Clinical trial', v: 'RPAH cardiothoracic' },
           ].map((item, i) => (
             <motion.div
               key={item.k}

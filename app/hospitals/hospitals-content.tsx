@@ -412,11 +412,6 @@ export default function HospitalsContent() {
           <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80 max-w-2xl mx-auto mb-10">
             {t('hospitals.integration.body')}
           </p>
-          <div className="inline-flex flex-wrap justify-center gap-2">
-            {['SAML 2.0', 'OIDC', 'HL7 v2 ADT', 'FHIR R4', 'ISO 27001', 'IEC 62304'].map((item) => (
-              <span key={item} className="font-mono text-[11px] tracking-wide border border-border px-3 py-1.5 text-foreground/80">{item}</span>
-            ))}
-          </div>
         </div>
       </section>
 

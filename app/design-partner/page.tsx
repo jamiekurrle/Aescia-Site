@@ -71,7 +71,7 @@ const programTerms: Array<{ k: string; v: React.ReactNode }> = [
   },
   {
     k: 'Exit terms',
-    v: 'On contract end Aescia returns your data in JSON and CSV within 30 days (FHIR R4 bundle on request), destroys our copies on a documented schedule, and issues a certificate of destruction. You retain rights to use the pathways and protocols co-authored during the pilot.',
+    v: 'On contract end Aescia returns your data in JSON and CSV within 30 days, destroys our copies on a documented schedule, and issues a certificate of destruction. You retain rights to use the pathways and protocols co-authored during the pilot.',
   },
   {
     k: 'Support',
