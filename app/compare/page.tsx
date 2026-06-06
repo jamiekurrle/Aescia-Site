@@ -9,7 +9,7 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 export const metadata: Metadata = {
   title: 'How Aescia differs from patient-engagement and scheduling tools',
   description:
-    'Aescia for Clinics overlaps with patient-engagement and scheduling tools on reminders and slots, but differs in tracking prep readiness rather than appointment state, which is what enables prep-aware backfill. A row-by-row comparison, including where other tools are genuinely stronger. Pre-first-customer.',
+    'Aescia for Clinics does the same patient-engagement work that reduces no-shows and late cancellations, and adds prep-readiness tracking and prep-aware backfill on top. A fair, row-by-row comparison with patient-engagement, texting, and OR block-utilisation tools, including where they are stronger. Pre-first-customer.',
   alternates: { canonical: '/compare' },
   openGraph: {
     title: 'How Aescia differs from engagement and scheduling tools | Aescia',
@@ -28,7 +28,7 @@ const pageSchema = webPageSchema({
   url: '/compare',
   name: 'How Aescia differs from patient-engagement and scheduling tools',
   description:
-    'A row-by-row comparison of Aescia for Clinics against prep-blind engagement tools, two-way texting tools, and OR block-utilisation tools, including where competitors are stronger.',
+    'A row-by-row comparison of Aescia for Clinics against patient-engagement and scheduling tools, two-way texting tools, and OR block-utilisation tools, including where competitors are stronger.',
 })
 
 type Row = {
@@ -40,6 +40,13 @@ type Row = {
 }
 
 const rows: Row[] = [
+  {
+    capability: 'Cuts no-shows and late cancellations (reminders, prep coaching, recall)',
+    aescia: 'Yes. The multichannel engagement layer that pays for itself, before any prep-awareness.',
+    engagement: 'Yes. This is their core strength.',
+    texting: 'Partial. Attendance reminders only.',
+    block: 'No.',
+  },
   {
     capability: 'Tracks prep readiness (step-level)',
     aescia: 'Yes. Clinician-authored prep pathway with per-step confirmation.',
@@ -100,7 +107,7 @@ const rows: Row[] = [
 
 const columns: Array<{ key: keyof Row; label: string }> = [
   { key: 'aescia', label: 'Aescia for Clinics' },
-  { key: 'engagement', label: 'Prep-blind engagement / scheduling tools' },
+  { key: 'engagement', label: 'Patient-engagement / scheduling tools' },
   { key: 'texting', label: 'Two-way texting tools' },
   { key: 'block', label: 'OR block-utilisation tools' },
 ]
@@ -133,7 +140,7 @@ export default function ComparePage() {
               How does Aescia differ from patient-engagement and scheduling tools?
             </h1>
             <p className="text-[17px] lg:text-[20px] leading-[1.6] text-foreground font-display max-w-3xl border-l-2 border-accent pl-5">
-              Aescia for Clinics overlaps with patient-engagement tools on reminders and with scheduling tools on slots, but it tracks prep readiness rather than appointment state, and that difference is what lets it do prep-aware backfill. Engagement, texting, and block-utilisation tools are often more mature and more deeply integrated than Aescia, which is pre-first-customer; the table below is meant to match each tool to the job it is actually best at.
+              Aescia for Clinics does what patient-engagement tools do, the reminders, prep coaching, and recall that cut no-shows and late cancellations and keep the waitlist moving, and it adds a layer they lack: it tracks prep readiness and routes freed slots to patients who are actually prepped. So it can pay for itself on engagement alone, with prep-aware backfill as the edge on top. Where Aescia is genuinely behind today is deployment maturity and deep real-time electronic medical record integration, and the table is honest about both.
             </p>
             <p className="mt-6 text-[14px] leading-[1.7] text-foreground/70 max-w-3xl">
               Categories are described by type rather than by brand. Aescia is pre-first-customer and is not a medical device.
@@ -154,9 +161,9 @@ export default function ComparePage() {
             <div className="overflow-x-auto border border-border">
               <table className="w-full border-collapse min-w-[860px] text-left">
                 <caption className="sr-only">
-                  Comparison of Aescia for Clinics against prep-blind engagement and
+                  Comparison of Aescia for Clinics against patient-engagement and
                   scheduling tools, two-way texting tools, and OR block-utilisation tools,
-                  across eight capabilities.
+                  across nine capabilities.
                 </caption>
                 <thead>
                   <tr className="bg-secondary">
@@ -204,6 +211,41 @@ export default function ComparePage() {
           </div>
         </section>
 
+        {/* Where it compounds — the synergy case */}
+        <section className="py-20 lg:py-28 px-6 lg:px-10 border-t border-border">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Where it compounds</span>
+            <h2
+              className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
+              style={{ fontVariationSettings: "'opsz' 120" }}
+            >
+              Doing several of these on one pathway beats four point tools.
+            </h2>
+            <div className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+              <p>
+                Each capability above is useful on its own. The reason to run prep, engagement, recall, and the waitlist on one pathway is that some results only appear when those steps share a single record, and no stack of separate point tools can reach them:
+              </p>
+              <ul className="space-y-3 list-none border-y border-border divide-y divide-border">
+                <li className="py-4 grid grid-cols-1 sm:grid-cols-[210px_1fr] gap-1 sm:gap-6">
+                  <span className="font-display text-[16px] text-foreground" style={{ fontVariationSettings: "'opsz' 64" }}>Prep-aware backfill</span>
+                  <span className="text-[14.5px] leading-[1.65] text-foreground/80">Exists only because prep state and the waitlist live in the same system. A reminder tool plus a separate scheduler cannot route a freed slot to a confirmed-ready patient, because neither side knows both halves. In the product today; pre-first-customer.</span>
+                </li>
+                <li className="py-4 grid grid-cols-1 sm:grid-cols-[210px_1fr] gap-1 sm:gap-6">
+                  <span className="font-display text-[16px] text-foreground" style={{ fontVariationSettings: "'opsz' 64" }}>No-show and prep-failure analysis</span>
+                  <span className="text-[14.5px] leading-[1.65] text-foreground/80">One pathway records prep steps, confirmations, medication flags, and attendance per patient over time. That longitudinal record is what makes pattern analysis, and in time prediction, possible. Four point tools never assemble it. Prediction is a forward goal, not a deployed model, and Aescia says so plainly until it ships.</span>
+                </li>
+                <li className="py-4 grid grid-cols-1 sm:grid-cols-[210px_1fr] gap-1 sm:gap-6">
+                  <span className="font-display text-[16px] text-foreground" style={{ fontVariationSettings: "'opsz' 64" }}>One record, one audit trail</span>
+                  <span className="text-[14.5px] leading-[1.65] text-foreground/80">Prep, recall, and consent on one clinician-authored pathway means one source of truth and one audit log for governance, rather than reconciling four vendors’ exports.</span>
+                </li>
+              </ul>
+              <p>
+                So the carve-outs below are real if you have a single isolated need. The case for Aescia is the compounding one: the whole is worth more than the parts when the steps share one record.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Where competitors are stronger */}
         <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
           <div className="max-w-4xl mx-auto">
@@ -217,10 +259,10 @@ export default function ComparePage() {
             <ul className="space-y-4 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl list-none">
               <li className="grid grid-cols-[20px_1fr] gap-3"><span className="text-accent pt-0.5" aria-hidden="true">&mdash;</span><span>Established patient-engagement and scheduling platforms typically have mature, real-time, bi-directional electronic medical record integrations. Aescia does not; it is pre-first-customer and starts manual or by export.</span></li>
               <li className="grid grid-cols-[20px_1fr] gap-3"><span className="text-accent pt-0.5" aria-hidden="true">&mdash;</span><span>Those platforms generally have named reference customers and deployment track records. Aescia has neither yet, and says so.</span></li>
-              <li className="grid grid-cols-[20px_1fr] gap-3"><span className="text-accent pt-0.5" aria-hidden="true">&mdash;</span><span>Two-way texting tools are simpler, cheaper, and excellent if reminders are all you need. OR block-utilisation tools are purpose-built for block and room optimisation, which Aescia does not do.</span></li>
+              <li className="grid grid-cols-[20px_1fr] gap-3"><span className="text-accent pt-0.5" aria-hidden="true">&mdash;</span><span>A dedicated two-way texting tool is simpler and cheaper if a bare reminder is genuinely all you will ever want, with no prep coaching, medication overlays, recall, or backfill. OR block-utilisation tools are purpose-built for block and room optimisation, which Aescia does not do.</span></li>
             </ul>
             <p className="mt-8 text-[15px] leading-[1.7] text-foreground/85 max-w-3xl">
-              Aescia is the right choice when prep readiness is the rate-limiter and prep-aware backfill is the goal. For everything else, one of the categories above is likely the better fit. The decision criteria are on{' '}
+              Aescia earns its keep on the basics, fewer no-shows and late cancellations and a fuller list, and it is the strongest fit when prep readiness is the rate-limiter, because prep-aware backfill is something the other categories do not do. The honest caveats are deployment maturity and deep real-time EHR scheduling, where an established vendor may suit a buyer who needs them in place today. Full criteria on{' '}
               <Link href="/asc-fit" className="underline decoration-brass/40 underline-offset-4 hover:decoration-foreground transition-colors">the fit page</Link>.
             </p>
           </div>
