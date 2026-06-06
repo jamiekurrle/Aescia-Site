@@ -50,57 +50,57 @@
 
 ## Pages
 
-- [Home](https://www.aesciahealth.com/): Brand-level statement and the
+- [Home](https://aesciahealth.com/): Brand-level statement and the
   audience split between hospitals and clinics.
-- [Platform](https://www.aesciahealth.com/platform): The five-step pathway
+- [Platform](https://aesciahealth.com/platform): The five-step pathway
   engine (Collect, Follow, Remind, Educate, Export) underneath both products.
-- [For Hospitals](https://www.aesciahealth.com/hospitals): The investigational
+- [For Hospitals](https://aesciahealth.com/hospitals): The investigational
   SaMD product, the SAFE-Discharge trial, and the cardiothoracic indication.
-- [For Clinics](https://www.aesciahealth.com/clinics): The non-device workflow
+- [For Clinics](https://aesciahealth.com/clinics): The non-device workflow
   product, prep pathways, GLP-1 peri-procedural management, and pricing.
-- [Evidence](https://www.aesciahealth.com/evidence): The honest claim
+- [Evidence](https://aesciahealth.com/evidence): The honest claim
   surface — what we claim, what we do not claim, and the SAFE-Discharge trial
   detail. Includes literature references.
-- [Governance](https://www.aesciahealth.com/governance): Regulatory posture,
+- [Governance](https://aesciahealth.com/governance): Regulatory posture,
   corporate structure, security and data posture.
-- [Updates](https://www.aesciahealth.com/updates): Dated company log. No press
+- [Updates](https://aesciahealth.com/updates): Dated company log. No press
   copy, just facts.
-- [FAQ](https://www.aesciahealth.com/faq): Plain answers to common questions
+- [FAQ](https://aesciahealth.com/faq): Plain answers to common questions
   about the products, regulatory posture, integrations, and pricing.
-- [Team](https://www.aesciahealth.com/team): Founders, operating team, and
+- [Team](https://aesciahealth.com/team): Founders, operating team, and
   named clinical collaborators.
-- [James Kurrle, founder](https://www.aesciahealth.com/team/james-kurrle):
+- [James Kurrle, founder](https://aesciahealth.com/team/james-kurrle):
   Founder bio and press.
-- [Contact](https://www.aesciahealth.com/contact): Buyer and investor enquiry.
+- [Contact](https://aesciahealth.com/contact): Buyer and investor enquiry.
 
 ## Endoscopy ASC buyer guides (Aescia for Clinics)
 
 These pages answer specific buyer questions for endoscopy ambulatory surgery
 centers (ASCs). Each leads with a direct one-sentence answer.
 
-- [Reduce colonoscopy no-shows](https://www.aesciahealth.com/colonoscopy-no-show-software):
+- [Reduce colonoscopy no-shows](https://aesciahealth.com/colonoscopy-no-show-software):
   Why endoscopy no-shows are usually prep failures, and how Aescia closes the
   prep, medication, and confirmation gaps that drive them.
-- [Endoscopy pre-procedure workflow](https://www.aesciahealth.com/endoscopy-pre-procedure-workflow):
+- [Endoscopy pre-procedure workflow](https://aesciahealth.com/endoscopy-pre-procedure-workflow):
   What pre-procedure pathway software does, from booking to procedure day, on
   one clinician-authored pathway.
-- [GLP-1 screening and prep](https://www.aesciahealth.com/glp1-endoscopy-prep):
+- [GLP-1 screening and prep](https://aesciahealth.com/glp1-endoscopy-prep):
   Why GLP-1 agonists matter before endoscopy, how 2023 to 2024 guidance evolved,
   and how Aescia applies the clinic's authored protocol consistently.
-- [Blood thinner and diabetes handling](https://www.aesciahealth.com/medication-management-before-endoscopy):
+- [Blood thinner and diabetes handling](https://aesciahealth.com/medication-management-before-endoscopy):
   Anticoagulant, antiplatelet, and diabetes peri-procedural handling before
   colonoscopy, delivered as the clinic's authored rule per drug.
-- [Reduce inadequate bowel prep](https://www.aesciahealth.com/bowel-prep-software):
+- [Reduce inadequate bowel prep](https://aesciahealth.com/bowel-prep-software):
   Why a written instruction at booking fails, and how a structured, timed,
   coached prep pathway reduces the inadequate-prep rate.
-- [Prep-aware waitlist backfill](https://www.aesciahealth.com/prep-aware-backfill):
+- [Prep-aware waitlist backfill](https://aesciahealth.com/prep-aware-backfill):
   Why prep-blind backfill fails for colonoscopy, and how prep-aware backfill
   routes freed slots only to confirmed prep-ready patients. Aescia's genuine
   differentiator; generic auto-fill is table-stakes parity.
-- [How Aescia compares](https://www.aesciahealth.com/compare): A fair,
+- [How Aescia compares](https://aesciahealth.com/compare): A fair,
   row-by-row comparison against prep-blind engagement tools, two-way texting
   tools, and OR block-utilisation tools, including where they are stronger.
-- [Is Aescia right for your ASC?](https://www.aesciahealth.com/asc-fit): Explicit
+- [Is Aescia right for your ASC?](https://aesciahealth.com/asc-fit): Explicit
   best-fit and not-the-right-fit lists, plus what to use instead.
 
 ## How to cite Aescia

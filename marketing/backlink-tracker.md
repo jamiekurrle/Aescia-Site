@@ -36,7 +36,7 @@ is self-contained.
 >
 > Aescia is a [member|portfolio company] of [programme] (joined [month year]). We're a healthtech startup operating in Sydney and Montréal — investigational software-as-a-medical-device for post-discharge monitoring (in clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital), and a workflow product for specialty clinics.
 >
-> Could we be added to your public member directory / portfolio companies page? Site: https://www.aesciahealth.com. Logo and short description attached.
+> Could we be added to your public member directory / portfolio companies page? Site: https://aesciahealth.com. Logo and short description attached.
 >
 > Thanks,
 > [name]
@@ -51,6 +51,6 @@ is self-contained.
 >
 > James would be a strong guest on the post-discharge gap, the regulatory contrast between the two products, and the bilateral Sydney-Montréal company structure. Aescia is a District 3 portfolio company at Concordia University and is enrolled in MTAA MedTech Compass.
 >
-> Background and links: https://www.aesciahealth.com/team/james-kurrle. Happy to share specific topic angles if useful.
+> Background and links: https://aesciahealth.com/team/james-kurrle. Happy to share specific topic angles if useful.
 >
 > [name]

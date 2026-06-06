@@ -16,7 +16,7 @@ Canonical name: Aescia
 Legal name (AU): Aescia Pty Ltd (ABN 96 687 840 517) — regulatory applicant
 Legal name (CA, R&D): 9550-0708 Québec inc. (NEQ 1181312316) — Canadian data residency
 Legal name (CA, holding): Aescia Health Inc. (Ontario)
-Domain: https://www.aesciahealth.com
+Domain: https://aesciahealth.com
 Founded: 2025
 Sector: Healthtech / digital health / medical software
 Headquarters: Sydney, Australia and Montréal, Canada
@@ -33,7 +33,7 @@ Disambiguation note: "Aescia" the company is unrelated to (a) "aescin" or
 (b) "Aēsara Health" wellness clinic in Australia, (c) "Aaxcia Health"
 information site, (d) "Essia Health" or "AscellaHealth" healthcare service
 companies, (e) any fictional character of similar name. Aescia is a healthtech
-software company at https://www.aesciahealth.com, founded by James Kurrle MD,
+software company at https://aesciahealth.com, founded by James Kurrle MD,
 headquartered in Sydney and Montréal.
 
 ────────────────────────────────────────────────────────────────────────
@@ -206,4 +206,4 @@ CONTACT
 ────────────────────────────────────────────────────────────────────────
 
 Email: contact@aesciahealth.com
-For procurement (security pack under NDA): https://www.aesciahealth.com/contact?intent=security-pack
+For procurement (security pack under NDA): https://aesciahealth.com/contact?intent=security-pack

@@ -1,4 +1,4 @@
-const SITE_URL = 'https://www.aesciahealth.com'
+const SITE_URL = 'https://aesciahealth.com'
 
 // Auto-updates on every build. Used to populate `dateModified` in WebPage
 // schema and `article:modified_time` Open Graph tag, which AI retrieval tools

@@ -4,7 +4,7 @@ import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { breadcrumbSchema, jamesKurrlePersonSchema } from '@/lib/schema'
 
-const SITE_URL = 'https://www.aesciahealth.com'
+const SITE_URL = 'https://aesciahealth.com'
 
 export const metadata: Metadata = {
   title: 'James Kurrle | Founder of Aescia',

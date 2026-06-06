@@ -9,7 +9,7 @@ import './globals.css'
 // Single typeface programme (Geist) — matches aescia-clinical.vercel.app.
 // Display, sans, and mono all map to Geist via CSS variables in globals.css.
 
-const SITE_URL = 'https://www.aesciahealth.com'
+const SITE_URL = 'https://aesciahealth.com'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -55,7 +55,7 @@ roundups), it does not.
 | /llms.txt on production | ❌ | Returns 404 (the seo-and-external-presence branch added this file, but it is not yet deployed). |
 | /faq on production | ❌ | 404. Same reason. |
 | /team/james-kurrle on production | ❌ | 404. Same reason. |
-| HTTPS / canonical | ✅ | aesciahealth.com → https://aesciahealth.com/ → https://www.aesciahealth.com/ chain is clean. Canonical link present. |
+| HTTPS / canonical | ✅ | aesciahealth.com → https://aesciahealth.com/ → https://aesciahealth.com/ chain is clean. Canonical link present. |
 
 **Phase 2 summary.** The technical posture for crawler access is excellent
 for what is deployed. The single biggest gap is that the recent
@@ -319,8 +319,8 @@ web search, ChatGPT search, and a clean (incognito) Google search.
 | Test | Pass | Fail = escalate to |
 |---|---|---|
 | `site:aesciahealth.com` on Google | Returns ≥ 5 pages including `/`, `/governance`, `/evidence` | Re-check Search Console for "Discovered, currently not indexed" status; manually re-submit each URL |
-| `curl https://www.aesciahealth.com/llms.txt` | 200, text/plain | Vercel deploy didn't include the public/ assets — re-check |
-| `curl https://www.aesciahealth.com/faq` | 200 | Build error in /faq route — check Vercel build logs |
+| `curl https://aesciahealth.com/llms.txt` | 200, text/plain | Vercel deploy didn't include the public/ assets — re-check |
+| `curl https://aesciahealth.com/faq` | 200 | Build error in /faq route — check Vercel build logs |
 | Organization JSON-LD on production homepage `foundingDate` | "2025" | Cache invalidation needed; force redeploy |
 
 ### Day 30 (Fix 1 + Fix 2 indexed; Fix 3 outreach in flight)

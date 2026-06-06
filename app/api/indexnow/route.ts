@@ -13,8 +13,8 @@ import { NextResponse } from 'next/server'
 // provided so this works out of the box; override with the INDEXNOW_KEY env var
 // in Vercel if the key is ever rotated (and update the public file to match).
 
-const SITE_URL = 'https://www.aesciahealth.com'
-const SITE_HOST = 'www.aesciahealth.com'
+const SITE_URL = 'https://aesciahealth.com'
+const SITE_HOST = 'aesciahealth.com'
 const DEFAULT_KEY = '3f9a1c7e5b2d4860a1f8c3e90d7b6a24'
 
 function resolveKey() {

@@ -1,7 +1,7 @@
 # LinkedIn — Aescia company page
 
 Source-of-truth for the LinkedIn company page. Every claim here mirrors what is on
-[aesciahealth.com](https://www.aesciahealth.com). When the website changes, change this file too.
+[aesciahealth.com](https://aesciahealth.com). When the website changes, change this file too.
 
 ## Tagline (≤120 chars)
 

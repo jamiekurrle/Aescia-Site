@@ -16,7 +16,7 @@ const homePageSchema = webPageSchema({
   name: 'Aescia. A continuous-care platform.',
   description:
     'A continuous-care platform: structured patient follow-up for hospitals (investigational software as a medical device, intended TGA Class IIa) and workflow for specialty clinics. Pre-first-customer.',
-  primaryImage: 'https://www.aesciahealth.com/aescia-logo.png',
+  primaryImage: 'https://aesciahealth.com/aescia-logo.png',
 })
 
 export default function Home() {

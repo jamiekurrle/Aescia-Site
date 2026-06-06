@@ -19,7 +19,7 @@ total. First line as required.
 >
 > If you build, fund, regulate, or buy in this space — discharge monitoring, endoscopy and procedural-prep workflow, peri-procedural GLP-1 management, hospital signal-layer software — please get in touch.
 >
-> More at https://www.aesciahealth.com.
+> More at https://aesciahealth.com.
 
 ---
 

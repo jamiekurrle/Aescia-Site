@@ -26,14 +26,14 @@ Without it, every other discoverability lever is gated.
    long-lived account, not a personal one — the company should retain access
    if James's account changes.
 3. Add a property. Pick **Domain** property type (covers `aesciahealth.com`,
-   `www.aesciahealth.com`, all subdomains, http and https). This is more
+   `aesciahealth.com`, all subdomains, http and https). This is more
    robust than the URL-prefix variant.
 4. Verify ownership by adding the TXT record Google gives you to the
    `aesciahealth.com` DNS at the domain registrar (Vercel manages DNS for
    most Aescia setups; if so, add the record under Vercel → Domains →
    aesciahealth.com → DNS).
 5. Once verified, go to **Sitemaps** in the left rail and submit:
-   `https://www.aesciahealth.com/sitemap.xml`.
+   `https://aesciahealth.com/sitemap.xml`.
 6. Then **URL Inspection** → paste the homepage URL → click **Request
    Indexing**. Repeat for: `/governance`, `/evidence`, `/team`,
    `/team/james-kurrle` (after deploy), `/platform`, `/hospitals`,
@@ -73,18 +73,18 @@ content. Until merge + deploy, none of this work is doing any work.
    ai-discoverability section to it).
 2. Confirm Vercel preview deployment renders correctly (preview URL on the
    PR).
-3. Merge to main. Vercel auto-deploys to www.aesciahealth.com.
+3. Merge to main. Vercel auto-deploys to aesciahealth.com.
 4. After deploy, run the verification curls below.
 
 **Verification commands (run after deploy):**
 
 ```bash
-curl -sk -o /dev/null -w "%{http_code}\n" https://www.aesciahealth.com/llms.txt
-curl -sk -o /dev/null -w "%{http_code}\n" https://www.aesciahealth.com/llms-full.txt
-curl -sk -o /dev/null -w "%{http_code}\n" https://www.aesciahealth.com/faq
-curl -sk -o /dev/null -w "%{http_code}\n" https://www.aesciahealth.com/team/james-kurrle
-curl -sk https://www.aesciahealth.com/ | grep -o '"foundingDate":"[^"]*"'
-curl -sk https://www.aesciahealth.com/ | grep -o '"sameAs":\[[^]]*\]'
+curl -sk -o /dev/null -w "%{http_code}\n" https://aesciahealth.com/llms.txt
+curl -sk -o /dev/null -w "%{http_code}\n" https://aesciahealth.com/llms-full.txt
+curl -sk -o /dev/null -w "%{http_code}\n" https://aesciahealth.com/faq
+curl -sk -o /dev/null -w "%{http_code}\n" https://aesciahealth.com/team/james-kurrle
+curl -sk https://aesciahealth.com/ | grep -o '"foundingDate":"[^"]*"'
+curl -sk https://aesciahealth.com/ | grep -o '"sameAs":\[[^]]*\]'
 ```
 
 Expect: 200, 200, 200, 200, `"foundingDate":"2025"`, sameAs array including
@@ -128,7 +128,7 @@ Royal Prince Alfred Hospital cardiothoracic unit, ACTRN12625001425482), and
 a non-device workflow platform for specialty clinics. We operate from Sydney
 and Montréal.
 
-Site: https://www.aesciahealth.com
+Site: https://aesciahealth.com
 Sector tag: bio / health
 Logo and short description in the attachment, drawn from
 marketing/external-profiles/wellfound-crunchbase.md.
@@ -186,7 +186,7 @@ Statements:
 - country (P17): Australia (Q408), Canada (Q16)
 - headquarters location (P159): Sydney (Q3130), Montréal (Q340)
 - inception (P571): 2025
-- official website (P856): https://www.aesciahealth.com
+- official website (P856): https://aesciahealth.com
 - founded by (P112): James Kurrle (no Q-ID yet — leave as label)
 - industry (P452): health technology (Q23735008)
 - LinkedIn ID (P4264): aescia
@@ -205,7 +205,7 @@ record's "Sponsor" or "Trial website" field references aesciahealth.com.
 
 **Action:** Sign in to the ANZCTR sponsor account. Open the trial record.
 Confirm the "URL" or "Trial website" field is filled with
-https://www.aesciahealth.com (or https://www.aesciahealth.com/evidence). If
+https://aesciahealth.com (or https://aesciahealth.com/evidence). If
 not, edit and re-submit.
 
 ### 3f. MTAA member directory listing — already live (verify only)

@@ -1,7 +1,7 @@
 # Wellfound and Crunchbase profile copy
 
 Drop-in copy for the Wellfound (formerly AngelList Talent) and Crunchbase company
-profiles. Every line is consistent with [aesciahealth.com](https://www.aesciahealth.com)
+profiles. Every line is consistent with [aesciahealth.com](https://aesciahealth.com)
 and the LinkedIn copy in this folder.
 
 ---
@@ -94,10 +94,10 @@ and the LinkedIn copy in this folder.
 
 | Date | Source | URL | Suggested headline |
 |---|---|---|---|
-| 2025-09 | Aescia (own announcement) | (none — site-internal Updates entry; link to https://www.aesciahealth.com/updates#e1) | Aescia joins District 3 at Concordia University |
+| 2025-09 | Aescia (own announcement) | (none — site-internal Updates entry; link to https://aesciahealth.com/updates#e1) | Aescia joins District 3 at Concordia University |
 | 2025-10-20 | Concordia News | https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html | Concordia News features Aescia in Beat the Odds programme |
 | 2026-04 | MTAA industry members directory (live) | https://www.mtaa.org.au/industry-members | Aescia listed as MTAA industry member |
-| 2026-04 | Aescia (own announcement) | https://www.aesciahealth.com/updates#e10 | Aescia enrols in MTAA MedTech Compass |
+| 2026-04 | Aescia (own announcement) | https://aesciahealth.com/updates#e10 | Aescia enrols in MTAA MedTech Compass |
 | (existing) | ANZCTR | https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482 | SAFE-Discharge trial registration |
 
 ---
