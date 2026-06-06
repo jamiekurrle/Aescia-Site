@@ -8,6 +8,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '', priority: 1.0, freq: 'weekly' as const },
     { path: '/hospitals', priority: 0.9, freq: 'weekly' as const },
     { path: '/clinics', priority: 0.9, freq: 'weekly' as const },
+    // Endoscopy ASC buyer-query landing pages (Aescia for Clinics). High
+    // priority: these are the answer-engine-optimised entry points.
+    { path: '/colonoscopy-no-show-software', priority: 0.9, freq: 'monthly' as const },
+    { path: '/endoscopy-pre-procedure-workflow', priority: 0.9, freq: 'monthly' as const },
+    { path: '/glp1-endoscopy-prep', priority: 0.9, freq: 'monthly' as const },
+    { path: '/medication-management-before-endoscopy', priority: 0.9, freq: 'monthly' as const },
+    { path: '/bowel-prep-software', priority: 0.9, freq: 'monthly' as const },
+    { path: '/prep-aware-backfill', priority: 0.9, freq: 'monthly' as const },
+    { path: '/compare', priority: 0.85, freq: 'monthly' as const },
+    { path: '/asc-fit', priority: 0.85, freq: 'monthly' as const },
     { path: '/security', priority: 0.9, freq: 'monthly' as const },
     { path: '/design-partner', priority: 0.9, freq: 'monthly' as const },
     { path: '/integrations', priority: 0.85, freq: 'monthly' as const },

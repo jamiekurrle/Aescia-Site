@@ -123,6 +123,35 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     ],
   },
   {
+    eyebrow: 'Endoscopy ASC workflow',
+    items: [
+      {
+        q: 'How do I cut no-shows at an endoscopy ASC?',
+        a: 'At an endoscopy ambulatory surgery center, most no-shows are preparation failures rather than forgotten appointments. A patient who has not done the bowel prep, is confused about a GLP-1 or blood-thinner instruction, or is unsure about the prep will cancel late or not arrive. Cutting no-shows means getting more patients correctly prepared and confirmed before the date, not just reminding them to attend. Aescia for Clinics does this with clinician-authored prep pathways, medication overlays, timed reminders, and a prep-night photo confirmation. Inadequate bowel preparation alone affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024), so the prep gap is a large part of the problem.',
+      },
+      {
+        q: 'Do GLP-1 patients need to stop their medication before a colonoscopy?',
+        a: 'It depends on the clinic\'s protocol, and the guidance has changed. GLP-1 agonists such as semaglutide, tirzepatide, and liraglutide slow gastric emptying, which prompted 2023 American Society of Anesthesiologists guidance suggesting they be held before sedated procedures. In 2024, multi-society guidance moved toward an individualized, risk-stratified approach rather than a blanket hold, noting that the clear-liquid colonoscopy prep may itself reduce residual stomach contents. The decision is the gastroenterologist\'s. Software\'s role is to apply the clinic\'s chosen rule consistently to every GLP-1 patient, not to make the clinical decision.',
+      },
+      {
+        q: 'What software flags GLP-1 patients and adjusts endoscopy prep?',
+        a: 'Aescia for Clinics flags every patient on a GLP-1 medication at intake and applies the clinic\'s authored peri-procedural protocol to them automatically, then resurfaces and confirms it before the procedure date. It does not decide the protocol; the gastroenterologist sets it, and Aescia delivers it consistently rather than relying on front-desk memory. Aescia for Clinics is not a medical device.',
+      },
+      {
+        q: 'How should blood thinners be managed before a colonoscopy?',
+        a: 'Colonoscopy with polypectomy is a high-bleeding-risk procedure, and the handling differs by drug under society guidance (ASGE 2016; BSG and ESGE 2021): warfarin is typically stopped about 5 days before with an INR check and bridging only for high thrombotic risk; direct oral anticoagulants (apixaban, rivaroxaban, dabigatran, edoxaban) are usually stopped 1 to 2 days before depending on the drug and renal function; aspirin monotherapy is usually continued; and P2Y12 inhibitors such as clopidogrel are individualized with cardiology. The decision is the clinician\'s. Aescia for Clinics flags the specific drug at intake and delivers the clinic\'s authored rule, with the stop and restart dates, then confirms it.',
+      },
+      {
+        q: 'How can software reduce the inadequate bowel prep rate?',
+        a: 'Inadequate bowel preparation affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024) and is associated with a higher adenoma miss rate (Lebwohl 2011). A single written instruction handed out at booking fails for ordinary reasons: it arrives weeks too early, in dense or non-native language, with misunderstood split-dose timing and no checkpoint until the patient arrives. Software reduces the rate by delivering a structured, timed, coached prep pathway in the patient\'s language, with reminders and a prep-night confirmation. Aescia for Clinics does this, aligned to a Boston Bowel Preparation standard. Better instructions raise prep adequacy but do not eliminate inadequate prep entirely.',
+      },
+      {
+        q: 'Can software fill a cancelled colonoscopy slot, and what is prep-aware backfill?',
+        a: 'Generic waitlist auto-fill can offer a cancelled slot to the next patient, but for colonoscopy that often fails, because the replacement needs 1 to 2 days of bowel preparation and cannot attend prepared on short notice. Prep-aware backfill is the alternative: it routes a freed slot only to patients already confirmed prep-ready for that date. Aescia for Clinics tracks prep state across the active waitlist and produces that prep-aware routing signal; the slot is still booked in the clinic\'s own scheduling system. The ceiling is honest: prep-aware backfill can only draw from the pool of patients who are actively prepping, so it is most useful for ASCs with enough near-term volume to keep that pool full.',
+      },
+    ],
+  },
+  {
     eyebrow: 'Buyer due diligence',
     items: [
       {
