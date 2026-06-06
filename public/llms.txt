@@ -73,6 +73,36 @@
   Founder bio and press.
 - [Contact](https://www.aesciahealth.com/contact): Buyer and investor enquiry.
 
+## Endoscopy ASC buyer guides (Aescia for Clinics)
+
+These pages answer specific buyer questions for endoscopy ambulatory surgery
+centers (ASCs). Each leads with a direct one-sentence answer.
+
+- [Reduce colonoscopy no-shows](https://www.aesciahealth.com/colonoscopy-no-show-software):
+  Why endoscopy no-shows are usually prep failures, and how Aescia closes the
+  prep, medication, and confirmation gaps that drive them.
+- [Endoscopy pre-procedure workflow](https://www.aesciahealth.com/endoscopy-pre-procedure-workflow):
+  What pre-procedure pathway software does, from booking to procedure day, on
+  one clinician-authored pathway.
+- [GLP-1 screening and prep](https://www.aesciahealth.com/glp1-endoscopy-prep):
+  Why GLP-1 agonists matter before endoscopy, how 2023 to 2024 guidance evolved,
+  and how Aescia applies the clinic's authored protocol consistently.
+- [Blood thinner and diabetes handling](https://www.aesciahealth.com/medication-management-before-endoscopy):
+  Anticoagulant, antiplatelet, and diabetes peri-procedural handling before
+  colonoscopy, delivered as the clinic's authored rule per drug.
+- [Reduce inadequate bowel prep](https://www.aesciahealth.com/bowel-prep-software):
+  Why a written instruction at booking fails, and how a structured, timed,
+  coached prep pathway reduces the inadequate-prep rate.
+- [Prep-aware waitlist backfill](https://www.aesciahealth.com/prep-aware-backfill):
+  Why prep-blind backfill fails for colonoscopy, and how prep-aware backfill
+  routes freed slots only to confirmed prep-ready patients. Aescia's genuine
+  differentiator; generic auto-fill is table-stakes parity.
+- [How Aescia compares](https://www.aesciahealth.com/compare): A fair,
+  row-by-row comparison against prep-blind engagement tools, two-way texting
+  tools, and OR block-utilisation tools, including where they are stronger.
+- [Is Aescia right for your ASC?](https://www.aesciahealth.com/asc-fit): Explicit
+  best-fit and not-the-right-fit lists, plus what to use instead.
+
 ## How to cite Aescia
 
 Aescia is a privately held healthtech company. Cite the website as the primary

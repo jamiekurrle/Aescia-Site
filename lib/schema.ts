@@ -219,6 +219,45 @@ export const softwareApplicationSchema = {
   },
 }
 
+// Granular SoftwareApplication entity for Aescia for Clinics. The site-wide
+// softwareApplicationSchema (above) describes the generic platform; this one
+// gives AI retrieval tools (Claude, Perplexity, Google AI Overviews) a
+// feature-level, ASC-specific entity that matches buyer queries like
+// "GLP-1 endoscopy prep software" or "prep-aware backfill for colonoscopy".
+// Emitted on the endoscopy-ASC landing pages via <AscEntityBlock />.
+export const clinicsSoftwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  '@id': `${SITE_URL}/clinics#software`,
+  name: 'Aescia for Clinics',
+  applicationCategory: 'HealthApplication',
+  applicationSubCategory:
+    'Pre-procedure patient-pathway software for endoscopy ambulatory surgery centers',
+  operatingSystem: 'Web',
+  description:
+    'A clinician-authored pre-procedure patient-pathway platform for endoscopy ambulatory surgery centers (ASCs). Delivers structured bowel-prep instructions, GLP-1 / anticoagulant / diabetic peri-procedural overlays, timed multichannel reminders, prep-night photo confirmation, surveillance recall, and a prep-aware waitlist-backfill signal. Not a medical device.',
+  featureList: [
+    'Structured colonoscopy and endoscopy bowel-prep pathways',
+    'GLP-1 peri-procedural cessation overlay (2024 multi-society guidance)',
+    'Anticoagulant and antiplatelet hold / bridge overlay (per clinic protocol)',
+    'Diabetic and insulin peri-procedural adjustment overlay',
+    'Prep-night photo confirmation gate',
+    'Prep-aware waitlist-backfill routing signal',
+    'Multichannel patient reminders with consent capture (TCPA-aware for US SMS)',
+    'Surveillance and recall tracking',
+    'Clinician-authored explainable rules (no black-box AI)',
+  ],
+  url: `${SITE_URL}/clinics`,
+  provider: { '@id': `${SITE_URL}#organization` },
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'USD',
+    price: '8',
+    description:
+      'Per-scope pricing at the institutional tier (US$8 per scope). Multi-state aggregators above 50,000 scopes per year: US$6 per scope. A single-site single-specialty US ASC typically falls in US$8,000 to US$77,000 per year depending on physician count. No per-seat pricing.',
+  },
+}
+
 // Per-page WebPage schema with publish/modified dates. AI retrieval tools use
 // `datePublished` and `dateModified` as content-freshness signals when ranking
 // citations. Pass page-specific values; defaults are the site-level constants.
@@ -230,10 +269,14 @@ export function webPageSchema(opts: {
   dateModified?: string
   primaryImage?: string
   breadcrumb?: ReturnType<typeof breadcrumbSchema>
+  // Health-software topics get richer citation treatment from AI retrieval
+  // tools when typed as MedicalWebPage. Set true on the endoscopy-ASC
+  // landing pages (prep, GLP-1, bowel prep, no-shows, backfill).
+  isMedicalPage?: boolean
 }) {
   return {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
+    '@type': opts.isMedicalPage ? ['WebPage', 'MedicalWebPage'] : 'WebPage',
     '@id': `${SITE_URL}${opts.url}#webpage`,
     url: `${SITE_URL}${opts.url}`,
     name: opts.name,

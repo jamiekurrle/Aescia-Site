@@ -269,6 +269,52 @@ export default function ClinicsContent() {
         </div>
       </section>
 
+      {/* Endoscopy ASC guides — the buyer-query landing pages, linked from the
+          hub so the answer-engine cluster has strong topical inbound links,
+          not just sitemap entries. */}
+      <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Endoscopy ASC guides</span>
+            <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
+          </div>
+          <h2
+            className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em] max-w-2xl mb-12"
+            style={{ fontVariationSettings: "'opsz' 120" }}
+          >
+            Answers to the questions ASC buyers actually ask.
+          </h2>
+          <div className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
+            {[
+              ['/colonoscopy-no-show-software', 'What software reduces colonoscopy no-shows at an ASC?'],
+              ['/endoscopy-pre-procedure-workflow', 'What does endoscopy pre-procedure workflow software do?'],
+              ['/glp1-endoscopy-prep', 'What software flags GLP-1 patients and adjusts prep?'],
+              ['/medication-management-before-endoscopy', 'How are blood thinners and diabetes managed before a colonoscopy?'],
+              ['/bowel-prep-software', 'How do I reduce the inadequate bowel prep rate?'],
+              ['/prep-aware-backfill', 'What is prep-aware waitlist backfill?'],
+              ['/compare', 'How does Aescia differ from engagement and scheduling tools?'],
+              ['/asc-fit', 'Is Aescia right for your ASC?'],
+            ].map(([href, q]) => (
+              <Link
+                key={href}
+                href={href}
+                className="group bg-background p-7 lg:p-8 flex items-center justify-between gap-4 hover:bg-secondary transition-colors"
+              >
+                <span
+                  className="font-display text-[17px] lg:text-[19px] leading-[1.3] tracking-[-0.015em] text-foreground"
+                  style={{ fontVariationSettings: "'opsz' 72" }}
+                >
+                  {q}
+                </span>
+                <svg className="w-4 h-4 shrink-0 text-foreground/40 group-hover:text-foreground transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                </svg>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Evidence stage — honest distinction between category evidence and
           Aescia-specific evidence. Sits right before the ROI section so the
           calculator is read against the right backdrop. */}
