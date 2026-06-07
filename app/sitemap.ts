@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { OPEN_ROLES } from '@/lib/careers'
 
 const SITE_URL = 'https://www.aesciahealth.com'
 
@@ -27,14 +28,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/governance', priority: 0.7, freq: 'monthly' as const },
     { path: '/team', priority: 0.7, freq: 'monthly' as const },
     { path: '/team/james-kurrle', priority: 0.7, freq: 'monthly' as const },
+    { path: '/careers', priority: 0.7, freq: 'monthly' as const },
     { path: '/faq', priority: 0.7, freq: 'monthly' as const },
     { path: '/contact', priority: 0.6, freq: 'monthly' as const },
   ]
 
-  return paths.map(({ path, priority, freq }) => ({
+  const staticEntries = paths.map(({ path, priority, freq }) => ({
     url: `${SITE_URL}${path}`,
     lastModified: now,
     changeFrequency: freq,
     priority,
   }))
+
+  // Open job postings (/careers/[slug]). Driven by lib/careers OPEN_ROLES, so a
+  // role closing (open: false) or being removed drops it from the sitemap
+  // automatically. These are real 200 pages carrying JobPosting structured data.
+  const careerEntries = OPEN_ROLES.map((role) => ({
+    url: `${SITE_URL}/careers/${role.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  return [...staticEntries, ...careerEntries]
 }
