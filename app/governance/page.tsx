@@ -158,7 +158,7 @@ export default function GovernancePage() {
                 },
                 {
                   title: 'Regulatory',
-                  items: ['Intended Class IIa for Hospitals, application not yet lodged', 'Non-device posture for Clinics, documented per feature', 'No AI models outside clinician-authored rule sets'],
+                  items: ['Intended Class IIa for Hospitals, application not yet lodged', 'Non-device posture for Clinics, documented per feature', 'Patient-facing alerts on clinician-authored, explainable rules; ML used only for advisory back-end analysis'],
                 },
               ].map((block) => (
                 <div key={block.title} className="bg-secondary p-7 lg:p-8">

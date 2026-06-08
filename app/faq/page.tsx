@@ -68,7 +68,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What does the platform do underneath both products?',
-        a: 'One composable pathway engine with five step types: Collect, Follow, Remind, Educate, Export. The same engine runs surgical recovery pathways for hospitals and procedural-prep pathways for clinics. Pathways are authored by practising clinicians; there are no AI models outside the clinician-authored rule sets.',
+        a: 'One composable pathway engine with five step types: Collect, Follow, Remind, Educate, Export. The same engine runs surgical recovery pathways for hospitals and procedural-prep pathways for clinics. Pathways are authored by practising clinicians, and the clinical alert rules stay explainable rather than a black box. Aescia does use machine learning for back-end analysis and operational tooling, which is advisory and kept separate from the clinician-authored rules that drive patient-facing alerts.',
       },
     ],
   },
@@ -114,7 +114,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Does Aescia use AI or machine learning?',
-        a: 'Pathway content is authored by practising clinicians. Aescia does not deploy AI models that operate outside clinician-authored rule sets. Output in the Hospitals product is advisory; the clinician remains the decision-maker. The Clinics product does not propose clinical decisions at all.',
+        a: 'Yes, but with a clear line. The clinical alert rules, the logic that decides whether to flag, remind, or escalate for a patient, are authored by practising clinicians and stay explainable; there is no black-box AI making or proposing patient care. Aescia does use machine learning for back-end analysis and operational tooling that is not patient-facing, for example a planned risk score that flags which colonoscopies are likely to run long so the list can be planned. That analysis is advisory, never replaces the clinician, and is kept separate from the clinician-authored rules. Output in the Hospitals product is advisory; the clinician remains the decision-maker. The Clinics product does not propose clinical decisions.',
       },
       {
         q: 'How can I evaluate Aescia for my hospital or clinic?',
