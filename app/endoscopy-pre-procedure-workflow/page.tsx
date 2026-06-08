@@ -146,7 +146,34 @@ export default function EndoscopyWorkflowPage() {
                 Pathways start from published evidence-based guidelines for the specialty: USMSTF and NHMRC for surveillance intervals, the 2024 multi-society guidance for GLP-1 peri-procedural handling, regional bowel-preparation protocols, and society anticoagulation guidance. A practising clinician authors the rule set against those guidelines, and every pathway carries a named clinical author and a documented guideline trail.
               </p>
               <p>
-                The rules are stress-tested against simulated synthetic-patient cohorts before they touch a real patient, so edge cases such as a diabetic patient on insulin who is also on a GLP-1 agonist surface and are resolved in the rule editor rather than in the front-desk call queue. There are no AI models operating outside the clinician-authored rule set, which is part of why Aescia for Clinics is not a medical device.
+                The rules are stress-tested against simulated synthetic-patient cohorts before they touch a real patient, so edge cases such as a diabetic patient on insulin who is also on a GLP-1 agonist surface and are resolved in the rule editor rather than in the front-desk call queue. The clinical alerts a patient or clinician sees run on these clinician-authored, explainable rules, not a black box, which is part of why Aescia for Clinics is not a medical device. Aescia does use machine learning for back-end analysis and operational tooling, like the procedure-length risk score on the roadmap below, but that analysis is advisory and is never the patient-facing clinical logic.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* On the roadmap: procedure-length risk score. Planned, not built. ML is
+            used here for back-end/operational analysis (list planning), kept
+            separate from the clinician-authored patient-facing alert rules, and
+            framed as operational (not a clinical decision) to stay non-device. */}
+        <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">On the roadmap</span>
+            <h2
+              className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
+              style={{ fontVariationSettings: "'opsz' 120" }}
+            >
+              A procedure-length risk score, to plan the list before the day.
+            </h2>
+            <div className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
+              <p>
+                A colonoscopy that runs long pushes the rest of the list back, causing late starts, overruns, and downstream cancellations. We are building a risk score that flags, before the day, which cases are likely to run long or be technically difficult, so the list can be planned around them rather than discovered in real time.
+              </p>
+              <p>
+                It is a back-end, operational tool, not a clinical decision and not patient-facing. It draws on factors already known to track with longer or harder procedures: a patient’s previous colonoscopy duration and whether it was completed, prior Boston Bowel Preparation Scale (BBPS) scores, and other history. It surfaces the score and its main drivers to your schedulers; the team decides how to build the list.
+              </p>
+              <p className="text-[14px] text-foreground/70 border-l-2 border-brass/50 pl-4">
+                This is the kind of machine-learning analysis Aescia keeps separate from the clinician-authored alert rules that drive patient care. It is planned, not built, and we will not put a number on its accuracy until we have measured it.
               </p>
             </div>
           </div>
