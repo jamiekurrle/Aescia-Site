@@ -334,7 +334,7 @@ export default function ClinicsContent() {
             <div className="border-l-2 border-accent pl-5">
               <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>The category has supporting literature.</h3>
               <p className="text-[15px] leading-[1.7] text-foreground/80">
-                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on base-rate inadequate prep (n=358,257), and Lebwohl 2011 on the downstream adenoma miss rate.
+                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on the risk factors that make inadequate prep common and addressable (n=358,257, 154 studies), and Lebwohl 2011 on the downstream adenoma miss rate. The same-day cancellation baseline in the calculator is anchored separately to Hopkins 2020.
               </p>
             </div>
             <div className="border-l-2 border-brass pl-5">
@@ -442,37 +442,13 @@ export default function ClinicsContent() {
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-6 text-background max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
           >
-            Flat by specialty. Range published, not gated.
+            Priced per scope. Range published, not gated.
           </h2>
           <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl mb-14">
-            Aescia for Clinics is flat monthly by specialty at the single-site level. No per-seat pricing. The range below covers the typical single-specialty single-site clinic and the typical US ambulatory surgery centre by physician count. A site-specific quote is generated against your scope volume in the ROI calculator above.
+            Aescia for Clinics is priced per scope at the single-site level. No per-seat pricing. The range below covers the typical US ambulatory surgery centre by physician count. A site-specific quote is generated against your scope volume in the ROI calculator above.
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-background/10 border-y border-background/15">
-            {/* AU/NZ */}
-            <div className="bg-foreground p-7 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">AU and NZ</span>
-              </div>
-              <h3
-                className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.018em] text-background mb-5"
-                style={{ fontVariationSettings: "'opsz' 80" }}
-              >
-                Flat monthly tiers, AUD.
-              </h3>
-              <ul className="space-y-3 text-[14.5px] leading-[1.6] text-background/85">
-                <li>
-                  <strong className="text-background">Practice tier — A$199 per month.</strong> Base tier for a single practitioner inside a multi-practitioner clinic. A$49 per additional practitioner from two to five.
-                </li>
-                <li>
-                  <strong className="text-background">Clinic tier — A$349 per month.</strong> For larger clinics. A$39 per additional practitioner from six and up.
-                </li>
-              </ul>
-              <p className="text-[12.5px] text-background/65 mt-6">
-                Single-specialty single-site clinic typically falls in <strong className="text-background">A$2,388 to A$4,188 per year</strong>.
-              </p>
-            </div>
-
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-background/10 border-y border-background/15">
             {/* US */}
             <div className="bg-foreground p-7 lg:p-10">
               <div className="flex items-center gap-3 mb-6">
@@ -497,6 +473,9 @@ export default function ClinicsContent() {
               </ul>
               <p className="text-[12.5px] text-background/65 mt-6">
                 Single-site single-specialty US ASC typically falls in <strong className="text-background">US$8,000 to US$77,000 per year</strong>, by physician count: solo own-facility ~$8K, 4-MD ASC ~$38K, 8-MD ASC ~$64K.
+              </p>
+              <p className="text-[12.5px] text-background/65 mt-3">
+                This is the typical span, not a quote. Your exact figure is generated above against your scope volume in the ROI calculator (at US$8 per scope).
               </p>
             </div>
 

@@ -60,7 +60,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What is Aescia for Clinics?',
-        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. Pricing is flat monthly per specialty; there is no seat-based pricing.',
+        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. In the US it is priced per scope, with no per-seat pricing.',
       },
       {
         q: 'What is the difference between Aescia for Hospitals and Aescia for Clinics?',
@@ -102,7 +102,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How is Aescia priced?',
-        a: 'Aescia for Clinics is priced flat monthly per specialty in Australia and New Zealand (A$199 to A$349 per month at the single-site level, so A$2,388 to A$4,188 per year for a single-specialty single-site clinic). In the United States, pricing is per scope at the institutional rate of US$8 per scope, with a US$6 per scope tier for multi-state aggregators above 50,000 scopes per year. A single-site single-specialty US ambulatory surgery centre typically falls in US$8,000 to US$77,000 per year depending on physician count. There is no per-seat pricing. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
+        a: 'Aescia for Clinics is priced per scope in the United States at the institutional rate of US$8 per scope, with a US$6 per scope tier for multi-state aggregators above 50,000 scopes per year. A single-site single-specialty US ambulatory surgery centre typically falls in US$8,000 to US$77,000 per year depending on physician count; your exact figure is generated against your scope volume in the ROI calculator at aesciahealth.com/clinics. There is no per-seat pricing. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',

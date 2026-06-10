@@ -62,8 +62,9 @@ device, does not propose clinical decisions, does not diagnose. Delivers
 clinician-authored prep pathways (including bowel preparation, diabetes
 management, anticoagulation, GLP-1 peri-procedural overlay), multichannel
 reminders, recall tracking, and structured exports back to the chart. Pricing
-is flat monthly per specialty at the clinic level; there is no seat-based
-pricing.
+is per scope in the US (US$8 per scope institutional rate; US$6 for aggregators
+above 50,000 scopes per year); a single-site single-specialty US ASC typically
+falls in US$8,000 to US$77,000 per year. There is no per-seat pricing.
 
 ## The platform underneath
 
