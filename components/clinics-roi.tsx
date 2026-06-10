@@ -6,9 +6,15 @@ import { useMemo, useState } from 'react'
 // Aescia for Clinics — interactive ROI calculator.
 // Honest ranges (conservative / expected / better-case), every assumption
 // visible inline, no manufactured urgency. Each effect size traces to the
-// literature already cited on /clinics (Mehta 2021, Allen 2023, Beran 2024,
-// Lebwohl 2011). The footnotes restate that the figures are contingent on
-// a pilot validating the effect for the customer's own site.
+// literature cited on /clinics (Mehta 2021, Allen 2023, Lebwohl 2011). The
+// same-day cancellation baseline is anchored to Hopkins 2020 (Gastrointest
+// Endosc 92(2):382-386) — ~3% same-day PIBP triage cancellation, with ~1/3
+// of cancelled patients not returning within 6 months; typical band 3-8%.
+// Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) is kept separate:
+// it shows inadequate prep is a common problem with addressable risk
+// factors — NOT the cancellation rate. The footnotes restate that the
+// figures are contingent on a pilot validating the effect for the customer's
+// own site.
 // ---------------------------------------------------------------------------
 
 // Effect-size assumptions, made conservative on the low end. These are the
@@ -22,18 +28,16 @@ const ASSUMPTIONS = {
 
 type Defaults = {
   annualScopes: number
-  prepFailRatePct: number
+  pibpCancelRatePct: number
   noShowRatePct: number
   facilityFeeUsd: number
-  mds: number
 }
 
 const DEFAULTS: Defaults = {
-  annualScopes: 4500,
-  prepFailRatePct: 22.5, // Beran 2024 midpoint
+  annualScopes: 2600, // average US GI ASC annual colonoscopy volume; larger sites scale up
+  pibpCancelRatePct: 5, // same-day PIBP triage cancellation; Hopkins 2020 ~3%, typical band 3–8%
   noShowRatePct: 8,
   facilityFeeUsd: 1011, // Allen 2023 midpoint
-  mds: 4,
 }
 
 function usd(n: number) {
@@ -50,13 +54,12 @@ function fmtPct(p: number) {
 
 export function ClinicsRoi() {
   const [annualScopes, setAnnualScopes] = useState(DEFAULTS.annualScopes)
-  const [prepFailRatePct, setPrepFailRatePct] = useState(DEFAULTS.prepFailRatePct)
+  const [pibpCancelRatePct, setPibpCancelRatePct] = useState(DEFAULTS.pibpCancelRatePct)
   const [noShowRatePct, setNoShowRatePct] = useState(DEFAULTS.noShowRatePct)
   const [facilityFeeUsd, setFacilityFeeUsd] = useState(DEFAULTS.facilityFeeUsd)
-  const [mds, setMds] = useState(DEFAULTS.mds)
 
   const results = useMemo(() => {
-    const prepFails = annualScopes * (prepFailRatePct / 100)
+    const pibpCancels = annualScopes * (pibpCancelRatePct / 100)
     const noShows = annualScopes * (noShowRatePct / 100)
 
     // Each cancelled/repeated slot loses one facility fee; same for no-shows
@@ -65,7 +68,7 @@ export function ClinicsRoi() {
     const grossPerScopeLost = facilityFeeUsd
 
     const valueRecovered = (prepFactor: number, noShowFactor: number) =>
-      prepFails * prepFactor * grossPerScopeLost + noShows * noShowFactor * grossPerScopeLost
+      pibpCancels * prepFactor * grossPerScopeLost + noShows * noShowFactor * grossPerScopeLost
 
     const aesciaCost = annualScopes * ASSUMPTIONS.aesciaPerScopeUsd
 
@@ -86,8 +89,8 @@ export function ClinicsRoi() {
 
     const monthlyValueConservative = rows[0].value / 12
 
-    return { rows, aesciaCost, monthlyValueConservative, prepFails, noShows }
-  }, [annualScopes, prepFailRatePct, noShowRatePct, facilityFeeUsd, mds])
+    return { rows, aesciaCost, monthlyValueConservative, pibpCancels, noShows }
+  }, [annualScopes, pibpCancelRatePct, noShowRatePct, facilityFeeUsd])
 
   return (
     <div className="bg-background border border-border overflow-hidden">
@@ -101,7 +104,7 @@ export function ClinicsRoi() {
             Your numbers
           </h3>
           <p className="text-[13px] text-foreground/70 mb-7 leading-[1.6]">
-            Set the four inputs to your own ASC. Defaults are the US literature midpoints, sourced below. Every figure to the right rescales in real time.
+            Set the four inputs to your own ASC. Defaults are the average US GI ASC volume and the US literature midpoints, sourced below. Every figure to the right rescales in real time.
           </p>
 
           <div className="space-y-6">
@@ -115,18 +118,18 @@ export function ClinicsRoi() {
               suffix="scopes"
             />
             <NumberField
-              label="Inadequate-prep cancellation rate"
-              hint="Beran 2024 baseline: 20–25%. Edit to your actual rate."
-              value={prepFailRatePct}
-              setValue={setPrepFailRatePct}
+              label="Same-day cancellation rate for presumed inadequate prep (PIBP)"
+              hint="Typical 3–8%. Hopkins 2020 (Gastrointest Endosc) reported ~3% same-day PIBP triage cancellation. Edit to your actual rate."
+              value={pibpCancelRatePct}
+              setValue={setPibpCancelRatePct}
               min={0}
-              max={50}
+              max={20}
               step={0.5}
               suffix="%"
             />
             <NumberField
-              label="No-show / same-day cancellation rate"
-              hint="Common range: 5–15%. Edit to your actual rate."
+              label="No-show rate (patient does not arrive)"
+              hint="Common range: 5–15%. Separate from the PIBP triage cancellation above. Edit to your actual rate."
               value={noShowRatePct}
               setValue={setNoShowRatePct}
               min={0}
@@ -143,15 +146,6 @@ export function ClinicsRoi() {
               max={5000}
               step={1}
               prefix="$"
-            />
-            <NumberField
-              label="Number of gastroenterologists (display only)"
-              value={mds}
-              setValue={setMds}
-              min={1}
-              max={40}
-              step={1}
-              suffix="MDs"
             />
           </div>
         </div>
@@ -200,7 +194,7 @@ export function ClinicsRoi() {
           </div>
 
           <p className="text-[12px] text-foreground/65 leading-[1.65] mt-6 border-l-2 border-brass/60 pl-4">
-            The conservative band assumes a 20% reduction in inadequate-prep cancellations and a 15% reduction in no-shows. Expected and better-case scale linearly to the upper effect sizes published in the prep-coaching and SMS-reminder literature. Aescia commits to the conservative band in writing during design-partner pilots; expected and better are upside, not promises.
+            The conservative band assumes a 20% reduction in same-day PIBP cancellations and a 15% reduction in no-shows. Expected and better-case scale linearly to the upper effect sizes published in the prep-coaching and SMS-reminder literature. Aescia commits to the conservative band in writing during design-partner pilots; expected and better are upside, not promises.
           </p>
         </div>
       </div>
@@ -209,11 +203,12 @@ export function ClinicsRoi() {
       <div className="border-t border-border p-7 lg:p-10 bg-background">
         <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">Assumptions, made visible</h4>
         <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80">
-          <li>Inadequate-prep cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.prepReduction.conservative)} / {fmtPct(ASSUMPTIONS.prepReduction.expected)} / {fmtPct(ASSUMPTIONS.prepReduction.better)}</strong> (conservative / expected / better).</li>
+          <li>Same-day PIBP cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.prepReduction.conservative)} / {fmtPct(ASSUMPTIONS.prepReduction.expected)} / {fmtPct(ASSUMPTIONS.prepReduction.better)}</strong> (conservative / expected / better).</li>
           <li>No-show or same-day cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
           <li>Each cancelled or repeated slot loses one facility fee. Professional fees and pathology downstream not counted.</li>
           <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong> US institutional rate. Volume tiers and design-partner discounts not reflected here.</li>
-          <li>Baseline rates: Beran 2024 (n=358,257) for prep failure; field-typical band for no-shows.</li>
+          <li>Same-day PIBP cancellation baseline: <strong>~3% (typical 3–8%)</strong>, Hopkins 2020 (Gastrointest Endosc 92(2):382-386), with ~1/3 of cancelled patients not returning within 6 months; no-shows from a field-typical band.</li>
+          <li>Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors — not the same-day cancellation rate the model acts on.</li>
           <li>Facility fee: Allen 2023, CMS ASC CPT 45378–45385 (USD $989–$1,034).</li>
         </ul>
       </div>
