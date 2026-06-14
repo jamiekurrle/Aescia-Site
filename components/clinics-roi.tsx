@@ -1,6 +1,23 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useI18n } from '@/lib/i18n'
+import { dict } from '@/lib/dictionaries/pages/clinics-roi'
+
+// Self-contained translation lookup for the /clinics ROI calculator. The shared
+// i18n provider supplies the active locale; roi.* keys live in
+// lib/dictionaries/pages/clinics-roi.ts and are resolved here with an English
+// fallback, mirroring the provider's own fallback behaviour without editing
+// lib/i18n.tsx. Dynamic numbers (USD figures, percentages) are computed in this
+// component and substituted into placeholder TOKENS at render time, so only the
+// surrounding words are translated.
+function useRoiT() {
+  const { locale } = useI18n()
+  return (key: string): string => {
+    const loc = dict[locale as string]
+    return (loc && loc[key]) || dict.en[key] || key
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Aescia for Clinics — interactive ROI calculator.
@@ -73,6 +90,7 @@ function fmtPct(p: number) {
 }
 
 export function ClinicsRoi() {
+  const t = useRoiT()
   const [annualScopes, setAnnualScopes] = useState(DEFAULTS.annualScopes)
   const [lateCancelRatePct, setLateCancelRatePct] = useState(DEFAULTS.lateCancelRatePct)
   const [noShowRatePct, setNoShowRatePct] = useState(DEFAULTS.noShowRatePct)
@@ -148,15 +166,15 @@ export function ClinicsRoi() {
             className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.02em] mb-2"
             style={{ fontVariationSettings: "'opsz' 80" }}
           >
-            Your numbers
+            {t('roi.inputs.heading')}
           </h3>
           <p className="text-[13px] text-foreground/70 mb-7 leading-[1.6]">
-            Set the inputs to your own ASC. Defaults are an average US GI ASC and the US literature midpoints, sourced below. Every figure to the right rescales in real time.
+            {t('roi.inputs.intro')}
           </p>
 
           <div className="space-y-6">
             <NumberField
-              label="Annual colonoscopy volume (scopes per year)"
+              label={t('roi.field.scopes.label')}
               value={annualScopes}
               setValue={setAnnualScopes}
               min={500}
@@ -165,8 +183,8 @@ export function ClinicsRoi() {
               suffix="scopes"
             />
             <NumberField
-              label="Late cancellation rate (about 24h notice)"
-              hint="Cancellations that arrive late enough the slot would sit empty, but with about a day's notice, which is enough to backfill. Typical 3–8%. Same-day prep failures are not counted here because they cannot be refilled in time."
+              label={t('roi.field.lateCancel.label')}
+              hint={t('roi.field.lateCancel.hint')}
               value={lateCancelRatePct}
               setValue={setLateCancelRatePct}
               min={0}
@@ -175,8 +193,8 @@ export function ClinicsRoi() {
               suffix="%"
             />
             <NumberField
-              label="No-show rate (patient does not arrive)"
-              hint="Common range: 5–15%. Separate from the late cancellation above, and not backfillable (no notice). Edit to your actual rate."
+              label={t('roi.field.noShow.label')}
+              hint={t('roi.field.noShow.hint')}
               value={noShowRatePct}
               setValue={setNoShowRatePct}
               min={0}
@@ -185,8 +203,8 @@ export function ClinicsRoi() {
               suffix="%"
             />
             <NumberField
-              label="Recovered revenue per slot (USD)"
-              hint="What a recovered slot bills, not margin. Allen 2023 ASC range $989–$1,034; default $1,011. Set yours; Medicare-heavy panels collect less."
+              label={t('roi.field.facilityFee.label')}
+              hint={t('roi.field.facilityFee.hint')}
               value={facilityFeeUsd}
               setValue={setFacilityFeeUsd}
               min={200}
@@ -195,8 +213,8 @@ export function ClinicsRoi() {
               prefix="$"
             />
             <NumberField
-              label="Endoscopist professional fee per scope (USD)"
-              hint="The proceduralist's fee per scope, separate from the facility fee above. Default $300 is a commercial-basis physician fee (Medicare ASC professional fee ~$215 marked up to a commercial physician rate), matching the commercial facility default; Medicare-heavy lists collect closer to $215. Drives the endoscopist loss line only, not the ROI multiple."
+              label={t('roi.field.endoscopistFee.label')}
+              hint={t('roi.field.endoscopistFee.hint')}
               value={endoscopistFeeUsd}
               setValue={setEndoscopistFeeUsd}
               min={0}
@@ -205,8 +223,8 @@ export function ClinicsRoi() {
               prefix="$"
             />
             <NumberField
-              label="Late cancellations you refill today"
-              hint="Share of late cancellations your team refills now. Default 25%: short-notice slots are hard to fill without a prep-ready pool. Aescia credits only the lift above this."
+              label={t('roi.field.backfill.label')}
+              hint={t('roi.field.backfill.hint')}
               value={currentBackfillPct}
               setValue={setCurrentBackfillPct}
               min={0}
@@ -215,8 +233,8 @@ export function ClinicsRoi() {
               suffix="%"
             />
             <NumberField
-              label="Nurse time per patient on prep calls"
-              hint="Minutes per patient your team spends on prep reminders and confirmations. Drives the staff-time line below; ~60% is automatable."
+              label={t('roi.field.nurseMinutes.label')}
+              hint={t('roi.field.nurseMinutes.hint')}
               value={nurseMinutesPerPatient}
               setValue={setNurseMinutesPerPatient}
               min={0}
@@ -232,24 +250,24 @@ export function ClinicsRoi() {
             className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.02em] mb-2"
             style={{ fontVariationSettings: "'opsz' 80" }}
           >
-            Range of outcomes
+            {t('roi.outcomes.heading')}
           </h3>
           <p className="text-[13px] text-foreground/70 mb-7 leading-[1.6]">
-            Three bands tied to effect sizes from the literature. Aescia commits to no point estimate. Pilots are scoped to confirm where on the range your site lands.
+            {t('roi.outcomes.intro')}
           </p>
 
           <div className="divide-y divide-border border-y border-border bg-background">
             {results.rows.map((r) => (
               <div key={r.band} className="grid grid-cols-[104px_1fr_auto] gap-3 px-4 sm:px-5 py-6 items-center">
                 <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60">
-                  {r.band === 'conservative' ? 'Conservative' : r.band === 'expected' ? 'Expected' : 'Potential'}
+                  {r.band === 'conservative' ? t('roi.band.conservative') : r.band === 'expected' ? t('roi.band.expected') : t('roi.band.potential')}
                 </div>
                 <div
                   className="font-display text-[22px] lg:text-[27px] leading-[1.1] tracking-[-0.018em]"
                   style={{ fontVariationSettings: "'opsz' 96" }}
                 >
                   {usd(r.allInValue)}
-                  <span className="text-foreground/45 text-[12px] font-mono ml-1.5">/yr</span>
+                  <span className="text-foreground/45 text-[12px] font-mono ml-1.5">{t('roi.perYear')}</span>
                 </div>
                 <div className="text-right">
                   <div
@@ -258,7 +276,7 @@ export function ClinicsRoi() {
                   >
                     {r.ratioAllIn.toFixed(1)}×
                   </div>
-                  <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55 mt-1.5">ROI</div>
+                  <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55 mt-1.5">{t('roi.roiLabel')}</div>
                 </div>
               </div>
             ))}
@@ -266,21 +284,21 @@ export function ClinicsRoi() {
 
           {/* Loss framing replaces the cost box: the value slipping away each month without Aescia. */}
           <div className="mt-7 bg-background border border-border p-6 lg:p-7">
-            <div className="font-display text-[18px] lg:text-[24px] tracking-[-0.02em] text-brass mb-2" style={{ fontVariationSettings: "'opsz' 120" }}>Every month without Aescia</div>
+            <div className="font-display text-[18px] lg:text-[24px] tracking-[-0.02em] text-brass mb-2" style={{ fontVariationSettings: "'opsz' 120" }}>{t('roi.loss.heading')}</div>
             <div
               className="font-display text-[26px] lg:text-[34px] leading-[1.1] tracking-[-0.02em]"
               style={{ fontVariationSettings: "'opsz' 120" }}
             >
-              you are losing about {usd(results.monthlyValueConservative)}
+              {t('roi.loss.facility').replace('{value}', usd(results.monthlyValueConservative))}
             </div>
             <div
               className="font-display text-[18px] lg:text-[22px] leading-[1.2] tracking-[-0.02em] text-foreground/80 mt-2"
               style={{ fontVariationSettings: "'opsz' 96" }}
             >
-              and your endoscopists are losing about {usd(results.monthlyEndoscopistLossConservative)} in professional fees
+              {t('roi.loss.endoscopist').replace('{value}', usd(results.monthlyEndoscopistLossConservative))}
             </div>
             <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
-              Conservative band, contingent on a pilot validating the effect at your site. Assumptions and sources are below.
+              {t('roi.loss.caveat')}
             </div>
           </div>
         </div>
@@ -288,20 +306,32 @@ export function ClinicsRoi() {
 
       {/* Assumptions, crawlable */}
       <div className="border-t border-border p-7 lg:p-10 bg-background">
-        <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">Assumptions, made visible</h4>
+        <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">{t('roi.assumptions.heading')}</h4>
         <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80">
-          <li>Late cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.cancelReduction.conservative)} / {fmtPct(ASSUMPTIONS.cancelReduction.expected)} / {fmtPct(ASSUMPTIONS.cancelReduction.better)}</strong> (conservative / expected / potential).</li>
-          <li>No-show reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
-          <li>Prep-aware backfill rate on late cancellations: <strong>{fmtPct(ASSUMPTIONS.backfillRate.conservative)} / {fmtPct(ASSUMPTIONS.backfillRate.expected)} / {fmtPct(ASSUMPTIONS.backfillRate.better)}</strong>, against a current rate you set (default 25%). The model credits only the lift over your current rate, on late cancellations only. Pilot-to-prove against your own baseline.</li>
-          <li>Prevention is netted by your current backfill: a late cancellation you would have refilled anyway is not counted as a recovered slot, so prevention and backfill do not double-count.</li>
-          <li>A recovered slot is valued at the <strong>recovered revenue (gross facility fee) you set</strong>, not contribution margin. The endoscopist professional-fee loss is shown as a separate line and is <strong>not</strong> included in the facility figure or the ROI multiple; pathology and other downstream revenue are not counted.</li>
-          <li>Endoscopist professional fee: the per-scope figure you set drives the separate endoscopist loss line, on the same recoverable slots. Default <strong>$300</strong> is a commercial-basis physician fee, chosen to match the commercial facility default: the Medicare ASC professional fee for a colonoscopy is ~$215, marked up at a commercial physician rate (MedPAC/CBO put commercial physician pay at ~1.3–1.5× Medicare). Medicare-heavy lists collect closer to $215; set this to your own payer mix.</li>
-          <li>Staff time is <strong>included</strong> in the figures above: <strong>{Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)}%</strong> of your nurse prep-call minutes (default 20 min/patient) at <strong>${ASSUMPTIONS.nurseRateUsdPerHour}/hr</strong> loaded. Treat it as the soft part of the range: it is real cash only if you redeploy the freed hours into more cases or a deferred hire.</li>
-          <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong>, US institutional rate, which is the spend the ROI multiple is measured against. Volume tiers and design-partner discounts not reflected here.</li>
-          <li>Aescia commits to the <strong>conservative band</strong> in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.</li>
-          <li>Backfill applies to late cancellations only (about a day's notice). Same-day prep failures and no-shows are not backfillable, so they count toward prevention, never backfill. No-show default 8% (typical 5–15%).</li>
-          <li>Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors. Cancellation/no-show effect sizes are from the prep-coaching and SMS-reminder literature.</li>
-          <li>Facility fee: Allen 2023, CMS ASC CPT 45378–45385 (USD $989–$1,034).</li>
+          <li>{t('roi.assumptions.cancelReduction')
+            .replace('{c}', fmtPct(ASSUMPTIONS.cancelReduction.conservative))
+            .replace('{e}', fmtPct(ASSUMPTIONS.cancelReduction.expected))
+            .replace('{p}', fmtPct(ASSUMPTIONS.cancelReduction.better))}</li>
+          <li>{t('roi.assumptions.noShowReduction')
+            .replace('{c}', fmtPct(ASSUMPTIONS.noShowReduction.conservative))
+            .replace('{e}', fmtPct(ASSUMPTIONS.noShowReduction.expected))
+            .replace('{p}', fmtPct(ASSUMPTIONS.noShowReduction.better))}</li>
+          <li>{t('roi.assumptions.backfillRate')
+            .replace('{c}', fmtPct(ASSUMPTIONS.backfillRate.conservative))
+            .replace('{e}', fmtPct(ASSUMPTIONS.backfillRate.expected))
+            .replace('{p}', fmtPct(ASSUMPTIONS.backfillRate.better))}</li>
+          <li>{t('roi.assumptions.netting')}</li>
+          <li>{t('roi.assumptions.facilityValue')}</li>
+          <li>{t('roi.assumptions.endoscopistFee')}</li>
+          <li>{t('roi.assumptions.staffTime')
+            .replace('{pct}', String(Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)))
+            .replace('{rate}', String(ASSUMPTIONS.nurseRateUsdPerHour))}</li>
+          <li>{t('roi.assumptions.price')
+            .replace('{price}', String(ASSUMPTIONS.aesciaPerScopeUsd))}</li>
+          <li>{t('roi.assumptions.commitment')}</li>
+          <li>{t('roi.assumptions.backfillScope')}</li>
+          <li>{t('roi.assumptions.beran')}</li>
+          <li>{t('roi.assumptions.facilityFee')}</li>
         </ul>
       </div>
     </div>
