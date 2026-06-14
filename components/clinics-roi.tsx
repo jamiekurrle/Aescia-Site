@@ -6,38 +6,54 @@ import { useMemo, useState } from 'react'
 // Aescia for Clinics — interactive ROI calculator.
 // Honest ranges (conservative / expected / better-case), every assumption
 // visible inline, no manufactured urgency. Each effect size traces to the
-// literature cited on /clinics (Mehta 2021, Allen 2023, Lebwohl 2011). The
-// same-day cancellation baseline is anchored to Hopkins 2020 (Gastrointest
-// Endosc 92(2):382-386) — ~3% same-day PIBP triage cancellation, with ~1/3
-// of cancelled patients not returning within 6 months; typical band 3-8%.
-// Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) is kept separate:
-// it shows inadequate prep is a common problem with addressable risk
-// factors — NOT the cancellation rate. The footnotes restate that the
-// figures are contingent on a pilot validating the effect for the customer's
-// own site.
+// prep-coaching and SMS-reminder literature cited on /clinics (Mehta 2021,
+// Allen 2023, Lebwohl 2011).
+//
+// Two slot-recovery levers act on LATE cancellations (about a day's notice),
+// which are the fillable pool: PREVENTION reduces them, and prep-aware BACKFILL
+// fills the ones that remain (a prep-ready patient starts prep tonight and takes
+// tomorrow's slot, last on the list). No-shows get prevention only (no notice).
+// Same-day prep failures are excluded: they cannot be refilled in time.
+// Prevention's cancellation credit is NETTED by the site's current backfill rate
+// so prevention and backfill do not double-count the same slot. Staff time is a
+// separate, conditional line (real cash only if freed nurse time is redeployed).
+// All figures are contingent on a pilot validating the effect at the site.
 // ---------------------------------------------------------------------------
 
 // Effect-size assumptions, made conservative on the low end. These are the
 // numbers a model crawling the page should be able to see, so we render them
 // as text below the calculator as well.
 const ASSUMPTIONS = {
-  prepReduction: { conservative: 0.2, expected: 0.35, better: 0.5 },
+  // Relative reduction in LATE cancellations (about a day's notice) from prep coaching,
+  // logistics confirmation and reminders.
+  cancelReduction: { conservative: 0.2, expected: 0.35, better: 0.5 },
   noShowReduction: { conservative: 0.15, expected: 0.25, better: 0.4 },
+  // Aescia-achieved backfill rate on LATE cancellations (SOC baseline ~40%). The lever
+  // credits only the INCREMENTAL lift over the site's current rate. Pilot-to-prove.
+  backfillRate: { conservative: 0.55, expected: 0.65, better: 0.75 },
   aesciaPerScopeUsd: 8, // US institutional rate post-conversion; see /clinics pricing block.
+  nurseRateUsdPerHour: 45, // loaded blended LPN/RN
+  nurseAutomatablePct: 0.6, // routine share of prep-call time the companion offloads
 }
 
 type Defaults = {
   annualScopes: number
-  pibpCancelRatePct: number
+  lateCancelRatePct: number
   noShowRatePct: number
   facilityFeeUsd: number
+  currentBackfillPct: number
+  nurseMinutesPerPatient: number
 }
 
 const DEFAULTS: Defaults = {
-  annualScopes: 2600, // average US GI ASC annual colonoscopy volume; larger sites scale up
-  pibpCancelRatePct: 5, // same-day PIBP triage cancellation; Hopkins 2020 ~3%, typical band 3–8%
+  annualScopes: 5000, // a little above the ~4,500 average US GI ASC; multi-endoscopist site
+  lateCancelRatePct: 5, // late cancellations (~24h notice), the fillable pool; typical 3–8%
   noShowRatePct: 8,
-  facilityFeeUsd: 1011, // Allen 2023 midpoint
+  facilityFeeUsd: 1011, // Allen 2023 midpoint; recovered revenue (gross facility fee), not margin
+  currentBackfillPct: 25, // share of late cancellations the site refills today; Weiss operator
+  // estimate ~25%. Short-notice slots are hard to fill without a prep-ready pool, which is the
+  // gap Aescia closes. No public benchmark found; 25% is the concrete operator anchor.
+  nurseMinutesPerPatient: 20, // nurse time per patient on prep calls
 }
 
 function usd(n: number) {
@@ -54,43 +70,63 @@ function fmtPct(p: number) {
 
 export function ClinicsRoi() {
   const [annualScopes, setAnnualScopes] = useState(DEFAULTS.annualScopes)
-  const [pibpCancelRatePct, setPibpCancelRatePct] = useState(DEFAULTS.pibpCancelRatePct)
+  const [lateCancelRatePct, setLateCancelRatePct] = useState(DEFAULTS.lateCancelRatePct)
   const [noShowRatePct, setNoShowRatePct] = useState(DEFAULTS.noShowRatePct)
   const [facilityFeeUsd, setFacilityFeeUsd] = useState(DEFAULTS.facilityFeeUsd)
+  const [currentBackfillPct, setCurrentBackfillPct] = useState(DEFAULTS.currentBackfillPct)
+  const [nurseMinutesPerPatient, setNurseMinutesPerPatient] = useState(DEFAULTS.nurseMinutesPerPatient)
 
   const results = useMemo(() => {
-    const pibpCancels = annualScopes * (pibpCancelRatePct / 100)
+    const lateCancels = annualScopes * (lateCancelRatePct / 100)
     const noShows = annualScopes * (noShowRatePct / 100)
-
-    // Each cancelled/repeated slot loses one facility fee; same for no-shows
-    // (the slot does not bill). This intentionally ignores professional fees
-    // and downstream pathology — the conservative-case lower bound.
-    const grossPerScopeLost = facilityFeeUsd
-
-    const valueRecovered = (prepFactor: number, noShowFactor: number) =>
-      pibpCancels * prepFactor * grossPerScopeLost + noShows * noShowFactor * grossPerScopeLost
-
+    const fee = facilityFeeUsd // recovered revenue per slot (gross facility fee, not margin)
+    const socFill = Math.min(Math.max(currentBackfillPct / 100, 0), 1)
     const aesciaCost = annualScopes * ASSUMPTIONS.aesciaPerScopeUsd
 
+    // Staff time: input-side, band-independent. SOFT — real cash only if the site redeploys
+    // the freed nurse time. Held OUT of the headline ROI and shown as a separate line.
+    const staffSaved =
+      annualScopes *
+      (nurseMinutesPerPatient / 60) *
+      ASSUMPTIONS.nurseRateUsdPerHour *
+      ASSUMPTIONS.nurseAutomatablePct
+
     const rows = (['conservative', 'expected', 'better'] as const).map((band) => {
-      const value = valueRecovered(
-        ASSUMPTIONS.prepReduction[band],
-        ASSUMPTIONS.noShowReduction[band],
-      )
-      const net = value - aesciaCost
+      // L1 Prevention. The late-cancellation side is NETTED by the site's current backfill
+      // rate: a late cancel the site would have refilled anyway bills the fee regardless, so
+      // preventing it adds no net slot — only the (1 - socFill) share was truly going empty.
+      // The no-show side gets full credit (a no-show is not backfillable).
+      const preventCancels = lateCancels * ASSUMPTIONS.cancelReduction[band] * (1 - socFill) * fee
+      const preventNoShows = noShows * ASSUMPTIONS.noShowReduction[band] * fee
+      const prevention = preventCancels + preventNoShows
+
+      // L2 Prep-aware backfill. Incremental fill over the site's current rate, on the late
+      // cancellations that REMAIN after prevention. Late cancels only (about a day's notice
+      // is enough for a prep-ready patient to start prep tonight and take tomorrow's slot;
+      // a no-show gives no notice).
+      const remainingCancels = lateCancels * (1 - ASSUMPTIONS.cancelReduction[band])
+      const backfillLift = Math.max(0, ASSUMPTIONS.backfillRate[band] - socFill)
+      const backfill = remainingCancels * backfillLift * fee
+
+      const slotValue = prevention + backfill // headline: slot recovery only
+      const allInValue = slotValue + staffSaved // with conditional staff time
       return {
         band,
-        value,
+        prevention,
+        backfill,
+        slotValue,
+        allInValue,
         aesciaCost,
-        net,
-        ratio: aesciaCost > 0 ? value / aesciaCost : 0,
+        net: slotValue - aesciaCost,
+        ratio: aesciaCost > 0 ? slotValue / aesciaCost : 0,
+        ratioAllIn: aesciaCost > 0 ? allInValue / aesciaCost : 0,
       }
     })
 
-    const monthlyValueConservative = rows[0].value / 12
+    const monthlyValueConservative = rows[0].slotValue / 12
 
-    return { rows, aesciaCost, monthlyValueConservative, pibpCancels, noShows }
-  }, [annualScopes, pibpCancelRatePct, noShowRatePct, facilityFeeUsd])
+    return { rows, aesciaCost, staffSaved, monthlyValueConservative, lateCancels, noShows }
+  }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, currentBackfillPct, nurseMinutesPerPatient])
 
   return (
     <div className="bg-background border border-border overflow-hidden">
@@ -104,7 +140,7 @@ export function ClinicsRoi() {
             Your numbers
           </h3>
           <p className="text-[13px] text-foreground/70 mb-7 leading-[1.6]">
-            Set the four inputs to your own ASC. Defaults are the average US GI ASC volume and the US literature midpoints, sourced below. Every figure to the right rescales in real time.
+            Set the inputs to your own ASC. Defaults are an average US GI ASC and the US literature midpoints, sourced below. Every figure to the right rescales in real time.
           </p>
 
           <div className="space-y-6">
@@ -118,10 +154,10 @@ export function ClinicsRoi() {
               suffix="scopes"
             />
             <NumberField
-              label="Same-day cancellation rate for presumed inadequate prep (PIBP)"
-              hint="Typical 3–8%. Hopkins 2020 (Gastrointest Endosc) reported ~3% same-day PIBP triage cancellation. Edit to your actual rate."
-              value={pibpCancelRatePct}
-              setValue={setPibpCancelRatePct}
+              label="Late cancellation rate (about 24h notice)"
+              hint="Cancellations that arrive late enough the slot would sit empty, but with about a day's notice, which is enough to backfill. Typical 3–8%. Same-day prep failures are not counted here because they cannot be refilled in time."
+              value={lateCancelRatePct}
+              setValue={setLateCancelRatePct}
               min={0}
               max={20}
               step={0.5}
@@ -129,7 +165,7 @@ export function ClinicsRoi() {
             />
             <NumberField
               label="No-show rate (patient does not arrive)"
-              hint="Common range: 5–15%. Separate from the PIBP triage cancellation above. Edit to your actual rate."
+              hint="Common range: 5–15%. Separate from the late cancellation above, and not backfillable (no notice). Edit to your actual rate."
               value={noShowRatePct}
               setValue={setNoShowRatePct}
               min={0}
@@ -138,14 +174,34 @@ export function ClinicsRoi() {
               suffix="%"
             />
             <NumberField
-              label="Facility fee per slot (USD)"
-              hint="Allen 2023 ASC range: $989–$1,034. Default $1,011."
+              label="Recovered revenue per slot (USD)"
+              hint="What a recovered slot bills, not margin. Allen 2023 ASC range $989–$1,034; default $1,011. Set yours; Medicare-heavy panels collect less."
               value={facilityFeeUsd}
               setValue={setFacilityFeeUsd}
               min={200}
               max={5000}
               step={1}
               prefix="$"
+            />
+            <NumberField
+              label="Late cancellations you refill today"
+              hint="Share of late cancellations your team refills now. Default 25%: short-notice slots are hard to fill without a prep-ready pool. Aescia credits only the lift above this."
+              value={currentBackfillPct}
+              setValue={setCurrentBackfillPct}
+              min={0}
+              max={100}
+              step={1}
+              suffix="%"
+            />
+            <NumberField
+              label="Nurse time per patient on prep calls"
+              hint="Minutes per patient your team spends on prep reminders and confirmations. Drives the staff-time line below; ~60% is automatable."
+              value={nurseMinutesPerPatient}
+              setValue={setNurseMinutesPerPatient}
+              min={0}
+              max={60}
+              step={1}
+              suffix="min"
             />
           </div>
         </div>
@@ -171,13 +227,25 @@ export function ClinicsRoi() {
                   className="font-display text-[24px] lg:text-[30px] leading-[1.15] tracking-[-0.018em]"
                   style={{ fontVariationSettings: "'opsz' 96" }}
                 >
-                  {usd(r.value)}
+                  {usd(r.slotValue)}
                 </div>
                 <div className="font-mono text-[11px] text-foreground/65 text-right tracking-tight">
                   {r.ratio.toFixed(1)}× of Aescia cost
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Staff time: separate, conditional line. Held out of the headline ROI because it
+              is soft (real cash only if the site redeploys the freed nurse time). */}
+          <div className="mt-px grid grid-cols-[96px_1fr_auto] gap-3 px-4 sm:px-5 py-4 items-baseline bg-background border border-border">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-brass">+ Staff time</div>
+            <div className="font-display text-[20px] lg:text-[24px] leading-[1.15] tracking-[-0.018em]">
+              {usd(results.staffSaved)}
+            </div>
+            <div className="font-mono text-[11px] text-foreground/65 text-right tracking-tight">
+              if your team redeploys it
+            </div>
           </div>
 
           <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
@@ -194,7 +262,7 @@ export function ClinicsRoi() {
           </div>
 
           <p className="text-[12px] text-foreground/65 leading-[1.65] mt-6 border-l-2 border-brass/60 pl-4">
-            The conservative band assumes a 20% reduction in same-day PIBP cancellations and a 15% reduction in no-shows. Expected and better-case scale linearly to the upper effect sizes published in the prep-coaching and SMS-reminder literature. Aescia commits to the conservative band in writing during design-partner pilots; expected and better are upside, not promises.
+            The bands are slot recovery: fewer late cancellations and no-shows, plus prep-aware backfill of the late-cancellation slots that still open. Prevention is credited only for the late cancellations you were not already refilling, so the levers do not double-count. The conservative band assumes a 20% late-cancellation and 15% no-show reduction with backfill rising to 55%; expected and better scale to the upper effect sizes in the prep-coaching and SMS literature. Staff time is shown separately because it is real cash only if you redeploy the freed hours. Aescia commits to the conservative band in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.
           </p>
         </div>
       </div>
@@ -203,12 +271,15 @@ export function ClinicsRoi() {
       <div className="border-t border-border p-7 lg:p-10 bg-background">
         <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">Assumptions, made visible</h4>
         <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80">
-          <li>Same-day PIBP cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.prepReduction.conservative)} / {fmtPct(ASSUMPTIONS.prepReduction.expected)} / {fmtPct(ASSUMPTIONS.prepReduction.better)}</strong> (conservative / expected / better).</li>
-          <li>No-show or same-day cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
-          <li>Each cancelled or repeated slot loses one facility fee. Professional fees and pathology downstream not counted.</li>
+          <li>Late cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.cancelReduction.conservative)} / {fmtPct(ASSUMPTIONS.cancelReduction.expected)} / {fmtPct(ASSUMPTIONS.cancelReduction.better)}</strong> (conservative / expected / better).</li>
+          <li>No-show reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
+          <li>Prep-aware backfill rate on late cancellations: <strong>{fmtPct(ASSUMPTIONS.backfillRate.conservative)} / {fmtPct(ASSUMPTIONS.backfillRate.expected)} / {fmtPct(ASSUMPTIONS.backfillRate.better)}</strong>, against a current rate you set (default 25%). The model credits only the lift over your current rate, on late cancellations only. Pilot-to-prove against your own baseline.</li>
+          <li>Prevention is netted by your current backfill: a late cancellation you would have refilled anyway is not counted as a recovered slot, so prevention and backfill do not double-count.</li>
+          <li>A recovered slot is valued at the <strong>recovered revenue (gross facility fee) you set</strong>, not contribution margin. Professional fees and pathology downstream not counted.</li>
+          <li>Staff time: <strong>{Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)}%</strong> of your nurse prep-call minutes at <strong>${ASSUMPTIONS.nurseRateUsdPerHour}/hr</strong> loaded. Shown separately because it is real cash only if you redeploy the freed time.</li>
           <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong> US institutional rate. Volume tiers and design-partner discounts not reflected here.</li>
-          <li>Same-day PIBP cancellation baseline: <strong>~3% (typical 3–8%)</strong>, Hopkins 2020 (Gastrointest Endosc 92(2):382-386), with ~1/3 of cancelled patients not returning within 6 months; no-shows from a field-typical band.</li>
-          <li>Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors — not the same-day cancellation rate the model acts on.</li>
+          <li>Backfill applies to late cancellations only (about a day's notice). Same-day prep failures and no-shows are not backfillable, so they count toward prevention, never backfill. No-show default 8% (typical 5–15%).</li>
+          <li>Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors. Cancellation/no-show effect sizes are from the prep-coaching and SMS-reminder literature.</li>
           <li>Facility fee: Allen 2023, CMS ASC CPT 45378–45385 (USD $989–$1,034).</li>
         </ul>
       </div>

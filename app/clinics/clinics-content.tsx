@@ -334,7 +334,7 @@ export default function ClinicsContent() {
             <div className="border-l-2 border-accent pl-5">
               <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>The category has supporting literature.</h3>
               <p className="text-[15px] leading-[1.7] text-foreground/80">
-                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on the risk factors that make inadequate prep common and addressable (n=358,257, 154 studies), and Lebwohl 2011 on the downstream adenoma miss rate. The same-day cancellation baseline in the calculator is anchored separately to Hopkins 2020.
+                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on the risk factors that make inadequate prep common and addressable (n=358,257, 154 studies), and Lebwohl 2011 on the downstream adenoma miss rate. The calculator acts on late cancellations and no-shows, and credits backfill only on the late cancellations that arrive with about a day's notice, which is enough to fill the slot.
               </p>
             </div>
             <div className="border-l-2 border-brass pl-5">
