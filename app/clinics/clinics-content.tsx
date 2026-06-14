@@ -385,7 +385,7 @@ export default function ClinicsContent() {
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
-                A busy endoscopy list loses more to cancelled prep, GLP-1 confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through better-case, anchored to the literature beneath.
+                A busy endoscopy list loses more to cancelled prep, GLP-1 confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through potential, anchored to the literature beneath.
               </p>
             </div>
           </div>

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 
 // ---------------------------------------------------------------------------
 // Aescia for Clinics — interactive ROI calculator.
-// Honest ranges (conservative / expected / better-case), every assumption
+// Honest ranges (conservative / expected / potential), every assumption
 // visible inline, no manufactured urgency. Each effect size traces to the
 // prep-coaching and SMS-reminder literature cited on /clinics (Mehta 2021,
 // Allen 2023, Lebwohl 2011).
@@ -123,7 +123,7 @@ export function ClinicsRoi() {
       }
     })
 
-    const monthlyValueConservative = rows[0].slotValue / 12
+    const monthlyValueConservative = rows[0].allInValue / 12 // staff time now folded into the figure
 
     return { rows, aesciaCost, staffSaved, monthlyValueConservative, lateCancels, noShows }
   }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, currentBackfillPct, nurseMinutesPerPatient])
@@ -219,51 +219,43 @@ export function ClinicsRoi() {
 
           <div className="divide-y divide-border border-y border-border bg-background">
             {results.rows.map((r) => (
-              <div key={r.band} className="grid grid-cols-[96px_1fr_auto] gap-3 px-4 sm:px-5 py-5 items-baseline">
+              <div key={r.band} className="grid grid-cols-[104px_1fr_auto] gap-3 px-4 sm:px-5 py-6 items-center">
                 <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60">
-                  {r.band === 'conservative' ? 'Conservative' : r.band === 'expected' ? 'Expected' : 'Better-case'}
+                  {r.band === 'conservative' ? 'Conservative' : r.band === 'expected' ? 'Expected' : 'Potential'}
                 </div>
                 <div
-                  className="font-display text-[24px] lg:text-[30px] leading-[1.15] tracking-[-0.018em]"
+                  className="font-display text-[22px] lg:text-[27px] leading-[1.1] tracking-[-0.018em]"
                   style={{ fontVariationSettings: "'opsz' 96" }}
                 >
-                  {usd(r.slotValue)}
+                  {usd(r.allInValue)}
+                  <span className="text-foreground/45 text-[12px] font-mono ml-1.5">/yr</span>
                 </div>
-                <div className="font-mono text-[11px] text-foreground/65 text-right tracking-tight">
-                  {r.ratio.toFixed(1)}× of Aescia cost
+                <div className="text-right">
+                  <div
+                    className="font-display text-[34px] lg:text-[46px] leading-none tracking-[-0.025em] text-brass"
+                    style={{ fontVariationSettings: "'opsz' 144" }}
+                  >
+                    {r.ratioAllIn.toFixed(1)}×
+                  </div>
+                  <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55 mt-1.5">ROI</div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Staff time: separate, conditional line. Held out of the headline ROI because it
-              is soft (real cash only if the site redeploys the freed nurse time). */}
-          <div className="mt-px grid grid-cols-[96px_1fr_auto] gap-3 px-4 sm:px-5 py-4 items-baseline bg-background border border-border">
-            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-brass">+ Staff time</div>
-            <div className="font-display text-[20px] lg:text-[24px] leading-[1.15] tracking-[-0.018em]">
-              {usd(results.staffSaved)}
+          {/* Loss framing replaces the cost box: the value slipping away each month without Aescia. */}
+          <div className="mt-7 bg-background border border-border p-6 lg:p-7">
+            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brass mb-2">Every month without Aescia</div>
+            <div
+              className="font-display text-[26px] lg:text-[34px] leading-[1.1] tracking-[-0.02em]"
+              style={{ fontVariationSettings: "'opsz' 120" }}
+            >
+              you are losing about {usd(results.monthlyValueConservative)}
             </div>
-            <div className="font-mono text-[11px] text-foreground/65 text-right tracking-tight">
-              if your team redeploys it
-            </div>
-          </div>
-
-          <div className="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-px bg-border">
-            <div className="bg-background p-5">
-              <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60 mb-2">Aescia cost (annual)</div>
-              <div className="font-display text-[22px] tracking-[-0.015em]">{usd(results.aesciaCost)}</div>
-              <div className="text-[11px] text-foreground/60 mt-1">at $8/scope, US institutional rate</div>
-            </div>
-            <div className="bg-background p-5">
-              <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60 mb-2">Value at stake (per month, conservative)</div>
-              <div className="font-display text-[22px] tracking-[-0.015em]">{usd(results.monthlyValueConservative)}</div>
-              <div className="text-[11px] text-foreground/60 mt-1">contingent on a pilot validating the effect at your site</div>
+            <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
+              Conservative band, contingent on a pilot validating the effect at your site. Assumptions, sources, and the Aescia per-scope price are below.
             </div>
           </div>
-
-          <p className="text-[12px] text-foreground/65 leading-[1.65] mt-6 border-l-2 border-brass/60 pl-4">
-            The bands are slot recovery: fewer late cancellations and no-shows, plus prep-aware backfill of the late-cancellation slots that still open. Prevention is credited only for the late cancellations you were not already refilling, so the levers do not double-count. The conservative band assumes a 20% late-cancellation and 15% no-show reduction with backfill rising to 55%; expected and better scale to the upper effect sizes in the prep-coaching and SMS literature. Staff time is shown separately because it is real cash only if you redeploy the freed hours. Aescia commits to the conservative band in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.
-          </p>
         </div>
       </div>
 
@@ -271,13 +263,14 @@ export function ClinicsRoi() {
       <div className="border-t border-border p-7 lg:p-10 bg-background">
         <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">Assumptions, made visible</h4>
         <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80">
-          <li>Late cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.cancelReduction.conservative)} / {fmtPct(ASSUMPTIONS.cancelReduction.expected)} / {fmtPct(ASSUMPTIONS.cancelReduction.better)}</strong> (conservative / expected / better).</li>
+          <li>Late cancellation reduction: <strong>{fmtPct(ASSUMPTIONS.cancelReduction.conservative)} / {fmtPct(ASSUMPTIONS.cancelReduction.expected)} / {fmtPct(ASSUMPTIONS.cancelReduction.better)}</strong> (conservative / expected / potential).</li>
           <li>No-show reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
           <li>Prep-aware backfill rate on late cancellations: <strong>{fmtPct(ASSUMPTIONS.backfillRate.conservative)} / {fmtPct(ASSUMPTIONS.backfillRate.expected)} / {fmtPct(ASSUMPTIONS.backfillRate.better)}</strong>, against a current rate you set (default 25%). The model credits only the lift over your current rate, on late cancellations only. Pilot-to-prove against your own baseline.</li>
           <li>Prevention is netted by your current backfill: a late cancellation you would have refilled anyway is not counted as a recovered slot, so prevention and backfill do not double-count.</li>
           <li>A recovered slot is valued at the <strong>recovered revenue (gross facility fee) you set</strong>, not contribution margin. Professional fees and pathology downstream not counted.</li>
-          <li>Staff time: <strong>{Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)}%</strong> of your nurse prep-call minutes at <strong>${ASSUMPTIONS.nurseRateUsdPerHour}/hr</strong> loaded. Shown separately because it is real cash only if you redeploy the freed time.</li>
-          <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong> US institutional rate. Volume tiers and design-partner discounts not reflected here.</li>
+          <li>Staff time is <strong>included</strong> in the figures above: <strong>{Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)}%</strong> of your nurse prep-call minutes (default 20 min/patient) at <strong>${ASSUMPTIONS.nurseRateUsdPerHour}/hr</strong> loaded. Treat it as the soft part of the range: it is real cash only if you redeploy the freed hours into more cases or a deferred hire.</li>
+          <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong>, US institutional rate, which is the spend the ROI multiple is measured against. Volume tiers and design-partner discounts not reflected here.</li>
+          <li>Aescia commits to the <strong>conservative band</strong> in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.</li>
           <li>Backfill applies to late cancellations only (about a day's notice). Same-day prep failures and no-shows are not backfillable, so they count toward prevention, never backfill. No-show default 8% (typical 5–15%).</li>
           <li>Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors. Cancellation/no-show effect sizes are from the prep-coaching and SMS-reminder literature.</li>
           <li>Facility fee: Allen 2023, CMS ASC CPT 45378–45385 (USD $989–$1,034).</li>
