@@ -65,7 +65,7 @@ export function CredibilityFacts() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border-y border-border">
           {facts.map((f) => (
-            <article key={f.href} className="bg-background p-7 lg:p-8 flex flex-col">
+            <article key={f.eyebrow} className="bg-background p-7 lg:p-8 flex flex-col">
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-4">{f.eyebrow}</span>
               <h3
                 className="font-display text-[19px] lg:text-[21px] leading-[1.25] tracking-[-0.015em] mb-4"
