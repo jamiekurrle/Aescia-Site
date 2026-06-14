@@ -95,6 +95,11 @@ export const organizationSchema = {
   identifier: [
     { '@type': 'PropertyValue', propertyID: 'ABN', value: '96 687 840 517' },
     { '@type': 'PropertyValue', propertyID: 'NEQ', value: '1181312316' },
+    {
+      '@type': 'PropertyValue',
+      propertyID: 'NSW Government Supplier ID (buy.nsw)',
+      value: '12460268',
+    },
   ],
   address: [
     {
@@ -139,6 +144,7 @@ export const organizationSchema = {
     'https://www.crunchbase.com/organization/aescia-health',
     'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
     'https://www.mtaa.org.au/industry-members',
+    'https://buy.nsw.gov.au/supplier/profile/12460268',
   ],
   // Authoritative external references for the regulatory and standards posture
   // claimed in `knowsAbout`. Helps LLM citation tools verify the regulatory

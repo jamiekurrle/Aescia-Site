@@ -64,6 +64,17 @@ export function Footer() {
             <ul className="space-y-2 text-[13px] text-foreground/75">
               <li>Aescia Pty Ltd (AU)</li>
               <li className="font-mono text-[12px]">ABN 96 687 840 517</li>
+              <li className="pt-1">
+                <a
+                  href="https://buy.nsw.gov.au/supplier/profile/12460268"
+                  target="_blank"
+                  rel="noopener"
+                  className="text-foreground/75 hover:text-foreground underline decoration-foreground/25 underline-offset-2 transition-colors"
+                  aria-label="Aescia's registered supplier profile on the NSW Government buy.nsw marketplace (opens in a new window)"
+                >
+                  NSW Government registered supplier
+                </a>
+              </li>
               <li className="pt-2">9550-0708 Québec inc (CA)</li>
               <li className="font-mono text-[12px]">NEQ 1181312316</li>
               <li className="pt-2">Sydney, Australia</li>
