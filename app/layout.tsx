@@ -28,6 +28,10 @@ export const metadata: Metadata = {
       'en-CA': '/',
       'en-US': '/',
       'fr-CA': '/',
+      'es-US': '/',
+      'zh-Hans': '/',
+      ar: '/',
+      vi: '/',
     },
   },
   openGraph: {

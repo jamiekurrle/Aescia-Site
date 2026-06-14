@@ -38,7 +38,7 @@ export const organizationSchema = {
   email: 'contact@aesciahealth.com',
   foundingDate: '2025',
   slogan: 'A continuous-care platform for the weeks that matter.',
-  knowsLanguage: ['en', 'en-AU', 'en-CA', 'fr-CA'],
+  knowsLanguage: ['en', 'en-AU', 'en-CA', 'fr-CA', 'es-US', 'zh-Hans', 'ar', 'vi'],
   member: [
     {
       '@type': 'OrganizationRole',

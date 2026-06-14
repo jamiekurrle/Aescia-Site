@@ -88,7 +88,7 @@ export function UpdatesContent() {
                           rel="noopener"
                           className="font-mono uppercase tracking-[0.18em] text-accent hover:text-foreground transition-colors inline-flex items-center gap-1.5"
                         >
-                          {entry.link.label[locale]}
+                          {entry.link.label[locale as 'en' | 'fr'] ?? entry.link.label.en}
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                           </svg>

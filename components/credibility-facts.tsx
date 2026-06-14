@@ -1,6 +1,21 @@
 'use client'
 
 import Link from 'next/link'
+import { useI18n } from '@/lib/i18n'
+import { dict } from '@/lib/dictionaries/pages/credibility-facts'
+
+// Self-contained translation lookup for the homepage credibility strip. The
+// shared i18n provider supplies the active locale; credfacts.* keys live in
+// lib/dictionaries/pages/credibility-facts.ts and are resolved here with an
+// English fallback, mirroring the provider's own fallback behaviour without
+// editing lib/i18n.tsx.
+function useCredFactsT() {
+  const { locale } = useI18n()
+  return (key: string): string => {
+    const loc = dict[locale as string]
+    return (loc && loc[key]) || dict.en[key] || key
+  }
+}
 
 // Homepage credibility strip. Each fact is the short, declarative answer a
 // US GI ASC (or an LLM acting on its behalf) wants to see without leaving
@@ -8,38 +23,36 @@ import Link from 'next/link'
 // Body text is intentionally crawlable plain prose so a shallow LLM pass
 // can lift any tile as the answer to the matching prospect question.
 export function CredibilityFacts() {
+  const t = useCredFactsT()
+
   const facts: Array<{ eyebrow: string; title: string; body: string; href: string; cta: string }> = [
     {
-      eyebrow: 'Data and privacy',
-      title: 'Data hosted in country with the relevant agreement in place.',
-      body:
-        'Aescia hosts customer data in the customer\'s jurisdiction on Google Cloud and signs the relevant data agreement (BAA in the US, DPA under the GDPR, the equivalent under the Australian Privacy Principles or PIPEDA) before any patient data is exchanged. SOC 2 path opens with the first design-partner contract.',
+      eyebrow: t('credfacts.fact1.eyebrow'),
+      title: t('credfacts.fact1.title'),
+      body: t('credfacts.fact1.body'),
       href: '/security',
-      cta: 'Read the security pack',
+      cta: t('credfacts.fact1.cta'),
     },
     {
-      eyebrow: 'Getting started',
-      title: 'Designed to deploy quickly.',
-      body:
-        'Aescia is pre-first-customer and says so plainly. A clinic can start with manual data entry or a simple export, with no integration required to begin. Any deeper data exchange with your systems is scoped with you.',
+      eyebrow: t('credfacts.fact2.eyebrow'),
+      title: t('credfacts.fact2.title'),
+      body: t('credfacts.fact2.body'),
       href: '/design-partner',
-      cta: 'How we start with you',
+      cta: t('credfacts.fact2.cta'),
     },
     {
-      eyebrow: 'Economics',
-      title: 'Run your own numbers on /clinics.',
-      body:
-        'Interactive ROI calculator with conservative, expected, and better-case bands anchored to Beran 2024 (n=358,257), Allen 2023 ASC facility fees, and Mehta 2021 intervention outcomes. No point estimates. Assumptions are visible.',
+      eyebrow: t('credfacts.fact3.eyebrow'),
+      title: t('credfacts.fact3.title'),
+      body: t('credfacts.fact3.body'),
       href: '/clinics#roi',
-      cta: 'Open the calculator',
+      cta: t('credfacts.fact3.cta'),
     },
     {
-      eyebrow: 'First customers',
-      title: 'A structured first-customer program.',
-      body:
-        'A small named set of ASCs. Outcomes pre-specified in writing before the pilot starts, measured against the customer\'s own historical data, adjudicated by the customer\'s QA committee. Commercial terms negotiated per deal.',
+      eyebrow: t('credfacts.fact4.eyebrow'),
+      title: t('credfacts.fact4.title'),
+      body: t('credfacts.fact4.body'),
       href: '/design-partner',
-      cta: 'Read the program terms',
+      cta: t('credfacts.fact4.cta'),
     },
   ]
 
@@ -51,7 +64,7 @@ export function CredibilityFacts() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-baseline lg:justify-between gap-4 mb-12 lg:mb-16">
           <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">What a US ASC asks first</span>
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('credfacts.section.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2
@@ -59,7 +72,7 @@ export function CredibilityFacts() {
             className="font-display text-[24px] lg:text-[34px] leading-[1.15] tracking-[-0.02em] max-w-2xl"
             style={{ fontVariationSettings: "'opsz' 96" }}
           >
-            Four answers, on the page. Long versions are one click away.
+            {t('credfacts.section.title')}
           </h2>
         </div>
 

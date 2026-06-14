@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { breadcrumbSchema, faqPageSchema, type FAQItem } from '@/lib/schema'
+import { PageContent } from './content'
 
 export const metadata: Metadata = {
   title: 'Frequently asked questions',
@@ -193,64 +193,7 @@ export default function FAQPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <SiteNav />
-      <main id="main" className="bg-background min-h-screen">
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">FAQ</span>
-              <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
-            </div>
-            <h1
-              className="font-display text-[44px] sm:text-[58px] lg:text-[72px] leading-[1.04] tracking-[-0.03em] mb-8"
-              style={{ fontVariationSettings: "'opsz' 144" }}
-            >
-              Plain answers kept current.
-            </h1>
-            <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
-              These are the questions buyers, investors, and clinicians ask first. Answers track what is on the rest of the site; if anything here drifts, it is a bug — write to us.
-            </p>
-          </div>
-        </section>
-
-        {sections.map((section, sIdx) => (
-          <section key={section.eyebrow} className={`py-20 lg:py-24 px-6 lg:px-10 ${sIdx % 2 === 1 ? 'bg-secondary' : ''}`}>
-            <div className="max-w-5xl mx-auto">
-              <div className="flex items-center gap-3 mb-12">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{section.eyebrow}</span>
-                <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
-              </div>
-              <dl className="divide-y divide-border border-y border-border">
-                {section.items.map((it) => (
-                  <div key={it.q} className="py-8 lg:py-10 grid lg:grid-cols-[280px_1fr] gap-4 lg:gap-12">
-                    <dt
-                      className="font-display text-[20px] lg:text-[24px] leading-[1.25] tracking-[-0.018em] text-foreground"
-                      style={{ fontVariationSettings: "'opsz' 80" }}
-                    >
-                      {it.q}
-                    </dt>
-                    <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">{it.a}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </section>
-        ))}
-
-        <section className="py-20 px-6 border-t border-border">
-          <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6">
-            <p className="text-[15px] text-foreground/80 flex-1">Have a different question? We answer real email.</p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors self-start sm:self-auto min-h-[44px]"
-            >
-              Contact Aescia
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-              </svg>
-            </Link>
-          </div>
-        </section>
-      </main>
+      <PageContent />
       <Footer />
     </>
   )

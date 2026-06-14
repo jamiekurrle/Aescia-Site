@@ -1,8 +1,18 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from '@/components/ui/dropdown-menu'
+import { zh } from './dictionaries/zh'
+import { ar } from './dictionaries/ar'
+import { vi } from './dictionaries/vi'
 
-type Locale = 'en' | 'fr'
+type Locale = 'en' | 'fr' | 'es' | 'zh' | 'ar' | 'vi'
 
 interface I18nContextType {
   locale: Locale
@@ -789,16 +799,397 @@ const translations: Record<Locale, Record<string, string>> = {
     'lang.switch': 'EN',
     'lang.switch.aria': 'Passer en anglais',
   },
+  es: {
+    'brand.name': 'Aescia',
+
+    'regband.eyebrow': 'Aviso regulatorio',
+    'regband.monitor.label': 'Hospitales',
+    'regband.monitor.body': 'Aescia para Hospitales es un software como dispositivo médico en investigación, bajo la vía de Clase IIa de la TGA. Aún no disponible para suministro comercial.',
+    'regband.clinic.label': 'Clínicas',
+    'regband.clinic.body': 'Aescia para Clínicas es una herramienta de flujo de trabajo y preparación del paciente. No propone decisiones clínicas y no es un dispositivo médico.',
+    'regband.body': 'Aescia para Hospitales es un software como dispositivo médico en investigación. Hay una solicitud de inclusión en el ARTG en preparación; el producto aún no está disponible para suministro comercial. Aescia para Clínicas es una plataforma de flujo de trabajo y no es un dispositivo médico.',
+    'regband.dismiss': 'Cerrar',
+    'regband.short': 'Software en investigación. La herramienta de Clínicas no es un dispositivo médico.',
+    'regband.more': 'Leer el aviso regulatorio completo',
+    'regband.less': 'Mostrar menos',
+
+    'nav.platform': 'Plataforma',
+    'nav.hospitals': 'Para Hospitales',
+    'nav.clinics': 'Para Clínicas',
+    'nav.evidence': 'Evidencia',
+    'nav.updates': 'Novedades',
+    'nav.team': 'Equipo',
+    'nav.careers': 'Empleo',
+    'nav.contact': 'Contacto',
+    'nav.cta': 'Solicitar una sesión informativa',
+    'nav.skip': 'Saltar al contenido',
+    'nav.primary': 'Principal',
+    'nav.menu.open': 'Abrir menú',
+    'nav.menu.close': 'Cerrar menú',
+    'nav.menu.expanded': 'Menú abierto',
+
+    'hero.eyebrow': 'Una plataforma de cuidado continuo',
+    'hero.title': 'Entre el alta y la próxima cita, alguien debería estar escuchando.',
+    'hero.subtitle': 'Una plataforma de seguimiento estructurado de pacientes, creada para hospitales y clínicas especializadas.',
+    'hero.cta.primary': 'Explorar la plataforma',
+    'hero.cta.secondary': 'Hablar con nuestro equipo',
+    'hero.trial.label': 'Programa clínico',
+    'hero.trial.brief': 'SAFE-Discharge, 550 pacientes',
+    'hero.trial.site': 'Royal Prince Alfred Hospital, Sídney',
+
+    'split.hospital.eyebrow': 'Para Hospitales',
+    'split.hospital.regtag': 'Dispositivo médico, en evaluación',
+    'split.hospital.title': 'La recuperación posquirúrgica, observada.',
+    'split.hospital.desc': 'Una capa de seguimiento estructurado para la cirugía cardiotorácica y otras altas de alta complejidad. Controles diarios del paciente, priorización transparente basada en reglas, una sola lista clínica priorizada para el equipo de enfermería.',
+    'split.hospital.cta': 'Aescia para Hospitales',
+    'split.clinic.eyebrow': 'Para Clínicas',
+    'split.clinic.regtag': 'No es un dispositivo médico',
+    'split.clinic.title': 'Mejor preparación. Listas que cumplen el horario.',
+    'split.clinic.desc': 'Vías previas al procedimiento para endoscopia y otras clínicas especializadas. Alcance multicanal por SMS y correo electrónico hacia una aplicación web del paciente; superposiciones para diabetes, anticoagulantes y GLP-1; gestión de recordatorios; menos llamadas a recepción.',
+    'split.clinic.cta': 'Aescia para Clínicas',
+
+    'trust.item1.value': 'Cifrado',
+    'trust.item1.label': 'en tránsito y en reposo',
+    'trust.item2.value': 'Por cliente',
+    'trust.item2.label': 'aislamiento de datos',
+    'trust.item3.value': 'En la región',
+    'trust.item3.label': 'residencia de datos',
+    'trust.item4.value': 'MFA obligatoria',
+    'trust.item4.label': 'en todas las cuentas del personal',
+
+    'platform.eyebrow': 'Un motor. Dos puertas.',
+    'platform.title': 'Un motor de vías compartido por ambos productos.',
+    'platform.body': 'Cada vía de Aescia es una secuencia de cinco tipos de paso: Recolectar una señal estructurada, Seguir una regla redactada por clínicos, Recordar al paciente, Educar en el momento adecuado, Exportar el registro estructurado. Construimos el motor una vez y lo aplicamos a los dos momentos en que la atención suele fallar: la semana posterior al alta y la semana previa a un procedimiento programado.',
+    'platform.pill.collect': 'Recolectar',
+    'platform.pill.follow': 'Seguir',
+    'platform.pill.remind': 'Recordar',
+    'platform.pill.educate': 'Educar',
+    'platform.pill.export': 'Exportar',
+
+    'pillars.title': 'Por qué esto importa ahora.',
+    'pillars.transparent.title': 'Transparente por diseño',
+    'pillars.transparent.desc': 'Priorización basada en reglas, redactada por clínicos. Sin modelos opacos. Cada señal es explicable para el enfermero que la recibe y para el comité que la cuestiona.',
+    'pillars.clinician.title': 'Redactado por clínicos',
+    'pillars.clinician.desc': 'Las vías están escritas por cirujanos, gastroenterólogos y enfermeros en ejercicio. No entregamos una enfermedad que no aprendimos de quienes la tratan.',
+    'pillars.dual.title': 'Dos productos de un solo motor',
+    'pillars.dual.desc': 'Una vía regulada para la recuperación quirúrgica y una vía de flujo de trabajo para clínicas de procedimientos comparten la misma capa de edición, el mismo registro de auditoría y el mismo equipo.',
+
+    'evidence.eyebrow': 'Dónde estamos hoy',
+    'evidence.title': 'Programa clínico próximo a abrir.',
+    'evidence.body': 'El ensayo SAFE-Discharge es una evaluación de un solo centro de Aescia para la monitorización tras el alta de cirugía cardiotorácica en la unidad cardiotorácica del Royal Prince Alfred Hospital en Sídney. Se preespecifica una cohorte intermedia de 50 pacientes, seguida de una cohorte principal de 500 pacientes, 550 pacientes en total. Dirigido por el Dr. Kei Woldendorp, investigador principal. Aescia para Hospitales tiene una clasificación Clase IIa prevista según la regla 3.4 de la TGA; hay una solicitud regulatoria en preparación. Aescia para Clínicas es una herramienta de flujo de trabajo que no propone decisiones clínicas y no es un dispositivo médico.',
+    'evidence.fact1.value': 'ACTRN12625001425482',
+    'evidence.fact1.label': 'Registro del ensayo',
+    'evidence.fact2.value': '550',
+    'evidence.fact2.label': 'Pacientes (50 intermedia + 500), un solo centro',
+    'evidence.fact3.value': 'Clase IIa',
+    'evidence.fact3.label': 'Clasificación prevista',
+    'evidence.cta': 'Leer la página de evidencia',
+
+    'cta.title': '¿Listo para ver la plataforma?',
+    'cta.subtitle': 'Una llamada de treinta minutos con alguien del equipo clínico. Mostramos la lista de trabajo, el editor de vías y cómo es realmente la semana después de la cirugía o la noche antes de una colonoscopia.',
+    'cta.button': 'Solicitar una sesión informativa',
+
+    'footer.tagline': 'Una plataforma de cuidado continuo para las semanas que importan.',
+    'footer.product': 'Producto',
+    'footer.company': 'Empresa',
+    'footer.legal': 'Legal',
+    'footer.platform': 'Plataforma',
+    'footer.hospitals': 'Para Hospitales',
+    'footer.clinics': 'Para Clínicas',
+    'footer.evidence': 'Evidencia',
+    'footer.team': 'Equipo',
+    'footer.governance': 'Gobernanza',
+    'footer.contact': 'Contacto',
+    'footer.rights': 'Todos los derechos reservados.',
+    'footer.health': 'Una plataforma de cuidado continuo.',
+    'footer.disclosure': 'Aescia para Hospitales es un software como dispositivo médico en investigación, Clase IIa prevista según la regla 3.4 de la TGA. Hay una solicitud regulatoria en preparación. El producto está en evaluación clínica a través del ensayo SAFE-Discharge y aún no está disponible para suministro comercial. Aescia para Clínicas es una plataforma de flujo de trabajo y no es un dispositivo médico.',
+
+    'hospitals.eyebrow': 'Para Hospitales',
+    'hospitals.title': 'Los días más silenciosos tras la cirugía cargan el mayor riesgo.',
+    'hospitals.subtitle': 'Aescia para Hospitales es una plataforma de monitorización de la recuperación posquirúrgica, creada primero para la cirugía cardiotorácica. Controles diarios estructurados, priorización redactada por clínicos, una sola lista para el equipo de enfermería. En evaluación clínica a través del ensayo SAFE-Discharge en una importante unidad cardiotorácica australiana.',
+    'hospitals.cta.primary': 'Solicitar una sesión informativa para sistemas de salud',
+    'hospitals.cta.secondary': 'Leer el resumen del ensayo',
+    'hospitals.status.label': 'Estado',
+    'hospitals.status.title': 'En evaluación clínica a través del ensayo SAFE-Discharge.',
+    'hospitals.status.body': 'Aescia para Hospitales tiene una clasificación Clase IIa prevista según la regla 3.4 de la TGA. Aún no se ha presentado una solicitud regulatoria. Hoy la colaboración es únicamente a través de contratos de evaluación y pilotos. Esta página no recluta participantes para el ensayo.',
+
+    'hospitals.leadership.eyebrow': 'Dirección del ensayo',
+    'hospitals.leadership.title': 'El investigador principal de SAFE-Discharge.',
+    'hospitals.leadership.body': 'Aescia para Hospitales está en evaluación clínica a través del ensayo SAFE-Discharge. El investigador principal es un clínico-investigador cardiotorácico en ejercicio en el sitio del ensayo. Se nombrará a otros asesores clínicos en el sitio a medida que cada uno se incorpore formalmente al consejo asesor y consienta su reconocimiento público.',
+    'hospitals.leadership.woldendorp.name': 'Dr. Kei Woldendorp',
+    'hospitals.leadership.woldendorp.title': 'BMed MBBS MPhil en investigación cardiotorácica',
+    'hospitals.leadership.woldendorp.aff': 'The Baird Institute, Royal Prince Alfred Hospital. Publicaciones revisadas por pares en atención cardiotorácica.',
+    'hospitals.leadership.woldendorp.role': 'Investigador principal, ensayo SAFE-Discharge. Asesor clínico, Aescia para Hospitales.',
+
+    'hospitals.complications.title': 'Qué vigilamos tras la cirugía cardiotorácica.',
+    'hospitals.complications.body': 'Las vías están redactadas por cirujanos y enfermeros que conviven con esta población. Cada señal lleva una regla nombrada y una escalada nombrada. El clínico sigue siendo quien decide.',
+    'hospitals.complications.item1.title': 'Herida esternal',
+    'hospitals.complications.item1.desc': 'Revisión fotográfica de referencia obligatoria y semanal, priorizada frente a un conjunto de reglas de cambio en el tiempo redactadas con los cirujanos operantes.',
+    'hospitals.complications.item2.title': 'Dehiscencia esternal',
+    'hospitals.complications.item2.desc': 'Señales de integridad mecánica distintas de la infección. Tos, inestabilidad al moverse, indicios de chasquido a la palpación, enrutados directamente al equipo operante.',
+    'hospitals.complications.item3.title': 'Fibrilación auricular de novo',
+    'hospitals.complications.item3.desc': 'Captura de frecuencia, ritmo y síntomas, acotada a la cronología habitual de la FA tras la cirugía cardíaca. Estado de anticoagulación y última dosis visibles en la tarjeta.',
+    'hospitals.complications.item4.title': 'Descompensación de insuficiencia cardíaca',
+    'hospitals.complications.item4.desc': 'Seguimiento diario del peso, los síntomas de esfuerzo y la ortopnea frente a umbrales específicos del paciente fijados por el equipo de cardiología.',
+    'hospitals.complications.item5.title': 'Derrame pleural y pericárdico',
+    'hospitals.complications.item5.desc': 'Reglas de disnea y síntomas posicionales que incitan al equipo a reimagenar en lugar de reaccionar. Cruzadas con la imagenología reciente cuando está integrada.',
+    'hospitals.complications.item6.title': 'Sangrado',
+    'hospitals.complications.item6.desc': 'Señales sensibles a la anticoagulación, visibles para el equipo quirúrgico antes de que el paciente llamara de otro modo. El enrutamiento va al residente de guardia, no a un buzón genérico.',
+    'hospitals.complications.item7.title': 'Ictus y nueva sintomatología neurológica',
+    'hospitals.complications.item7.desc': 'Indicaciones de autoinforme tipo FAST, alertas de síntomas focales y una vía de revisión presencial el mismo día. Relevante tras cirugía valvular y aórtica, donde el riesgo embólico es significativo.',
+    'hospitals.complications.item8.title': 'Infección y deterioro sistémico',
+    'hospitals.complications.item8.desc': 'Captura de signos vitales, herida y síntomas constitucionales que se eleva al equipo según la propia política de escalada de la institución.',
+
+    'hospitals.workflow.title': 'Lo que ve un enfermero el lunes por la mañana.',
+    'hospitals.workflow.body': 'Una lista priorizada de pacientes nombrados, ordenada por urgencia según reglas, con el motivo por el que surgió cada uno, la última respuesta y una acción clínica con un toque. Es una superficie que el equipo debe atender; la intención de diseño es una sola lista ordenada, no un flujo genérico de alertas.',
+    'hospitals.workflow.preview.header': 'Cohorte de alta · lun 14 abr',
+    'hospitals.workflow.preview.count': '42 activos',
+    'hospitals.workflow.preview.note1': 'Vista previa ilustrativa',
+    'hospitals.workflow.preview.note2': 'La vista en producción se configura según su política de escalada',
+
+    'hospitals.wound.eyebrow': 'Protocolo de herida esternal',
+    'hospitals.wound.title': 'Fotos de la herida semanales, con fecha y hora en el registro del paciente.',
+    'hospitals.wound.body': 'Obligatoria al alta. Semanal en adelante. Se le solicita al paciente, la imagen se almacena en el registro del paciente con metadatos de hora y dispositivo, y el cirujano operante puede ver su propio trabajo en los días 7, 14 y 30. El conjunto de reglas busca eritema en expansión, dehiscencia, formación de fístula y cambios en el exudado.',
+    'hospitals.wound.stat1.value': 'Día 0, 7, 14, 30',
+    'hospitals.wound.stat1.label': 'Cadencia mínima del protocolo',
+    'hospitals.wound.stat2.value': 'Con fecha y hora',
+    'hospitals.wound.stat2.label': 'Almacenado en el registro del paciente',
+    'hospitals.wound.stat3.value': 'Revisión del cirujano',
+    'hospitals.wound.stat3.label': 'El equipo operante ve su propio trabajo',
+
+    'hospitals.noise.eyebrow': 'El costo de una falsa alerta',
+    'hospitals.noise.title': 'Menos alertas. Cada una, merecida.',
+    'hospitals.noise.body': 'Una plataforma tras el alta que señala todo es una plataforma que ningún enfermero leerá. SAFE-Discharge incluye la carga de alertas como un desenlace secundario preespecificado: la meta es menos de una alerta accionable por enfermería por paciente por semana durante la ventana de 30 días tras el alta, con revisión documentada de cada señal de mayor urgencia. Informaremos la cifra, sea cual sea.',
+    'hospitals.noise.target.label': 'Meta',
+    'hospitals.noise.target.value': '< 1 alerta por paciente por semana',
+    'hospitals.noise.endpoint.label': 'Desenlace',
+    'hospitals.noise.endpoint.value': 'Preespecificado en SAFE-Discharge',
+
+    'hospitals.roster.eyebrow': 'Cómo encaja en su personal',
+    'hospitals.roster.title': 'Suma al día sin sumar a la plantilla.',
+    'hospitals.roster.body': 'La lista de trabajo pertenece a los roles de enfermería existentes, no a un rol nuevo. El enrutamiento fuera del horario se acuerda con su residente de guardia y la central del hospital antes de la puesta en marcha. Cuando un paciente reingresa al hospital, las alertas de Aescia para ese paciente se silencian automáticamente. El supervisor de enfermería ve quién es responsable de la lista por turno y puede auditar cada alerta enrutada.',
+    'hospitals.roster.item1.title': 'Responsabilidad por turno',
+    'hospitals.roster.item1.desc': 'Un rol de enfermería nombrado por turno, acordado con el supervisor. El relevo entre turnos transfiere la lista como parte del traspaso verbal existente.',
+    'hospitals.roster.item2.title': 'Enrutamiento fuera de horario',
+    'hospitals.roster.item2.desc': 'Las señales de mayor urgencia se enrutan al residente quirúrgico de guardia tras el horario acordado. Configurado por sitio, no es un ajuste por defecto del proveedor.',
+    'hospitals.roster.item3.title': 'Silenciado automático',
+    'hospitals.roster.item3.desc': 'Cuando un paciente reingresa al hospital, las alertas de Aescia para ese paciente se suprimen hasta que el equipo las reactive. El sistema deja de competir por la atención mientras el paciente está bajo cuidado hospitalario.',
+
+    'hospitals.trial.eyebrow': 'Programa clínico activo',
+    'hospitals.trial.title': 'El ensayo SAFE-Discharge.',
+    'hospitals.trial.body': 'Una evaluación prospectiva de un solo centro de Aescia para la monitorización tras el alta cardiotorácica. Se preespecifica una cohorte intermedia de 50 pacientes, seguida de una cohorte principal de 500 pacientes, 550 pacientes en total. Registrado en el Registro de Ensayos Clínicos de Australia y Nueva Zelanda. Se espera a los primeros participantes tras la aprobación de ética y gobernanza.',
+    'hospitals.trial.not_recruiting': 'Esta página no recluta participantes para el ensayo. La inscripción se realiza a través de la unidad cardiotorácica del Royal Prince Alfred Hospital bajo aprobación ética.',
+    'hospitals.trial.id': 'ACTRN12625001425482',
+    'hospitals.trial.site': 'Royal Prince Alfred Hospital, Sídney',
+    'hospitals.trial.unit': 'Unidad de Cirugía Cardiotorácica',
+    'hospitals.trial.cta': 'Solicitar el resumen del protocolo',
+
+    'hospitals.path.title': 'Cómo colaboran con nosotros los sistemas de salud.',
+    'hospitals.path.step1.title': 'Evaluación acotada',
+    'hospitals.path.step1.desc': 'De ocho a doce semanas, una sola línea de servicio, con un encuadre de uso para investigación, sin suministro comercial. Sirve para confirmar que la vía se ajusta a su población y a su estructura de escalada.',
+    'hospitals.path.step2.title': 'Piloto supervisado',
+    'hospitals.path.step2.desc': 'Seis meses, una o dos líneas de servicio, realizado como uso para investigación bajo la aprobación ética del sitio. Métricas de éxito acordadas, acuerdo de intercambio de datos, opción de publicación conjunta. No es un acuerdo de suministro comercial; el producto permanece en investigación en todo momento.',
+    'hospitals.path.step3.title': 'Despliegue empresarial',
+    'hospitals.path.step3.desc': 'El despliegue empresarial solo está disponible en jurisdicciones donde Aescia para Hospitales haya recibido la autorización regulatoria correspondiente (inclusión en el ARTG en Australia, autorizaciones equivalentes en otros lugares). No disponible para suministro comercial antes de esa autorización.',
+
+    'hospitals.integration.title': 'Encaja donde su equipo ya trabaja.',
+    'hospitals.integration.body': 'Aescia añade una sola lista priorizada para el equipo de enfermería, con el conjunto de reglas y el enrutamiento escritos por clínicos. Está diseñada para ajustarse a la forma en que su equipo ya trabaja y para configurarse rápido. Cualquier intercambio de datos con sus sistemas existentes se acota con cada sitio.',
+
+    'clinics.eyebrow': 'Para Clínicas',
+    'clinics.title': 'Mejor preparación. Menos ausencias. Menos trabajo telefónico.',
+    'clinics.subtitle': 'Aescia para Clínicas es una plataforma de flujo de trabajo para clínicas especializadas, con la endoscopia como primer hogar. Vías previas al procedimiento entregadas por SMS y correo electrónico hacia una aplicación web del paciente. Superposiciones para diabetes, anticoagulantes y GLP-1. Seguimiento de recordatorios que deja de escaparse. No propone decisiones clínicas. No es un dispositivo médico.',
+    'clinics.cta.primary': 'Ver una demostración para clínicas',
+    'clinics.cta.secondary': 'Ver la postura de precios',
+    'clinics.posture.label': 'Postura',
+    'clinics.posture.title': 'No es un dispositivo médico. No es una herramienta de decisión.',
+    'clinics.posture.body': 'Una plataforma de flujo de trabajo y preparación del paciente. No diagnostica, no trata, no propone decisiones clínicas.',
+
+    'clinics.features.title': 'Nueve cosas que mantienen el día a día.',
+    'clinics.features.item1.title': 'Vías de preparación que se adaptan',
+    'clinics.features.item1.desc': 'Elija la preparación que usa su clínica. La vía se adapta al paciente que tiene delante. Diabetes, EII, estreñimiento, preparación previa fallida, adultos mayores: todo cubierto sin reescribir la página.',
+    'clinics.features.item2.title': 'Reducción de ausencias',
+    'clinics.features.item2.desc': 'Recordatorios programados en el idioma del paciente, una vía de confirmar y reprogramar integrada, y un aviso del mismo día sobre el que su recepción sí puede actuar. Relleno automático de la lista de espera al cancelarse una cita.',
+    'clinics.features.item3.title': 'Manejo de GLP-1',
+    'clinics.features.item3.desc': 'El paciente informa por sí mismo el medicamento y la dosis. La vía entrega la instrucción redactada por clínicos que corresponde al informe del paciente, alineada con la guía multisocietaria de 2024 y el consenso internacional de 2025. Las decisiones siguen en manos de quien realiza el procedimiento.',
+    'clinics.features.item4.title': 'Superposiciones de diabetes y anticoagulantes',
+    'clinics.features.item4.desc': 'Escenarios de SGLT2, metformina, DOAC y warfarina entregados como instrucciones redactadas por clínicos, generadas a partir de las respuestas del paciente. El clínico aprueba el conjunto de reglas, no el proveedor.',
+    'clinics.features.item5.title': 'Revisión de la foto la noche de la preparación',
+    'clinics.features.item5.desc': 'La noche anterior, el paciente puede subir una foto del inodoro a través de la aplicación web. La vía la califica automáticamente frente a una rúbrica fijada por clínicos y confirma la cita o activa la reprogramación antes de que el paciente salga de casa.',
+    'clinics.features.item6.title': 'Desvío de llamadas',
+    'clinics.features.item6.desc': 'La mensajería bidireccional por SMS y correo electrónico responde las veinte preguntas más frecuentes sobre la preparación antes de que lleguen a recepción, con respuestas plantilladas redactadas por clínicos. La clínica ve las excepciones, no cada mensaje.',
+    'clinics.features.item7.title': 'Vigilancia y recordatorios',
+    'clinics.features.item7.desc': 'El seguimiento de pólipos de alto riesgo y los intervalos de vigilancia no dependen de una hoja de cálculo que alguien podría pasar por alto. Pacientes nombrados, fechas nombradas, disparadores nombrados, alineados con las pautas de intervalos de la USMSTF y la NHMRC.',
+    'clinics.features.item8.title': 'Compatible con integraciones',
+    'clinics.features.item8.desc': 'Diseñada para convivir con los sistemas que su clínica ya usa y para configurarse rápido, sin un segundo inicio de sesión para su equipo. Acotamos con usted cualquier intercambio de datos.',
+    'clinics.features.item9.title': 'Apta para un solo sitio',
+    'clinics.features.item9.desc': 'Configurada por un administrador de la clínica en una tarde. Precio por procedimiento en EE. UU., sin cálculos por puesto. Diseñada para entrar en funcionamiento en semanas una vez que hay un impulsor, no en trimestres.',
+
+    'clinics.vocab.title': 'Creada para el ritmo ambulatorio.',
+    'clinics.vocab.body': 'Esto no es una herramienta de alta hospitalaria disfrazada para una clínica. Es un producto de preparación y flujo de trabajo con sus propios protocolos redactados, su propia capa de SMS y su propio vocabulario: la lista de hoy, el uso de salas, la rotación de casos, la adecuación de la preparación, el cumplimiento de los recordatorios.',
+
+    'clinics.regions.title': 'Marcas de preparación por región.',
+    'clinics.regions.body': 'La vía cubre los equivalentes de marca regionales en los mercados que atendemos. Los clínicos de cada país ven los nombres de preparación que sus pacientes ven en el estante.',
+    'clinics.regions.us.label': 'Estados Unidos',
+    'clinics.regions.us.value': 'SuPrep, SuTab, CLENPIQ, GoLytely, NuLYTELY',
+    'clinics.regions.ca.label': 'Canadá',
+    'clinics.regions.ca.value': 'PegLyte, PICO-SALAX, CLENPIQ, Bi-PEG-Lyte',
+    'clinics.regions.au.label': 'Australia y Nueva Zelanda',
+    'clinics.regions.au.value': 'Glycoprep, Picoprep, MoviPrep, Plenvu',
+    'clinics.regions.uk.label': 'Reino Unido y UE',
+    'clinics.regions.uk.value': 'Plenvu, Moviprep, Citrafleet',
+
+    'clinics.specialties.title': 'Especialidades en alcance.',
+    'clinics.specialties.body': 'La endoscopia es el primer foco clínico: el desarrollo de las vías de colonoscopia y gastroscopia está activo, con variantes regionales de preparación intestinal y superposiciones por especialidad en construcción. El mismo motor se extiende a la fisioterapia tras el alta, la estética y otras especialidades que buscan eficiencia a medida que se suman impulsores clínicos. Si su especialidad no aparece, construiremos la vía con usted.',
+
+    'clinics.pricing.title': 'Postura de precios.',
+    'clinics.pricing.body': 'Tarifa mensual fija por especialidad a nivel de un solo sitio, alineada al consumo a escala. Comienza por debajo del costo de una ausencia perdida por semana. Publicamos una postura, no una lista de precios: las clínicas pagan por un protocolo de especialidad que pueden desplegar en dos semanas, y crecer suma protocolos, no fricción.',
+
+    'platformpg.eyebrow': 'Plataforma',
+    'platformpg.title': 'El motor que sostiene ambos productos.',
+    'platformpg.body': 'Aescia es un solo motor con dos puertas. La misma autoría de vías componible, el mismo registro de auditoría, la misma capa de SMS hacia el paciente, el mismo equipo. La postura regulada del producto hospitalario eleva el estándar del producto para clínicas, y la velocidad de flujo de trabajo del producto para clínicas mantiene al producto hospitalario honesto sobre lo que un equipo ocupado de verdad adoptará.',
+    'platformpg.ls.eyebrow': 'Adyacencia con ciencias de la vida',
+    'platformpg.ls.title': 'Un motor de vías adaptado por área terapéutica.',
+    'platformpg.ls.body': 'El motor ya codifica reglas a nivel de fármaco (GLP-1, SGLT2, DOAC, warfarina). Cualquier vía redactada por clínicos lo amplía. Las mismas primitivas (recolección estructurada, triaje redactado, entrega por SMS, registro de auditoría, exportación estructurada) son las que sustentan los programas modernos de apoyo al paciente, los registros y la recolección de evidencia del mundo real. Diseñamos para esta extensibilidad; no nombramos terapias que no hayamos desplegado.',
+
+    'governance.eyebrow': 'Gobernanza',
+    'governance.title': 'Una postura honesta, documentada.',
+    'governance.body': 'Aescia opera dos productos con posturas regulatorias distintas. El producto para Hospitales es un dispositivo médico en investigación con una clasificación Clase IIa prevista; aún no se ha presentado una solicitud regulatoria. El producto para Clínicas es una herramienta de flujo de trabajo que no es un dispositivo médico y no se presenta como tal. Esta página declara qué es cada uno y qué no es cada uno.',
+
+    'partners.eyebrow': 'Dónde trabajamos',
+    'partners.title': 'Sitios de ensayo y programas asociados.',
+    'partners.body': 'Aescia ejecuta su programa clínico a través de la unidad cardiotorácica del Royal Prince Alfred Hospital en Sídney, con colaboraciones de investigación en institutos nombrados de Australia y Canadá. Publicamos las afiliaciones que hemos ganado, no muros de logotipos.',
+    'partners.trial.label': 'Registro del ensayo',
+    'partners.trial.value': 'ACTRN12625001425482',
+    'partners.item1.name': 'Royal Prince Alfred Hospital',
+    'partners.item1.role': 'Hospital universitario terciario del Sydney Local Health District. Su unidad de cirugía cardiotorácica aloja el sitio del ensayo SAFE-Discharge (550 pacientes).',
+    'partners.item2.name': 'The Baird Institute',
+    'partners.item2.role': 'Instituto independiente de investigación en cirugía cardiotorácica afiliado al RPAH. Coinvestigador en SAFE-Discharge.',
+    'partners.item3.name': 'Institute of Academic Surgery',
+    'partners.item3.role': 'Centro de investigación y educación en cirugía académica del RPAH. Aporta la vía de gobernanza para la evaluación de implementación de SAFE-Discharge.',
+    'partners.item4.name': 'CHEO Research Institute',
+    'partners.item4.role': 'Brazo de investigación del Children\'s Hospital of Eastern Ontario en Ottawa. Aescia es participante seleccionado en su programa de Ajuste Producto-Mercado (PMF), trabajando en una vía respiratoria pediátrica tras el alta.',
+    'partners.item5.name': 'District 3',
+    'partners.item5.role': 'La principal incubadora de startups de bio/salud/tecnología de Quebec en la Universidad Concordia, Montreal. Aescia es empresa de su portafolio desde septiembre de 2025.',
+    'partners.item6.name': 'MTAA MedTech Compass',
+    'partners.item6.role': 'Programa de capacidades de la Medical Technology Association of Australia para empresas emergentes de dispositivos médicos. Aescia es miembro de la industria.',
+
+    'team.eyebrow': 'Equipo',
+    'team.title': 'Clínicos que construyen para clínicos.',
+    'team.subtitle': 'Aescia la construye un equipo pequeño que escribe sus propias vías y entrega su propio código. Dos productos, un motor, un equipo.',
+    'team.founders.eyebrow': 'Fundadores',
+    'team.james.name': 'James Kurrle',
+    'team.james.role': 'Fundador y CEO',
+    'team.james.bio': 'Médico de cuidados intensivos con diez años de experiencia clínica y de liderazgo hospitalario, formado y en ejercicio en la región rural de Nueva Gales del Sur (Wagga Wagga) y en Sídney. Es autor del motor de vías clínicas y dirige la estrategia de la empresa.',
+    'team.vasken.name': 'Vasken Dermardiros',
+    'team.vasken.role': 'Cofundador y CTO',
+    'team.vasken.bio': 'Doctorado de la Universidad Concordia en aprendizaje automático aplicado a la energía de edificios. Es responsable del alojamiento, la inferencia de IA, la integración con sistemas EMR y la infraestructura de autoría de vías que sostiene ambos productos.',
+    'team.operating.eyebrow': 'Equipo operativo',
+    'team.operating.title': 'Quién entrega el trabajo.',
+    'team.shannon.name': 'Shannon Kurrle',
+    'team.shannon.role': 'Directora residente, Aescia Pty Ltd',
+    'team.shannon.bio': 'Ocupa el cargo estatutario de directora residente que exige la Ley de Sociedades de Australia para Aescia Pty Ltd. No es un puesto operativo.',
+    'team.josh.name': 'Josh Casey',
+    'team.josh.role': 'Cumplimiento y ciberseguridad',
+    'team.josh.bio': 'Colaborador fraccional en cumplimiento y ciberseguridad. Evaluaciones de impacto en la privacidad, postura de ciberseguridad y la vía de preparación para SOC 2 que se abre con el primer contrato de socio de diseño en EE. UU.',
+    'team.sara.name': 'Sara Nejatian',
+    'team.sara.role': 'Diseño y experiencia de usuario',
+    'team.sara.bio': 'Dirige el diseño de producto de la aplicación web orientada al paciente y de la lista de trabajo del clínico. Convierte la lógica de las vías en una interfaz que una enfermera cansada puede usar a las 22:00.',
+    'team.clinical.eyebrow': 'Colaboradores clínicos',
+    'team.clinical.title': 'Clínicos nombrados en programas específicos.',
+    'team.clinical.body': 'El liderazgo clínico se vincula a los programas donde la persona realmente hace el trabajo. Los asesores se añaden aquí a medida que cada uno se incorpora formalmente y consiente su reconocimiento público.',
+    'team.kei.name': 'Dr. Kei Woldendorp',
+    'team.kei.role': 'Asesor clínico; investigador principal, SAFE-Discharge',
+    'team.kei.bio': 'BMed MBBS MPhil. Investigador cardiotorácico, The Baird Institute y Royal Prince Alfred Hospital. Investigador principal del ensayo SAFE-Discharge y asesor clínico de Aescia para Hospitales.',
+    'team.advisory.eyebrow': 'Consejo asesor clínico',
+    'team.advisory.title': 'Formalizándose junto con el ensayo.',
+    'team.advisory.body': 'No publicamos listas de asesores que no podamos respaldar. Se está formalizando un consejo asesor clínico junto con el ensayo SAFE-Discharge en el Royal Prince Alfred Hospital y el programa de Ajuste Producto-Mercado en el CHEO Research Institute. Los miembros se nombran aquí a medida que cada uno se incorpora formalmente y consiente su reconocimiento público.',
+    'team.advisory.body2': 'Para consultas sobre el consejo asesor clínico, use la página de contacto y lo encaminaremos en consecuencia.',
+    'team.cta.label': '¿Quiere conocer al equipo?',
+    'team.cta.button': 'Solicitar una sesión informativa',
+
+    'updates.eyebrow': 'Novedades',
+    'updates.title': 'Un registro de lo que se lanzó y lo que sigue.',
+    'updates.subtitle': 'Publicamos con franqueza. Sin textos de prensa, sin videos de lanzamiento, sin publicaciones de «nos emociona». Solo entradas con fecha cuando ocurrió algo real.',
+    'updates.cta': 'Solicitar una sesión informativa',
+    'updates.entry10.date': '24 de abril de 2026',
+    'updates.entry10.tag': 'Programa',
+    'updates.entry10.title': 'Aescia se inscribe en MTAA MedTech Compass.',
+    'updates.entry10.body': 'Aescia se ha unido al programa MedTech Compass de la Medical Technology Association of Australia, que apoya a las empresas australianas de tecnología médica en su paso del concepto a la adopción comercial en materia de regulación, reembolso y evidencia clínica.',
+    'updates.entry9.date': '24 de abril de 2026',
+    'updates.entry9.tag': 'Sitio',
+    'updates.entry9.title': 'Equipo, socios y un registro de avances en el sitio.',
+    'updates.entry9.body': 'Publicamos el equipo operativo, agregamos afiliaciones de sitios de ensayo e institutos de investigación, unificamos el flujo de contacto e iniciamos este registro de novedades. El precio para clínicas sigue siendo explícito: sin cálculos por puesto.',
+    'updates.entry8.date': '24 de abril de 2026',
+    'updates.entry8.tag': 'Ética',
+    'updates.entry8.title': 'Aprobación ética de SAFE-Discharge.',
+    'updates.entry8.body': 'El ensayo SAFE-Discharge en el Royal Prince Alfred Hospital ha superado la revisión de ética en investigación con seres humanos. Siguen las evaluaciones de gobernanza y de TI específicas del sitio. No hay reclutamiento para el ensayo en este sitio; la inscripción ocurre a través de la unidad cardiotorácica del RPAH bajo aprobación ética.',
+    'updates.entry7.date': '15 de abril de 2026',
+    'updates.entry7.tag': 'Pediatría',
+    'updates.entry7.title': 'Inicio del programa PMF del CHEO Research Institute.',
+    'updates.entry7.body': 'Aescia se unió al programa de Ajuste Producto-Mercado del CHEO Research Institute en Ottawa, con una vía respiratoria pediátrica tras el alta como foco de trabajo. Hay cuatro especialidades candidatas en evaluación dentro del programa: respiratoria pediátrica, adyacencia cardiotorácica pediátrica, gastroenterología pediátrica y oncología pediátrica.',
+    'updates.entry6.date': '14 de abril de 2026',
+    'updates.entry6.tag': 'Evidencia',
+    'updates.entry6.title': 'Base de evidencia de preparación intestinal compilada.',
+    'updates.entry6.body': 'Compilamos una base de evidencia de diez documentos que abarca guías internacionales, intervenciones digitales, economía operativa, manejo de la diabetes y los anticoagulantes, GLP-1 y poblaciones especiales para la preparación de la colonoscopia. Sustenta la vía de preparación redactada por clínicos que entra en los pilotos con socios de diseño.',
+    'updates.entry5.date': '13 de abril de 2026',
+    'updates.entry5.tag': 'Producto',
+    'updates.entry5.title': 'Aescia para Clínicas, MVP con funciones completas.',
+    'updates.entry5.body': 'Recorrido de extremo a extremo por los flujos de paciente, clínico y administrador. Autoría de vías, recordatorios multicanal, superposición de GLP-1, escenarios de diabetes y anticoagulantes, seguimiento de recordatorios y exportación estructurada. El despliegue en producción sigue una vez que se concreten la base de datos de producción y los objetivos de integración con EMR.',
+    'updates.entry4.date': '10 de abril de 2026',
+    'updates.entry4.tag': 'Subvenciones',
+    'updates.entry4.title': 'NSW MVP Ventures Ronda 3 presentada.',
+    'updates.entry4.body': 'Solicitud MVPV25RD3347 presentada ante Investment NSW el 10 de abril de 2026. Programa de financiamiento de contrapartida para trabajo de comercialización dirigido. Decisión prevista para finales de junio de 2026.',
+    'updates.entry3.date': '28 de marzo de 2026',
+    'updates.entry3.tag': 'Subvenciones',
+    'updates.entry3.title': 'Presentación de TTRA.',
+    'updates.entry3.body': 'Solicitud al Targeted Translation Research Accelerator presentada. Tres hitos, trabajo de evaluación clínica y regulatoria, decisión prevista alrededor de septiembre de 2026.',
+    'updates.entry2.date': '20 de octubre de 2025',
+    'updates.entry2.tag': 'Prensa',
+    'updates.entry2.title': 'Concordia News destaca a Aescia en el programa Beat the Odds.',
+    'updates.entry2.body': 'Aescia participó en el evento de contratación Beat the Odds de la Universidad Concordia a través del District 3 Innovation Hub. El programa conecta a estudiantes de Montreal con startups en etapa temprana; Aescia contrató a su primer becario de Beat the Odds a través de la iniciativa.',
+    'updates.entry1.date': 'septiembre de 2025',
+    'updates.entry1.tag': 'Programa',
+    'updates.entry1.title': 'Aescia se une a District 3 en la Universidad Concordia.',
+    'updates.entry1.body': 'Aescia se unió a District 3, el centro de innovación de Concordia para startups de bio, salud y alta tecnología. El programa ofrece acompañamiento, mentoría y acceso al ecosistema de startups de Montreal.',
+
+    'clinics.proof.eyebrow': 'La economía',
+    'clinics.proof.title': 'Se paga solo dentro del primer trimestre.',
+    'clinics.proof.body': 'Una lista de endoscopia ocupada pierde más por preparaciones canceladas, confusión con GLP-1 y deriva en el seguimiento en una semana de lo que cuesta Aescia en un mes. El caso económico es sustractivo: menos trabajo telefónico en recepción, menos citas repetidas por preparación inadecuada, menos pacientes de seguimiento perdidos.',
+    'clinics.proof.stat1.label': 'ROI publicado de una intervención centrada en la preparación',
+    'clinics.proof.stat1.value': 'USD 82 mil ahorrados en 16 semanas',
+    'clinics.proof.stat1.source': 'Mehta 2021',
+    'clinics.proof.stat2.label': 'Ingreso por tarifa de instalación perdido por cada colonoscopia de ASC en EE. UU. cancelada o repetida',
+    'clinics.proof.stat2.value': 'USD 989 a 1034 por cita',
+    'clinics.proof.stat2.source': 'Allen 2023, tarifas ASC de CMS, CPT 45378–45385',
+    'clinics.proof.stat3.label': 'La preparación inadecuada es frecuente y en gran medida predecible',
+    'clinics.proof.stat3.value': '48 factores de riesgo predecibles',
+    'clinics.proof.stat3.source': 'Beran 2024, n=358 257 (154 estudios)',
+    'clinics.proof.stat4.label': 'Tasa de adenomas no detectados con preparación inadecuada',
+    'clinics.proof.stat4.value': 'Hasta 42 %',
+    'clinics.proof.stat4.source': 'Lebwohl 2011',
+    'clinics.proof.footnote': 'Cifras públicas y modeladas. El ROI específico de su sitio requiere una evaluación acotada frente al volumen de su lista, su tasa de ausencias y su base de preparación inadecuada.',
+
+    'lang.switch': 'ES',
+    'lang.switch.aria': 'Cambiar de idioma',
+  },
+  zh,
+  ar,
+  vi,
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined)
+
+// Locales that render right-to-left. The provider sets <html dir> accordingly.
+// Note: this flips text direction; full visual mirroring of the chrome still
+// needs physical→logical Tailwind classes (a separate pass).
+const RTL_LOCALES = new Set<Locale>(['ar'])
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>('en')
 
   useEffect(() => {
     const saved = typeof window !== 'undefined' ? (localStorage.getItem('locale') as Locale | null) : null
-    if (saved && (saved === 'en' || saved === 'fr')) {
+    if (saved && Object.prototype.hasOwnProperty.call(translations, saved)) {
       setLocaleState(saved)
     }
   }, [])
@@ -806,6 +1197,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = locale
+      document.documentElement.dir = RTL_LOCALES.has(locale) ? 'rtl' : 'ltr'
     }
   }, [locale])
 
@@ -817,7 +1209,10 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   }
 
   const t = (key: string): string => {
-    return translations[locale][key] || key
+    // Fall back to English for any key (or any locale not yet present in the
+    // dictionary), so a partially-loaded or partially-translated locale renders
+    // English rather than raw key strings, and never throws on a missing locale.
+    return (translations[locale] && translations[locale][key]) || translations.en[key] || key
   }
 
   return (
@@ -835,16 +1230,46 @@ export function useI18n() {
   return context
 }
 
+// The single place to add a language: append a row here and a matching block in
+// `translations` above. The selector and SEO list scale automatically. `label`
+// is the short code shown on the trigger; `name` is the endonym shown in the menu.
+const LANGUAGES: { code: Locale; label: string; name: string }[] = [
+  { code: 'en', label: 'EN', name: 'English' },
+  { code: 'fr', label: 'FR', name: 'Français' },
+  { code: 'es', label: 'ES', name: 'Español' },
+  { code: 'zh', label: 'ZH', name: '中文' },
+  { code: 'ar', label: 'AR', name: 'العربية' },
+  { code: 'vi', label: 'VI', name: 'Tiếng Việt' },
+]
+
 export function LanguageSwitcher() {
-  const { locale, setLocale, t } = useI18n()
+  const { locale, setLocale } = useI18n()
+  const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0]
 
   return (
-    <button
-      onClick={() => setLocale(locale === 'en' ? 'fr' : 'en')}
-      className="font-mono text-[11px] font-medium tracking-widest uppercase px-2.5 py-2 border border-current/30 opacity-80 hover:opacity-100 transition-opacity min-h-[36px] min-w-[36px]"
-      aria-label={t('lang.switch.aria')}
-    >
-      {t('lang.switch')}
-    </button>
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        aria-label="Select language"
+        className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest uppercase px-2.5 py-2 border border-current/30 opacity-80 hover:opacity-100 transition-opacity min-h-[36px] outline-none focus-visible:opacity-100"
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" strokeWidth={1.5} />
+          <path strokeWidth={1.5} d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" />
+        </svg>
+        {current.label}
+        <svg className="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 9l6 6 6-6" />
+        </svg>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="min-w-[10rem]">
+        <DropdownMenuRadioGroup value={locale} onValueChange={(v) => setLocale(v as Locale)}>
+          {LANGUAGES.map((l) => (
+            <DropdownMenuRadioItem key={l.code} value={l.code} className="text-[13px]">
+              {l.name}
+            </DropdownMenuRadioItem>
+          ))}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
