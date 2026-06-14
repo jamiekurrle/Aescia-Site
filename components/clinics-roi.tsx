@@ -245,7 +245,7 @@ export function ClinicsRoi() {
 
           {/* Loss framing replaces the cost box: the value slipping away each month without Aescia. */}
           <div className="mt-7 bg-background border border-border p-6 lg:p-7">
-            <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-brass mb-2">Every month without Aescia</div>
+            <div className="font-mono text-[18px] lg:text-[24px] uppercase tracking-[0.06em] text-brass mb-2">Every month without Aescia</div>
             <div
               className="font-display text-[26px] lg:text-[34px] leading-[1.1] tracking-[-0.02em]"
               style={{ fontVariationSettings: "'opsz' 120" }}
@@ -253,7 +253,7 @@ export function ClinicsRoi() {
               you are losing about {usd(results.monthlyValueConservative)}
             </div>
             <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
-              Conservative band, contingent on a pilot validating the effect at your site. Assumptions, sources, and the Aescia per-scope price are below.
+              Conservative band, contingent on a pilot validating the effect at your site. Assumptions and sources are below.
             </div>
           </div>
         </div>
