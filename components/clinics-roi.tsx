@@ -41,6 +41,7 @@ type Defaults = {
   lateCancelRatePct: number
   noShowRatePct: number
   facilityFeeUsd: number
+  endoscopistFeeUsd: number
   currentBackfillPct: number
   nurseMinutesPerPatient: number
 }
@@ -50,6 +51,8 @@ const DEFAULTS: Defaults = {
   lateCancelRatePct: 5, // late cancellations (~24h notice), the fillable pool; typical 3–8%
   noShowRatePct: 8,
   facilityFeeUsd: 1011, // Allen 2023 midpoint; recovered revenue (gross facility fee), not margin
+  endoscopistFeeUsd: 215, // Medicare ASC professional fee for a colonoscopy (~$215 of a ~$523 screening
+  // total); commercial pays more. Conservative default; drives the endoscopist loss line only.
   currentBackfillPct: 25, // share of late cancellations the site refills today; Weiss operator
   // estimate ~25%. Short-notice slots are hard to fill without a prep-ready pool, which is the
   // gap Aescia closes. No public benchmark found; 25% is the concrete operator anchor.
@@ -73,6 +76,7 @@ export function ClinicsRoi() {
   const [lateCancelRatePct, setLateCancelRatePct] = useState(DEFAULTS.lateCancelRatePct)
   const [noShowRatePct, setNoShowRatePct] = useState(DEFAULTS.noShowRatePct)
   const [facilityFeeUsd, setFacilityFeeUsd] = useState(DEFAULTS.facilityFeeUsd)
+  const [endoscopistFeeUsd, setEndoscopistFeeUsd] = useState(DEFAULTS.endoscopistFeeUsd)
   const [currentBackfillPct, setCurrentBackfillPct] = useState(DEFAULTS.currentBackfillPct)
   const [nurseMinutesPerPatient, setNurseMinutesPerPatient] = useState(DEFAULTS.nurseMinutesPerPatient)
 
@@ -125,8 +129,14 @@ export function ClinicsRoi() {
 
     const monthlyValueConservative = rows[0].allInValue / 12 // staff time now folded into the figure
 
-    return { rows, aesciaCost, staffSaved, monthlyValueConservative, lateCancels, noShows }
-  }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, currentBackfillPct, nurseMinutesPerPatient])
+    // The proceduralist's parallel loss: the SAME recoverable slots (conservative, slot recovery
+    // only — staff time excluded) valued at the endoscopist professional fee instead of the
+    // facility fee. A recovered scope is one the endoscopist gets to bill; a lost one is not.
+    const recoverableSlotsConservative = fee > 0 ? rows[0].slotValue / fee : 0
+    const monthlyEndoscopistLossConservative = (recoverableSlotsConservative * endoscopistFeeUsd) / 12
+
+    return { rows, aesciaCost, staffSaved, monthlyValueConservative, monthlyEndoscopistLossConservative, lateCancels, noShows }
+  }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, endoscopistFeeUsd, currentBackfillPct, nurseMinutesPerPatient])
 
   return (
     <div className="bg-background border border-border overflow-hidden">
@@ -180,6 +190,16 @@ export function ClinicsRoi() {
               setValue={setFacilityFeeUsd}
               min={200}
               max={5000}
+              step={1}
+              prefix="$"
+            />
+            <NumberField
+              label="Endoscopist professional fee per scope (USD)"
+              hint="The proceduralist's fee per scope, separate from the facility fee above. Default $215 is the Medicare ASC professional fee for a colonoscopy; commercial payers pay more. Drives the endoscopist loss line only, not the ROI multiple."
+              value={endoscopistFeeUsd}
+              setValue={setEndoscopistFeeUsd}
+              min={0}
+              max={2000}
               step={1}
               prefix="$"
             />
@@ -252,6 +272,12 @@ export function ClinicsRoi() {
             >
               you are losing about {usd(results.monthlyValueConservative)}
             </div>
+            <div
+              className="font-display text-[18px] lg:text-[22px] leading-[1.2] tracking-[-0.02em] text-foreground/80 mt-2"
+              style={{ fontVariationSettings: "'opsz' 96" }}
+            >
+              and your endoscopists are losing about {usd(results.monthlyEndoscopistLossConservative)} in professional fees
+            </div>
             <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
               Conservative band, contingent on a pilot validating the effect at your site. Assumptions and sources are below.
             </div>
@@ -267,7 +293,8 @@ export function ClinicsRoi() {
           <li>No-show reduction: <strong>{fmtPct(ASSUMPTIONS.noShowReduction.conservative)} / {fmtPct(ASSUMPTIONS.noShowReduction.expected)} / {fmtPct(ASSUMPTIONS.noShowReduction.better)}</strong>.</li>
           <li>Prep-aware backfill rate on late cancellations: <strong>{fmtPct(ASSUMPTIONS.backfillRate.conservative)} / {fmtPct(ASSUMPTIONS.backfillRate.expected)} / {fmtPct(ASSUMPTIONS.backfillRate.better)}</strong>, against a current rate you set (default 25%). The model credits only the lift over your current rate, on late cancellations only. Pilot-to-prove against your own baseline.</li>
           <li>Prevention is netted by your current backfill: a late cancellation you would have refilled anyway is not counted as a recovered slot, so prevention and backfill do not double-count.</li>
-          <li>A recovered slot is valued at the <strong>recovered revenue (gross facility fee) you set</strong>, not contribution margin. Professional fees and pathology downstream not counted.</li>
+          <li>A recovered slot is valued at the <strong>recovered revenue (gross facility fee) you set</strong>, not contribution margin. The endoscopist professional-fee loss is shown as a separate line and is <strong>not</strong> included in the facility figure or the ROI multiple; pathology and other downstream revenue are not counted.</li>
+          <li>Endoscopist professional fee: the per-scope figure you set drives the separate endoscopist loss line, on the same recoverable slots. Default <strong>$215</strong> is the Medicare ASC professional fee for a colonoscopy (a ~$523 screening total splits into roughly $215 professional + $308 facility); commercial payers pay more. The facility-fee default above is a commercial mean (Allen 2023), so set both to your own payer mix.</li>
           <li>Staff time is <strong>included</strong> in the figures above: <strong>{Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)}%</strong> of your nurse prep-call minutes (default 20 min/patient) at <strong>${ASSUMPTIONS.nurseRateUsdPerHour}/hr</strong> loaded. Treat it as the soft part of the range: it is real cash only if you redeploy the freed hours into more cases or a deferred hire.</li>
           <li>Aescia price: <strong>${ASSUMPTIONS.aesciaPerScopeUsd}/scope</strong>, US institutional rate, which is the spend the ROI multiple is measured against. Volume tiers and design-partner discounts not reflected here.</li>
           <li>Aescia commits to the <strong>conservative band</strong> in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.</li>
