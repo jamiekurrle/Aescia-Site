@@ -245,7 +245,7 @@ export function ClinicsRoi() {
 
           {/* Loss framing replaces the cost box: the value slipping away each month without Aescia. */}
           <div className="mt-7 bg-background border border-border p-6 lg:p-7">
-            <div className="font-display text-[18px] lg:text-[24px] uppercase tracking-[0.06em] text-brass mb-2" style={{ fontVariationSettings: "'opsz' 120" }}>Every month without Aescia</div>
+            <div className="font-display text-[18px] lg:text-[24px] tracking-[-0.02em] text-brass mb-2" style={{ fontVariationSettings: "'opsz' 120" }}>Every month without Aescia</div>
             <div
               className="font-display text-[26px] lg:text-[34px] leading-[1.1] tracking-[-0.02em]"
               style={{ fontVariationSettings: "'opsz' 120" }}
