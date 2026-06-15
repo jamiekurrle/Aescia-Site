@@ -58,24 +58,10 @@ export function CredibilityFacts() {
 
   return (
     <section
-      aria-labelledby="credibility-heading"
+      aria-label="Key facts for evaluating Aescia"
       className="bg-background py-20 lg:py-28 px-6 lg:px-10 border-b border-border"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:items-baseline lg:justify-between gap-4 mb-12 lg:mb-16">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('credfacts.section.eyebrow')}</span>
-            <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
-          </div>
-          <h2
-            id="credibility-heading"
-            className="font-display text-[24px] lg:text-[34px] leading-[1.15] tracking-[-0.02em] max-w-2xl"
-            style={{ fontVariationSettings: "'opsz' 96" }}
-          >
-            {t('credfacts.section.title')}
-          </h2>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border border-y border-border">
           {facts.map((f) => (
             <article key={f.eyebrow} className="bg-background p-7 lg:p-8 flex flex-col">
