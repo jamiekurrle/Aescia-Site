@@ -80,7 +80,7 @@ export function SiteNav({
 
         <div className="hidden lg:flex items-center gap-3">
           {showTextSize && <TextSizeControls />}
-          <LanguageSwitcher />
+          <LanguageSwitcher onDark={useTransparent} />
           <Link
             href="/contact"
             className={`text-[13px] font-medium px-5 py-2.5 rounded-none border transition-colors min-h-[40px] flex items-center ${
@@ -95,7 +95,7 @@ export function SiteNav({
 
         <div className="lg:hidden flex items-center gap-2">
           {showTextSize && <TextSizeControls />}
-          <LanguageSwitcher />
+          <LanguageSwitcher onDark={useTransparent} />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}

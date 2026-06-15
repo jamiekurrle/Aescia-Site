@@ -1242,7 +1242,7 @@ const LANGUAGES: { code: Locale; label: string; name: string }[] = [
   { code: 'vi', label: 'VI', name: 'Tiếng Việt' },
 ]
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ onDark = false }: { onDark?: boolean }) {
   const { locale, setLocale } = useI18n()
   const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0]
 
@@ -1250,7 +1250,11 @@ export function LanguageSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label="Select language"
-        className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest uppercase px-2.5 py-2 border border-current/30 opacity-80 hover:opacity-100 transition-opacity min-h-[36px] outline-none focus-visible:opacity-100"
+        className={`inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest uppercase px-2.5 py-2 border transition-colors min-h-[36px] outline-none ${
+          onDark
+            ? 'text-white/90 border-white/40 hover:text-white hover:border-white/70 focus-visible:border-white'
+            : 'text-foreground/80 border-foreground/30 hover:text-foreground hover:border-foreground/60 focus-visible:border-foreground'
+        }`}
       >
         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="9" strokeWidth={1.5} />
