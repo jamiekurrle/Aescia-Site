@@ -68,9 +68,9 @@ const DEFAULTS: Defaults = {
   lateCancelRatePct: 5, // late cancellations (~24h notice), the fillable pool; typical 3–8%
   noShowRatePct: 8,
   facilityFeeUsd: 1011, // Allen 2023 midpoint; recovered revenue (gross facility fee), not margin
-  endoscopistFeeUsd: 300, // commercial-basis physician fee per colonoscopy, to match the commercial facility
-  // default above: Medicare ASC professional fee ~$215 marked up at a commercial physician rate (MedPAC/CBO
-  // put commercial physician pay ~1.3–1.5× Medicare; ~1.4× → ~$300). Drives the endoscopist loss line only.
+  endoscopistFeeUsd: 400, // reasonable commercial professional fee per colonoscopy. Medicare pays ~$220–300
+  // (CPT 45378 ~$218 / 45385 ~$296 at the 2026 $33.40 conversion factor); commercial runs ~$300–500. $400
+  // against the commercial facility default keeps the facility:professional split near 2.5:1 (normal commercial).
   currentBackfillPct: 25, // share of late cancellations the site refills today; Weiss operator
   // estimate ~25%. Short-notice slots are hard to fill without a prep-ready pool, which is the
   // gap Aescia closes. No public benchmark found; 25% is the concrete operator anchor.
@@ -149,8 +149,12 @@ export function ClinicsRoi() {
     const monthlyValueConservative = rows[0].allInValue / 12 // staff time now folded into the figure
 
     // The proceduralist's parallel loss: the SAME recoverable slots (conservative, slot recovery
-    // only — staff time excluded) valued at the endoscopist professional fee instead of the
-    // facility fee. A recovered scope is one the endoscopist gets to bill; a lost one is not.
+    // only) valued at the endoscopist professional fee instead of the facility fee. A recovered
+    // scope is one the endoscopist gets to bill; a lost one is not. Nurse-time savings stay inside
+    // the facility figure (a facility gain), so they are not in this professional line.
+    // NOTE: a third pool, anesthesia (monitored anesthesia care), also rides on each slot but
+    // accrues to the anesthesia group — not the facility or the endoscopist — so it is deliberately
+    // excluded from the buyer's number here.
     const recoverableSlotsConservative = fee > 0 ? rows[0].slotValue / fee : 0
     const monthlyEndoscopistLossConservative = (recoverableSlotsConservative * endoscopistFeeUsd) / 12
 
