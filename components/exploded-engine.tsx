@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useI18n } from '@/lib/i18n'
+import { dict } from '@/lib/dictionaries/pages/exploded-engine'
 
 /**
  * Five pathway-step primitives rendered as a deck of cards. On mount
@@ -14,17 +16,33 @@ import { useEffect, useRef, useState } from 'react'
  * by rendering the final grid immediately.
  */
 
-const STEPS = [
-  { num: '01', name: 'Collect', body: 'Structured patient signal. Photo, scale, questionnaire, vitals, timestamped.' },
-  { num: '02', name: 'Follow', body: 'A clinician-authored rule reads the signal and decides. Every rule explainable.' },
-  { num: '03', name: 'Remind', body: 'Timed outbound prompt by SMS, email, or in-app, in the patient\'s language.' },
-  { num: '04', name: 'Educate', body: 'A clinician-written PDF, video, or card delivered at the right moment.' },
-  { num: '05', name: 'Export', body: 'A structured, consented, time-stamped record ready for the patient\'s chart.' },
-]
+// Self-contained translation lookup for the ExplodedEngine component. The shared
+// i18n provider supplies the active locale; engine.* keys live in
+// lib/dictionaries/pages/exploded-engine.ts and are resolved here with an English
+// fallback, mirroring the provider's own fallback behaviour without editing
+// lib/i18n.tsx.
+function useEngineT() {
+  const { locale } = useI18n()
+  return (key: string): string => {
+    const loc = dict[locale as string]
+    return (loc && loc[key]) || dict.en[key] || key
+  }
+}
 
 export function ExplodedEngine() {
   const ref = useRef<HTMLDivElement>(null)
   const [exploded, setExploded] = useState(false)
+  const t = useEngineT()
+
+  // num values stay literal ('01'..'05'); name and body resolve against the
+  // active locale.
+  const STEPS = [
+    { num: '01', name: t('engine.s1.name'), body: t('engine.s1.body') },
+    { num: '02', name: t('engine.s2.name'), body: t('engine.s2.body') },
+    { num: '03', name: t('engine.s3.name'), body: t('engine.s3.body') },
+    { num: '04', name: t('engine.s4.name'), body: t('engine.s4.body') },
+    { num: '05', name: t('engine.s5.name'), body: t('engine.s5.body') },
+  ]
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -102,8 +120,8 @@ export function ExplodedEngine() {
         className={`hidden md:block text-center mt-10 lg:mt-14 font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 transition-opacity duration-[800ms]`}
         style={{ transitionDelay: '600ms', opacity: exploded ? 1 : 0 }}
       >
-        One engine · five step types · every pathway
-      </p>
+        {t('engine.caption')}
+</p>
 
       {/* Mobile: simple stack, no 3D. Shown always. */}
       <ol className="md:hidden grid gap-3">
