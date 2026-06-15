@@ -51,6 +51,29 @@ const ASSUMPTIONS = {
   aesciaPerScopeUsd: 8, // US institutional rate post-conversion; see /clinics pricing block.
   nurseRateUsdPerHour: 45, // loaded blended LPN/RN
   nurseAutomatablePct: 0.6, // routine share of prep-call time the companion offloads
+
+  // Full-episode per-scope revenue pools beyond the facility fee. Expected (population-weighted) US
+  // COMMERCIAL values, sourced and adversarially checked. They ride on the SAME recovered slots but
+  // accrue to OTHER parties, so they sit in the full-episode breakdown, never in the ROI multiple.
+  anesthesiaPerScopeUsd: 240, // MAC-weighted: ~$410 commercial allowed per monitored-anesthesia case x ~58%
+  // anesthesia-professional utilization (Predmore, Clin Gastroenterol Hepatol 2019; USC Schaeffer/AJMC 2021).
+  // Accrues to the anesthesia group. Band $160–$340.
+  pathologyPerScopeUsd: 60, // biopsy-weighted: CPT 88305 commercial ~$82/specimen x ~1.7 specimens x ~45% biopsy
+  // rate (PayerPrice 2026; GIQuIC ADR ~40%). Softest figure here (low confidence); accrues to the pathology lab.
+
+  // Upstream prep-quality lever: prep coaching reduces inadequate prep, avoiding repeat/aborted scopes that
+  // consume a future slot. Shown as an ADDITIVE pool, separate from the cancellation/no-show headline.
+  inadequatePrepReduction: { conservative: 0.25, expected: 0.4, better: 0.5 }, // relative reduction in inadequate
+  // prep from coaching/navigation/SMS (Guo 2016 GIE; Tian 2021 JMIR; Faveri 2025 J Surg Res).
+  prepRepeatFraction: 0.3, // share of inadequate preps that consume a repeat/aborted slot. GIQuIC 31.9%
+  // recommended-within-1yr (Calderwood 2022 GIE) x VA 59.2% completed (Wongjarupong 2024 Fed Pract) = 0.19 floor;
+  // 0.30 default also captures aborts and later/sooner-than-recommended repeats.
+
+  // Downstream surveillance recapture: lost-to-follow-up patients a recall system can bring back if capacity allows.
+  surveillanceShareOfVolume: 0.25, // surveillance as a share of total colonoscopy volume (US single-center series)
+  surveillanceOverdueFraction: 0.48, // surveillance-eligible patients overdue / never returned (US Medicare 5yr
+  // non-return; Schoen/Pinsky 2014). High-risk-adenoma and large-polyp cohorts cross-check ~50–57%.
+  surveillanceRecaptureFraction: 0.25, // realistic steady-state share of the overdue backlog a recall program recovers
 }
 
 type Defaults = {
@@ -61,6 +84,7 @@ type Defaults = {
   endoscopistFeeUsd: number
   currentBackfillPct: number
   nurseMinutesPerPatient: number
+  inadequatePrepRatePct: number
 }
 
 const DEFAULTS: Defaults = {
@@ -75,6 +99,8 @@ const DEFAULTS: Defaults = {
   // estimate ~25%. Short-notice slots are hard to fill without a prep-ready pool, which is the
   // gap Aescia closes. No public benchmark found; 25% is the concrete operator anchor.
   nurseMinutesPerPatient: 20, // nurse time per patient on prep calls
+  inadequatePrepRatePct: 15, // inadequate/suboptimal bowel prep prevalence; US real-world 10–25%, USMSTF 2025
+  // benchmark is >=90% adequate (i.e. <=10% inadequate). 15% is a defensible real-world operating midpoint.
 }
 
 function usd(n: number) {
@@ -98,6 +124,7 @@ export function ClinicsRoi() {
   const [endoscopistFeeUsd, setEndoscopistFeeUsd] = useState(DEFAULTS.endoscopistFeeUsd)
   const [currentBackfillPct, setCurrentBackfillPct] = useState(DEFAULTS.currentBackfillPct)
   const [nurseMinutesPerPatient, setNurseMinutesPerPatient] = useState(DEFAULTS.nurseMinutesPerPatient)
+  const [inadequatePrepRatePct, setInadequatePrepRatePct] = useState(DEFAULTS.inadequatePrepRatePct)
 
   const results = useMemo(() => {
     const lateCancels = annualScopes * (lateCancelRatePct / 100)
@@ -113,6 +140,9 @@ export function ClinicsRoi() {
       (nurseMinutesPerPatient / 60) *
       ASSUMPTIONS.nurseRateUsdPerHour *
       ASSUMPTIONS.nurseAutomatablePct
+
+    // Inadequate-prep volume, drives the upstream prep recovery folded into each band below.
+    const inadequatePreps = annualScopes * (inadequatePrepRatePct / 100)
 
     const rows = (['conservative', 'expected', 'better'] as const).map((band) => {
       // L1 Prevention. The late-cancellation side is NETTED by the site's current backfill
@@ -131,12 +161,19 @@ export function ClinicsRoi() {
       const backfillLift = Math.max(0, ASSUMPTIONS.backfillRate[band] - socFill)
       const backfill = remainingCancels * backfillLift * fee
 
-      const slotValue = prevention + backfill // headline: slot recovery only
+      // L3 Upstream prep recovery, folded into the same recovered-slot pool. Reducing inadequate prep
+      // avoids repeat/aborted procedures; each one frees a slot worth the same recovered facility revenue.
+      // Disjoint from L1/L2: cancellations and no-shows are procedures that never happen, while these are
+      // procedures that proceed on inadequate prep and must be repeated, so there is no double-count.
+      const prepRecovery = inadequatePreps * ASSUMPTIONS.inadequatePrepReduction[band] * ASSUMPTIONS.prepRepeatFraction * fee
+
+      const slotValue = prevention + backfill + prepRecovery // headline: logistics + prep recovery
       const allInValue = slotValue + staffSaved // with conditional staff time
       return {
         band,
         prevention,
         backfill,
+        prepRecovery,
         slotValue,
         allInValue,
         aesciaCost,
@@ -158,8 +195,41 @@ export function ClinicsRoi() {
     const recoverableSlotsConservative = fee > 0 ? rows[0].slotValue / fee : 0
     const monthlyEndoscopistLossConservative = (recoverableSlotsConservative * endoscopistFeeUsd) / 12
 
-    return { rows, aesciaCost, staffSaved, monthlyValueConservative, monthlyEndoscopistLossConservative, lateCancels, noShows }
-  }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, endoscopistFeeUsd, currentBackfillPct, nurseMinutesPerPatient])
+    // Full-episode pools on the SAME conservative recoverable slots. Facility and professional are the buyer's;
+    // anesthesia and pathology accrue to the anesthesia group and the lab, shown for the full picture only.
+    const monthlyAnesthesiaLossConservative = (recoverableSlotsConservative * ASSUMPTIONS.anesthesiaPerScopeUsd) / 12
+    const monthlyPathologyLossConservative = (recoverableSlotsConservative * ASSUMPTIONS.pathologyPerScopeUsd) / 12
+
+    // Prep recovery is folded into each band's slotValue above; these expose the prep PORTION for the
+    // breakdown line (avoided repeat/aborted procedures and their value), conservative–potential.
+    const prepAvoidedConservative = inadequatePreps * ASSUMPTIONS.inadequatePrepReduction.conservative * ASSUMPTIONS.prepRepeatFraction
+    const prepAvoidedBetter = inadequatePreps * ASSUMPTIONS.inadequatePrepReduction.better * ASSUMPTIONS.prepRepeatFraction
+    const prepValueConservative = prepAvoidedConservative * fee
+    const prepValueBetter = prepAvoidedBetter * fee
+
+    // Downstream surveillance recapture: working down the lost-to-follow-up backlog, contingent on schedule capacity.
+    const surveillanceScopesPerYear =
+      annualScopes * ASSUMPTIONS.surveillanceShareOfVolume * ASSUMPTIONS.surveillanceOverdueFraction * ASSUMPTIONS.surveillanceRecaptureFraction
+    const surveillanceValuePerYear = surveillanceScopesPerYear * fee
+
+    return {
+      rows,
+      aesciaCost,
+      staffSaved,
+      monthlyValueConservative,
+      monthlyEndoscopistLossConservative,
+      monthlyAnesthesiaLossConservative,
+      monthlyPathologyLossConservative,
+      prepAvoidedConservative,
+      prepAvoidedBetter,
+      prepValueConservative,
+      prepValueBetter,
+      surveillanceScopesPerYear,
+      surveillanceValuePerYear,
+      lateCancels,
+      noShows,
+    }
+  }, [annualScopes, lateCancelRatePct, noShowRatePct, facilityFeeUsd, endoscopistFeeUsd, currentBackfillPct, nurseMinutesPerPatient, inadequatePrepRatePct])
 
   return (
     <div className="bg-background border border-border overflow-hidden">
@@ -246,6 +316,16 @@ export function ClinicsRoi() {
               step={1}
               suffix="min"
             />
+            <NumberField
+              label={t('roi.field.inadequatePrep.label')}
+              hint={t('roi.field.inadequatePrep.hint')}
+              value={inadequatePrepRatePct}
+              setValue={setInadequatePrepRatePct}
+              min={0}
+              max={50}
+              step={0.5}
+              suffix="%"
+            />
           </div>
         </div>
 
@@ -301,9 +381,38 @@ export function ClinicsRoi() {
             >
               {t('roi.loss.endoscopist').replace('{value}', usd(results.monthlyEndoscopistLossConservative))}
             </div>
+            <div className="text-[12.5px] lg:text-[13.5px] text-foreground/65 mt-3 leading-[1.6]">
+              {t('roi.loss.episode')
+                .replace('{anes}', usd(results.monthlyAnesthesiaLossConservative))
+                .replace('{path}', usd(results.monthlyPathologyLossConservative))}
+            </div>
             <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
               {t('roi.loss.caveat')}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Beyond the cancellation/no-show headline: the upstream prep-quality pool and the downstream
+          surveillance recapture. Both are additive to the figures above and shown separately so the
+          headline ROI stays the conservative cancellation/no-show floor. */}
+      <div className="border-t border-border grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+        <div className="bg-background p-7 lg:p-10">
+          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/55 mb-3">{t('roi.prep.heading')}</div>
+          <div className="font-display text-[17px] lg:text-[21px] leading-[1.35] tracking-[-0.012em]" style={{ fontVariationSettings: "'opsz' 72" }}>
+            {t('roi.prep.body')
+              .replace('{nLow}', String(Math.round(results.prepAvoidedConservative)))
+              .replace('{nHigh}', String(Math.round(results.prepAvoidedBetter)))
+              .replace('{valLow}', usd(results.prepValueConservative))
+              .replace('{valHigh}', usd(results.prepValueBetter))}
+          </div>
+        </div>
+        <div className="bg-background p-7 lg:p-10">
+          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/55 mb-3">{t('roi.surveillance.heading')}</div>
+          <div className="font-display text-[17px] lg:text-[21px] leading-[1.35] tracking-[-0.012em]" style={{ fontVariationSettings: "'opsz' 72" }}>
+            {t('roi.surveillance.note')
+              .replace('{scopes}', String(Math.round(results.surveillanceScopesPerYear)))
+              .replace('{value}', usd(results.surveillanceValuePerYear))}
           </div>
         </div>
       </div>
@@ -336,6 +445,15 @@ export function ClinicsRoi() {
           <li>{t('roi.assumptions.backfillScope')}</li>
           <li>{t('roi.assumptions.beran')}</li>
           <li>{t('roi.assumptions.facilityFee')}</li>
+          <li>{t('roi.assumptions.anesthesia').replace('{anes}', String(ASSUMPTIONS.anesthesiaPerScopeUsd))}</li>
+          <li>{t('roi.assumptions.pathology').replace('{path}', String(ASSUMPTIONS.pathologyPerScopeUsd))}</li>
+          <li>{t('roi.assumptions.prep')
+            .replace('{prep}', String(inadequatePrepRatePct))
+            .replace('{c}', fmtPct(ASSUMPTIONS.inadequatePrepReduction.conservative))
+            .replace('{e}', fmtPct(ASSUMPTIONS.inadequatePrepReduction.expected))
+            .replace('{p}', fmtPct(ASSUMPTIONS.inadequatePrepReduction.better))
+            .replace('{repeat}', String(Math.round(ASSUMPTIONS.prepRepeatFraction * 100)))}</li>
+          <li>{t('roi.assumptions.surveillance')}</li>
         </ul>
       </div>
     </div>
