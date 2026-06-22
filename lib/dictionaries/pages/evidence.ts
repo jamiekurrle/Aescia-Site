@@ -36,7 +36,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': 'Sample size',
     'evidence.page.programme.row.sample.value': '550 patients (50 interim + 500 main), single centre',
     'evidence.page.programme.row.status.label': 'Status',
-    'evidence.page.programme.row.status.value': 'Ethics approved. Site-specific governance in progress.',
+    'evidence.page.programme.row.status.value': 'Recruiting. Enrolment commenced 21 June 2026.',
 
     'evidence.page.approach.eyebrow': 'Approach',
     'evidence.page.approach.title': 'How we evaluate.',
@@ -120,7 +120,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': 'Taille d\'échantillon',
     'evidence.page.programme.row.sample.value': '550 patients (50 intérimaires + 500 principaux), mono-centrique',
     'evidence.page.programme.row.status.label': 'Statut',
-    'evidence.page.programme.row.status.value': 'Éthique approuvée. Gouvernance spécifique au site en cours.',
+    'evidence.page.programme.row.status.value': 'Recrutement en cours. Inclusions commencées le 21 juin 2026.',
 
     'evidence.page.approach.eyebrow': 'Approche',
     'evidence.page.approach.title': 'Comment nous évaluons.',
@@ -204,7 +204,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': 'Tamaño de muestra',
     'evidence.page.programme.row.sample.value': '550 pacientes (50 interinos + 500 principales), un solo centro',
     'evidence.page.programme.row.status.label': 'Estado',
-    'evidence.page.programme.row.status.value': 'Ética aprobada. Gobernanza específica del sitio en curso.',
+    'evidence.page.programme.row.status.value': 'Reclutando. La inscripción comenzó el 21 de junio de 2026.',
 
     'evidence.page.approach.eyebrow': 'Enfoque',
     'evidence.page.approach.title': 'Cómo evaluamos.',
@@ -288,7 +288,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': '样本量',
     'evidence.page.programme.row.sample.value': '550 名患者（50 名中期 + 500 名主体），单中心',
     'evidence.page.programme.row.status.label': '状态',
-    'evidence.page.programme.row.status.value': '伦理已批准。站点特定治理进行中。',
+    'evidence.page.programme.row.status.value': '招募中。入组于 2026 年 6 月 21 日开始。',
 
     'evidence.page.approach.eyebrow': '方法',
     'evidence.page.approach.title': '我们如何评估。',
@@ -372,7 +372,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': 'حجم العينة',
     'evidence.page.programme.row.sample.value': '550 مريضًا (50 مرحلية + 500 رئيسية)، مركز واحد',
     'evidence.page.programme.row.status.label': 'الحالة',
-    'evidence.page.programme.row.status.value': 'تمت الموافقة الأخلاقية. الحوكمة الخاصة بالموقع قيد التقدم.',
+    'evidence.page.programme.row.status.value': 'جارٍ التجنيد. بدأ التسجيل في 21 يونيو 2026.',
 
     'evidence.page.approach.eyebrow': 'النهج',
     'evidence.page.approach.title': 'كيف نُقيِّم.',
@@ -456,7 +456,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.sample.label': 'Cỡ mẫu',
     'evidence.page.programme.row.sample.value': '550 bệnh nhân (50 giữa kỳ + 500 chính), đơn trung tâm',
     'evidence.page.programme.row.status.label': 'Trạng thái',
-    'evidence.page.programme.row.status.value': 'Đã được phê duyệt về đạo đức. Quản trị riêng theo địa điểm đang được tiến hành.',
+    'evidence.page.programme.row.status.value': 'Đang tuyển. Tuyển bệnh nhân bắt đầu từ ngày 21 tháng 6 năm 2026.',
 
     'evidence.page.approach.eyebrow': 'Cách tiếp cận',
     'evidence.page.approach.title': 'Cách chúng tôi đánh giá.',
