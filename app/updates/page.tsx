@@ -25,6 +25,13 @@ const breadcrumbs = breadcrumbSchema([
 // version. Order is newest-first to match display.
 const updatesItemList = updatesItemListSchema([
   {
+    n: 11,
+    date: '2026-06-21',
+    title: 'SAFE-Discharge begins recruiting at Royal Prince Alfred Hospital.',
+    body: "Aescia's SAFE-Discharge trial began enrolment at the Royal Prince Alfred Hospital cardiothoracic surgical unit on 21 June 2026 and is now recruiting. It is a prospective single-centre evaluation of Aescia for Hospitals in adults recovering from cardiothoracic surgery, registered with the Australian New Zealand Clinical Trials Registry.",
+    url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
+  },
+  {
     n: 10,
     date: '2026-04-24',
     title: 'Aescia enrols in MTAA MedTech Compass.',
@@ -66,12 +73,6 @@ const updatesItemList = updatesItemListSchema([
     date: '2026-04-10',
     title: 'NSW MVP Ventures Round 3 submitted.',
     body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Decision expected late June 2026.',
-  },
-  {
-    n: 3,
-    date: '2026-03-28',
-    title: 'TTRA submission.',
-    body: 'Targeted Translation Research Accelerator application submitted. Three milestones, clinical evaluation and regulatory work, decision expected around September 2026.',
   },
   {
     n: 2,

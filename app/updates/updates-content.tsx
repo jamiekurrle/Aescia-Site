@@ -7,7 +7,7 @@ import { useI18n } from '@/lib/i18n'
 
 // Entries are ordered newest-first. Numbered keys reflect chronological index
 // (entry1 = oldest, entryN = newest). Display reverses to show newest first.
-const entryNumbers = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1] as const
+const entryNumbers = [11, 10, 9, 8, 7, 6, 5, 4, 2, 1] as const
 
 // Outbound references for entries with public sources. Keyed by chronological
 // entry number. Labels render the same in both locales — short and factual.
