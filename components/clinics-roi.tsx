@@ -58,8 +58,9 @@ const ASSUMPTIONS = {
   anesthesiaPerScopeUsd: 240, // MAC-weighted: ~$410 commercial allowed per monitored-anesthesia case x ~58%
   // anesthesia-professional utilization (Predmore, Clin Gastroenterol Hepatol 2019; USC Schaeffer/AJMC 2021).
   // Accrues to the anesthesia group. Band $160–$340.
-  pathologyPerScopeUsd: 60, // biopsy-weighted: CPT 88305 commercial ~$82/specimen x ~1.7 specimens x ~45% biopsy
-  // rate (PayerPrice 2026; GIQuIC ADR ~40%). Softest figure here (low confidence); accrues to the pathology lab.
+  pathologyPerScopeUsd: 60, // biopsy-weighted: CPT 88305 ~$82/specimen x ~1.7 specimens x ~45% biopsy rate.
+  // 88305 pays ~$74 Medicare 2025 / ~$90–240 commercial; GIQuIC ADR ~40% (PayerPrice 2026). Softest figure
+  // here (low confidence); accrues to the pathology lab.
 
   // Upstream prep-quality lever: prep coaching reduces inadequate prep, avoiding repeat/aborted scopes that
   // consume a future slot. Shown as an ADDITIVE pool, separate from the cancellation/no-show headline.
@@ -89,15 +90,17 @@ type Defaults = {
 
 const DEFAULTS: Defaults = {
   annualScopes: 5000, // a little above the ~4,500 average US GI ASC; multi-endoscopist site
-  lateCancelRatePct: 5, // late cancellations (~24h notice), the fillable pool; typical 3–8%
-  noShowRatePct: 8,
+  lateCancelRatePct: 3, // late cancellations (~24h notice), the fillable pool. With no-show below, the
+  // combined late-cancel + no-show default is 8%, matching the ASGE GI Operations Benchmarking combined
+  // no-show/cancellation metric (~5.6–8.45%; the survey reports the two as one field). Late-cancel typical 3–8%.
+  noShowRatePct: 5, // paired with lateCancelRatePct so the combined rate = 8% (ASGE combined benchmark)
   facilityFeeUsd: 1011, // Allen 2023 midpoint; recovered revenue (gross facility fee), not margin
   endoscopistFeeUsd: 400, // reasonable commercial professional fee per colonoscopy. Medicare pays ~$220–300
   // (CPT 45378 ~$218 / 45385 ~$296 at the 2026 $33.40 conversion factor); commercial runs ~$300–500. $400
   // against the commercial facility default keeps the facility:professional split near 2.5:1 (normal commercial).
-  currentBackfillPct: 25, // share of late cancellations the site refills today; Weiss operator
-  // estimate ~25%. Short-notice slots are hard to fill without a prep-ready pool, which is the
-  // gap Aescia closes. No public benchmark found; 25% is the concrete operator anchor.
+  currentBackfillPct: 25, // share of late cancellations the site refills today. Industry waitlist
+  // benchmarks put manual/standard fill at ~25–30% (automated systems claim ~70%); 25% is the
+  // conservative low end. Short-notice slots are hard to fill without a prep-ready pool, the gap Aescia closes.
   nurseMinutesPerPatient: 20, // nurse time per patient on prep calls
   inadequatePrepRatePct: 15, // inadequate/suboptimal bowel prep prevalence; US real-world 10–25%, USMSTF 2025
   // benchmark is >=90% adequate (i.e. <=10% inadequate). 15% is a defensible real-world operating midpoint.
@@ -109,6 +112,15 @@ function usd(n: number) {
   if (n >= 10_000) return `$${Math.round(n / 1000)}K`
   if (n >= 1_000) return `$${(n / 1000).toFixed(1)}K`
   return `$${Math.round(n).toLocaleString('en-US')}`
+}
+
+// One-decimal $K (with $M rollover) for the loss-box total and facility line, so
+// every figure in the breakdown shares the same precision and the lines add up to
+// the headline total.
+function usdK1(n: number) {
+  if (!Number.isFinite(n)) return '$0'
+  if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(2)}M`
+  return `$${(n / 1000).toFixed(1)}K`
 }
 
 function fmtPct(p: number) {
@@ -382,7 +394,7 @@ export function ClinicsRoi() {
                 return (
                   <>
                     {pre}
-                    <span className="text-brass block mt-4 text-[44px] lg:text-[60px] leading-[1] tracking-[-0.03em]">~{usd(results.monthlyTotalConservative)}</span>
+                    <span className="text-brass block mt-4 text-[44px] lg:text-[60px] leading-[1] tracking-[-0.03em]">~{usdK1(results.monthlyTotalConservative)}</span>
                     {post}
                   </>
                 )
@@ -390,7 +402,7 @@ export function ClinicsRoi() {
             </div>
             <div className="mt-5 pt-4 border-t border-border space-y-1.5">
               {[
-                { value: usd(results.monthlyValueConservative), label: t('roi.loss.facility') },
+                { value: usdK1(results.monthlyValueConservative), label: t('roi.loss.facility') },
                 { value: usd(results.monthlyEndoscopistLossConservative), label: t('roi.loss.endoscopist') },
                 { value: usd(results.monthlyAnesthesiaLossConservative), label: t('roi.loss.anesthesia') },
                 { value: usd(results.monthlyPathologyLossConservative), label: t('roi.loss.pathology') },
