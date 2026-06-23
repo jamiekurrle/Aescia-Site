@@ -220,6 +220,11 @@ export function ClinicsRoi() {
       monthlyEndoscopistLossConservative,
       monthlyAnesthesiaLossConservative,
       monthlyPathologyLossConservative,
+      monthlyTotalConservative:
+        monthlyValueConservative +
+        monthlyEndoscopistLossConservative +
+        monthlyAnesthesiaLossConservative +
+        monthlyPathologyLossConservative,
       prepAvoidedConservative,
       prepAvoidedBetter,
       prepValueConservative,
@@ -368,25 +373,39 @@ export function ClinicsRoi() {
 
           {/* Loss framing replaces the cost box: the value slipping away each month without Aescia. */}
           <div className="mt-7 bg-background border border-border p-6 lg:p-7">
-            <div className="font-display text-[18px] lg:text-[24px] tracking-[-0.02em] text-brass mb-2" style={{ fontVariationSettings: "'opsz' 120" }}>{t('roi.loss.heading')}</div>
             <div
-              className="font-display text-[26px] lg:text-[34px] leading-[1.1] tracking-[-0.02em]"
-              style={{ fontVariationSettings: "'opsz' 120" }}
+              className="font-display text-[26px] lg:text-[34px] leading-[1.12] tracking-[-0.02em]"
+              style={{ fontVariationSettings: "'opsz' 144" }}
             >
-              {t('roi.loss.facility').replace('{value}', usd(results.monthlyValueConservative))}
+              {(() => {
+                const [pre, post] = t('roi.loss.headline').split('{value}')
+                return (
+                  <>
+                    {pre}
+                    <span className="text-brass block mt-4 text-[44px] lg:text-[60px] leading-[1] tracking-[-0.03em]">~{usd(results.monthlyTotalConservative)}</span>
+                    {post}
+                  </>
+                )
+              })()}
             </div>
-            <div
-              className="font-display text-[18px] lg:text-[22px] leading-[1.2] tracking-[-0.02em] text-foreground/80 mt-2"
-              style={{ fontVariationSettings: "'opsz' 96" }}
-            >
-              {t('roi.loss.endoscopist').replace('{value}', usd(results.monthlyEndoscopistLossConservative))}
+            <div className="mt-5 pt-4 border-t border-border space-y-1.5">
+              {[
+                { value: usd(results.monthlyValueConservative), label: t('roi.loss.facility') },
+                { value: usd(results.monthlyEndoscopistLossConservative), label: t('roi.loss.endoscopist') },
+                { value: usd(results.monthlyAnesthesiaLossConservative), label: t('roi.loss.anesthesia') },
+                { value: usd(results.monthlyPathologyLossConservative), label: t('roi.loss.pathology') },
+              ].map((row) => (
+                <div
+                  key={row.label}
+                  className="font-display text-[17px] lg:text-[20px] leading-[1.2] tracking-[-0.02em]"
+                  style={{ fontVariationSettings: "'opsz' 96" }}
+                >
+                  <span className="text-brass">~{row.value}</span>{' '}
+                  <span className="text-foreground/75">{row.label}</span>
+                </div>
+              ))}
             </div>
-            <div className="text-[12.5px] lg:text-[13.5px] text-foreground/65 mt-3 leading-[1.6]">
-              {t('roi.loss.episode')
-                .replace('{anes}', usd(results.monthlyAnesthesiaLossConservative))
-                .replace('{path}', usd(results.monthlyPathologyLossConservative))}
-            </div>
-            <div className="text-[11px] text-foreground/55 mt-2.5 leading-[1.6]">
+            <div className="text-[11px] text-foreground/55 mt-4 leading-[1.6]">
               {t('roi.loss.caveat')}
             </div>
           </div>
