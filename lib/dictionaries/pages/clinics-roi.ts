@@ -49,11 +49,12 @@ export const dict: Record<string, Record<string, string>> = {
     'roi.perYear': '/yr',
     'roi.roiLabel': 'ROI',
 
-    'roi.loss.heading': 'Every month without Aescia',
-    'roi.loss.facility': 'you are losing about {value}',
-    'roi.loss.endoscopist': 'and your endoscopists are losing about {value} in professional fees',
-    'roi.loss.episode': 'Across the full episode, each missed slot also forgoes about {anes} in anesthesia and {path} in pathology. Those accrue to the anesthesia group and the lab, so they sit outside the ROI above.',
-    'roi.loss.caveat': 'Conservative band, contingent on a pilot validating the effect at your site. Assumptions and sources are below.',
+    'roi.loss.headline': 'Every month without Aescia is costing you {value}',
+    'roi.loss.facility': 'for your ASC',
+    'roi.loss.endoscopist': 'for your endoscopists',
+    'roi.loss.anesthesia': 'for anesthesia',
+    'roi.loss.pathology': 'for pathology',
+    'roi.loss.caveat': 'Assumptions and sources are below.',
 
     'roi.prep.heading': 'Upstream: the prep itself',
     'roi.prep.body': 'Inadequate prep is the upstream driver, and it is folded into the figures above. Of the recovered slots, coaching prep down accounts for roughly {nLow} to {nHigh} avoided repeat or aborted procedures a year, about {valLow} to {valHigh}.',
