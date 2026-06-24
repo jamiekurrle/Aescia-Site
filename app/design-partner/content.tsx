@@ -20,60 +20,6 @@ function useDesignPartnerT() {
 export function PageContent() {
   const t = useDesignPartnerT()
 
-  const programTerms: Array<{ k: string; v: React.ReactNode }> = [
-    {
-      k: t('designpartner.terms.who.k'),
-      v: t('designpartner.terms.who.v'),
-    },
-    {
-      k: t('designpartner.terms.takes.k'),
-      v: t('designpartner.terms.takes.v'),
-    },
-    {
-      k: t('designpartner.terms.commercial.k'),
-      v: t('designpartner.terms.commercial.v'),
-    },
-    {
-      k: t('designpartner.terms.measure.k'),
-      v: (
-        <>
-          {t('designpartner.terms.measure.intro')}
-          <ul className="mt-3 space-y-2 list-disc pl-5 marker:text-brass">
-            <li>{t('designpartner.terms.measure.item1')}</li>
-            <li>{t('designpartner.terms.measure.item2')}</li>
-            <li>{t('designpartner.terms.measure.item3')}</li>
-            <li>{t('designpartner.terms.measure.item4')}</li>
-          </ul>
-          <p className="mt-3 text-foreground/70 text-[14px]">{t('designpartner.terms.measure.note')}</p>
-        </>
-      ),
-    },
-    {
-      k: t('designpartner.terms.how.k'),
-      v: t('designpartner.terms.how.v'),
-    },
-    {
-      k: t('designpartner.terms.shape.k'),
-      v: t('designpartner.terms.shape.v'),
-    },
-    {
-      k: t('designpartner.terms.adjudication.k'),
-      v: t('designpartner.terms.adjudication.v'),
-    },
-    {
-      k: t('designpartner.terms.exit.k'),
-      v: t('designpartner.terms.exit.v'),
-    },
-    {
-      k: t('designpartner.terms.support.k'),
-      v: t('designpartner.terms.support.v'),
-    },
-    {
-      k: t('designpartner.terms.return.k'),
-      v: t('designpartner.terms.return.v'),
-    },
-  ]
-
   const principles = [
     {
       n: '01',
@@ -151,54 +97,6 @@ export function PageContent() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Program terms in full */}
-      <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center gap-3 mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('designpartner.terms.eyebrow')}</span>
-            <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
-          </div>
-          <dl className="divide-y divide-border border-y border-border bg-background">
-            {programTerms.map((row) => (
-              <div key={row.k} className="py-8 lg:py-10 px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-12">
-                <dt
-                  className="font-display text-[18px] lg:text-[22px] leading-[1.25] tracking-[-0.018em] text-foreground"
-                  style={{ fontVariationSettings: "'opsz' 80" }}
-                >
-                  {row.k}
-                </dt>
-                <dd className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">{row.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      {/* What this is not */}
-      <section className="py-24 lg:py-32 px-6 lg:px-10">
-        <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('designpartner.notwhat.eyebrow')}</span>
-          <h2
-            className="font-display text-[28px] lg:text-[36px] leading-[1.15] tracking-[-0.02em] mt-6 mb-10"
-            style={{ fontVariationSettings: "'opsz' 96" }}
-          >
-            {t('designpartner.notwhat.title')}
-          </h2>
-          <ul className="space-y-7">
-            <li className="border-l-2 border-brass/60 pl-5">
-              <p className="text-[16px] leading-[1.7] text-foreground/85">
-                <strong className="text-foreground">{t('designpartner.notwhat.item1.lead')}</strong> {t('designpartner.notwhat.item1.body')}
-              </p>
-            </li>
-            <li className="border-l-2 border-brass/60 pl-5">
-              <p className="text-[16px] leading-[1.7] text-foreground/85">
-                <strong className="text-foreground">{t('designpartner.notwhat.item2.lead')}</strong> {t('designpartner.notwhat.item2.body')}
-              </p>
-            </li>
-          </ul>
         </div>
       </section>
 

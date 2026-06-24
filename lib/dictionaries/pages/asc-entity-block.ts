@@ -8,8 +8,8 @@
 // Aescia for Hospitals; ASC/ASCs; regulators and classes — TGA, Class IIa;
 // trial/registration IDs — SAFE-Discharge, ACTRN12625001425482; institution and
 // place names — Royal Prince Alfred Hospital, Sydney, Montréal; integration
-// systems — Provation, EndoWorks, gGastro; numbers/currency — US$8, US$6,
-// 50,000, 2025, 30-day) are kept verbatim across every locale.
+// systems — Provation, EndoWorks, gGastro; numbers/currency — 50,000, 2025,
+// 30-day) are kept verbatim across every locale.
 //
 // Regulatory phrasing — "is not a medical device", "investigational software as
 // a medical device", "intended for Class IIa classification", "No device
@@ -43,7 +43,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'Designed to work alongside common endoscopy systems including Provation, EndoWorks, and gGastro. No integration is live yet; Aescia is pre-first-customer, and any data exchange is scoped per customer.',
 
     'ascblock.pricing.k': 'Pricing',
-    'ascblock.pricing.v': 'United States: US$8 per scope at the institutional tier; US$6 per scope for multi-state aggregators above 50,000 scopes per year. No per-seat pricing.',
+    'ascblock.pricing.v': 'United States: priced per scope at the single-site level; design partners start free until the platform proves itself on your own data. The rate is set per engagement against your volume and held below your modelled return. No per-seat pricing.',
 
     'ascblock.deployment.k': 'Deployment stage',
     'ascblock.deployment.v': 'Pre-first-customer. Clinics customers engage through the design-partner program, which runs free or under a money-back rebate until Aescia delivers measurable net benefit against the ASC’s own baseline.',
@@ -73,7 +73,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'Conçu pour fonctionner aux côtés des systèmes d\'endoscopie courants, notamment Provation, EndoWorks et gGastro. Aucune intégration n\'est encore active ; Aescia est en phase pré-premier-client, et tout échange de données est défini par client.',
 
     'ascblock.pricing.k': 'Tarification',
-    'ascblock.pricing.v': 'États-Unis : US$8 par scope au palier institutionnel ; US$6 par scope pour les agrégateurs multi-États au-dessus de 50,000 scopes par an. Pas de tarification par poste.',
+    'ascblock.pricing.v': 'États-Unis : facturation par scope au niveau du site ; les partenaires de conception commencent gratuitement jusqu\'à ce que la plateforme fasse ses preuves sur vos propres données. Le tarif est fixé par engagement selon votre volume et maintenu en dessous de votre retour modélisé. Pas de tarification par poste.',
 
     'ascblock.deployment.k': 'Stade de déploiement',
     'ascblock.deployment.v': 'Pré-premier-client. Les clients de Clinics s\'engagent via le programme de partenaires de conception, qui est gratuit ou sous une remise avec remboursement jusqu\'à ce qu\'Aescia apporte un bénéfice net mesurable par rapport à la base de référence propre de l\'ASC.',
@@ -103,7 +103,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'Diseñado para funcionar junto a los sistemas de endoscopia comunes, incluidos Provation, EndoWorks y gGastro. Aún no hay ninguna integración activa; Aescia está en fase previa al primer cliente, y cualquier intercambio de datos se define por cliente.',
 
     'ascblock.pricing.k': 'Precios',
-    'ascblock.pricing.v': 'Estados Unidos: US$8 por scope en el nivel institucional; US$6 por scope para agregadores multiestatales por encima de 50,000 scopes por año. Sin precios por puesto.',
+    'ascblock.pricing.v': 'Estados Unidos: precio por scope a nivel de centro; los socios de diseño empiezan gratis hasta que la plataforma demuestre su valor con tus propios datos. La tarifa se fija por contrato según tu volumen y se mantiene por debajo de tu retorno modelado. Sin precios por puesto.',
 
     'ascblock.deployment.k': 'Etapa de implementación',
     'ascblock.deployment.v': 'Previa al primer cliente. Los clientes de Clinics participan a través del programa de socios de diseño, que se ejecuta de forma gratuita o bajo un reembolso con devolución de dinero hasta que Aescia ofrece un beneficio neto medible frente a la base de referencia propia del ASC.',
@@ -133,7 +133,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': '设计用于与常见内镜系统协同工作，包括 Provation、EndoWorks 和 gGastro。目前尚无任何集成处于实时运行状态；Aescia 处于首个客户之前阶段，任何数据交换都按客户逐一界定。',
 
     'ascblock.pricing.k': '定价',
-    'ascblock.pricing.v': '美国：机构档每个 scope US$8；对于每年超过 50,000 个 scope 的多州聚合方，每个 scope US$6。不按席位计价。',
+    'ascblock.pricing.v': '美国：按每个 scope 在单点层级计价；设计合作伙伴可免费开始，直到平台用您自己的数据证明其价值为止。费率按每次合作根据您的业务量确定，并保持在您的模型化回报之下。不按席位计价。',
 
     'ascblock.deployment.k': '部署阶段',
     'ascblock.deployment.v': '首个客户之前。Clinics 客户通过设计合作伙伴计划进行对接，该计划免费进行，或在退款返还机制下进行，直至 Aescia 相对于 ASC 自身的基线交付可衡量的净收益。',
@@ -163,7 +163,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'مصمَّم للعمل جنبًا إلى جنب مع أنظمة التنظير الشائعة بما في ذلك Provation وEndoWorks وgGastro. ولا يوجد بعد أي تكامل نشط؛ وAescia في مرحلة ما قبل العميل الأول، وأي تبادل للبيانات يُحدَّد نطاقه لكل عميل.',
 
     'ascblock.pricing.k': 'التسعير',
-    'ascblock.pricing.v': 'الولايات المتحدة: US$8 لكل scope في المستوى المؤسسي؛ US$6 لكل scope للمجمّعين متعددي الولايات فوق 50,000 scope في السنة. دون تسعير حسب المقعد.',
+    'ascblock.pricing.v': 'الولايات المتحدة: التسعير لكل scope على مستوى الموقع الواحد؛ يبدأ شركاء التصميم مجانًا حتى تثبت المنصّة جدواها على بياناتك الخاصة. يُحدَّد السعر لكل ارتباط وفق حجمك ويبقى دون عائدك المنمذَج. دون تسعير حسب المقعد.',
 
     'ascblock.deployment.k': 'مرحلة النشر',
     'ascblock.deployment.v': 'ما قبل العميل الأول. يتعامل عملاء Clinics من خلال برنامج شركاء التصميم، الذي يعمل مجانًا أو بموجب استرداد للأموال إلى أن تُقدّم Aescia فائدة صافية قابلة للقياس مقابل خط الأساس الخاص بـ ASC.',
@@ -193,7 +193,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'Được thiết kế để hoạt động cùng các hệ thống nội soi phổ biến bao gồm Provation, EndoWorks và gGastro. Chưa có tích hợp nào đang hoạt động; Aescia đang ở giai đoạn trước khách hàng đầu tiên, và mọi trao đổi dữ liệu được xác định phạm vi theo từng khách hàng.',
 
     'ascblock.pricing.k': 'Giá',
-    'ascblock.pricing.v': 'Hoa Kỳ: US$8 mỗi scope ở mức thể chế; US$6 mỗi scope cho các nhà tổng hợp đa bang vượt 50,000 scope mỗi năm. Không tính giá theo chỗ ngồi.',
+    'ascblock.pricing.v': 'Hoa Kỳ: tính giá theo từng scope ở cấp cơ sở; các đối tác thiết kế bắt đầu miễn phí cho đến khi nền tảng chứng minh được giá trị trên chính dữ liệu của bạn. Mức giá được ấn định theo từng lần hợp tác dựa trên khối lượng của bạn và giữ dưới mức lợi tức được mô hình hóa của bạn. Không tính giá theo chỗ ngồi.',
 
     'ascblock.deployment.k': 'Giai đoạn triển khai',
     'ascblock.deployment.v': 'Trước khách hàng đầu tiên. Khách hàng Clinics tham gia thông qua chương trình đối tác thiết kế, vốn chạy miễn phí hoặc theo cơ chế hoàn tiền cho đến khi Aescia mang lại lợi ích ròng có thể đo lường được so với mức nền của chính ASC.',

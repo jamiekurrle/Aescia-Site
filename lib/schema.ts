@@ -259,9 +259,8 @@ export const clinicsSoftwareSchema = {
   offers: {
     '@type': 'Offer',
     priceCurrency: 'USD',
-    price: '8',
     description:
-      'Per-scope pricing at the institutional tier (US$8 per scope). Multi-state aggregators above 50,000 scopes per year: US$6 per scope. A single-site single-specialty US ASC typically falls in US$8,000 to US$77,000 per year depending on physician count. No per-seat pricing.',
+      'Priced per scope in the US at the single-site level; no per-seat pricing. Design partners start free and pay nothing until the platform proves itself on the customer\'s own data. The rate is set per engagement against scope volume and held below the customer\'s modelled annual return. Contact Aescia for a site-specific rate.',
   },
 }
 
