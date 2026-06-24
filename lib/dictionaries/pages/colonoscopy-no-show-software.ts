@@ -31,7 +31,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'What it costs, and what is at stake',
     'noshow.numbers.title': 'Run your own numbers, against your own baseline.',
-    'noshow.numbers.p1': 'Aescia for Clinics is priced per scope in the US, set per engagement against your scope volume and held below your modelled return. Design partners start free until the platform proves itself on your own data. There is no per-seat pricing.',
+    'noshow.numbers.p1': 'Aescia for Clinics pricing is negotiated with each clinic rather than published. Design partners start free until the platform proves itself on your own data, and the agreed price is held below your modelled return.',
     'noshow.numbers.p2.pre': 'Because Aescia is pre-first-customer, it does not publish a no-show reduction figure of its own. Instead, the',
     'noshow.numbers.p2.link': 'interactive ROI calculator on the Clinics page',
     'noshow.numbers.p2.post': 'lets you enter your own scope volume, inadequate-prep rate, no-show rate, and facility fee, then scales the published effect sizes from the prep and reminder literature into conservative, expected, and better-case bands. The conservative band is the only one Aescia commits to in writing during a design-partner pilot, measured against your ASC’s own historical baseline.',
@@ -80,7 +80,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'Ce que cela coûte, et ce qui est en jeu',
     'noshow.numbers.title': 'Faites vos propres calculs, par rapport à votre propre référence.',
-    'noshow.numbers.p1': 'Aescia for Clinics est facturé par scope aux États-Unis, à un tarif fixé par engagement selon votre volume de scopes et maintenu en dessous de votre retour modélisé. Les partenaires de conception commencent gratuitement jusqu\'à ce que la plateforme fasse ses preuves sur vos propres données. Il n\'y a pas de tarification par poste.',
+    'noshow.numbers.p1': 'Le tarif d\'Aescia for Clinics est négocié avec chaque clinique plutôt que publié. Les partenaires de conception commencent gratuitement jusqu\'à ce que la plateforme fasse ses preuves sur vos propres données, et le tarif convenu est maintenu en dessous de votre retour modélisé.',
     'noshow.numbers.p2.pre': 'Comme Aescia est avant son premier client, il ne publie pas de chiffre de réduction des absences qui lui soit propre. À la place, le',
     'noshow.numbers.p2.link': 'calculateur de ROI interactif sur la page Cliniques',
     'noshow.numbers.p2.post': 'vous permet de saisir votre propre volume de scopes, votre taux de préparation inadéquate, votre taux d\'absences et vos frais d\'établissement, puis met à l\'échelle les tailles d\'effet publiées de la littérature sur la préparation et les rappels en fourchettes prudente, attendue et plus favorable. La fourchette prudente est la seule à laquelle Aescia s\'engage par écrit lors d\'un pilote partenaire de conception, mesurée par rapport à la propre référence historique de votre ASC.',
@@ -129,7 +129,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'Lo que cuesta y lo que está en juego',
     'noshow.numbers.title': 'Haga sus propios cálculos, frente a su propia línea de base.',
-    'noshow.numbers.p1': 'Aescia for Clinics se cobra por scope en EE. UU., a una tarifa fijada por contrato según tu volumen de scopes y mantenida por debajo de tu retorno modelado. Los socios de diseño empiezan gratis hasta que la plataforma demuestre su valor con tus propios datos. No hay precios por puesto.',
+    'noshow.numbers.p1': 'El precio de Aescia for Clinics se negocia con cada clínica en lugar de publicarse. Los socios de diseño empiezan gratis hasta que la plataforma demuestre su valor con tus propios datos, y el precio acordado se mantiene por debajo de tu retorno modelado.',
     'noshow.numbers.p2.pre': 'Como Aescia está antes de su primer cliente, no publica una cifra propia de reducción de ausencias. En cambio, la',
     'noshow.numbers.p2.link': 'calculadora de ROI interactiva en la página de Clínicas',
     'noshow.numbers.p2.post': 'le permite ingresar su propio volumen de scopes, tasa de preparación inadecuada, tasa de ausencias y tarifa de instalación, y luego escala los tamaños de efecto publicados de la literatura sobre preparación y recordatorios en rangos conservador, esperado y de mejor caso. El rango conservador es el único al que Aescia se compromete por escrito durante un piloto con socio de diseño, medido frente a la propia línea de base histórica de su ASC.',
@@ -178,7 +178,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': '成本几何，风险何在',
     'noshow.numbers.title': '用您自己的数字，对照您自己的基线来核算。',
-    'noshow.numbers.p1': 'Aescia for Clinics 在美国按每例检查计价，费率按每次合作根据您的检查量确定，并保持在您的模型化回报之下。设计合作伙伴可免费开始，直到平台用您自己的数据证明其价值为止。不按席位收费。',
+    'noshow.numbers.p1': 'Aescia for Clinics 的价格由每家诊所协商确定，不对外公布。设计合作伙伴可免费开始，直到平台用您自己的数据证明其价值为止，且商定的价格始终保持在您的模型化回报之下。',
     'noshow.numbers.p2.pre': '由于 Aescia 处于首位客户之前的阶段，它不会公布自己的爽约减少数字。取而代之的是，',
     'noshow.numbers.p2.link': 'Clinics 页面上的交互式 ROI 计算器',
     'noshow.numbers.p2.post': '让您输入自己的检查量、准备不充分率、爽约率和设施费用，然后将准备与提醒文献中已发表的效应量换算为保守、预期和更乐观三档区间。保守区间是 Aescia 在设计合作伙伴试点期间唯一以书面形式承诺的一档，并对照贵 ASC 自身的历史基线进行衡量。',
@@ -227,7 +227,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'ما الكلفة، وما المُعرَّض للخطر',
     'noshow.numbers.title': 'احسب أرقامك الخاصة، مقارنةً بخط أساسك الخاص.',
-    'noshow.numbers.p1': 'يُسعَّر Aescia for Clinics لكل منظار في الولايات المتحدة، بسعر يُحدَّد لكل ارتباط وفق حجم مناظيرك ويبقى دون عائدك المنمذَج. يبدأ شركاء التصميم مجانًا حتى تثبت المنصّة جدواها على بياناتك الخاصة. لا يوجد تسعير لكل مقعد.',
+    'noshow.numbers.p1': 'يُتفاوَض على سعر Aescia for Clinics مع كل عيادة بدلاً من نشره. يبدأ شركاء التصميم مجانًا حتى تثبت المنصّة جدواها على بياناتك الخاصة، ويبقى السعر المتفق عليه دون عائدك المنمذَج.',
     'noshow.numbers.p2.pre': 'لأن Aescia في مرحلة ما قبل أول عميل، فهي لا تنشر رقمًا خاصًّا بها لخفض حالات التغيب. وبدلاً من ذلك، فإن',
     'noshow.numbers.p2.link': 'حاسبة العائد على الاستثمار التفاعلية في صفحة العيادات',
     'noshow.numbers.p2.post': 'تتيح لك إدخال حجم مناظيرك الخاص، ومعدّل التحضير غير الكافي، ومعدّل التغيب، ورسم المنشأة، ثم تحوّل أحجام الأثر المنشورة من أدبيات التحضير والتذكير إلى نطاقات متحفّظة ومتوقّعة وأفضل حالة. والنطاق المتحفّظ هو الوحيد الذي تلتزم به Aescia كتابةً خلال تجربة شريك تصميم، مقيسًا مقابل خط الأساس التاريخي الخاص بمركز جراحتك النهارية.',
@@ -276,7 +276,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'Chi phí ra sao và điều gì đang bị đe dọa',
     'noshow.numbers.title': 'Hãy tự tính con số của bạn, đối chiếu với mức nền của chính bạn.',
-    'noshow.numbers.p1': 'Aescia for Clinics được tính giá theo từng ca nội soi tại Hoa Kỳ, với mức giá ấn định theo từng lần hợp tác dựa trên khối lượng nội soi của bạn và giữ dưới mức lợi tức được mô hình hóa của bạn. Các đối tác thiết kế bắt đầu miễn phí cho đến khi nền tảng chứng minh được giá trị trên chính dữ liệu của bạn. Không tính phí theo chỗ ngồi.',
+    'noshow.numbers.p1': 'Giá của Aescia for Clinics được thương lượng với từng phòng khám thay vì công bố. Các đối tác thiết kế bắt đầu miễn phí cho đến khi nền tảng chứng minh được giá trị trên chính dữ liệu của bạn, và mức giá đã thỏa thuận luôn được giữ dưới mức lợi tức được mô hình hóa của bạn.',
     'noshow.numbers.p2.pre': 'Vì Aescia đang ở giai đoạn trước khách hàng đầu tiên, nó không công bố một con số giảm vắng mặt của riêng mình. Thay vào đó,',
     'noshow.numbers.p2.link': 'công cụ tính ROI tương tác trên trang Phòng khám',
     'noshow.numbers.p2.post': 'cho phép bạn nhập khối lượng nội soi, tỷ lệ chuẩn bị không đầy đủ, tỷ lệ vắng mặt và phí cơ sở của riêng bạn, rồi quy đổi các kích thước hiệu ứng đã công bố từ tài liệu về chuẩn bị và nhắc nhở thành các dải thận trọng, dự kiến và trường hợp tốt hơn. Dải thận trọng là dải duy nhất mà Aescia cam kết bằng văn bản trong một thử nghiệm đối tác thiết kế, được đo lường đối chiếu với mức nền lịch sử của chính ASC của bạn.',

@@ -48,7 +48,6 @@ const ASSUMPTIONS = {
   // Aescia-achieved backfill rate on LATE cancellations (SOC baseline ~40%). The lever
   // credits only the INCREMENTAL lift over the site's current rate. Pilot-to-prove.
   backfillRate: { conservative: 0.55, expected: 0.65, better: 0.75 },
-  aesciaPerScopeUsd: 8, // US institutional rate post-conversion; see /clinics pricing block.
   nurseRateUsdPerHour: 45, // loaded blended LPN/RN
   nurseAutomatablePct: 0.6, // routine share of prep-call time the companion offloads
 
@@ -143,7 +142,6 @@ export function ClinicsRoi() {
     const noShows = annualScopes * (noShowRatePct / 100)
     const fee = facilityFeeUsd // recovered revenue per slot (gross facility fee, not margin)
     const socFill = Math.min(Math.max(currentBackfillPct / 100, 0), 1)
-    const aesciaCost = annualScopes * ASSUMPTIONS.aesciaPerScopeUsd
 
     // Staff time: input-side, band-independent. SOFT — real cash only if the site redeploys
     // the freed nurse time. Held OUT of the headline ROI and shown as a separate line.
@@ -188,10 +186,6 @@ export function ClinicsRoi() {
         prepRecovery,
         slotValue,
         allInValue,
-        aesciaCost,
-        net: slotValue - aesciaCost,
-        ratio: aesciaCost > 0 ? slotValue / aesciaCost : 0,
-        ratioAllIn: aesciaCost > 0 ? allInValue / aesciaCost : 0,
       }
     })
 
@@ -226,7 +220,6 @@ export function ClinicsRoi() {
 
     return {
       rows,
-      aesciaCost,
       staffSaved,
       monthlyValueConservative,
       monthlyEndoscopistLossConservative,
@@ -359,25 +352,16 @@ export function ClinicsRoi() {
 
           <div className="divide-y divide-border border-y border-border bg-background">
             {results.rows.map((r) => (
-              <div key={r.band} className="grid grid-cols-[104px_1fr_auto] gap-3 px-4 sm:px-5 py-6 items-center">
+              <div key={r.band} className="grid grid-cols-[104px_1fr] gap-3 px-4 sm:px-5 py-6 items-center">
                 <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60">
                   {r.band === 'conservative' ? t('roi.band.conservative') : r.band === 'expected' ? t('roi.band.expected') : t('roi.band.potential')}
                 </div>
                 <div
-                  className="font-display text-[22px] lg:text-[27px] leading-[1.1] tracking-[-0.018em]"
-                  style={{ fontVariationSettings: "'opsz' 96" }}
+                  className="font-display text-[28px] lg:text-[38px] leading-[1.05] tracking-[-0.022em] text-right text-brass"
+                  style={{ fontVariationSettings: "'opsz' 120" }}
                 >
                   {usd(r.allInValue)}
                   <span className="text-foreground/45 text-[12px] font-mono ml-1.5">{t('roi.perYear')}</span>
-                </div>
-                <div className="text-right">
-                  <div
-                    className="font-display text-[34px] lg:text-[46px] leading-none tracking-[-0.025em] text-brass"
-                    style={{ fontVariationSettings: "'opsz' 144" }}
-                  >
-                    {r.ratioAllIn.toFixed(1)}×
-                  </div>
-                  <div className="font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55 mt-1.5">{t('roi.roiLabel')}</div>
                 </div>
               </div>
             ))}
@@ -470,8 +454,7 @@ export function ClinicsRoi() {
           <li>{t('roi.assumptions.staffTime')
             .replace('{pct}', String(Math.round(ASSUMPTIONS.nurseAutomatablePct * 100)))
             .replace('{rate}', String(ASSUMPTIONS.nurseRateUsdPerHour))}</li>
-          <li>{t('roi.assumptions.price')
-            .replace('{price}', String(ASSUMPTIONS.aesciaPerScopeUsd))}</li>
+          <li>{t('roi.assumptions.price')}</li>
           <li>{t('roi.assumptions.commitment')}</li>
           <li>{t('roi.assumptions.backfillScope')}</li>
           <li>{t('roi.assumptions.beran')}</li>

@@ -429,9 +429,9 @@ export default function ClinicsContent() {
         </div>
       </section>
 
-      {/* Pricing — publish the model and posture (per-scope, free-to-start,
-          value-floor) but not the rate. The specific number is set in the
-          conversation, so a prospect contacts us rather than self-disqualifying. */}
+      {/* Pricing — say only that it is negotiable. Keep the two draws (free to
+          start, value-floor); no rate and no pricing model, so a prospect
+          contacts us rather than self-disqualifying on a number. */}
       <section id="pricing" className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
@@ -442,56 +442,31 @@ export default function ClinicsContent() {
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-6 text-background max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
           >
-            Priced per scope. You start free.
+            Negotiable. You start free.
           </h2>
           <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl mb-14">
-            Aescia for Clinics is priced per scope at the single-site level, never per seat. Design partners start free and pay nothing until the platform proves itself on your own data. The rate is set against your volume and held below the return the calculator models for your site. Run your numbers above, then talk to us for your rate.
+            There is no published rate. Aescia&apos;s price is negotiated with each clinic, because the right number depends on your setup and the outcome we agree to be measured on. Design partners start free and pay nothing until the platform proves itself on your own data, and the price we agree is held below the return the calculator models for your site. Run your numbers above, then talk to us.
           </p>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-background/10 border-y border-background/15">
-            {/* US */}
-            <div className="bg-foreground p-7 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">United States</span>
-              </div>
-              <h3
-                className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.018em] text-background mb-5"
-                style={{ fontVariationSettings: "'opsz' 80" }}
-              >
-                Free to start. Set against your volume.
-              </h3>
-              <ul className="space-y-3 text-[14.5px] leading-[1.6] text-background/85">
+          <div className="border-y border-background/15 bg-foreground">
+            <div className="p-7 lg:p-10 max-w-3xl">
+              <ul className="space-y-4 text-[14.5px] leading-[1.6] text-background/85">
                 <li>
                   <strong className="text-background">Free until it proves itself.</strong> Design partners start free and pay nothing until the platform hits the outcome we agree on, measured on your own data. See the design-partner program.
                 </li>
                 <li>
-                  <strong className="text-background">Per scope, never per seat.</strong> You are billed on scope volume, not on the number of front-desk users or patients. Higher volume brings the per-scope rate down.
+                  <strong className="text-background">Negotiated, not published.</strong> We set the price with each clinic against what Aescia is worth to your site. There is no rate card to disqualify yourself against.
                 </li>
                 <li>
-                  <strong className="text-background">Held below your return.</strong> The contracted rate is set beneath the annual benefit the calculator models for your site. If it does not pencil out positive at signature, it does not get signed.
+                  <strong className="text-background">Held below your return.</strong> The price we agree is set beneath the annual benefit the calculator models for your site. If it does not pencil out positive at signature, it does not get signed.
                 </li>
-              </ul>
-              <p className="text-[12.5px] text-background/65 mt-6">
-                Your rate is set per engagement, against your scope volume. Run the calculator above to see the return it is measured against, then talk to us for your number.
-              </p>
-            </div>
-
-            {/* What scales it */}
-            <div className="bg-foreground p-7 lg:p-10">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">What scales the price</span>
-              </div>
-              <ul className="space-y-3 text-[14.5px] leading-[1.65] text-background/85">
-                <li><strong className="text-background">Adds the price.</strong> Additional specialties beyond the first. Additional protocols inside a specialty where each requires a new clinician-authored rule set. US: scope volume.</li>
-                <li><strong className="text-background">Does not add the price.</strong> Patient volume within the base tier. Number of front-desk users. SMS volume within reasonable use. Customer support contact time during design-partner phase.</li>
-                <li className="pt-2 border-t border-background/15"><strong className="text-background">Value-floor rule.</strong> Aescia's contracted rate is held below the customer's modelled annual benefit. If the calculator does not show net positive at signature, the contract does not get signed.</li>
               </ul>
             </div>
           </div>
 
           <div className="mt-12 flex flex-col sm:flex-row gap-3 sm:items-center">
             <p className="text-[14px] text-background/75 max-w-2xl">
-              For US design partners the rate is locked for three years with a CPI or 5% capped escalator and no conversion to gain-share during the locked term. See the design-partner program for the full commercial shape.
+              Design partners agree terms up front and keep them. See the design-partner program for how the engagement works.
             </p>
             <Link
               href="/design-partner"

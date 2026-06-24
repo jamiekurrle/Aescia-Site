@@ -13,7 +13,7 @@ total. First line as required.
 >
 > Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring. Intended Class IIa under TGA Rule 3.4. In clinical evaluation through the SAFE-Discharge trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney (ACTRN12625001425482, 550 patients). A regulatory submission has not yet been lodged.
 >
-> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep, multichannel reminders, and structured chart exports — flat monthly per specialty, not per seat.
+> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep, multichannel reminders, and structured chart exports. Pricing is negotiated per clinic; design partners start free until the platform proves itself.
 >
 > What I do day-to-day: author the clinical pathway engine, lead regulatory and clinical-evaluation strategy, and run the company across Montréal and Sydney. Aescia is a District 3 portfolio company at Concordia University and is enrolled in the Medical Technology Association of Australia's MedTech Compass programme.
 >

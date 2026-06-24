@@ -260,7 +260,7 @@ export const clinicsSoftwareSchema = {
     '@type': 'Offer',
     priceCurrency: 'USD',
     description:
-      'Priced per scope in the US at the single-site level; no per-seat pricing. Design partners start free and pay nothing until the platform proves itself on the customer\'s own data. The rate is set per engagement against scope volume and held below the customer\'s modelled annual return. Contact Aescia for a site-specific rate.',
+      'Pricing is negotiated with each clinic and is not published. Design partners start free and pay nothing until the platform proves itself on the customer\'s own data, and the agreed price is held below the customer\'s modelled annual return. Contact Aescia to discuss pricing for your site.',
   },
 }
 

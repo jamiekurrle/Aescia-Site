@@ -199,7 +199,7 @@ export const zh: Record<string, string> = {
   'clinics.features.item8.title': '易于集成',
   'clinics.features.item8.desc': '设计上可与您诊所已运行的系统并行，并便于快速搭建，无需让您的团队再登录第二套系统。任何数据交换都会与您界定范围。',
   'clinics.features.item9.title': '适合单站点',
-  'clinics.features.item9.desc': '由一位诊所管理员在一个下午内完成配置。在 US 按每例检查计价，无需按席位计算。设计目标是有了推动者之后以周为单位上线，而非以季度计。',
+  'clinics.features.item9.desc': '由一位诊所管理员在一个下午内完成配置。价格按您的站点协商确定，并非来自报价单。设计目标是有了推动者之后以周为单位上线，而非以季度计。',
   'clinics.vocab.title': '为门诊的节奏而生。',
   'clinics.vocab.body': '这不是一个为诊所披上外衣的医院出院工具。它是一款准备与工作流程产品，拥有自己编写的协议、自己的 SMS 层，以及自己的术语：今日清单、诊室利用率、病例周转、准备充分度、召回依从性。',
   'clinics.regions.title': '按地区划分的准备品牌。',

@@ -15,7 +15,7 @@ Source-of-truth for the LinkedIn company page. Every claim here mirrors what is 
 >
 > Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring, intended to be classified Class IIa under TGA Rule 3.4. A regulatory submission has not yet been lodged. The product is in clinical evaluation through SAFE-Discharge, a 550-patient prospective single-centre trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney (ACTRN12625001425482), under the principal investigator Dr Kei Woldendorp of The Baird Institute.
 >
-> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep pathways, multichannel reminders, and structured exports back to the chart, so that high-volume endoscopy, infusion, and procedural lists run with less phone work and fewer cancelled appointments. Pricing is flat monthly per specialty; there is no seat-based math.
+> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep pathways, multichannel reminders, and structured exports back to the chart, so that high-volume endoscopy, infusion, and procedural lists run with less phone work and fewer cancelled appointments. Pricing is negotiated per clinic; design partners start free until the platform proves itself.
 >
 > One pathway engine underneath both products. Five step types — Collect, Follow, Remind, Educate, Export. Designed to add a signal layer for the team, not a new portal for the patient.
 >
@@ -86,7 +86,7 @@ LinkedIn caps Specialties at 20 short tags. These are ranked by what an in-buyer
 >
 > Aescia for Clinics replaces the parts of that pathway that currently live on phone trees and printed sheets. Clinician-authored prep, branched for diabetes, anticoagulation, and GLP-1 peri-procedural overlay. Multichannel reminders that respect the way the patient actually checks their messages. Structured export back to the chart, so the next clinician does not have to ask the same five questions twice.
 >
-> Aescia for Clinics is a workflow tool. It is not a medical device, it does not propose clinical decisions, and it does not diagnose. It delivers clinician-authored content and routes exceptions to named staff. Pricing is flat monthly by specialty, not per seat — the economic case is subtractive: less reception phone work, fewer repeat visits driven by inadequate prep, fewer recall patients lost.
+> Aescia for Clinics is a workflow tool. It is not a medical device, it does not propose clinical decisions, and it does not diagnose. It delivers clinician-authored content and routes exceptions to named staff. Pricing is negotiated per clinic; design partners start free until the platform proves itself. The economic case is subtractive: less reception phone work, fewer repeat visits driven by inadequate prep, fewer recall patients lost.
 >
 > The MVP is feature-complete. Production deployment follows once the database and EMR integration targets land for the first paying clinic.
 
