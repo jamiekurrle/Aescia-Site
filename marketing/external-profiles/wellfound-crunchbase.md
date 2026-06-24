@@ -30,7 +30,7 @@ and the LinkedIn copy in this folder.
 >
 > One pathway engine underneath both products: Collect, Follow, Remind, Educate, Export. Designed to add a signal layer, not a new portal.
 >
-> Aescia is incorporated as Aescia Pty Ltd (Australia, ABN 96 687 840 517) and 9550-0708 Québec inc (Canada, NEQ 1181312316), with operations in Sydney and Montréal. The company is a District 3 portfolio company at Concordia University and is enrolled in the MTAA MedTech Compass programme.
+> Aescia Pty Ltd (Australia, ABN 96 687 840 517) is a standalone company and the regulatory applicant, with operations in Sydney and Montréal. The company is a District 3 portfolio company at Concordia University and is enrolled in the MTAA MedTech Compass programme.
 
 (~1,490 chars.)
 
@@ -39,7 +39,7 @@ and the LinkedIn copy in this folder.
 1. We publish what we ship and what we don't claim. The /evidence page exists because the trial is running and we have not yet earned the readmission claim.
 2. Clinician-authored, not generated. Pathway content comes from practising clinicians; no AI models sit outside that authoring boundary.
 3. Posture is Class IIa for the regulated product, explicitly non-device for the workflow product. We do not blur that line in copy or in product behaviour.
-4. Two-jurisdiction company by design. Sydney for the regulatory applicant and trial; Montréal for the R&D entity and Canadian data residency.
+4. Two cities by design. Sydney is home to the company, the regulatory applicant, and the trial; Montréal is where engineering and Canadian data residency sit.
 5. Bilateral hiring. Engineering and clinical pathway authoring across both cities; we treat the timezone overlap as a feature.
 6. Subtractive economic case for clinics. Pricing is flat monthly per specialty. Per-seat pricing is not on the table.
 7. Quiet by default. We use the Updates page as the canonical company log and post short follow-ups on LinkedIn; we don't run a launch-video pipeline.
@@ -71,7 +71,7 @@ and the LinkedIn copy in this folder.
 >
 > Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall tracking, and structured chart exports. Flat monthly pricing per specialty.
 >
-> Aescia operates from Sydney (Aescia Pty Ltd, ABN 96 687 840 517 — regulatory applicant) and Montréal (9550-0708 Québec inc., NEQ 1181312316 — R&D and Canadian data residency). Aescia is a District 3 portfolio company at Concordia University and is enrolled in the Medical Technology Association of Australia's MedTech Compass programme.
+> Aescia Pty Ltd (ABN 96 687 840 517) is a standalone company and the regulatory applicant, based in Sydney, with engineering and Canadian data residency in Montréal. Aescia is a District 3 portfolio company at Concordia University and is enrolled in the Medical Technology Association of Australia's MedTech Compass programme.
 >
 > The company is at clinical-evaluation and first-paying-customer stage. No claims of approval, clearance, or regulatory listing in any jurisdiction. Economic estimates exist for internal planning and are shared on request, clearly labelled as estimates.
 
@@ -123,10 +123,11 @@ and the LinkedIn copy in this folder.
 | Concordia article | Linked from /updates#e2 and /team/james-kurrle Press section | Listed in Crunchbase News-items table | None |
 | Regulatory claims | "No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications have been filed." | All copies say "no submission lodged" or "no approval, clearance, or listing in any jurisdiction" | None |
 | ABN | 96 687 840 517 | Wellfound and Crunchbase carry it | None |
-| NEQ | 1181312316 | Wellfound and Crunchbase carry it | None |
+| NEQ | 1181312316 (still in lib/schema.ts) | Removed from profile prose pending corporate-structure confirmation | **Confirm whether 9550-0708 Québec inc still stands. If AU-only, also remove the NEQ identifier from lib/schema.ts so site and profile match.** |
 
 **Outstanding flags for human review:**
 
 1. **Crunchbase Founded On year** — set to 2025 (matches `organizationSchema.foundingDate`).
 2. **MTAA URL confirmed** — Aescia is listed at https://www.mtaa.org.au/industry-members (confirmed live; Aescia's site is linked from that page). The Updates entry, Organization sameAs, and this file all use that URL.
 3. **Crunchbase short-description length cap** — different CB instances enforce different caps. The 167-char and 120-char variants are both included; pick the one that fits.
+4. **Corporate structure (NEEDS CONFIRMATION)** — copy now reads Aescia Pty Ltd (AU) as a standalone company, per the 2026-06-07 correction that the Ontario-HoldCo / Québec-R&D dual-entity plan was never executed. The live Crunchbase profile still shows the old Ontario-HQ structure; update it. Open question: does 9550-0708 Québec inc (NEQ 1181312316) still formally exist? If not, drop it everywhere (this file already done) including the `lib/schema.ts` NEQ identifier.
