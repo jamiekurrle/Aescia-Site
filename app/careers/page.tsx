@@ -5,7 +5,7 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Careers',
+  title: 'Careers: build clinician-led medical software',
   description:
     'Open roles at Aescia, a clinician-led team building continuous-care software for hospitals and specialty clinics. Small team, real product in clinical evaluation, remote-friendly across Montréal, Sydney, and US timezones.',
   alternates: { canonical: '/careers' },

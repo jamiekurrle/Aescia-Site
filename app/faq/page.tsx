@@ -5,7 +5,7 @@ import { breadcrumbSchema, faqPageSchema, type FAQItem } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Frequently asked questions',
+  title: 'Frequently asked questions about the platform',
   description:
     'Plain answers about Aescia: what each product is, regulatory posture, the SAFE-Discharge trial, integrations, pricing, and how to engage.',
   alternates: { canonical: '/faq' },

@@ -5,7 +5,7 @@ import { breadcrumbSchema } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Governance and regulatory status',
+  title: 'Governance: regulatory posture and quality systems',
   description:
     'How Aescia is governed. Investigational medical device posture for Hospitals. Non-device workflow posture for Clinics. Certifications not yet obtained. Full security pack available under NDA.',
   alternates: { canonical: '/governance' },

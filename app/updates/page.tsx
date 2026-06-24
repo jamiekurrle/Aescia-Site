@@ -4,7 +4,7 @@ import { updatesEntries } from '@/lib/updates'
 import { UpdatesContent } from './updates-content'
 
 export const metadata: Metadata = {
-  title: 'Updates',
+  title: 'Product updates: what shipped and what is next',
   description:
     'A dated log of what Aescia has shipped, what trials and programmes have opened, and what is coming next. No press copy, just facts.',
   alternates: { canonical: '/updates' },

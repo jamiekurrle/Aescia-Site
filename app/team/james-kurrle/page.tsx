@@ -7,7 +7,9 @@ import { PageContent } from './content'
 const SITE_URL = 'https://www.aesciahealth.com'
 
 export const metadata: Metadata = {
-  title: 'James Kurrle | Founder of Aescia',
+  // `absolute` skips the '%s | Aescia' template so the title is not doubled to
+  // "... | Founder of Aescia | Aescia".
+  title: { absolute: 'James Kurrle | Founder and CEO of Aescia Health' },
   description:
     'James Kurrle is a critical-care physician and the founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
   alternates: { canonical: '/team/james-kurrle' },

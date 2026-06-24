@@ -19,7 +19,7 @@ import { PageContent } from './content'
 // - Same nav, same footer, same regulatory band as /hospitals.
 
 export const metadata: Metadata = {
-  title: 'Clinical evidence',
+  title: 'Clinical evidence and the SAFE-Discharge trial',
   description:
     'The published evidence base for structured post-discharge monitoring and for pre-procedure preparation and prehabilitation, and Aescia\'s approach to generating product-specific evidence through the SAFE-Discharge clinical evaluation.',
   alternates: { canonical: '/evidence' },
