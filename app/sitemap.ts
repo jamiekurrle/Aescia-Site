@@ -34,6 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   const staticEntries = paths.map(({ path, priority, freq }) => ({
+    // No trailing slash anywhere: with Next's default trailingSlash:false the
+    // homepage canonical renders as https://www.aesciahealth.com (no slash), so
+    // the sitemap must match that exact form. Inner paths already agree.
     url: `${SITE_URL}${path}`,
     lastModified: now,
     changeFrequency: freq,

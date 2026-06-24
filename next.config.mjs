@@ -15,6 +15,10 @@ const nextConfig = {
       // stale search-index entries land somewhere relevant instead of a 404.
       { source: '/about', destination: '/team', permanent: true },
       { source: '/clinical-regulatory', destination: '/governance', permanent: true },
+      // Hyphen-less variant of the same dead page that Google still has on file
+      // (/clinicalregulatory). permanent:true issues a 308, which Google treats
+      // as a permanent redirect equivalent to a 301 for canonicalisation.
+      { source: '/clinicalregulatory', destination: '/governance', permanent: true },
     ]
   },
 }
