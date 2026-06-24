@@ -429,9 +429,9 @@ export default function ClinicsContent() {
         </div>
       </section>
 
-      {/* Pricing — structured ranges, not "posture only".
-          Crawlable plain-text figures so a shallow LLM read returns
-          numbers, not "contact for pricing". */}
+      {/* Pricing — publish the model and posture (per-scope, free-to-start,
+          value-floor) but not the rate. The specific number is set in the
+          conversation, so a prospect contacts us rather than self-disqualifying. */}
       <section id="pricing" className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
@@ -442,10 +442,10 @@ export default function ClinicsContent() {
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-6 text-background max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
           >
-            Priced per scope. Range published, not gated.
+            Priced per scope. You start free.
           </h2>
           <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl mb-14">
-            Aescia for Clinics is priced per scope at the single-site level. No per-seat pricing. The range below covers the typical US ambulatory surgery centre by physician count. A site-specific quote is generated against your scope volume in the ROI calculator above.
+            Aescia for Clinics is priced per scope at the single-site level, never per seat. Design partners start free and pay nothing until the platform proves itself on your own data. The rate is set against your volume and held below the return the calculator models for your site. Run your numbers above, then talk to us for your rate.
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-background/10 border-y border-background/15">
@@ -458,24 +458,21 @@ export default function ClinicsContent() {
                 className="font-display text-[22px] lg:text-[26px] leading-[1.2] tracking-[-0.018em] text-background mb-5"
                 style={{ fontVariationSettings: "'opsz' 80" }}
               >
-                Per-scope at the institutional rate, USD.
+                Free to start. Set against your volume.
               </h3>
               <ul className="space-y-3 text-[14.5px] leading-[1.6] text-background/85">
                 <li>
-                  <strong className="text-background">Institutional default — US$8 per scope.</strong> Practice or facility entity contracts; flat post-conversion. During the design-partner pilot, the structure is 15% gainshare against measured value (or free-until-proof; see the design-partner page).
+                  <strong className="text-background">Free until it proves itself.</strong> Design partners start free and pay nothing until the platform hits the outcome we agree on, measured on your own data. See the design-partner program.
                 </li>
                 <li>
-                  <strong className="text-background">Aggregator volume tier — US$6 per scope.</strong> Multi-state aggregators with more than 50,000 scopes per year on a single contract.
+                  <strong className="text-background">Per scope, never per seat.</strong> You are billed on scope volume, not on the number of front-desk users or patients. Higher volume brings the per-scope rate down.
                 </li>
                 <li>
-                  <strong className="text-background">Non-equity individual physician — US$3,800 per year.</strong> Rare edge case (physician with no facility-side capture). Requires signed attestation rider.
+                  <strong className="text-background">Held below your return.</strong> The contracted rate is set beneath the annual benefit the calculator models for your site. If it does not pencil out positive at signature, it does not get signed.
                 </li>
               </ul>
               <p className="text-[12.5px] text-background/65 mt-6">
-                Single-site single-specialty US ASC typically falls in <strong className="text-background">US$8,000 to US$77,000 per year</strong>, by physician count: solo own-facility ~$8K, 4-MD ASC ~$38K, 8-MD ASC ~$64K.
-              </p>
-              <p className="text-[12.5px] text-background/65 mt-3">
-                This is the typical span, not a quote. Your exact figure is generated above against your scope volume in the ROI calculator (at US$8 per scope).
+                Your rate is set per engagement, against your scope volume. Run the calculator above to see the return it is measured against, then talk to us for your number.
               </p>
             </div>
 

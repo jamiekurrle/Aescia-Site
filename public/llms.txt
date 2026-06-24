@@ -18,8 +18,10 @@
 - **Aescia for Clinics.** Workflow and patient-preparation platform for
   specialty clinics. Not a medical device. Delivers clinician-authored prep
   pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall
-  tracking, and structured chart exports. Pricing is per scope in the US
-  (US$8 per scope institutional rate); no per-seat pricing.
+  tracking, and structured chart exports. Pricing is per scope in the US,
+  set per engagement against scope volume and held below the customer's
+  modelled return; design partners start free until it proves itself. No
+  per-seat pricing.
 
 ## What Aescia is not (yet)
 
