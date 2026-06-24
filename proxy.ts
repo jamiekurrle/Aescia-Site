@@ -53,7 +53,23 @@ export async function proxy(req: NextRequest) {
     }
   }
 
-  return NextResponse.next()
+  const res = NextResponse.next()
+
+  // RFC 8288 Link headers on the homepage: point agents at machine-readable
+  // descriptions of the site. Only rel="describedby" is used, and only toward
+  // files that actually exist (/llms.txt index and /llms-full.txt snapshot).
+  // The other accepted relations (api-catalog, service-desc, service-doc) would
+  // have to point at an OpenAPI spec / API docs we don't publish, so they are
+  // intentionally omitted rather than advertised as dead links.
+  if (req.nextUrl.pathname === '/') {
+    res.headers.set(
+      'Link',
+      '</llms.txt>; rel="describedby"; type="text/plain", ' +
+        '</llms-full.txt>; rel="describedby"; type="text/markdown"',
+    )
+  }
+
+  return res
 }
 
 export const config = {
