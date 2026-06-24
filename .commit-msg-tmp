@@ -1,0 +1,13 @@
+refactor(clinics): drop commercial-terms note; fix FAQ metric + terms
+
+Remove the /clinics pricing closing note (three-year lock, capped escalator, no
+gain-share) and keep only a link to the design-partner program: the public site
+does not play its hand on commercial terms, they go to negotiation.
+
+Rewrite the FAQ "Why should I be first?" answer in all six locales: drop "a
+metric you choose" (Aescia sets the success metric, anchored to the customer's
+biggest current pain) and the published lock/escalator/gain-share terms
+(negotiated per deal). Keep free-until-proven, the customer's own baseline plus
+QA sign-off, and reference/logo in return.
+
+Co-Authored-By: claude-flow <ruv@ruv.net>

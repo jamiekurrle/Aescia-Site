@@ -464,15 +464,12 @@ export default function ClinicsContent() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col sm:flex-row gap-3 sm:items-center">
-            <p className="text-[14px] text-background/75 max-w-2xl">
-              Design partners agree terms up front and keep them. See the design-partner program for how the engagement works.
-            </p>
+          <div className="mt-12 flex">
             <Link
               href="/design-partner"
               className="inline-flex items-center gap-2.5 text-[13px] text-background font-medium tracking-wide border-b border-brass pb-1.5 hover:border-background transition-colors self-start"
             >
-              Design-partner terms
+              See the design-partner program
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
               </svg>

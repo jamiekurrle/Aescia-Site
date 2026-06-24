@@ -156,7 +156,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'You have no clinical customers yet. Why should I be first?',
-        a: 'Aescia for Clinics is pre-first-customer; that is stated plainly. The design-partner program is the structured answer to that question. The pilot runs free or under a money-back rebate until Aescia has delivered measurable net benefit on a metric you choose, measured against your own ASC\'s historical baseline. Design partners then receive a three-year flat-price lock with a capped escalator, no conversion to gain-share during the locked term, and reference and logo arrangements in return. The full program terms are documented at aesciahealth.com/design-partner.',
+        a: 'Aescia for Clinics is pre-first-customer; that is stated plainly. The design-partner program is the structured answer. The pilot runs free until Aescia has delivered measurable net benefit on the outcome costing your list the most, measured against your own ASC\'s historical baseline and signed off by your own QA committee. Commercial terms are negotiated per deal; in return, design partners provide reference and logo arrangements. The program is at aesciahealth.com/design-partner.',
       },
       {
         q: 'What happens to my data if Aescia shuts down?',
