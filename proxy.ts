@@ -15,7 +15,7 @@ import type { NextRequest } from 'next/server'
 // this runs at the Vercel edge for both hosts.
 //
 // File convention: Next.js 16 renamed `middleware` to `proxy`.
-export function proxy(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   if (req.headers.get('host') === 'aesciahealth.com') {
     const url = req.nextUrl.clone()
     url.protocol = 'https'
@@ -23,6 +23,36 @@ export function proxy(req: NextRequest) {
     url.port = '' // default 443; guards against a port leaking into the redirect
     return NextResponse.redirect(url, 308)
   }
+
+  // Markdown for agents: when a client requests text/markdown, serve the
+  // curated /llms-full.txt for the homepage instead of the HTML page. Browsers
+  // never send this Accept value, so they still get HTML. Only the homepage is
+  // mapped (no per-page markdown source yet); everything else falls through.
+  // Fails open: any error returns the normal response.
+  if (
+    req.method === 'GET' &&
+    req.nextUrl.pathname === '/' &&
+    (req.headers.get('accept') || '').includes('text/markdown')
+  ) {
+    try {
+      const md = await fetch(new URL('/llms-full.txt', req.nextUrl.origin))
+      if (md.ok) {
+        return new NextResponse(await md.text(), {
+          status: 200,
+          headers: {
+            'content-type': 'text/markdown; charset=utf-8',
+            // Tell caches the representation depends on Accept, so a browser
+            // and an agent hitting the same URL don't get each other's body.
+            vary: 'Accept',
+            'cache-control': 'public, max-age=3600',
+          },
+        })
+      }
+    } catch {
+      // fall through to the normal HTML response
+    }
+  }
+
   return NextResponse.next()
 }
 
