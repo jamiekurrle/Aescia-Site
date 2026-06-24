@@ -25,13 +25,16 @@ export async function proxy(req: NextRequest) {
   }
 
   // Markdown for agents: when a client requests text/markdown, serve the
-  // curated /llms-full.txt for the homepage instead of the HTML page. Browsers
-  // never send this Accept value, so they still get HTML. Only the homepage is
-  // mapped (no per-page markdown source yet); everything else falls through.
-  // Fails open: any error returns the normal response.
+  // curated /llms-full.txt instead of the HTML page. Browsers never send this
+  // Accept value, so they still get HTML. Applies to any content page (not
+  // /api/* and not file-like paths such as /facts.json or /sitemap.xml, which
+  // serve their own representations). Fails open: any error returns the normal
+  // response.
+  const pathname = req.nextUrl.pathname
+  const isContentPage = !pathname.startsWith('/api') && !/\.[a-z0-9]+$/i.test(pathname)
   if (
     req.method === 'GET' &&
-    req.nextUrl.pathname === '/' &&
+    isContentPage &&
     (req.headers.get('accept') || '').includes('text/markdown')
   ) {
     try {
@@ -55,17 +58,17 @@ export async function proxy(req: NextRequest) {
 
   const res = NextResponse.next()
 
-  // RFC 8288 Link headers on the homepage: point agents at machine-readable
-  // descriptions of the site. Only rel="describedby" is used, and only toward
-  // files that actually exist (/llms.txt index and /llms-full.txt snapshot).
-  // The other accepted relations (api-catalog, service-desc, service-doc) would
-  // have to point at an OpenAPI spec / API docs we don't publish, so they are
-  // intentionally omitted rather than advertised as dead links.
-  if (req.nextUrl.pathname === '/') {
+  // RFC 8288 Link headers on the homepage: point agents at the machine-readable
+  // descriptions of the site that actually exist — the /llms.txt index, the
+  // /llms-full.txt snapshot, the /facts.json fact sheet, and the /feed.json
+  // updates feed. All are real resources, so no dead links.
+  if (pathname === '/') {
     res.headers.set(
       'Link',
       '</llms.txt>; rel="describedby"; type="text/plain", ' +
-        '</llms-full.txt>; rel="describedby"; type="text/markdown"',
+        '</llms-full.txt>; rel="describedby"; type="text/markdown", ' +
+        '</facts.json>; rel="describedby"; type="application/json", ' +
+        '</feed.json>; rel="alternate"; type="application/feed+json"',
     )
   }
 
