@@ -26,7 +26,7 @@ and the LinkedIn copy in this folder.
 >
 > Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring, intended Class IIa under TGA Rule 3.4. A regulatory submission has not yet been lodged. The product is in clinical evaluation through the SAFE-Discharge trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney (ACTRN12625001425482, 550 patients), under principal investigator Dr Kei Woldendorp of The Baird Institute. The first indication is cardiothoracic surgical recovery; the secondary endpoint is alert-burden — fewer than one nurse-actionable flag per patient per week across the 30-day post-discharge window.
 >
-> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device, does not propose clinical decisions, and does not diagnose. It delivers clinician-authored prep pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall tracking, and structured exports back to the chart. Pricing is flat monthly per specialty.
+> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device, does not propose clinical decisions, and does not diagnose. It delivers clinician-authored prep pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall tracking, and structured exports back to the chart. Pricing is negotiated per clinic; design partners start free until the platform proves itself.
 >
 > One pathway engine underneath both products: Collect, Follow, Remind, Educate, Export. Designed to add a signal layer, not a new portal.
 >
@@ -41,7 +41,7 @@ and the LinkedIn copy in this folder.
 3. Posture is Class IIa for the regulated product, explicitly non-device for the workflow product. We do not blur that line in copy or in product behaviour.
 4. Two cities by design. Sydney is home to the company, the regulatory applicant, and the trial; Montréal is where engineering and Canadian data residency sit.
 5. Bilateral hiring. Engineering and clinical pathway authoring across both cities; we treat the timezone overlap as a feature.
-6. Subtractive economic case for clinics. Pricing is flat monthly per specialty. Per-seat pricing is not on the table.
+6. Subtractive economic case for clinics. Pricing is negotiated per clinic; design partners start free until the platform proves itself.
 7. Quiet by default. We use the Updates page as the canonical company log and post short follow-ups on LinkedIn; we don't run a launch-video pipeline.
 8. Procurement-grade by intent, not just by deck. ISO/IEC 27001 controls and IEC 62304 processes implemented and documented; certifications are explicit work in progress.
 9. Hospitals product is advisory output only. The clinician remains the decision-maker.
@@ -69,7 +69,7 @@ and the LinkedIn copy in this folder.
 >
 > Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring, intended Class IIa under TGA Rule 3.4 (regulatory submission not yet lodged). The product is in clinical evaluation through SAFE-Discharge, a prospective 550-patient single-centre trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney, registered ACTRN12625001425482. Principal investigator: Dr Kei Woldendorp, The Baird Institute.
 >
-> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall tracking, and structured chart exports. Flat monthly pricing per specialty.
+> Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. It delivers clinician-authored prep pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall tracking, and structured chart exports. Pricing is negotiated per clinic; design partners start free until the platform proves itself.
 >
 > Aescia Pty Ltd (ABN 96 687 840 517) is a standalone company and the regulatory applicant, based in Sydney, with engineering and Canadian data residency in Montréal. Aescia is a District 3 portfolio company at Concordia University and is enrolled in the Medical Technology Association of Australia's MedTech Compass programme.
 >
@@ -115,7 +115,7 @@ and the LinkedIn copy in this folder.
 | Sample size | 550 patients (50 interim + 500 main) | All copies use 550 | None |
 | Principal investigator | Dr Kei Woldendorp, The Baird Institute | All copies match | None |
 | Operations | Sydney, Australia. Montréal, Canada. | All copies match | None |
-| Pricing model (Clinics) | flat monthly by specialty, no seat-based math | All copies use this | None |
+| Pricing model (Clinics) | negotiated per clinic; design partners start free | All copies use this | None |
 | Founders | James Kurrle (CEO), Vasken Dermardiros (CTO) | LinkedIn founder About is James only by design; Wellfound/Crunchbase reference both | None |
 | Founding year | 2025 (organizationSchema.foundingDate) | Not surfaced in profile copy yet — flag for CB founded-on field | **Set Crunchbase "Founded On" = 2025** |
 | District 3 | Listed as partner item 5 on homepage; new Updates entry e1 (Sept 2025) | All profile copies say "District 3 portfolio company at Concordia University" | None |

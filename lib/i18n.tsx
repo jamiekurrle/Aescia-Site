@@ -265,7 +265,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Integration-friendly',
     'clinics.features.item8.desc': 'Designed to sit alongside the systems your clinic already runs and to be quick to set up, without a second login for your team. We scope any data exchange with you.',
     'clinics.features.item9.title': 'Single-site friendly',
-    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Per-scope pricing in the US, no per-seat math. Designed to go live in weeks once a champion is in place, not quarters.',
+    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Pricing is negotiated to your site, not off a rate card. Designed to go live in weeks once a champion is in place, not quarters.',
 
     'clinics.vocab.title': 'Built for the ambulatory rhythm.',
     'clinics.vocab.body': 'This is not a hospital discharge tool dressed for a clinic. It is a prep and workflow product with its own authored protocols, its own SMS layer, and its own vocabulary: today\'s list, room utilisation, case turnover, prep adequacy, recall compliance.',
@@ -645,7 +645,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Facile à intégrer',
     'clinics.features.item8.desc': 'Conçu pour s\'intégrer aux systèmes que votre clinique utilise déjà et pour être rapide à mettre en place, sans second identifiant pour votre équipe. Nous définissons tout échange de données avec vous.',
     'clinics.features.item9.title': 'Adapté au cabinet',
-    'clinics.features.item9.desc': 'Configuré par un administrateur clinique en une après-midi. Tarification par procédure aux États-Unis, sans tarif par siège. Conçu pour une mise en service en semaines une fois qu\'un champion est en place, pas en trimestres.',
+    'clinics.features.item9.desc': 'Configuré par un administrateur clinique en une après-midi. La tarification est négociée pour votre site, et non issue d\'un barème. Conçu pour une mise en service en semaines une fois qu\'un champion est en place, pas en trimestres.',
 
     'clinics.vocab.title': 'Fait pour le rythme ambulatoire.',
     'clinics.vocab.body': 'Ce n\'est pas un outil de sortie hospitalière habillé pour la clinique. C\'est un produit de préparation et de flux de travail avec ses propres protocoles, sa propre couche SMS, et son propre vocabulaire : liste du jour, utilisation de salle, rotation, qualité de préparation, conformité de rappel.',
@@ -1022,7 +1022,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Compatible con integraciones',
     'clinics.features.item8.desc': 'Diseñada para convivir con los sistemas que su clínica ya usa y para configurarse rápido, sin un segundo inicio de sesión para su equipo. Acotamos con usted cualquier intercambio de datos.',
     'clinics.features.item9.title': 'Apta para un solo sitio',
-    'clinics.features.item9.desc': 'Configurada por un administrador de la clínica en una tarde. Precio por procedimiento en EE. UU., sin cálculos por puesto. Diseñada para entrar en funcionamiento en semanas una vez que hay un impulsor, no en trimestres.',
+    'clinics.features.item9.desc': 'Configurada por un administrador de la clínica en una tarde. El precio se negocia para su sede, no sale de una lista de tarifas. Diseñada para entrar en funcionamiento en semanas una vez que hay un impulsor, no en trimestres.',
 
     'clinics.vocab.title': 'Creada para el ritmo ambulatorio.',
     'clinics.vocab.body': 'Esto no es una herramienta de alta hospitalaria disfrazada para una clínica. Es un producto de preparación y flujo de trabajo con sus propios protocolos redactados, su propia capa de SMS y su propio vocabulario: la lista de hoy, el uso de salas, la rotación de casos, la adecuación de la preparación, el cumplimiento de los recordatorios.',

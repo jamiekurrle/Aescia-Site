@@ -199,7 +199,7 @@ export const vi: Record<string, string> = {
   'clinics.features.item8.title': 'Thân thiện với tích hợp',
   'clinics.features.item8.desc': 'Được thiết kế để hoạt động song song với các hệ thống mà phòng khám của bạn đã vận hành và để thiết lập nhanh chóng, mà không cần đăng nhập thứ hai cho đội ngũ của bạn. Chúng tôi xác định phạm vi bất kỳ trao đổi dữ liệu nào với bạn.',
   'clinics.features.item9.title': 'Thân thiện với cơ sở đơn lẻ',
-  'clinics.features.item9.desc': 'Được cấu hình bởi một quản trị viên phòng khám trong một buổi chiều. Định giá theo từng ca nội soi tại Hoa Kỳ, không tính theo từng chỗ ngồi. Được thiết kế để vận hành trong vài tuần một khi có người dẫn dắt, không phải vài quý.',
+  'clinics.features.item9.desc': 'Được cấu hình bởi một quản trị viên phòng khám trong một buổi chiều. Giá được thương lượng theo cơ sở của bạn, không lấy từ bảng giá. Được thiết kế để vận hành trong vài tuần một khi có người dẫn dắt, không phải vài quý.',
   'clinics.vocab.title': 'Được xây dựng cho nhịp điệu ngoại trú.',
   'clinics.vocab.body': 'Đây không phải là một công cụ xuất viện bệnh viện được khoác lên cho phòng khám. Nó là một sản phẩm chuẩn bị và quy trình làm việc với các giao thức được soạn thảo riêng, lớp SMS riêng, và từ vựng riêng: danh sách hôm nay, mức sử dụng phòng, luân chuyển ca, mức độ đầy đủ của chuẩn bị, tuân thủ nhắc lịch.',
   'clinics.regions.title': 'Các thương hiệu chuẩn bị theo khu vực.',

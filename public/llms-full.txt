@@ -62,9 +62,9 @@ device, does not propose clinical decisions, does not diagnose. Delivers
 clinician-authored prep pathways (including bowel preparation, diabetes
 management, anticoagulation, GLP-1 peri-procedural overlay), multichannel
 reminders, recall tracking, and structured exports back to the chart. Pricing
-is per scope in the US, set per engagement against scope volume and held below
-the customer's modelled annual return; design partners start free until the
-platform proves itself on their own data. There is no per-seat pricing.
+is negotiated with each clinic and is not published; design partners start free
+until the platform proves itself on their own data, and the agreed price is held
+below the customer's modelled annual return.
 
 ## The platform underneath
 
