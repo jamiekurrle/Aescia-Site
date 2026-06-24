@@ -187,7 +187,8 @@ export const medicalStudySchema = {
   name: 'SAFE-Discharge: Post-cardiothoracic-surgery discharge monitoring',
   description:
     'A prospective single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring across the 30-day post-discharge window. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total.',
-  status: 'NotYetRecruiting',
+  // Recruiting since 21 June 2026 (enrolment opened at RPAH).
+  status: 'Recruiting',
   studyLocation: {
     '@type': 'Hospital',
     name: 'Royal Prince Alfred Hospital',
