@@ -52,7 +52,7 @@ export function AscEntityBlock() {
       />
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
             {t('ascblock.heading')}
           </span>
           <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
@@ -63,7 +63,7 @@ export function AscEntityBlock() {
               key={base}
               className="py-5 px-5 lg:px-7 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-2 lg:gap-8"
             >
-              <dt className="font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/60 pt-1">
+              <dt className="font-mono text-[13px] uppercase tracking-[0.16em] text-foreground/60 pt-1">
                 {t(`${base}.k`)}
               </dt>
               <dd className="text-[15px] leading-[1.6] text-foreground/85">{t(`${base}.v`)}</dd>

@@ -260,7 +260,7 @@ export const clinicsSoftwareSchema = {
     '@type': 'Offer',
     priceCurrency: 'USD',
     description:
-      'Pricing is negotiated with each clinic and is not published. Design partners start free and pay nothing until the platform proves itself on the customer\'s own data, and the agreed price is held below the customer\'s modelled annual return. Contact Aescia to discuss pricing for your site.',
+      'Aescia is built to save the customer more than it costs and leave them better off than without Aescia. Design partners start free and pay nothing until the platform proves that on the customer\'s own data. Contact Aescia to discuss pricing for your site.',
   },
 }
 

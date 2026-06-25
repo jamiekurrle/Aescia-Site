@@ -12,7 +12,7 @@ export function PlatformBlurb() {
         <div className="grid lg:grid-cols-12 gap-16 mb-20 lg:mb-28">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('platform.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('platform.eyebrow')}</span>
             </div>
             <h2
               className="font-display text-[34px] lg:text-[46px] leading-[1.08] tracking-[-0.025em]"

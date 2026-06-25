@@ -43,7 +43,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.integration.v': 'Designed to work alongside common endoscopy systems including Provation, EndoWorks, and gGastro. No integration is live yet; Aescia is pre-first-customer, and any data exchange is scoped per customer.',
 
     'ascblock.pricing.k': 'Pricing',
-    'ascblock.pricing.v': 'Pricing is negotiated per clinic, not published. Design partners start free until the platform proves itself on your own data, and the agreed price is held below your modelled return.',
+    'ascblock.pricing.v': 'Aescia is built to save the clinic more than it costs and leave the clinic better off than without Aescia. Design partners start free until the platform proves that on the clinic\'s own data.',
 
     'ascblock.deployment.k': 'Deployment stage',
     'ascblock.deployment.v': 'Pre-first-customer. Clinics customers engage through the design-partner program, which runs free or under a money-back rebate until Aescia delivers measurable net benefit against the ASC’s own baseline.',

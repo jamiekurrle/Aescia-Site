@@ -45,7 +45,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
               {t('endoworkflow.hero.eyebrow')}
             </span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
@@ -68,7 +68,7 @@ export function PageContent() {
       {/* The journey, as a timeline */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('endoworkflow.journey.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('endoworkflow.journey.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-12"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -78,7 +78,7 @@ export function PageContent() {
           <ol className="divide-y divide-border border-y border-border">
             {journey.map(([k, v]) => (
               <li key={k} className="py-7 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-2 lg:gap-10">
-                <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent pt-1">{k}</div>
+                <div className="font-mono text-[13px] uppercase tracking-[0.18em] text-accent pt-1">{k}</div>
                 <div className="text-[15px] leading-[1.7] text-foreground/85 max-w-2xl">{v}</div>
               </li>
             ))}
@@ -89,7 +89,7 @@ export function PageContent() {
       {/* What the pathway covers — feature grid */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('endoworkflow.covers.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('endoworkflow.covers.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-12"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -117,7 +117,7 @@ export function PageContent() {
       {/* How pathways are authored */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('endoworkflow.authored.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('endoworkflow.authored.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -141,7 +141,7 @@ export function PageContent() {
           framed as operational (not a clinical decision) to stay non-device. */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('endoworkflow.roadmap.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('endoworkflow.roadmap.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}

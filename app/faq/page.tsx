@@ -60,7 +60,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What is Aescia for Clinics?',
-        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. Pricing is negotiated with each clinic; design partners start free until it proves itself.',
+        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. Design partners start free and pay nothing until the platform proves it saves more than it costs on your own data.',
       },
       {
         q: 'What is the difference between Aescia for Hospitals and Aescia for Clinics?',
@@ -102,7 +102,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How is Aescia priced?',
-        a: 'Aescia for Clinics pricing is negotiated with each clinic rather than published, because the right number depends on your volume, your setup, and the outcome we agree to be measured on. Design partners start free and pay nothing until the platform proves itself on your own data, and the agreed price is held below the return modelled for your site. Run the ROI calculator at aesciahealth.com/clinics to see that return, then talk to us for your number. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
+        a: 'Aescia for Clinics is built to save you more than it costs and leave you better off than without Aescia. Design partners start free and pay nothing until the platform proves that on your own data. Run the ROI calculator at aesciahealth.com/clinics to see the return for your site, then talk to us for your number. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',

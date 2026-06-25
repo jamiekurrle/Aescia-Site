@@ -31,7 +31,7 @@ export default function ClinicsContent() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8">
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('clinics.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('clinics.eyebrow')}</span>
               <span className="h-px w-10 bg-accent/50" aria-hidden="true" />
             </div>
             <h1
@@ -60,7 +60,7 @@ export default function ClinicsContent() {
           </div>
           <div className="lg:col-span-4 lg:pt-8">
             <div className="border-l border-accent/60 pl-6 py-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent mb-3">{t('clinics.posture.label')}</p>
+              <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent mb-3">{t('clinics.posture.label')}</p>
               <p className="font-display text-[20px] leading-[1.25] mb-4" style={{ fontVariationSettings: "'opsz' 80" }}>
                 {t('clinics.posture.title')}
               </p>
@@ -159,7 +159,7 @@ export default function ClinicsContent() {
           <dl className="divide-y divide-border border-y border-border">
             {regions.map((r) => (
               <div key={r.code} className="grid grid-cols-[90px_1fr_2fr] gap-6 py-6 items-baseline">
-                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-brass pt-1">{r.code}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.2em] text-brass pt-1">{r.code}</span>
                 <dt className="text-[14px] text-foreground font-medium">{r.label}</dt>
                 <dd className="text-[14px] text-foreground/75 font-mono tracking-tight">{r.value}</dd>
               </div>
@@ -196,7 +196,7 @@ export default function ClinicsContent() {
                     <div className="text-[16px] text-foreground font-medium">{row.name}</div>
                     <div className="text-[13px] text-foreground/70 mt-1">{row.detail}</div>
                   </div>
-                  <span className={`font-mono text-[10px] uppercase tracking-[0.2em] pt-1.5 shrink-0 ${row.tag === 'First focus' ? 'text-accent' : row.tag === 'Open' ? 'text-brass' : 'text-foreground/55'}`}>{row.tag}</span>
+                  <span className={`font-mono text-[13px] uppercase tracking-[0.2em] pt-1.5 shrink-0 ${row.tag === 'First focus' ? 'text-accent' : row.tag === 'Open' ? 'text-brass' : 'text-foreground/55'}`}>{row.tag}</span>
                 </div>
               ))}
             </div>
@@ -208,7 +208,7 @@ export default function ClinicsContent() {
           <div className="grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">A fit for your practice?</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">A fit for your practice?</span>
               </div>
               <h3
                 className="font-display text-[28px] lg:text-[38px] leading-[1.1] tracking-[-0.025em] mb-6"
@@ -275,7 +275,7 @@ export default function ClinicsContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Endoscopy ASC guides</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Endoscopy ASC guides</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h2
@@ -321,7 +321,7 @@ export default function ClinicsContent() {
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Evidence stage</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Evidence stage</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h2
@@ -332,26 +332,33 @@ export default function ClinicsContent() {
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             <div className="border-l-2 border-accent pl-5">
-              <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>The category has supporting literature.</h3>
-              <p className="text-[15px] leading-[1.7] text-foreground/80">
-                Patient-prep coaching, SMS reminders, and structured pre-procedure communication have a published evidence base. The four figures below the ROI calculator are the load-bearing ones for ambulatory endoscopy: Mehta 2021 on a prep-focused intervention, Allen 2023 on the facility-fee cost per cancelled slot, Beran 2024 on the risk factors that make inadequate prep common and addressable (n=358,257, 154 studies), and Lebwohl 2011 on the downstream adenoma miss rate. The calculator acts on late cancellations and no-shows, and credits backfill only on the late cancellations that arrive with about a day's notice, which is enough to fill the slot.
-              </p>
+              <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Published category evidence</h3>
+              <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80">
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>Prep coaching, SMS reminders, and structured pre-procedure contact have a published evidence base.</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>The figures under the calculator are the load-bearing ones: Mehta (prep-intervention ROI), Allen (cost per cancelled slot), Beran (inadequate prep is common and addressable), Lebwohl (downstream miss rate).</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>The calculator counts only late cancellations and no-shows, and credits backfill only on slots with about a day&apos;s notice.</span></li>
+              </ul>
             </div>
             <div className="border-l-2 border-brass pl-5">
-              <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia for Clinics is pre-first-customer.</h3>
-              <p className="text-[15px] leading-[1.7] text-foreground/80">
-                Aescia for Clinics has not yet published its own outcomes. The Hospitals product is in active clinical evaluation through SAFE-Discharge at Royal Prince Alfred Hospital, but that trial is cardiothoracic surgical recovery, not endoscopy preparation. The honest position: the calculator below scales the category literature to your site; Aescia-specific outcomes come from the design-partner pilots, measured against your own baseline.
-              </p>
+              <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia is pre-first-customer</h3>
+              <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80">
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Aescia for Clinics has not published its own outcomes yet.</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The Hospitals product is in clinical evaluation (SAFE-Discharge, Royal Prince Alfred Hospital), though that is cardiothoracic recovery, not endoscopy prep.</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The calculator scales category literature to your site. Aescia-specific outcomes come from the design-partner pilots, measured against your own baseline.</span></li>
+              </ul>
             </div>
           </div>
 
-          {/* Pathway-authoring methodology — what makes Aescia's clinician-
-              authored rule sets different from a generic SMS reminder tool. */}
+          {/* Pathway-authoring methodology: what makes Aescia's clinician-authored
+              rule sets different from a generic SMS reminder tool. */}
           <div className="mt-12 pt-10 border-t border-border">
-            <h3 className="font-display text-[18px] mb-3" style={{ fontVariationSettings: "'opsz' 72" }}>How Aescia builds its pathways.</h3>
-            <p className="text-[15px] leading-[1.7] text-foreground/80 max-w-3xl">
-              Pathways start from published evidence-based guidelines for each specialty (USMSTF and NHMRC for surveillance, multi-society guidance for GLP-1 peri-procedural handling, regional bowel-preparation protocols, society anticoagulation guidance). A practising clinician authors the rule set against those guidelines. The rules are then stress-tested against simulated synthetic-patient cohorts before they touch a real patient, so edge cases (diabetic and anticoagulated overlays, prior inadequate preparation, GLP-1 exposure with insulin) surface and are resolved in the rule editor rather than in the front-desk call queue. Every pathway carries a named clinical author and a documented guideline trail.
-            </p>
+            <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>How Aescia builds its pathways</h3>
+            <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80 max-w-3xl">
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Start from published guidelines: USMSTF and NHMRC (surveillance), multi-society guidance (GLP-1 peri-procedure), regional bowel-prep protocols, society anticoagulation guidance.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>A practising clinician authors the rule set against those guidelines.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Rules are stress-tested on synthetic-patient cohorts before any real patient. Edge cases (diabetic and anticoagulated overlays, prior inadequate prep, GLP-1 with insulin) get resolved in the editor, not the front-desk queue.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Every pathway carries a named clinical author and a documented guideline trail.</span></li>
+            </ul>
           </div>
           <div className="mt-10">
             <Link
@@ -373,7 +380,7 @@ export default function ClinicsContent() {
           <div className="grid lg:grid-cols-12 gap-12 mb-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('clinics.proof.eyebrow')}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('clinics.proof.eyebrow')}</span>
                 <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
               </div>
               <h2
@@ -385,7 +392,7 @@ export default function ClinicsContent() {
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
-                A busy endoscopy list loses more to cancelled prep, GLP-1 confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through potential, anchored to the literature beneath.
+                A busy endoscopy list loses more to cancelled prep, medication confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through potential, anchored to the literature beneath.
               </p>
             </div>
           </div>
@@ -402,12 +409,12 @@ export default function ClinicsContent() {
               The literature the calculator is anchored to.
             </h3>
             <p className="text-[14.5px] text-foreground/75 leading-[1.65] max-w-3xl mb-8">
-              Four published figures the model relies on. They are listed here in plain text so a procurement reviewer, a clinical advisor, or a retrieval-augmented assistant can verify each one without operating the calculator.
+              Eight published figures the model relies on. They are listed here in plain text so a procurement reviewer, a clinical advisor, or a retrieval-augmented assistant can verify each one without operating the calculator.
             </p>
             <dl className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
-              {[1, 2, 3, 4].map((n) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                 <div key={n} className="bg-background p-8 lg:p-10">
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-4">
+                  <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-4">
                     {t(`clinics.proof.stat${n}.label`)}
                   </dt>
                   <dd
@@ -416,7 +423,7 @@ export default function ClinicsContent() {
                   >
                     {t(`clinics.proof.stat${n}.value`)}
                   </dd>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brass">
+                  <p className="font-mono text-[13px] uppercase tracking-[0.18em] text-brass">
                     {t(`clinics.proof.stat${n}.source`)}
                   </p>
                 </div>
@@ -429,40 +436,24 @@ export default function ClinicsContent() {
         </div>
       </section>
 
-      {/* Pricing — say only that it is negotiable. Keep the two draws (free to
-          start, value-floor); no rate and no pricing model, so a prospect
-          contacts us rather than self-disqualifying on a number. */}
+      {/* Pricing — lead with the ethos: the platform returns more than it costs
+          and leaves you better off than without Aescia; free to start follows
+          from that. No "negotiable", rate-card, or "not published" framing. */}
       <section id="pricing" className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Pricing</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">Pricing</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-6 text-background max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
           >
-            Negotiable. You start free.
+            We want you to come out ahead.
           </h2>
-          <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl mb-14">
-            There is no published rate. Aescia&apos;s price is negotiated with each clinic, because the right number depends on your setup and the outcome we agree to be measured on. Design partners start free and pay nothing until the platform proves itself on your own data, and the price we agree is held below the return the calculator models for your site. Run your numbers above, then talk to us.
+          <p className="text-[16px] lg:text-[17px] leading-[1.7] text-background/80 max-w-3xl">
+            The platform is built to save you more than it costs and leave you better off than without Aescia. Design partners start free and pay nothing until it proves that on your own data. We want to be your partner and provide real value to your site.
           </p>
-
-          <div className="border-y border-background/15 bg-foreground">
-            <div className="p-7 lg:p-10 max-w-3xl">
-              <ul className="space-y-4 text-[14.5px] leading-[1.6] text-background/85">
-                <li>
-                  <strong className="text-background">Free until it proves itself.</strong> Design partners start free and pay nothing until the platform hits the outcome we agree on, measured on your own data. See the design-partner program.
-                </li>
-                <li>
-                  <strong className="text-background">Negotiated, not published.</strong> We set the price with each clinic against what Aescia is worth to your site. There is no rate card to disqualify yourself against.
-                </li>
-                <li>
-                  <strong className="text-background">Held below your return.</strong> The price we agree is set beneath the annual benefit the calculator models for your site. If it does not pencil out positive at signature, it does not get signed.
-                </li>
-              </ul>
-            </div>
-          </div>
 
           <div className="mt-12 flex">
             <Link

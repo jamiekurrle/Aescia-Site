@@ -72,7 +72,7 @@ export function PageContent() {
       <section className="pt-10 pb-12 lg:pt-14 lg:pb-16 px-6 lg:px-10 border-b border-border">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
               {t('safedischarge.hero.eyebrow')}
             </span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
@@ -96,7 +96,7 @@ export function PageContent() {
       <section className="py-12 lg:py-14 px-6 lg:px-10 bg-secondary border-b border-border">
         <div className="max-w-3xl mx-auto">
           <div className="border-l-4 border-foreground pl-6 lg:pl-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground mb-3 block">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground mb-3 block">
               {t('safedischarge.safety.eyebrow')}
             </span>
             <h2
@@ -123,7 +123,7 @@ export function PageContent() {
       {/* What happens */}
       <section className="py-16 lg:py-20 px-6 lg:px-10">
         <div className="max-w-3xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
             {t('safedischarge.whathappens.eyebrow')}
           </span>
           <h2
@@ -156,7 +156,7 @@ export function PageContent() {
       {/* What you do */}
       <section className="py-16 lg:py-20 px-6 lg:px-10 bg-secondary">
         <div className="max-w-3xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
             {t('safedischarge.whatwask.eyebrow')}
           </span>
           <h2
@@ -185,7 +185,7 @@ export function PageContent() {
       {/* FAQ */}
       <section className="py-16 lg:py-20 px-6 lg:px-10">
         <div className="max-w-3xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
             {t('safedischarge.faq.eyebrow')}
           </span>
           <h2
@@ -215,7 +215,7 @@ export function PageContent() {
       {/* Contacts */}
       <section className="py-16 lg:py-20 px-6 lg:px-10 bg-secondary border-t border-border">
         <div className="max-w-3xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
             {t('safedischarge.contacts.eyebrow')}
           </span>
           <h2
@@ -228,10 +228,10 @@ export function PageContent() {
           <div className="space-y-10">
             <div className="border-t-4 border-foreground pt-5 bg-background/40 -mx-4 px-4 lg:-mx-6 lg:px-6 py-4 rounded-sm">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
                   {t('safedischarge.contacts.step1.label')}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70">
                   {t('safedischarge.contacts.step1.tag')}
                 </span>
               </div>
@@ -254,10 +254,10 @@ export function PageContent() {
 
             <div className="border-t border-border pt-5 opacity-90">
               <div className="flex items-baseline gap-3 mb-2">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
                   {t('safedischarge.contacts.step2.label')}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65">
                   {t('safedischarge.contacts.step2.tag')}
                 </span>
               </div>
@@ -283,7 +283,7 @@ export function PageContent() {
             </div>
 
             <div className="border-t-2 border-brass/60 pt-5">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 mb-2 block">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70 mb-2 block">
                 {t('safedischarge.contacts.ethics.eyebrow')}
               </span>
               <p className="text-[15px] leading-[1.65] text-foreground">
@@ -318,7 +318,7 @@ export function PageContent() {
           <div className="mt-8">
             <Link
               href="/"
-              className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/60 hover:text-foreground transition-colors"
+              className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60 hover:text-foreground transition-colors"
             >
               {t('safedischarge.footernote.home')}
             </Link>

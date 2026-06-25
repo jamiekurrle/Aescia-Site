@@ -31,7 +31,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.hero.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h1
@@ -49,7 +49,7 @@ export function PageContent() {
       {/* Published evidence base */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.base.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.base.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -79,7 +79,7 @@ export function PageContent() {
       {/* Preparation and length of stay (Clinics, non-device) */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.prep.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.prep.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -104,7 +104,7 @@ export function PageContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
           <div className="lg:col-span-4">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.programme.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.programme.eyebrow')}</span>
             <h2
               className="font-display text-[32px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6"
               style={{ fontVariationSettings: "'opsz' 120" }}
@@ -142,7 +142,7 @@ export function PageContent() {
                 [t('evidence.page.programme.row.status.label'), t('evidence.page.programme.row.status.value'), false],
               ] as Array<[string, React.ReactNode, boolean]>).map(([k, v, mono], i) => (
                 <div key={i} className="grid grid-cols-[180px_1fr] gap-6 py-6">
-                  <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">{k}</dt>
+                  <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">{k}</dt>
                   <dd className={`text-[15px] text-foreground ${mono ? 'font-mono text-[14px]' : ''}`}>{v}</dd>
                 </div>
               ))}
@@ -154,7 +154,7 @@ export function PageContent() {
       {/* Approach to evaluation */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.approach.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.approach.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -170,7 +170,7 @@ export function PageContent() {
               [t('evidence.page.approach.oversight.title'), t('evidence.page.approach.oversight.desc')],
             ].map(([k, v]) => (
               <div key={k} className="grid grid-cols-[180px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">{k}</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70">{k}</dt>
                 <dd className="text-[14.5px] lg:text-[15px] leading-[1.7] text-foreground/85">{v}</dd>
               </div>
             ))}
@@ -181,7 +181,7 @@ export function PageContent() {
       {/* Regulatory posture */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.regulatory.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.regulatory.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -216,7 +216,7 @@ export function PageContent() {
       {/* Published references */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.references.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.references.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -226,7 +226,7 @@ export function PageContent() {
           <ol className="space-y-6 text-[15px] leading-[1.7] text-foreground/80 list-none">
             {literature.map(([authors, title, journal, vol]) => (
               <li key={title} className="grid grid-cols-[90px_1fr] gap-6 border-b border-border pb-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/60 pt-1">{t('evidence.page.references.item.label')}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/60 pt-1">{t('evidence.page.references.item.label')}</span>
                 <div>
                   <div className="text-foreground mb-1">{authors}</div>
                   <div className="italic">{title}</div>

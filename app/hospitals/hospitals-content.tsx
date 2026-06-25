@@ -36,7 +36,7 @@ export default function HospitalsContent() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-8">
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('hospitals.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('hospitals.eyebrow')}</span>
               <span className="h-px w-10 bg-accent/50" aria-hidden="true" />
             </div>
             <h1
@@ -65,7 +65,7 @@ export default function HospitalsContent() {
           </div>
           <div className="lg:col-span-4 lg:pt-8">
             <div className="border-l border-brass/50 pl-6 py-2">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass mb-3">{t('hospitals.status.label')}</p>
+              <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass mb-3">{t('hospitals.status.label')}</p>
               <p className="font-display text-[20px] leading-[1.25] mb-4" style={{ fontVariationSettings: "'opsz' 80" }}>
                 {t('hospitals.status.title')}
               </p>
@@ -129,7 +129,7 @@ export default function HospitalsContent() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('hospitals.wound.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hospitals.wound.eyebrow')}</span>
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
             </div>
             <h2
@@ -177,7 +177,7 @@ export default function HospitalsContent() {
           <div className="lg:col-span-7">
             <div className="bg-background border border-border overflow-hidden">
               <div className="flex items-center justify-between px-5 py-3 border-b border-border bg-secondary">
-                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">
+                <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70">
                   {t('hospitals.workflow.preview.header')}
                 </span>
                 <span className="font-mono text-[11px] text-foreground/60">
@@ -217,7 +217,7 @@ export default function HospitalsContent() {
                 ))}
               </ul>
               <div className="px-5 py-3 border-t border-border bg-secondary flex items-center justify-between">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70">
                   {t('hospitals.workflow.preview.note1')}
                 </span>
                 <span className="text-[11px] text-foreground/60">
@@ -235,7 +235,7 @@ export default function HospitalsContent() {
           <div className="grid lg:grid-cols-12 gap-16 mb-16">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('hospitals.roster.eyebrow')}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('hospitals.roster.eyebrow')}</span>
               </div>
               <h2
                 className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em] mb-6"
@@ -272,7 +272,7 @@ export default function HospitalsContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('hospitals.noise.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hospitals.noise.eyebrow')}</span>
           </div>
           <h2
             className="font-display text-[32px] lg:text-[48px] leading-[1.08] tracking-[-0.025em] mb-8"
@@ -285,7 +285,7 @@ export default function HospitalsContent() {
           </p>
           <dl className="inline-grid sm:grid-cols-2 gap-px bg-border mx-auto">
             <div className="bg-secondary px-8 py-6">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 mb-2">
+              <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70 mb-2">
                 {t('hospitals.noise.target.label')}
               </dt>
               <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 80" }}>
@@ -293,7 +293,7 @@ export default function HospitalsContent() {
               </dd>
             </div>
             <div className="bg-secondary px-8 py-6">
-              <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/70 mb-2">
+              <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70 mb-2">
                 {t('hospitals.noise.endpoint.label')}
               </dt>
               <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 80" }}>
@@ -309,7 +309,7 @@ export default function HospitalsContent() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('hospitals.trial.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hospitals.trial.eyebrow')}</span>
             </div>
             <h2
               className="font-display text-[34px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-8"
@@ -337,31 +337,31 @@ export default function HospitalsContent() {
           <div className="lg:col-span-6 lg:col-start-7">
             <dl className="divide-y divide-border border-y border-border">
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Registration</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Registration</dt>
                 <dd className="font-mono text-[14px] text-foreground">{t('hospitals.trial.id')}</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Site</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Site</dt>
                 <dd className="text-[15px] text-foreground">{t('hospitals.trial.site')}</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Unit</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Unit</dt>
                 <dd className="text-[15px] text-foreground">{t('hospitals.trial.unit')}</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Patients</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Patients</dt>
                 <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 72" }}>550 (50 interim + 500 main), single centre</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>
                 <dd className="text-[15px] text-foreground">Sydney Local Health District (SLHD)</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Principal Investigator</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Principal Investigator</dt>
                 <dd className="text-[15px] text-foreground">Dr Kei Woldendorp, The Baird Institute</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
                 <dd className="text-[15px] text-foreground">Ethics approved. Site-specific governance in progress.</dd>
               </div>
             </dl>

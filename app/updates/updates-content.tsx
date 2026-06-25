@@ -50,7 +50,7 @@ export function UpdatesContent() {
         <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('updates.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('updates.eyebrow')}</span>
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
             </div>
             <h1
@@ -72,7 +72,7 @@ export function UpdatesContent() {
                 <li key={entry.anchor} id={entry.anchor} className="py-10 lg:py-12 grid lg:grid-cols-[180px_1fr] gap-6 lg:gap-10">
                   <div className="flex lg:flex-col items-center lg:items-start gap-4 lg:gap-3">
                     <span className="font-mono text-[12px] tracking-wide text-foreground/80">{entry.date}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent border border-accent/40 px-2 py-1">
+                    <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent border border-accent/40 px-2 py-1">
                       {entry.tag}
                     </span>
                   </div>

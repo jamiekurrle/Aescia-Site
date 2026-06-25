@@ -32,7 +32,7 @@ export function TeamContent() {
         <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('team.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('team.eyebrow')}</span>
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
             </div>
             <h1
@@ -50,7 +50,7 @@ export function TeamContent() {
         <section className="py-24 lg:py-32 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-3 mb-10">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('team.founders.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('team.founders.eyebrow')}</span>
             </div>
             <div className="grid md:grid-cols-2 gap-px bg-border">
               {founders.map((p) => (
@@ -72,7 +72,7 @@ export function TeamContent() {
                   {p.nameKey === 'team.james.name' && (
                     <Link
                       href="/team/james-kurrle"
-                      className="mt-5 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-accent hover:text-foreground transition-colors"
+                      className="mt-5 inline-flex items-center gap-1.5 font-mono text-[13px] uppercase tracking-[0.22em] text-accent hover:text-foreground transition-colors"
                     >
                       Read full bio
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -91,7 +91,7 @@ export function TeamContent() {
             <div className="grid lg:grid-cols-12 gap-12 mb-14">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('team.operating.eyebrow')}</span>
+                  <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('team.operating.eyebrow')}</span>
                 </div>
                 <h2
                   className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"
@@ -129,7 +129,7 @@ export function TeamContent() {
             <div className="grid lg:grid-cols-12 gap-12 mb-12">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('team.clinical.eyebrow')}</span>
+                  <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('team.clinical.eyebrow')}</span>
                 </div>
                 <h2
                   className="font-display text-[30px] lg:text-[40px] leading-[1.08] tracking-[-0.025em]"
@@ -168,7 +168,7 @@ export function TeamContent() {
           <div className="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
             <div className="lg:col-span-5">
               <div className="flex items-center gap-3 mb-6">
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('team.advisory.eyebrow')}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('team.advisory.eyebrow')}</span>
               </div>
               <h2
                 className="font-display text-[28px] lg:text-[38px] leading-[1.1] tracking-[-0.025em]"
@@ -196,7 +196,7 @@ export function TeamContent() {
             <div className="grid lg:grid-cols-12 gap-12 mb-14">
               <div className="lg:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">Company maturity</span>
+                  <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Company maturity</span>
                 </div>
                 <h2
                   className="font-display text-[30px] lg:text-[44px] leading-[1.08] tracking-[-0.025em]"

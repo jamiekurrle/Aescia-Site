@@ -49,11 +49,11 @@ export function AudienceSplit() {
             >
               <div className="flex items-center justify-between mb-10 gap-3 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <span className={`font-mono text-[11px] uppercase tracking-[0.22em] ${card.eyebrowClass}`}>{card.eyebrow}</span>
+                  <span className={`font-mono text-[13px] uppercase tracking-[0.22em] ${card.eyebrowClass}`}>{card.eyebrow}</span>
                   <span className={`h-px w-8 ${card.eyebrowClass} opacity-60 bg-current`} aria-hidden="true" />
                 </div>
                 <span
-                  className={`font-mono text-[10px] uppercase tracking-[0.15em] ${card.regClass} border px-2 py-1`}
+                  className={`font-mono text-[13px] uppercase tracking-[0.15em] ${card.regClass} border px-2 py-1`}
                 >
                   {card.regtag}
                 </span>

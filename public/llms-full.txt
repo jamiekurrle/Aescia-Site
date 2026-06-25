@@ -61,10 +61,9 @@ Workflow and patient-preparation platform for specialty clinics. Not a medical
 device, does not propose clinical decisions, does not diagnose. Delivers
 clinician-authored prep pathways (including bowel preparation, diabetes
 management, anticoagulation, GLP-1 peri-procedural overlay), multichannel
-reminders, recall tracking, and structured exports back to the chart. Pricing
-is negotiated with each clinic and is not published; design partners start free
-until the platform proves itself on their own data, and the agreed price is held
-below the customer's modelled annual return.
+reminders, recall tracking, and structured exports back to the chart. Built to
+save more than it costs and leave the customer better off than without Aescia; design
+partners start free until the platform proves that on their own data.
 
 ## The platform underneath
 

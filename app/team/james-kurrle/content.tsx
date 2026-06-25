@@ -24,13 +24,13 @@ export function PageContent() {
     <>
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 px-6 lg:px-10 border-b border-border">
         <div className="max-w-4xl mx-auto">
-          <nav aria-label={t('jameskurrle.breadcrumb.aria')} className="mb-8 font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/60">
+          <nav aria-label={t('jameskurrle.breadcrumb.aria')} className="mb-8 font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60">
             <Link href="/team" className="hover:text-foreground">{t('jameskurrle.breadcrumb.team')}</Link>
             <span aria-hidden="true" className="px-2">/</span>
             <span className="text-foreground/85">{t('jameskurrle.breadcrumb.name')}</span>
           </nav>
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('jameskurrle.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('jameskurrle.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h1
@@ -80,7 +80,7 @@ export function PageContent() {
           </h2>
           <ul className="divide-y divide-border border-y border-border">
             <li className="py-6 grid sm:grid-cols-[110px_1fr] gap-3 sm:gap-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/65 pt-1">{t('jameskurrle.press.item1.date')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65 pt-1">{t('jameskurrle.press.item1.date')}</span>
               <div>
                 <p className="text-[15px] leading-[1.6] text-foreground mb-1.5">
                   <a

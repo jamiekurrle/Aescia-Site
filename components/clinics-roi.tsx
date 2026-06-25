@@ -72,7 +72,7 @@ const ASSUMPTIONS = {
   // Downstream surveillance recapture: lost-to-follow-up patients a recall system can bring back if capacity allows.
   surveillanceShareOfVolume: 0.25, // surveillance as a share of total colonoscopy volume (US single-center series)
   surveillanceOverdueFraction: 0.48, // surveillance-eligible patients overdue / never returned (US Medicare 5yr
-  // non-return; Schoen/Pinsky 2014). High-risk-adenoma and large-polyp cohorts cross-check ~50–57%.
+  // non-return ~54%; Cooper 2013, n=12,771). High-risk-adenoma and large-polyp cohorts cross-check ~50–57%.
   surveillanceRecaptureFraction: 0.25, // realistic steady-state share of the overdue backlog a recall program recovers
 }
 
@@ -136,6 +136,7 @@ export function ClinicsRoi() {
   const [currentBackfillPct, setCurrentBackfillPct] = useState(DEFAULTS.currentBackfillPct)
   const [nurseMinutesPerPatient, setNurseMinutesPerPatient] = useState(DEFAULTS.nurseMinutesPerPatient)
   const [inadequatePrepRatePct, setInadequatePrepRatePct] = useState(DEFAULTS.inadequatePrepRatePct)
+  const [assumptionsOpen, setAssumptionsOpen] = useState(false)
 
   const results = useMemo(() => {
     const lateCancels = annualScopes * (lateCancelRatePct / 100)
@@ -352,8 +353,8 @@ export function ClinicsRoi() {
 
           <div className="divide-y divide-border border-y border-border bg-background">
             {results.rows.map((r) => (
-              <div key={r.band} className="grid grid-cols-[104px_1fr] gap-3 px-4 sm:px-5 py-6 items-center">
-                <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-foreground/60">
+              <div key={r.band} className="grid grid-cols-[132px_1fr] gap-3 px-4 sm:px-5 py-6 items-center">
+                <div className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/60">
                   {r.band === 'conservative' ? t('roi.band.conservative') : r.band === 'expected' ? t('roi.band.expected') : t('roi.band.potential')}
                 </div>
                 <div
@@ -405,37 +406,44 @@ export function ClinicsRoi() {
               {t('roi.loss.caveat')}
             </div>
           </div>
+
+          {/* Additive levers, stacked directly under the loss box: upstream prep
+              recovery and downstream surveillance recapture. Both are additive to
+              the bands above; kept here so the headline ROI stays the conservative
+              cancellation/no-show floor. */}
+          <div className="mt-7 space-y-5">
+            <div className="bg-background border border-border p-6 lg:p-7">
+              <h3 className="font-display text-[18px] lg:text-[21px] leading-[1.2] tracking-[-0.02em] mb-2" style={{ fontVariationSettings: "'opsz' 80" }}>{t('roi.prep.heading')}</h3>
+              <p className="text-[13.5px] leading-[1.6] text-foreground/70">
+                {t('roi.prep.body')
+                  .replace('{nLow}', String(Math.round(results.prepAvoidedConservative)))
+                  .replace('{nHigh}', String(Math.round(results.prepAvoidedBetter)))
+                  .replace('{valLow}', usd(results.prepValueConservative))
+                  .replace('{valHigh}', usd(results.prepValueBetter))}
+              </p>
+            </div>
+            <div className="bg-background border border-border p-6 lg:p-7">
+              <h3 className="font-display text-[18px] lg:text-[21px] leading-[1.2] tracking-[-0.02em] mb-2" style={{ fontVariationSettings: "'opsz' 80" }}>{t('roi.surveillance.heading')}</h3>
+              <p className="text-[13.5px] leading-[1.6] text-foreground/70">
+                {t('roi.surveillance.note')
+                  .replace('{scopes}', String(Math.round(results.surveillanceScopesPerYear)))
+                  .replace('{value}', usd(results.surveillanceValuePerYear))}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Beyond the cancellation/no-show headline: the upstream prep-quality pool and the downstream
-          surveillance recapture. Both are additive to the figures above and shown separately so the
-          headline ROI stays the conservative cancellation/no-show floor. */}
-      <div className="border-t border-border grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-        <div className="bg-background p-7 lg:p-10">
-          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/55 mb-3">{t('roi.prep.heading')}</div>
-          <div className="font-display text-[17px] lg:text-[21px] leading-[1.35] tracking-[-0.012em]" style={{ fontVariationSettings: "'opsz' 72" }}>
-            {t('roi.prep.body')
-              .replace('{nLow}', String(Math.round(results.prepAvoidedConservative)))
-              .replace('{nHigh}', String(Math.round(results.prepAvoidedBetter)))
-              .replace('{valLow}', usd(results.prepValueConservative))
-              .replace('{valHigh}', usd(results.prepValueBetter))}
-          </div>
-        </div>
-        <div className="bg-background p-7 lg:p-10">
-          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/55 mb-3">{t('roi.surveillance.heading')}</div>
-          <div className="font-display text-[17px] lg:text-[21px] leading-[1.35] tracking-[-0.012em]" style={{ fontVariationSettings: "'opsz' 72" }}>
-            {t('roi.surveillance.note')
-              .replace('{scopes}', String(Math.round(results.surveillanceScopesPerYear)))
-              .replace('{value}', usd(results.surveillanceValuePerYear))}
-          </div>
-        </div>
-      </div>
-
-      {/* Assumptions, crawlable */}
-      <div className="border-t border-border p-7 lg:p-10 bg-background">
-        <h4 className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-4">{t('roi.assumptions.heading')}</h4>
-        <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80">
+      {/* Assumptions, crawlable. Collapsed by default via native <details>; the
+          content stays in the server-rendered HTML so crawlers/LLMs still read it. */}
+      <details onToggle={(e) => setAssumptionsOpen((e.currentTarget as HTMLDetailsElement).open)} className="border-t border-border bg-background">
+        <summary className="flex items-center justify-between gap-4 cursor-pointer list-none p-7 lg:p-10 [&::-webkit-details-marker]:hidden">
+          <h3 className="font-display text-[15px] lg:text-[17px] leading-[1.25] tracking-[-0.01em] text-foreground/80" style={{ fontVariationSettings: "'opsz' 64" }}>{t('roi.assumptions.heading')}</h3>
+          <svg className={`w-5 h-5 shrink-0 text-foreground/50 transition-transform duration-200 ${assumptionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <ul className="grid md:grid-cols-2 gap-x-10 gap-y-2 text-[13px] text-foreground/80 px-7 lg:px-10 pb-7 lg:pb-10">
           <li>{t('roi.assumptions.cancelReduction')
             .replace('{c}', fmtPct(ASSUMPTIONS.cancelReduction.conservative))
             .replace('{e}', fmtPct(ASSUMPTIONS.cancelReduction.expected))
@@ -469,7 +477,7 @@ export function ClinicsRoi() {
             .replace('{repeat}', String(Math.round(ASSUMPTIONS.prepRepeatFraction * 100)))}</li>
           <li>{t('roi.assumptions.surveillance')}</li>
         </ul>
-      </div>
+      </details>
     </div>
   )
 }

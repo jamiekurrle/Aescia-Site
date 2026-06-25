@@ -99,7 +99,7 @@ export default function ContactContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Contact</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">Contact</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h1
@@ -118,7 +118,7 @@ export default function ContactContent() {
         <div className="max-w-5xl mx-auto">
           {status === 'success' && (
             <div className="max-w-2xl border-t-2 border-brass pt-10">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">Thanks</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">Thanks</span>
               <h2
                 className="font-display text-[32px] lg:text-[44px] leading-[1.1] tracking-[-0.025em] mt-5 mb-6"
                 style={{ fontVariationSettings: "'opsz' 120" }}
@@ -227,7 +227,7 @@ export default function ContactContent() {
               <aside className="lg:col-span-2 lg:pl-8 lg:border-l border-border">
                 <dl className="space-y-8 text-[14px]">
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Email</dt>
+                    <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Email</dt>
                     <dd>
                       <a href="mailto:contact@aesciahealth.com" className="text-foreground underline underline-offset-4 decoration-brass decoration-2">
                         contact@aesciahealth.com
@@ -235,7 +235,7 @@ export default function ContactContent() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Offices</dt>
+                    <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-3">Offices</dt>
                     <dd className="text-foreground/80 leading-relaxed">
                       Sydney, Australia
                       <br />
@@ -243,7 +243,7 @@ export default function ContactContent() {
                     </dd>
                   </div>
                   <div>
-                    <dt className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/65 mb-3">What to expect</dt>
+                    <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-3">What to expect</dt>
                     <dd className="text-foreground/80 leading-relaxed space-y-1.5">
                       <p>Reply within two business days.</p>
                       <p>Initial call with a clinician on our team.</p>
@@ -260,7 +260,7 @@ export default function ContactContent() {
       {status !== 'success' && (
         <section className="border-t border-border py-16 px-6 lg:px-10">
           <div className="max-w-5xl mx-auto">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-2">Not sure yet?</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-2">Not sure yet?</p>
             <p className="text-[15px] text-foreground/80 max-w-2xl">
               Read the{' '}
               <Link href="/platform" className="underline underline-offset-4 decoration-brass decoration-2">
@@ -313,7 +313,7 @@ function Field({
   const id = useId()
   return (
     <div>
-      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
+      <label htmlFor={id} className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
         {label}
         {required ? ' *' : ''}
       </label>
@@ -346,7 +346,7 @@ function TextareaField({
   const id = useId()
   return (
     <div>
-      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
+      <label htmlFor={id} className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
         {label}
       </label>
       <textarea
@@ -379,7 +379,7 @@ function SelectField({
   const id = useId()
   return (
     <div>
-      <label htmlFor={id} className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
+      <label htmlFor={id} className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70 block mb-2">
         {label}
       </label>
       <select

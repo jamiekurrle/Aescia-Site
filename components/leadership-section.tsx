@@ -11,7 +11,7 @@ export function LeadershipSection() {
         <div className="grid lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
                 {t('hospitals.leadership.eyebrow')}
               </span>
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
@@ -52,7 +52,7 @@ export function LeadershipSection() {
             {t('hospitals.leadership.woldendorp.aff')}
           </p>
           <p className="text-[14px] leading-[1.65] text-foreground border-t border-border pt-4">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-brass block mb-1.5">Role</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-brass block mb-1.5">Role</span>
             {t('hospitals.leadership.woldendorp.role')}
           </p>
         </article>

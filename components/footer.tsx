@@ -18,7 +18,7 @@ export function Footer() {
               >
                 Aescia
               </span>
-              <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-foreground/60 -translate-y-0.5">Health</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60 -translate-y-0.5">Health</span>
             </Link>
             <p className="text-[14px] leading-relaxed text-foreground/75 max-w-sm">
               {t('footer.tagline')}
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           <nav aria-label="Product" className="md:col-span-2">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.product')}</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.product')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/platform" className="text-foreground/80 hover:text-foreground">{t('footer.platform')}</Link></li>
               <li><Link href="/hospitals" className="text-foreground/80 hover:text-foreground">{t('footer.hospitals')}</Link></li>
@@ -37,7 +37,7 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Buy" className="md:col-span-2">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Buy</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Buy</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/design-partner" className="text-foreground/80 hover:text-foreground">Design-partner program</Link></li>
               <li><Link href="/clinics#roi" className="text-foreground/80 hover:text-foreground">ROI calculator</Link></li>
@@ -47,10 +47,9 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Company" className="md:col-span-2">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.company')}</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.company')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/team" className="text-foreground/80 hover:text-foreground">{t('footer.team')}</Link></li>
-              <li><Link href="/team/james-kurrle" className="text-foreground/80 hover:text-foreground">James Kurrle, founder</Link></li>
               <li><Link href="/updates" className="text-foreground/80 hover:text-foreground">{t('nav.updates')}</Link></li>
               <li><Link href="/careers" className="text-foreground/80 hover:text-foreground">{t('nav.careers')}</Link></li>
               <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">FAQ</Link></li>
@@ -60,7 +59,7 @@ export function Footer() {
           </nav>
 
           <div className="md:col-span-3">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.legal')}</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.legal')}</p>
             <ul className="space-y-2 text-[13px] text-foreground/75">
               <li>Aescia Pty Ltd (AU)</li>
               <li className="font-mono text-[12px]">ABN 96 687 840 517</li>

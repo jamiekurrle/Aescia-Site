@@ -24,7 +24,7 @@ export default function PlatformContent() {
       <section className="pt-32 pb-24 lg:pt-40 lg:pb-28 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('platformpg.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('platformpg.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h1
@@ -54,7 +54,7 @@ export default function PlatformContent() {
               {steps.map((s) => (
                 <div key={s.name} className="grid grid-cols-[140px_1fr] gap-6 py-7">
                   <div>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">{s.name}</span>
+                    <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{s.name}</span>
                   </div>
                   <p className="text-[15px] leading-[1.65] text-foreground/80">{s.body}</p>
                 </div>
@@ -70,7 +70,7 @@ export default function PlatformContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('platformpg.ls.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('platformpg.ls.eyebrow')}</span>
           </div>
           <h2
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-8"
@@ -97,7 +97,7 @@ export default function PlatformContent() {
               href="/hospitals"
               className="group bg-foreground text-background p-8 lg:p-10 block hover:bg-foreground/90 transition-colors"
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass">For Hospitals</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">For Hospitals</span>
               <p
                 className="font-display text-[22px] mt-4 leading-[1.25] text-background"
                 style={{ fontVariationSettings: "'opsz' 80" }}
@@ -113,7 +113,7 @@ export default function PlatformContent() {
               href="/clinics"
               className="group bg-background border border-border p-8 lg:p-10 block hover:bg-background/60 transition-colors"
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">For Clinics</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">For Clinics</span>
               <p
                 className="font-display text-[22px] mt-4 leading-[1.25] text-foreground"
                 style={{ fontVariationSettings: "'opsz' 80" }}

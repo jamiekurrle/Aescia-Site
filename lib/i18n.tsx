@@ -265,7 +265,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item8.title': 'Integration-friendly',
     'clinics.features.item8.desc': 'Designed to sit alongside the systems your clinic already runs and to be quick to set up, without a second login for your team. We scope any data exchange with you.',
     'clinics.features.item9.title': 'Single-site friendly',
-    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. Pricing is negotiated to your site, not off a rate card. Designed to go live in weeks once a champion is in place, not quarters.',
+    'clinics.features.item9.desc': 'Configured by one clinic admin in an afternoon. The platform is built to save more than it costs, so your site comes out ahead. Designed to go live in weeks once a champion is in place, not quarters.',
 
     'clinics.vocab.title': 'Built for the ambulatory rhythm.',
     'clinics.vocab.body': 'This is not a hospital discharge tool dressed for a clinic. It is a prep and workflow product with its own authored protocols, its own SMS layer, and its own vocabulary: today\'s list, room utilisation, case turnover, prep adequacy, recall compliance.',
@@ -403,7 +403,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Clinics proof / ROI section
     'clinics.proof.eyebrow': 'The economics',
     'clinics.proof.title': 'Pays for itself inside the first quarter.',
-    'clinics.proof.body': 'A busy endoscopy list loses more to cancelled prep, GLP-1 confusion, and follow-up drift in a week than Aescia costs for the month. The economic case is subtractive: less phone work at the front desk, fewer repeat appointments on inadequate prep, fewer recall patients lost to the wind.',
+    'clinics.proof.body': 'A busy endoscopy list loses more to cancelled prep, medication confusion, and follow-up drift in a week than Aescia costs for the month. The economic case is subtractive: less phone work at the front desk, fewer repeat appointments on inadequate prep, fewer recall patients lost to the wind.',
     'clinics.proof.stat1.label': 'Published ROI from a prep-focused intervention',
     'clinics.proof.stat1.value': 'USD $82K saved over 16 weeks',
     'clinics.proof.stat1.source': 'Mehta 2021',
@@ -416,6 +416,18 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.proof.stat4.label': 'Adenoma miss rate on inadequate preparation',
     'clinics.proof.stat4.value': 'Up to 42%',
     'clinics.proof.stat4.source': 'Lebwohl 2011',
+    'clinics.proof.stat5.label': 'Inadequate-prep colonoscopies flagged for a repeat within a year',
+    'clinics.proof.stat5.value': '~1 in 3',
+    'clinics.proof.stat5.source': 'Calderwood 2022, GIQuIC (31.9%, n=260,314)',
+    'clinics.proof.stat6.label': 'Higher odds of adequate prep from enhanced instructions',
+    'clinics.proof.stat6.value': '2.35× the odds',
+    'clinics.proof.stat6.source': 'Guo 2016, meta-analysis of 8 RCTs',
+    'clinics.proof.stat7.label': 'Medicare polypectomy patients with no surveillance colonoscopy within 5 years',
+    'clinics.proof.stat7.value': '54%',
+    'clinics.proof.stat7.source': 'Cooper 2013, Medicare (n=12,771)',
+    'clinics.proof.stat8.label': 'Outpatient colonoscopy no-shows cut by SMS reminders',
+    'clinics.proof.stat8.value': '11.9% → 8.9%',
+    'clinics.proof.stat8.source': 'Lam 2020, RCT (n=2,225)',
     'clinics.proof.footnote': 'Public and modelled figures. Site-specific ROI requires a scoped evaluation against your own list volume, no-show rate, and prep-inadequacy baseline.',
 
     // Language switcher label

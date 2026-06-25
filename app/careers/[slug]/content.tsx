@@ -39,7 +39,7 @@ export function RoleContent({ role }: { role: Role }) {
         <div className="max-w-5xl mx-auto">
           <Link
             href="/careers"
-            className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors mb-8"
+            className="inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-[0.2em] text-foreground/60 hover:text-foreground transition-colors mb-8"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 12H5m5 5l-5-5 5-5" />
@@ -47,7 +47,7 @@ export function RoleContent({ role }: { role: Role }) {
             {t('roledetail.back')}
           </Link>
           <div className="flex items-center gap-3 mb-7">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('roledetail.openRole')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('roledetail.openRole')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h1
@@ -82,14 +82,14 @@ export function RoleContent({ role }: { role: Role }) {
           <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-7">
             {facts.map((f) => (
               <div key={f.k}>
-                <dt className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-2">{f.k}</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60 mb-2">{f.k}</dt>
                 <dd className="text-[15px] leading-[1.45] text-foreground/90">{f.v}</dd>
               </div>
             ))}
           </dl>
 
           <div className="mt-9">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 mb-3">{t('roledetail.glance.stack')}</p>
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60 mb-3">{t('roledetail.glance.stack')}</p>
             <ul className="flex flex-wrap gap-2">
               {role.stack.map((s) => (
                 <li
@@ -110,7 +110,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.theRole')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.theRole')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2 className={`${SECTION_H2} mb-9`} style={{ fontVariationSettings: "'opsz' 120" }}>
@@ -130,7 +130,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section id="what-you-will-build" className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary scroll-mt-28">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('roledetail.kicker.responsibilities')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('roledetail.kicker.responsibilities')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h2 className={`${SECTION_H2} mb-10 lg:mb-12`} style={{ fontVariationSettings: "'opsz' 120" }}>
@@ -159,7 +159,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.requirements')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.requirements')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2 className={`${SECTION_H2} mb-10`} style={{ fontVariationSettings: "'opsz' 120" }}>
@@ -179,7 +179,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('roledetail.kicker.niceToHave')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('roledetail.kicker.niceToHave')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h2 className={`${SECTION_H2} mb-10`} style={{ fontVariationSettings: "'opsz' 120" }}>
@@ -200,7 +200,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.theTeam')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.theTeam')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2 className={`${SECTION_H2} mb-9`} style={{ fontVariationSettings: "'opsz' 120" }}>
@@ -231,7 +231,7 @@ export function RoleContent({ role }: { role: Role }) {
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-7 justify-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.apply')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('roledetail.kicker.apply')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <h2

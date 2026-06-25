@@ -24,7 +24,7 @@ export function EditorialHero() {
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[calc(100vh-240px)] lg:min-h-[calc(100vh-220px)]">
         <div className="lg:col-span-7 pt-8 lg:pt-12">
           <div className="flex items-center gap-4 mb-8 lg:mb-10">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hero.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
 
@@ -61,7 +61,7 @@ export function EditorialHero() {
           </div>
 
           <div className="mt-16 lg:mt-24 flex flex-wrap items-center gap-x-6 gap-y-1 text-background/75">
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/60">{t('hero.trial.label')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-background/60">{t('hero.trial.label')}</span>
             <a
               href="https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482"
               target="_blank"

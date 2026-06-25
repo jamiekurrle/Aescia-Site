@@ -78,7 +78,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('security.hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('security.hero.eyebrow')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h1
@@ -111,7 +111,7 @@ export function PageContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('security.answers.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('security.answers.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <dl className="divide-y divide-border border-y border-border">
@@ -135,7 +135,7 @@ export function PageContent() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
             <div className="lg:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('security.subprocessors.eyebrow')}</span>
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('security.subprocessors.eyebrow')}</span>
               <h2
                 className="font-display text-[32px] lg:text-[44px] leading-[1.08] tracking-[-0.025em] mt-6"
                 style={{ fontVariationSettings: "'opsz' 120" }}
@@ -159,7 +159,7 @@ export function PageContent() {
                   <div>{t(sp.purposeKey)}</div>
                   <div className="mt-2 text-foreground/60 text-[13px]">{t(sp.noteKey)}</div>
                 </dd>
-                <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">{t(sp.regionKey)}</span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.15em] text-accent">{t(sp.regionKey)}</span>
               </div>
             ))}
           </dl>
@@ -169,7 +169,7 @@ export function PageContent() {
       {/* Exit terms / data portability */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('security.exit.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('security.exit.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -179,7 +179,7 @@ export function PageContent() {
           <dl className="divide-y divide-border border-y border-border">
             {exitTerms.map((row) => (
               <div key={row.kKey} className="grid grid-cols-[140px_1fr] gap-4 lg:gap-8 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70 pt-1">{t(row.kKey)}</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70 pt-1">{t(row.kKey)}</dt>
                 <dd className="text-[15px] lg:text-[16px] leading-[1.65] text-foreground/85">{t(row.vKey)}</dd>
               </div>
             ))}

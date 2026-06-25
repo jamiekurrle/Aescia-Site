@@ -17,7 +17,7 @@ export function EvidenceRibbon() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-16">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-3 mb-6">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('evidence.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('evidence.eyebrow')}</span>
           </div>
           <h2
             className="font-display text-[34px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mb-8"
@@ -60,7 +60,7 @@ export function EvidenceRibbon() {
                 >
                   {fact.value}
                 </dt>
-                <dd className="text-[12px] lg:text-[13px] uppercase tracking-[0.18em] text-foreground/55 font-sans">
+                <dd className="text-[13px] lg:text-[13px] uppercase tracking-[0.18em] text-foreground/55 font-sans">
                   {fact.label}
                 </dd>
               </div>

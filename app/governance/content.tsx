@@ -19,7 +19,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('gov.hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('gov.hero.eyebrow')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h1
@@ -37,7 +37,7 @@ export function PageContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-12">
           <div className="border-t-2 border-foreground pt-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground/70 mb-4 block">Aescia for Hospitals</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/70 mb-4 block">Aescia for Hospitals</span>
             <h2
               className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-6"
               style={{ fontVariationSettings: "'opsz' 80" }}
@@ -72,7 +72,7 @@ export function PageContent() {
                 ['gov.hospitals.output.label', 'gov.hospitals.output.value', t('gov.hospitals.output.value')],
               ] as Array<[string, string, React.ReactNode]>).map(([kKey, vKey, v]) => (
                 <div key={vKey} className="grid grid-cols-[130px_1fr] gap-4 py-5">
-                  <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
+                  <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
                   <dd className="text-foreground/85">{v}</dd>
                 </div>
               ))}
@@ -80,7 +80,7 @@ export function PageContent() {
           </div>
 
           <div className="border-t-2 border-accent pt-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent mb-4 block">Aescia for Clinics</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent mb-4 block">Aescia for Clinics</span>
             <h2
               className="font-display text-[24px] lg:text-[30px] leading-[1.2] tracking-[-0.02em] mb-6"
               style={{ fontVariationSettings: "'opsz' 80" }}
@@ -98,7 +98,7 @@ export function PageContent() {
                 ['gov.clinics.engagement.label', 'gov.clinics.engagement.value'],
               ].map(([kKey, vKey]) => (
                 <div key={vKey} className="grid grid-cols-[130px_1fr] gap-4 py-5">
-                  <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
+                  <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
                   <dd className="text-foreground/85">{t(vKey)}</dd>
                 </div>
               ))}
@@ -113,7 +113,7 @@ export function PageContent() {
       {/* Security and data */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-7xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('gov.security.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('gov.security.eyebrow')}</span>
           <h2
             className="font-display text-[32px] lg:text-[46px] leading-[1.08] tracking-[-0.025em] mt-6 mb-12 max-w-3xl"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -172,7 +172,7 @@ export function PageContent() {
       {/* Corporate */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('gov.corporate.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('gov.corporate.eyebrow')}</span>
           <h2
             className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-12"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -189,7 +189,7 @@ export function PageContent() {
               ['gov.corporate.operations.label', 'gov.corporate.operations.value'],
             ].map(([kKey, vKey]) => (
               <div key={vKey} className="grid grid-cols-[180px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
+                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/70">{t(kKey)}</dt>
                 <dd className="text-[15px] text-foreground">{t(vKey)}</dd>
               </div>
             ))}

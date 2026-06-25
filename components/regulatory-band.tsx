@@ -22,7 +22,7 @@ export function RegulatoryBand() {
 
   const monitor = (
     <p className="text-[12px] leading-[1.55] text-background/85">
-      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-background/65 mr-2">
+      <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-background/65 mr-2">
         {t('regband.monitor.label')}
       </span>
       {t('regband.monitor.body')}
@@ -30,7 +30,7 @@ export function RegulatoryBand() {
   )
   const clinic = (
     <p className="text-[12px] leading-[1.55] text-background/85">
-      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-background/65 mr-2">
+      <span className="font-mono text-[13px] uppercase tracking-[0.18em] text-background/65 mr-2">
         {t('regband.clinic.label')}
       </span>
       {t('regband.clinic.body')}
@@ -45,7 +45,7 @@ export function RegulatoryBand() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-2.5 md:py-3 flex items-start gap-3 md:gap-4">
         {/* Eyebrow: shown on tablet/desktop. On mobile it lives inside the toggle. */}
-        <span className="hidden md:block font-mono text-[10px] uppercase tracking-[0.22em] text-brass flex-shrink-0 pt-[3px]">
+        <span className="hidden md:block font-mono text-[13px] uppercase tracking-[0.22em] text-brass flex-shrink-0 pt-[3px]">
           {t('regband.eyebrow')}
         </span>
 
@@ -63,7 +63,7 @@ export function RegulatoryBand() {
               {clinic}
               <button
                 onClick={() => setExpanded(false)}
-                className="font-mono text-[10px] uppercase tracking-[0.18em] text-brass inline-flex items-center gap-1 min-h-[28px]"
+                className="font-mono text-[13px] uppercase tracking-[0.18em] text-brass inline-flex items-center gap-1 min-h-[28px]"
               >
                 {t('regband.less')}
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -78,7 +78,7 @@ export function RegulatoryBand() {
               aria-label={t('regband.more')}
               className="flex items-center gap-2 w-full text-left min-h-[28px]"
             >
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-brass flex-shrink-0">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass flex-shrink-0">
                 {t('regband.eyebrow')}
               </span>
               <span className="text-[11px] leading-[1.3] text-background/70 truncate min-w-0">

@@ -59,7 +59,7 @@ export function SiteNav({
             Aescia
           </span>
           <span
-            className={`font-mono text-[9px] uppercase tracking-[0.18em] -translate-y-0.5 ${
+            className={`font-mono text-[13px] uppercase tracking-[0.18em] -translate-y-0.5 ${
               useTransparent ? 'text-white/65' : 'text-foreground/60'
             }`}
           >

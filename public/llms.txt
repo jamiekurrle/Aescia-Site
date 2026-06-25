@@ -18,10 +18,9 @@
 - **Aescia for Clinics.** Workflow and patient-preparation platform for
   specialty clinics. Not a medical device. Delivers clinician-authored prep
   pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall
-  tracking, and structured chart exports. Pricing is negotiated with each
-  clinic and is not published; design partners start free until the platform
-  proves itself, and the agreed price is held below the customer's modelled
-  return.
+  tracking, and structured chart exports. Built to save more than it costs and
+  leave the customer better off than without Aescia; design partners start free until
+  the platform proves that on their own data.
 
 ## What Aescia is not (yet)
 

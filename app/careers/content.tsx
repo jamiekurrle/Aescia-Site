@@ -27,7 +27,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('careers.hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('careers.hero.eyebrow')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h1
@@ -46,7 +46,7 @@ export function PageContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('careers.roles.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('careers.roles.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
 
@@ -77,7 +77,7 @@ export function PageContent() {
                         <p className="text-[15px] lg:text-[16px] leading-[1.6] text-foreground/75 max-w-2xl">
                           {role.summary}
                         </p>
-                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/60">
+                        <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[13px] uppercase tracking-[0.16em] text-foreground/60">
                           <span>{role.team}</span>
                           <span>{role.location}</span>
                           <span>{role.engagement}</span>
@@ -107,7 +107,7 @@ export function PageContent() {
       {/* Spontaneous applications */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('careers.spontaneous.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('careers.spontaneous.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.2] tracking-[-0.02em] mt-6 mb-6"
             style={{ fontVariationSettings: "'opsz' 120" }}

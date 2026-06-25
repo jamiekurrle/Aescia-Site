@@ -117,7 +117,7 @@ export function ExplodedEngine() {
 
       {/* Caption under the fan, visible only when exploded */}
       <p
-        className={`hidden md:block text-center mt-10 lg:mt-14 font-mono text-[10px] uppercase tracking-[0.22em] text-foreground/60 transition-opacity duration-[800ms]`}
+        className={`hidden md:block text-center mt-10 lg:mt-14 font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/60 transition-opacity duration-[800ms]`}
         style={{ transitionDelay: '600ms', opacity: exploded ? 1 : 0 }}
       >
         {t('engine.caption')}

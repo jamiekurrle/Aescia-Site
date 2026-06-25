@@ -44,7 +44,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('designpartner.hero.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('designpartner.hero.eyebrow')}</span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
           </div>
           <h1
@@ -77,7 +77,7 @@ export function PageContent() {
       <section className="py-24 lg:py-32 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('designpartner.principles.eyebrow')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('designpartner.principles.eyebrow')}</span>
             <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border-y border-border">
@@ -103,7 +103,7 @@ export function PageContent() {
       {/* CTA */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('designpartner.cta.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('designpartner.cta.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.2] tracking-[-0.02em] mt-6 mb-6 text-background"
             style={{ fontVariationSettings: "'opsz' 120" }}

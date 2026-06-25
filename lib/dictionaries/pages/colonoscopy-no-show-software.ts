@@ -31,7 +31,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'noshow.numbers.eyebrow': 'What it costs, and what is at stake',
     'noshow.numbers.title': 'Run your own numbers, against your own baseline.',
-    'noshow.numbers.p1': 'Aescia for Clinics pricing is negotiated with each clinic rather than published. Design partners start free until the platform proves itself on your own data, and the agreed price is held below your modelled return.',
+    'noshow.numbers.p1': 'Aescia for Clinics is built to save you more than it costs and leave you better off than without Aescia. Design partners start free until the platform proves that on your own data.',
     'noshow.numbers.p2.pre': 'Because Aescia is pre-first-customer, it does not publish a no-show reduction figure of its own. Instead, the',
     'noshow.numbers.p2.link': 'interactive ROI calculator on the Clinics page',
     'noshow.numbers.p2.post': 'lets you enter your own scope volume, inadequate-prep rate, no-show rate, and facility fee, then scales the published effect sizes from the prep and reminder literature into conservative, expected, and better-case bands. The conservative band is the only one Aescia commits to in writing during a design-partner pilot, measured against your ASC’s own historical baseline.',

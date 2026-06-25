@@ -9,7 +9,7 @@
 //   {c} {e} {p}  conservative / expected / potential percentages
 //   {pct}  automatable share of nurse time, as a number (e.g. "60")
 //   {rate}  loaded nurse rate in USD/hr, as a number (e.g. "45")
-//   {price}  no longer surfaced. Aescia's price is negotiated, not published.
+//   {price}  no longer surfaced. Pricing copy leads with the come-out-ahead ethos.
 // The dynamic numbers themselves are NOT translated; only the surrounding words.
 //
 // Preserve-list tokens (brand, product names, acronyms/standards, citation
@@ -56,12 +56,12 @@ export const dict: Record<string, Record<string, string>> = {
     'roi.loss.pathology': 'for pathology',
     'roi.loss.caveat': 'Assumptions and sources are below.',
 
-    'roi.prep.heading': 'Upstream: the prep itself',
-    'roi.prep.body': 'Inadequate prep is the upstream driver, and it is folded into the figures above. Of the recovered slots, coaching prep down accounts for roughly {nLow} to {nHigh} avoided repeat or aborted procedures a year, about {valLow} to {valHigh}.',
-    'roi.surveillance.heading': 'Downstream: surveillance recall',
-    'roi.surveillance.note': 'Patients lost to follow-up never come back. Recapturing them could add about {scopes} surveillance return scopes a year, about {value}, if your schedule has the capacity. This works down a standing backlog rather than repeating every year.',
+    'roi.prep.heading': 'Better prep means fewer repeat scopes',
+    'roi.prep.body': 'About {valLow} to {valHigh} a year, from {nLow} to {nHigh} fewer repeat or aborted procedures when prep goes right. Already folded into the figures above.',
+    'roi.surveillance.heading': 'Bring back patients lost to follow-up',
+    'roi.surveillance.note': 'About {value} a year from roughly {scopes} overdue patients brought back, if your schedule has room. Works down a standing backlog rather than repeating yearly.',
 
-    'roi.assumptions.heading': 'Assumptions, made visible',
+    'roi.assumptions.heading': 'Assumptions for the above calculator',
     'roi.assumptions.cancelReduction': 'Late cancellation reduction: {c} / {e} / {p} (conservative / expected / potential).',
     'roi.assumptions.noShowReduction': 'No-show reduction: {c} / {e} / {p}.',
     'roi.assumptions.backfillRate': 'Prep-aware backfill rate on late cancellations: {c} / {e} / {p}, against a current rate you set (default 25%). The model credits only the lift over your current rate, on late cancellations only. Pilot-to-prove against your own baseline.',
@@ -69,7 +69,7 @@ export const dict: Record<string, Record<string, string>> = {
     'roi.assumptions.facilityValue': 'A recovered slot is valued at the recovered revenue (gross facility fee) you set, not contribution margin. The endoscopist professional fee, anesthesia and pathology are shown as separate full-episode lines and stay out of the facility figure and the ROI multiple, since anesthesia accrues to the anesthesia group and pathology to the lab.',
     'roi.assumptions.endoscopistFee': 'Endoscopist professional fee: the per-scope figure you set drives the separate endoscopist loss line, on the same recoverable slots. Default $400 is a reasonable commercial professional fee for a colonoscopy — Medicare pays ~$220–300 (CPT 45378/45385 at the 2026 conversion factor) and commercial ~$300–500. Against the commercial facility fee that is about a 2.5:1 facility-to-professional split, the normal commercial range. Set both to your own rates.',
     'roi.assumptions.staffTime': 'Staff time is included in the figures above: {pct}% of your nurse prep-call minutes (default 20 min/patient) at ${rate}/hr loaded. Treat it as the soft part of the range: it is real cash only if you redeploy the freed hours into more cases or a deferred hire.',
-    'roi.assumptions.price': 'Aescia price: negotiated with you and held below the value above, so the contract is net positive at signature. Design partners start free until it proves itself. Talk to us for your number.',
+    'roi.assumptions.price': 'Aescia is priced to cost less than the value above, so your site comes out ahead. Design partners start free and pay nothing until the platform proves that on your own data. Talk to us for your number.',
     'roi.assumptions.commitment': 'Aescia commits to the conservative band in writing during design-partner pilots; the backfill lift is confirmed against your own baseline in the pilot.',
     'roi.assumptions.backfillScope': 'Backfill applies to late cancellations only (about a day\'s notice). Same-day prep failures and no-shows are not backfillable, so they count toward prevention, never backfill. Late-cancellation default 3% and no-show default 5% sum to an 8% combined rate, matching the ASGE GI Operations Benchmarking combined no-show/cancellation metric (about 5.6–8.45%).',
     'roi.assumptions.beran': 'Beran 2024 (Am J Gastroenterol, n=358,257, 154 studies) anchors that inadequate prep is a common, upstream problem with addressable risk factors. Cancellation/no-show effect sizes are from the prep-coaching and SMS-reminder literature.',
@@ -77,7 +77,7 @@ export const dict: Record<string, Record<string, string>> = {
     'roi.assumptions.anesthesia': 'Anesthesia: about ${anes}/scope, the expected MAC-weighted figure (commercial roughly $410 per monitored-anesthesia case at about 58% utilization; Predmore 2019, USC Schaeffer 2021). Accrues to the anesthesia group, shown for the full-episode picture, not in the ROI multiple.',
     'roi.assumptions.pathology': 'Pathology: about ${path}/scope expected, biopsy-weighted (CPT 88305 commercial about $82 per specimen, roughly 1.7 specimens on about 45% of scopes; PayerPrice 2026, GIQuIC). The softest figure here, and it accrues to the lab, not the ROI multiple.',
     'roi.assumptions.prep': 'Inadequate prep: default {prep}% of scopes (US real-world 10–25%; 2025 USMSTF benchmark 10% or less). Coaching, navigation and reminders cut it by {c} / {e} / {p} (Guo 2016, Tian 2021, Faveri 2025). About {repeat}% of inadequate preps consume a repeat or aborted slot (GIQuIC 32% recommended within a year, VA 59% completed). This repeat recovery is folded into the recovered slots and the ROI above.',
-    'roi.assumptions.surveillance': 'Surveillance recapture: roughly half of post-polypectomy patients are overdue or never return (US Medicare 5-year non-return about 48%; Schoen 2014, cross-checked against high-risk-adenoma and large-polyp cohorts). Reminders roughly double completion (Sci Reports 2021). Capacity-conditional and outside the ROI multiple.',
+    'roi.assumptions.surveillance': 'Surveillance recapture: roughly half of post-polypectomy patients are overdue or never return (US Medicare 5-year non-return ~54%; Cooper 2013, n=12,771; the model uses a conservative 48%). Reminders roughly double completion (Sci Reports 2021). Capacity-conditional and outside the ROI multiple.',
   },
   fr: {
     'roi.inputs.heading': 'Vos chiffres',
@@ -135,7 +135,7 @@ export const dict: Record<string, Record<string, string>> = {
     "roi.assumptions.anesthesia": "Anesthésie : environ ${anes}/scope, le chiffre attendu pondéré MAC (commercial environ $410 par cas d'anesthésie surveillée à environ 58% d'utilisation ; Predmore 2019, USC Schaeffer 2021). Revient au groupe d'anesthésie, présenté pour la vue d'ensemble de l'épisode complet, pas dans le multiple ROI.",
     "roi.assumptions.pathology": "Anatomopathologie : environ ${path}/scope attendu, pondéré par les biopsies (CPT 88305 commercial environ $82 par spécimen, environ 1,7 spécimen sur environ 45% des scopes ; PayerPrice 2026, GIQuIC). Le chiffre le plus incertain ici, et il revient au laboratoire, pas au multiple ROI.",
     "roi.assumptions.prep": "Préparation inadéquate : par défaut {prep}% des scopes (États-Unis en conditions réelles 10–25% ; repère USMSTF 2025 de 10% ou moins). L'accompagnement, la navigation et les rappels la réduisent de {c} / {e} / {p} (Guo 2016, Tian 2021, Faveri 2025). Environ {repeat}% des préparations inadéquates consomment un créneau répété ou interrompu (GIQuIC 32% recommandé dans l'année, VA 59% réalisé). Cette récupération des répétitions est intégrée aux créneaux récupérés et au ROI ci-dessus.",
-    "roi.assumptions.surveillance": "Récupération de la surveillance : environ la moitié des patients après polypectomie sont en retard ou ne reviennent jamais (Medicare américain non-retour à 5 ans environ 48% ; Schoen 2014, recoupé avec des cohortes d'adénomes à haut risque et de gros polypes). Les rappels doublent environ le taux de réalisation (Sci Reports 2021). Conditionnel à la capacité et hors du multiple ROI.",
+    "roi.assumptions.surveillance": "Récupération de la surveillance : environ la moitié des patients après polypectomie sont en retard ou ne reviennent jamais (Medicare américain non-retour à 5 ans environ 48% ; Cooper 2013, recoupé avec des cohortes d'adénomes à haut risque et de gros polypes). Les rappels doublent environ le taux de réalisation (Sci Reports 2021). Conditionnel à la capacité et hors du multiple ROI.",
   },
   es: {
     'roi.inputs.heading': 'Sus cifras',
@@ -193,7 +193,7 @@ export const dict: Record<string, Record<string, string>> = {
     "roi.assumptions.anesthesia": "Anestesia: unos ${anes}/scope, la cifra esperada ponderada por MAC (comercial aproximadamente $410 por caso de anestesia monitorizada con una utilización cercana al 58%; Predmore 2019, USC Schaeffer 2021). Se acumula para el grupo de anestesia, se muestra para el panorama del episodio completo, no en el múltiplo de ROI.",
     "roi.assumptions.pathology": "Anatomía patológica: unos ${path}/scope esperado, ponderado por biopsia (CPT 88305 comercial alrededor de $82 por muestra, cerca de 1,7 muestras en aproximadamente 45% de los scopes; PayerPrice 2026, GIQuIC). La cifra más blanda aquí, y se acumula para el laboratorio, no para el múltiplo de ROI.",
     "roi.assumptions.prep": "Preparación inadecuada: predeterminado {prep}% de los scopes (en la práctica real estadounidense 10–25%; referente de la USMSTF de 2025 10% o menos). El acompañamiento, la navegación y los recordatorios la reducen en {c} / {e} / {p} (Guo 2016, Tian 2021, Faveri 2025). Alrededor de {repeat}% de las preparaciones inadecuadas consumen un espacio repetido o abortado (GIQuIC 32% recomendado dentro de un año, VA 59% completado). Esta recuperación de repeticiones está integrada en los espacios recuperados y el ROI de arriba.",
-    "roi.assumptions.surveillance": "Recaptura de vigilancia: aproximadamente la mitad de los pacientes pos-polipectomía están atrasados o nunca regresan (no retorno a 5 años en Medicare estadounidense alrededor del 48%; Schoen 2014, contrastado con cohortes de adenoma de alto riesgo y pólipo grande). Los recordatorios aproximadamente duplican la realización (Sci Reports 2021). Condicionada a la capacidad y fuera del múltiplo de ROI.",
+    "roi.assumptions.surveillance": "Recaptura de vigilancia: aproximadamente la mitad de los pacientes pos-polipectomía están atrasados o nunca regresan (no retorno a 5 años en Medicare estadounidense alrededor del 48%; Cooper 2013, contrastado con cohortes de adenoma de alto riesgo y pólipo grande). Los recordatorios aproximadamente duplican la realización (Sci Reports 2021). Condicionada a la capacidad y fuera del múltiplo de ROI.",
   },
   zh: {
     'roi.inputs.heading': '您的数据',
@@ -251,7 +251,7 @@ export const dict: Record<string, Record<string, string>> = {
     "roi.assumptions.anesthesia": "麻醉：每个 scope 约 ${anes}，即预期的 MAC 加权数字（商业上每例监测麻醉 case 约 $410，按约 58% 的使用率；Predmore 2019，USC Schaeffer 2021）。归属于麻醉团队，为呈现整个诊疗周期的全貌而列出，不计入 ROI 倍数。",
     "roi.assumptions.pathology": "病理：每个 scope 预期约 ${path}，按活检加权（CPT 88305 商业上每份标本约 $82，约 45% 的 scopes 上约 1.7 份标本；PayerPrice 2026，GIQuIC）。这是此处最软的数字，且归属于实验室，不计入 ROI 倍数。",
     "roi.assumptions.prep": "准备不足：默认占 scopes 的 {prep}%（美国实际数据 10–25%；2025 年 USMSTF 基准为 10% 或更低）。指导、导航和提醒可将其降低 {c} / {e} / {p}（Guo 2016，Tian 2021，Faveri 2025）。约 {repeat}% 的准备不足会占用一个重复或中止的时段（GIQuIC 32% 建议在一年内进行，VA 59% 已完成）。这部分重复恢复已计入上面的回收时段和 ROI 中。",
-    "roi.assumptions.surveillance": "监测重新召回：息肉切除术后约半数患者逾期或从未回访（美国 Medicare 5 年未回访率约 48%；Schoen 2014，已对照高危腺瘤和大息肉队列核查）。提醒可使完成率大约翻倍（Sci Reports 2021）。取决于产能，且不计入 ROI 倍数。",
+    "roi.assumptions.surveillance": "监测重新召回：息肉切除术后约半数患者逾期或从未回访（美国 Medicare 5 年未回访率约 48%；Cooper 2013，已对照高危腺瘤和大息肉队列核查）。提醒可使完成率大约翻倍（Sci Reports 2021）。取决于产能，且不计入 ROI 倍数。",
   },
   ar: {
     'roi.inputs.heading': 'أرقامك',
@@ -309,7 +309,7 @@ export const dict: Record<string, Record<string, string>> = {
     "roi.assumptions.anesthesia": "التخدير: نحو ${anes}/scope، وهو الرقم المتوقَّع المرجَّح بـ MAC (تجاريًا نحو $410 لكل حالة تخدير مُراقَب عند استخدام بنحو 58%؛ Predmore 2019، USC Schaeffer 2021). يعود إلى مجموعة التخدير، ويُعرَض من أجل صورة الحلقة الكاملة، لا في مضاعِف ROI.",
     "roi.assumptions.pathology": "أمراض الأنسجة: نحو ${path}/scope متوقَّع، مرجَّح بالخزعة (CPT 88305 تجاريًا نحو $82 لكل عيّنة، نحو 1.7 عيّنة على نحو 45% من المناظير؛ PayerPrice 2026، GIQuIC). وهو أقل الأرقام صلابةً هنا، ويعود إلى المختبر، لا إلى مضاعِف ROI.",
     "roi.assumptions.prep": "التحضير غير الكافي: افتراضيًا {prep}% من المناظير (في الواقع العملي الأمريكي 10–25%؛ معيار USMSTF لعام 2025 هو 10% أو أقل). ويخفّضه التوجيه والإرشاد والتذكيرات بمقدار {c} / {e} / {p} (Guo 2016، Tian 2021، Faveri 2025). ونحو {repeat}% من حالات التحضير غير الكافي تستهلك موعدًا مُعادًا أو مُجهَضًا (GIQuIC 32% موصى به خلال سنة، VA 59% مكتملة). واسترداد هذه العمليات المُعادة مُدرَج ضمن المواعيد المُستردّة وضمن مضاعِف ROI أعلاه.",
-    "roi.assumptions.surveillance": "استعادة المتابعة: نحو نصف المرضى بعد استئصال السليلة متأخّرون أو لا يعودون أبدًا (عدم العودة خلال 5 سنوات في Medicare الأمريكي نحو 48%؛ Schoen 2014، مُدقَّق مقابل مجموعات الورم الغدّي عالي الخطورة والسليلة الكبيرة). وتُضاعِف التذكيرات الإكمال تقريبًا (Sci Reports 2021). مشروط بالسعة وخارج مضاعِف ROI.",
+    "roi.assumptions.surveillance": "استعادة المتابعة: نحو نصف المرضى بعد استئصال السليلة متأخّرون أو لا يعودون أبدًا (عدم العودة خلال 5 سنوات في Medicare الأمريكي نحو 48%؛ Cooper 2013، مُدقَّق مقابل مجموعات الورم الغدّي عالي الخطورة والسليلة الكبيرة). وتُضاعِف التذكيرات الإكمال تقريبًا (Sci Reports 2021). مشروط بالسعة وخارج مضاعِف ROI.",
   },
   vi: {
     'roi.inputs.heading': 'Các con số của bạn',
@@ -367,6 +367,6 @@ export const dict: Record<string, Record<string, string>> = {
     "roi.assumptions.anesthesia": "Gây mê: khoảng ${anes}/scope, là con số kỳ vọng có trọng số theo MAC (thương mại khoảng $410 cho mỗi ca gây mê có theo dõi ở mức sử dụng khoảng 58%; Predmore 2019, USC Schaeffer 2021). Dồn về nhóm gây mê, hiển thị cho bức tranh toàn bộ đợt, không nằm trong bội số ROI.",
     "roi.assumptions.pathology": "Bệnh học: khoảng ${path}/scope kỳ vọng, có trọng số theo sinh thiết (CPT 88305 thương mại khoảng $82 mỗi mẫu, khoảng 1,7 mẫu trên khoảng 45% số scopes; PayerPrice 2026, GIQuIC). Đây là con số mềm nhất ở đây, và nó dồn về phòng xét nghiệm, không nằm trong bội số ROI.",
     "roi.assumptions.prep": "Chuẩn bị không đầy đủ: mặc định {prep}% số scopes (thực tế tại Hoa Kỳ 10–25%; mốc chuẩn USMSTF 2025 là 10% hoặc thấp hơn). Hướng dẫn, điều hướng và nhắc nhở giảm nó đi {c} / {e} / {p} (Guo 2016, Tian 2021, Faveri 2025). Khoảng {repeat}% các ca chuẩn bị không đầy đủ chiếm một suất phải làm lại hoặc bị hủy giữa chừng (GIQuIC 32% được khuyến nghị trong vòng một năm, VA 59% hoàn thành). Phần phục hồi từ làm lại này được gộp vào các suất phục hồi và ROI ở trên.",
-    "roi.assumptions.surveillance": "Thu hồi giám sát: khoảng một nửa số bệnh nhân sau cắt polyp bị quá hạn hoặc không bao giờ quay lại (Medicare Hoa Kỳ không quay lại trong 5 năm khoảng 48%; Schoen 2014, đối chiếu với các nhóm u tuyến nguy cơ cao và polyp lớn). Nhắc nhở làm tăng gấp đôi tỷ lệ hoàn thành (Sci Reports 2021). Phụ thuộc vào công suất và nằm ngoài bội số ROI.",
+    "roi.assumptions.surveillance": "Thu hồi giám sát: khoảng một nửa số bệnh nhân sau cắt polyp bị quá hạn hoặc không bao giờ quay lại (Medicare Hoa Kỳ không quay lại trong 5 năm khoảng 48%; Cooper 2013, đối chiếu với các nhóm u tuyến nguy cơ cao và polyp lớn). Nhắc nhở làm tăng gấp đôi tỷ lệ hoàn thành (Sci Reports 2021). Phụ thuộc vào công suất và nằm ngoài bội số ROI.",
   },
 }

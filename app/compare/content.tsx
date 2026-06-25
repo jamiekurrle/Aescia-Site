@@ -108,7 +108,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
               {t('compare.hero.eyebrow')}
             </span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
@@ -131,7 +131,7 @@ export function PageContent() {
       {/* Comparison table */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('compare.table.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('compare.table.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -147,7 +147,7 @@ export function PageContent() {
                 <tr className="bg-secondary">
                   <th
                     scope="col"
-                    className="align-bottom p-4 lg:p-5 border-b border-border font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/60 w-[200px]"
+                    className="align-bottom p-4 lg:p-5 border-b border-border font-mono text-[13px] uppercase tracking-[0.16em] text-foreground/60 w-[200px]"
                   >
                     {t('compare.table.col.capability')}
                   </th>
@@ -192,7 +192,7 @@ export function PageContent() {
       {/* Where it compounds — the synergy case */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 border-t border-border">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('compare.compounds.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('compare.compounds.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -227,7 +227,7 @@ export function PageContent() {
       {/* Where competitors are stronger */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('compare.fair.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('compare.fair.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}

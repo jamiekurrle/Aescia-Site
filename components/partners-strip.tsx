@@ -30,7 +30,7 @@ export function PartnersStrip() {
         <div className="grid lg:grid-cols-12 gap-12 mb-16">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">
                 {t('partners.eyebrow')}
               </span>
               <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
@@ -47,7 +47,7 @@ export function PartnersStrip() {
               {t('partners.body')}
             </p>
             <div className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 items-baseline border-l-2 border-accent pl-5">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-accent">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
                 {t('partners.trial.label')}
               </span>
               <a

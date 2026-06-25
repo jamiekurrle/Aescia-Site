@@ -44,7 +44,7 @@ export function PageContent() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 px-6 lg:px-10 border-b border-border">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-center gap-3 mb-8">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
               {t('backfill.hero.eyebrow')}
             </span>
             <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
@@ -67,7 +67,7 @@ export function PageContent() {
       {/* Why prep-blind fails */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('backfill.problem.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('backfill.problem.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -88,7 +88,7 @@ export function PageContent() {
       {/* The recovery loop */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('backfill.recovery.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('backfill.recovery.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-6"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -119,7 +119,7 @@ export function PageContent() {
       {/* Eligibility + contrast table */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-5xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('backfill.eligibility.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('backfill.eligibility.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -161,7 +161,7 @@ export function PageContent() {
       {/* What one recovered slot is worth — sourced, hedge bound to the number */}
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">{t('backfill.worth.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('backfill.worth.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
@@ -183,7 +183,7 @@ export function PageContent() {
       {/* Realistic ceiling — honesty */}
       <section className="py-20 lg:py-28 px-6 lg:px-10">
         <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brass">{t('backfill.ceiling.eyebrow')}</span>
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('backfill.ceiling.eyebrow')}</span>
           <h2
             className="font-display text-[28px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] mt-6 mb-8"
             style={{ fontVariationSettings: "'opsz' 120" }}
