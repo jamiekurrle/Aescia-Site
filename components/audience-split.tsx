@@ -6,14 +6,17 @@ import { useI18n } from '@/lib/i18n'
 export function AudienceSplit() {
   const { t } = useI18n()
 
+  // Clinic-forward: the Clinics product leads and carries the prominent dark
+  // card; Hospitals follows in the lighter secondary card. The first thing a
+  // reader or an LLM extractor meets is the ASC/clinic product.
   const cards = [
     {
-      eyebrow: t('split.hospital.eyebrow'),
-      regtag: t('split.hospital.regtag'),
-      title: t('split.hospital.title'),
-      desc: t('split.hospital.desc'),
-      cta: t('split.hospital.cta'),
-      href: '/hospitals',
+      eyebrow: t('split.clinic.eyebrow'),
+      regtag: t('split.clinic.regtag'),
+      title: t('split.clinic.title'),
+      desc: t('split.clinic.desc'),
+      cta: t('split.clinic.cta'),
+      href: '/clinics',
       accent: 'bg-foreground text-background',
       eyebrowClass: 'text-brass',
       regClass: 'text-background/60 border-background/20',
@@ -22,12 +25,12 @@ export function AudienceSplit() {
       arrowColor: 'text-background',
     },
     {
-      eyebrow: t('split.clinic.eyebrow'),
-      regtag: t('split.clinic.regtag'),
-      title: t('split.clinic.title'),
-      desc: t('split.clinic.desc'),
-      cta: t('split.clinic.cta'),
-      href: '/clinics',
+      eyebrow: t('split.hospital.eyebrow'),
+      regtag: t('split.hospital.regtag'),
+      title: t('split.hospital.title'),
+      desc: t('split.hospital.desc'),
+      cta: t('split.hospital.cta'),
+      href: '/hospitals',
       accent: 'bg-secondary text-foreground',
       eyebrowClass: 'text-accent',
       regClass: 'text-foreground/60 border-foreground/20',

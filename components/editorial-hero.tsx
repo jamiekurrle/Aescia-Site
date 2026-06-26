@@ -41,7 +41,7 @@ export function EditorialHero() {
 
           <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
             <Link
-              href="/platform"
+              href="/clinics"
               className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
             >
               {t('hero.cta.primary')}
@@ -61,18 +61,8 @@ export function EditorialHero() {
           </div>
 
           <div className="mt-16 lg:mt-24 flex flex-wrap items-center gap-x-6 gap-y-1 text-background/75">
-            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-background/60">{t('hero.trial.label')}</span>
-            <a
-              href="https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482"
-              target="_blank"
-              rel="noopener"
-              className="font-mono text-[12px] text-brass hover:text-background tracking-wide underline decoration-brass/40 underline-offset-4 hover:decoration-background/80 transition-colors"
-              aria-label="View SAFE-Discharge trial registration on ANZCTR (opens in a new window)"
-            >
-              ACTRN12625001425482
-            </a>
-            <span className="text-[12px] text-background/75">{t('hero.trial.brief')}</span>
-            <span className="text-[11px] text-background/55">{t('hero.trial.site')}</span>
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-background/60">{t('hero.note.label')}</span>
+            <span className="text-[12px] text-background/75">{t('hero.note.body')}</span>
           </div>
         </div>
 

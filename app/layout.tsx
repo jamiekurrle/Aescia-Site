@@ -14,11 +14,11 @@ const SITE_URL = 'https://www.aesciahealth.com'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
+    default: 'Aescia — pre-procedure software for endoscopy ASCs and specialty clinics',
     template: '%s | Aescia',
   },
   description:
-    'Aescia is a continuous-care platform. Structured patient follow-up for hospitals (investigational software as a medical device, intended TGA Class IIa) and workflow for specialty clinics. Pre-first-customer; we say so plainly.',
+    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, GLP-1 and medication handling, prep-aware backfill, and recall. Not a medical device, and does not make clinical decisions. Aescia for Hospitals adds investigational post-discharge monitoring (intended TGA Class IIa). Pre-first-customer; US clinics engage through design-partner pilots with a money-back rebate.',
   keywords:
     'Aescia, Aescia Health, endoscopy prep platform, colonoscopy prep, GLP-1 peri-procedural management, no-show reduction, US ambulatory surgery centre software, post-discharge monitoring, cardiothoracic discharge, specialty clinic workflow, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia',
   alternates: {
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
+    title: 'Aescia — pre-procedure software for endoscopy ASCs and specialty clinics',
     description:
-      'Structured patient follow-up for hospitals and specialty clinics. Investigational software as a medical device for hospitals; intended TGA Class IIa. Pre-first-customer.',
+      'Pre-procedure pathway software for endoscopy ASCs: bowel-prep readiness, GLP-1 handling, prep-aware backfill, and recall. Not a medical device. Aescia for Hospitals adds investigational post-discharge monitoring. Pre-first-customer design-partner pilots.',
     type: 'website',
     url: SITE_URL,
     siteName: 'Aescia',
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aescia — a continuous-care platform for hospitals and specialty clinics',
+    title: 'Aescia — pre-procedure software for endoscopy ASCs and specialty clinics',
     description:
-      'Structured patient follow-up for hospitals and specialty clinics. Investigational software as a medical device for hospitals; intended TGA Class IIa. Pre-first-customer.',
+      'Pre-procedure pathway software for endoscopy ASCs: bowel-prep readiness, GLP-1 handling, prep-aware backfill, and recall. Not a medical device. Aescia for Hospitals adds investigational post-discharge monitoring. Pre-first-customer design-partner pilots.',
     images: [`${SITE_URL}/aescia-logo.png`],
   },
   robots: {

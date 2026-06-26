@@ -13,9 +13,9 @@ import { medicalStudySchema, softwareApplicationSchema, webPageSchema } from '@/
 
 const homePageSchema = webPageSchema({
   url: '/',
-  name: 'Aescia. A continuous-care platform.',
+  name: 'Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge monitoring.',
   description:
-    'A continuous-care platform: structured patient follow-up for hospitals (investigational software as a medical device, intended TGA Class IIa) and workflow for specialty clinics. Pre-first-customer.',
+    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, medication and GLP-1 handling, prep-aware backfill, and surveillance recall. Explicitly not a medical device and does not make clinical decisions. Aescia for Hospitals adds investigational post-discharge monitoring (intended TGA Class IIa) on the same pathway engine. Pre-first-customer; US clinics engage through a design-partner program with a money-back rebate against their own baseline.',
   primaryImage: 'https://www.aesciahealth.com/aescia-logo.png',
 })
 

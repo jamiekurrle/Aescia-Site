@@ -1,26 +1,33 @@
 # Aescia
 
-> Aescia is a continuous-care platform for the weeks between a high-acuity
-> discharge and the next clinical appointment. Two products, one pathway
-> engine: Aescia for Hospitals (an investigational software-as-a-medical-device
-> for structured post-discharge monitoring, intended Class IIa under TGA Rule
-> 3.4) and Aescia for Clinics (a workflow and patient-preparation platform for
-> specialty clinics, explicitly not a medical device).
+> Aescia builds two products on one pathway engine. Aescia for Clinics is
+> pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs)
+> and specialty clinics: bowel-prep readiness, medication and GLP-1 handling,
+> prep-aware backfill, and surveillance recall. It is explicitly not a medical
+> device and does not make clinical decisions. Aescia for Hospitals is an
+> investigational software-as-a-medical-device for structured post-discharge
+> monitoring, intended Class IIa under TGA Rule 3.4. Aescia is pre-first-customer
+> and engages US clinics through a design-partner program that runs free or under
+> a money-back rebate against the clinic's own baseline.
 
 ## What Aescia is
 
+- **Aescia for Clinics.** Pre-procedure pathway software for endoscopy ASCs and
+  specialty clinics. Not a medical device; does not make clinical decisions.
+  Delivers clinician-authored prep pathways, bowel-prep readiness, multichannel
+  reminders, GLP-1 and anticoagulant peri-procedural overlays, prep-aware
+  waitlist backfill, surveillance recall, and structured chart exports. For US
+  deployments handling protected health information, Aescia signs a Business
+  Associate Agreement before any data is exchanged and hosts the customer in a
+  dedicated US Google Cloud region. Built to save more than it costs and leave
+  the customer better off than without Aescia; design partners start free until
+  the platform proves that on their own data.
 - **Aescia for Hospitals.** Investigational software-as-a-medical-device.
   Intended Class IIa under TGA Rule 3.4. Regulatory submission has not yet been
   lodged. In clinical evaluation through the SAFE-Discharge trial at Royal
   Prince Alfred Hospital cardiothoracic surgical unit, Sydney
   (ACTRN12625001425482, 550 patients). First indication: cardiothoracic
   surgical recovery.
-- **Aescia for Clinics.** Workflow and patient-preparation platform for
-  specialty clinics. Not a medical device. Delivers clinician-authored prep
-  pathways, multichannel reminders, GLP-1 peri-procedural overlays, recall
-  tracking, and structured chart exports. Built to save more than it costs and
-  leave the customer better off than without Aescia; design partners start free until
-  the platform proves that on their own data.
 
 ## What Aescia is not (yet)
 

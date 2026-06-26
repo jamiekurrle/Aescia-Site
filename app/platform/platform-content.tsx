@@ -11,7 +11,7 @@ export default function PlatformContent() {
 
   const steps = [
     { name: t('platform.pill.collect'), body: 'A structured patient signal. Photo, scale, questionnaire, vitals. Stored against the patient record and timestamped.' },
-    { name: t('platform.pill.follow'), body: 'A clinician-authored rule that reads one or more Collect signals and decides whether to flag, escalate, or continue. Every rule is explainable.' },
+    { name: t('platform.pill.follow'), body: 'A clinician-authored rule that reads one or more Collect signals and flags, escalates, or continues for the clinician to act on. Every rule is explainable.' },
     { name: t('platform.pill.remind'), body: 'A timed outbound SMS or notification. Prep nudges, follow-up questions, confirmation requests.' },
     { name: t('platform.pill.educate'), body: 'A PDF, video, or web card delivered at the right moment, in the right language, written by the clinical team.' },
     { name: t('platform.pill.export'), body: 'A structured, consented, time-stamped record of every signal and decision, available to the patient record, the institution, and (under agreement) the sponsor.' },
