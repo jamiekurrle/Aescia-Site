@@ -4,9 +4,10 @@ import { NextResponse } from 'next/server'
 //
 // IndexNow lets us push new or changed URLs to participating search engines
 // (Bing, Yandex, and others) for near-immediate crawling, instead of waiting
-// for them to rediscover the sitemap. Brave's index keys off Googlebot, which
-// IndexNow does not feed, so this is complementary to the sitemap, not a
-// replacement for it.
+// for them to rediscover the sitemap. Brave runs its own independent index and
+// does not consume IndexNow; changed URLs are submitted to Brave manually at
+// https://search.brave.com/submit-url. So this endpoint is complementary to the
+// sitemap and the Brave submission, not a replacement for either.
 //
 // The IndexNow key is NOT a secret. It is a public ownership token, served as a
 // plain-text file at /<key>.txt (see public/<key>.txt). A committed default is
