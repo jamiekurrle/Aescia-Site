@@ -108,8 +108,8 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // Evidence ribbon (home)
     'evidence.eyebrow': 'Where we are today',
-    'evidence.title': 'Clinical programme opening soon.',
-    'evidence.body': 'The SAFE-Discharge trial is a single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Led by Dr Kei Woldendorp, Principal Investigator. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
+    'evidence.title': 'The clinical programme is recruiting.',
+    'evidence.body': 'The SAFE-Discharge trial is a single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Enrolment commenced on 21 June 2026, with the first participant enrolled on 24 June 2026. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Led by Dr Kei Woldendorp, Principal Investigator, and sponsored by Sydney Local Health District. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
     'evidence.fact2.value': '550',
@@ -219,7 +219,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Trial
     'hospitals.trial.eyebrow': 'Active clinical programme',
     'hospitals.trial.title': 'The SAFE-Discharge trial.',
-    'hospitals.trial.body': 'A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry. First participants expected following ethics and governance approval.',
+    'hospitals.trial.body': 'A prospective single-centre evaluation of Aescia for cardiothoracic post-discharge monitoring. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Registered with the Australian New Zealand Clinical Trials Registry and sponsored by Sydney Local Health District. Recruiting since 21 June 2026, with the first participant enrolled on 24 June 2026.',
     'hospitals.trial.not_recruiting': 'This page does not recruit trial participants. Enrolment is through the Royal Prince Alfred Hospital cardiothoracic unit under ethics approval.',
     'hospitals.trial.id': 'ACTRN12625001425482',
     'hospitals.trial.site': 'Royal Prince Alfred Hospital, Sydney',

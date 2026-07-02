@@ -362,7 +362,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
-                <dd className="text-[15px] text-foreground">Ethics approved. Site-specific governance in progress.</dd>
+                <dd className="text-[15px] text-foreground">Recruiting. Enrolment commenced 21 June 2026, with the first participant enrolled on 24 June 2026.</dd>
               </div>
             </dl>
           </div>

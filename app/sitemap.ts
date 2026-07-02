@@ -31,6 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/careers', priority: 0.7, freq: 'monthly' as const },
     { path: '/faq', priority: 0.7, freq: 'monthly' as const },
     { path: '/contact', priority: 0.6, freq: 'monthly' as const },
+    { path: '/privacy', priority: 0.4, freq: 'yearly' as const },
+    { path: '/terms', priority: 0.4, freq: 'yearly' as const },
   ]
 
   const staticEntries = paths.map(({ path, priority, freq }) => ({

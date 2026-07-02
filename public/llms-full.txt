@@ -6,7 +6,7 @@ and what each page on aesciahealth.com says, without executing JavaScript or
 walking the sitemap. The on-site pages remain the canonical source; this is a
 deduplicated extraction for retrieval.
 
-Last refreshed: 2026-04-25.
+Last refreshed: 2026-07-02.
 
 ────────────────────────────────────────────────────────────────────────
 ENTITY CARD
@@ -22,7 +22,7 @@ Sector: Healthtech / digital health / medical software
 Headquarters: Sydney, Australia and Montréal, Canada
 Founders: James Kurrle (Founder and CEO, critical-care physician), Vasken Dermardiros (Co-founder and CTO, PhD machine learning, Concordia University)
 Programmes / memberships: District 3 Innovation Hub at Concordia University (joined September 2025); Medical Technology Association of Australia (MTAA) industry member; MTAA MedTech Compass programme participant
-Trial: SAFE-Discharge, ACTRN12625001425482 — prospective single-centre evaluation at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney; 550 patients (50-patient pre-specified interim cohort + 500-patient main cohort); Principal Investigator Dr Kei Woldendorp, The Baird Institute
+Trial: SAFE-Discharge, ACTRN12625001425482 — prospective single-centre evaluation at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney; 550 patients (50-patient pre-specified interim cohort + 500-patient main cohort); Principal Investigator Dr Kei Woldendorp, The Baird Institute; sponsored by Sydney Local Health District (SLHD); recruiting, enrolment commenced 21 June 2026, first participant enrolled 24 June 2026
 LinkedIn (company): https://www.linkedin.com/company/aescia
 LinkedIn (founder): https://www.linkedin.com/in/jameskurrle/
 Crunchbase: https://www.crunchbase.com/organization/aescia-health
@@ -47,7 +47,9 @@ Aescia builds two products on one pathway engine.
 Investigational software-as-a-medical-device for structured post-discharge
 monitoring. Intended Class IIa under TGA Rule 3.4. A regulatory submission has
 not yet been lodged. The product is in clinical evaluation through the
-SAFE-Discharge trial at Royal Prince Alfred Hospital. First indication:
+SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney
+Local Health District. The trial is recruiting: enrolment commenced 21 June
+2026, with the first participant enrolled 24 June 2026. First indication:
 cardiothoracic surgical recovery. The product runs daily clinician-authored
 check-ins across the 30-day post-discharge window and produces one prioritised
 list for the unit. It is a surface the team has to attend to; the design intent
@@ -57,13 +59,19 @@ pilot contracts only, not commercial supply.
 
 ## Aescia for Clinics
 
-Workflow and patient-preparation platform for specialty clinics. Not a medical
+Pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs)
+and specialty clinics, with US endoscopy ASCs the primary focus. Not a medical
 device, does not propose clinical decisions, does not diagnose. Delivers
-clinician-authored prep pathways (including bowel preparation, diabetes
-management, anticoagulation, GLP-1 peri-procedural overlay), multichannel
-reminders, recall tracking, and structured exports back to the chart. Built to
-save more than it costs and leave the customer better off than without Aescia; design
-partners start free until the platform proves that on their own data.
+clinician-authored prep pathways (including bowel-preparation readiness,
+diabetes management, anticoagulation, GLP-1 peri-procedural overlay),
+multichannel reminders, prep-aware waitlist backfill, surveillance recall
+tracking, and structured exports back to the chart. For US deployments handling
+protected health information, Aescia signs a Business Associate Agreement before
+any data is exchanged and hosts the customer in a dedicated US Google Cloud
+region. Built to save more than it costs and leave the customer better off than
+without Aescia. Pricing posture: design partners start free during the proof
+period, then move to per-scope pricing once the platform proves the return on
+their own data.
 
 ## The platform underneath
 
@@ -86,7 +94,7 @@ What Aescia claims:
 - Aescia for Clinics is a workflow tool for specialty clinics and is not a medical device.
 
 What Aescia does not claim:
-- That Aescia for Hospitals has been shown to reduce readmissions. The SAFE-Discharge trial is running. Aescia will report what the trial shows, whatever it shows.
+- That Aescia for Hospitals has been shown to reduce readmissions. The SAFE-Discharge trial is recruiting. Aescia will report what the trial shows, whatever it shows.
 - That Aescia for Hospitals is approved, listed, cleared, or certified as a medical device in any jurisdiction. A regulatory application has not yet been lodged.
 - Specific modelled financial outcomes as if they were observed results. Economic estimates exist for internal planning and are shared on request, clearly labelled as estimates.
 - That Aescia for Clinics makes or informs clinical decisions. It delivers clinician-authored educational content, reminders, and structured prep, and escalates exceptions to the team.
@@ -130,12 +138,13 @@ SAFE-DISCHARGE TRIAL (from /evidence)
 - Site: Royal Prince Alfred Hospital, Sydney
 - Unit: Cardiothoracic Surgery Unit
 - Principal Investigator: Dr Kei Woldendorp, The Baird Institute
+- Sponsor: Sydney Local Health District (SLHD)
 - Population: Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)
 - Sample size: 550 patients (50 interim + 500 main), single centre
 - Design: Prospective, historically controlled, structured post-discharge monitoring across the 30-day post-discharge window
 - Interim analysis: Pre-specified at 50 patients enrolled
 - Secondary endpoint: Alert burden — fewer than 1 nurse-actionable flag per patient per week over the 30-day window
-- Status: Recruiting. Enrolment commenced 21 June 2026 at Royal Prince Alfred Hospital.
+- Status: Recruiting. Enrolment commenced 21 June 2026 at Royal Prince Alfred Hospital, with the first participant enrolled 24 June 2026.
 
 ────────────────────────────────────────────────────────────────────────
 DATED COMPANY UPDATES (from /updates, newest first)

@@ -55,6 +55,8 @@ export function Footer() {
               <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">FAQ</Link></li>
               <li><Link href="/contact" className="text-foreground/80 hover:text-foreground">{t('footer.contact')}</Link></li>
               <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/80 hover:text-foreground">contact@aesciahealth.com</a></li>
+              <li><Link href="/privacy" className="text-foreground/80 hover:text-foreground">Privacy policy</Link></li>
+              <li><Link href="/terms" className="text-foreground/80 hover:text-foreground">Terms of use</Link></li>
             </ul>
           </nav>
 

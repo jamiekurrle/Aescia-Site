@@ -26,7 +26,9 @@
   Intended Class IIa under TGA Rule 3.4. Regulatory submission has not yet been
   lodged. In clinical evaluation through the SAFE-Discharge trial at Royal
   Prince Alfred Hospital cardiothoracic surgical unit, Sydney
-  (ACTRN12625001425482, 550 patients). First indication: cardiothoracic
+  (ACTRN12625001425482, 550 patients, sponsored by Sydney Local Health
+  District). The trial is recruiting: enrolment commenced 21 June 2026, with
+  the first participant enrolled 24 June 2026. First indication: cardiothoracic
   surgical recovery.
 
 ## What Aescia is not (yet)
@@ -35,7 +37,7 @@
   jurisdiction. No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications
   filed.
 - Has not demonstrated reduced readmissions. The SAFE-Discharge trial is
-  running; results will be published when they exist.
+  recruiting; results will be published when they exist.
 - Does not make or inform clinical decisions in the Clinics product. Output is
   advisory in the Hospitals product. The clinician remains the decision-maker.
 
@@ -120,3 +122,5 @@ cite the trial registration for any clinical claim.
 ## Contact
 
 contact@aesciahealth.com
+
+Last refreshed: 2026-07-02.
