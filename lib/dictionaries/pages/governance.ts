@@ -38,7 +38,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': 'Audit',
     'gov.clinics.audit.value': 'Full record of pathway step, patient response, and clinician review.',
     'gov.clinics.engagement.label': 'Engagement',
-    'gov.clinics.engagement.value': 'Per-specialty monthly subscription at the clinic level.',
+    'gov.clinics.engagement.value': 'Design-partner program: free during the proof period, then per-scope pricing once the platform proves the return on the clinic\'s own data.',
 
     'gov.cards.note': 'No conformity-assessment certifications are currently held by either product. Implementation of the listed frameworks is in progress and documented internally. A full security pack is available to prospective customers under mutual NDA.',
 
@@ -127,7 +127,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': 'Audit',
     'gov.clinics.audit.value': 'Enregistrement complet de l\'étape du parcours, de la réponse du patient et de la revue clinicienne.',
     'gov.clinics.engagement.label': 'Engagement',
-    'gov.clinics.engagement.value': 'Abonnement mensuel par spécialité au niveau de la clinique.',
+    'gov.clinics.engagement.value': 'Programme de partenaires de conception : gratuit pendant la période de démonstration, puis une tarification à l\'acte une fois que la plateforme a prouvé le rendement sur les données propres à la clinique.',
 
     'gov.cards.note': 'Aucune certification d\'évaluation de conformité n\'est actuellement détenue par l\'un ou l\'autre produit. La mise en œuvre des cadres énumérés est en cours et documentée en interne. Un dossier de sécurité complet est disponible pour les clients potentiels sous NDA mutuel.',
 
@@ -216,7 +216,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': 'Auditoría',
     'gov.clinics.audit.value': 'Registro completo del paso del recorrido, la respuesta del paciente y la revisión del clínico.',
     'gov.clinics.engagement.label': 'Compromiso',
-    'gov.clinics.engagement.value': 'Suscripción mensual por especialidad a nivel de la clínica.',
+    'gov.clinics.engagement.value': 'Programa de socios de diseño: gratuito durante el período de prueba y luego precio por procedimiento una vez que la plataforma demuestra el rendimiento con los datos de la propia clínica.',
 
     'gov.cards.note': 'Actualmente ninguno de los dos productos posee certificaciones de evaluación de conformidad. La implementación de los marcos enumerados está en curso y documentada internamente. Hay un paquete de seguridad completo disponible para clientes potenciales bajo NDA mutuo.',
 
@@ -305,7 +305,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': '审计',
     'gov.clinics.audit.value': '完整记录路径步骤、患者反应以及临床医生的审核。',
     'gov.clinics.engagement.label': '合作方式',
-    'gov.clinics.engagement.value': '在诊所层面按专科按月订阅。',
+    'gov.clinics.engagement.value': '设计合作伙伴计划：在验证期内免费，待平台以诊所自身数据证明回报后，按每例操作计价。',
 
     'gov.cards.note': '目前两款产品均未持有任何符合性评估认证。所列框架的实施工作正在进行中，并在内部留有记录。可在双方签署 NDA 后向潜在客户提供完整的安全资料包。',
 
@@ -394,7 +394,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': 'التدقيق',
     'gov.clinics.audit.value': 'سجل كامل لخطوة المسار، واستجابة المريض، ومراجعة الطبيب.',
     'gov.clinics.engagement.label': 'التعاون',
-    'gov.clinics.engagement.value': 'اشتراك شهري لكل تخصص على مستوى العيادة.',
+    'gov.clinics.engagement.value': 'برنامج شركاء التصميم: مجاني خلال فترة الإثبات، ثم تسعير لكل إجراء بعد أن تُثبت المنصّة العائد على بيانات العيادة نفسها.',
 
     'gov.cards.note': 'لا يحمل أي من المنتجَين حاليًا أي شهادات تقييم مطابقة. تنفيذ الأطر المذكورة جارٍ ومُوثَّق داخليًا. تتوفر حزمة أمان كاملة للعملاء المحتملين بموجب اتفاقية عدم إفشاء متبادلة (NDA).',
 
@@ -483,7 +483,7 @@ export const dict: Record<string, Record<string, string>> = {
     'gov.clinics.audit.label': 'Kiểm toán',
     'gov.clinics.audit.value': 'Ghi nhận đầy đủ bước trong lộ trình, phản hồi của bệnh nhân và phần đánh giá của bác sĩ lâm sàng.',
     'gov.clinics.engagement.label': 'Hợp tác',
-    'gov.clinics.engagement.value': 'Đăng ký hằng tháng theo từng chuyên khoa ở cấp phòng khám.',
+    'gov.clinics.engagement.value': 'Chương trình đối tác thiết kế: miễn phí trong giai đoạn chứng minh, sau đó tính giá theo từng ca nội soi khi nền tảng chứng minh được hiệu quả trên dữ liệu của chính phòng khám.',
 
     'gov.cards.note': 'Hiện không sản phẩm nào trong hai sản phẩm có chứng nhận đánh giá hợp chuẩn. Việc triển khai các khung được liệt kê đang được tiến hành và lập hồ sơ nội bộ. Một bộ tài liệu an ninh đầy đủ được cung cấp cho khách hàng tiềm năng theo NDA song phương.',
 
