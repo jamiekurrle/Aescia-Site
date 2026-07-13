@@ -157,6 +157,18 @@ function govern(candidates: Candidate[], f: Findings): Result {
   const winner = [...candidates].sort((a, b) => a.sort - b.sort)[0]
   const notes = Array.from(new Set(candidates.flatMap((c) => c.notes)))
   const provisional = f.hist === 'AWAIT' && f.nPolyps > 0 && winner.kind !== 'prep'
+  // Australia and British Columbia band some intervals on the COMBINED count of
+  // all precancerous lesions (adenomas + serrated together). The tool evaluates
+  // one lineage at a time, so for a colonoscopy-surveillance result with room to
+  // shorten, warn that a synchronous second lesion type could pull it into a
+  // shorter combined-count band.
+  const auOrBc = winner.source === SRC.AU || winner.source === SRC.CA_BC
+  if (auOrBc && f.nPolyps > 0 && winner.kind === 'finding' && winner.sort >= 3 && (winner.modality || '').startsWith('Colonoscopy')) {
+    const country = winner.source === SRC.AU ? 'Australia' : 'British Columbia'
+    notes.push(
+      `${country} sets some intervals on the combined number of precancerous lesions (adenomas and serrated lesions together). If more than one lesion type was removed at this exam, the combined count may fall in a shorter-interval band than this single-type result — check the combined-count table.`,
+    )
+  }
   return {
     interval: winner.interval,
     modality: winner.modality,

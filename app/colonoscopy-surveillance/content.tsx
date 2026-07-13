@@ -80,10 +80,11 @@ export function PageContent() {
   const scopeless = findings.hist === 'NONE' || findings.hist === 'CANCER'
 
   // While histology is pending, show what the interval would be for each
-  // possible result, ordered by risk (shortest interval / highest risk first).
+  // possible result, ordered most-common-first (by per-polyp prevalence).
   const breakdown = result.provisional
     ? AWAIT_TYPES.map((t) => {
-        const r = active.compute({ ...findings, hist: t.hist })
+        // proximalHp is HP-location-specific and unknown while awaiting histology.
+        const r = active.compute({ ...findings, hist: t.hist, proximalHp: false })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
     : []
@@ -91,8 +92,11 @@ export function PageContent() {
   const set = (patch: Partial<Findings>) => setFindings((f) => ({ ...f, ...patch }))
   const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
   const setHist = (k: Histology) => {
-    if (k === 'NONE' || k === 'CANCER') set({ hist: k, nPolyps: 0 })
-    else set({ hist: k, nPolyps: findings.nPolyps < 1 ? 1 : findings.nPolyps })
+    // proximalHp only applies to hyperplastic; clear it when leaving HP so a
+    // stale flag can't leak into another histology's compute or the breakdown.
+    const proximalHp = k === 'HP' ? findings.proximalHp : false
+    if (k === 'NONE' || k === 'CANCER') set({ hist: k, nPolyps: 0, proximalHp })
+    else set({ hist: k, nPolyps: findings.nPolyps < 1 ? 1 : findings.nPolyps, proximalHp })
   }
 
   return (
@@ -155,7 +159,7 @@ export function PageContent() {
                   </button>
                 ))}
               </div>
-              <p className="text-[11.5px] leading-relaxed text-foreground/60 mb-6 max-w-3xl">
+              <p className="text-[11.5px] leading-relaxed text-foreground/72 mb-6 max-w-3xl">
                 Canada has no maintained national post-polypectomy guideline; the provinces differ.
                 Ontario, Alberta (ACRCSP 2023), and British Columbia give different intervals for some
                 findings — notably 1–4 low-risk adenomas and serrated-lesion counts. Select the
@@ -198,7 +202,7 @@ export function PageContent() {
                 ))}
                 <div className="text-[13px] text-foreground/70 mt-3">
                   Total <b className="font-mono">{total} / 9</b> ·{' '}
-                  <span className={adequate ? 'text-[#1F6B47] font-semibold' : 'text-[#B26A0F] font-semibold'}>
+                  <span className={adequate ? 'text-[#1F6B47] font-semibold' : 'text-[#97590C] font-semibold'}>
                     {adequate ? 'Adequate' : 'Inadequate'}
                   </span>
                 </div>
@@ -210,8 +214,8 @@ export function PageContent() {
                   Findings
                 </div>
 
-                <div className="text-[12px] text-foreground/65 mb-2">Histology of this lesion type</div>
-                <div className="flex flex-wrap gap-2 mb-2">
+                <div className="text-[12px] text-foreground/65 mb-2" id="histology-label">Histology of this lesion type</div>
+                <div role="group" aria-labelledby="histology-label" className="flex flex-wrap gap-2 mb-2">
                   {HISTOLOGY.map(([k, label]) => {
                     const on = findings.hist === k
                     const isAwait = k === 'AWAIT'
@@ -222,11 +226,11 @@ export function PageContent() {
                         aria-pressed={on}
                         className={`text-[12.5px] px-3 min-h-[38px] inline-flex items-center border transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 ${
                           on && isAwait
-                            ? 'bg-[#B26A0F] text-white border-[#B26A0F] font-semibold'
+                            ? 'bg-[#97590C] text-white border-[#97590C] font-semibold'
                             : on
                               ? 'bg-foreground text-background border-foreground'
                               : isAwait
-                                ? 'bg-[#FBF3E3] text-[#8A5A17] border-[#EAD9B0] hover:border-[#B26A0F] font-medium'
+                                ? 'bg-[#FBF3E3] text-[#8A5A17] border-[#EAD9B0] hover:border-[#97590C] font-medium'
                                 : 'bg-secondary text-foreground/70 border-border hover:border-accent'
                         }`}
                       >
@@ -237,7 +241,9 @@ export function PageContent() {
                 </div>
                 <p className="text-[11.5px] leading-relaxed text-foreground/65 mb-4">
                   Enter one lesion type at a time. For a report with more than one type (e.g. adenomas
-                  and serrated lesions), run each separately and take the shortest interval. Assumes
+                  and serrated lesions), run each separately; the shortest interval usually governs,
+                  though Australia and British Columbia set some intervals on the combined lesion count
+                  (flagged in the result). Assumes
                   complete resection, and is for sporadic post-polypectomy surveillance only —
                   inflammatory bowel disease, hereditary syndromes, and strong family history follow
                   separate pathways.
@@ -267,13 +273,13 @@ export function PageContent() {
                       onChange={(e) => set({ maxSize: clamp(e.target.value, 90) })}
                       className="w-16 bg-secondary border border-border rounded px-2.5 py-2 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none"
                     />
-                    <span className="text-foreground/60">mm</span>
+                    <span className="text-foreground/72">mm</span>
                   </label>
                 </div>
 
-                <div className="text-[12px] text-foreground/65 mb-2">Flags</div>
-                <div className="flex flex-wrap gap-2">
-                  <button onClick={() => set({ hgd: !findings.hgd })} aria-pressed={findings.hgd} className={chip(findings.hgd, false)}>
+                <div className="text-[12px] text-foreground/65 mb-2" id="flags-label">Flags</div>
+                <div role="group" aria-labelledby="flags-label" className={`flex flex-wrap gap-2 ${scopeless ? 'opacity-40 pointer-events-none' : ''}`}>
+                  <button onClick={() => set({ hgd: !findings.hgd })} aria-pressed={findings.hgd} disabled={scopeless} className={chip(findings.hgd, false)}>
                     High-grade dysplasia
                   </button>
                   <button onClick={() => set({ piece: !findings.piece })} aria-pressed={findings.piece} className={chip(findings.piece, false)}>
@@ -413,7 +419,7 @@ export function PageContent() {
               <Link href="/clinics" className="text-accent hover:underline">see what we do</Link>.
             </p>
           </div>
-          <p className="text-[12px] leading-relaxed text-foreground/60">
+          <p className="text-[12px] leading-relaxed text-foreground/72">
             Reference tool for health professionals. Not medical advice. Not a medical device. Does not
             make or replace clinical decisions. Surveillance guidelines are updated periodically; verify
             against the current version of the cited guideline before acting on any interval.
@@ -442,7 +448,7 @@ function ResultCard({
   sourceName: string
   sourceUrl: string
 }) {
-  const accent = result.override ? 'border-[#B26A0F]' : result.provisional ? 'border-[#B26A0F]' : 'border-brass'
+  const accent = result.override ? 'border-[#97590C]' : result.provisional ? 'border-[#97590C]' : 'border-brass'
   return (
     <div className={`bg-card border-l-[3px] ${accent} border-y border-r border-border rounded-lg p-6 lg:p-7`}>
       {result.prepInadequate && (
@@ -454,7 +460,7 @@ function ResultCard({
 
       {result.override ? (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#B26A0F] font-semibold mb-3">
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">
             Outside routine surveillance
           </div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">
@@ -463,7 +469,7 @@ function ResultCard({
         </>
       ) : result.provisional ? (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#B26A0F] font-semibold mb-3">
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">
             Awaiting histology
           </div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">
@@ -474,7 +480,7 @@ function ResultCard({
             with roughly how often each type is found. The final interval is set once histopathology
             returns.
           </div>
-          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/60 mt-3 mb-1 px-0.5">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-3 mb-1 px-0.5">
             <span>Histology · typical share</span>
             <span>Interval</span>
           </div>
@@ -496,11 +502,18 @@ function ResultCard({
             </div>
           )}
           <p className="text-[11px] leading-relaxed text-foreground/65 mt-3">
-            Approximate per-polyp shares shown as ranges, anchored on a large polypectomy series and
-            layered with histology-subtype data; they shift with lesion size and with how often small
-            hyperplastic polyps are resected.{' '}
+            Approximate per-polyp shares shown as ranges; they shift with lesion size and with how
+            often small hyperplastic polyps are resected. Denominator anchored on{' '}
             <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
-              Source ↗
+              Turner 2018 ↗
+            </a>
+            ; subtype splits from{' '}
+            <a href="https://www.ncbi.nlm.nih.gov/books/NBK553180/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+              StatPearls ↗
+            </a>{' '}
+            and{' '}
+            <a href="https://www.gastrojournal.org/article/S0016-5085(19)41115-3/fulltext" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">
+              Crockett &amp; Nagtegaal 2019 ↗
             </a>
           </p>
         </>
@@ -513,7 +526,7 @@ function ResultCard({
             {result.interval}
           </div>
           {result.modality && (
-            <div className="text-[13.5px] text-foreground/60 mt-1.5">Guideline modality: {result.modality}</div>
+            <div className="text-[13.5px] text-foreground/72 mt-1.5">Guideline modality: {result.modality}</div>
           )}
         </>
       )}
@@ -521,7 +534,7 @@ function ResultCard({
       {!result.provisional && (
         <>
           <div className="mt-5 pt-4 border-t border-border">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/60 block mb-1.5">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">
               {result.override ? 'Why' : 'Driven by'}
             </span>
             <p className="text-[13.5px] leading-relaxed text-foreground/80">
@@ -531,7 +544,7 @@ function ResultCard({
           </div>
 
           <div className="mt-4">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/60 block mb-1.5">
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">
               {result.override ? 'Basis' : 'Guideline wording'}
             </span>
             <p className="text-[12.5px] leading-relaxed text-foreground/70 italic border-l-2 border-border pl-3">

@@ -24,12 +24,15 @@ export const metadata: Metadata = {
       'Enter prep, number, size, and histology; get the guideline-recommended surveillance interval with the exact rule and source. US, Canada (Ontario / Alberta / BC), Australia, and Europe. Clinician reference, not a medical device.',
     url: '/colonoscopy-surveillance',
     type: 'website',
+    siteName: 'Aescia',
+    images: [{ url: `${SITE_URL}/aescia-logo.png`, width: 512, height: 512, alt: 'Aescia' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Colonoscopy surveillance interval calculator | Aescia',
     description:
       'Free clinician tool: guideline-recommended post-polypectomy colonoscopy surveillance interval across US, Canada, Australia, and Europe, with the exact rule and source.',
+    images: [`${SITE_URL}/aescia-logo.png`],
   },
 }
 
