@@ -332,8 +332,8 @@ function computeCA(f: Findings): Result {
       c.push({ interval: 'FIT in 5 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: '1 to 2 low-risk tubular adenomas under 10 mm', quote: '"Low risk adenoma(s) — FIT — 5 years." ColonCancerCheck returns low-risk adenomas to stool screening after the INDEX colonoscopy.', source: src, notes: ['This FIT pathway applies after the index colonoscopy; after a surveillance colonoscopy the equivalent low-risk result loops at colonoscopy in 5 years, not FIT.'], sort: SORT.fiveYears, kind: 'finding' })
     }
     if (h === 'HP') {
-      if (f.proximalHp || size >= 10) {
-        c.push({ interval: '3 to 5 years', modality: 'Colonoscopy', driver: 'A large or proximal hyperplastic polyp', quote: 'ColonCancerCheck has no dedicated large-hyperplastic band; a ≥10 mm or proximal hyperplastic polyp is managed as a serrated lesion. Interval shown per the aligned USMSTF 2020 value.', source: src, notes: ['This branch is not tabulated by ColonCancerCheck; verify against local practice.'], sort: SORT.threeToFive, kind: 'finding' })
+      if (size >= 10) {
+        c.push({ interval: '3 to 5 years', modality: 'Colonoscopy', driver: 'A hyperplastic polyp 10 mm or larger', quote: 'ColonCancerCheck has no dedicated large-hyperplastic band; a ≥10 mm hyperplastic polyp is managed as a serrated lesion. Interval shown per the aligned USMSTF 2020 value.', source: src, notes: ['This branch is not tabulated by ColonCancerCheck; verify against local practice.'], sort: SORT.threeToFive, kind: 'finding' })
       } else {
         c.push({ interval: 'FIT in 10 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: 'Small distal hyperplastic polyp(s)', quote: '"Hyperplastic polyp(s) in rectum or sigmoid — FIT — 10 years."', source: src, notes: [], sort: SORT.tenYears, kind: 'finding' })
       }
@@ -364,8 +364,9 @@ function computeCA_AB(f: Findings): Result {
   const src = SRC.CA_AB
 
   if (n > 0) {
-    if (f.piece && size >= 20) {
-      c.push({ interval: '6 months', modality: 'Colonoscopy (site check)', driver: 'Piecemeal resection of a large lesion 20 mm or larger', quote: '"first repeat endoscopic assessment in 6 months. If the initial polyp was ≥20 mm, the next surveillance colonoscopy should be in 1 year."', source: src, notes: ['Then a colonoscopy at 1 year, and at 3 years thereafter if the site stays clear.'], sort: SORT.sixMonths, kind: 'finding' })
+    if (f.piece && size >= 10) {
+      const big = size >= 20
+      c.push({ interval: '6 months', modality: 'Colonoscopy (site check)', driver: `Piecemeal resection of a large non-pedunculated lesion (${big ? '20 mm or larger' : '10–19 mm'})`, quote: `"first repeat endoscopic assessment in 6 months.${big ? ' If the initial polyp was ≥20 mm, the next surveillance colonoscopy should be in 1 year.' : ' For a 10–19 mm lesion, the next surveillance colonoscopy is at 3 years.'}"`, source: src, notes: [big ? 'Then a colonoscopy at 1 year, and 3 years thereafter if the site stays clear.' : 'Then a colonoscopy at 3 years, and 5 years thereafter if the site stays clear.'], sort: SORT.sixMonths, kind: 'finding' })
     }
     if (isAdenoma(h)) {
       if (n > 10) c.push({ interval: '1 year', modality: 'Colonoscopy', driver: 'More than 10 adenomas', quote: '"colonoscopy in 1 year and consider genetic counseling."', source: src, notes: ['Consider referral for genetic counselling.'], sort: SORT.oneYear, kind: 'finding' })
@@ -537,8 +538,8 @@ function computeAU(f: Findings): Result {
       }
       c.push({ interval, modality: 'Colonoscopy', driver: advanced ? 'Advanced serrated polyp (10 mm or larger, with dysplasia, or a traditional serrated adenoma)' : 'Sessile serrated lesion(s) under 10 mm without dysplasia', quote: AU_SERRATED_Q, source: src, notes: n >= 5 ? ['5 or more serrated lesions may meet serrated-polyposis criteria.'] : [], sort, kind: 'finding' })
     } else if (h === 'HP') {
-      if (f.proximalHp || size >= 10) {
-        c.push({ interval: n <= 2 ? '3 years' : '1 year', modality: 'Colonoscopy', driver: 'A hyperplastic polyp 10 mm or larger, or proximal to the sigmoid (a clinically significant serrated polyp)', quote: 'A hyperplastic polyp ≥10 mm is a "clinically significant serrated polyp" and an "advanced serrated polyp"; ' + AU_SERRATED_Q, source: src, notes: [], sort: n <= 2 ? SORT.threeYears : SORT.oneYear, kind: 'finding' })
+      if (size >= 10) {
+        c.push({ interval: n <= 2 ? '3 years' : '1 year', modality: 'Colonoscopy', driver: 'A hyperplastic polyp 10 mm or larger (a clinically significant serrated polyp)', quote: 'A hyperplastic polyp ≥10 mm is a "clinically significant serrated polyp" and an "advanced serrated polyp"; ' + AU_SERRATED_Q, source: src, notes: [], sort: n <= 2 ? SORT.threeYears : SORT.oneYear, kind: 'finding' })
       } else {
         c.push({ interval: 'iFOBT every 2 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: 'Small distal hyperplastic polyp(s)', quote: '"Small, particularly distal, true hyperplastic polyps do not require surveillance."', source: src, notes: [], sort: SORT.tenYears, kind: 'finding' })
       }
