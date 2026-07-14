@@ -19,8 +19,11 @@ export type Hist = 'TA' | 'TVA' | 'VA' | 'SSL' | 'TSA' | 'HP' | 'CANCER'
 export type JurId = 'US' | 'CA_ON' | 'CA_AB' | 'CA_BC' | 'AU' | 'EU'
 export type ExamMode = 'index' | 'surveillance'
 // Prior-exam risk band (surveillance mode). Jurisdiction-adaptive mapping lives
-// in each compute; the UI offers these four.
-export type PriorRisk = 'normal' | 'low' | 'intermediate' | 'high'
+// in each compute; the UI offers these. 'high' is the high-risk ADENOMA track;
+// 'complex' is a prior serrated lesion, piecemeal resection, or >10 adenomas —
+// which several guidelines (notably Ontario and Alberta) leave to endoscopist
+// discretion at subsequent surveillance.
+export type PriorRisk = 'normal' | 'low' | 'intermediate' | 'high' | 'complex'
 
 export interface LesionInput {
   hist: Exclude<Hist, 'CANCER'>
@@ -278,7 +281,8 @@ function indexON(a: Agg, src: Source): Result {
   }
   if (a.hpCount > 0 && a.sslCount === 0 && a.tsaCount === 0 && a.adenomaCount === 0) {
     if (a.hpMaxSize >= 10) c.push(R({ interval: '3 to 5 years', driver: 'A hyperplastic polyp 10 mm or larger', quote: 'Managed as a serrated lesion (USMSTF-aligned; not tabulated by ColonCancerCheck).', source: src, riskYears: YRS.y35, assumption: true }))
-    else c.push(R({ interval: 'FIT in 10 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: 'Small hyperplastic polyp(s)', quote: '"Hyperplastic polyp(s) in rectum or sigmoid — FIT — 10 years."', source: src, riskYears: YRS.y10 }))
+    else if (a.anyProximalHp) c.push(R({ interval: 'FIT in 10 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: 'A small proximal (non-rectosigmoid) hyperplastic polyp', quote: 'ColonCancerCheck tabulates hyperplastic polyps in the rectum or sigmoid; a small proximal hyperplastic polyp is not separately specified — 10-year FIT is shown as a labelled fallback.', source: src, riskYears: YRS.y10, assumption: true, notes: ['Not separately specified by ColonCancerCheck; confirm against local guidance.'] }))
+    else c.push(R({ interval: 'FIT in 10 years', modality: 'Usual screening (no scheduled colonoscopy)', driver: 'Small rectosigmoid hyperplastic polyp(s)', quote: '"Hyperplastic polyp(s) in rectum or sigmoid — FIT — 10 years."', source: src, riskYears: YRS.y10 }))
   } else if (a.hpCount > 0 && a.hpMaxSize >= 10) {
     c.push(R({ interval: '3 to 5 years', driver: 'A hyperplastic polyp 10 mm or larger', quote: 'Managed as a serrated lesion (USMSTF-aligned).', source: src, riskYears: YRS.y35, assumption: true }))
   }
@@ -389,7 +393,7 @@ function indexAU(a: Agg, src: Source): Result {
     const v = advRows[band]
     return R({ interval: label(v), driver: `${cssp <= 2 ? '1 to 2' : cssp <= 4 ? '3 to 4' : '5+'} clinically significant serrated polyps${asp ? ' (advanced)' : ''}`, quote: 'Cancer Council Table 9a (clinically significant serrated polyps).', source: src, riskYears: YEARS(v) })
   }
-  if (a.hpCount > 0) return R({ interval: 'return to screening (iFOBT)', modality: 'iFOBT (NBCSP)', driver: 'Small distal hyperplastic polyp(s)', quote: '"Small, particularly distal, true hyperplastic polyps do not require surveillance."', source: src, riskYears: YRS.y10 })
+  if (a.hpCount > 0) return R({ interval: 'return to screening (iFOBT)', modality: 'iFOBT (NBCSP)', driver: 'Small hyperplastic polyp(s) under 10 mm', quote: '"Small, particularly distal, true hyperplastic polyps do not require surveillance."', source: src, riskYears: YRS.y10 })
   return R({ interval: 'return to screening (iFOBT)', modality: 'iFOBT (NBCSP)', driver: 'A normal colonoscopy', quote: 'Return to iFOBT screening under the NBCSP.', source: src, riskYears: YRS.y10 })
 }
 
@@ -417,7 +421,9 @@ function subsequent(jur: JurId, a: Agg, prior: PriorRisk, src: Source, currentId
     }
     const advCur = a.adenomaMaxSize >= 10 || a.anyVillous || a.anyHgd || (a.adenomaCount >= 5 && a.adenomaCount <= 10)
     const cur = a.adenomaCount === 0 ? 'normal' : advCur ? 'adv' : a.adenomaCount >= 3 ? '34' : '12'
-    const base = prior // 'low'(1-2) 'intermediate'(3-4) 'high'(advanced) 'normal'
+    // 'complex' prior (serrated / piecemeal / >10 adenomas) is outside Table 7's
+    // adenoma-only scope; score on the high-risk track and label the assumption.
+    const base: PriorRisk = prior === 'complex' ? 'high' : prior // 'low'(1-2) 'intermediate'(3-4) 'high'(advanced) 'normal'
     let v: [string, number]
     if (base === 'high') {
       v = cur === 'adv' ? ['3 years', YRS.y3] : cur === '34' ? ['3 to 5 years', YRS.y35] : ['5 years', YRS.y5] // normal or 1-2 -> 5y
@@ -427,7 +433,12 @@ function subsequent(jur: JurId, a: Agg, prior: PriorRisk, src: Source, currentId
       // low or normal baseline
       v = cur === 'adv' ? ['3 years', YRS.y3] : cur === '34' ? ['3 to 5 years', YRS.y35] : cur === '12' ? ['7 to 10 years', YRS.y710] : ['10 years', YRS.y10]
     }
-    return R({ interval: v[0], driver: `Second surveillance — prior ${prior === 'high' ? 'high-risk' : prior} baseline, current ${cur === 'normal' ? 'normal' : cur === 'adv' ? 'advanced' : cur === '34' ? '3–4 adenomas' : '1–2 adenomas'}`, quote: 'USMSTF Table 7 (second surveillance by baseline × first-surveillance finding).', source: src, riskYears: v[1] })
+    const usRes = R({ interval: v[0], driver: `Second surveillance — prior ${prior === 'high' ? 'high-risk' : prior === 'complex' ? 'serrated / piecemeal / >10-adenoma' : prior} baseline, current ${cur === 'normal' ? 'normal' : cur === 'adv' ? 'advanced' : cur === '34' ? '3–4 adenomas' : '1–2 adenomas'}`, quote: 'USMSTF Table 7 (second surveillance by baseline × first-surveillance finding).', source: src, riskYears: v[1] })
+    if (prior === 'complex') {
+      usRes.assumption = true
+      usRes.notes = [...usRes.notes, 'USMSTF Table 7 covers prior adenomas; a prior serrated lesion, piecemeal resection, or >10 adenomas is scored on the high-risk track as a labelled assumption — confirm against the guideline.']
+    }
+    return usRes
   }
 
   if (jur === 'EU') {
@@ -448,7 +459,7 @@ function subsequent(jur: JurId, a: Agg, prior: PriorRisk, src: Source, currentId
   if (jur === 'AU') {
     // Tables D/E/F, keyed by prior risk (LOW/INT/HIGH/HIGHEST) x current adenoma count/features. Use assumption mapping.
     // Map prior: normal/low -> LOW, intermediate -> INTERMEDIATE, high -> HIGH (HIGHEST folded into HIGH).
-    const risk = prior === 'high' ? 'HIGH' : prior === 'intermediate' ? 'INTERMEDIATE' : 'LOW'
+    const risk = prior === 'high' || prior === 'complex' ? 'HIGH' : prior === 'intermediate' ? 'INTERMEDIATE' : 'LOW'
     const col = auAdenomaCol(a)
     // Table D by first-exam risk band and current adenoma count band
     const tableD: Record<string, Record<number, string[]>> = {
@@ -467,6 +478,11 @@ function subsequent(jur: JurId, a: Agg, prior: PriorRisk, src: Source, currentId
 
   // ON and AB: coded for high-risk-adenoma track; scope-gate serrated/piecemeal/discretion
   if (jur === 'CA_ON') {
+    // Prior serrated / piecemeal / >10 adenomas: ColonCancerCheck gives no
+    // subsequent interval (insufficient evidence) -> endoscopist discretion.
+    if (prior === 'complex') {
+      return R({ interval: 'Endoscopist discretion', modality: null, driver: 'A prior serrated lesion, piecemeal resection, or >10 adenomas', quote: '"… insufficient evidence to make specific recommendations on subsequent surveillance intervals." (ColonCancerCheck)', source: src, riskYears: YRS.y3, discretion: true, notes: ['ColonCancerCheck sets subsequent intervals only for the adenoma high-risk track; serrated, piecemeal, and >10-adenoma follow-up is left to the endoscopist.'] })
+    }
     if (a.sslCount + a.tsaCount + (a.hpMaxSize >= 10 ? a.hpCount : 0) > 0 || a.anyPiecemeal || a.adenomaCount > 10) {
       return R({ interval: 'Endoscopist discretion', modality: null, driver: 'Serrated, >10-adenoma, or piecemeal at subsequent surveillance', quote: '"… insufficient evidence to make specific recommendations on subsequent surveillance intervals." (ColonCancerCheck)', source: src, riskYears: YRS.y3, discretion: true })
     }
@@ -476,6 +492,11 @@ function subsequent(jur: JurId, a: Agg, prior: PriorRisk, src: Source, currentId
   }
 
   if (jur === 'CA_AB') {
+    // Prior serrated / piecemeal / >10 adenomas: ACRCSP codes the subsequent
+    // ladder only for the adenoma track -> endoscopist discretion.
+    if (prior === 'complex') {
+      return R({ interval: 'Endoscopist discretion', modality: null, driver: 'A prior serrated lesion, piecemeal resection, or >10 adenomas', quote: 'ACRCSP 2023 specifies subsequent intervals for the adenoma high-risk ladder; serrated, piecemeal, and >10-adenoma follow-up is not tabulated.', source: src, riskYears: YRS.y3, discretion: true })
+    }
     if (a.sslCount + a.tsaCount + (a.hpMaxSize >= 10 ? a.hpCount : 0) > 0 && a.adenomaCount > 0) {
       const r = { ...currentIdx }
       r.notes = [...r.notes, 'Alberta has no synchronous adenoma+serrated subsequent rule; shorter per-type interval shown (labelled assumption).']

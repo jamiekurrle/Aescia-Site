@@ -11,42 +11,51 @@ const SITE_URL = 'https://www.aesciahealth.com'
 // sitemap/nav/llms entries) to launch.
 const GO_PUBLIC = false
 
-export const JUR_META: Record<JurId, { country: string; guideline: string; title: string; desc: string }> = {
+// `title` is appended with " | Aescia" by the root layout's title template, so
+// it must stay short. Descriptions are kept under ~155 chars to avoid SERP
+// truncation and avoid "exact" (some results are discretionary or assumptions).
+export const JUR_META: Record<JurId, { country: string; guideline: string; lang: string; title: string; desc: string }> = {
   US: {
     country: 'United States',
     guideline: 'USMSTF 2020',
-    title: 'Colonoscopy surveillance interval calculator — US (USMSTF 2020)',
-    desc: 'Free clinician tool: the guideline-recommended post-polypectomy colonoscopy surveillance interval under the US Multi-Society Task Force (USMSTF 2020), from polyp number, size, and histology. Supports multiple lesion types and first or subsequent surveillance.',
+    lang: 'en-US',
+    title: 'US Colonoscopy Surveillance Calculator (USMSTF 2020)',
+    desc: 'Free clinician tool for US (USMSTF 2020) post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
   CA_ON: {
     country: 'Canada — Ontario',
     guideline: 'ColonCancerCheck',
-    title: 'Colonoscopy surveillance interval — Ontario (ColonCancerCheck)',
-    desc: 'Free clinician tool for Ontario ColonCancerCheck post-polypectomy colonoscopy surveillance intervals, from polyp number, size, and histology, with the exact rule and source.',
+    lang: 'en-CA',
+    title: 'Ontario Colonoscopy Surveillance Calculator',
+    desc: 'Free clinician tool for Ontario ColonCancerCheck post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
   CA_AB: {
     country: 'Canada — Alberta',
     guideline: 'ACRCSP 2023',
-    title: 'Colonoscopy surveillance interval — Alberta (ACRCSP 2023)',
-    desc: 'Free clinician tool for the Alberta ACRCSP 2023 post-polypectomy colonoscopy surveillance intervals, from polyp number, size, and histology, with the exact rule and source.',
+    lang: 'en-CA',
+    title: 'Alberta Colonoscopy Surveillance Calculator (ACRCSP)',
+    desc: 'Free clinician tool for Alberta ACRCSP 2023 post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
   CA_BC: {
     country: 'Canada — British Columbia',
     guideline: 'BCGuidelines 2022',
-    title: 'Colonoscopy surveillance interval — British Columbia (BCGuidelines)',
-    desc: 'Free clinician tool for the British Columbia (BCGuidelines 2022) post-polypectomy colonoscopy surveillance intervals, using the combined precancerous-lesion count, with the exact rule and source.',
+    lang: 'en-CA',
+    title: 'BC Colonoscopy Surveillance Calculator (BCGuidelines)',
+    desc: 'Free clinician tool for British Columbia (BCGuidelines 2022) post-polypectomy colonoscopy surveillance intervals using the combined precancerous-lesion count.',
   },
   AU: {
     country: 'Australia',
     guideline: 'NHMRC / Cancer Council',
-    title: 'Colonoscopy surveillance interval calculator — Australia (NHMRC / Cancer Council)',
-    desc: 'Free clinician tool for Australian (NHMRC / Cancer Council) post-polypectomy colonoscopy surveillance intervals, from polyp number, size, and histology, with the exact rule and source.',
+    lang: 'en-AU',
+    title: 'Australia Colonoscopy Surveillance Calculator (NHMRC)',
+    desc: 'Free clinician tool for Australian (NHMRC / Cancer Council) post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
   EU: {
     country: 'Europe',
     guideline: 'ESGE 2020',
-    title: 'Colonoscopy surveillance interval calculator — Europe (ESGE 2020)',
-    desc: 'Free clinician tool for European (ESGE 2020) post-polypectomy colonoscopy surveillance intervals, from polyp number, size, and histology, with the exact rule and source.',
+    lang: 'en-GB',
+    title: 'Europe Colonoscopy Surveillance Calculator (ESGE 2020)',
+    desc: 'Free clinician tool for European (ESGE 2020) post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
 }
 
@@ -63,14 +72,14 @@ export function makeMetadata(jur: JurId, canonicalPath: string): Metadata {
       url: canonicalPath,
       type: 'website',
       siteName: 'Aescia',
-      // TODO(go-public): swap in a purpose-made 1200x627 social card.
-      images: [{ url: `${SITE_URL}/aescia-logo.png`, width: 512, height: 512, alt: 'Colonoscopy surveillance interval calculator — Aescia' }],
+      images: [{ url: `${SITE_URL}/colonoscopy-surveillance-og`, width: 1200, height: 630, alt: 'Colonoscopy surveillance interval calculator — Aescia' }],
+      locale: m.lang.replace('-', '_'),
     },
     twitter: {
       card: 'summary_large_image',
       title: m.title,
       description: m.desc,
-      images: [`${SITE_URL}/aescia-logo.png`],
+      images: [`${SITE_URL}/colonoscopy-surveillance-og`],
     },
   }
 }
@@ -92,6 +101,7 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur:
     datePublished: '2026-07-12',
     dateModified: SITE_LAST_UPDATED,
     isMedicalPage: true,
+    inLanguage: m.lang,
     breadcrumb: breadcrumbs,
   })
   const appSchema = {
@@ -103,7 +113,7 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur:
     operatingSystem: 'Web',
     browserRequirements: 'Requires JavaScript',
     isAccessibleForFree: true,
-    inLanguage: 'en',
+    inLanguage: m.lang,
     url,
     datePublished: '2026-07-12',
     dateModified: SITE_LAST_UPDATED,

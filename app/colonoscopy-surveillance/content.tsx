@@ -16,9 +16,10 @@ import {
 import { FAQ_ITEMS } from './faq'
 import { JUR_TO_SLUG } from './slugs'
 
-type HistOpt = LesionInput['hist'] | 'AWAIT'
+type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
   ['AWAIT', 'Awaiting histology'],
+  ['NONE', 'No polyps'],
   ['TA', 'Tubular adenoma'],
   ['TVA', 'Tubulovillous'],
   ['VA', 'Villous'],
@@ -44,7 +45,8 @@ const PRIOR: [PriorRisk, string][] = [
   ['normal', 'Normal (no polyps)'],
   ['low', 'Low-risk (1–2 small adenomas)'],
   ['intermediate', '3–4 adenomas'],
-  ['high', 'High-risk / advanced'],
+  ['high', 'High-risk adenoma(s)'],
+  ['complex', 'Serrated / piecemeal / >10 adenomas'],
 ]
 
 let rowSeq = 0
@@ -76,9 +78,37 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const [malignant, setMalignant] = useState(false)
   const [special, setSpecial] = useState(false)
   const [bbps, setBbps] = useState<[number, number, number]>([3, 3, 3])
-  const [copied, setCopied] = useState(false)
+  const [copyState, setCopyState] = useState<'idle' | 'ok' | 'err'>('idle')
 
   const active = JURISDICTIONS.find((j) => j.id === jur)!
+
+  // Hydrate from a shared link's query string on first load, BEFORE the
+  // jurisdiction effect below rewrites the path to the bare guideline URL.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const p = new URLSearchParams(window.location.search)
+    if (![...p.keys()].length) return
+    const toInt = (s: string | null, max: number) => Math.max(0, Math.min(max, Math.round(Number(s) || 0)))
+    const m = p.get('m')
+    if (m === 's') setMode('surveillance')
+    else if (m === 'i') setMode('index')
+    const pr = p.get('pr')
+    if (pr && ['normal', 'low', 'intermediate', 'high', 'complex'].includes(pr)) setPriorRisk(pr as PriorRisk)
+    const b = p.get('b')
+    if (b && /^[0-3]{3}$/.test(b)) setBbps([+b[0], +b[1], +b[2]] as [number, number, number])
+    setMalignant(p.get('mal') === '1')
+    setSpecial(p.get('sp') === '1')
+    const l = p.get('l')
+    if (l) {
+      const valid = new Set(HISTOLOGY.map(([k]) => k as string))
+      const parsed = l.split(',').map((tok) => {
+        const [hist, count, size, flags = '000'] = tok.split(':')
+        return { key: (rowSeq += 1), hist: hist as HistOpt, count: toInt(count, 40), size: toInt(size, 90), hgd: flags[0] === '1', piece: flags[1] === '1', proximal: flags[2] === '1' }
+      }).filter((r) => valid.has(r.hist))
+      if (parsed.length) setRows(parsed)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Remember last jurisdiction, and reflect it in the URL path for bookmarking.
   useEffect(() => {
@@ -93,7 +123,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   }, [jur])
 
   const lesions: LesionInput[] = rows
-    .filter((r) => r.count > 0)
+    .filter((r) => r.count > 0 && r.hist !== 'NONE')
     .map((r) => ({ hist: (r.hist === 'AWAIT' ? 'TA' : r.hist) as LesionInput['hist'], count: r.count, size: r.size, hgd: r.hgd, piece: r.piece, proximal: r.proximal }))
 
   const awaiting = rows.length === 1 && rows[0].hist === 'AWAIT' && rows[0].count > 0 && !malignant && !special
@@ -112,12 +142,53 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
   const setRow = (key: number, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch } : r)))
 
-  const copyLink = async () => {
+  // Encode the full scenario (guideline in the path; mode, prior risk, prep,
+  // scope flags, and every lesion in the query) so a copied link reproduces it.
+  const buildShareUrl = () => {
+    const slug = JUR_TO_SLUG[jur]
+    const path = jur === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${slug}`
+    const p = new URLSearchParams()
+    p.set('m', mode === 'surveillance' ? 's' : 'i')
+    if (mode === 'surveillance') p.set('pr', priorRisk)
+    p.set('b', bbps.join(''))
+    if (malignant) p.set('mal', '1')
+    if (special) p.set('sp', '1')
+    p.set('l', rows.map((r) => `${r.hist}:${r.count}:${r.size}:${r.hgd ? 1 : 0}${r.piece ? 1 : 0}${r.proximal ? 1 : 0}`).join(','))
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.aesciahealth.com'
+    return `${origin}${path}?${p.toString()}`
+  }
+
+  const writeClipboard = async (text: string): Promise<boolean> => {
     try {
-      await navigator.clipboard.writeText(window.location.href)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text)
+        return true
+      }
     } catch {}
+    // Fallback for browsers / in-app webviews that block the async clipboard API.
+    try {
+      const ta = document.createElement('textarea')
+      ta.value = text
+      ta.setAttribute('readonly', '')
+      ta.style.position = 'fixed'
+      ta.style.top = '0'
+      ta.style.opacity = '0'
+      document.body.appendChild(ta)
+      ta.focus()
+      ta.select()
+      const ok = document.execCommand('copy')
+      document.body.removeChild(ta)
+      return ok
+    } catch {
+      return false
+    }
+  }
+
+  const copyLink = async () => {
+    const url = buildShareUrl()
+    const ok = await writeClipboard(url)
+    setCopyState(ok ? 'ok' : 'err')
+    setTimeout(() => setCopyState('idle'), 3000)
   }
 
   return (
@@ -125,17 +196,18 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
       {/* Hero ------------------------------------------------------------ */}
       <section className="pt-32 pb-8 lg:pt-40 lg:pb-10 px-6 lg:px-10 border-b border-border">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-start justify-between gap-4 mb-6">
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 mb-6">
             <div className="flex items-center gap-3">
               <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Clinician reference tool</span>
               <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
             </div>
             <button
               onClick={copyLink}
-              className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] px-3 py-2 border border-border bg-secondary text-foreground/72 hover:border-accent transition-colors"
-              title="Copy this guideline's link to bookmark or share"
+              aria-label="Copy a link to this scenario to bookmark or share"
+              className={`max-w-full font-mono text-[11px] uppercase tracking-[0.12em] px-3 py-2 border bg-secondary transition-colors ${copyState === 'err' ? 'border-[#B53A2C] text-[#B53A2C]' : copyState === 'ok' ? 'border-[#1F6B47] text-[#1F6B47]' : 'border-border text-foreground/72 hover:border-accent'}`}
+              title="Copy this scenario's link to bookmark or share"
             >
-              {copied ? 'Link copied ✓' : 'Bookmark / copy link'}
+              {copyState === 'ok' ? 'Link copied ✓' : copyState === 'err' ? 'Copy failed — select the URL' : 'Bookmark / copy link'}
             </button>
           </div>
           <h1 className="font-display text-[32px] sm:text-[44px] lg:text-[54px] leading-[1.06] tracking-[-0.03em] mb-5" style={{ fontVariationSettings: "'opsz' 144" }}>
@@ -287,22 +359,26 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
                           )
                         })}
                       </div>
-                      <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                        <label className="flex items-center gap-2 text-[13px] text-foreground/72">
-                          Number
-                          <input type="number" min={0} max={40} value={r.count} onChange={(e) => setRow(r.key, { count: clamp(e.target.value, 40) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
-                        </label>
-                        <label className="flex items-center gap-2 text-[13px] text-foreground/72">
-                          Largest
-                          <input type="number" min={0} max={90} value={r.size} onChange={(e) => setRow(r.key, { size: clamp(e.target.value, 90) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
-                          <span className="text-foreground/72">mm</span>
-                        </label>
-                        <button onClick={() => setRow(r.key, { hgd: !r.hgd })} aria-pressed={r.hgd} className={chip(r.hgd, false)}>HGD</button>
-                        <button onClick={() => setRow(r.key, { piece: !r.piece })} aria-pressed={r.piece} className={chip(r.piece, false)}>Piecemeal</button>
-                        {r.hist === 'HP' && (
-                          <button onClick={() => setRow(r.key, { proximal: !r.proximal })} aria-pressed={r.proximal} className={chip(r.proximal, false)}>Proximal</button>
-                        )}
-                      </div>
+                      {r.hist === 'NONE' ? (
+                        <p className="text-[12.5px] leading-relaxed text-foreground/72">No lesion at this exam — scored as a normal colonoscopy.</p>
+                      ) : (
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                          <label className="flex items-center gap-2 text-[13px] text-foreground/72">
+                            Number
+                            <input type="number" min={0} max={40} value={r.count} onChange={(e) => setRow(r.key, { count: clamp(e.target.value, 40) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
+                          </label>
+                          <label className="flex items-center gap-2 text-[13px] text-foreground/72">
+                            Largest
+                            <input type="number" min={0} max={90} value={r.size} onChange={(e) => setRow(r.key, { size: clamp(e.target.value, 90) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
+                            <span className="text-foreground/72">mm</span>
+                          </label>
+                          <button onClick={() => setRow(r.key, { hgd: !r.hgd })} aria-pressed={r.hgd} className={chip(r.hgd, false)}>HGD</button>
+                          <button onClick={() => setRow(r.key, { piece: !r.piece })} aria-pressed={r.piece} className={chip(r.piece, false)}>Piecemeal</button>
+                          {r.hist === 'HP' && (
+                            <button onClick={() => setRow(r.key, { proximal: !r.proximal })} aria-pressed={r.proximal} className={chip(r.proximal, false)}>Proximal</button>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -397,7 +473,7 @@ function ResultCard({
 }) {
   const accent = result.override || result.discretion ? 'border-[#97590C]' : awaiting ? 'border-[#97590C]' : 'border-brass'
   return (
-    <div className={`bg-card border-l-[3px] ${accent} border-y border-r border-border rounded-lg p-6 lg:p-7`}>
+    <div role="status" aria-live="polite" className={`bg-card border-l-[3px] ${accent} border-y border-r border-border rounded-lg p-6 lg:p-7`}>
       {result.prepInadequate && !awaiting && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
           <strong>Bowel prep inadequate.</strong> The colon may not be fully cleared — the interval is capped and the exam should be repeated.

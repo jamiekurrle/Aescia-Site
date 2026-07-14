@@ -9,7 +9,7 @@ export type FaqItem = { q: string; a: string }
 export const FAQ_ITEMS: FaqItem[] = [
   {
     q: 'How soon should you repeat a colonoscopy after polyp removal?',
-    a: 'It depends on the number, size, and histology of the polyps removed and the guideline you follow. A normal colonoscopy is usually repeated in 10 years; 1–2 small tubular adenomas in 7–10 years under the US (USMSTF 2020) guideline; and advanced findings — an adenoma 10 mm or larger, villous histology, or high-grade dysplasia — in 3 years. This calculator computes the exact interval for the US, Canadian (Ontario, Alberta, and BC), Australian, and European guidelines.',
+    a: 'It depends on the number, size, and histology of the polyps removed and the guideline you follow. A normal colonoscopy is usually repeated in 10 years; 1–2 small tubular adenomas in 7–10 years under the US (USMSTF 2020) guideline; and advanced findings — an adenoma 10 mm or larger, villous histology, or high-grade dysplasia — in 3 years. This calculator gives the guideline-based interval, or discretionary guidance where a guideline defers to the endoscopist, for the US, Canadian (Ontario, Alberta, and BC), Australian, and European guidelines.',
   },
   {
     q: 'What is the surveillance interval for 1–2 small (<10 mm) tubular adenomas?',
@@ -45,6 +45,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: 'Is this colonoscopy surveillance calculator free?',
-    a: 'Yes. It is a free educational reference for health professionals that reproduces published post-polypectomy surveillance guidelines and shows the exact rule and source behind every interval. It is not medical advice and not a medical device, and it stores no patient information.',
+    a: 'Yes. It is a free educational reference for health professionals that reproduces published post-polypectomy surveillance guidelines and shows the guideline rule and source behind every interval or discretionary result. It is not medical advice and not a medical device, and it stores no patient information.',
   },
 ]
