@@ -63,13 +63,14 @@ export function makeMetadata(jur: JurId, canonicalPath: string): Metadata {
       url: canonicalPath,
       type: 'website',
       siteName: 'Aescia',
-      images: [{ url: `${SITE_URL}/colonoscopy-surveillance-og.png`, width: 1200, height: 627, alt: 'Colonoscopy surveillance interval calculator — Aescia' }],
+      // TODO(go-public): swap in a purpose-made 1200x627 social card.
+      images: [{ url: `${SITE_URL}/aescia-logo.png`, width: 512, height: 512, alt: 'Colonoscopy surveillance interval calculator — Aescia' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: m.title,
       description: m.desc,
-      images: [`${SITE_URL}/colonoscopy-surveillance-og.png`],
+      images: [`${SITE_URL}/aescia-logo.png`],
     },
   }
 }
