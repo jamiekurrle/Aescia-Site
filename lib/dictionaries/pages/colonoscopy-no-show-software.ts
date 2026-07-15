@@ -8,7 +8,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': 'Why this is different',
     'noshow.why.title': 'A colonoscopy no-show is usually a prep failure, not a calendar failure.',
     'noshow.why.p1': 'A missed clinic appointment is a calendar problem: the patient forgot or could not come. A missed colonoscopy slot is usually a preparation problem. The patient did not start the bowel prep, took it wrong, was never told to stop a GLP-1 medication, or did not know what to do about a blood thinner, so they cancel late or simply do not arrive.',
-    'noshow.why.p2': 'That is why a generic appointment-reminder tool moves the number less than expected for endoscopy. Reminding someone of a slot they are not prepared for does not make them prepared. In the published literature, inadequate bowel preparation alone affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024, n=358,257), and each cancelled or repeated slot loses an ASC facility fee in the range of US$989 to US$1,034 (Allen 2023, CMS ambulatory surgery center fee for CPT 45378 to 45385).',
+    'noshow.why.p2': 'That is why a generic appointment-reminder tool moves the number less than expected for endoscopy. Reminding someone of a slot they are not prepared for does not make them prepared. In the published literature, inadequate bowel preparation is a common problem in its own right, driven by identifiable and addressable risk factors (Beran 2024, n=358,257), and each cancelled or repeated slot loses an ASC facility fee in the range of US$989 to US$1,034 (Wang 2023, Transparency in Coverage, commercial ambulatory surgery center fees for CPT 45378, 45380 and 45385, n=17,052 ASC fees).',
 
     'noshow.how.eyebrow': 'How it works',
     'noshow.how.title': 'How Aescia reduces endoscopy no-shows, step by step.',
@@ -57,7 +57,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': 'Pourquoi c\'est différent',
     'noshow.why.title': 'Une absence à une coloscopie est généralement un échec de préparation, pas un échec de calendrier.',
     'noshow.why.p1': 'Un rendez-vous de clinique manqué est un problème de calendrier : le patient a oublié ou n\'a pas pu venir. Un créneau de coloscopie manqué est généralement un problème de préparation. Le patient n\'a pas commencé la préparation intestinale, l\'a mal prise, n\'a jamais été informé d\'arrêter un médicament GLP-1, ou ne savait pas quoi faire au sujet d\'un anticoagulant ; il annule donc tardivement ou ne se présente tout simplement pas.',
-    'noshow.why.p2': 'C\'est pourquoi un outil de rappel de rendez-vous générique fait bouger le chiffre moins que prévu pour l\'endoscopie. Rappeler à quelqu\'un un créneau pour lequel il n\'est pas préparé ne le rend pas préparé. Dans la littérature publiée, une préparation intestinale inadéquate à elle seule touche environ 20 à 25 pour cent des coloscopies au départ (Beran 2024, n=358,257), et chaque créneau annulé ou répété fait perdre des frais d\'établissement d\'ASC de l\'ordre de US$989 à US$1,034 (Allen 2023, frais CMS de centre de chirurgie ambulatoire pour les CPT 45378 à 45385).',
+    'noshow.why.p2': 'C\'est pourquoi un outil de rappel de rendez-vous générique fait bouger le chiffre moins que prévu pour l\'endoscopie. Rappeler à quelqu\'un un créneau pour lequel il n\'est pas préparé ne le rend pas préparé. Dans la littérature publiée, une préparation intestinale inadéquate est à elle seule un problème courant, porté par des facteurs de risque identifiables et adressables (Beran 2024, n=358,257), et chaque créneau annulé ou répété fait perdre des frais d\'établissement d\'ASC de l\'ordre de US$989 à US$1,034 (Wang 2023, Transparency in Coverage, frais commerciaux de centre de chirurgie ambulatoire pour les CPT 45378, 45380 et 45385, n=17,052 ASC fees).',
 
     'noshow.how.eyebrow': 'Comment ça fonctionne',
     'noshow.how.title': 'Comment Aescia réduit les absences en endoscopie, étape par étape.',
@@ -106,7 +106,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': 'Por qué esto es diferente',
     'noshow.why.title': 'Una ausencia a una colonoscopia suele ser una falla de preparación, no una falla de calendario.',
     'noshow.why.p1': 'Una cita de clínica perdida es un problema de calendario: el paciente lo olvidó o no pudo venir. Un turno de colonoscopia perdido suele ser un problema de preparación. El paciente no comenzó la preparación intestinal, la tomó mal, nunca le dijeron que suspendiera un medicamento GLP-1, o no sabía qué hacer con un anticoagulante, así que cancela tarde o simplemente no llega.',
-    'noshow.why.p2': 'Por eso una herramienta genérica de recordatorio de citas mueve la cifra menos de lo esperado en endoscopia. Recordarle a alguien un turno para el que no está preparado no lo prepara. En la literatura publicada, una preparación intestinal inadecuada por sí sola afecta a aproximadamente entre el 20 y el 25 por ciento de las colonoscopias en la línea de base (Beran 2024, n=358,257), y cada turno cancelado o repetido pierde una tarifa de instalación de ASC en el rango de US$989 a US$1,034 (Allen 2023, tarifa de CMS de centro de cirugía ambulatoria para los CPT 45378 a 45385).',
+    'noshow.why.p2': 'Por eso una herramienta genérica de recordatorio de citas mueve la cifra menos de lo esperado en endoscopia. Recordarle a alguien un turno para el que no está preparado no lo prepara. En la literatura publicada, una preparación intestinal inadecuada es por sí sola un problema frecuente, impulsado por factores de riesgo identificables y abordables (Beran 2024, n=358,257), y cada turno cancelado o repetido pierde una tarifa de instalación de ASC en el rango de US$989 a US$1,034 (Wang 2023, Transparency in Coverage, tarifas comerciales de centro de cirugía ambulatoria para los CPT 45378, 45380 y 45385, n=17,052 ASC fees).',
 
     'noshow.how.eyebrow': 'Cómo funciona',
     'noshow.how.title': 'Cómo Aescia reduce las ausencias en endoscopia, paso a paso.',
@@ -155,7 +155,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': '为什么这有所不同',
     'noshow.why.title': '结肠镜爽约通常是准备失败，而非日程失败。',
     'noshow.why.p1': '错过门诊预约是日程问题：患者忘记了或无法前来。错过结肠镜时段通常是准备问题。患者没有开始肠道准备、用法错误、从未被告知停用 GLP-1 药物，或者不知道如何处理抗凝血药，于是临时取消或干脆不来。',
-    'noshow.why.p2': '这就是为什么通用的预约提醒工具对内镜的改善幅度低于预期。提醒某人一个他尚未准备好的时段，并不会让他做好准备。在已发表的文献中，仅肠道准备不充分一项在基线时就影响约 20 至 25% 的结肠镜检查（Beran 2024，n=358,257），而每个被取消或重做的时段都会损失一笔 ASC 设施费用，金额介于 US$989 至 US$1,034 之间（Allen 2023，CMS 门诊手术中心针对 CPT 45378 至 45385 的费用）。',
+    'noshow.why.p2': '这就是为什么通用的预约提醒工具对内镜的改善幅度低于预期。提醒某人一个他尚未准备好的时段，并不会让他做好准备。在已发表的文献中，仅肠道准备不充分一项本身就是一个常见问题，由可识别、可干预的风险因素所驱动（Beran 2024，n=358,257），而每个被取消或重做的时段都会损失一笔 ASC 设施费用，金额介于 US$989 至 US$1,034 之间（Wang 2023, Transparency in Coverage，门诊手术中心针对 CPT 45378、45380 和 45385 的商业费用，n=17,052 ASC fees）。',
 
     'noshow.how.eyebrow': '工作原理',
     'noshow.how.title': 'Aescia 如何逐步减少内镜爽约。',
@@ -204,7 +204,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': 'لماذا يختلف هذا',
     'noshow.why.title': 'تغيّب مريض عن تنظير القولون هو عادةً فشل في التحضير، وليس فشلاً في الجدولة.',
     'noshow.why.p1': 'فوات موعد عيادة هو مشكلة جدولة: نسي المريض أو لم يستطع الحضور. أما فوات موعد تنظير القولون فهو عادةً مشكلة تحضير. لم يبدأ المريض تحضير الأمعاء، أو تناوله بشكل خاطئ، أو لم يُبلَّغ قط بإيقاف دواء GLP-1، أو لم يعرف ما يفعله بشأن مميّع الدم، فيُلغي في وقت متأخر أو ببساطة لا يحضر.',
-    'noshow.why.p2': 'لهذا السبب تُحرّك أداة التذكير العامة بالمواعيد الرقم بأقل مما هو متوقع في التنظير. فتذكير شخص بموعد لم يستعدّ له لا يجعله مستعدًّا. في الأدبيات المنشورة، يؤثّر تحضير الأمعاء غير الكافي وحده على نحو 20 إلى 25 بالمئة من عمليات تنظير القولون عند خط الأساس (Beran 2024، n=358,257)، وكل موعد مُلغى أو مُعاد يفقد رسم منشأة لمركز جراحة نهارية يتراوح بين US$989 وUS$1,034 (Allen 2023، رسم CMS لمركز الجراحة النهارية للرموز CPT 45378 إلى 45385).',
+    'noshow.why.p2': 'لهذا السبب تُحرّك أداة التذكير العامة بالمواعيد الرقم بأقل مما هو متوقع في التنظير. فتذكير شخص بموعد لم يستعدّ له لا يجعله مستعدًّا. في الأدبيات المنشورة، يُعدّ تحضير الأمعاء غير الكافي وحده مشكلة شائعة، تقودها عوامل خطر قابلة للتحديد والمعالجة (Beran 2024، n=358,257)، وكل موعد مُلغى أو مُعاد يفقد رسم منشأة لمركز جراحة نهارية يتراوح بين US$989 وUS$1,034 (Wang 2023, Transparency in Coverage، رسوم تجارية لمركز الجراحة النهارية للرموز CPT 45378 و45380 و45385، n=17,052 ASC fees).',
 
     'noshow.how.eyebrow': 'كيف يعمل',
     'noshow.how.title': 'كيف تقلّل Aescia حالات التغيب عن التنظير، خطوة بخطوة.',
@@ -253,7 +253,7 @@ export const dict: Record<string, Record<string, string>> = {
     'noshow.why.eyebrow': 'Vì sao điều này khác biệt',
     'noshow.why.title': 'Vắng mặt nội soi đại tràng thường là thất bại trong chuẩn bị, không phải thất bại về lịch hẹn.',
     'noshow.why.p1': 'Lỡ một cuộc hẹn phòng khám là vấn đề lịch hẹn: bệnh nhân quên hoặc không thể đến. Lỡ một suất nội soi đại tràng thường là vấn đề chuẩn bị. Bệnh nhân không bắt đầu làm sạch ruột, dùng sai cách, chưa từng được dặn ngừng thuốc GLP-1, hoặc không biết phải làm gì với thuốc làm loãng máu, nên họ hủy muộn hoặc đơn giản là không đến.',
-    'noshow.why.p2': 'Đó là lý do một công cụ nhắc lịch hẹn thông thường làm thay đổi con số ít hơn mong đợi đối với nội soi. Nhắc ai đó về một suất mà họ chưa chuẩn bị cho nó thì không khiến họ sẵn sàng. Trong tài liệu đã công bố, riêng việc làm sạch ruột không đầy đủ đã ảnh hưởng đến khoảng 20 đến 25 phần trăm số ca nội soi đại tràng ở mức nền (Beran 2024, n=358,257), và mỗi suất bị hủy hoặc phải làm lại làm mất một khoản phí cơ sở ASC trong khoảng từ US$989 đến US$1,034 (Allen 2023, mức phí CMS của trung tâm phẫu thuật trong ngày cho CPT 45378 đến 45385).',
+    'noshow.why.p2': 'Đó là lý do một công cụ nhắc lịch hẹn thông thường làm thay đổi con số ít hơn mong đợi đối với nội soi. Nhắc ai đó về một suất mà họ chưa chuẩn bị cho nó thì không khiến họ sẵn sàng. Trong tài liệu đã công bố, riêng việc làm sạch ruột không đầy đủ đã là một vấn đề thường gặp, xuất phát từ các yếu tố nguy cơ có thể nhận diện và can thiệp được (Beran 2024, n=358,257), và mỗi suất bị hủy hoặc phải làm lại làm mất một khoản phí cơ sở ASC trong khoảng từ US$989 đến US$1,034 (Wang 2023, Transparency in Coverage, mức phí thương mại của trung tâm phẫu thuật trong ngày cho CPT 45378, 45380 và 45385, n=17,052 ASC fees).',
 
     'noshow.how.eyebrow': 'Cách thức hoạt động',
     'noshow.how.title': 'Cách Aescia giảm vắng mặt nội soi, từng bước một.',

@@ -5,7 +5,7 @@ import ClinicsContent from './clinics-content'
 export const metadata: Metadata = {
   title: 'Aescia for Clinics: endoscopy prep and no-show reduction for US ASCs',
   description:
-    'Workflow platform for US ambulatory surgery centres and specialty clinics. Pre-procedure prep pathways, GLP-1 peri-procedural handling, call deflection, surveillance and recall. Interactive ROI calculator anchored to Hopkins 2020, Allen 2023, Mehta 2021, with Beran 2024 on inadequate-prep risk factors (USD $82K saved over 16 weeks on a prep-focused intervention). Not a medical device.',
+    'Prep pathways, GLP-1 handling and call deflection for US ambulatory surgery centres. ROI calculator anchored to Wang 2023 ASC fees, Beran 2024 risk factors, and prep-coaching trials.',
   alternates: { canonical: '/clinics' },
   openGraph: {
     title: 'Aescia for Clinics | ROI calculator and ASC workflow',

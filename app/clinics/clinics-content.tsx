@@ -335,7 +335,7 @@ export default function ClinicsContent() {
               <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Published category evidence</h3>
               <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80">
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>Prep coaching, SMS reminders, and structured pre-procedure contact have a published evidence base.</span></li>
-                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>The figures under the calculator are the load-bearing ones: Mehta (prep-intervention ROI), Allen (cost per cancelled slot), Beran (inadequate prep is common and addressable), Lebwohl (downstream miss rate).</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>The figures under the calculator are the load-bearing ones: Wang (facility fee per slot), Beran (inadequate prep is common and addressable), Lebwohl (downstream miss rate).</span></li>
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-accent shrink-0" aria-hidden="true" /><span>The calculator counts only late cancellations and no-shows, and credits backfill only on slots with about a day&apos;s notice.</span></li>
               </ul>
             </div>
