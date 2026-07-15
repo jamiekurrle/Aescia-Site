@@ -13,7 +13,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: 'What is the surveillance interval for 1–2 small (<10 mm) tubular adenomas?',
-    a: 'US (USMSTF 2020): 7–10 years. Australia (NHMRC / Cancer Council): 10 years, or return to iFOBT screening after 4 years. Canada–Ontario (ColonCancerCheck): FIT in 5 years. Canada–Alberta (ACRCSP 2023): FIT in 5 years. Canada–British Columbia: 10-year colonoscopy. Europe (ESGE 2020): return to routine organised screening (programme-dependent, typically 2-yearly FIT).',
+    a: 'US (USMSTF 2020): 7–10 years. Australia (NHMRC / Cancer Council): 10 years, or return to iFOBT screening after 4 years. Canada–Ontario (ColonCancerCheck): FIT in 5 years. Canada–Alberta (ACRCSP): FIT in 5 years. Canada–British Columbia: 10-year colonoscopy. Europe (ESGE 2020): return to screening. ESGE returns these patients to the screening programme without naming an interval or a test, so the cadence is whatever the local programme runs.',
   },
   {
     q: 'When should a colonoscopy be repeated after 3–4 adenomas?',
@@ -32,16 +32,16 @@ export const FAQ_ITEMS: FaqItem[] = [
     a: 'For 1–2 small (<10 mm) sessile serrated lesions without dysplasia: 5–10 years in the US, and 5 years in Australia and Canada (Ontario and Alberta); Europe returns them to screening. A sessile serrated lesion 10 mm or larger, or with dysplasia, and any traditional serrated adenoma, is surveilled at 3 years.',
   },
   {
-    q: 'What is the follow-up after piecemeal removal of a large (≥20 mm) polyp?',
-    a: 'An early repeat colonoscopy to check the resection site — at 6 months in the US, Australian, and Canadian guidelines, and 3–6 months in Europe — because piecemeal resection carries a risk of residual tissue. Standard surveillance intervals resume once the site is confirmed clear.',
+    q: 'What is the follow-up after piecemeal removal of a large polyp?',
+    a: 'An early repeat colonoscopy to check the resection site, because piecemeal resection carries a risk of residual tissue. The size threshold differs. The US (USMSTF 2020) sets 6 months for a piecemeal-resected adenoma or sessile serrated lesion 20 mm or larger, and Europe (ESGE 2020) sets 3 to 6 months at the same 20 mm threshold. Alberta sets 6 months from 10 mm. Ontario, British Columbia, and Australia call for an early site check after piecemeal removal of a large lesion without publishing a millimetre cut-off, so what counts as large is a clinical judgement.',
   },
   {
     q: 'What should happen if the bowel preparation was inadequate?',
-    a: 'The colonoscopy should be repeated, usually within 1 year, because an inadequate preparation may have missed lesions and the surveillance-interval rules all assume an adequate examination that cleared the colon.',
+    a: 'Every one of these guidelines states that its intervals assume an adequate examination, so an inadequate preparation puts the exam outside the published rules rather than into a different rule. Most of them publish no repeat interval at all. Cancer Council Australia is the exception, offering a practice point that where the preparation is inadequate, repeat colonoscopy should normally be offered within 12 months. Otherwise the timing of the repeat is a clinical decision.',
   },
   {
     q: 'Do colonoscopy surveillance guidelines differ between countries?',
-    a: 'Yes, substantially. The US (USMSTF 2020) uses graded intervals. Europe (ESGE 2020) is binary — either 3-year surveillance or return to screening — and does not treat villous histology or 3–4 adenomas as triggers. Canada has no maintained national guideline: Ontario (ColonCancerCheck), Alberta (ACRCSP 2023), and British Columbia each publish their own, and BC follows the European model. Australia uses discrete 10/5/3/1-year intervals. This calculator shows each guideline side by side.',
+    a: 'Yes, substantially. The US (USMSTF 2020) uses graded intervals. Europe (ESGE 2020) is binary — either 3-year surveillance or return to screening — and does not treat villous histology or 3–4 adenomas as triggers. Canada has no maintained national guideline: Ontario (ColonCancerCheck), Alberta (ACRCSP), and British Columbia each publish their own, and BC follows the European model. Australia uses discrete 10/5/3/1-year intervals. This calculator shows each guideline side by side.',
   },
   {
     q: 'Is this colonoscopy surveillance calculator free?',
