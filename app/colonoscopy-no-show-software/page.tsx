@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Reduce colonoscopy no-shows at an ASC | Aescia for Clinics',
     description:
-      'Pre-procedure pathway software that closes the prep, medication, and confirmation gaps that drive endoscopy no-shows. Anchored to Beran 2024, Allen 2023, Mehta 2021.',
+      'Pre-procedure pathway software that closes the prep, medication, and confirmation gaps that drive endoscopy no-shows. Anchored to Beran 2024, Wang 2023, and the prep-coaching trials.',
     url: '/colonoscopy-no-show-software',
   },
 }

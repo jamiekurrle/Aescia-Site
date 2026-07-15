@@ -47,7 +47,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': 'What it is worth',
     'backfill.worth.title': 'What one recovered slot a week adds up to.',
-    'backfill.worth.p1': 'One recovered colonoscopy slot a week is about 50 a year. At an ambulatory surgery center facility fee of roughly US$989 to US$1,034 per slot (Allen 2023), that is about US$50,000 a year in recovered facility revenue, before professional and pathology fees.',
+    'backfill.worth.p1': 'One recovered colonoscopy slot a week is about 50 a year. At an ambulatory surgery center facility fee of roughly US$989 to US$1,034 per slot (Wang 2023, Transparency in Coverage, n=17,052 ASC fees), that is about US$50,000 a year in recovered facility revenue, before professional and pathology fees.',
     'backfill.worth.p2.pre': 'That figure is the published facility-fee number applied to a recovered slot, not a result Aescia has measured at a customer. Aescia is pre-first-customer. Put your own scope volume, cancellation rate, and facility fee into the ',
     'backfill.worth.p2.link': 'ROI calculator on the Clinics page',
     'backfill.worth.p2.post': ' to see your own range.',
@@ -112,7 +112,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': 'Ce que cela vaut',
     'backfill.worth.title': 'Ce que représente un créneau récupéré par semaine au total.',
-    'backfill.worth.p1': 'Un créneau de coloscopie récupéré par semaine représente environ 50 par an. À un frais d’établissement d’un centre de chirurgie ambulatoire d’environ 989 à 1 034 US$ par créneau (Allen 2023), cela représente environ 50 000 US$ par an de revenus d’établissement récupérés, avant les honoraires professionnels et de pathologie.',
+    'backfill.worth.p1': 'Un créneau de coloscopie récupéré par semaine représente environ 50 par an. À un frais d’établissement d’un centre de chirurgie ambulatoire d’environ 989 à 1 034 US$ par créneau (Wang 2023, Transparency in Coverage, n=17,052 ASC fees), cela représente environ 50 000 US$ par an de revenus d’établissement récupérés, avant les honoraires professionnels et de pathologie.',
     'backfill.worth.p2.pre': 'Ce chiffre est le frais d’établissement publié appliqué à un créneau récupéré, et non un résultat qu’Aescia a mesuré chez un client. Aescia est en phase de pré-premier client. Entrez votre propre volume d’examens, taux d’annulation et frais d’établissement dans le ',
     'backfill.worth.p2.link': 'calculateur de retour sur investissement de la page Cliniques',
     'backfill.worth.p2.post': ' pour voir votre propre fourchette.',
@@ -177,7 +177,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': 'Cuánto vale',
     'backfill.worth.title': 'A cuánto asciende un espacio recuperado por semana.',
-    'backfill.worth.p1': 'Un espacio de colonoscopia recuperado por semana son unos 50 al año. A una tarifa de instalación de un centro de cirugía ambulatoria de aproximadamente US$989 a US$1,034 por espacio (Allen 2023), eso son unos US$50,000 al año en ingresos de instalación recuperados, antes de los honorarios profesionales y de patología.',
+    'backfill.worth.p1': 'Un espacio de colonoscopia recuperado por semana son unos 50 al año. A una tarifa de instalación de un centro de cirugía ambulatoria de aproximadamente US$989 a US$1,034 por espacio (Wang 2023, Transparency in Coverage, n=17,052 ASC fees), eso son unos US$50,000 al año en ingresos de instalación recuperados, antes de los honorarios profesionales y de patología.',
     'backfill.worth.p2.pre': 'Esa cifra es la tarifa de instalación publicada aplicada a un espacio recuperado, no un resultado que Aescia haya medido en un cliente. Aescia está en etapa previa al primer cliente. Ponga su propio volumen de exámenes, tasa de cancelación y tarifa de instalación en la ',
     'backfill.worth.p2.link': 'calculadora de retorno de inversión de la página Clínicas',
     'backfill.worth.p2.post': ' para ver su propio rango.',
@@ -242,7 +242,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': '它的价值',
     'backfill.worth.title': '每周恢复一个名额累计起来有多少。',
-    'backfill.worth.p1': '每周恢复一个结肠镜名额，一年约为50个。按门诊手术中心每个名额约989至1,034美元的机构费用计算（Allen 2023），这相当于每年约50,000美元的恢复机构收入，尚未计入专业费用和病理费用。',
+    'backfill.worth.p1': '每周恢复一个结肠镜名额，一年约为50个。按门诊手术中心每个名额约989至1,034美元的机构费用计算（Wang 2023, Transparency in Coverage，n=17,052 ASC fees），这相当于每年约50,000美元的恢复机构收入，尚未计入专业费用和病理费用。',
     'backfill.worth.p2.pre': '该数字是把已发布的机构费用数额套用到一个恢复名额上得出的，并非 Aescia 在某客户处实测到的结果。Aescia 尚处于首位客户之前的阶段。把你自己的检查量、取消率和机构费用输入',
     'backfill.worth.p2.link': '诊所页面上的投资回报率计算器',
     'backfill.worth.p2.post': '，即可看到你自己的区间。',
@@ -307,7 +307,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': 'ما قيمته',
     'backfill.worth.title': 'إلى كم يصل موعد مسترد واحد في الأسبوع.',
-    'backfill.worth.p1': 'موعد تنظير قولون مسترد واحد في الأسبوع يعادل نحو 50 في السنة. وبرسم مرفقي لمركز جراحة نهارية يقارب 989 إلى 1,034 دولاراً أمريكياً للموعد الواحد (Allen 2023)، فإن ذلك يعادل نحو 50,000 دولار أمريكي سنوياً من إيرادات مرفقية مستردة، قبل الأتعاب المهنية وأتعاب علم الأمراض.',
+    'backfill.worth.p1': 'موعد تنظير قولون مسترد واحد في الأسبوع يعادل نحو 50 في السنة. وبرسم مرفقي لمركز جراحة نهارية يقارب 989 إلى 1,034 دولاراً أمريكياً للموعد الواحد (Wang 2023, Transparency in Coverage، n=17,052 ASC fees)، فإن ذلك يعادل نحو 50,000 دولار أمريكي سنوياً من إيرادات مرفقية مستردة، قبل الأتعاب المهنية وأتعاب علم الأمراض.',
     'backfill.worth.p2.pre': 'هذا الرقم هو الرسم المرفقي المنشور مطبَّقاً على موعد مسترد، وليس نتيجة قاستها Aescia لدى عميل. Aescia في مرحلة ما قبل أول عميل. أدخلوا حجم مناظيركم ومعدّل الإلغاء والرسم المرفقي الخاص بكم في ',
     'backfill.worth.p2.link': 'حاسبة العائد على الاستثمار في صفحة العيادات',
     'backfill.worth.p2.post': ' لرؤية نطاقكم الخاص.',
@@ -372,7 +372,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'backfill.worth.eyebrow': 'Giá trị của nó',
     'backfill.worth.title': 'Một suất được khôi phục mỗi tuần cộng dồn lại là bao nhiêu.',
-    'backfill.worth.p1': 'Một suất nội soi đại tràng được khôi phục mỗi tuần là khoảng 50 suất một năm. Với phí cơ sở của trung tâm phẫu thuật ngoại trú khoảng 989 đến 1.034 US$ mỗi suất (Allen 2023), đó là khoảng 50.000 US$ một năm doanh thu cơ sở được khôi phục, trước phí chuyên môn và phí giải phẫu bệnh.',
+    'backfill.worth.p1': 'Một suất nội soi đại tràng được khôi phục mỗi tuần là khoảng 50 suất một năm. Với phí cơ sở của trung tâm phẫu thuật ngoại trú khoảng 989 đến 1.034 US$ mỗi suất (Wang 2023, Transparency in Coverage, n=17,052 ASC fees), đó là khoảng 50.000 US$ một năm doanh thu cơ sở được khôi phục, trước phí chuyên môn và phí giải phẫu bệnh.',
     'backfill.worth.p2.pre': 'Con số đó là phí cơ sở đã công bố áp dụng cho một suất được khôi phục, không phải kết quả mà Aescia đã đo lường tại một khách hàng. Aescia đang ở giai đoạn trước khách hàng đầu tiên. Hãy nhập khối lượng nội soi, tỷ lệ hủy hẹn và phí cơ sở của riêng bạn vào ',
     'backfill.worth.p2.link': 'công cụ tính lợi tức đầu tư trên trang Phòng khám',
     'backfill.worth.p2.post': ' để xem khoảng giá trị của riêng bạn.',
