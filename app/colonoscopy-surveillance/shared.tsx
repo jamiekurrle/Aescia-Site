@@ -11,6 +11,11 @@ const SITE_URL = 'https://www.aesciahealth.com'
 // sitemap/nav/llms entries) to launch.
 const GO_PUBLIC = false
 
+// Date the Aescia clinical team last reviewed the rules against the published
+// guidelines. Bump this ONLY when a real review happens — it is not the build
+// date, because a site deploy is not a clinical review.
+const LAST_CLINICAL_REVIEW = '2026-07-14'
+
 // `title` is appended with " | Aescia" by the root layout's title template, so
 // it must stay short. Descriptions are kept under ~155 chars to avoid SERP
 // truncation and avoid "exact" (some results are discretionary or assumptions).
@@ -135,7 +140,8 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur:
       'Shows the guideline rule and source behind every interval',
     ],
     reviewedBy: { '@type': 'Organization', name: 'Aescia clinical team' },
-    dateReviewed: SITE_LAST_UPDATED,
+    dateReviewed: LAST_CLINICAL_REVIEW,
+    maintainer: { '@id': `${SITE_URL}#organization` },
     provider: { '@id': `${SITE_URL}#organization` },
     publisher: { '@id': `${SITE_URL}#organization` },
     isPartOf: { '@id': `${SITE_URL}#website` },

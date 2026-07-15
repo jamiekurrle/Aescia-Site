@@ -407,9 +407,10 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               replace a clinical decision.</strong>{' '}
               Confirm every interval against the cited guideline for the individual patient. The
               calculation runs in your browser; the findings you enter are not transmitted or stored.
-              Reviewed by the Aescia clinical team.{' '}
-              <a href="mailto:contact@aesciahealth.com?subject=Colonoscopy%20surveillance%20calculator%20feedback" className="text-accent hover:underline">
-                Spotted a problem? Email us.
+              The Aescia clinical team reviews this tool periodically against the published guidelines
+              and updates it when they change.{' '}
+              <a href="mailto:contact@aesciahealth.com?subject=Colonoscopy%20surveillance%20calculator%20error%20report" className="text-accent hover:underline">
+                If you notice an error, please tell us.
               </a>
             </p>
           </div>
@@ -436,7 +437,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
 
       <section className="px-6 lg:px-10 py-14">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[13px] leading-relaxed text-foreground/72 mb-3">A free reference from Aescia for the endoscopy community, reviewed by the Aescia clinical team.</p>
+          <p className="text-[13px] leading-relaxed text-foreground/72 mb-3">A free reference from Aescia for the endoscopy community, reviewed and periodically updated by the Aescia clinical team.</p>
           <div className="bg-secondary/50 border border-border rounded-lg p-5 mb-6">
             <p className="text-[13px] leading-relaxed text-foreground/72">
               Aescia builds pre-procedure and surveillance-recall software for endoscopy clinics — if
@@ -446,8 +447,9 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
           </div>
           <p className="text-[12px] leading-relaxed text-foreground/72">
             Reference tool for health professionals. Not medical advice. Not a medical device. Does not
-            make or replace clinical decisions. Guidelines are updated periodically; verify against the
-            current version before acting. Questions or corrections:{' '}
+            make or replace clinical decisions. We review this tool periodically against the source
+            guidelines and update it when they change, but guidelines are revised without notice; verify
+            against the current version before acting. If you notice an error, please tell us at{' '}
             <a href="mailto:contact@aesciahealth.com" className="text-accent hover:underline">contact@aesciahealth.com</a>.
           </p>
         </div>

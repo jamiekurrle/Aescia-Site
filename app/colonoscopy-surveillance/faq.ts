@@ -47,4 +47,8 @@ export const FAQ_ITEMS: FaqItem[] = [
     q: 'Is this colonoscopy surveillance calculator free?',
     a: 'Yes. It is a free educational reference for health professionals that reproduces published post-polypectomy surveillance guidelines and shows the guideline rule and source behind every interval or discretionary result. It is not medical advice and not a medical device, and it stores no patient information.',
   },
+  {
+    q: 'How current is this calculator, and how do I report an error?',
+    a: 'The Aescia clinical team reviews the rules periodically against the published guidelines and updates the tool when they change. Every result shows the rule it applied and links the source guideline, so you can check it directly. Guidelines are revised without notice, so verify against the current version before acting. If you notice an error, email contact@aesciahealth.com.',
+  },
 ]
