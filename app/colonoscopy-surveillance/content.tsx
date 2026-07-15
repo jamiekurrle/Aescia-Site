@@ -7,8 +7,6 @@ import {
   prepAdequate,
   JURISDICTIONS,
   type JurId,
-  type ExamMode,
-  type PriorRisk,
   type LesionInput,
   type Jurisdiction,
   type Result,
@@ -41,14 +39,6 @@ const COUNTRIES: { country: Jurisdiction['country']; label: string; guideline?: 
   { country: 'AU', label: 'Australia', guideline: 'NHMRC / Cancer Council', default: 'AU' },
   { country: 'EU', label: 'Europe', guideline: 'ESGE 2020', default: 'EU' },
 ]
-const PRIOR: [PriorRisk, string][] = [
-  ['normal', 'Normal (no polyps)'],
-  ['low', 'Low-risk (1–2 small adenomas)'],
-  ['intermediate', '3–4 adenomas'],
-  ['high', 'High-risk adenoma(s)'],
-  ['complex', 'Serrated / piecemeal / >10 adenomas'],
-]
-
 let rowSeq = 0
 interface Row {
   key: number
@@ -72,8 +62,6 @@ function chip(active: boolean, mono = true) {
 
 export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const [jur, setJur] = useState<JurId>(initialJur)
-  const [mode, setMode] = useState<ExamMode>('index')
-  const [priorRisk, setPriorRisk] = useState<PriorRisk>('high')
   const [rows, setRows] = useState<Row[]>([newRow('AWAIT')])
   const [malignant, setMalignant] = useState(false)
   const [special, setSpecial] = useState(false)
@@ -89,11 +77,6 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     const p = new URLSearchParams(window.location.search)
     if (![...p.keys()].length) return
     const toInt = (s: string | null, max: number) => Math.max(0, Math.min(max, Math.round(Number(s) || 0)))
-    const m = p.get('m')
-    if (m === 's') setMode('surveillance')
-    else if (m === 'i') setMode('index')
-    const pr = p.get('pr')
-    if (pr && ['normal', 'low', 'intermediate', 'high', 'complex'].includes(pr)) setPriorRisk(pr as PriorRisk)
     const b = p.get('b')
     if (b && /^[0-3]{3}$/.test(b)) setBbps([+b[0], +b[1], +b[2]] as [number, number, number])
     setMalignant(p.get('mal') === '1')
@@ -127,12 +110,12 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     .map((r) => ({ hist: (r.hist === 'AWAIT' ? 'TA' : r.hist) as LesionInput['hist'], count: r.count, size: r.size, hgd: r.hgd, piece: r.piece, proximal: r.proximal }))
 
   const awaiting = rows.length === 1 && rows[0].hist === 'AWAIT' && rows[0].count > 0 && !malignant && !special
-  const result = compute({ jur, mode, lesions, priorRisk, malignant, special, bbps })
+  const result = compute({ jur, lesions, malignant, special, bbps })
 
   // Awaiting single-lesion breakdown (per possible histology)
   const breakdown = awaiting
     ? AWAIT_TYPES.map((t) => {
-        const r = compute({ jur, mode, lesions: [{ hist: t.hist, count: rows[0].count, size: rows[0].size, hgd: rows[0].hgd, piece: rows[0].piece, proximal: false }], priorRisk, malignant: false, special: false, bbps })
+        const r = compute({ jur, lesions: [{ hist: t.hist, count: rows[0].count, size: rows[0].size, hgd: rows[0].hgd, piece: rows[0].piece, proximal: false }], malignant: false, special: false, bbps })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
     : []
@@ -142,14 +125,12 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
   const setRow = (key: number, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch } : r)))
 
-  // Encode the full scenario (guideline in the path; mode, prior risk, prep,
-  // scope flags, and every lesion in the query) so a copied link reproduces it.
+  // Encode the full scenario (guideline in the path; prep, scope flags, and
+  // every lesion in the query) so a copied link reproduces it.
   const buildShareUrl = () => {
     const slug = JUR_TO_SLUG[jur]
     const path = jur === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${slug}`
     const p = new URLSearchParams()
-    p.set('m', mode === 'surveillance' ? 's' : 'i')
-    if (mode === 'surveillance') p.set('pr', priorRisk)
     p.set('b', bbps.join(''))
     if (malignant) p.set('mal', '1')
     if (special) p.set('sp', '1')
@@ -214,13 +195,13 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             Colonoscopy surveillance interval
           </h1>
           <p className="text-[16px] lg:text-[18px] leading-relaxed text-foreground/72 max-w-2xl">
-            Enter the polyps removed and this tool implements the published post-polypectomy
-            surveillance rule for the guideline you select, showing the rule and its source. Supports
-            multiple lesion types and first or subsequent surveillance.
+            Enter the polyps removed at an index (baseline) colonoscopy and this tool reproduces the
+            published post-polypectomy surveillance rule for the guideline you select, with the rule,
+            its wording, and its source. Where the guideline states no interval for the findings, the
+            tool says so and leaves the decision with you. Supports multiple lesion types.
           </p>
           <p className="text-[13px] leading-relaxed text-foreground/72 max-w-2xl mt-3">
-            For health professionals. A reference that reproduces published guidelines and labels any
-            implementation assumption — not personal medical advice. Patients should discuss their
+            For health professionals, not personal medical advice. Patients should discuss their
             interval with their doctor.
           </p>
         </div>
@@ -266,9 +247,9 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
                 <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Before you start — scope</div>
                 <p className="text-[12px] leading-relaxed text-[#5E4310] mb-3">
-                  For sporadic post-polypectomy surveillance in average-risk adults, assuming complete
-                  resection and an adequate exam. Tick if any of these apply — the result changes to a
-                  referral:
+                  For sporadic post-polypectomy surveillance after an index (baseline) colonoscopy in
+                  average-risk adults, assuming complete resection. Tick if any of these apply. Every
+                  one of these guidelines places them outside its own scope, and the result says so:
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <button onClick={() => setMalignant((v) => !v)} aria-pressed={malignant} className={chip(malignant, false)}>
@@ -278,31 +259,6 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
                     IBD / hereditary / FHx CRC
                   </button>
                 </div>
-              </div>
-
-              {/* Exam mode */}
-              <div className="mb-6">
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/72 mb-3">This colonoscopy is</div>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  <button onClick={() => setMode('index')} aria-pressed={mode === 'index'} className={chip(mode === 'index', false)}>
-                    Index (baseline)
-                  </button>
-                  <button onClick={() => setMode('surveillance')} aria-pressed={mode === 'surveillance'} className={chip(mode === 'surveillance', false)}>
-                    A surveillance follow-up
-                  </button>
-                </div>
-                {mode === 'surveillance' && (
-                  <div className="mt-2">
-                    <div className="text-[12px] text-foreground/72 mb-2">Risk category at the previous colonoscopy</div>
-                    <div className="flex flex-wrap gap-2">
-                      {PRIOR.map(([k, label]) => (
-                        <button key={k} onClick={() => setPriorRisk(k)} aria-pressed={priorRisk === k} className={chip(priorRisk === k, false)}>
-                          {label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
 
               {/* Bowel prep */}
@@ -400,9 +356,11 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
           <div className="mt-8 bg-secondary/60 border border-border rounded-lg p-5 lg:p-6">
             <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/72 mb-2">How to read this</div>
             <p className="text-[13px] leading-relaxed text-foreground/72">
-              An educational reference for health professionals that implements published surveillance
-              guidelines and shows the rule and source behind each interval; where a guideline is
-              silent, the result is labelled as an implementation assumption. It is{' '}
+              An educational reference for health professionals. It reproduces the published
+              surveillance rule for an index (baseline) colonoscopy and shows the rule, the guideline's
+              own wording, and where that wording is printed. Every interval it shows is a row a
+              guideline publishes. Where the selected guideline states no interval for the findings
+              entered, the result reports that and the decision stays with the clinician. It is{' '}
               <strong className="text-foreground">not medical advice, not a medical device, and does not make or
               replace a clinical decision.</strong>{' '}
               Confirm every interval against the cited guideline for the individual patient. The
@@ -473,12 +431,18 @@ function ResultCard({
   sourceUrl: string
   largeLesion: boolean
 }) {
-  const accent = result.override || result.discretion ? 'border-[#97590C]' : awaiting ? 'border-[#97590C]' : 'border-brass'
+  // The guideline itself stops short of an interval: out of its scope, declined,
+  // or simply not stated. Amber marks those, an exam outside the guideline's
+  // stated preconditions, and the awaiting-histology holding state.
+  const stopsShort = result.override || result.discretion || result.notSpecified
+  const accent = stopsShort || result.prepInadequate || awaiting ? 'border-[#97590C]' : 'border-brass'
   return (
     <div role="status" aria-live="polite" className={`bg-card border-l-[3px] ${accent} border-y border-r border-border rounded-lg p-6 lg:p-7`}>
       {result.prepInadequate && !awaiting && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
-          <strong>Bowel prep inadequate.</strong> The colon may not be fully cleared — the interval is capped and the exam should be repeated.
+          <strong>Bowel preparation inadequate.</strong> The intervals this guideline publishes assume
+          an adequate examination, and this exam falls outside that assumption. The guideline's own
+          precondition is quoted below.
         </div>
       )}
 
@@ -510,14 +474,17 @@ function ResultCard({
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Endoscopist discretion</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          <div className="text-[13px] text-foreground/72 mt-2">The guideline does not specify a fixed interval for this case.</div>
+          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">This guideline considered these findings and declined to state an interval. Its reasoning is below. The interval is a clinical decision.</div>
+        </>
+      ) : result.notSpecified ? (
+        <>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Not specified by this guideline</div>
+          <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
+          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">This guideline publishes no interval for these findings. Its own wording on the point is below, and the interval is a clinical decision.</div>
         </>
       ) : (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3 flex items-center gap-2 flex-wrap">
-            Guideline-recommended interval
-            {result.assumption && <span className="font-mono text-[9.5px] uppercase tracking-[0.06em] text-[#8A5A17] bg-[#FBF3E3] border border-[#EAD9B0] rounded-full px-2 py-0.5">implementation assumption</span>}
-          </div>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3">Guideline-recommended interval</div>
           <div className="font-display text-[30px] lg:text-[34px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
           {result.modality && <div className="text-[13.5px] text-foreground/72 mt-1.5">Guideline modality: {result.modality}</div>}
         </>
@@ -526,13 +493,14 @@ function ResultCard({
       {!awaiting && (
         <>
           <div className="mt-5 pt-4 border-t border-border">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{result.override ? 'Why' : 'Driven by'}</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{stopsShort ? 'Why' : 'Driven by'}</span>
             <p className="text-[13.5px] leading-relaxed text-foreground/80">{result.driver}.</p>
           </div>
           {result.quote && (
             <div className="mt-4">
               <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{result.override ? 'Basis' : 'Guideline wording'}</span>
               <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{result.quote}</p>
+              {result.location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{result.location}</p>}
             </div>
           )}
           {result.notes.length > 0 && (
