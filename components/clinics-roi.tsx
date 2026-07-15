@@ -22,9 +22,11 @@ function useRoiT() {
 // ---------------------------------------------------------------------------
 // Aescia for Clinics — interactive ROI calculator.
 // Honest ranges (conservative / expected / potential), every assumption
-// visible inline, no manufactured urgency. Each effect size traces to the
-// prep-coaching and SMS-reminder literature cited on /clinics (Mehta 2021,
-// Allen 2023, Lebwohl 2011).
+// visible inline, no manufactured urgency. Each effect size traces to a named,
+// verified source: Guo 2016 / Tian 2021 / Faveri 2025 / Deng 2014 (prep coaching),
+// Li 2022 / Lam 2020 / Seoane 2020 (no-show), Gaucher 2016 / Keswani 2020 /
+// El Bizri 2021 (late cancellation), Wang 2023 (facility fee), Beran 2024
+// (inadequate-prep risk factors), Cooper 2013 (surveillance non-return).
 //
 // Two slot-recovery levers act on LATE cancellations (about a day's notice),
 // which are the fillable pool: PREVENTION reduces them, and prep-aware BACKFILL
@@ -42,8 +44,24 @@ function useRoiT() {
 // as text below the calculator as well.
 const ASSUMPTIONS = {
   // Relative reduction in LATE cancellations (about a day's notice) from prep coaching,
-  // logistics confirmation and reminders.
-  cancelReduction: { conservative: 0.2, expected: 0.35, better: 0.5 },
+  // logistics confirmation and reminders. Anchored on the three null point estimates from the
+  // trials that measured late cancellation directly:
+  //   Gaucher 2016 (AMBUPROG, PLoS One 11(2):e0147194, randomised, n=3,900, 11 ambulatory
+  //     surgery units): 5.6% vs 5.8%, adjusted OR 0.91 (95% CI 0.65-1.29). PMID 26829478.
+  //   Keswani 2020 (Endosc Int Open 8(3):E401-E406, randomised, n=830, US): 17.7% vs 21.4%,
+  //     OR 0.8 (95% CI 0.6-1.1). PMID 32118113.
+  //   El Bizri 2021 (PLoS One 16(3):e0248679, meta-analysis, 10 randomised trials): OR 0.96
+  //     (95% CI 0.68-1.35), I2=0%. PMID 33735320.
+  // Conservative is 0 (the point estimates are null); expected and better sit inside all three CIs.
+  cancelReduction: { conservative: 0, expected: 0.10, better: 0.20 },
+  // Relative reduction in no-shows. Li 2022 (Int J Colorectal Dis 37(4):815-822, meta-analysis,
+  // 4 randomised trials): non-attendance RR 0.74 (95% CI 0.56-0.99) = 26% reduction, range
+  // 1-44%. PMID 35192000. The expected band matches that point estimate. Corroborated by
+  // Lam 2020 (J Gastroenterol Hepatol 36(4):1044-1050, randomised, n=2,225, Hong Kong; 11.9%
+  // to 8.9%, p=0.022; PMID 32803820) and Seoane 2020 (World J Gastroenterol 26(47):7568-7583,
+  // randomised, n=1,484, Spain; 14.3% to 8.4% with a nurse education call; PMID 33384555).
+  // Both US trials are null: Mahmud 2021 (JAMA Netw Open 4(1):e2034553, randomised, n=753;
+  // PMID 33492374) and Keswani 2020 (n=830), so US transfer stays pilot-to-prove.
   noShowReduction: { conservative: 0.15, expected: 0.25, better: 0.4 },
   // Aescia-achieved backfill rate on LATE cancellations (SOC baseline ~40%). The lever
   // credits only the INCREMENTAL lift over the site's current rate. Pilot-to-prove.
@@ -65,6 +83,9 @@ const ASSUMPTIONS = {
   // consume a future slot. Shown as an ADDITIVE pool, separate from the cancellation/no-show headline.
   inadequatePrepReduction: { conservative: 0.25, expected: 0.4, better: 0.5 }, // relative reduction in inadequate
   // prep from coaching/navigation/SMS (Guo 2016 GIE; Tian 2021 JMIR; Faveri 2025 J Surg Res).
+  // Deng 2014 (J Med Syst 39(1):169, randomised, n=1,786, sedation GI endoscopy centre, West China
+  // Hospital) is the endoscopy-centre anchor for the expected 0.4: same-day cancellation for
+  // inadequate preparation fell 8.0% to 4.8%, p<0.001, a 40% reduction. PMID 25476268.
   prepRepeatFraction: 0.3, // share of inadequate preps that consume a repeat/aborted slot. GIQuIC 31.9%
   // recommended-within-1yr (Calderwood 2022 GIE) x VA 59.2% completed (Wongjarupong 2024 Fed Pract) = 0.19 floor;
   // 0.30 default also captures aborts and later/sooner-than-recommended repeats.
@@ -93,7 +114,7 @@ const DEFAULTS: Defaults = {
   // combined late-cancel + no-show default is 8%, matching the ASGE GI Operations Benchmarking combined
   // no-show/cancellation metric (~5.6–8.45%; the survey reports the two as one field). Late-cancel typical 3–8%.
   noShowRatePct: 5, // paired with lateCancelRatePct so the combined rate = 8% (ASGE combined benchmark)
-  facilityFeeUsd: 1011, // Allen 2023 midpoint; recovered revenue (gross facility fee), not margin
+  facilityFeeUsd: 1011, // Wang 2023 midpoint; recovered revenue (gross facility fee), not margin
   endoscopistFeeUsd: 400, // reasonable commercial professional fee per colonoscopy. Medicare pays ~$220–300
   // (CPT 45378 ~$218 / 45385 ~$296 at the 2026 $33.40 conversion factor); commercial runs ~$300–500. $400
   // against the commercial facility default keeps the facility:professional split near 2.5:1 (normal commercial).

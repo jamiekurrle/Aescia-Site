@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Reduce the inadequate bowel prep rate at an ASC with software',
   description:
-    'Inadequate bowel preparation affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024, n=358,257) and drives repeat procedures, missed adenomas, and lost capacity. Aescia for Clinics delivers clinician-authored, timed, coached prep pathways to reduce that rate. Pre-first-customer; not a medical device.',
+    'Inadequate bowel preparation is common, with addressable risk factors (Beran 2024, n=358,257). Aescia for Clinics delivers clinician-authored, timed, coached prep pathways. Not a medical device.',
   alternates: { canonical: '/bowel-prep-software' },
   openGraph: {
     title: 'Reduce inadequate bowel prep at an ASC | Aescia for Clinics',

@@ -15,7 +15,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': 'Economics',
     'credfacts.fact3.title': 'Run your own numbers on /clinics.',
-    'credfacts.fact3.body': 'Interactive ROI calculator with conservative, expected, and better-case bands anchored to Beran 2024 (n=358,257), Allen 2023 ASC facility fees, and Mehta 2021 intervention outcomes. No point estimates. Assumptions are visible.',
+    'credfacts.fact3.body': 'Interactive ROI calculator with conservative, expected, and better-case bands. Prep-coaching effect sizes from Guo 2016, Tian 2021 and Faveri 2025; ASC facility fees from Wang 2023, Transparency in Coverage ($989–$1,034, n=17,052 ASC fees); inadequate-prep risk factors from Beran 2024 (n=358,257); surveillance non-return from Cooper 2013. No point estimates. Assumptions are visible.',
     'credfacts.fact3.cta': 'Open the calculator',
 
     'credfacts.fact4.eyebrow': 'First customers',
@@ -39,7 +39,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': 'Économie',
     'credfacts.fact3.title': 'Faites vos propres calculs sur /clinics.',
-    'credfacts.fact3.body': 'Calculateur de ROI interactif avec des fourchettes conservatrice, attendue et plus favorable, ancrées à Beran 2024 (n=358,257), aux frais d\'établissement ASC d\'Allen 2023 et aux résultats d\'intervention de Mehta 2021. Aucune estimation ponctuelle. Les hypothèses sont visibles.',
+    'credfacts.fact3.body': 'Calculateur de ROI interactif avec des fourchettes conservatrice, attendue et plus favorable. Tailles d\'effet de l\'accompagnement à la préparation : Guo 2016, Tian 2021 et Faveri 2025 ; frais d\'établissement ASC : Wang 2023, Transparency in Coverage ($989–$1,034, n=17,052 ASC fees) ; facteurs de risque de préparation inadéquate : Beran 2024 (n=358,257) ; non-retour en surveillance : Cooper 2013. Aucune estimation ponctuelle. Les hypothèses sont visibles.',
     'credfacts.fact3.cta': 'Ouvrir le calculateur',
 
     'credfacts.fact4.eyebrow': 'Premiers clients',
@@ -63,7 +63,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': 'Economía',
     'credfacts.fact3.title': 'Calcule sus propios números en /clinics.',
-    'credfacts.fact3.body': 'Calculadora de ROI interactiva con bandas conservadora, esperada y de mejor caso, ancladas a Beran 2024 (n=358,257), las tarifas de instalación de ASC de Allen 2023 y los resultados de la intervención de Mehta 2021. Sin estimaciones puntuales. Los supuestos son visibles.',
+    'credfacts.fact3.body': 'Calculadora de ROI interactiva con bandas conservadora, esperada y de mejor caso. Tamaños de efecto del acompañamiento en la preparación: Guo 2016, Tian 2021 y Faveri 2025; tarifas de instalación de ASC: Wang 2023, Transparency in Coverage ($989–$1,034, n=17,052 ASC fees); factores de riesgo de preparación inadecuada: Beran 2024 (n=358,257); no retorno a vigilancia: Cooper 2013. Sin estimaciones puntuales. Los supuestos son visibles.',
     'credfacts.fact3.cta': 'Abrir la calculadora',
 
     'credfacts.fact4.eyebrow': 'Primeros clientes',
@@ -87,7 +87,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': '经济效益',
     'credfacts.fact3.title': '在 /clinics 上计算您自己的数字。',
-    'credfacts.fact3.body': '交互式 ROI 计算器，提供保守、预期和更优情形三档区间，依据 Beran 2024（n=358,257）、Allen 2023 的 ASC 设施费用以及 Mehta 2021 的干预结果。不使用单点估计值。各项假设均可见。',
+    'credfacts.fact3.body': '交互式 ROI 计算器，提供保守、预期和更优情形三档区间。准备指导的效应量来自 Guo 2016、Tian 2021 和 Faveri 2025；ASC 设施费用来自 Wang 2023, Transparency in Coverage（$989–$1,034，n=17,052 ASC fees）；准备不足的风险因素来自 Beran 2024（n=358,257）；监测未回访来自 Cooper 2013。不使用单点估计值。各项假设均可见。',
     'credfacts.fact3.cta': '打开计算器',
 
     'credfacts.fact4.eyebrow': '首批客户',
@@ -111,7 +111,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': 'الاقتصاديات',
     'credfacts.fact3.title': 'احسب أرقامك الخاصة على /clinics.',
-    'credfacts.fact3.body': 'حاسبة ROI تفاعلية بنطاقات متحفّظة ومتوقّعة وأفضل حالة، مرتكزة إلى Beran 2024 (n=358,257)، ورسوم منشأة ASC من Allen 2023، ونتائج التدخّل من Mehta 2021. بلا تقديرات نقطية. الافتراضات ظاهرة.',
+    'credfacts.fact3.body': 'حاسبة ROI تفاعلية بنطاقات متحفّظة ومتوقّعة وأفضل حالة. أحجام أثر التوجيه في التحضير من Guo 2016 وTian 2021 وFaveri 2025؛ ورسوم منشأة ASC من Wang 2023, Transparency in Coverage ($989–$1,034، n=17,052 ASC fees)؛ وعوامل خطر التحضير غير الكافي من Beran 2024 (n=358,257)؛ وعدم العودة إلى المتابعة من Cooper 2013. بلا تقديرات نقطية. الافتراضات ظاهرة.',
     'credfacts.fact3.cta': 'افتح الحاسبة',
 
     'credfacts.fact4.eyebrow': 'العملاء الأوائل',
@@ -135,7 +135,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact3.eyebrow': 'Kinh tế',
     'credfacts.fact3.title': 'Tự tính con số của bạn trên /clinics.',
-    'credfacts.fact3.body': 'Công cụ tính ROI tương tác với các dải thận trọng, kỳ vọng và trường hợp tốt hơn, dựa trên Beran 2024 (n=358,257), phí cơ sở ASC của Allen 2023 và kết quả can thiệp của Mehta 2021. Không dùng ước tính điểm. Các giả định đều hiển thị.',
+    'credfacts.fact3.body': 'Công cụ tính ROI tương tác với các dải thận trọng, kỳ vọng và trường hợp tốt hơn. Cỡ hiệu ứng của việc hướng dẫn chuẩn bị từ Guo 2016, Tian 2021 và Faveri 2025; phí cơ sở ASC từ Wang 2023, Transparency in Coverage ($989–$1,034, n=17,052 ASC fees); các yếu tố nguy cơ chuẩn bị không đầy đủ từ Beran 2024 (n=358,257); không quay lại giám sát từ Cooper 2013. Không dùng ước tính điểm. Các giả định đều hiển thị.',
     'credfacts.fact3.cta': 'Mở công cụ tính',
 
     'credfacts.fact4.eyebrow': 'Khách hàng đầu tiên',

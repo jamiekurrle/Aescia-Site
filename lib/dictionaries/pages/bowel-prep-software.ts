@@ -7,7 +7,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': 'The problem',
     'bowelprep.problem.title': 'Why a written instruction at booking is not enough.',
-    'bowelprep.problem.p1': 'Inadequate bowel preparation affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024, n=358,257). When the prep is inadequate, the procedure is often repeated, abandoned, or shortened, and the downstream cost is clinical as well as operational: inadequate preparation is associated with a higher adenoma miss rate (Lebwohl 2011) and, in inpatients, with longer stays and higher costs (Yadlapati 2015).',
+    'bowelprep.problem.p1': 'Inadequate bowel preparation is a common problem, driven by identifiable and addressable risk factors (Beran 2024, n=358,257, 154 studies). When the prep is inadequate, the procedure is often repeated, abandoned, or shortened, and the downstream cost is clinical as well as operational: inadequate preparation is associated with a higher adenoma miss rate (Lebwohl 2011) and, in inpatients, with longer stays and higher costs (Yadlapati 2015).',
     'bowelprep.problem.p2': 'The instruction usually fails for ordinary reasons. It is handed over at booking, weeks before it is needed; it is in dense clinical language; it is not in the patient’s first language; the split-dose timing is misunderstood; and there is no checkpoint until the patient arrives, when it is too late to fix. A reminder to attend does not solve any of these, because the gap is comprehension and timing, not memory of the date.',
 
     'bowelprep.changes.eyebrow': 'What changes',
@@ -46,7 +46,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': 'Le problème',
     'bowelprep.problem.title': 'Pourquoi une instruction écrite à la prise de rendez-vous ne suffit pas.',
-    'bowelprep.problem.p1': 'La préparation intestinale inadéquate touche environ 20 à 25 pour cent des coloscopies au départ (Beran 2024, n=358,257). Lorsque la préparation est inadéquate, la procédure est souvent répétée, abandonnée ou écourtée, et le coût en aval est à la fois clinique et opérationnel : une préparation inadéquate est associée à un taux de détection manquée d’adénomes plus élevé (Lebwohl 2011) et, chez les patients hospitalisés, à des séjours plus longs et des coûts plus élevés (Yadlapati 2015).',
+    'bowelprep.problem.p1': 'La préparation intestinale inadéquate est un problème courant, porté par des facteurs de risque identifiables et adressables (Beran 2024, n=358,257, 154 études). Lorsque la préparation est inadéquate, la procédure est souvent répétée, abandonnée ou écourtée, et le coût en aval est à la fois clinique et opérationnel : une préparation inadéquate est associée à un taux de détection manquée d’adénomes plus élevé (Lebwohl 2011) et, chez les patients hospitalisés, à des séjours plus longs et des coûts plus élevés (Yadlapati 2015).',
     'bowelprep.problem.p2': 'L’instruction échoue généralement pour des raisons ordinaires. Elle est remise à la prise de rendez-vous, des semaines avant d’être nécessaire ; elle est dans un langage clinique dense ; elle n’est pas dans la langue maternelle du patient ; le calendrier de la dose fractionnée est mal compris ; et il n’y a aucun point de contrôle avant l’arrivée du patient, lorsqu’il est trop tard pour corriger. Un rappel de se présenter ne résout aucun de ces problèmes, car l’écart porte sur la compréhension et le calendrier, et non sur la mémoire de la date.',
 
     'bowelprep.changes.eyebrow': 'Ce qui change',
@@ -85,7 +85,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': 'El problema',
     'bowelprep.problem.title': 'Por qué una instrucción escrita al reservar no es suficiente.',
-    'bowelprep.problem.p1': 'La preparación intestinal inadecuada afecta a aproximadamente entre el 20 y el 25 por ciento de las colonoscopias en condiciones iniciales (Beran 2024, n=358,257). Cuando la preparación es inadecuada, el procedimiento a menudo se repite, se abandona o se acorta, y el costo posterior es tanto clínico como operativo: la preparación inadecuada se asocia con una mayor tasa de adenomas no detectados (Lebwohl 2011) y, en pacientes hospitalizados, con estancias más largas y costos más altos (Yadlapati 2015).',
+    'bowelprep.problem.p1': 'La preparación intestinal inadecuada es un problema frecuente, impulsado por factores de riesgo identificables y abordables (Beran 2024, n=358,257, 154 estudios). Cuando la preparación es inadecuada, el procedimiento a menudo se repite, se abandona o se acorta, y el costo posterior es tanto clínico como operativo: la preparación inadecuada se asocia con una mayor tasa de adenomas no detectados (Lebwohl 2011) y, en pacientes hospitalizados, con estancias más largas y costos más altos (Yadlapati 2015).',
     'bowelprep.problem.p2': 'La instrucción suele fallar por razones corrientes. Se entrega al reservar, semanas antes de que se necesite; está en un lenguaje clínico denso; no está en el primer idioma del paciente; el momento de la dosis dividida se malinterpreta; y no hay ningún punto de control hasta que el paciente llega, cuando ya es demasiado tarde para corregir. Un recordatorio para asistir no resuelve ninguno de estos problemas, porque la brecha es de comprensión y de tiempo, no de memoria de la fecha.',
 
     'bowelprep.changes.eyebrow': 'Lo que cambia',
@@ -124,7 +124,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': '问题所在',
     'bowelprep.problem.title': '为什么预约时的一份书面说明并不足够。',
-    'bowelprep.problem.p1': '在基线情况下，肠道准备不充分影响约 20% 至 25% 的结肠镜检查（Beran 2024，n=358,257）。当准备不充分时，手术往往会被重复、中止或缩短，而下游成本既是临床上的，也是运营上的：准备不充分与更高的腺瘤漏检率相关（Lebwohl 2011），并且在住院患者中与更长的住院时间和更高的费用相关（Yadlapati 2015）。',
+    'bowelprep.problem.p1': '肠道准备不充分是一个常见问题，由可识别、可干预的风险因素所驱动（Beran 2024，n=358,257，154 项研究）。当准备不充分时，手术往往会被重复、中止或缩短，而下游成本既是临床上的，也是运营上的：准备不充分与更高的腺瘤漏检率相关（Lebwohl 2011），并且在住院患者中与更长的住院时间和更高的费用相关（Yadlapati 2015）。',
     'bowelprep.problem.p2': '这份说明通常因平常的原因而失效。它在预约时就交付，比真正需要时早了数周；它使用密集的临床用语；它不是患者的母语；分次服药的时间被误解；而且在患者到达之前没有任何检查点，等到那时已为时过晚，无法补救。仅仅提醒前来无法解决其中任何一项，因为差距在于理解和时间安排，而不在于对日期的记忆。',
 
     'bowelprep.changes.eyebrow': '有何不同',
@@ -163,7 +163,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': 'المشكلة',
     'bowelprep.problem.title': 'لماذا لا تكفي تعليمة مكتوبة عند الحجز.',
-    'bowelprep.problem.p1': 'يؤثّر التحضير غير الكافي للأمعاء في ما يقارب 20 إلى 25 بالمئة من عمليات تنظير القولون عند خط الأساس (Beran 2024, n=358,257). وعندما يكون التحضير غير كافٍ، كثيرًا ما يُعاد الإجراء أو يُلغى أو يُختصر، وتكون التكلفة اللاحقة سريرية وتشغيلية على حدٍّ سواء: يرتبط التحضير غير الكافي بمعدل أعلى لإغفال الأورام الغدّية (Lebwohl 2011)، وفي المرضى المنوّمين، بإقامات أطول وتكاليف أعلى (Yadlapati 2015).',
+    'bowelprep.problem.p1': 'التحضير غير الكافي للأمعاء مشكلة شائعة، تقودها عوامل خطر قابلة للتحديد والمعالجة (Beran 2024, n=358,257، 154 دراسة). وعندما يكون التحضير غير كافٍ، كثيرًا ما يُعاد الإجراء أو يُلغى أو يُختصر، وتكون التكلفة اللاحقة سريرية وتشغيلية على حدٍّ سواء: يرتبط التحضير غير الكافي بمعدل أعلى لإغفال الأورام الغدّية (Lebwohl 2011)، وفي المرضى المنوّمين، بإقامات أطول وتكاليف أعلى (Yadlapati 2015).',
     'bowelprep.problem.p2': 'تفشل التعليمة عادةً لأسباب عادية. فهي تُسلَّم عند الحجز، قبل أسابيع من الحاجة إليها؛ وهي بلغة سريرية كثيفة؛ وليست بلغة المريض الأولى؛ ويُساء فهم توقيت الجرعة المقسَّمة؛ ولا توجد نقطة تحقّق حتى يصل المريض، حين يكون قد فات الأوان للإصلاح. ولا يحلّ التذكير بالحضور أيًّا من هذه المشكلات، لأن الفجوة في الفهم والتوقيت، لا في تذكّر التاريخ.',
 
     'bowelprep.changes.eyebrow': 'ما الذي يتغيّر',
@@ -202,7 +202,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'bowelprep.problem.eyebrow': 'Vấn đề',
     'bowelprep.problem.title': 'Vì sao một bản hướng dẫn viết lúc đặt lịch là chưa đủ.',
-    'bowelprep.problem.p1': 'Chuẩn bị ruột không đầy đủ ảnh hưởng đến khoảng 20 đến 25 phần trăm số ca nội soi đại tràng ở mức nền (Beran 2024, n=358,257). Khi việc chuẩn bị không đầy đủ, thủ thuật thường phải lặp lại, bị bỏ dở hoặc rút ngắn, và chi phí phía sau vừa mang tính lâm sàng vừa mang tính vận hành: chuẩn bị không đầy đủ gắn với tỷ lệ bỏ sót u tuyến cao hơn (Lebwohl 2011) và, ở bệnh nhân nội trú, với thời gian nằm viện dài hơn và chi phí cao hơn (Yadlapati 2015).',
+    'bowelprep.problem.p1': 'Chuẩn bị ruột không đầy đủ là một vấn đề thường gặp, xuất phát từ các yếu tố nguy cơ có thể nhận diện và can thiệp được (Beran 2024, n=358,257, 154 nghiên cứu). Khi việc chuẩn bị không đầy đủ, thủ thuật thường phải lặp lại, bị bỏ dở hoặc rút ngắn, và chi phí phía sau vừa mang tính lâm sàng vừa mang tính vận hành: chuẩn bị không đầy đủ gắn với tỷ lệ bỏ sót u tuyến cao hơn (Lebwohl 2011) và, ở bệnh nhân nội trú, với thời gian nằm viện dài hơn và chi phí cao hơn (Yadlapati 2015).',
     'bowelprep.problem.p2': 'Bản hướng dẫn thường thất bại vì những lý do thông thường. Nó được trao lúc đặt lịch, nhiều tuần trước khi cần đến; nó dùng ngôn ngữ lâm sàng dày đặc; nó không phải bằng ngôn ngữ thứ nhất của bệnh nhân; thời điểm dùng liều chia bị hiểu sai; và không có điểm kiểm tra nào cho đến khi bệnh nhân đến nơi, lúc đó đã quá muộn để khắc phục. Một lời nhắc đến khám không giải quyết được bất kỳ điều nào trong số này, vì khoảng cách nằm ở việc hiểu và thời điểm, chứ không phải ở việc nhớ ngày.',
 
     'bowelprep.changes.eyebrow': 'Điều gì thay đổi',
