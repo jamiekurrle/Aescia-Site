@@ -279,6 +279,10 @@ export function webPageSchema(opts: {
   // tools when typed as MedicalWebPage. Set true on the endoscopy-ASC
   // landing pages (prep, GLP-1, bowel prep, no-shows, backfill).
   isMedicalPage?: boolean
+  // BCP-47 language tag for the page. Defaults to en-AU (the site's primary
+  // locale); pass a jurisdiction-specific tag on the guideline calculator pages
+  // (e.g. en-CA for Ontario, en-US for the US guideline).
+  inLanguage?: string
 }) {
   return {
     '@context': 'https://schema.org',
@@ -289,7 +293,7 @@ export function webPageSchema(opts: {
     description: opts.description,
     datePublished: opts.datePublished ?? SITE_FIRST_PUBLISHED,
     dateModified: opts.dateModified ?? SITE_LAST_UPDATED,
-    inLanguage: 'en-AU',
+    inLanguage: opts.inLanguage ?? 'en-AU',
     isPartOf: { '@id': `${SITE_URL}#website` },
     about: { '@id': `${SITE_URL}#organization` },
     publisher: { '@id': `${SITE_URL}#organization` },
