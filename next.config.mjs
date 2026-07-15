@@ -19,6 +19,24 @@ const nextConfig = {
       // (/clinicalregulatory). permanent:true issues a 308, which Google treats
       // as a permanent redirect equivalent to a 301 for canonicalisation.
       { source: '/clinicalregulatory', destination: '/governance', permanent: true },
+      // Pages that were live on prod, got indexed, and were then deleted without
+      // a redirect. Google still crawls them and reports them as 404s.
+      // /roi-calculator shipped 2026-03-22 and was removed in the 2026-05-30
+      // overhaul; /clinics#roi is where its content now lives.
+      { source: '/roi-calculator', destination: '/clinics#roi', permanent: true },
+      // The iframe target /roi-calculator used. public/tools was never committed,
+      // so this was broken on prod for its whole life; robots disallows /tools/,
+      // but redirect it in case it was crawled before robots.txt existed.
+      { source: '/tools/roi-calculator/index.html', destination: '/clinics#roi', permanent: true },
+      // A stray scaffold page ("test page works") that shipped to prod and was
+      // indexed before being removed in the 2026-04-19 redesign.
+      { source: '/test-page', destination: '/', permanent: true },
+      // The /v2 design-experiment subtree was public until 2026-06-24, when a
+      // production gate was added. robots.txt disallows "/v2/" with a trailing
+      // slash, which does not match the bare path, so /v2 alone stayed crawlable
+      // and 404s. Redirect rather than robots-block: blocking an already-indexed
+      // URL leaves it in the index instead of removing it.
+      { source: '/v2', destination: '/', permanent: true },
     ]
   },
 }
