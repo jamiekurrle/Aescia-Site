@@ -38,13 +38,40 @@ export interface Source {
   url: string
 }
 
+// The routine interval the findings carry, demoted beneath a preparation
+// pathway. It travels with the precondition this examination did not meet, so
+// it is never read as this examination's answer.
+export interface Superseded {
+  interval: string
+  modality: string | null
+  driver: string
+  quote: string
+  location: string
+  source: Source
+  notes: string[]
+  riskYears: number
+  override: boolean
+  discretion: boolean
+  notSpecified: boolean
+  calculatorRule: string | null
+  // The guideline's own wording that its intervals assume an adequate
+  // examination. Null where the guideline prints no such wording.
+  precondition: { quote: string; location: string } | null
+}
+
 export interface Result {
   interval: string
   modality: string | null
   driver: string
   quote: string
   location: string // table / recommendation number the interval is printed in
-  source: Source
+  source: Source // the document the interval and quote above are printed in
+  // Strength and quality label exactly as that document prints it. Null where
+  // the document prints none against this statement.
+  strength: string | null
+  // True when `source` is a document other than the surveillance guideline this
+  // jurisdiction's intervals come from.
+  separateDocument: boolean
   notes: string[]
   riskYears: number // sort key (lower = shorter interval)
   override: boolean // outside the guideline's stated scope
@@ -52,6 +79,15 @@ export interface Result {
   notSpecified: boolean // the guideline states no rule for this scenario
   prepInadequate: boolean
   assumption: boolean
+  // Populated when preparation was inadequate and a routine interval was
+  // therefore demoted. Null everywhere else.
+  supersededInterval: Superseded | null
+  // Set when this calculator, not the guideline, chose the interval shown: more
+  // than one of the guideline's own rows applied, they carried different
+  // intervals, and the guideline states no rule for the combination. Null
+  // everywhere else, including where the guideline's own text settles which of
+  // its rows governs.
+  calculatorRule: string | null
 }
 
 // ---------------------------------------------------------------------------
@@ -83,6 +119,33 @@ export const SRC: Record<JurId, Source> = {
     url: 'https://doi.org/10.1055/a-1185-3109',
   },
 }
+
+// ---------------------------------------------------------------------------
+// Bowel-preparation documents.
+//
+// Four of these six jurisdictions publish their preparation guidance somewhere
+// other than the surveillance guideline their intervals come from. Those
+// documents are named here so a result that quotes one can say which document
+// it quoted.
+// ---------------------------------------------------------------------------
+export const PREP_SRC = {
+  US_2025: {
+    name: 'Jacobson BC, Anderson JC, Burke CA, Dominitz JA, Gross SA, May FP, Patel SG, Shaukat A, Robertson DJ. Optimizing Bowel Preparation Quality for Colonoscopy: Consensus Recommendations by the US Multi-Society Task Force on Colorectal Cancer. Gastroenterology 2025;168(4):798–829. PMID 40047732; DOI 10.1053/j.gastro.2025.02.002. Co-published: Gastrointest Endosc 2025;101(4):702–732 and Am J Gastroenterol 2025;120(4):738–764.',
+    url: 'https://www.asge.org/home/resources/publications/guidelines/optimizing-bowel-preparation-quality-for-colonoscopy--consensus-recommendations-by-the-us-multi-society-task-force-on-colorectal-cancer',
+  },
+  EU_2019: {
+    name: 'Hassan C, East J, Radaelli F, Spada C, Benamouzig R, Bisschops R, Bretthauer M, Dekker E, Dinis-Ribeiro M, Ferlitsch M, Fuccio L, Awadie H, Gralnek I, Jover R, Kaminski MF, Pellise M, Triantafyllou K, Vanella G, Mangas-Sanjuan C, Frazzoni L, Van Hooft JE, Dumonceau JM. Bowel preparation for colonoscopy: European Society of Gastrointestinal Endoscopy (ESGE) Guideline - Update 2019. Endoscopy 2019;51(8):775–794. PMID 31295746; DOI 10.1055/a-0959-0505.',
+    url: 'https://www.esge.com/assets/downloads/pdfs/guidelines/2019_a_0959_0505.pdf',
+  },
+  CA_AB_2013: {
+    name: 'Alberta Colorectal Cancer Screening Program. ACRCSP Post Polypectomy Surveillance Guidelines, June 2013.',
+    url: 'https://screeningforlife.ca/wp-content/uploads/2019/11/ACRCSP-Post-Polypectomy-Surveillance-Guidelines-June-2013.pdf',
+  },
+  CA_BC_STANDARDS: {
+    name: 'BC Cancer Colon Screening Program. Colonoscopy Standards, January 2026 (version 2.8).',
+    url: 'https://www.bccancer.bc.ca/screening/Documents/Colonoscopy-Standards.pdf',
+  },
+} as const satisfies Record<string, Source>
 
 // interval label -> sort key (lower-bound years; lower = shorter interval)
 const YRS = {
@@ -231,12 +294,48 @@ interface Advisory {
 
 interface JurSpec {
   short: string
+  // Whether the guideline itself settles which of its rows governs when more
+  // than one applies: a combined-count table, a pooled lesion count, or a
+  // stated selection principle. Where it does, the interval shown is the
+  // guideline's own. Where it does not, the shortest-interval pick below is
+  // this calculator's and is labelled on the result.
+  selectionPublished: (a: Agg) => boolean
   rules: Rule[]
   advisories: Advisory[]
-  // The guideline's own precondition wording about an adequate examination.
-  prep: { quote: string; location: string; onInadequate: string }
+  prep: PrepSpec
   malignant: { driver: string; quote: string; location: string }
   special: { driver: string; quote: string; location: string }
+}
+
+// A repeat pathway a society publishes for an inadequately prepared
+// examination, carried with the document it is printed in.
+interface PrepPathway {
+  // The repeat interval as the society prints it. Null where the society
+  // requires a repeat and attaches no timeframe to it.
+  interval: string | null
+  modality: string | null
+  driver: string
+  quote: string
+  location: string
+  // Strength and quality label exactly as the document prints it. Null where
+  // the document prints none against this statement.
+  strength: string | null
+  // The document the pathway is printed in.
+  source: Source
+  // True when that document is not the surveillance guideline this
+  // jurisdiction's intervals come from.
+  separate: boolean
+  notes: string[]
+}
+
+interface PrepSpec {
+  // The surveillance guideline's own wording that its intervals assume an
+  // adequate examination. Null where it prints none.
+  precondition: { quote: string; location: string } | null
+  // The published repeat pathway. Null where the society publishes none.
+  pathway: PrepPathway | null
+  // Context that applies whatever the pathway.
+  notes: string[]
 }
 
 const gapInterval = (short: string) => `Not specified by ${short}`
@@ -252,6 +351,13 @@ const US_DEFERRED_SCOPE =
 
 const US: JurSpec = {
   short: 'USMSTF 2020',
+  // Tables 4 and 5 are separate, neither cross-references the other, and
+  // USMSTF 2020 prints no principle for choosing among its own rows. The one
+  // ordering it does publish is the piecemeal site check, p.478: "patients with
+  // polyps ≥20 mm resected piecemeal have first surveillance colonoscopy at
+  // approximately 6 months". That is stated for the patient rather than for the
+  // finding, so it settles the order whatever else was found.
+  selectionPublished: (a) => a.piecemealAdenomaSize >= 20 || a.piecemealSslSize >= 20,
   malignant: {
     driver: 'USMSTF 2020 places a malignant polyp outside the scope of these recommendations and defers it to a separate Task Force document',
     quote: US_DEFERRED_SCOPE,
@@ -263,11 +369,33 @@ const US: JurSpec = {
     location: 'Table 4 footnote a, p.469 (Table 5 footnote a, p.470 is near-identical)',
   },
   prep: {
-    quote:
-      'All recommendations assume examination complete to cecum with bowel preparation adequate to detect lesions >5 mm in size',
-    location: 'Table 4 footnote a, p.469; Table 5 footnote a, p.470',
-    onInadequate:
-      'USMSTF 2020 states no repeat interval for an inadequately prepared examination. Adequate preparation is a precondition of every Table 4 and Table 5 interval, so this examination falls outside the stated scope of those intervals. The repeat timing is a clinical decision.',
+    precondition: {
+      quote:
+        'All recommendations assume examination complete to cecum with bowel preparation adequate to detect lesions >5 mm in size',
+      location: 'Table 4 footnote a, p.469; Table 5 footnote a, p.470',
+    },
+    pathway: {
+      interval:
+        'Within 12 months. As soon as possible, generally within 3 months, where the colonoscopy was performed for an abnormal noncolonoscopic colorectal cancer screening test',
+      modality: 'Colonoscopy',
+      driver:
+        'The US Multi-Society Task Force publishes a repeat interval for an inadequately prepared examination in its bowel preparation consensus, a document separate from the surveillance guideline these intervals come from',
+      quote:
+        'When the bowel preparation is deemed inadequate to allow assigning standard screening or surveillance intervals, we recommend rescheduling a colonoscopy within 12 mo for screening or surveillance colonoscopies, and as soon as possible (i.e. generally within 3 mo) for those performed for an abnormal noncolonoscopic colorectal cancer screening test',
+      location: 'Consensus recommendation on inadequate bowel preparation',
+      strength: null,
+      source: PREP_SRC.US_2025,
+      separate: true,
+      notes: [
+        'Which of the two timings applies turns on why the colonoscopy was done. This tool does not ask for the indication.',
+        'The consensus document uses consensus statements and ungraded key clinical concepts rather than a strength and quality label on every item. No strength is printed against this statement in the rendering quoted here.',
+        'The wording above is taken from the ASGE guideline page for this consensus. ASGE is a constituent society of the Task Force and a co-publisher of the document; the journal full texts are paywalled. Two secondary renderings carry the same substance in different words: Cleveland Clinic Journal of Medicine 2026;93(3):169 gives "Repeat colonoscopy within 12 months", and the ACG Evidence-Based GI summary gives "When bowel preparation is insufficient for standard screening or surveillance, repeat colonoscopy should be performed within 12 months, or sooner for patients with alarm symptoms or positive non-endoscopic colorectal cancer screening tests." Verify against the journal text before quoting this recommendation in a publication.',
+        'This consensus supersedes the Task Force\'s 2014 bowel-cleansing recommendations, which carried the same 1-year repeat and a graded strength: "If the colonoscopy is complete to cecum, and the preparation ultimately is deemed inadequate, then the examination should be repeated, generally with a more aggressive preparation regimen, within 1 year; intervals shorter than 1 year are indicated when advanced neoplasia is detected and there is inadequate preparation (Strong recommendation, low-quality evidence)." Johnson DA, Barkun AN, Cohen LB, et al. Optimizing adequacy of bowel cleansing for colonoscopy: recommendations from the US Multi-Society Task Force on Colorectal Cancer. Gastroenterology 2014;147(4):903–924.',
+      ],
+    },
+    notes: [
+      'USMSTF 2020, the surveillance guideline these intervals come from, states no repeat interval for an inadequately prepared examination and does not cross-reference the bowel preparation consensus. It names adequate preparation as a precondition of every Table 4 and Table 5 interval, and once more as a tiebreaker for sessile serrated polyp follow-up. The interval above is published only in the separate consensus document.',
+    ],
   },
   rules: [
     // Scope
@@ -530,6 +658,10 @@ const ON_MOST_ADVANCED =
 
 const ON: JurSpec = {
   short: 'ColonCancerCheck',
+  // ColonCancerCheck publishes its own selection principle, Background bullet
+  // 3, page 2: the recommendation follows the most advanced lesion. Choosing
+  // among its rows is the guideline's own instruction, quoted below.
+  selectionPublished: () => true,
   malignant: {
     driver:
       'ColonCancerCheck states no rule for a polyp containing cancer. Its table has no such row and it names no pathway to route one to',
@@ -543,10 +675,16 @@ const ON: JurSpec = {
     location: 'Background, bullet 1, page 2',
   },
   prep: {
-    quote: ON_MOST_ADVANCED,
-    location: 'Background, bullet 3, page 2',
-    onInadequate:
-      'ColonCancerCheck states no repeat interval for an inadequately prepared examination. A high-quality colonoscopy is a stated assumption of every row in its table, so this examination falls outside the stated scope of those intervals. The repeat timing is a clinical decision.',
+    precondition: {
+      quote: ON_MOST_ADVANCED,
+      location: 'Background, bullet 3, page 2',
+    },
+    pathway: null,
+    notes: [
+      'The repeat timing is a clinical decision. Ontario publishes no interval to place it at.',
+      'Ontario publishes a separate bowel preparation document, the Cancer Care Ontario / Colonoscopy Quality Management Partnership Bowel Preparation Selection Best Practice Guidelines. It is scoped to regimen selection: a decision guide and a dosing, diet and hydration table across three scenarios. Its only mention of repeat examinations is descriptive, and states no interval: "Furthermore, inadequate bowel preparation can result in repeat examinations and shorter intervals between screening and surveillance procedures which have a substantial economic burden (Johnson et al, 2014)." That sentence cites the US Task Force document which does carry a 1-year repeat, and borrows only the economics from it.',
+      'Ontario\'s colonoscopy quality guideline publishes a quality target rather than an interval: "<10% of patients require a repeat colonoscopy examination due to poor bowel preparation" and "inadequate preparation should occur in no more than 10% of colonoscopies". Colonoscopy quality assurance in Ontario: Systematic review and clinical practice guideline. Can J Gastroenterol Hepatol 2014; PMC4049257.',
+    ],
   },
   rules: [
     {
@@ -696,6 +834,11 @@ const AB_SSL_LARGE_RULE =
 
 const AB: JurSpec = {
   short: 'ACRCSP',
+  // ACRCSP publishes its own selection principle: "The decision regarding
+  // surveillance interval should be based on the most advanced finding(s) at
+  // the initial colonoscopy." Choosing among its rows is the guideline's own
+  // instruction, quoted in the advisory below.
+  selectionPublished: () => true,
   malignant: {
     driver: 'ACRCSP states no rule for a polyp containing cancer; the article covers post-polypectomy surveillance only',
     quote: 'Our revised recommendations build upon the assumption that a high-quality index colonoscopy has been performed at baseline.',
@@ -708,10 +851,30 @@ const AB: JurSpec = {
     location: 'Recommendations for post-polypectomy surveillance; scope statement: "Surveillance recommendations also need to consider baseline risk for CRC based on other factors such as family history (outside the scope of this work)."',
   },
   prep: {
-    quote: AB_HIGH_QUALITY,
-    location: 'Recommendations for post-polypectomy surveillance, preamble',
-    onInadequate:
-      'ACRCSP states no repeat interval for an inadequately prepared examination. Its own words: "Our revised recommendations build upon the assumption that a high-quality index colonoscopy has been performed at baseline." This examination falls outside the stated scope of its intervals. The repeat timing is a clinical decision.',
+    precondition: {
+      quote: AB_HIGH_QUALITY,
+      location: 'Recommendations for post-polypectomy surveillance, preamble',
+    },
+    pathway: {
+      interval: null,
+      modality: 'Repeat colonoscopy, or less preferably CT colonography',
+      driver:
+        'The Alberta Colorectal Cancer Screening Program requires a repeat colonoscopy after a failed preparation and attaches no timeframe to it',
+      quote:
+        'Patients with a failed colonoscopy (for example due to inability to reach cecum or poor bowel preparation) should undergo repeat colonoscopy (either by same operator or referred, depending on the reason why the colonoscopy was incomplete) or, less preferably, diagnostic imaging of the colon by CT colonography.',
+      location: 'Narrative preamble on ensuring a high-quality baseline examination, not the numbered recommendations',
+      strength: null,
+      source: PREP_SRC.CA_AB_2013,
+      separate: true,
+      notes: [
+        'This sentence is ungraded narrative guidance. ACRCSP prints no strength or evidence label against it.',
+        'ACRCSP assigns intervals to lesion findings only: 5–10 years for low-risk adenomas, 3 years for high-risk, 2–6 months for piecemeal resection, 3 months for a malignant polyp, 1 year for serrated polyposis. None of them covers preparation.',
+      ],
+    },
+    notes: [
+      'The repeat timing is a clinical decision. ACRCSP requires the repeat and publishes no interval to place it at.',
+      'The 2024 update these surveillance intervals come from likewise publishes no interval, and treats preparation as a precondition: "A high-quality colonoscopy is one where: the cecum is reached with photo documentation, bowel preparation allows adequate visualization of all colonic mucosa..."',
+    ],
   },
   rules: [
     {
@@ -949,6 +1112,10 @@ const bcHighRisk = (a: Agg): boolean =>
 
 const BC: JurSpec = {
   short: 'BCGuidelines 2022',
+  // Table 1 counts adenomas and serrated lesions together as one precancerous
+  // lesion tally, so a mixed examination reaches a row BC prints rather than a
+  // choice between rows.
+  selectionPublished: () => true,
   malignant: {
     driver:
       'BCGuidelines 2022 splits into "Following removal of precancerous lesions" and "Follow-up after CRC with curative resection"; it states no category for an endoscopically resected malignant polyp',
@@ -962,11 +1129,33 @@ const BC: JurSpec = {
     location: 'Scope, page 1',
   },
   prep: {
-    quote:
-      'The importance of a high-quality baseline colonoscopy cannot be overstated. A complete exam to the cecum, an adequate bowel preparation, and careful inspection of the mucosa with optimal polypectomy technique are associated with a decreased risk of CRC and CRC death.',
-    location: 'Management, page 2',
-    onInadequate:
-      'BCGuidelines 2022 states no repeat interval for an inadequately prepared examination in its post-polypectomy pathway. Adequate preparation is named only as a quality attribute of the baseline colonoscopy its Table 1 intervals assume, so this examination falls outside the stated scope of those intervals. The repeat timing is a clinical decision.',
+    precondition: {
+      quote:
+        'The importance of a high-quality baseline colonoscopy cannot be overstated. A complete exam to the cecum, an adequate bowel preparation, and careful inspection of the mucosa with optimal polypectomy technique are associated with a decreased risk of CRC and CRC death.',
+      location: 'Management, page 2',
+    },
+    pathway: {
+      interval: null,
+      modality: 'Repeat colonoscopy',
+      driver:
+        'The BC Cancer Colon Screening Program requires re-booking as soon as possible after a failed preparation and attaches no timeframe to it',
+      quote:
+        'If a colonoscopy is incomplete due to a poor bowel preparation, then the colonoscopist should specify the bowel preparation for the next colonoscopy and re-book the participant in a Colon Screening Program slot. After a failed preparation, an individualized bowel preparation will be required. On the Colonoscopy Reporting Form, the colonoscopist will tick the box for "Repeat Colonoscopy". Local processes should be used for re-booking the patient as soon as possible. The colonoscopist is responsible for ensuring the patient is re-booked.',
+      location: 'Section 2.2, Bowel Preparation',
+      strength: null,
+      source: PREP_SRC.CA_BC_STANDARDS,
+      separate: true,
+      notes: [
+        'This is a programmatic operational standard. BC Cancer prints no strength or evidence label against it.',
+        'BC Cancer states a number for the comparable failure to reach the cecum: "further investigations need to be arranged within 60 days". It states no equivalent number for a poor preparation.',
+        'BC Cancer\'s quality target defines the category, and again carries no interval: "Poor = inadequate to detect all polyps > 5mm", with "If inadequate, further investigations need to be arranged, for instance a repeat colonoscopy with a more intensive bowel preparation".',
+        'The revision history of this standard records version 2.4, February 2025, updating Section 2.2 for "Timing for re-booking patients with a poor bowel prep". The wording it arrived at is qualitative.',
+      ],
+    },
+    notes: [
+      'The repeat timing is a clinical decision. BC Cancer requires the re-booking and publishes no interval to place it at.',
+      'BCGuidelines 2022, the source of these surveillance intervals, names adequate preparation only as a quality attribute of the baseline colonoscopy its Table 1 intervals assume. It publishes no repeat interval.',
+    ],
   },
   rules: [
     {
@@ -1095,6 +1284,12 @@ const euNeedsSurveillance = (a: Agg): boolean =>
 
 const EU: JurSpec = {
   short: 'ESGE 2020',
+  // Recommendations 1 and 2 are mutually exclusive, and each already spans
+  // adenomas and serrated polyps, so no two of them apply at once. The only
+  // other row is Recommendation 3, which publishes its own order: a 3–6-month
+  // early repeat, then "A first surveillance colonoscopy 12 months after the
+  // repeat colonoscopy is recommended to detect late recurrence."
+  selectionPublished: () => true,
   malignant: {
     driver: 'ESGE 2020 does not address surveillance after resection of an invasive carcinoma or malignant polyp',
     quote:
@@ -1108,10 +1303,29 @@ const EU: JurSpec = {
     location: 'Introduction / scope. Also: "Of course, patients with high risk conditions, such as those with serrated polyposis syndrome or hereditary syndromes should receive an individualized surveillance schedule."',
   },
   prep: {
-    quote: 'standard guideline recommendations for surveillance intervals apply only to patients with adequate bowel preparation.',
-    location: 'Section "Inadequate bowel preparation", p.4',
-    onInadequate:
-      'ESGE 2020 issues no recommendation of its own on the repeat interval after inadequate preparation — the "Inadequate bowel preparation" section carries no RECOMMENDATION box. It reports a figure from a different document: "Strong recommendations for a 1-year repeat colonoscopy in the case of inadequate bowel preparation were issued by ESGE [24] recently and by other associations [30], strengthened by new evidence showing how a suboptimal baseline exam independently increases CRC incidence and mortality [4]." This examination falls outside the stated scope of the intervals in this guideline. The repeat timing is a clinical decision.',
+    precondition: {
+      quote: 'standard guideline recommendations for surveillance intervals apply only to patients with adequate bowel preparation.',
+      location: 'Section "Inadequate bowel preparation", p.4',
+    },
+    pathway: {
+      interval: 'Within 1 year',
+      modality: 'Colonoscopy',
+      driver:
+        'ESGE publishes a repeat interval for inadequate bowel preparation in its bowel preparation guideline, a document separate from the surveillance guideline these intervals come from',
+      quote:
+        'ESGE recommends early repetition of colonoscopy within 1 year in the case of inadequate bowel preparation, unless clinically contraindicated. Strong recommendation, moderate level of evidence.',
+      location: 'Recommendation on inadequate bowel preparation',
+      strength: 'Strong recommendation, moderate level of evidence',
+      source: PREP_SRC.EU_2019,
+      separate: true,
+      notes: [
+        'The sub-recommendation immediately following: "Same-day or next-day colonoscopy after additional preparation - with either laxative or enema - may be suggested. The next regimen of bowel preparation should be individualized according to the possible reasons for failure. Weak recommendation, very low level of evidence."',
+      ],
+    },
+    notes: [
+      'ESGE 2020, the surveillance guideline these intervals come from, issues no recommendation of its own here. Its "Inadequate bowel preparation" section carries no RECOMMENDATION box and defers to the 2019 bowel preparation guideline in running prose: "Strong recommendations for a 1-year repeat colonoscopy in the case of inadequate bowel preparation were issued by ESGE [24] recently and by other associations [30], strengthened by new evidence showing how a suboptimal baseline exam independently increases CRC incidence and mortality [4]." Entry [24] in that guideline\'s own reference list is the 2019 bowel preparation guideline quoted above.',
+      'ESGE 2020 on adherence to the 1-year repeat: "this recommendation is not followed in 90 % of cases".',
+    ],
   },
   rules: [
     {
@@ -1382,6 +1596,11 @@ function auTable9bRules(): Rule[] {
 
 const AU: JurSpec = {
   short: 'Cancer Council Australia',
+  // Table 9B prints a row for clinically significant serrated polyps and
+  // conventional adenomas found together, by combined total, so a mixed
+  // examination reaches a row Cancer Council Australia prints rather than a
+  // choice between rows.
+  selectionPublished: () => true,
   malignant: {
     driver:
       'The Cancer Council surveillance tables assume complete excision of a non-invasive lesion; malignant polyps are handled in a separate section of the guideline',
@@ -1394,10 +1613,27 @@ const AU: JurSpec = {
     location: 'Practice point, Summary of recommendations, p.281',
   },
   prep: {
-    quote: 'Where the preparation is inadequate, repeat colonoscopy should normally be offered within 12 months.',
-    location: 'Practice point, Bowel preparation section, p.171 (restated p.270)',
-    onInadequate:
-      'Cancer Council Australia is the only one of these six guidelines that states a repeat interval for inadequate preparation, and it states it as a practice point — its weakest recommendation class — hedged with "normally": "Where the preparation is inadequate, repeat colonoscopy should normally be offered within 12 months." (p.171). Supporting text, p.169: "Whichever scale is used, inadequate preparation should be clearly documented and those with inadequate preparation should be offered repeat colonoscopy within 12 months." It states no shorter interval for inadequate preparation in a higher-risk patient, and no rule for preparation that is adequate but suboptimal.',
+    precondition: null,
+    pathway: {
+      interval: 'Within 12 months',
+      modality: 'Colonoscopy',
+      driver:
+        'Cancer Council Australia publishes a repeat interval for inadequate preparation as a practice point inside this surveillance guideline',
+      quote: 'Where the preparation is inadequate, repeat colonoscopy should normally be offered within 12 months.',
+      location:
+        'Practice point, chapter "Advances in colonoscopy, CT colonography and other methods", sub-heading "Bowel preparation"',
+      strength: 'Practice point (NHMRC ungraded consensus, not an evidence-based graded recommendation)',
+      source: SRC.AU,
+      separate: false,
+      notes: [
+        'A practice point is the weakest NHMRC class: consensus opinion not derived from a systematic evidence review, carrying no grade. It does not have the force of the USMSTF and ESGE strong recommendations for the same scenario.',
+        'The recommendation is hedged with "normally". Cancer Council Australia states no shorter interval for inadequate preparation in a higher-risk patient, and no rule for preparation that is adequate but suboptimal.',
+        'Adjacent practice points in the same block: "Preparation quality should be documented on the colonoscopy report using a validated preparation scale." and "Successful bowel preparation should be achieved in >=90% of all colonoscopies."',
+      ],
+    },
+    notes: [
+      'Australia publishes no standalone bowel preparation guideline. This practice point sits inside the surveillance guideline, in a chapter separate from the surveillance interval tables.',
+    ],
   },
   rules: [
     {
@@ -1494,6 +1730,8 @@ function toResult(rule: Rule, a: Agg, src: Source): Result {
     quote: rule.quote,
     location: rule.location,
     source: src,
+    strength: null,
+    separateDocument: false,
     notes: rule.notes ? rule.notes(a) : [],
     riskYears: rule.riskYears ?? 0,
     override: rule.kind === 'scope',
@@ -1501,6 +1739,8 @@ function toResult(rule: Rule, a: Agg, src: Source): Result {
     notSpecified: rule.kind === 'gap' || rule.kind === 'declined',
     prepInadequate: false,
     assumption: false,
+    calculatorRule: null,
+    supersededInterval: null,
   }
 }
 
@@ -1510,9 +1750,122 @@ export function prepAdequate(bbps: [number, number, number]): boolean {
 
 // The guideline's own matched rows compete; the shortest interval among them
 // governs. Nothing is derived — every candidate is a row the guideline prints
-// for a finding at this examination.
+// for a finding at this examination. Which of those rows to show is this
+// calculator's choice, so where the choice settles the answer and the guideline
+// states no rule for the combination, `decidedHere` labels it on the result.
 function shortest(cands: Result[]): Result {
   return [...cands].sort((x, y) => x.riskYears - y.riskYears)[0]
+}
+
+// True when the matched rows carry more than one interval between them, so
+// taking the shortest is what settled the answer. Where every row carries the
+// same interval, the interval shown is the guideline's whichever row is read.
+function decidedHere(cands: Result[]): boolean {
+  return cands.some((c) => c.riskYears !== cands[0].riskYears)
+}
+
+const calculatorSelection = (short: string) =>
+  `${short} states no rule for this combination of findings. More than one of its rows applies here and they carry different intervals, so the shortest of them is shown. That selection is this calculator's, not ${short}'s.`
+
+// ---------------------------------------------------------------------------
+// Inadequate preparation
+//
+// Every interval in this engine is published on the precondition of an adequate
+// examination. An inadequately prepared examination did not meet it, so the
+// routine interval is not this examination's answer and is not shown as one.
+// What replaces it is whatever the society published for this case, and nothing
+// more: an interval where one exists, a repeat without a timeframe where the
+// society requires the repeat and states no timing, and the guideline's own
+// precondition where the society published neither.
+// ---------------------------------------------------------------------------
+const PREP_LEDE = 'Bowel preparation was inadequate on the Boston Bowel Preparation Scale.'
+
+function demote(routine: Result, spec: JurSpec): Superseded {
+  return {
+    interval: routine.interval,
+    modality: routine.modality,
+    driver: routine.driver,
+    quote: routine.quote,
+    location: routine.location,
+    source: routine.source,
+    notes: routine.notes,
+    riskYears: routine.riskYears,
+    override: routine.override,
+    discretion: routine.discretion,
+    notSpecified: routine.notSpecified,
+    calculatorRule: routine.calculatorRule,
+    precondition: spec.prep.precondition,
+  }
+}
+
+function prepResult(spec: JurSpec, src: Source, routine: Result): Result {
+  const p = spec.prep
+  const superseded = demote(routine, spec)
+
+  if (p.pathway) {
+    const pw = p.pathway
+    const published = pw.interval !== null
+    return {
+      interval: published ? (pw.interval as string) : gapInterval(spec.short),
+      modality: pw.modality,
+      driver: pw.driver,
+      quote: pw.quote,
+      location: pw.location,
+      source: pw.source,
+      strength: pw.strength,
+      separateDocument: pw.separate,
+      notes: [PREP_LEDE, ...pw.notes, ...p.notes],
+      riskYears: published ? YRS.y1 : 0,
+      override: false,
+      discretion: false,
+      notSpecified: !published,
+      prepInadequate: true,
+      assumption: false,
+      calculatorRule: null,
+      supersededInterval: superseded,
+    }
+  }
+
+  return {
+    interval: gapInterval(spec.short),
+    modality: null,
+    driver: `${spec.short} assumes an adequate examination and publishes no replacement interval for one that was inadequately prepared`,
+    quote: p.precondition ? p.precondition.quote : '',
+    location: p.precondition ? p.precondition.location : '',
+    source: src,
+    strength: null,
+    separateDocument: false,
+    notes: [PREP_LEDE, ...p.notes],
+    riskYears: 0,
+    override: false,
+    discretion: false,
+    notSpecified: true,
+    prepInadequate: true,
+    assumption: false,
+    calculatorRule: null,
+    supersededInterval: superseded,
+  }
+}
+
+// The preparation pathway replaces a routine interval, not a scope statement. A
+// malignant polyp or an excluded population is outside the guideline either way,
+// and that stands whatever the preparation, so it keeps the primary and the
+// preparation guidance rides with it.
+function prepNotes(spec: JurSpec): string[] {
+  const p = spec.prep
+  const out = [PREP_LEDE]
+  if (p.pathway) {
+    const pw = p.pathway
+    out.push(
+      `${pw.driver}. ${pw.source.name} ${pw.location}: "${pw.quote}"${pw.strength ? ` ${pw.strength}.` : ''}`
+    )
+    out.push(...pw.notes)
+  } else if (p.precondition) {
+    out.push(
+      `${spec.short} assumes an adequate examination and publishes no replacement interval. Its wording: "${p.precondition.quote}" (${p.precondition.location}).`
+    )
+  }
+  return [...out, ...p.notes]
 }
 
 // ---------------------------------------------------------------------------
@@ -1522,41 +1875,30 @@ export function compute(exam: Exam): Result {
   const spec = SPECS[exam.jur]
   const src = SRC[exam.jur]
   const a = aggregate(exam.lesions)
+  const prepBad = !prepAdequate(exam.bbps)
 
-  if (exam.malignant) {
-    return {
-      interval: `Outside the scope of ${spec.short}`,
-      modality: null,
-      driver: spec.malignant.driver,
-      quote: spec.malignant.quote,
-      location: spec.malignant.location,
-      source: src,
-      notes: [],
-      riskYears: 0,
-      override: true,
-      discretion: false,
-      notSpecified: false,
-      prepInadequate: false,
-      assumption: false,
-    }
-  }
-  if (exam.special) {
-    return {
-      interval: `Outside the scope of ${spec.short}`,
-      modality: null,
-      driver: spec.special.driver,
-      quote: spec.special.quote,
-      location: spec.special.location,
-      source: src,
-      notes: [],
-      riskYears: 0,
-      override: true,
-      discretion: false,
-      notSpecified: false,
-      prepInadequate: false,
-      assumption: false,
-    }
-  }
+  const outOfScope = (which: { driver: string; quote: string; location: string }): Result => ({
+    interval: `Outside the scope of ${spec.short}`,
+    modality: null,
+    driver: which.driver,
+    quote: which.quote,
+    location: which.location,
+    source: src,
+    strength: null,
+    separateDocument: false,
+    notes: prepBad ? prepNotes(spec) : [],
+    riskYears: 0,
+    override: true,
+    discretion: false,
+    notSpecified: false,
+    prepInadequate: prepBad,
+    assumption: false,
+    calculatorRule: null,
+    supersededInterval: null,
+  })
+
+  if (exam.malignant) return outOfScope(spec.malignant)
+  if (exam.special) return outOfScope(spec.special)
 
   const matched = spec.rules.filter((r) => r.when(a))
   const scoped = matched.find((r) => r.kind === 'scope')
@@ -1570,7 +1912,11 @@ export function compute(exam: Exam): Result {
   } else if (declined) {
     res = toResult(declined, a, src)
   } else if (emittable.length > 0) {
-    res = shortest(emittable.map((r) => toResult(r, a, src)))
+    const cands = emittable.map((r) => toResult(r, a, src))
+    res = shortest(cands)
+    if (decidedHere(cands) && !spec.selectionPublished(a)) {
+      res.calculatorRule = calculatorSelection(spec.short)
+    }
     // A gap alongside a published answer is reported, not resolved.
     for (const g of gaps) {
       res.notes = [...res.notes, `${g.driver}. ${g.location}.`]
@@ -1585,6 +1931,8 @@ export function compute(exam: Exam): Result {
       quote: '',
       location: '',
       source: src,
+      strength: null,
+      separateDocument: false,
       notes: [],
       riskYears: 0,
       override: false,
@@ -1592,6 +1940,8 @@ export function compute(exam: Exam): Result {
       notSpecified: true,
       prepInadequate: false,
       assumption: false,
+      calculatorRule: null,
+      supersededInterval: null,
     }
   }
 
@@ -1599,19 +1949,7 @@ export function compute(exam: Exam): Result {
     if (adv.when(a)) res.notes = [...res.notes, adv.note]
   }
 
-  // Inadequate preparation does not shorten or replace the interval. Every one
-  // of these guidelines states its intervals assume an adequate examination;
-  // none of them states what this exam's interval should instead be.
-  if (!prepAdequate(exam.bbps)) {
-    res.prepInadequate = true
-    res.notes = [
-      `Bowel preparation was inadequate on the Boston Bowel Preparation Scale. ${spec.short} states its intervals assume an adequate examination — "${spec.prep.quote}" (${spec.prep.location}).`,
-      spec.prep.onInadequate,
-      ...res.notes,
-    ]
-  }
-
-  return res
+  return prepBad ? prepResult(spec, src, res) : res
 }
 
 export interface Jurisdiction {

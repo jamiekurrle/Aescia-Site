@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
 import {
   compute,
@@ -10,6 +10,7 @@ import {
   type LesionInput,
   type Jurisdiction,
   type Result,
+  type Superseded,
 } from './engine'
 import { FAQ_ITEMS } from './faq'
 import { JUR_TO_SLUG } from './slugs'
@@ -33,6 +34,11 @@ const AWAIT_TYPES: { hist: LesionInput['hist']; label: string; prevalence: strin
   { hist: 'TSA', label: 'Traditional serrated', prevalence: '<1%' },
 ]
 const BBPS_SEGMENTS: [string, number][] = [['Right colon', 0], ['Transverse', 1], ['Left colon', 2]]
+// The awaiting-histology breakdown is scored at an adequate preparation, so each
+// row carries this guideline's routine interval for that histology. Where the
+// examination's own preparation was inadequate, the published preparation
+// pathway is the result and this breakdown is demoted beneath it.
+const ADEQUATE_BBPS: [number, number, number] = [3, 3, 3]
 const COUNTRIES: { country: Jurisdiction['country']; label: string; guideline?: string; default: JurId }[] = [
   { country: 'US', label: 'United States', guideline: 'USMSTF 2020', default: 'US' },
   { country: 'CA', label: 'Canada', default: 'CA_ON' },
@@ -115,7 +121,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   // Awaiting single-lesion breakdown (per possible histology)
   const breakdown = awaiting
     ? AWAIT_TYPES.map((t) => {
-        const r = compute({ jur, lesions: [{ hist: t.hist, count: rows[0].count, size: rows[0].size, hgd: rows[0].hgd, piece: rows[0].piece, proximal: false }], malignant: false, special: false, bbps })
+        const r = compute({ jur, lesions: [{ hist: t.hist, count: rows[0].count, size: rows[0].size, hgd: rows[0].hgd, piece: rows[0].piece, proximal: false }], malignant: false, special: false, bbps: ADEQUATE_BBPS })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
     : []
@@ -416,6 +422,98 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   )
 }
 
+type BreakdownRow = { label: string; prevalence: string; interval: string }
+
+// The page's amber panel: marks a statement the society did not make.
+function Caveat({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5">
+      <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#7A5312] font-semibold mb-1">{label}</div>
+      <p className="text-[11.5px] leading-relaxed text-[#5E4310]">{children}</p>
+    </div>
+  )
+}
+
+function Notes({ notes, muted = false }: { notes: string[]; muted?: boolean }) {
+  if (notes.length === 0) return null
+  return (
+    <ul className={`space-y-1.5 ${muted ? 'mt-2.5' : 'mt-4'}`}>
+      {notes.map((note, i) => (
+        <li key={i} className={`leading-relaxed text-foreground/72 flex gap-2 ${muted ? 'text-[11.5px]' : 'text-[12.5px]'}`}>
+          <span className="text-brass mt-0.5" aria-hidden="true">→</span>
+          {note}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+function Breakdown({ breakdown, largeLesion }: { breakdown: BreakdownRow[]; largeLesion: boolean }) {
+  return (
+    <>
+      <Caveat label="Background evidence, not an input to the interval">
+        The percentages are prevalence data from the published literature: how often each histology
+        turns out to be the result. They are here to show which outcome is likely. Every interval in
+        the right-hand column is the guideline's own row for that histology, and the percentages play
+        no part in selecting it.
+      </Caveat>
+      <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
+        <span>Histology · share found (background)</span>
+        <span>Guideline interval</span>
+      </div>
+      <ul>
+        {breakdown.map((b) => (
+          <li key={b.label} className="flex items-center justify-between gap-3 py-2 border-b border-border/60 last:border-0">
+            <span className="flex items-center gap-2.5 text-[13px] text-foreground/80"><span className="font-mono text-[11px] text-foreground/72 tabular-nums w-16 text-right">{b.prevalence}</span>{b.label}</span>
+            <span className="text-[13px] font-semibold text-foreground text-right">{b.interval}</span>
+          </li>
+        ))}
+      </ul>
+      {largeLesion && (
+        <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2 text-[11.5px] leading-relaxed text-[#7A5312]">A lesion ≥10 mm is much more likely to be advanced, villous, or serrated than these population figures suggest.</div>
+      )}
+      <p className="text-[11px] leading-relaxed text-foreground/72 mt-3">Approximate per-polyp shares (ranges); they shift with lesion size. <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Source ↗</a></p>
+    </>
+  )
+}
+
+// The routine interval the findings carry, shown beneath the preparation
+// pathway and conditioned on the precondition this examination did not meet.
+function SupersededBlock({ sup }: { sup: Superseded }) {
+  const lead = sup.override
+    ? 'Had this examination been adequate, these findings would still sit outside this guideline’s scope:'
+    : sup.discretion || sup.notSpecified
+      ? 'Had this examination been adequate, this guideline would still publish no interval for these findings:'
+      : 'Had this examination been adequate, this guideline’s interval for these findings would be:'
+  return (
+    <div className="mt-5 pt-4 border-t border-border">
+      <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
+        <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
+        <p className="text-[12px] leading-relaxed text-foreground/72 mb-1.5">{lead}</p>
+        <div className="text-[15px] font-semibold text-foreground/80 leading-tight">{sup.interval}</div>
+        {sup.modality && <div className="text-[11.5px] text-foreground/72 mt-1">Guideline modality: {sup.modality}</div>}
+        <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">{sup.driver}.</p>
+        {sup.quote && (
+          <div className="mt-2.5">
+            <p className="text-[11.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{sup.quote}</p>
+            {sup.location && <p className="font-mono text-[10px] leading-relaxed text-foreground/72 mt-1 pl-3">{sup.location}</p>}
+          </div>
+        )}
+        {sup.calculatorRule && (
+          <Caveat label="Interval selected by this calculator, not by the guideline">{sup.calculatorRule}</Caveat>
+        )}
+        {sup.precondition && (
+          <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">
+            This guideline publishes that interval on the precondition of an adequate examination. Its
+            wording: <span className="italic">“{sup.precondition.quote}”</span> ({sup.precondition.location}).
+          </p>
+        )}
+        <Notes notes={sup.notes} muted />
+      </div>
+    </div>
+  )
+}
+
 function ResultCard({
   result,
   awaiting,
@@ -426,44 +524,79 @@ function ResultCard({
 }: {
   result: Result
   awaiting: boolean
-  breakdown: { label: string; prevalence: string; interval: string }[]
+  breakdown: BreakdownRow[]
   sourceName: string
   sourceUrl: string
   largeLesion: boolean
 }) {
   // The guideline itself stops short of an interval: out of its scope, declined,
   // or simply not stated. Amber marks those, an exam outside the guideline's
-  // stated preconditions, and the awaiting-histology holding state.
+  // stated preconditions, an interval this calculator selected, and the
+  // awaiting-histology holding state.
   const stopsShort = result.override || result.discretion || result.notSpecified
-  const accent = stopsShort || result.prepInadequate || awaiting ? 'border-[#97590C]' : 'border-brass'
+
+  // An inadequately prepared examination did not meet the precondition every
+  // routine interval is published on. The engine answers such an exam with the
+  // society's published preparation pathway and carries the routine interval it
+  // demoted as `supersededInterval`, so that field marks this path exactly.
+  const prepPathway = result.prepInadequate && result.supersededInterval !== null
+  // The society publishes a repeat interval; a repeat with no timing attached
+  // (a modality, and an interval it does not specify); or neither.
+  const repeatPublished = prepPathway && !result.notSpecified
+  const repeatUntimed = prepPathway && result.notSpecified && result.modality !== null
+  // A published preparation statement to attribute. Where the society published
+  // none, the result quotes the guideline's precondition and the card footer
+  // already names that guideline.
+  const hasPathway = repeatPublished || repeatUntimed
+
+  // Set on the element: `border-border` covers all four sides, so a left-edge
+  // colour has to outrank it rather than sit beside it in the class list.
+  const accent = stopsShort || result.prepInadequate || result.calculatorRule || awaiting ? '#97590C' : 'var(--brass)'
+  // Driver, wording and notes belong to the preparation pathway when it is the
+  // result, so they show even while histology is outstanding.
+  const showDetail = !awaiting || prepPathway
+
   return (
-    <div role="status" aria-live="polite" className={`bg-card border-l-[3px] ${accent} border-y border-r border-border rounded-lg p-6 lg:p-7`}>
-      {result.prepInadequate && !awaiting && (
+    <div role="status" aria-live="polite" style={{ borderLeftColor: accent }} className="bg-card border-l-[3px] border-y border-r border-border rounded-lg p-6 lg:p-7">
+      {result.prepInadequate && !prepPathway && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
-          <strong>Bowel preparation inadequate.</strong> The intervals this guideline publishes assume
-          an adequate examination, and this exam falls outside that assumption. The guideline's own
-          precondition is quoted below.
+          <strong>Bowel preparation inadequate.</strong> These findings sit outside this guideline's
+          scope whatever the preparation, so that stands. The published preparation guidance is noted
+          below.
         </div>
       )}
 
-      {awaiting ? (
+      {prepPathway ? (
+        <>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">
+            {repeatPublished
+              ? 'Inadequate preparation · repeat interval'
+              : repeatUntimed
+                ? 'Inadequate preparation · repeat required'
+                : 'Inadequate preparation · no interval published'}
+          </div>
+          <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
+          {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">Modality: {result.modality}</div>}
+          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
+            {repeatPublished
+              ? 'This is the timing the society publishes for an examination whose preparation was inadequate. It answers this examination in place of the routine interval, which is published on a precondition this examination did not meet.'
+              : repeatUntimed
+                ? 'This society requires the repeat and publishes no timing for it. The timing is a clinical decision.'
+                : 'This guideline’s intervals assume an adequate examination, and it publishes no replacement interval for one that was not. The timing is a clinical decision.'}
+          </div>
+          {result.separateDocument && (
+            <Caveat label="Published in a separate document">
+              This is published in a different document from the surveillance guideline these intervals
+              come from. That document is named and linked below.
+            </Caveat>
+          )}
+        </>
+      ) : awaiting ? (
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Awaiting histology</div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
-          <div className="text-[12.5px] text-foreground/72 mb-3">For the number and size entered, here is the interval each possible histology would give, with roughly how often each type is found. Set once histopathology returns.</div>
-          <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mb-1 px-0.5"><span>Histology · typical share</span><span>Interval</span></div>
-          <ul>
-            {breakdown.map((b) => (
-              <li key={b.label} className="flex items-center justify-between gap-3 py-2 border-b border-border/60 last:border-0">
-                <span className="flex items-center gap-2.5 text-[13px] text-foreground/80"><span className="font-mono text-[11px] text-foreground/72 tabular-nums w-16 text-right">{b.prevalence}</span>{b.label}</span>
-                <span className="text-[13px] font-semibold text-foreground text-right">{b.interval}</span>
-              </li>
-            ))}
-          </ul>
-          {largeLesion && (
-            <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2 text-[11.5px] leading-relaxed text-[#7A5312]">A lesion ≥10 mm is much more likely to be advanced, villous, or serrated than these population figures suggest.</div>
-          )}
-          <p className="text-[11px] leading-relaxed text-foreground/72 mt-3">Approximate per-polyp shares (ranges); shift with lesion size. <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Source ↗</a></p>
+          <div className="text-[12.5px] text-foreground/72 mb-3">For the number and size entered, here is the interval each possible histology would give. Set once histopathology returns.</div>
+          <Breakdown breakdown={breakdown} largeLesion={largeLesion} />
         </>
       ) : result.override ? (
         <>
@@ -490,27 +623,48 @@ function ResultCard({
         </>
       )}
 
-      {!awaiting && (
+      {result.calculatorRule && (
+        <Caveat label="Interval selected by this calculator, not by the guideline">{result.calculatorRule}</Caveat>
+      )}
+
+      {showDetail && (
         <>
           <div className="mt-5 pt-4 border-t border-border">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{stopsShort ? 'Why' : 'Driven by'}</span>
             <p className="text-[13.5px] leading-relaxed text-foreground/80">{result.driver}.</p>
           </div>
+          {hasPathway && (
+            <div className="mt-4">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Recommendation strength</span>
+              <p className="text-[12.5px] leading-relaxed text-foreground/72">{result.strength ?? 'None printed against this statement in the source document.'}</p>
+            </div>
+          )}
           {result.quote && (
             <div className="mt-4">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{result.override ? 'Basis' : 'Guideline wording'}</span>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{prepPathway ? 'Published wording' : result.override ? 'Basis' : 'Guideline wording'}</span>
               <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{result.quote}</p>
               {result.location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{result.location}</p>}
             </div>
           )}
-          {result.notes.length > 0 && (
-            <ul className="mt-4 space-y-1.5">
-              {result.notes.map((note, i) => (
-                <li key={i} className="text-[12.5px] leading-relaxed text-foreground/72 flex gap-2"><span className="text-brass mt-0.5" aria-hidden="true">→</span>{note}</li>
-              ))}
-            </ul>
+          {hasPathway && (
+            <div className="mt-4">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Source document</span>
+              <a href={result.source.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-foreground/72 hover:text-accent leading-relaxed">{result.source.name} ↗</a>
+            </div>
           )}
+          <Notes notes={result.notes} />
         </>
+      )}
+
+      {prepPathway && !awaiting && result.supersededInterval && <SupersededBlock sup={result.supersededInterval} />}
+      {prepPathway && awaiting && (
+        <div className="mt-5 pt-4 border-t border-border">
+          <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
+            <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
+            <p className="text-[12px] leading-relaxed text-foreground/72">Had this examination been adequate, here is the interval each possible histology would give.</p>
+            <Breakdown breakdown={breakdown} largeLesion={largeLesion} />
+          </div>
+        </div>
       )}
 
       <div className="mt-5 pt-4 border-t border-border">
