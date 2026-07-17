@@ -13,7 +13,7 @@ import {
   type Source,
   type Superseded,
 } from './engine'
-import { JUR_TO_SLUG, SLUG_TO_JUR } from './slugs'
+import { JUR_TO_SLUG, routeToJur } from './slugs'
 
 type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
@@ -76,18 +76,15 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
 
   const active = JURISDICTIONS.find((j) => j.id === jur)!
 
-  // On load: adopt the guideline the route names and hydrate any findings
-  // carried in the query string. A slug page names its guideline; the base path
-  // is United States when findings were carried to it, otherwise the geo default
-  // the server chose. The findings encoding matches buildShareUrl below.
+  // The route sets the guideline, unconditionally, so a queryless URL always
+  // renders the guideline named in its title and canonical link. No stored, geo,
+  // or prior selection can override the pathname. Then hydrate any findings
+  // carried in the query string, encoded to match buildShareUrl below.
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const slug = window.location.pathname.replace(/^\/colonoscopy-surveillance\/?/, '')
+    setJur(routeToJur(window.location.pathname))
     const p = new URLSearchParams(window.location.search)
-    const hasParams = [...p.keys()].length > 0
-    if (slug && SLUG_TO_JUR[slug]) setJur(SLUG_TO_JUR[slug])
-    else if (hasParams) setJur('US')
-    if (!hasParams) return
+    if (![...p.keys()].length) return
     const toInt = (s: string | null, max: number) => Math.max(0, Math.min(max, Math.round(Number(s) || 0)))
     const b = p.get('b')
     if (b && /^[0-3]{3}$/.test(b)) setBbps([+b[0], +b[1], +b[2]] as [number, number, number])
@@ -104,13 +101,6 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  // Remember the last guideline for a return visit.
-  useEffect(() => {
-    try {
-      localStorage.setItem('cs-jur', jur)
-    } catch {}
-  }, [jur])
 
   const lesions: LesionInput[] = rows
     .filter((r) => r.count > 0 && r.hist !== 'NONE')

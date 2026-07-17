@@ -21,20 +21,12 @@ export const JUR_TO_SLUG: Record<JurId, string> = {
   EU: 'europe',
 }
 
-// Europe / EEA / UK ISO-3166 codes that map to the ESGE guideline.
-const EUROPE = new Set([
-  'GB', 'IE', 'DE', 'FR', 'IT', 'ES', 'NL', 'BE', 'LU', 'PT', 'AT', 'CH', 'SE',
-  'NO', 'DK', 'FI', 'IS', 'PL', 'CZ', 'SK', 'SI', 'HR', 'HU', 'RO', 'BG', 'GR',
-  'EE', 'LV', 'LT', 'MT', 'CY',
-])
-
-// Map a visitor's country (Vercel x-vercel-ip-country) to the closest guideline.
-// This only pre-selects the switcher; the base page's SEO metadata stays US.
-export function countryToJur(cc: string | null | undefined): JurId {
-  if (!cc) return 'US'
-  const c = cc.toUpperCase()
-  if (c === 'CA') return 'CA_ON'
-  if (c === 'AU' || c === 'NZ') return 'AU'
-  if (EUROPE.has(c)) return 'EU'
-  return 'US'
+// The guideline a route resolves to. The pathname is the sole authority: the
+// base path is the United States (USMSTF), and every other path is its slug's
+// guideline. This is a pure function of the path, so no stored, geo, or prior
+// state can make a route render a guideline that disagrees with its own title
+// and canonical URL.
+export function routeToJur(pathname: string): JurId {
+  const slug = pathname.replace(/^\/colonoscopy-surveillance\/?/, '').replace(/\/$/, '')
+  return (slug && SLUG_TO_JUR[slug]) || 'US'
 }
