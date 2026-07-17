@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
-import { breadcrumbSchema, webPageSchema, faqPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
+import { breadcrumbSchema, webPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
 import { PageContent } from './content'
-import { FAQ_ITEMS } from './faq'
 import type { JurId } from './engine'
 
 const SITE_URL = 'https://www.aesciahealth.com'
-// Soft-launch: still orphaned + noindexed. Flip GO_PUBLIC to true (and add the
-// sitemap/nav/llms entries) to launch.
-const GO_PUBLIC = false
+// GO_PUBLIC gates whether the guideline pages are discoverable by search and AI
+// crawlers. True: each page is indexable (index,follow) with its self-referencing
+// canonical. False: each page emits robots noindex,nofollow.
+const GO_PUBLIC = true
 
 // Date the Aescia clinical team last reviewed the rules against the published
 // guidelines. Bump this ONLY when a real review happens — it is not the build
@@ -147,14 +147,12 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur:
     isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntityOfPage: { '@id': `${url}#webpage` },
   }
-  const faqSchema = { ...faqPageSchema(FAQ_ITEMS.map((f) => ({ q: f.q, a: f.a }))), '@id': `${url}#faq` }
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <SiteNav />
       <main id="main" className="bg-background min-h-screen">
         <PageContent initialJur={initialJur ?? jur} />

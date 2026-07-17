@@ -17,6 +17,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/medication-management-before-endoscopy', priority: 0.9, freq: 'monthly' as const },
     { path: '/bowel-prep-software', priority: 0.9, freq: 'monthly' as const },
     { path: '/prep-aware-backfill', priority: 0.9, freq: 'monthly' as const },
+    // Free clinician tool + answer-engine entry point. Per-guideline pages are
+    // bookmarkable and separately rankable.
+    { path: '/colonoscopy-surveillance', priority: 0.9, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/guide', priority: 0.8, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/canada-ontario', priority: 0.7, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/canada-alberta', priority: 0.7, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/canada-british-columbia', priority: 0.7, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/australia', priority: 0.7, freq: 'monthly' as const },
+    { path: '/colonoscopy-surveillance/europe', priority: 0.7, freq: 'monthly' as const },
     { path: '/compare', priority: 0.85, freq: 'monthly' as const },
     { path: '/asc-fit', priority: 0.85, freq: 'monthly' as const },
     { path: '/security', priority: 0.9, freq: 'monthly' as const },

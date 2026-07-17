@@ -10,10 +10,10 @@ import {
   type LesionInput,
   type Jurisdiction,
   type Result,
+  type Source,
   type Superseded,
 } from './engine'
-import { FAQ_ITEMS } from './faq'
-import { JUR_TO_SLUG } from './slugs'
+import { JUR_TO_SLUG, SLUG_TO_JUR } from './slugs'
 
 type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
@@ -76,12 +76,18 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
 
   const active = JURISDICTIONS.find((j) => j.id === jur)!
 
-  // Hydrate from a shared link's query string on first load, BEFORE the
-  // jurisdiction effect below rewrites the path to the bare guideline URL.
+  // On load: adopt the guideline the route names and hydrate any findings
+  // carried in the query string. A slug page names its guideline; the base path
+  // is United States when findings were carried to it, otherwise the geo default
+  // the server chose. The findings encoding matches buildShareUrl below.
   useEffect(() => {
     if (typeof window === 'undefined') return
+    const slug = window.location.pathname.replace(/^\/colonoscopy-surveillance\/?/, '')
     const p = new URLSearchParams(window.location.search)
-    if (![...p.keys()].length) return
+    const hasParams = [...p.keys()].length > 0
+    if (slug && SLUG_TO_JUR[slug]) setJur(SLUG_TO_JUR[slug])
+    else if (hasParams) setJur('US')
+    if (!hasParams) return
     const toInt = (s: string | null, max: number) => Math.max(0, Math.min(max, Math.round(Number(s) || 0)))
     const b = p.get('b')
     if (b && /^[0-3]{3}$/.test(b)) setBbps([+b[0], +b[1], +b[2]] as [number, number, number])
@@ -99,16 +105,11 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  // Remember last jurisdiction, and reflect it in the URL path for bookmarking.
+  // Remember the last guideline for a return visit.
   useEffect(() => {
     try {
       localStorage.setItem('cs-jur', jur)
     } catch {}
-    const slug = JUR_TO_SLUG[jur]
-    const path = jur === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${slug}`
-    if (typeof window !== 'undefined' && window.location.pathname !== path) {
-      window.history.replaceState(null, '', path)
-    }
   }, [jur])
 
   const lesions: LesionInput[] = rows
@@ -131,18 +132,24 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
   const setRow = (key: number, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch } : r)))
 
-  // Encode the full scenario (guideline in the path; prep, scope flags, and
-  // every lesion in the query) so a copied link reproduces it.
-  const buildShareUrl = () => {
-    const slug = JUR_TO_SLUG[jur]
-    const path = jur === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${slug}`
+  // Route for a guideline: US is the base path, the rest their own slug.
+  const pathFor = (j: JurId) => (j === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${JUR_TO_SLUG[j]}`)
+  // Encode the full scenario (prep, scope flags, and every lesion) so a switch
+  // or a copied link reproduces it. The hydrate effect above parses these.
+  const buildQuery = () => {
     const p = new URLSearchParams()
     p.set('b', bbps.join(''))
     if (malignant) p.set('mal', '1')
     if (special) p.set('sp', '1')
     p.set('l', rows.map((r) => `${r.hist}:${r.count}:${r.size}:${r.hgd ? 1 : 0}${r.piece ? 1 : 0}${r.proximal ? 1 : 0}`).join(','))
+    return p.toString()
+  }
+  // A real link to a guideline's route, carrying the current findings. Switching
+  // guideline is a navigation, so the destination page's metadata is its own.
+  const hrefFor = (j: JurId) => `${pathFor(j)}?${buildQuery()}`
+  const buildShareUrl = () => {
     const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.aesciahealth.com'
-    return `${origin}${path}?${p.toString()}`
+    return `${origin}${hrefFor(jur)}`
   }
 
   const writeClipboard = async (text: string): Promise<boolean> => {
@@ -221,11 +228,12 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/72 mr-1">Guideline</span>
             {COUNTRIES.map((c) => {
               const on = active.country === c.country
+              const target = on ? jur : c.default
               return (
-                <button key={c.country} onClick={() => setJur(on ? jur : c.default)} aria-pressed={on} className={chip(on)}>
+                <Link key={c.country} href={hrefFor(target)} aria-current={on ? 'page' : undefined} className={chip(on)}>
                   {c.label}
                   {c.guideline ? ` · ${c.guideline}` : ''}
-                </button>
+                </Link>
               )
             })}
           </div>
@@ -234,9 +242,9 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               <div className="flex flex-wrap items-center gap-2 mb-3 pl-3 border-l-2 border-brass/50">
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/72 mr-1">Province</span>
                 {JURISDICTIONS.filter((j) => j.country === 'CA').map((j) => (
-                  <button key={j.id} onClick={() => setJur(j.id)} aria-pressed={jur === j.id} className={chip(jur === j.id)}>
+                  <Link key={j.id} href={hrefFor(j.id)} aria-current={jur === j.id ? 'page' : undefined} className={chip(jur === j.id)}>
                     {j.province} · {j.guideline}
-                  </button>
+                  </Link>
                 ))}
               </div>
               <p className="text-[11.5px] leading-relaxed text-foreground/72 mb-6 max-w-3xl">
@@ -358,63 +366,34 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             {/* Result */}
             <ResultCard result={result} awaiting={awaiting} breakdown={breakdown} sourceName={active.source.name} sourceUrl={active.source.url} largeLesion={rows.some((r) => r.size >= 10 && r.count > 0)} />
           </div>
-
-          <div className="mt-8 bg-secondary/60 border border-border rounded-lg p-5 lg:p-6">
-            <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/72 mb-2">How to read this</div>
-            <p className="text-[13px] leading-relaxed text-foreground/72">
-              An educational reference for health professionals. It reproduces the published
-              surveillance rule for an index (baseline) colonoscopy and shows the rule, the guideline's
-              own wording, and where that wording is printed. Every interval it shows is a row a
-              guideline publishes. Where the selected guideline states no interval for the findings
-              entered, the result reports that and the decision stays with the clinician. It is{' '}
-              <strong className="text-foreground">not medical advice, not a medical device, and does not make or
-              replace a clinical decision.</strong>{' '}
-              Confirm every interval against the cited guideline for the individual patient. The
-              calculation runs in your browser; the findings you enter are not transmitted or stored.
-              The Aescia clinical team reviews this tool periodically against the published guidelines
-              and updates it when they change.{' '}
-              <a href="mailto:contact@aesciahealth.com?subject=Colonoscopy%20surveillance%20calculator%20error%20report" className="text-accent hover:underline">
-                If you notice an error, please tell us.
-              </a>
-            </p>
-          </div>
         </div>
       </section>
 
-      <ResearchSection />
-      <FaqSection />
-
-      {/* Guideline sources ---------------------------------------------- */}
+      {/* Reference ------------------------------------------------------- */}
       <section className="px-6 lg:px-10 py-14 border-b border-border">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-6">Guideline sources</h2>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {JURISDICTIONS.map((j) => (
-              <a key={j.id} href={j.source.url} target="_blank" rel="noopener noreferrer" className="block bg-card border border-border rounded-lg p-4 hover:border-accent transition-colors">
-                <div className="text-[14px] font-semibold text-foreground mb-1">{j.label}{j.province ? ` · ${j.province}` : ''} · {j.guideline}</div>
-                <div className="text-[12px] text-foreground/72 leading-relaxed">{j.source.name} ↗</div>
-              </a>
-            ))}
-          </div>
+          <p className="text-[14px] leading-relaxed text-foreground/80">
+            For how the guidelines set intervals, common questions, where surveillance is heading, and
+            the source behind each rule, see the{' '}
+            <Link href="/colonoscopy-surveillance/guide" className="text-accent hover:underline">colonoscopy surveillance guideline reference</Link>.
+          </p>
         </div>
       </section>
 
       <section className="px-6 lg:px-10 py-14">
         <div className="max-w-4xl mx-auto">
-          <p className="text-[13px] leading-relaxed text-foreground/72 mb-3">A free reference from Aescia for the endoscopy community, reviewed and periodically updated by the Aescia clinical team.</p>
-          <div className="bg-secondary/50 border border-border rounded-lg p-5 mb-6">
-            <p className="text-[13px] leading-relaxed text-foreground/72">
-              Aescia builds pre-procedure and surveillance-recall software for endoscopy clinics — if
-              tracking recall intervals across a whole service is your problem, not a single case,{' '}
-              <Link href="/clinics" className="text-accent hover:underline">see what we do</Link>.
-            </p>
-          </div>
+          <p className="text-[12px] leading-relaxed text-foreground/72 mb-4">
+            Reference tool for health professionals. Not medical advice, not a medical device, and does
+            not make or replace a clinical decision. The calculation runs in your browser; the findings
+            you enter are not transmitted or stored. The Aescia clinical team reviews this tool
+            periodically against the source guidelines and updates it when they change, but guidelines
+            are revised without notice; verify against the current version before acting. If you notice
+            an error, tell us at{' '}
+            <a href="mailto:contact@aesciahealth.com?subject=Colonoscopy%20surveillance%20calculator%20error%20report" className="text-accent hover:underline">contact@aesciahealth.com</a>.
+          </p>
           <p className="text-[12px] leading-relaxed text-foreground/72">
-            Reference tool for health professionals. Not medical advice. Not a medical device. Does not
-            make or replace clinical decisions. We review this tool periodically against the source
-            guidelines and update it when they change, but guidelines are revised without notice; verify
-            against the current version before acting. If you notice an error, please tell us at{' '}
-            <a href="mailto:contact@aesciahealth.com" className="text-accent hover:underline">contact@aesciahealth.com</a>.
+            Aescia builds pre-procedure and surveillance-recall software for endoscopy clinics.{' '}
+            <Link href="/clinics" className="text-accent hover:underline">See what we do</Link>.
           </p>
         </div>
       </section>
@@ -445,6 +424,55 @@ function Notes({ notes, muted = false }: { notes: string[]; muted?: boolean }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+// The verbatim guideline wording, its location reference, its recommendation
+// strength and any notes, kept behind a disclosure so the result leads with the
+// interval, the rule, and the source rather than the evidence.
+function GuidelineWording({
+  quoteLabel = 'Guideline wording',
+  strength,
+  quote,
+  location,
+  sourceDoc,
+  notes,
+}: {
+  quoteLabel?: string
+  strength?: string
+  quote?: string
+  location?: string
+  sourceDoc?: Source | null
+  notes?: string[]
+}) {
+  const hasNotes = !!notes && notes.length > 0
+  if (!quote && !hasNotes && !sourceDoc && strength === undefined) return null
+  return (
+    <details className="mt-4">
+      <summary className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 cursor-pointer hover:text-accent select-none">Show exact guideline wording</summary>
+      <div className="mt-3 space-y-4">
+        {strength !== undefined && (
+          <div>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Recommendation strength</span>
+            <p className="text-[12.5px] leading-relaxed text-foreground/72">{strength}</p>
+          </div>
+        )}
+        {quote && (
+          <div>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{quoteLabel}</span>
+            <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{quote}</p>
+            {location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{location}</p>}
+          </div>
+        )}
+        {sourceDoc && (
+          <div>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Source document</span>
+            <a href={sourceDoc.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-foreground/72 hover:text-accent leading-relaxed">{sourceDoc.name} ↗</a>
+          </div>
+        )}
+        {hasNotes && <Notes notes={notes!} />}
+      </div>
+    </details>
   )
 }
 
@@ -493,22 +521,29 @@ function SupersededBlock({ sup }: { sup: Superseded }) {
         <div className="text-[15px] font-semibold text-foreground/80 leading-tight">{sup.interval}</div>
         {sup.modality && <div className="text-[11.5px] text-foreground/72 mt-1">Guideline modality: {sup.modality}</div>}
         <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">{sup.driver}.</p>
-        {sup.quote && (
-          <div className="mt-2.5">
-            <p className="text-[11.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{sup.quote}</p>
-            {sup.location && <p className="font-mono text-[10px] leading-relaxed text-foreground/72 mt-1 pl-3">{sup.location}</p>}
-          </div>
-        )}
         {sup.calculatorRule && (
           <Caveat label="Interval selected by this calculator, not by the guideline">{sup.calculatorRule}</Caveat>
         )}
-        {sup.precondition && (
-          <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">
-            This guideline publishes that interval on the precondition of an adequate examination. Its
-            wording: <span className="italic">“{sup.precondition.quote}”</span> ({sup.precondition.location}).
-          </p>
+        {(sup.quote || sup.precondition || sup.notes.length > 0) && (
+          <details className="mt-3">
+            <summary className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 cursor-pointer hover:text-accent select-none">Show exact guideline wording</summary>
+            <div className="mt-2.5 space-y-2.5">
+              {sup.quote && (
+                <div>
+                  <p className="text-[11.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{sup.quote}</p>
+                  {sup.location && <p className="font-mono text-[10px] leading-relaxed text-foreground/72 mt-1 pl-3">{sup.location}</p>}
+                </div>
+              )}
+              {sup.precondition && (
+                <p className="text-[11.5px] leading-relaxed text-foreground/72">
+                  This guideline publishes that interval on the precondition of an adequate examination. Its
+                  wording: <span className="italic">“{sup.precondition.quote}”</span> ({sup.precondition.location}).
+                </p>
+              )}
+              <Notes notes={sup.notes} muted />
+            </div>
+          </details>
         )}
-        <Notes notes={sup.notes} muted />
       </div>
     </div>
   )
@@ -633,26 +668,14 @@ function ResultCard({
             <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{stopsShort ? 'Why' : 'Driven by'}</span>
             <p className="text-[13.5px] leading-relaxed text-foreground/80">{result.driver}.</p>
           </div>
-          {hasPathway && (
-            <div className="mt-4">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Recommendation strength</span>
-              <p className="text-[12.5px] leading-relaxed text-foreground/72">{result.strength ?? 'None printed against this statement in the source document.'}</p>
-            </div>
-          )}
-          {result.quote && (
-            <div className="mt-4">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{prepPathway ? 'Published wording' : result.override ? 'Basis' : 'Guideline wording'}</span>
-              <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{result.quote}</p>
-              {result.location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{result.location}</p>}
-            </div>
-          )}
-          {hasPathway && (
-            <div className="mt-4">
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Source document</span>
-              <a href={result.source.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-foreground/72 hover:text-accent leading-relaxed">{result.source.name} ↗</a>
-            </div>
-          )}
-          <Notes notes={result.notes} />
+          <GuidelineWording
+            quoteLabel={prepPathway ? 'Published wording' : result.override ? 'Basis' : 'Guideline wording'}
+            strength={hasPathway ? (result.strength ?? 'None printed against this statement in the source document.') : undefined}
+            quote={result.quote || undefined}
+            location={result.location || undefined}
+            sourceDoc={hasPathway ? result.source : null}
+            notes={result.notes}
+          />
         </>
       )}
 
@@ -668,99 +691,9 @@ function ResultCard({
       )}
 
       <div className="mt-5 pt-4 border-t border-border">
-        <p className="text-[11.5px] leading-relaxed text-foreground/72 mb-2">Clinician reference. Not personal medical advice; confirm against the guideline for the individual patient.</p>
+        <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Source</span>
         <a href={sourceUrl} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-foreground/72 hover:text-accent leading-relaxed">{sourceName} ↗</a>
       </div>
     </div>
   )
 }
-
-function ResearchSection() {
-  return (
-    <section className="px-6 lg:px-10 py-14 lg:py-20 border-b border-border">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-3 mb-4">
-          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">What is changing</span>
-          <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
-        </div>
-        <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-4">Where post-polypectomy surveillance is heading</h2>
-        <p className="text-[15px] leading-relaxed text-foreground/72 mb-10 max-w-2xl">Context only — this does not change the interval the calculator computes, which follows the guideline you select.</p>
-        <div className="space-y-10">
-          {RESEARCH.map((group) => (
-            <div key={group.heading}>
-              <h3 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-4 pb-2 border-b border-border">{group.heading}</h3>
-              <div className="space-y-6">
-                {group.items.map((item) => (
-                  <div key={item.title}>
-                    <div className="flex items-baseline gap-2 flex-wrap mb-1">
-                      <h4 className="text-[15px] font-semibold text-foreground">{item.title}</h4>
-                      <span className={`font-mono text-[10px] uppercase tracking-[0.06em] px-1.5 py-0.5 rounded-full ${item.strength === 'strong' ? 'text-[#1F6B47] bg-[#E6F1EA]' : 'text-[#8A6D2F] bg-[#F6EFE0]'}`}>{item.strength === 'strong' ? 'Strong evidence' : 'Early signal'}</span>
-                    </div>
-                    <p className="text-[13.5px] leading-relaxed text-foreground/72 mb-1.5">{item.body}</p>
-                    <div className="flex flex-wrap gap-x-4 gap-y-1">
-                      {item.sources.map((s) => (
-                        <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-accent hover:underline">{s.label} ↗</a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function FaqSection() {
-  return (
-    <section className="px-6 lg:px-10 py-14 lg:py-20 border-b border-border">
-      <div className="max-w-3xl mx-auto">
-        <div className="flex items-center gap-3 mb-6">
-          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Common questions</span>
-          <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
-        </div>
-        <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-8">Colonoscopy surveillance intervals — quick answers</h2>
-        <div className="divide-y divide-border">
-          {FAQ_ITEMS.map((item) => (
-            <div key={item.q} className="py-5">
-              <h3 className="text-[16px] font-semibold text-foreground mb-2">{item.q}</h3>
-              <p className="text-[14px] leading-relaxed text-foreground/80">{item.a}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-const RESEARCH: { heading: string; items: { title: string; body: string; strength: 'strong' | 'signal'; sources: { label: string; url: string }[] }[] }[] = [
-  {
-    heading: 'Guideline direction',
-    items: [
-      { title: 'The 2020 guidelines lengthened low-risk intervals — and real-world adherence lags', body: 'USMSTF 2020 and ESGE 2020 both pushed low-risk findings toward 7–10 years or back to screening, yet uptake lags: in one large US health system, roughly a quarter of screening colonoscopies were flagged as probable or possible overuse, and guideline-concordant interval-setting remains inconsistent in practice.', strength: 'strong', sources: [{ label: 'ESGE 2020', url: 'https://doi.org/10.1055/a-1185-3109' }, { label: 'Overuse data', url: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10294020/' }] },
-      { title: 'Serrated-lesion surveillance is being defined by new metachronous-risk data', body: 'A 2024 systematic review and meta-analysis (14 studies, ~494,000 patients) quantified cancer and advanced-lesion risk after serrated-polyp resection, firming up which serrated findings warrant shorter intervals and which can be de-escalated.', strength: 'strong', sources: [{ label: 'GIE 2024', url: 'https://doi.org/10.1016/j.gie.2024.05.021' }] },
-    ],
-  },
-  {
-    heading: 'De-escalation evidence',
-    items: [
-      { title: 'The EPoS randomized trials test interval length head-on', body: 'The European Polyp Surveillance trials randomize low-risk patients to surveillance at 5 and 10 years versus 10 years only, and high-risk patients to 3/5/10 versus 5/10 years — the first large RCTs on interval length.', strength: 'strong', sources: [{ label: 'EPoS design', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5412707/' }] },
-      { title: 'Modelling and national cohorts support returning low-risk adenomas to stool screening', body: 'Microsimulation and OncoSim analyses of sending 1–2 low-risk-adenoma patients back to FIT found little cancer penalty with large colonoscopy savings — the pathway Australia (iFOBT) and Canada (FIT) already encode for low-risk findings.', strength: 'signal', sources: [{ label: 'Return-to-FIT model', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11083724/' }] },
-    ],
-  },
-  {
-    heading: 'AI and optical diagnosis',
-    items: [
-      { title: 'AI optical diagnosis for "resect-and-discard" did not add net benefit (2024)', body: 'Pooling 11 studies, computer-aided diagnosis matched unassisted expert optical diagnosis on the proportion of diminutive polyps that could skip pathology, tempering the idea that AI can soon assign intervals in real time without histology.', strength: 'strong', sources: [{ label: 'Lancet Gastro Hep 2024', url: 'https://doi.org/10.1016/S2468-1253(24)00222-X' }] },
-      { title: 'AI detection finds more small polyps — which can paradoxically shorten intervals', body: 'Because computer-aided detection raises adenoma detection without a matching rise in advanced lesions, microsimulation projects more patients crossed into surveillance.', strength: 'signal', sources: [{ label: 'BMJ Medicine 2025', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC11955961/' }] },
-    ],
-  },
-  {
-    heading: 'Non-invasive tests',
-    items: [
-      { title: 'The Shield blood test won FDA screening approval (2024)', body: 'In the ECLIPSE trial, Guardant’s cell-free-DNA test showed 83% sensitivity for colorectal cancer at 90% specificity, and it is FDA-approved as a primary screening option for average-risk adults 45+. Approved for screening, not surveillance, and its sensitivity for advanced precancerous lesions is low (~13%).', strength: 'strong', sources: [{ label: 'ECLIPSE, NEJM 2024', url: 'https://www.nejm.org/doi/full/10.1056/NEJMoa2304714' }, { label: 'FDA approval', url: 'https://www.fda.gov/medical-devices/recently-approved-devices/shield-p230009' }] },
-    ],
-  },
-]
