@@ -1371,8 +1371,8 @@ const EU: JurSpec = {
       id: 'eu_rec1',
       kind: 'rule',
       when: (a) => a.hasAnyLesion && !euNeedsSurveillance(a),
-      interval: 'No endoscopic surveillance; return to screening',
-      modality: null,
+      interval: '10 years (return to screening)',
+      modality: 'Return to organised screening; colonoscopy at 10 years where no screening programme exists',
       driver: '1 to 4 adenomas under 10 mm with low grade dysplasia, or any serrated polyp under 10 mm without dysplasia',
       quote:
         'ESGE recommends that patients with complete removal of 1 – 4 < 10 mm adenomas with low grade dysplasia, irrespective of villous components, or any serrated polyp < 10 mm without dysplasia, do not require endoscopic surveillance and should be returned to screening. Strong recommendation, moderate quality evidence. If organized screening is not available, repetition of colonoscopy 10 years after the index examination is recommended. Strong recommendation, moderate quality evidence.',
