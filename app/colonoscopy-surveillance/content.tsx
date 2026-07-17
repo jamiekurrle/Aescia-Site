@@ -348,7 +348,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             </div>
 
             {/* Result */}
-            <ResultCard result={result} awaiting={awaiting} breakdown={breakdown} sourceName={active.source.name} sourceUrl={active.source.url} largeLesion={rows.some((r) => r.size >= 10 && r.count > 0)} />
+            <ResultCard result={result} awaiting={awaiting} breakdown={breakdown} sourceName={active.source.name} sourceUrl={active.source.url} />
           </div>
         </div>
       </section>
@@ -460,25 +460,24 @@ function GuidelineWording({
   )
 }
 
-function Breakdown({ breakdown, largeLesion }: { breakdown: BreakdownRow[]; largeLesion: boolean }) {
+function Breakdown({ breakdown }: { breakdown: BreakdownRow[] }) {
   return (
     <>
-      <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
-        <span>Histology prevalence</span>
-        <span>Interval</span>
+      <div className="grid grid-cols-[auto_1fr_auto] gap-x-4 text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
+        <span>Prevalence</span>
+        <span>Histopathology</span>
+        <span className="text-right">Guideline interval</span>
       </div>
       <ul>
         {breakdown.map((b) => (
-          <li key={b.label} className="flex items-center justify-between gap-3 py-2 border-b border-border/60 last:border-0">
-            <span className="flex items-center gap-2.5 text-[13px] text-foreground/80"><span className="font-mono text-[11px] text-foreground/72 tabular-nums w-16 text-right">{b.prevalence}</span>{b.label}</span>
+          <li key={b.label} className="grid grid-cols-[auto_1fr_auto] gap-x-4 items-center py-2 border-b border-border/60 last:border-0">
+            <span className="font-mono text-[11px] text-foreground/72 tabular-nums">{b.prevalence}</span>
+            <span className="text-[13px] text-foreground/80">{b.label}</span>
             <span className="text-[13px] font-semibold text-foreground text-right">{b.interval}</span>
           </li>
         ))}
       </ul>
-      {largeLesion && (
-        <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2 text-[11.5px] leading-relaxed text-[#7A5312]">A lesion 10 mm or larger is more likely to be advanced, villous, or serrated than these figures suggest.</div>
-      )}
-      <p className="text-[11px] leading-relaxed text-foreground/72 mt-3">Prevalence ranges; they shift with lesion size. <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Source ↗</a></p>
+      <p className="text-[11px] text-foreground/72 mt-3"><a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Prevalence source ↗</a></p>
     </>
   )
 }
@@ -533,14 +532,12 @@ function ResultCard({
   breakdown,
   sourceName,
   sourceUrl,
-  largeLesion,
 }: {
   result: Result
   awaiting: boolean
   breakdown: BreakdownRow[]
   sourceName: string
   sourceUrl: string
-  largeLesion: boolean
 }) {
   // The guideline itself stops short of an interval: out of its scope, declined,
   // or simply not stated. Amber marks those, an exam outside the guideline's
@@ -609,7 +606,7 @@ function ResultCard({
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Awaiting histology</div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
           <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology would give. Confirm once histology returns.</div>
-          <Breakdown breakdown={breakdown} largeLesion={largeLesion} />
+          <Breakdown breakdown={breakdown} />
         </>
       ) : result.override ? (
         <>
@@ -663,7 +660,7 @@ function ResultCard({
           <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
             <p className="text-[12px] leading-relaxed text-foreground/72">Had this examination been adequate, here is the interval each possible histology would give.</p>
-            <Breakdown breakdown={breakdown} largeLesion={largeLesion} />
+            <Breakdown breakdown={breakdown} />
           </div>
         </div>
       )}
