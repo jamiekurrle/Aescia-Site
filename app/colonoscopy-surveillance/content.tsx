@@ -198,14 +198,8 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             Colonoscopy surveillance interval
           </h1>
           <p className="text-[16px] lg:text-[18px] leading-relaxed text-foreground/72 max-w-2xl">
-            Enter the polyps removed at an index (baseline) colonoscopy and this tool reproduces the
-            published post-polypectomy surveillance rule for the guideline you select, with the rule,
-            its wording, and its source. Where the guideline states no interval for the findings, the
-            tool says so and leaves the decision with you. Supports multiple lesion types.
-          </p>
-          <p className="text-[13px] leading-relaxed text-foreground/72 max-w-2xl mt-3">
-            For health professionals, not personal medical advice. Patients should discuss their
-            interval with their doctor.
+            Enter the polyps removed and see the surveillance interval the guideline sets, with the
+            rule and its source.
           </p>
         </div>
       </section>
@@ -250,18 +244,15 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               <div className="mb-6 border-l-2 border-accent pl-3">
                 <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-1">Baseline colonoscopy only</div>
                 <p className="text-[12.5px] leading-relaxed text-foreground/80">
-                  For the index (baseline) colonoscopy. It does not calculate intervals after a
-                  surveillance colonoscopy, which several guidelines set from the previous one or two exams.
+                  Not for intervals after a surveillance colonoscopy.
                 </p>
               </div>
 
               {/* Scope gate */}
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Before you start — scope</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Outside the guidelines</div>
                 <p className="text-[12px] leading-relaxed text-[#5E4310] mb-3">
-                  For sporadic post-polypectomy surveillance after an index (baseline) colonoscopy in
-                  average-risk adults, assuming complete resection. Tick if any of these apply. Every
-                  one of these guidelines places them outside its own scope, and the result says so:
+                  Tick if any apply. These fall outside post-polypectomy surveillance, and the result will say so.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <button onClick={() => setMalignant((v) => !v)} aria-pressed={malignant} className={chip(malignant, false)}>
@@ -353,11 +344,6 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
                 <button onClick={() => setRows((rs) => [...rs, newRow('TA')])} className={`mt-3 font-mono text-[12px] font-semibold text-accent bg-secondary border border-border hover:border-accent rounded px-3 py-2 transition-colors ${malignant || special ? 'opacity-40 pointer-events-none' : ''}`}>
                   + Add another lesion type
                 </button>
-                <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-3">
-                  Add a row per lesion type. Australia and British Columbia band the interval on the
-                  combined count; the US, Canada (Ontario/Alberta), and Europe score each type and take
-                  the shortest.
-                </p>
               </div>
             </div>
 
@@ -477,17 +463,9 @@ function GuidelineWording({
 function Breakdown({ breakdown, largeLesion }: { breakdown: BreakdownRow[]; largeLesion: boolean }) {
   return (
     <>
-      <details className="mt-1">
-        <summary className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 cursor-pointer hover:text-accent select-none">About the share-found percentages</summary>
-        <p className="mt-2 text-[12px] leading-relaxed text-foreground/72">
-          Prevalence data from the published literature: how often each histology is the result. They
-          are background only. Every interval in the right-hand column is the guideline's own row for
-          that histology, and the percentages play no part in selecting it.
-        </p>
-      </details>
       <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
-        <span>Histology · share found (background)</span>
-        <span>Guideline interval</span>
+        <span>Histology prevalence</span>
+        <span>Interval</span>
       </div>
       <ul>
         {breakdown.map((b) => (
@@ -498,9 +476,9 @@ function Breakdown({ breakdown, largeLesion }: { breakdown: BreakdownRow[]; larg
         ))}
       </ul>
       {largeLesion && (
-        <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2 text-[11.5px] leading-relaxed text-[#7A5312]">A lesion ≥10 mm is much more likely to be advanced, villous, or serrated than these population figures suggest.</div>
+        <div className="mt-3 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2 text-[11.5px] leading-relaxed text-[#7A5312]">A lesion 10 mm or larger is more likely to be advanced, villous, or serrated than these figures suggest.</div>
       )}
-      <p className="text-[11px] leading-relaxed text-foreground/72 mt-3">Approximate per-polyp shares (ranges); they shift with lesion size. <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Source ↗</a></p>
+      <p className="text-[11px] leading-relaxed text-foreground/72 mt-3">Prevalence ranges; they shift with lesion size. <a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Source ↗</a></p>
     </>
   )
 }
@@ -519,7 +497,7 @@ function SupersededBlock({ sup }: { sup: Superseded }) {
         <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
         <p className="text-[12px] leading-relaxed text-foreground/72 mb-1.5">{lead}</p>
         <div className="text-[15px] font-semibold text-foreground/80 leading-tight">{sup.interval}</div>
-        {sup.modality && <div className="text-[11.5px] text-foreground/72 mt-1">Guideline modality: {sup.modality}</div>}
+        {sup.modality && <div className="text-[11.5px] text-foreground/72 mt-1">{sup.modality}</div>}
         <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">{sup.driver}.</p>
         {sup.calculatorRule && (
           <Caveat label="Interval selected by this calculator, not by the guideline">{sup.calculatorRule}</Caveat>
@@ -614,10 +592,10 @@ function ResultCard({
           {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">Modality: {result.modality}</div>}
           <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
             {repeatPublished
-              ? 'This is the timing the society publishes for an examination whose preparation was inadequate. It answers this examination in place of the routine interval, which is published on a precondition this examination did not meet.'
+              ? 'The repeat timing this society sets when preparation was inadequate. It replaces the routine interval, which assumes an adequate exam.'
               : repeatUntimed
-                ? 'This society requires the repeat and publishes no timing for it. The timing is a clinical decision.'
-                : 'This guideline’s intervals assume an adequate examination, and it publishes no replacement interval for one that was not. The timing is a clinical decision.'}
+                ? 'The society requires a repeat but sets no timing. It is a clinical decision.'
+                : 'The guideline’s intervals assume an adequate exam and it sets no replacement. The timing is a clinical decision.'}
           </div>
           {result.separateDocument && (
             <Caveat label="Published in a separate document">
@@ -630,7 +608,7 @@ function ResultCard({
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Awaiting histology</div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
-          <div className="text-[12.5px] text-foreground/72 mb-3">For the number and size entered, here is the interval each possible histology would give. Set once histopathology returns.</div>
+          <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology would give. Confirm once histology returns.</div>
           <Breakdown breakdown={breakdown} largeLesion={largeLesion} />
         </>
       ) : result.override ? (
@@ -642,19 +620,19 @@ function ResultCard({
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Endoscopist discretion</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">This guideline considered these findings and declined to state an interval. Its reasoning is below. The interval is a clinical decision.</div>
+          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">The guideline leaves this to the endoscopist. Its reasoning is below.</div>
         </>
       ) : result.notSpecified ? (
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Not specified by this guideline</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">This guideline publishes no interval for these findings. Its own wording on the point is below, and the interval is a clinical decision.</div>
+          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">The guideline sets no interval for this. It is a clinical decision. Its wording is below.</div>
         </>
       ) : (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3">Guideline-recommended interval</div>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3">Recommended interval</div>
           <div className="font-display text-[30px] lg:text-[34px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          {result.modality && <div className="text-[13.5px] text-foreground/72 mt-1.5">Guideline modality: {result.modality}</div>}
+          {result.modality && <div className="text-[13.5px] text-foreground/72 mt-1.5">{result.modality}</div>}
         </>
       )}
 
