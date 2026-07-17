@@ -5,7 +5,6 @@ import { Footer } from '@/components/footer'
 import { breadcrumbSchema, webPageSchema, faqPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
 import { JURISDICTIONS } from '../engine'
 import { FAQ_ITEMS } from '../faq'
-import { RESEARCH } from '../research'
 
 const SITE_URL = 'https://www.aesciahealth.com'
 const CANONICAL = '/colonoscopy-surveillance/guide'
@@ -73,8 +72,8 @@ export default function SurveillanceGuidePage() {
             </h1>
             <p className="text-[16px] lg:text-[18px] leading-relaxed text-foreground/72 max-w-2xl">
               How the major post-polypectomy surveillance guidelines set the next colonoscopy interval,
-              the questions clinicians ask most, where the field is heading, and the source behind each
-              rule, for the US, Canadian, Australian, and European guidelines.
+              the questions clinicians ask most, and the source behind each rule, for the US, Canadian,
+              Australian, and European guidelines.
             </p>
             <p className="text-[15px] leading-relaxed text-foreground/72 max-w-2xl mt-6">
               To get an interval for a specific set of findings,{' '}
@@ -100,38 +99,6 @@ export default function SurveillanceGuidePage() {
                 <div key={item.q} className="py-5">
                   <h3 className="text-[16px] font-semibold text-foreground mb-2">{item.q}</h3>
                   <p className="text-[14px] leading-relaxed text-foreground/80">{item.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Where surveillance is heading ---------------------------------- */}
-        <section className="px-6 lg:px-10 py-14 lg:py-20 border-b border-border">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">What is changing</span>
-              <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
-            </div>
-            <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-4">Where post-polypectomy surveillance is heading</h2>
-            <p className="text-[15px] leading-relaxed text-foreground/72 mb-10 max-w-2xl">Background reading on the evidence and where the guidelines are moving. It does not set the interval for any individual patient, which follows the guideline that applies to them.</p>
-            <div className="space-y-10">
-              {RESEARCH.map((group) => (
-                <div key={group.heading}>
-                  <h3 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-4 pb-2 border-b border-border">{group.heading}</h3>
-                  <div className="space-y-6">
-                    {group.items.map((item) => (
-                      <div key={item.title}>
-                        <h4 className="text-[15px] font-semibold text-foreground mb-1">{item.title}</h4>
-                        <p className="text-[13.5px] leading-relaxed text-foreground/72 mb-1.5">{item.body}</p>
-                        <div className="flex flex-wrap gap-x-4 gap-y-1">
-                          {item.sources.map((s) => (
-                            <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-accent hover:underline">{s.label} ↗</a>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
                 </div>
               ))}
             </div>

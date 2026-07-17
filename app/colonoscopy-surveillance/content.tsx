@@ -247,6 +247,14 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
           <div className="grid lg:grid-cols-[1.25fr_1fr] gap-6 lg:gap-8 items-start">
             {/* Inputs */}
             <div className="bg-card border border-border rounded-lg p-6 lg:p-7">
+              <div className="mb-6 border-l-2 border-accent pl-3">
+                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-1">Baseline colonoscopy only</div>
+                <p className="text-[12.5px] leading-relaxed text-foreground/80">
+                  For the index (baseline) colonoscopy. It does not calculate intervals after a
+                  surveillance colonoscopy, which several guidelines set from the previous one or two exams.
+                </p>
+              </div>
+
               {/* Scope gate */}
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
                 <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Before you start — scope</div>
@@ -469,12 +477,14 @@ function GuidelineWording({
 function Breakdown({ breakdown, largeLesion }: { breakdown: BreakdownRow[]; largeLesion: boolean }) {
   return (
     <>
-      <Caveat label="Background evidence, not an input to the interval">
-        The percentages are prevalence data from the published literature: how often each histology
-        turns out to be the result. They are here to show which outcome is likely. Every interval in
-        the right-hand column is the guideline's own row for that histology, and the percentages play
-        no part in selecting it.
-      </Caveat>
+      <details className="mt-1">
+        <summary className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 cursor-pointer hover:text-accent select-none">About the share-found percentages</summary>
+        <p className="mt-2 text-[12px] leading-relaxed text-foreground/72">
+          Prevalence data from the published literature: how often each histology is the result. They
+          are background only. Every interval in the right-hand column is the guideline's own row for
+          that histology, and the percentages play no part in selecting it.
+        </p>
+      </details>
       <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
         <span>Histology · share found (background)</span>
         <span>Guideline interval</span>
