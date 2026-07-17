@@ -1280,7 +1280,8 @@ const euNeedsSurveillance = (a: Agg): boolean =>
   (a.adenomaCount > 0 && a.anyHgd) ||
   a.adenomaCount >= 5 ||
   (a.serratedCount > 0 && a.serratedMaxSize >= 10) ||
-  a.anySslDysplasia
+  a.anySslDysplasia ||
+  a.tsaCount > 0
 
 const EU: JurSpec = {
   short: 'ESGE 2020',
@@ -1384,9 +1385,9 @@ const EU: JurSpec = {
   ],
   advisories: [
     {
-      when: (a) => a.tsaCount > 0 && !euNeedsSurveillance(a),
+      when: (a) => a.tsaCount > 0,
       note:
-        'ESGE 2020 is internally inconsistent on a traditional serrated adenoma under 10 mm without dysplasia. Its boxed recommendations key on size and dysplasia only, and send it back to screening. Its prose on p.7 names the traditional serrated adenoma as a standalone category requiring surveillance: "Traditional serrated adenoma, serrated polyp ≥10 mm and serrated polyp with dysplasia yield similar metachronous advanced neoplasia or CRC risks compared to conventional adenomas, and thus require surveillance [9–11, 67, 72, 73]. Therefore, ESGE recommends surveillance colonoscopy at 3 years for these categories of polyps." ESGE does not resolve this.',
+        'A traditional serrated adenoma is a dysplastic serrated lesion, so it meets Recommendation 2 ("any serrated polyp ... with dysplasia") at any size. ESGE names it directly, p.7: "Traditional serrated adenoma, serrated polyp ≥10 mm and serrated polyp with dysplasia yield similar metachronous advanced neoplasia or CRC risks compared to conventional adenomas, and thus require surveillance [9–11, 67, 72, 73]. Therefore, ESGE recommends surveillance colonoscopy at 3 years for these categories of polyps."',
     },
     {
       when: (a) => a.tsaCount > 0 || a.sslCount > 0 || a.hpCount > 0,
