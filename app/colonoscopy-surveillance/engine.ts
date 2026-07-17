@@ -1765,8 +1765,8 @@ function decidedHere(cands: Result[]): boolean {
   return cands.some((c) => c.riskYears !== cands[0].riskYears)
 }
 
-const calculatorSelection = (short: string) =>
-  `${short} states no rule for this combination of findings. More than one of its rows applies here and they carry different intervals, so the shortest of them is shown. That selection is this calculator's, not ${short}'s.`
+const calculatorSelection = (_short: string) =>
+  'The guideline has no rule for this combination, so the shortest of the applicable intervals is shown. Clinical judgement is required.'
 
 // ---------------------------------------------------------------------------
 // Inadequate preparation

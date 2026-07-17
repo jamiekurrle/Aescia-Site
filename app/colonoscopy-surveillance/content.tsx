@@ -477,13 +477,46 @@ function GuidelineWording({
             <p className="text-[12.5px] leading-relaxed text-foreground/72">{strength}</p>
           </div>
         )}
-        {quote && (
-          <div>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{quoteLabel}</span>
-            <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{quote}</p>
-            {location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{location}</p>}
-          </div>
-        )}
+        {quote && (() => {
+          // Some sources are cited as a grid row (finding | interval | recommendation |
+          // evidence), not as prose. Render those as the table row they are, highlighted,
+          // rather than as a pseudo-quote.
+          const cells = quote.split(' | ').map((c) => c.trim())
+          const isTableRow = cells.length === 4
+          return (
+            <div>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{isTableRow ? 'Guideline table entry' : quoteLabel}</span>
+              {isTableRow ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="text-[9px] font-mono uppercase tracking-[0.06em] text-foreground/72">
+                        <th className="font-normal py-1 pr-3 align-bottom">Finding</th>
+                        <th className="font-normal py-1 pr-3 align-bottom">Interval</th>
+                        <th className="font-normal py-1 pr-3 align-bottom">Recommendation</th>
+                        <th className="font-normal py-1 align-bottom">Evidence</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-[#FBF3E3]">
+                        <td className="text-[12px] text-[#5E4310] py-1.5 pr-3">{cells[0]}</td>
+                        <td className="text-[12px] font-semibold text-[#5E4310] py-1.5 pr-3 whitespace-nowrap">{cells[1]}</td>
+                        <td className="text-[12px] text-[#5E4310] py-1.5 pr-3">{cells[2]}</td>
+                        <td className="text-[12px] text-[#5E4310] py-1.5">{cells[3]}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {location && <p className="font-mono text-[10px] leading-relaxed text-foreground/72 mt-1.5">{location}</p>}
+                </div>
+              ) : (
+                <>
+                  <p className="text-[12.5px] leading-relaxed text-foreground/72 italic border-l-2 border-border pl-3">{quote}</p>
+                  {location && <p className="font-mono text-[10.5px] leading-relaxed text-foreground/72 mt-1.5 pl-3">{location}</p>}
+                </>
+              )}
+            </div>
+          )
+        })()}
         {sourceDoc && (
           <div>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Source document</span>
@@ -499,20 +532,24 @@ function GuidelineWording({
 function Breakdown({ breakdown }: { breakdown: BreakdownRow[] }) {
   return (
     <>
-      <div className="grid grid-cols-[auto_1fr_auto] gap-x-4 text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72 mt-4 mb-1 px-0.5">
-        <span>Prevalence</span>
-        <span>Histopathology</span>
-        <span className="text-right">Guideline interval</span>
-      </div>
-      <ul>
-        {breakdown.map((b) => (
-          <li key={b.label} className="grid grid-cols-[auto_1fr_auto] gap-x-4 items-center py-2 border-b border-border/60 last:border-0">
-            <span className="font-mono text-[11px] text-foreground/72 tabular-nums">{b.prevalence}</span>
-            <span className="text-[13px] text-foreground/80">{b.label}</span>
-            <span className="text-[13px] font-semibold text-foreground text-right">{b.interval}</span>
-          </li>
-        ))}
-      </ul>
+      <table className="w-full text-left border-collapse mt-4">
+        <thead>
+          <tr className="text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72">
+            <th className="font-normal py-1 pr-4 align-bottom">Prevalence</th>
+            <th className="font-normal py-1 pr-4 align-bottom">Histopathology</th>
+            <th className="font-normal py-1 text-right align-bottom">Guideline interval</th>
+          </tr>
+        </thead>
+        <tbody>
+          {breakdown.map((b) => (
+            <tr key={b.label} className="border-b border-border/60 last:border-0">
+              <td className="font-mono text-[11px] text-foreground/72 tabular-nums py-2 pr-4 whitespace-nowrap align-top">{b.prevalence}</td>
+              <td className="text-[13px] text-foreground/80 py-2 pr-4">{b.label}</td>
+              <td className="text-[13px] font-semibold text-foreground py-2 text-right align-top whitespace-nowrap">{b.interval}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <p className="text-[11px] text-foreground/72 mt-3"><a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Prevalence source ↗</a></p>
     </>
   )
