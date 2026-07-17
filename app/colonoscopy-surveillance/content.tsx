@@ -14,6 +14,7 @@ import {
   type Superseded,
 } from './engine'
 import { JUR_TO_SLUG, routeToJur } from './slugs'
+import { SEO_CONTENT } from './seo-content'
 
 type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
@@ -75,6 +76,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const [copyState, setCopyState] = useState<'idle' | 'ok' | 'err'>('idle')
 
   const active = JURISDICTIONS.find((j) => j.id === jur)!
+  const seo = SEO_CONTENT[jur]
 
   // The route sets the guideline, unconditionally, so a queryless URL always
   // renders the guideline named in its title and canonical link. No stored, geo,
@@ -233,7 +235,6 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               </div>
               <p className="text-[11.5px] leading-relaxed text-foreground/72 mb-6 max-w-3xl">
                 Canada has no maintained national post-polypectomy guideline; the provinces differ.
-                Select the applicable province.
               </p>
             </>
           )}
@@ -252,7 +253,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
                 <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Outside the guidelines</div>
                 <p className="text-[12px] leading-relaxed text-[#5E4310] mb-3">
-                  Tick if any apply. These fall outside post-polypectomy surveillance, and the result will say so.
+                  Tick if any apply.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   <button onClick={() => setMalignant((v) => !v)} aria-pressed={malignant} className={chip(malignant, false)}>
@@ -353,12 +354,47 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
         </div>
       </section>
 
+      {/* Guideline interval table (reference / search / answer-engine) --- */}
+      <section className="px-6 lg:px-10 py-14 lg:py-16 border-b border-border">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{active.label}{active.province ? ` · ${active.province}` : ''}</span>
+            <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
+          </div>
+          <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-4">
+            How {active.guideline} sets the colonoscopy surveillance interval
+          </h2>
+          <p className="text-[15px] leading-relaxed text-foreground/72 mb-8 max-w-3xl">{seo.intro}</p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-foreground/72 font-semibold py-2 pr-4 align-bottom">Finding at the baseline colonoscopy</th>
+                  <th className="font-mono text-[11px] uppercase tracking-[0.1em] text-foreground/72 font-semibold py-2 align-bottom">Surveillance interval</th>
+                </tr>
+              </thead>
+              <tbody>
+                {seo.table.map((row, i) => (
+                  <tr key={i} className="border-b border-border/60 align-top">
+                    <td className="text-[13.5px] leading-relaxed text-foreground/80 py-2.5 pr-4">{row.finding}</td>
+                    <td className="text-[13.5px] leading-relaxed font-semibold text-foreground py-2.5">{row.interval}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-[13.5px] leading-relaxed text-foreground/72 mt-6 max-w-3xl">{seo.divergence}</p>
+          <p className="text-[13px] leading-relaxed text-foreground/72 mt-4">
+            Source: <a href={active.source.url} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">{active.source.name} ↗</a>. This is the baseline colonoscopy table; enter specific findings in the calculator above for the rule and its exact wording.
+          </p>
+        </div>
+      </section>
+
       {/* Reference ------------------------------------------------------- */}
       <section className="px-6 lg:px-10 py-14 border-b border-border">
         <div className="max-w-4xl mx-auto">
           <p className="text-[14px] leading-relaxed text-foreground/80">
-            For how the guidelines set intervals, common questions, where surveillance is heading, and
-            the source behind each rule, see the{' '}
+            For common questions and the source behind each rule across all the guidelines, see the{' '}
             <Link href="/colonoscopy-surveillance/guide" className="text-accent hover:underline">colonoscopy surveillance guideline reference</Link>.
           </p>
         </div>
@@ -486,10 +522,10 @@ function Breakdown({ breakdown }: { breakdown: BreakdownRow[] }) {
 // pathway and conditioned on the precondition this examination did not meet.
 function SupersededBlock({ sup }: { sup: Superseded }) {
   const lead = sup.override
-    ? 'Had this examination been adequate, these findings would still sit outside this guideline’s scope:'
+    ? 'These findings would still sit outside this guideline’s scope:'
     : sup.discretion || sup.notSpecified
-      ? 'Had this examination been adequate, this guideline would still publish no interval for these findings:'
-      : 'Had this examination been adequate, this guideline’s interval for these findings would be:'
+      ? 'This guideline would still publish no interval for these findings:'
+      : 'This guideline’s interval for these findings would be:'
   return (
     <div className="mt-5 pt-4 border-t border-border">
       <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
@@ -571,8 +607,7 @@ function ResultCard({
       {result.prepInadequate && !prepPathway && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
           <strong>Bowel preparation inadequate.</strong> These findings sit outside this guideline's
-          scope whatever the preparation, so that stands. The published preparation guidance is noted
-          below.
+          scope regardless, so that result stands. Preparation guidance is below.
         </div>
       )}
 
@@ -586,10 +621,10 @@ function ResultCard({
                 : 'Inadequate preparation · no interval published'}
           </div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">Modality: {result.modality}</div>}
+          {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">{result.modality}</div>}
           <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
             {repeatPublished
-              ? 'The repeat timing this society sets when preparation was inadequate. It replaces the routine interval, which assumes an adequate exam.'
+              ? 'The repeat timing this society sets when preparation was inadequate. It replaces the routine interval.'
               : repeatUntimed
                 ? 'The society requires a repeat but sets no timing. It is a clinical decision.'
                 : 'The guideline’s intervals assume an adequate exam and it sets no replacement. The timing is a clinical decision.'}
@@ -640,7 +675,7 @@ function ResultCard({
       {showDetail && (
         <>
           <div className="mt-5 pt-4 border-t border-border">
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{stopsShort ? 'Why' : 'Driven by'}</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">Why</span>
             <p className="text-[13.5px] leading-relaxed text-foreground/80">{result.driver}.</p>
           </div>
           <GuidelineWording
@@ -659,7 +694,7 @@ function ResultCard({
         <div className="mt-5 pt-4 border-t border-border">
           <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
-            <p className="text-[12px] leading-relaxed text-foreground/72">Had this examination been adequate, here is the interval each possible histology would give.</p>
+            <p className="text-[12px] leading-relaxed text-foreground/72">The interval each possible histology would give.</p>
             <Breakdown breakdown={breakdown} />
           </div>
         </div>
