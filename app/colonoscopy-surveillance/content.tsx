@@ -18,14 +18,14 @@ import { SEO_CONTENT } from './seo-content'
 
 type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
-  ['AWAIT', 'Awaiting histology'],
   ['NONE', 'No polyps'],
+  ['AWAIT', 'Awaiting histology'],
   ['TA', 'Tubular adenoma'],
+  ['HP', 'Hyperplastic'],
   ['TVA', 'Tubulovillous'],
   ['VA', 'Villous'],
   ['SSL', 'Sessile serrated'],
   ['TSA', 'Traditional serrated'],
-  ['HP', 'Hyperplastic'],
 ]
 const AWAIT_TYPES: { hist: LesionInput['hist']; label: string; prevalence: string }[] = [
   { hist: 'TA', label: 'Tubular adenoma', prevalence: '~45–60%' },
@@ -56,7 +56,7 @@ interface Row {
   piece: boolean
   proximal: boolean
 }
-function newRow(hist: HistOpt = 'AWAIT'): Row {
+function newRow(hist: HistOpt = 'NONE'): Row {
   rowSeq += 1
   return { key: rowSeq, hist, count: 1, size: 8, hgd: false, piece: false, proximal: false }
 }
@@ -69,7 +69,7 @@ function chip(active: boolean, mono = true) {
 
 export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const [jur, setJur] = useState<JurId>(initialJur)
-  const [rows, setRows] = useState<Row[]>([newRow('AWAIT')])
+  const [rows, setRows] = useState<Row[]>([newRow('NONE')])
   const [malignant, setMalignant] = useState(false)
   const [special, setSpecial] = useState(false)
   const [bbps, setBbps] = useState<[number, number, number]>([3, 3, 3])
