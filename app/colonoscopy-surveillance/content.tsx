@@ -104,17 +104,25 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const lesions: LesionInput[] = rows
-    .filter((r) => r.count > 0 && r.hist !== 'NONE')
-    .map((r) => ({ hist: (r.hist === 'AWAIT' ? 'TA' : r.hist) as LesionInput['hist'], count: r.count, size: r.size, hgd: r.hgd, piece: r.piece, proximal: r.proximal }))
+  // Only lesions with a known histology feed the interval. A row still awaiting
+  // histology is never assumed to be a tubular adenoma; it keeps the interval
+  // pending until its type is entered.
+  const knownLesions: LesionInput[] = rows
+    .filter((r) => r.count > 0 && r.hist !== 'NONE' && r.hist !== 'AWAIT')
+    .map((r) => ({ hist: r.hist as LesionInput['hist'], count: r.count, size: r.size, hgd: r.hgd, piece: r.piece, proximal: r.proximal }))
 
-  const awaiting = rows.length === 1 && rows[0].hist === 'AWAIT' && rows[0].count > 0 && !malignant && !special
-  const result = compute({ jur, lesions, malignant, special, bbps })
+  const awaitingRows = rows.filter((r) => r.hist === 'AWAIT' && r.count > 0)
+  // Any lesion whose histology is pending leaves the interval indeterminate.
+  const awaiting = awaitingRows.length > 0 && !malignant && !special
+  const result = compute({ jur, lesions: knownLesions, malignant, special, bbps })
 
-  // Awaiting single-lesion breakdown (per possible histology)
-  const breakdown = awaiting
+  // With exactly one lesion pending, show the interval each possible histology
+  // for it would give, holding any known lesions fixed. With two or more
+  // pending, the combination is indeterminate; the result card says so.
+  const breakdown = awaiting && awaitingRows.length === 1
     ? AWAIT_TYPES.map((t) => {
-        const r = compute({ jur, lesions: [{ hist: t.hist, count: rows[0].count, size: rows[0].size, hgd: rows[0].hgd, piece: rows[0].piece, proximal: false }], malignant: false, special: false, bbps: ADEQUATE_BBPS })
+        const a = awaitingRows[0]
+        const r = compute({ jur, lesions: [...knownLesions, { hist: t.hist, count: a.count, size: a.size, hgd: a.hgd, piece: a.piece, proximal: false }], malignant: false, special: false, bbps: ADEQUATE_BBPS })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
     : []
@@ -677,8 +685,14 @@ function ResultCard({
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Awaiting histology</div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
-          <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology would give. Confirm once histology returns.</div>
-          <Breakdown breakdown={breakdown} />
+          {breakdown.length > 0 ? (
+            <>
+              <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology for the pending lesion would give. Confirm once histology returns.</div>
+              <Breakdown breakdown={breakdown} />
+            </>
+          ) : (
+            <div className="text-[13px] leading-relaxed text-foreground/72 mt-1">More than one lesion is awaiting histology. Enter the histology for each lesion to get an interval.</div>
+          )}
         </>
       ) : result.override ? (
         <>
@@ -727,11 +741,11 @@ function ResultCard({
       )}
 
       {prepPathway && !awaiting && result.supersededInterval && <SupersededBlock sup={result.supersededInterval} />}
-      {prepPathway && awaiting && (
+      {prepPathway && awaiting && breakdown.length > 0 && (
         <div className="mt-5 pt-4 border-t border-border">
           <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
             <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 mb-1.5">If the preparation had been adequate</div>
-            <p className="text-[12px] leading-relaxed text-foreground/72">The interval each possible histology would give.</p>
+            <p className="text-[12px] leading-relaxed text-foreground/72">The interval each possible histology for the pending lesion would give.</p>
             <Breakdown breakdown={breakdown} />
           </div>
         </div>
