@@ -1,12 +1,14 @@
 'use client'
 
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode, type Dispatch, type SetStateAction } from 'react'
 import Link from 'next/link'
 import {
   compute,
+  computeSurveillance,
   prepAdequate,
   JURISDICTIONS,
   type JurId,
+  type Stage,
   type LesionInput,
   type Jurisdiction,
   type Result,
@@ -46,6 +48,59 @@ const COUNTRIES: { country: Jurisdiction['country']; label: string; guideline?: 
   { country: 'AU', label: 'Australia', guideline: 'NHMRC / Cancer Council', default: 'AU' },
   { country: 'EU', label: 'Europe', guideline: 'ESGE 2020', default: 'EU' },
 ]
+
+const STAGES: [Stage, string][] = [
+  ['first', 'First surveillance'],
+  ['second', 'Second surveillance'],
+  ['subsequent', 'Subsequent surveillance'],
+]
+const STAGE_HELP: Record<Stage, string> = {
+  first: 'After a baseline colonoscopy.',
+  second: 'After the first surveillance colonoscopy.',
+  subsequent: 'After a second or later surveillance colonoscopy.',
+}
+// Guidelines whose subsequent interval keys on the original (index) findings
+// rather than the immediately preceding exam.
+const ORIGINAL_JURS = new Set<JurId>(['US', 'CA_ON', 'CA_AB', 'CA_BC'])
+
+// Age, stopping, and risk-factor context, verified against each primary source.
+// Reference material below the calculator, not inputs to it.
+const SURV_GUIDANCE: Record<JurId, { age: string; risk: string }> = {
+  US: {
+    age: 'USMSTF 2020 prints no age cap or formal stopping rule for surveillance.',
+    risk: 'A hereditary colorectal cancer syndrome, inflammatory bowel disease, or a personal or family history of colorectal cancer falls outside these recommendations; favour the shortest indicated interval.',
+  },
+  CA_ON: {
+    age: 'ColonCancerCheck prints no age cap for surveillance.',
+    risk: 'A hereditary syndrome, inflammatory bowel disease, or a personal or family history of colorectal cancer is followed under a separate pathway.',
+  },
+  CA_AB: {
+    age: 'ACRCSP prints no age cap for surveillance.',
+    risk: 'Hereditary syndromes, inflammatory bowel disease, and a personal or family history of colorectal cancer sit outside these post-polypectomy intervals.',
+  },
+  CA_BC: {
+    age: 'No age cap for polyp surveillance. Significant comorbidity, very advanced age, or limited life expectancy: surveillance is not routinely offered.',
+    risk: 'Hereditary syndromes, inflammatory bowel disease, and colorectal cancer follow-up are covered separately.',
+  },
+  AU: {
+    age: 'Age 75 to 80: consider surveillance only if the Charlson comorbidity score is 4 or under. Over 80, or Charlson over 4: not recommended (Table 17).',
+    risk: 'A family history of colorectal cancer may shorten the interval under a separate guideline.',
+  },
+  EU: {
+    age: 'Stop post-polypectomy surveillance at age 80, or earlier if life expectancy is limited by comorbidities (weak recommendation).',
+    risk: 'ESGE suggests against shortened intervals for a family history of colorectal cancer; hereditary syndromes and inflammatory bowel disease are covered separately.',
+  },
+}
+
+// How each guideline sets the interval AFTER a surveillance colonoscopy.
+const SUBSEQUENT_REF: Record<JurId, string> = {
+  US: 'USMSTF 2020 sets the second surveillance interval from Table 7, using both the original baseline findings and the first surveillance findings. A high-risk baseline caps even a clean follow-up at 5 years rather than 10. It publishes no rule beyond the second surveillance, or for serrated lesions across serial exams.',
+  CA_ON: 'ColonCancerCheck keys the subsequent interval to the original finding. A high-risk-adenoma baseline stays on 5-year colonoscopy after a clean, hyperplastic, or low-risk-adenoma exam, or moves to 3 years if a high-risk adenoma recurs. It does not return the patient to the faecal test.',
+  CA_AB: 'ACRCSP runs a high-risk pathway of 3 years, then 5 years, then considers a return to faecal screening if both are clear. Three to four tubular adenomas lengthen to 5 to 10 years after a normal 5-year exam. Piecemeal resection follows its own onward schedule.',
+  CA_BC: 'BCGuidelines sets the next interval from the findings at each surveillance exam. Any exam with no precancerous lesion returns the patient to a faecal test in 10 years; the 3-year track de-escalates to 5 years once an exam shows only 0 to 4 low-risk lesions.',
+  AU: 'The NHMRC tables set the interval for the next colonoscopy from the two most recent exams together, classifying each into a risk tier. A clean exam after a low-risk history returns the patient to faecal screening; age and comorbidity stopping rules apply.',
+  EU: 'ESGE keys the next interval to the most recent exam. Polyps requiring surveillance give 3 years; one clean surveillance exam gives 5 years; two consecutive clean exams return the patient to screening. It stops surveillance at age 80.',
+}
 let rowSeq = 0
 interface Row {
   key: number
@@ -67,9 +122,77 @@ function chip(active: boolean, mono = true) {
   }`
 }
 
+const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
+
+// One colonoscopy's worth of lesion rows. Rendered once for a baseline exam and
+// twice (previous + this) when a surveillance interval needs two exams.
+function LesionEntry({ heading, rows, setRows, disabled }: { heading: string; rows: Row[]; setRows: Dispatch<SetStateAction<Row[]>>; disabled: boolean }) {
+  const setRow = (key: number, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch } : r)))
+  return (
+    <div>
+      <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/72 mb-3">{heading}</div>
+      <div className="space-y-4">
+        {rows.map((r, i) => (
+          <div key={r.key} className={`border border-border rounded-lg p-3 ${disabled ? 'opacity-40 pointer-events-none' : ''}`}>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[11px] font-mono uppercase tracking-[0.1em] text-foreground/72">Lesion type {rows.length > 1 ? i + 1 : ''}</span>
+              {rows.length > 1 && (
+                <button onClick={() => setRows((rs) => rs.filter((x) => x.key !== r.key))} className="text-foreground/72 hover:text-[#B53A2C] text-[16px] leading-none" title="Remove">
+                  ×
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {HISTOLOGY.map(([k, label]) => {
+                const on = r.hist === k
+                const isAw = k === 'AWAIT'
+                return (
+                  <button
+                    key={k}
+                    onClick={() => setRow(r.key, { hist: k, proximal: k === 'HP' ? r.proximal : false })}
+                    aria-pressed={on}
+                    className={`text-[12px] px-2.5 min-h-[34px] inline-flex items-center border transition-colors ${on && isAw ? 'bg-[#97590C] text-white border-[#97590C] font-semibold' : on ? 'bg-foreground text-background border-foreground' : isAw ? 'bg-[#FBF3E3] text-[#8A5A17] border-[#EAD9B0]' : 'bg-secondary text-foreground/72 border-border hover:border-accent'}`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+            {r.hist === 'NONE' ? (
+              <p className="text-[12.5px] leading-relaxed text-foreground/72">No lesion at this exam — scored as a normal colonoscopy.</p>
+            ) : (
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <label className="flex items-center gap-2 text-[13px] text-foreground/72">
+                  Number
+                  <input type="number" min={0} max={40} value={r.count} onChange={(e) => setRow(r.key, { count: clamp(e.target.value, 40) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
+                </label>
+                <label className="flex items-center gap-2 text-[13px] text-foreground/72">
+                  Largest
+                  <input type="number" min={0} max={90} value={r.size} onChange={(e) => setRow(r.key, { size: clamp(e.target.value, 90) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
+                  <span className="text-foreground/72">mm</span>
+                </label>
+                <button onClick={() => setRow(r.key, { hgd: !r.hgd })} aria-pressed={r.hgd} className={chip(r.hgd, false)}>HGD</button>
+                <button onClick={() => setRow(r.key, { piece: !r.piece })} aria-pressed={r.piece} className={chip(r.piece, false)}>Piecemeal</button>
+                {r.hist === 'HP' && (
+                  <button onClick={() => setRow(r.key, { proximal: !r.proximal })} aria-pressed={r.proximal} className={chip(r.proximal, false)}>Proximal</button>
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <button onClick={() => setRows((rs) => [...rs, newRow('TA')])} className={`mt-3 font-mono text-[12px] font-semibold text-accent bg-secondary border border-border hover:border-accent rounded px-3 py-2 transition-colors ${disabled ? 'opacity-40 pointer-events-none' : ''}`}>
+        + Add another lesion type
+      </button>
+    </div>
+  )
+}
+
 export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const [jur, setJur] = useState<JurId>(initialJur)
+  const [stage, setStage] = useState<Stage>('first')
   const [rows, setRows] = useState<Row[]>([newRow('NONE')])
+  const [priorRows, setPriorRows] = useState<Row[]>([newRow('NONE')])
   const [malignant, setMalignant] = useState(false)
   const [special, setSpecial] = useState(false)
   const [bbps, setBbps] = useState<[number, number, number]>([3, 3, 3])
@@ -92,36 +215,45 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
     if (b && /^[0-3]{3}$/.test(b)) setBbps([+b[0], +b[1], +b[2]] as [number, number, number])
     setMalignant(p.get('mal') === '1')
     setSpecial(p.get('sp') === '1')
+    const validHist = new Set(HISTOLOGY.map(([k]) => k as string))
+    const parseRows = (l: string): Row[] => l.split(',').map((tok) => {
+      const [hist, count, size, flags = '000'] = tok.split(':')
+      return { key: (rowSeq += 1), hist: hist as HistOpt, count: toInt(count, 40), size: toInt(size, 90), hgd: flags[0] === '1', piece: flags[1] === '1', proximal: flags[2] === '1' }
+    }).filter((r) => validHist.has(r.hist))
+    const s = p.get('s')
+    if (s === 'second' || s === 'subsequent') setStage(s)
+    const pl = p.get('pl')
+    if (pl) { const parsed = parseRows(pl); if (parsed.length) setPriorRows(parsed) }
     const l = p.get('l')
-    if (l) {
-      const valid = new Set(HISTOLOGY.map(([k]) => k as string))
-      const parsed = l.split(',').map((tok) => {
-        const [hist, count, size, flags = '000'] = tok.split(':')
-        return { key: (rowSeq += 1), hist: hist as HistOpt, count: toInt(count, 40), size: toInt(size, 90), hgd: flags[0] === '1', piece: flags[1] === '1', proximal: flags[2] === '1' }
-      }).filter((r) => valid.has(r.hist))
-      if (parsed.length) setRows(parsed)
-    }
+    if (l) { const parsed = parseRows(l); if (parsed.length) setRows(parsed) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Only lesions with a known histology feed the interval. A row still awaiting
   // histology is never assumed to be a tubular adenoma; it keeps the interval
   // pending until its type is entered.
-  const knownLesions: LesionInput[] = rows
+  const toKnown = (rs: Row[]): LesionInput[] => rs
     .filter((r) => r.count > 0 && r.hist !== 'NONE' && r.hist !== 'AWAIT')
     .map((r) => ({ hist: r.hist as LesionInput['hist'], count: r.count, size: r.size, hgd: r.hgd, piece: r.piece, proximal: r.proximal }))
 
-  const awaitingRows = rows.filter((r) => r.hist === 'AWAIT' && r.count > 0)
-  // Any lesion whose histology is pending leaves the interval indeterminate.
-  const awaiting = awaitingRows.length > 0 && !malignant && !special
-  const result = compute({ jur, lesions: knownLesions, malignant, special, bbps })
+  const twoExam = stage !== 'first'
+  const knownLesions = toKnown(rows)
+  const knownPrior = toKnown(priorRows)
 
-  // With exactly one lesion pending, show the interval each possible histology
-  // for it would give, holding any known lesions fixed. With two or more
-  // pending, the combination is indeterminate; the result card says so.
-  const breakdown = awaiting && awaitingRows.length === 1
+  const curAwaitingRows = rows.filter((r) => r.hist === 'AWAIT' && r.count > 0)
+  const priorAwaitingRows = priorRows.filter((r) => r.hist === 'AWAIT' && r.count > 0)
+  // Any lesion whose histology is pending, in either exam, leaves the interval
+  // indeterminate.
+  const awaiting = !malignant && !special && (curAwaitingRows.length > 0 || (twoExam && priorAwaitingRows.length > 0))
+  const result = computeSurveillance({ jur, stage, current: knownLesions, prior: twoExam ? knownPrior : null, malignant, special, bbps })
+
+  // Single-exam mode: with exactly one lesion pending, show the interval each
+  // possible histology for it would give, holding any known lesions fixed. With
+  // two or more pending, or in a two-exam mode, the result card asks for the
+  // histology instead.
+  const breakdown = !twoExam && awaiting && curAwaitingRows.length === 1
     ? AWAIT_TYPES.map((t) => {
-        const a = awaitingRows[0]
+        const a = curAwaitingRows[0]
         const r = compute({ jur, lesions: [...knownLesions, { hist: t.hist, count: a.count, size: a.size, hgd: a.hgd, piece: a.piece, proximal: false }], malignant: false, special: false, bbps: ADEQUATE_BBPS })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
@@ -129,19 +261,22 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
 
   const total = bbps[0] + bbps[1] + bbps[2]
   const adequate = prepAdequate(bbps)
-  const clamp = (v: string, max: number) => Math.max(0, Math.min(max, Math.round(parseFloat(v || '0') || 0)))
-  const setRow = (key: number, patch: Partial<Row>) => setRows((rs) => rs.map((r) => (r.key === key ? { ...r, ...patch } : r)))
 
   // Route for a guideline: US is the base path, the rest their own slug.
   const pathFor = (j: JurId) => (j === 'US' ? '/colonoscopy-surveillance' : `/colonoscopy-surveillance/${JUR_TO_SLUG[j]}`)
   // Encode the full scenario (prep, scope flags, and every lesion) so a switch
   // or a copied link reproduces it. The hydrate effect above parses these.
+  const encodeRows = (rs: Row[]) => rs.map((r) => `${r.hist}:${r.count}:${r.size}:${r.hgd ? 1 : 0}${r.piece ? 1 : 0}${r.proximal ? 1 : 0}`).join(',')
   const buildQuery = () => {
     const p = new URLSearchParams()
     p.set('b', bbps.join(''))
     if (malignant) p.set('mal', '1')
     if (special) p.set('sp', '1')
-    p.set('l', rows.map((r) => `${r.hist}:${r.count}:${r.size}:${r.hgd ? 1 : 0}${r.piece ? 1 : 0}${r.proximal ? 1 : 0}`).join(','))
+    if (stage !== 'first') {
+      p.set('s', stage)
+      p.set('pl', encodeRows(priorRows))
+    }
+    p.set('l', encodeRows(rows))
     return p.toString()
   }
   // A real link to a guideline's route, carrying the current findings. Switching
@@ -250,12 +385,17 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
           <div className="grid lg:grid-cols-[1.25fr_1fr] gap-6 lg:gap-8 items-start">
             {/* Inputs */}
             <div className="bg-card border border-border rounded-lg p-6 lg:p-7">
-              <div className="mb-6 border-l-2 border-accent pl-3">
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-1">Baseline colonoscopy only</div>
-                <p className="text-[12.5px] leading-relaxed text-foreground/80">
-                  Not for intervals after a surveillance colonoscopy.
-                </p>
+              {/* Stage */}
+              <div className="mb-5">
+                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">Which surveillance interval?</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {STAGES.map(([k, label]) => (
+                    <button key={k} onClick={() => setStage(k)} aria-pressed={stage === k} className={chip(stage === k, false)}>{label}</button>
+                  ))}
+                </div>
+                <p className="text-[12px] leading-relaxed text-foreground/72 mt-2">{STAGE_HELP[stage]}</p>
               </div>
+
 
               {/* Scope gate */}
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
@@ -297,63 +437,16 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
                 </div>
               </div>
 
-              {/* Lesion rows */}
-              <div>
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/72 mb-3">Polyps removed</div>
-                <div className="space-y-4">
-                  {rows.map((r, i) => (
-                    <div key={r.key} className={`border border-border rounded-lg p-3 ${malignant || special ? 'opacity-40 pointer-events-none' : ''}`}>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[11px] font-mono uppercase tracking-[0.1em] text-foreground/72">Lesion type {rows.length > 1 ? i + 1 : ''}</span>
-                        {rows.length > 1 && (
-                          <button onClick={() => setRows((rs) => rs.filter((x) => x.key !== r.key))} className="text-foreground/72 hover:text-[#B53A2C] text-[16px] leading-none" title="Remove">
-                            ×
-                          </button>
-                        )}
-                      </div>
-                      <div className="flex flex-wrap gap-1.5 mb-3">
-                        {HISTOLOGY.map(([k, label]) => {
-                          const on = r.hist === k
-                          const isAw = k === 'AWAIT'
-                          return (
-                            <button
-                              key={k}
-                              onClick={() => setRow(r.key, { hist: k, proximal: k === 'HP' ? r.proximal : false })}
-                              aria-pressed={on}
-                              className={`text-[12px] px-2.5 min-h-[34px] inline-flex items-center border transition-colors ${on && isAw ? 'bg-[#97590C] text-white border-[#97590C] font-semibold' : on ? 'bg-foreground text-background border-foreground' : isAw ? 'bg-[#FBF3E3] text-[#8A5A17] border-[#EAD9B0]' : 'bg-secondary text-foreground/72 border-border hover:border-accent'}`}
-                            >
-                              {label}
-                            </button>
-                          )
-                        })}
-                      </div>
-                      {r.hist === 'NONE' ? (
-                        <p className="text-[12.5px] leading-relaxed text-foreground/72">No lesion at this exam — scored as a normal colonoscopy.</p>
-                      ) : (
-                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                          <label className="flex items-center gap-2 text-[13px] text-foreground/72">
-                            Number
-                            <input type="number" min={0} max={40} value={r.count} onChange={(e) => setRow(r.key, { count: clamp(e.target.value, 40) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
-                          </label>
-                          <label className="flex items-center gap-2 text-[13px] text-foreground/72">
-                            Largest
-                            <input type="number" min={0} max={90} value={r.size} onChange={(e) => setRow(r.key, { size: clamp(e.target.value, 90) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
-                            <span className="text-foreground/72">mm</span>
-                          </label>
-                          <button onClick={() => setRow(r.key, { hgd: !r.hgd })} aria-pressed={r.hgd} className={chip(r.hgd, false)}>HGD</button>
-                          <button onClick={() => setRow(r.key, { piece: !r.piece })} aria-pressed={r.piece} className={chip(r.piece, false)}>Piecemeal</button>
-                          {r.hist === 'HP' && (
-                            <button onClick={() => setRow(r.key, { proximal: !r.proximal })} aria-pressed={r.proximal} className={chip(r.proximal, false)}>Proximal</button>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+              {/* Lesion entry — one exam for a first interval, two for later */}
+              {twoExam ? (
+                <div className="space-y-5">
+                  <LesionEntry heading={`${ORIGINAL_JURS.has(jur) ? 'Original' : 'Previous'} colonoscopy — polyps removed`} rows={priorRows} setRows={setPriorRows} disabled={malignant || special} />
+                  <div className="border-t border-border" />
+                  <LesionEntry heading="This colonoscopy — polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
                 </div>
-                <button onClick={() => setRows((rs) => [...rs, newRow('TA')])} className={`mt-3 font-mono text-[12px] font-semibold text-accent bg-secondary border border-border hover:border-accent rounded px-3 py-2 transition-colors ${malignant || special ? 'opacity-40 pointer-events-none' : ''}`}>
-                  + Add another lesion type
-                </button>
-              </div>
+              ) : (
+                <LesionEntry heading="Polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
+              )}
             </div>
 
             {/* Result */}
@@ -395,6 +488,25 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
           <p className="text-[13px] leading-relaxed text-foreground/72 mt-4">
             Source: <a href={active.source.url} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">{active.source.name} ↗</a>. This is the baseline colonoscopy table; enter specific findings in the calculator above for the rule and its exact wording.
           </p>
+        </div>
+      </section>
+
+      {/* After a surveillance colonoscopy + age / stopping / risk factors - */}
+      <section className="px-6 lg:px-10 py-14 lg:py-16 border-b border-border">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 lg:gap-12">
+          <div>
+            <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-4">After a surveillance colonoscopy</h2>
+            <p className="text-[14.5px] leading-relaxed text-foreground/80">{SUBSEQUENT_REF[jur]}</p>
+            <p className="text-[13px] leading-relaxed text-foreground/72 mt-4">
+              Where the guideline stops, the calculator says so rather than setting a number. Enter the
+              earlier and most recent exams in the calculator above to see the rule and its wording.
+            </p>
+          </div>
+          <div>
+            <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-4">Age, stopping, and risk factors</h2>
+            <p className="text-[14.5px] leading-relaxed text-foreground/80 mb-3"><b className="font-semibold text-foreground">Age.</b> {SURV_GUIDANCE[jur].age}</p>
+            <p className="text-[14.5px] leading-relaxed text-foreground/80"><b className="font-semibold text-foreground">Risk factors.</b> {SURV_GUIDANCE[jur].risk}</p>
+          </div>
         </div>
       </section>
 
@@ -667,18 +779,16 @@ function ResultCard({
           </div>
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
           {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">{result.modality}</div>}
-          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
-            {repeatPublished
-              ? 'The repeat timing this society sets when preparation was inadequate. It replaces the routine interval.'
-              : repeatUntimed
-                ? 'The society requires a repeat but sets no timing. It is a clinical decision.'
-                : 'The guideline’s intervals assume an adequate exam and it sets no replacement. The timing is a clinical decision.'}
-          </div>
+          {!repeatPublished && (
+            <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
+              {repeatUntimed ? 'Timing is a clinical decision.' : 'No published replacement; a clinical decision.'}
+            </div>
+          )}
           {result.separateDocument && (
-            <Caveat label="Published in a separate document">
-              This is published in a different document from the surveillance guideline these intervals
-              come from. That document is named and linked below.
-            </Caveat>
+            <p className="mt-3 text-[12px] leading-relaxed text-foreground/72">
+              Published in{' '}
+              <a href={result.source.url} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">{result.source.name} ↗</a>
+            </p>
           )}
         </>
       ) : awaiting ? (
@@ -691,7 +801,7 @@ function ResultCard({
               <Breakdown breakdown={breakdown} />
             </>
           ) : (
-            <div className="text-[13px] leading-relaxed text-foreground/72 mt-1">More than one lesion is awaiting histology. Enter the histology for each lesion to get an interval.</div>
+            <div className="text-[13px] leading-relaxed text-foreground/72 mt-1">Enter the histology for each lesion to get an interval.</div>
           )}
         </>
       ) : result.override ? (
@@ -703,13 +813,11 @@ function ResultCard({
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Endoscopist discretion</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">The guideline leaves this to the endoscopist. Its reasoning is below.</div>
         </>
       ) : result.notSpecified ? (
         <>
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Not specified by this guideline</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">The guideline sets no interval for this. It is a clinical decision. Its wording is below.</div>
         </>
       ) : (
         <>

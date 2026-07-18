@@ -1953,6 +1953,438 @@ export function compute(exam: Exam): Result {
   return prepBad ? prepResult(spec, src, res) : res
 }
 
+// ===========================================================================
+// Subsequent surveillance — the interval AFTER a surveillance colonoscopy.
+// Each guideline publishes its own, distinct rule set for later rounds; none is
+// a re-run of the baseline table. Every interval and quote below is verified
+// against the primary source. Where a guideline stops, the result is a
+// not-specified gap, never an invented number.
+// ===========================================================================
+
+export type Stage = 'first' | 'second' | 'subsequent'
+
+export interface SurvExam {
+  jur: JurId
+  stage: Stage
+  current: LesionInput[] // the most recent colonoscopy
+  prior: LesionInput[] | null // the previous colonoscopy (stage 'second' / 'subsequent')
+  malignant: boolean
+  special: boolean
+  bbps: [number, number, number] // preparation at the most recent colonoscopy
+}
+
+type SubFn = (prior: Agg, cur: Agg, stage: Stage, src: Source, rawCur: LesionInput[]) => Result
+
+function riskYearsOf(interval: string): number {
+  const m = interval.match(/(\d+)/)
+  return m ? Number(m[1]) : 20
+}
+
+function subResult(src: Source, p: Partial<Result> & { interval: string; driver: string }): Result {
+  return {
+    interval: p.interval,
+    modality: p.modality ?? null,
+    driver: p.driver,
+    quote: p.quote ?? '',
+    location: p.location ?? '',
+    source: p.source ?? src,
+    strength: p.strength ?? null,
+    separateDocument: p.separateDocument ?? false,
+    notes: p.notes ?? [],
+    riskYears: p.riskYears ?? riskYearsOf(p.interval),
+    override: p.override ?? false,
+    discretion: p.discretion ?? false,
+    notSpecified: p.notSpecified ?? false,
+    prepInadequate: false,
+    assumption: false,
+    calculatorRule: null,
+    supersededInterval: null,
+  }
+}
+
+function subGap(short: string, src: Source, why: string): Result {
+  return subResult(src, { interval: `Not specified by ${short}`, driver: why, notSpecified: true })
+}
+
+// --- United States — Table 7 (second surveillance, adenomas only) ----------
+type UsBand = 'normal' | 'ta_1_2' | 'ta_3_4' | 'high' | 'other'
+const usHigh = (a: Agg): boolean =>
+  (a.adenomaCount > 0 && (a.adenomaMaxSize >= 10 || a.anyVillous || a.anyHgd)) ||
+  (a.adenomaCount >= 5 && a.adenomaCount <= 10)
+const usSerratedSurv = (a: Agg): boolean => a.sslCount > 0 || a.tsaCount > 0 || a.hpMaxSize >= 10
+function usBand(a: Agg): UsBand {
+  if (usSerratedSurv(a)) return 'other' // Table 7 is conventional-adenoma only
+  if (a.adenomaCount > 10) return 'other'
+  if (usHigh(a)) return 'high'
+  if (a.adenomaCount === 0) return 'normal' // no adenoma/SSP/CRC; a hyperplastic polyp <10 mm counts normal
+  if (a.adenomaCount <= 2) return 'ta_1_2'
+  return 'ta_3_4'
+}
+const US_BAND_LABEL: Record<UsBand, string> = {
+  normal: 'a normal colonoscopy',
+  ta_1_2: '1 to 2 tubular adenomas under 10 mm',
+  ta_3_4: '3 to 4 tubular adenomas under 10 mm',
+  high: 'a high-risk adenoma finding',
+  other: 'findings outside the adenoma grid',
+}
+const usSubsequent: SubFn = (prior, cur, stage, src) => {
+  if (stage === 'subsequent')
+    return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 sets only the second surveillance interval, from the baseline and first surveillance findings. It states no rule for the third or later interval')
+  const pb = usBand(prior)
+  const baseHigh = pb === 'high'
+  const baseLow = pb === 'ta_1_2' || pb === 'ta_3_4'
+  if (!baseHigh && !baseLow)
+    return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers a baseline of 1 to 2 or 3 to 4 tubular adenomas, or a high-risk adenoma, only. It states no second surveillance rule for this baseline finding')
+  const cb = usBand(cur)
+  if (cb === 'other')
+    return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers conventional adenomas only. It states no rule when the first surveillance found serrated lesions or more than 10 adenomas')
+  const grid: Record<'low' | 'high', Record<'normal' | 'ta_1_2' | 'ta_3_4' | 'high', string>> = {
+    low: { normal: '10 years', ta_1_2: '7 to 10 years', ta_3_4: '3 to 5 years', high: '3 years' },
+    high: { normal: '5 years', ta_1_2: '5 years', ta_3_4: '3 to 5 years', high: '3 years' },
+  }
+  const interval = grid[baseHigh ? 'high' : 'low'][cb]
+  const piecemeal = cur.piecemealAdenomaSize >= 20 || cur.piecemealSslSize >= 20
+  return subResult(src, {
+    interval,
+    modality: 'Colonoscopy',
+    driver: `Baseline ${baseHigh ? 'high-risk adenoma' : 'low-risk tubular adenomas'}, then ${US_BAND_LABEL[cb]} at the first surveillance colonoscopy`,
+    quote:
+      'For patients with history of baseline adenoma removal and 1 subsequent colonoscopy, recommendations for subsequent surveillance should take into account findings at baseline and first surveillance (Table 7).',
+    location: 'Recommendation, p.476; interval from Table 7, p.477',
+    strength: 'Weak recommendation, low quality of evidence',
+    notes: piecemeal
+      ? ['A polyp ≥20 mm removed piecemeal has its own USMSTF schedule (site check about 6 months, next at 1 year, then 3 years, p.478), which takes precedence over this interval.']
+      : [],
+  })
+}
+
+// --- Europe — ESGE 2020 Recommendations 4 and 5 ----------------------------
+const euSubsequent: SubFn = (prior, cur, _stage, src) => {
+  if (euNeedsSurveillance(cur))
+    return subResult(src, {
+      interval: '3 years',
+      modality: 'Colonoscopy',
+      driver: 'Polyps requiring surveillance were found at this surveillance colonoscopy',
+      quote:
+        'ESGE suggests that if polyps requiring surveillance are detected at first or subsequent surveillance examinations, surveillance colonoscopy may be performed at 3 years',
+      location: 'Recommendation 5, 2020 statement',
+      strength: 'Weak recommendation, low quality evidence',
+    })
+  if (euNeedsSurveillance(prior))
+    return subResult(src, {
+      interval: '5 years',
+      modality: 'Colonoscopy',
+      driver: 'A clear surveillance colonoscopy following a previous exam with polyps requiring surveillance',
+      quote:
+        'If no polyps requiring surveillance are detected at the first surveillance colonoscopy, ESGE suggests to perform a second surveillance colonoscopy after 5 years.',
+      location: 'Recommendation 4, 2020 statement',
+      strength: 'Weak recommendation, low quality evidence',
+    })
+  return subResult(src, {
+    interval: 'Return to screening',
+    modality: 'Screening programme',
+    driver: 'Two consecutive surveillance colonoscopies with no polyps requiring surveillance',
+    quote: 'After that, if no polyps requiring surveillance are detected, patients can be returned to screening.',
+    location: 'Recommendation 4, 2020 statement',
+    strength: 'Weak recommendation, low quality evidence',
+    riskYears: 10,
+  })
+}
+
+// --- Ontario — ColonCancerCheck "Subsequent colonoscopy" table half --------
+type OnBand = 'fit' | 'high_adenoma' | 'many_adenomas' | 'serrated' | 'other'
+const onHighAdenoma = (a: Agg): boolean =>
+  a.adenomaCount > 0 && (a.adenomaMaxSize >= 10 || a.adenomaCount >= 3 || a.anyVillous || a.anyHgd)
+function onBand(a: Agg): OnBand {
+  if (a.adenomaCount > 10) return 'many_adenomas'
+  if (onHighAdenoma(a)) return 'high_adenoma'
+  if (a.sslCount > 0 || a.tsaCount > 0) return 'serrated'
+  return 'fit' // no polyps, hyperplastic in rectosigmoid, or low-risk adenoma — all on FIT
+}
+const onSubsequent: SubFn = (prior, cur, stage, src) => {
+  if (stage === 'subsequent')
+    return subGap('ColonCancerCheck', src, 'ColonCancerCheck publishes a single subsequent-colonoscopy step keyed to the baseline finding. It states no rule for the third or later interval')
+  const pb = onBand(prior)
+  if (pb === 'fit')
+    return subResult(src, {
+      interval: 'Not applicable',
+      modality: 'FIT',
+      driver:
+        'After a baseline of no polyps, hyperplastic polyps in the rectum or sigmoid, or a low-risk adenoma, ColonCancerCheck follows the patient with FIT, not surveillance colonoscopy',
+      quote: 'Not applicable',
+      location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
+      notes: ['A subsequent colonoscopy interval is defined here only for a high-risk-adenoma baseline; other baselines are followed with FIT.'],
+    })
+  if (pb === 'high_adenoma') {
+    if (onHighAdenoma(cur))
+      return subResult(src, {
+        interval: '3 years',
+        modality: 'Colonoscopy',
+        driver: 'A high-risk adenoma at both the baseline and this surveillance colonoscopy',
+        quote: 'High risk adenoma(s) | Colonoscopy | 3 years',
+        location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
+      })
+    if (cur.sslCount > 0 || cur.tsaCount > 0 || cur.hpMaxSize >= 10 || cur.anyProximalHp)
+      return subGap('ColonCancerCheck', src, 'ColonCancerCheck sub-stratifies a high-risk-adenoma baseline for a subsequent finding of no polyps, rectosigmoid hyperplastic polyps, a low-risk adenoma, or a repeat high-risk adenoma only. It states no rule when the subsequent exam finds serrated lesions')
+    return subResult(src, {
+      interval: '5 years',
+      modality: 'Colonoscopy',
+      driver: 'A high-risk adenoma at baseline, then no polyps, hyperplastic polyps, or a low-risk adenoma at this surveillance colonoscopy',
+      quote: 'No polyps, hyperplastic polyp(s) in rectum or sigmoid, or low risk adenoma | Colonoscopy | 5 years',
+      location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
+      notes: ['ColonCancerCheck keeps this patient on 5-year colonoscopy; it does not return them to FIT.'],
+    })
+  }
+  if (pb === 'many_adenomas')
+    return subResult(src, {
+      interval: 'Under 3 years, at endoscopist discretion',
+      driver: 'More than 10 adenomas at baseline',
+      discretion: true,
+      quote: '<3 years at endoscopist discretion',
+      location: 'Recommendation table, "Subsequent colonoscopy" half, footnote 3, page 1',
+      notes: ['People with more than 10 adenomas should undergo genetic assessment for familial adenomatous polyposis syndromes.'],
+    })
+  return subResult(src, {
+    interval: 'At endoscopist discretion',
+    driver: 'Serrated lesions at baseline',
+    discretion: true,
+    quote: 'At endoscopist discretion',
+    location: 'Recommendation table, "Subsequent colonoscopy" half, footnote 4, page 1',
+    notes: ['ColonCancerCheck states there is insufficient evidence to make specific subsequent-interval recommendations for serrated lesions.'],
+  })
+}
+
+// --- Alberta — ACRCSP (Sadowski et al. 2024) published pathways ------------
+const abHighRisk = (a: Agg): boolean =>
+  (a.adenomaCount > 0 && (a.adenomaMaxSize >= 10 || a.anyVillous || a.anyHgd)) ||
+  a.adenomaCount >= 5 ||
+  (a.sslCount > 0 && (a.sslMaxSize >= 10 || a.anySslDysplasia)) ||
+  a.tsaCount > 0
+const abNoSurvNeeded = (a: Agg): boolean =>
+  !abHighRisk(a) && a.adenomaCount <= 2 && a.sslCount === 0 && a.tsaCount === 0
+const abIs34TA = (a: Agg): boolean =>
+  a.adenomaCount >= 3 && a.adenomaCount <= 4 && a.adenomaMaxSize < 10 && !a.anyHgd && !a.anyVillous && a.sslCount === 0 && a.tsaCount === 0
+const abSubsequent: SubFn = (prior, cur, stage, src) => {
+  if (stage === 'second' && abIs34TA(prior) && abNoSurvNeeded(cur) && cur.adenomaMaxSize < 10 && !cur.anyHgd)
+    return subResult(src, {
+      interval: '5 to 10 years',
+      modality: 'Colonoscopy',
+      driver: '3 to 4 tubular adenomas at baseline, then a normal 5-year colonoscopy or only 1 to 2 small tubular adenomas without high-grade dysplasia',
+      quote:
+        'If the follow-up 5-year colonoscopy is normal or shows only 1 or 2 small TA with no high-grade dysplasia (HGD), then the interval for the subsequent examination should be 5–10 years.',
+      location: 'Recommendation, "3 or 4 tubular adenomas <10 mm", Sadowski et al. 2024',
+    })
+  if (stage === 'second' && abHighRisk(prior)) {
+    if (abNoSurvNeeded(cur))
+      return subResult(src, {
+        interval: '5 years',
+        modality: 'Colonoscopy',
+        driver: 'High-risk lesions at baseline, then a clear surveillance colonoscopy',
+        quote: 'High risk lesions require surveillance colonoscopy at 3 years and then subsequent colonoscopy in 5 years.',
+        location: 'Recommendation, "Subsequent colonoscopy surveillance after high-risk lesions", Sadowski et al. 2024',
+      })
+    return subGap('ACRCSP', src, 'ACRCSP sets the high-risk pathway as 3 years then 5 years for clear scopes. It states no interval when a surveillance colonoscopy again finds high-risk lesions')
+  }
+  if (stage === 'subsequent' && abNoSurvNeeded(prior) && abNoSurvNeeded(cur))
+    return subResult(src, {
+      interval: 'Consider return to average-risk FIT screening',
+      modality: 'FIT',
+      driver: 'Two clear surveillance colonoscopies on the high-risk pathway',
+      quote: 'If no polyps requiring surveillance are detected at both scopes, the panel recommends considering a return to average risk FIT screening.',
+      location: 'Recommendation, "Subsequent colonoscopy surveillance after high-risk lesions", Sadowski et al. 2024',
+      discretion: true,
+      riskYears: 10,
+      notes: ['This applies to a patient who was on the high-risk surveillance pathway (high-risk lesions at baseline).'],
+    })
+  return subGap('ACRCSP', src, 'ACRCSP publishes subsequent-round intervals for high-risk lesions, 3 to 4 tubular adenomas, and piecemeal resection only. It states no rule for this finding beyond the first surveillance interval')
+}
+
+// --- British Columbia — BCGuidelines 2022, Table 1 column 3 + Figure 1 -----
+const bcSubsequent: SubFn = (prior, cur, _stage, src, rawCur) => {
+  if (bcPrecancerousCount(cur) === 0)
+    return subResult(src, {
+      interval: 'FIT in 10 years',
+      modality: 'FIT',
+      driver: 'No precancerous lesion at this surveillance colonoscopy',
+      quote: 'No pre-cancerous lesion → FIT in 10 years',
+      location: 'Figure 1: Algorithm for surveillance colonoscopy, page 3',
+      riskYears: 10,
+    })
+  const priorHighTrack = bcHighRisk(prior) || bcPrecancerousCount(prior) >= 5
+  if (priorHighTrack) {
+    if (!bcHighRisk(cur) && bcPrecancerousCount(cur) >= 1 && bcPrecancerousCount(cur) <= 4)
+      return subResult(src, {
+        interval: '5 years, then as per findings',
+        modality: 'Colonoscopy',
+        driver: 'A 3-year-track patient (5 or more low-risk lesions, or a high-risk lesion, at baseline) whose surveillance colonoscopy shows only 0 to 4 low-risk lesions',
+        quote: 'If 0 to 4 low risk lesions identified, then follow-up colonoscopy at 5 years and then as per colonoscopy findings',
+        location: 'Table 1, subsequent-surveillance column, page 3',
+      })
+    return subResult(src, {
+      interval: '3 years',
+      modality: 'Colonoscopy',
+      driver: 'A 3-year-track patient whose surveillance colonoscopy again shows 5 or more low-risk lesions, or a high-risk lesion',
+      quote: 'As per findings at each surveillance colonoscopy',
+      location: 'Table 1, subsequent-surveillance column, page 3',
+      notes: ['On the 3-year track the interval de-escalates to 5 years once an exam shows only 0 to 4 low-risk lesions.'],
+    })
+  }
+  // Low-risk track: BC applies the finding-based interval at each surveillance exam.
+  const reapplied = compute({ jur: 'CA_BC', lesions: rawCur, malignant: false, special: false, bbps: [3, 3, 3] })
+  reapplied.notes = [
+    ...reapplied.notes,
+    'BCGuidelines applies the finding-based interval at each surveillance colonoscopy ("As per findings at each surveillance colonoscopy", Table 1, subsequent column, page 3).',
+  ]
+  return reapplied
+}
+
+// --- Australia — NHMRC Tables 13-16 (third colonoscopy) --------------------
+// The next interval is a joint function of the two most recent exams. Each exam
+// is classified into the guideline's own risk tiers; a 4x5 grid (Table 14) then
+// gives the interval, with small serrated tables (15a/15b/16) for serrated
+// findings. Every cell verified against the source PDF, cell by cell.
+type AuInt = 'FOBT' | '10Y' | '5Y' | '3Y' | '1Y'
+type AuCat = 'none' | 'low' | 'int' | 'high' | 'highest'
+const AU_LABEL: Record<AuInt, string> = { FOBT: 'Return to FOBT screening (National Bowel Cancer Screening Program)', '10Y': '10 years', '5Y': '5 years', '3Y': '3 years', '1Y': '1 year' }
+const AU_RISK: Record<AuInt, number> = { FOBT: 10, '10Y': 10, '5Y': 5, '3Y': 3, '1Y': 1 }
+const AU_CAT_LABEL: Record<AuCat, string> = { none: 'no adenomas', low: 'low-risk adenomas', int: 'intermediate-risk adenomas', high: 'high-risk adenomas', highest: 'highest-risk adenomas' }
+// Table 14: row = first-colonoscopy adenoma tier, column = this-colonoscopy tier.
+const AU_T14: Record<Exclude<AuCat, 'none'>, Record<AuCat, AuInt>> = {
+  low: { none: 'FOBT', low: '10Y', int: '5Y', high: '3Y', highest: '1Y' },
+  int: { none: '10Y', low: '5Y', int: '5Y', high: '3Y', highest: '1Y' },
+  high: { none: '5Y', low: '5Y', int: '3Y', high: '3Y', highest: '1Y' },
+  highest: { none: '5Y', low: '5Y', int: '3Y', high: '1Y', highest: '1Y' },
+}
+// Table 16 highest-risk sub-table (serrated at first colonoscopy) differs from
+// Table 14 only in its first two columns; the int/high rows match Table 14.
+const AU_T16_HIGHEST: Record<AuCat, AuInt> = { none: '3Y', low: '3Y', int: '3Y', high: '1Y', highest: '1Y' }
+// Table 15b: serrated with synchronous adenomas, by combined count and by
+// adenoma tier (low/high) and advanced serrated (no/yes).
+const AU_T15B: Record<'2' | '3-4' | '5-9' | '10+', Record<'low' | 'high', Record<'no' | 'yes', AuInt>>> = {
+  '2': { low: { no: '5Y', yes: '3Y' }, high: { no: '3Y', yes: '3Y' } },
+  '3-4': { low: { no: '3Y', yes: '3Y' }, high: { no: '1Y', yes: '1Y' } },
+  '5-9': { low: { no: '1Y', yes: '1Y' }, high: { no: '1Y', yes: '1Y' } },
+  '10+': { low: { no: '1Y', yes: '1Y' }, high: { no: '1Y', yes: '1Y' } },
+}
+function auAdenomaCat(a: Agg): AuCat {
+  const n = a.adenomaCount
+  if (n === 0) return 'none'
+  const big = a.adenomaMaxSize >= 10
+  const adv = a.anyHgd || a.anyVillous
+  if (n >= 10) return 'highest'
+  if (n >= 5) return big || adv ? 'highest' : 'high'
+  if (n >= 3) return big && adv ? 'highest' : big || adv ? 'high' : 'int'
+  return big ? 'high' : adv ? 'int' : 'low' // 1 to 2 adenomas
+}
+const auCsSerratedCount = (a: Agg): number => a.sslCount + a.tsaCount + (a.hpMaxSize >= 10 ? a.hpCount : 0)
+const auHasCsSerrated = (a: Agg): boolean => auCsSerratedCount(a) > 0
+const auAdvancedSerrated = (a: Agg): boolean => a.tsaCount > 0 || a.anySslDysplasia || a.sslMaxSize >= 10 || a.hpMaxSize >= 10
+function au1stSerratedCat(a: Agg): 'int' | 'high' | 'highest' {
+  const n = auCsSerratedCount(a)
+  const adv = auAdvancedSerrated(a)
+  if (n >= 5) return 'highest'
+  if (n >= 3) return adv ? 'highest' : 'high'
+  return adv ? 'high' : 'int'
+}
+const AU_QUOTE =
+  'For individuals who have undergone two or more colonoscopies, the surveillance interval for the next (3rd) colonoscopy should be based on the reports and histology from the two most recent procedures (1st and 2nd colonoscopies) as per Tables 14–16 (see Table 13 as a quick reference guide).'
+function auResult(src: Source, code: AuInt, driver: string, location: string, stage: Stage): Result {
+  return subResult(src, {
+    interval: AU_LABEL[code],
+    modality: code === 'FOBT' ? 'FOBT' : 'Colonoscopy',
+    driver,
+    quote: AU_QUOTE,
+    location,
+    strength: 'Practice point (NHMRC consensus); the underlying first-surveillance intervals are Grade C/D evidence-based',
+    riskYears: AU_RISK[code],
+    notes:
+      stage === 'subsequent'
+        ? ['Tables 14–16 are headed "3rd colonoscopy". The guideline directs using the two most recent exams, which this applies to a later round as well.']
+        : [],
+  })
+}
+const auSubsequent: SubFn = (prior, cur, stage, src) => {
+  const curSerr = auHasCsSerrated(cur)
+  const curAdenoma = cur.adenomaCount > 0
+  // Table 13 routing.
+  if (curSerr && !curAdenoma) {
+    const n = auCsSerratedCount(cur)
+    const adv = auAdvancedSerrated(cur)
+    const code: AuInt = n >= 5 ? '1Y' : n >= 3 ? (adv ? '1Y' : '3Y') : adv ? '3Y' : '5Y'
+    return auResult(src, code, 'Clinically significant serrated polyps only at this colonoscopy', 'Table 15a, p19', stage)
+  }
+  if (curSerr && curAdenoma) {
+    const combined = auCsSerratedCount(cur) + cur.adenomaCount
+    const band = combined <= 2 ? '2' : combined <= 4 ? '3-4' : combined <= 9 ? '5-9' : '10+'
+    const atype = cur.adenomaMaxSize >= 10 || cur.anyHgd || cur.anyVillous ? 'high' : 'low'
+    const adv = auAdvancedSerrated(cur) ? 'yes' : 'no'
+    return auResult(src, AU_T15B[band][atype][adv], 'Serrated polyps with synchronous adenomas at this colonoscopy', 'Table 15b, p19', stage)
+  }
+  // This colonoscopy is normal or conventional adenomas only.
+  const cur2 = auAdenomaCat(cur)
+  if (auHasCsSerrated(prior)) {
+    const cat = au1stSerratedCat(prior)
+    const row = cat === 'highest' ? AU_T16_HIGHEST : AU_T14[cat]
+    return auResult(src, row[cur2], `Clinically significant serrated polyps at the first colonoscopy (${cat}-risk), ${AU_CAT_LABEL[cur2]} at this colonoscopy`, 'Table 16, p20', stage)
+  }
+  const prior1 = auAdenomaCat(prior)
+  if (prior1 === 'none')
+    return subGap('NHMRC / Cancer Council', src, 'A normal first colonoscopy is not a surveillance starting point in the Australian tables')
+  return auResult(src, AU_T14[prior1][cur2], `${AU_CAT_LABEL[prior1]} at the first colonoscopy, ${AU_CAT_LABEL[cur2]} at this colonoscopy`, 'Table 14, p18', stage)
+}
+
+const SUBSEQUENT: Record<JurId, SubFn> = {
+  US: usSubsequent,
+  CA_ON: onSubsequent,
+  CA_AB: abSubsequent,
+  CA_BC: bcSubsequent,
+  AU: auSubsequent,
+  EU: euSubsequent,
+}
+
+export function computeSurveillance(x: SurvExam): Result {
+  if (x.stage === 'first' || !x.prior)
+    return compute({ jur: x.jur, lesions: x.current, malignant: x.malignant, special: x.special, bbps: x.bbps })
+
+  const spec = SPECS[x.jur]
+  const src = SRC[x.jur]
+  const prepBad = !prepAdequate(x.bbps)
+
+  if (x.malignant || x.special) {
+    const which = x.malignant ? spec.malignant : spec.special
+    return {
+      interval: `Outside the scope of ${spec.short}`,
+      modality: null,
+      driver: which.driver,
+      quote: which.quote,
+      location: which.location,
+      source: src,
+      strength: null,
+      separateDocument: false,
+      notes: prepBad ? prepNotes(spec) : [],
+      riskYears: 0,
+      override: true,
+      discretion: false,
+      notSpecified: false,
+      prepInadequate: prepBad,
+      assumption: false,
+      calculatorRule: null,
+      supersededInterval: null,
+    }
+  }
+
+  const prior = aggregate(x.prior)
+  const cur = aggregate(x.current)
+  let res = SUBSEQUENT[x.jur](prior, cur, x.stage, src, x.current)
+
+  for (const adv of spec.advisories) {
+    if (adv.when(cur)) res.notes = [...res.notes, adv.note]
+  }
+
+  const demotable = !res.notSpecified && !res.override && !res.discretion && res.riskYears > 0 && res.modality === 'Colonoscopy'
+  return prepBad && demotable ? prepResult(spec, src, res) : res
+}
+
 export interface Jurisdiction {
   id: JurId
   country: 'US' | 'CA' | 'AU' | 'EU'
