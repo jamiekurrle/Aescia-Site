@@ -42,7 +42,7 @@ eq('EU', 'subsequent', HIGH, HIGH, '3 years', 'high at a later round')
 // --- Ontario, ColonCancerCheck subsequent column ---------------------------
 eq('CA_ON', 'second', HIGH, NORMAL, '5 years', 'high adenoma baseline, clean surv -> 5y colonoscopy (not FIT)')
 eq('CA_ON', 'second', HIGH, HIGH, '3 years', 'high adenoma at both')
-eq('CA_ON', 'second', TA_low, NORMAL, 'Not applicable', 'low-risk baseline is on FIT')
+eq('CA_ON', 'second', TA_low, NORMAL, 'Return to FIT screening', 'low-risk baseline is on FIT')
 
 // --- Alberta, ACRCSP pathways ----------------------------------------------
 eq('CA_AB', 'second', HIGH, NORMAL, '5 years', 'high-risk pathway 3y then 5y')
@@ -58,6 +58,15 @@ eq('AU', 'second', TA_low, [L('TA', 2, 6)], '10 years', 'low 1st, low 2nd')
 eq('AU', 'second', HIGH, NORMAL, '5 years', 'high 1st, 0 adenomas 2nd')
 eq('AU', 'second', TA_low, [L('TA', 3, 12, true)], '1 year', 'low 1st, 3-4 >=10mm HGD 2nd (highest)')
 eq('AU', 'second', TA_low, [L('SSL', 2, 6)], '5 years', 'low 1st, serrated only 2nd (Table 15a)')
+
+// --- A first colonoscopy that found nothing returns to routine screening ----
+// (a normal 1st is not a surveillance baseline; the 2nd stands as a fresh one)
+eq('US', 'second', NORMAL, NORMAL, '10 years', 'US: normal 1st -> 10-year screening')
+eq('US', 'second', NORMAL, HIGH, '3 years', 'US: normal 1st, high-risk 2nd -> fresh baseline')
+eq('CA_ON', 'second', NORMAL, NORMAL, 'Return to FIT screening', 'ON: normal 1st -> FIT screening')
+eq('CA_AB', 'second', NORMAL, NORMAL, '10 years', 'AB: normal 1st -> FIT in 10 years')
+eq('AU', 'second', NORMAL, NORMAL, 'Return to FOBT screening (National Bowel Cancer Screening Program)', 'AU: normal 1st -> NBCSP')
+eq('EU', 'second', NORMAL, NORMAL, 'Return to screening', 'EU: normal 1st -> screening')
 
 console.log(`\n${pass} passed, ${fail} failed`)
 if (fail > 0) process.exit(1)

@@ -1331,14 +1331,15 @@ const EU: JurSpec = {
   rules: [
     {
       id: 'eu_no_polyp',
-      kind: 'gap',
+      kind: 'rule',
       when: (a) => !a.hasAnyLesion,
-      interval: gapInterval('ESGE 2020'),
-      modality: null,
+      interval: 'Return to screening',
+      modality: 'Screening programme',
       driver:
-        'ESGE 2020 scopes its recommendations to patients who had one or more polyps removed; it states no rule for a colonoscopy that found none',
+        'A colonoscopy that found no lesions is outside ESGE surveillance; the patient returns to their population screening programme',
       quote: EU_PRECONDITION,
       location: 'MAIN RECOMMENDATIONS preamble (p.1); RECOMMENDATION box, p.4',
+      riskYears: YRS.y10,
     },
     {
       id: 'eu_piecemeal_20',
@@ -1639,15 +1640,16 @@ const AU: JurSpec = {
   rules: [
     {
       id: 'au_normal',
-      kind: 'gap',
+      kind: 'rule',
       when: (a) => !a.hasAnyLesion,
-      interval: gapInterval('Cancer Council Australia'),
-      modality: null,
+      interval: 'Return to FOBT screening (National Bowel Cancer Screening Program)',
+      modality: 'FOBT',
       driver:
-        'The Cancer Council surveillance tables key on removed lesions; this guideline states no rule for a colonoscopy that found none',
+        'A colonoscopy that found no lesions is not a surveillance starting point; an average-risk patient returns to the National Bowel Cancer Screening Program',
       quote:
         'Surveillance recommendations should be made after the colon has been cleared of all significant neoplasia, once histology is known and in the context of individualised assessment of benefit to the patient.',
       location: 'Table 3 explanatory text, p.102',
+      riskYears: YRS.y10,
     },
     {
       id: 'au_piecemeal',
@@ -2006,6 +2008,21 @@ function subGap(short: string, src: Source, why: string): Result {
   return subResult(src, { interval: `Not specified by ${short}`, driver: why, notSpecified: true })
 }
 
+// A first colonoscopy with no polyps requiring surveillance is not a surveillance
+// baseline: the patient is on routine screening and the next colonoscopy stands as
+// a fresh baseline. Apply the baseline rules to the current exam so the tool gives
+// the screening interval rather than falling silent.
+function screeningReset(jur: JurId, rawCur: LesionInput[]): Result {
+  const r = compute({ jur, lesions: rawCur, malignant: false, special: false, bbps: [3, 3, 3] })
+  return {
+    ...r,
+    notes: [
+      'The first colonoscopy found no polyps requiring surveillance, so this is a return to routine screening, with the interval set from the second colonoscopy as a fresh baseline.',
+      ...r.notes,
+    ],
+  }
+}
+
 // --- United States — Table 7 (second surveillance, adenomas only) ----------
 type UsBand = 'normal' | 'ta_1_2' | 'ta_3_4' | 'high' | 'other'
 const usHigh = (a: Agg): boolean =>
@@ -2027,14 +2044,15 @@ const US_BAND_LABEL: Record<UsBand, string> = {
   high: 'a high-risk adenoma finding',
   other: 'findings outside the adenoma grid',
 }
-const usSubsequent: SubFn = (prior, cur, stage, src) => {
+const usSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   if (stage === 'subsequent')
     return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 sets only the second surveillance interval, from the baseline and first surveillance findings. It states no rule for the third or later interval')
   const pb = usBand(prior)
+  if (pb === 'normal')
+    return screeningReset('US', rawCur)
+  if (pb === 'other')
+    return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers conventional-adenoma baselines only. It states no second surveillance rule when the first colonoscopy found serrated lesions or more than 10 adenomas')
   const baseHigh = pb === 'high'
-  const baseLow = pb === 'ta_1_2' || pb === 'ta_3_4'
-  if (!baseHigh && !baseLow)
-    return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers a baseline of 1 to 2 or 3 to 4 tubular adenomas, or a high-risk adenoma, only. It states no second surveillance rule for this baseline finding')
   const cb = usBand(cur)
   if (cb === 'other')
     return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers conventional adenomas only. It states no rule when the first surveillance found serrated lesions or more than 10 adenomas')
@@ -2101,19 +2119,20 @@ function onBand(a: Agg): OnBand {
   if (a.sslCount > 0 || a.tsaCount > 0) return 'serrated'
   return 'fit' // no polyps, hyperplastic in rectosigmoid, or low-risk adenoma — all on FIT
 }
-const onSubsequent: SubFn = (prior, cur, stage, src) => {
+const onSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   if (stage === 'subsequent')
     return subGap('ColonCancerCheck', src, 'ColonCancerCheck publishes a single subsequent-colonoscopy step keyed to the baseline finding. It states no rule for the third or later interval')
   const pb = onBand(prior)
   if (pb === 'fit')
     return subResult(src, {
-      interval: 'Not applicable',
+      interval: 'Return to FIT screening',
       modality: 'FIT',
       driver:
         'After a baseline of no polyps, hyperplastic polyps in the rectum or sigmoid, or a low-risk adenoma, ColonCancerCheck follows the patient with FIT, not surveillance colonoscopy',
       quote: 'Not applicable',
       location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
-      notes: ['A subsequent colonoscopy interval is defined here only for a high-risk-adenoma baseline; other baselines are followed with FIT.'],
+      riskYears: 10,
+      notes: ['ColonCancerCheck defines a subsequent colonoscopy interval only for a high-risk-adenoma baseline; other baselines are followed with FIT.'],
     })
   if (pb === 'high_adenoma') {
     if (onHighAdenoma(cur))
@@ -2164,7 +2183,7 @@ const abNoSurvNeeded = (a: Agg): boolean =>
   !abHighRisk(a) && a.adenomaCount <= 2 && a.sslCount === 0 && a.tsaCount === 0
 const abIs34TA = (a: Agg): boolean =>
   a.adenomaCount >= 3 && a.adenomaCount <= 4 && a.adenomaMaxSize < 10 && !a.anyHgd && !a.anyVillous && a.sslCount === 0 && a.tsaCount === 0
-const abSubsequent: SubFn = (prior, cur, stage, src) => {
+const abSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   if (stage === 'second' && abIs34TA(prior) && abNoSurvNeeded(cur) && cur.adenomaMaxSize < 10 && !cur.anyHgd)
     return subResult(src, {
       interval: '5 to 10 years',
@@ -2196,7 +2215,9 @@ const abSubsequent: SubFn = (prior, cur, stage, src) => {
       riskYears: 10,
       notes: ['This applies to a patient who was on the high-risk surveillance pathway (high-risk lesions at baseline).'],
     })
-  return subGap('ACRCSP', src, 'ACRCSP publishes subsequent-round intervals for high-risk lesions, 3 to 4 tubular adenomas, and piecemeal resection only. It states no rule for this finding beyond the first surveillance interval')
+  if (stage === 'second' && abNoSurvNeeded(prior))
+    return screeningReset('CA_AB', rawCur)
+  return subGap('ACRCSP', src, 'ACRCSP publishes subsequent-round intervals for high-risk lesions, 3 to 4 tubular adenomas, and piecemeal resection only. It states no subsequent rule for a baseline of low-risk serrated lesions')
 }
 
 // --- British Columbia — BCGuidelines 2022, Table 1 column 3 + Figure 1 -----
@@ -2303,7 +2324,7 @@ function auResult(src: Source, code: AuInt, driver: string, location: string, st
         : [],
   })
 }
-const auSubsequent: SubFn = (prior, cur, stage, src) => {
+const auSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   const curSerr = auHasCsSerrated(cur)
   const curAdenoma = cur.adenomaCount > 0
   // Table 13 routing.
@@ -2329,7 +2350,7 @@ const auSubsequent: SubFn = (prior, cur, stage, src) => {
   }
   const prior1 = auAdenomaCat(prior)
   if (prior1 === 'none')
-    return subGap('NHMRC / Cancer Council', src, 'A normal first colonoscopy is not a surveillance starting point in the Australian tables')
+    return screeningReset('AU', rawCur)
   return auResult(src, AU_T14[prior1][cur2], `${AU_CAT_LABEL[prior1]} at the first colonoscopy, ${AU_CAT_LABEL[cur2]} at this colonoscopy`, 'Table 14, p18', stage)
 }
 

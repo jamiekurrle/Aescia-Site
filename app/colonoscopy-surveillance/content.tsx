@@ -50,18 +50,9 @@ const COUNTRIES: { country: Jurisdiction['country']; label: string; guideline?: 
 ]
 
 const STAGES: [Stage, string][] = [
-  ['first', 'First surveillance'],
-  ['second', 'Second surveillance'],
-  ['subsequent', 'Subsequent surveillance'],
+  ['first', 'To the 2nd colonoscopy'],
+  ['second', 'To the 3rd colonoscopy'],
 ]
-const STAGE_HELP: Record<Stage, string> = {
-  first: 'After a baseline colonoscopy.',
-  second: 'After the first surveillance colonoscopy.',
-  subsequent: 'After a second or later surveillance colonoscopy.',
-}
-// Guidelines whose subsequent interval keys on the original (index) findings
-// rather than the immediately preceding exam.
-const ORIGINAL_JURS = new Set<JurId>(['US', 'CA_ON', 'CA_AB', 'CA_BC'])
 
 // Age, stopping, and risk-factor context, verified against each primary source.
 // Reference material below the calculator, not inputs to it.
@@ -221,7 +212,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
       return { key: (rowSeq += 1), hist: hist as HistOpt, count: toInt(count, 40), size: toInt(size, 90), hgd: flags[0] === '1', piece: flags[1] === '1', proximal: flags[2] === '1' }
     }).filter((r) => validHist.has(r.hist))
     const s = p.get('s')
-    if (s === 'second' || s === 'subsequent') setStage(s)
+    if (s === 'second' || s === 'subsequent') setStage('second')
     const pl = p.get('pl')
     if (pl) { const parsed = parseRows(pl); if (parsed.length) setPriorRows(parsed) }
     const l = p.get('l')
@@ -247,14 +238,18 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   const awaiting = !malignant && !special && (curAwaitingRows.length > 0 || (twoExam && priorAwaitingRows.length > 0))
   const result = computeSurveillance({ jur, stage, current: knownLesions, prior: twoExam ? knownPrior : null, malignant, special, bbps })
 
-  // Single-exam mode: with exactly one lesion pending, show the interval each
-  // possible histology for it would give, holding any known lesions fixed. With
-  // two or more pending, or in a two-exam mode, the result card asks for the
-  // histology instead.
-  const breakdown = !twoExam && awaiting && curAwaitingRows.length === 1
+  // With exactly one lesion pending, in either colonoscopy, show the interval
+  // each possible histology for it would give, holding every other (known) lesion
+  // fixed. With two or more pending, the result card asks for the histology.
+  const totalAwaiting = curAwaitingRows.length + (twoExam ? priorAwaitingRows.length : 0)
+  const breakdown = awaiting && totalAwaiting === 1
     ? AWAIT_TYPES.map((t) => {
-        const a = curAwaitingRows[0]
-        const r = compute({ jur, lesions: [...knownLesions, { hist: t.hist, count: a.count, size: a.size, hgd: a.hgd, piece: a.piece, proximal: false }], malignant: false, special: false, bbps: ADEQUATE_BBPS })
+        const inCurrent = curAwaitingRows.length === 1
+        const a = inCurrent ? curAwaitingRows[0] : priorAwaitingRows[0]
+        const pending: LesionInput = { hist: t.hist, count: a.count, size: a.size, hgd: a.hgd, piece: a.piece, proximal: false }
+        const r = twoExam
+          ? computeSurveillance({ jur, stage, current: inCurrent ? [...knownLesions, pending] : knownLesions, prior: inCurrent ? knownPrior : [...knownPrior, pending], malignant: false, special: false, bbps: ADEQUATE_BBPS })
+          : compute({ jur, lesions: [...knownLesions, pending], malignant: false, special: false, bbps: ADEQUATE_BBPS })
         return { label: t.label, prevalence: t.prevalence, interval: r.interval }
       })
     : []
@@ -387,22 +382,18 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             <div className="bg-card border border-border rounded-lg p-6 lg:p-7">
               {/* Stage */}
               <div className="mb-5">
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">Which surveillance interval?</div>
+                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-accent mb-2">Interval to which colonoscopy?</div>
                 <div className="flex flex-wrap gap-1.5">
                   {STAGES.map(([k, label]) => (
                     <button key={k} onClick={() => setStage(k)} aria-pressed={stage === k} className={chip(stage === k, false)}>{label}</button>
                   ))}
                 </div>
-                <p className="text-[12px] leading-relaxed text-foreground/72 mt-2">{STAGE_HELP[stage]}</p>
               </div>
 
 
               {/* Scope gate */}
               <div className="mb-6 bg-[#FBF3E3] border border-[#EAD9B0] rounded p-4">
-                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-2">Outside the guidelines</div>
-                <p className="text-[12px] leading-relaxed text-[#5E4310] mb-3">
-                  Tick if any apply.
-                </p>
+                <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#7A5312] mb-3">Outside the guidelines</div>
                 <div className="flex flex-wrap gap-2">
                   <button onClick={() => setMalignant((v) => !v)} aria-pressed={malignant} className={chip(malignant, false)}>
                     Malignant (cancer in polyp)
@@ -440,12 +431,12 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
               {/* Lesion entry — one exam for a first interval, two for later */}
               {twoExam ? (
                 <div className="space-y-5">
-                  <LesionEntry heading={`${ORIGINAL_JURS.has(jur) ? 'Original' : 'Previous'} colonoscopy — polyps removed`} rows={priorRows} setRows={setPriorRows} disabled={malignant || special} />
+                  <LesionEntry heading="First colonoscopy — polyps removed" rows={priorRows} setRows={setPriorRows} disabled={malignant || special} />
                   <div className="border-t border-border" />
-                  <LesionEntry heading="This colonoscopy — polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
+                  <LesionEntry heading="Second colonoscopy — polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
                 </div>
               ) : (
-                <LesionEntry heading="Polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
+                <LesionEntry heading="First colonoscopy — polyps removed" rows={rows} setRows={setRows} disabled={malignant || special} />
               )}
             </div>
 
@@ -763,8 +754,8 @@ function ResultCard({
     <div role="status" aria-live="polite" style={{ borderLeftColor: accent }} className="bg-card border-l-[3px] border-y border-r border-border rounded-lg p-6 lg:p-7">
       {result.prepInadequate && !prepPathway && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
-          <strong>Bowel preparation inadequate.</strong> These findings sit outside this guideline's
-          scope regardless, so that result stands. Preparation guidance is below.
+          <strong>Bowel preparation inadequate.</strong> These findings are outside the guideline's
+          scope regardless, so that result stands.
         </div>
       )}
 
@@ -797,7 +788,7 @@ function ResultCard({
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
           {breakdown.length > 0 ? (
             <>
-              <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology for the pending lesion would give. Confirm once histology returns.</div>
+              <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology for the pending lesion would give.</div>
               <Breakdown breakdown={breakdown} />
             </>
           ) : (
