@@ -84,6 +84,20 @@ export function Footer() {
           </div>
         </div>
 
+        <nav aria-label="Solutions" className="mb-16">
+          <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Solutions</p>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-3 text-[14px]">
+            <li><Link href="/bowel-prep-software" className="text-foreground/80 hover:text-foreground">Bowel prep adequacy</Link></li>
+            <li><Link href="/colonoscopy-no-show-software" className="text-foreground/80 hover:text-foreground">Colonoscopy no-shows</Link></li>
+            <li><Link href="/glp1-endoscopy-prep" className="text-foreground/80 hover:text-foreground">GLP-1 before endoscopy</Link></li>
+            <li><Link href="/medication-management-before-endoscopy" className="text-foreground/80 hover:text-foreground">Blood thinners and diabetes meds</Link></li>
+            <li><Link href="/endoscopy-pre-procedure-workflow" className="text-foreground/80 hover:text-foreground">Pre-procedure workflow</Link></li>
+            <li><Link href="/prep-aware-backfill" className="text-foreground/80 hover:text-foreground">Prep-aware backfill</Link></li>
+            <li><Link href="/asc-fit" className="text-foreground/80 hover:text-foreground">ASC fit check</Link></li>
+            <li><Link href="/compare" className="text-foreground/80 hover:text-foreground">How Aescia compares</Link></li>
+          </ul>
+        </nav>
+
         <div className="border-t border-border pt-8">
           <p className="text-[12.5px] leading-relaxed text-foreground/70 max-w-3xl mb-6 italic font-display">
             {t('footer.disclosure')}

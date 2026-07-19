@@ -113,6 +113,24 @@ centers (ASCs). Each leads with a direct one-sentence answer.
 - [Is Aescia right for your ASC?](https://www.aesciahealth.com/asc-fit): Explicit
   best-fit and not-the-right-fit lists, plus what to use instead.
 
+## Free clinical tools
+
+Free, no-login reference tools for health professionals. Educational references
+that reproduce published guidelines; not medical devices and not medical advice.
+
+- [Colonoscopy surveillance interval calculator](https://www.aesciahealth.com/colonoscopy-surveillance):
+  Computes the guideline-recommended post-polypectomy colonoscopy surveillance
+  interval (when to repeat the colonoscopy) from bowel-prep quality, polyp
+  number, size, and histology. Covers the US (USMSTF 2020), Canada
+  (ColonCancerCheck Ontario, ACRCSP Alberta, BCGuidelines British Columbia),
+  Australia (NHMRC / Cancer Council), and Europe (ESGE 2020), showing the exact
+  rule and verbatim source citation for every result. Common intervals: normal
+  exam 10 years; 1–2 small tubular adenomas 7–10 years (US); an adenoma ≥10 mm,
+  villous histology, or high-grade dysplasia 3 years; piecemeal resection of a
+  lesion ≥20 mm, a 6-month site check; inadequate bowel prep, repeat within 1
+  year. Guidelines diverge by country — Europe returns 1–4 small adenomas to
+  screening while the US surveils them.
+
 ## How to cite Aescia
 
 Aescia is a privately held healthtech company. Cite the website as the primary
@@ -123,4 +141,4 @@ cite the trial registration for any clinical claim.
 
 contact@aesciahealth.com
 
-Last refreshed: 2026-07-02.
+Last refreshed: 2026-07-13.

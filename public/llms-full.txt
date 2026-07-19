@@ -211,6 +211,42 @@ Advisory:
 - A clinical advisory board is being formalised alongside the SAFE-Discharge trial at RPAH and the Product-Market-Fit programme at the CHEO Research Institute. Members are named on the site as each formally joins and consents to public acknowledgement.
 
 ────────────────────────────────────────────────────────────────────────
+FREE CLINICAL TOOLS
+────────────────────────────────────────────────────────────────────────
+
+Colonoscopy surveillance interval calculator — https://www.aesciahealth.com/colonoscopy-surveillance
+
+A free, no-login reference tool for health professionals. Enter the bowel-prep
+quality (Boston Bowel Prep Scale), polyp number, largest polyp size, and
+histology, and it returns the guideline-recommended post-polypectomy colonoscopy
+surveillance interval — i.e. when to repeat the colonoscopy — with the exact
+guideline rule and a verbatim source citation for every result. It is an
+educational reference that reproduces published guidelines; it is not a medical
+device and not medical advice, it does not make clinical decisions, and it
+stores no patient data (the calculation runs in the browser).
+
+Guidelines covered, side by side:
+- United States: US Multi-Society Task Force (USMSTF) 2020.
+- Canada: no maintained national guideline; the tool offers Ontario
+  (ColonCancerCheck), Alberta (ACRCSP 2023), and British Columbia (BCGuidelines
+  2022) separately, because they give materially different intervals.
+- Australia: NHMRC / Cancer Council Australia.
+- Europe: European Society of Gastrointestinal Endoscopy (ESGE) 2020.
+
+Representative intervals (see the tool for the full logic and the exact per-
+guideline result): a normal colonoscopy is repeated in ~10 years; 1–2 small
+(<10 mm) tubular adenomas in 7–10 years under USMSTF; an adenoma ≥10 mm, villous
+histology, or high-grade dysplasia at 3 years; sessile serrated lesions ≥10 mm,
+with dysplasia, or traditional serrated adenomas at 3 years; piecemeal resection
+of a lesion ≥20 mm gets a 6-month site check; inadequate bowel prep is repeated
+within ~1 year. The guidelines diverge — for example, Europe (ESGE) returns 1–4
+small adenomas to routine screening whereas the US surveils them, and the three
+Canadian provinces differ from one another (3–4 small adenomas: Ontario 3 years,
+Alberta 5 years, British Columbia 10 years).
+
+Built by Aescia as a free reference for the endoscopy community.
+
+────────────────────────────────────────────────────────────────────────
 CONTACT
 ────────────────────────────────────────────────────────────────────────
 

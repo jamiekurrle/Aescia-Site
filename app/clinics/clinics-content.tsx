@@ -429,7 +429,7 @@ export default function ClinicsContent() {
                 </div>
               ))}
             </dl>
-            <p className="text-[13px] leading-[1.65] text-foreground/65 italic border-l-2 border-brass/60 pl-4 mt-10 max-w-3xl">
+            <p className="text-[13px] leading-[1.65] text-foreground/65 italic border-l-2 border-brass/60 pl-4 mt-10 max-w-3xl lg:max-w-none lg:whitespace-nowrap">
               {t('clinics.proof.footnote')}
             </p>
           </div>

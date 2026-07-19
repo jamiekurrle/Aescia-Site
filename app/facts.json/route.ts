@@ -45,6 +45,14 @@ export function GET() {
       },
     ],
     platform: softwareApplicationSchema.description,
+    freeTools: [
+      {
+        name: 'Colonoscopy surveillance interval calculator',
+        description:
+          'Free clinician reference tool computing the guideline-recommended post-polypectomy colonoscopy surveillance interval from bowel-prep quality, polyp number, size, and histology. Covers US (USMSTF 2020), Canada (ColonCancerCheck Ontario, ACRCSP Alberta, BCGuidelines British Columbia), Australia (NHMRC / Cancer Council), and Europe (ESGE 2020). Educational reference, not a medical device.',
+        url: `${SITE_URL}/colonoscopy-surveillance`,
+      },
+    ],
     clinicalTrial: {
       name: 'SAFE-Discharge',
       registry: 'ANZCTR',

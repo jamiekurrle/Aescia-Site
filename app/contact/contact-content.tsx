@@ -247,7 +247,6 @@ export default function ContactContent() {
                     <dd className="text-foreground/80 leading-relaxed space-y-1.5">
                       <p>Reply within two business days.</p>
                       <p>Initial call with a clinician on our team.</p>
-                      <p>A tailored pack if we are a fit, a referral if we are not.</p>
                     </dd>
                   </div>
                 </dl>
