@@ -36,10 +36,10 @@ export const JUR_META: Record<JurId, { country: string; guideline: string; lang:
   },
   CA_AB: {
     country: 'Canada — Alberta',
-    guideline: 'ACRCSP 2023',
+    guideline: 'ACRCSP',
     lang: 'en-CA',
     title: 'Alberta Colonoscopy Surveillance Calculator (ACRCSP)',
-    desc: 'Free clinician tool for Alberta ACRCSP 2023 post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
+    desc: 'Free clinician tool for Alberta ACRCSP post-polypectomy colonoscopy surveillance intervals from polyp number, size, and histology, with the guideline rule and source.',
   },
   CA_BC: {
     country: 'Canada — British Columbia',
