@@ -54,6 +54,9 @@ export interface Superseded {
   discretion: boolean
   notSpecified: boolean
   calculatorRule: string | null
+  // Carries the calculator-interpretation caveat through demotion, so a demoted
+  // interpretation is not shown as a plain published interval. Null otherwise.
+  interpretation: string | null
   // The guideline's own wording that its intervals assume an adequate
   // examination. Null where the guideline prints no such wording.
   precondition: { quote: string; location: string } | null
@@ -88,6 +91,15 @@ export interface Result {
   // everywhere else, including where the guideline's own text settles which of
   // its rows governs.
   calculatorRule: string | null
+  // Set when the interval shown is the calculator applying a guideline rule to a
+  // sequence the guideline does not itself address (e.g. a normal baseline then a
+  // later adenoma, taken as a new baseline). Carries the plain-language basis.
+  // Null for a direct guideline rule.
+  interpretation?: string | null
+  // Set when preparation was inadequate and the source's repeat timing depends on
+  // an indication this calculator does not collect. Each distinct published timing
+  // is listed and none is selected. Null everywhere else.
+  prepByIndication?: { indication: string; interval: string }[] | null
 }
 
 // ---------------------------------------------------------------------------
@@ -182,12 +194,15 @@ export interface Agg {
   hpCount: number
   hpMaxSize: number
   anyProximalHp: boolean
+  hpProximalMaxSize: number // largest hyperplastic polyp proximal to the sigmoid
+  hpDistalMaxSize: number // largest hyperplastic polyp in the rectosigmoid
   serratedCount: number // SSL + TSA + HP
   serratedMaxSize: number
   anyPiecemeal: boolean
   piecemealSize: number
   piecemealAdenomaSize: number
   piecemealSslSize: number
+  piecemealPrecancerousSize: number // largest piecemeal adenoma, SSL or TSA (not a benign HP)
   hasAnyLesion: boolean
   totalLesions: number
 }
@@ -205,10 +220,13 @@ function aggregate(lesions: LesionInput[]): Agg {
   let hpCount = 0
   let hpMaxSize = 0
   let anyProximalHp = false
+  let hpProximalMaxSize = 0
+  let hpDistalMaxSize = 0
   let anyPiecemeal = false
   let piecemealSize = 0
   let piecemealAdenomaSize = 0
   let piecemealSslSize = 0
+  let piecemealPrecancerousSize = 0
   let totalLesions = 0
 
   for (const l of lesions) {
@@ -220,6 +238,7 @@ function aggregate(lesions: LesionInput[]): Agg {
       piecemealSize = Math.max(piecemealSize, l.size)
       if (isAdenomaHist(l.hist)) piecemealAdenomaSize = Math.max(piecemealAdenomaSize, l.size)
       if (l.hist === 'SSL') piecemealSslSize = Math.max(piecemealSslSize, l.size)
+      if (isAdenomaHist(l.hist) || l.hist === 'SSL' || l.hist === 'TSA') piecemealPrecancerousSize = Math.max(piecemealPrecancerousSize, l.size)
     }
     if (isAdenomaHist(l.hist)) {
       adenomaCount += n
@@ -236,7 +255,12 @@ function aggregate(lesions: LesionInput[]): Agg {
     } else if (l.hist === 'HP') {
       hpCount += n
       hpMaxSize = Math.max(hpMaxSize, l.size)
-      if (l.proximal) anyProximalHp = true
+      if (l.proximal) {
+        anyProximalHp = true
+        hpProximalMaxSize = Math.max(hpProximalMaxSize, l.size)
+      } else {
+        hpDistalMaxSize = Math.max(hpDistalMaxSize, l.size)
+      }
     }
   }
 
@@ -253,12 +277,15 @@ function aggregate(lesions: LesionInput[]): Agg {
     hpCount,
     hpMaxSize,
     anyProximalHp,
+    hpProximalMaxSize,
+    hpDistalMaxSize,
     serratedCount: sslCount + tsaCount + hpCount,
     serratedMaxSize: Math.max(sslMaxSize, tsaMaxSize, hpMaxSize),
     anyPiecemeal,
     piecemealSize,
     piecemealAdenomaSize,
     piecemealSslSize,
+    piecemealPrecancerousSize,
     hasAnyLesion: totalLesions > 0,
     totalLesions,
   }
@@ -326,6 +353,10 @@ interface PrepPathway {
   // jurisdiction's intervals come from.
   separate: boolean
   notes: string[]
+  // When the published repeat timing depends on an indication the calculator does
+  // not collect, the distinct timings are listed here and none is selected. Null
+  // where a single timing applies.
+  byIndication?: { indication: string; interval: string }[] | null
 }
 
 interface PrepSpec {
@@ -386,6 +417,10 @@ const US: JurSpec = {
       strength: null,
       source: PREP_SRC.US_2025,
       separate: true,
+      byIndication: [
+        { indication: 'Screening or surveillance', interval: 'Within 12 months' },
+        { indication: 'Abnormal non-colonoscopic colorectal cancer screening test', interval: 'As soon as possible, generally within 3 months' },
+      ],
       notes: [
         'Which of the two timings applies turns on why the colonoscopy was done. This tool does not ask for the indication.',
         'The consensus document uses consensus statements and ungraded key clinical concepts rather than a strength and quality label on every item. No strength is printed against this statement in the rendering quoted here.',
@@ -482,7 +517,7 @@ const US: JurSpec = {
     {
       id: 'us_ta_5_10',
       kind: 'rule',
-      when: (a) => a.adenomaCount >= 5 && a.adenomaCount <= 10 && a.adenomaMaxSize < 10 && !a.anyVillous,
+      when: (a) => a.adenomaCount >= 5 && a.adenomaCount <= 10 && a.adenomaMaxSize < 10 && !a.anyVillous && !a.anyHgd,
       interval: '3 years',
       driver: '5 to 10 tubular adenomas under 10 mm',
       quote: '5-10 tubular adenomas <10 mm | 3 y | Strong | Moderate',
@@ -492,7 +527,7 @@ const US: JurSpec = {
     {
       id: 'us_ta_3_4',
       kind: 'rule',
-      when: (a) => a.adenomaCount >= 3 && a.adenomaCount <= 4 && a.adenomaMaxSize < 10 && !a.anyVillous,
+      when: (a) => a.adenomaCount >= 3 && a.adenomaCount <= 4 && a.adenomaMaxSize < 10 && !a.anyVillous && !a.anyHgd,
       interval: '3 to 5 years',
       driver: '3 to 4 tubular adenomas under 10 mm',
       quote: '3-4 tubular adenomas <10 mm | 3-5 y | Weak | Very low',
@@ -502,7 +537,7 @@ const US: JurSpec = {
     {
       id: 'us_ta_1_2',
       kind: 'rule',
-      when: (a) => a.adenomaCount >= 1 && a.adenomaCount <= 2 && a.adenomaMaxSize < 10 && !a.anyVillous,
+      when: (a) => a.adenomaCount >= 1 && a.adenomaCount <= 2 && a.adenomaMaxSize < 10 && !a.anyVillous && !a.anyHgd,
       interval: '7 to 10 years',
       driver: '1 to 2 tubular adenomas under 10 mm',
       quote: '1-2 tubular adenomas <10 mm | 7-10 y | Strong | Moderate',
@@ -880,7 +915,11 @@ const AB: JurSpec = {
     {
       id: 'ab_synchronous_declined',
       kind: 'declined',
-      when: (a) => a.sslCount > 0 && a.adenomaCount > 0,
+      // ACRCSP declines only for a synchronous SSL and a TUBULAR adenoma. A villous
+      // or high-grade-dysplasia adenoma is an advanced lesion that maps to the
+      // 3-year advanced rule, so it is excluded here rather than shown a
+      // tubular-adenoma "no recommendation".
+      when: (a) => a.sslCount > 0 && a.adenomaCount > 0 && !a.anyVillous && !a.anyHgd,
       interval: gapInterval('ACRCSP'),
       modality: null,
       driver: 'Synchronous sessile serrated lesions and tubular adenomas — ACRCSP explicitly declines to make a recommendation',
@@ -937,7 +976,7 @@ const AB: JurSpec = {
     {
       id: 'ab_hp_large_proximal',
       kind: 'rule',
-      when: (a) => a.hpCount > 0 && a.hpMaxSize >= 10 && a.anyProximalHp,
+      when: (a) => a.hpProximalMaxSize >= 10,
       interval: '3 years',
       modality: 'Colonoscopy',
       driver: 'A hyperplastic polyp 10 mm or larger, proximal to the sigmoid colon',
@@ -948,7 +987,7 @@ const AB: JurSpec = {
     {
       id: 'ab_hp_large_rectosigmoid',
       kind: 'rule',
-      when: (a) => a.hpCount > 0 && a.hpMaxSize >= 10 && !a.anyProximalHp,
+      when: (a) => a.hpDistalMaxSize >= 10,
       interval: '5 years',
       modality: 'Colonoscopy',
       driver: 'A hyperplastic polyp 10 mm or larger, in the rectosigmoid',
@@ -1189,7 +1228,10 @@ const BC: JurSpec = {
     {
       id: 'bc_piecemeal',
       kind: 'rule',
-      when: (a) => a.anyPiecemeal,
+      // The rule is for a precancerous lesion removed piecemeal. A benign
+      // hyperplastic polyp removed piecemeal is not precancerous and must not
+      // trigger the 6-month site check.
+      when: (a) => a.piecemealPrecancerousSize > 0,
       interval: '6 months',
       modality: 'Colonoscopy to assess the site of lesion removal',
       driver: 'A large precancerous lesion removed piecemeal',
@@ -1336,9 +1378,12 @@ const EU: JurSpec = {
       interval: 'Return to screening',
       modality: 'Screening programme',
       driver:
-        'A colonoscopy that found no lesions is outside ESGE surveillance; the patient returns to their population screening programme',
-      quote: EU_PRECONDITION,
-      location: 'MAIN RECOMMENDATIONS preamble (p.1); RECOMMENDATION box, p.4',
+        'A colonoscopy that found no lesions is outside ESGE post-polypectomy surveillance; the patient returns to their population screening programme',
+      // ESGE's post-polypectomy recommendations are scoped to patients who had a
+      // polyp removed, so there is no polyp-surveillance quote that describes a
+      // no-lesion exam. The driver states the basis; no quote is attached.
+      quote: '',
+      location: '',
       riskYears: YRS.y10,
     },
     {
@@ -1670,7 +1715,10 @@ const AU: JurSpec = {
     {
       id: 'au_hp_small',
       kind: 'rule',
-      when: (a) => a.hpCount > 0 && a.hpMaxSize < 10,
+      // Only when hyperplastic polyps are the sole finding. A synchronous adenoma
+      // or serrated lesion governs the interval; the practice point that isolated
+      // small hyperplastic polyps need no surveillance does not license ignoring it.
+      when: (a) => a.hpCount > 0 && a.hpMaxSize < 10 && a.adenomaCount === 0 && a.sslCount === 0 && a.tsaCount === 0,
       interval: 'No surveillance required',
       modality: null,
       driver: 'Small true hyperplastic polyp(s)',
@@ -1756,8 +1804,13 @@ export function prepAdequate(bbps: [number, number, number]): boolean {
 // for a finding at this examination. Which of those rows to show is this
 // calculator's choice, so where the choice settles the answer and the guideline
 // states no rule for the combination, `decidedHere` labels it on the result.
+// When two matched rows carry the same interval but different modalities, the
+// more intensive surveillance governs: a lesion that mandates colonoscopy is not
+// downgraded to a stool test just because another row happened to tie on years.
+const modalityRank = (m: string | null): number =>
+  m === null ? 3 : /colonoscop/i.test(m) ? 0 : /sigmoidoscop|endoscop|repeat|site/i.test(m) ? 1 : /fit|fobt|stool|screen/i.test(m) ? 2 : 1
 function shortest(cands: Result[]): Result {
-  return [...cands].sort((x, y) => x.riskYears - y.riskYears)[0]
+  return [...cands].sort((x, y) => x.riskYears - y.riskYears || modalityRank(x.modality) - modalityRank(y.modality))[0]
 }
 
 // True when the matched rows carry more than one interval between them, so
@@ -1797,6 +1850,7 @@ function demote(routine: Result, spec: JurSpec): Superseded {
     discretion: routine.discretion,
     notSpecified: routine.notSpecified,
     calculatorRule: routine.calculatorRule,
+    interpretation: routine.interpretation ?? null,
     precondition: spec.prep.precondition,
   }
 }
@@ -1807,9 +1861,10 @@ function prepResult(spec: JurSpec, src: Source, routine: Result): Result {
 
   if (p.pathway) {
     const pw = p.pathway
-    const published = pw.interval !== null
+    const byIndication = pw.byIndication ?? null
+    const published = pw.interval !== null || byIndication !== null
     return {
-      interval: published ? (pw.interval as string) : gapInterval(spec.short),
+      interval: byIndication ? 'Repeat timing depends on indication' : published ? (pw.interval as string) : gapInterval(spec.short),
       modality: pw.modality,
       driver: pw.driver,
       quote: pw.quote,
@@ -1826,6 +1881,7 @@ function prepResult(spec: JurSpec, src: Source, routine: Result): Result {
       assumption: false,
       calculatorRule: null,
       supersededInterval: superseded,
+      prepByIndication: byIndication,
     }
   }
 
@@ -1952,7 +2008,15 @@ export function compute(exam: Exam): Result {
     if (adv.when(a)) res.notes = [...res.notes, adv.note]
   }
 
-  return prepBad ? prepResult(spec, src, res) : res
+  // The preparation pathway replaces a routine interval, not a scope statement, a
+  // gap, or a discretion result: those stand whatever the preparation, with the
+  // preparation guidance attached as a note. Only a concrete interval is demoted.
+  if (prepBad) {
+    const demotable = !res.override && !res.notSpecified && !res.discretion && res.riskYears > 0
+    if (demotable) return prepResult(spec, src, res)
+    res.notes = [...res.notes, ...prepNotes(spec)]
+  }
+  return res
 }
 
 // ===========================================================================
@@ -2005,7 +2069,7 @@ function subResult(src: Source, p: Partial<Result> & { interval: string; driver:
 }
 
 function subGap(short: string, src: Source, why: string): Result {
-  return subResult(src, { interval: `Not specified by ${short}`, driver: why, notSpecified: true })
+  return subResult(src, { interval: `Not specified by ${short}`, driver: why, notSpecified: true, riskYears: 0 })
 }
 
 // A first colonoscopy with no polyps requiring surveillance is not a surveillance
@@ -2048,8 +2112,21 @@ const usSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   if (stage === 'subsequent')
     return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 sets only the second surveillance interval, from the baseline and first surveillance findings. It states no rule for the third or later interval')
   const pb = usBand(prior)
-  if (pb === 'normal')
-    return screeningReset('US', rawCur)
+  if (pb === 'normal') {
+    const r = compute({ jur: 'US', lesions: rawCur, malignant: false, special: false, bbps: [3, 3, 3] })
+    // Two normal exams is routine screening, which the guideline does specify (10
+    // years), so no interpretation caveat is needed. A current finding the baseline
+    // table itself does not cover (its result is not-specified) is left as that
+    // gap rather than dressed as an interpreted interval. Otherwise USMSTF 2020
+    // Table 7 has no normal-baseline row, so the interval is taken from the most
+    // recent exam as a new baseline and flagged as a calculator interpretation.
+    if (usBand(cur) === 'normal' || r.notSpecified) return r
+    return {
+      ...r,
+      interpretation:
+        'The first colonoscopy found no polyps requiring surveillance, so the interval is taken from the most recent examination as a new baseline. USMSTF 2020 does not publish a rule for a normal baseline followed by later findings.',
+    }
+  }
   if (pb === 'other')
     return subGap('USMSTF 2020', src, 'USMSTF 2020 Table 7 covers conventional-adenoma baselines only. It states no second surveillance rule when the first colonoscopy found serrated lesions or more than 10 adenomas')
   const baseHigh = pb === 'high'
@@ -2124,16 +2201,12 @@ const onSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
     return subGap('ColonCancerCheck', src, 'ColonCancerCheck publishes a single subsequent-colonoscopy step keyed to the baseline finding. It states no rule for the third or later interval')
   const pb = onBand(prior)
   if (pb === 'fit')
-    return subResult(src, {
-      interval: 'Return to FIT screening',
-      modality: 'FIT',
-      driver:
-        'After a baseline of no polyps, hyperplastic polyps in the rectum or sigmoid, or a low-risk adenoma, ColonCancerCheck follows the patient with FIT, not surveillance colonoscopy',
-      quote: 'Not applicable',
-      location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
-      riskYears: 10,
-      notes: ['ColonCancerCheck defines a subsequent colonoscopy interval only for a high-risk-adenoma baseline; other baselines are followed with FIT.'],
-    })
+    // A no-polyp, rectosigmoid-hyperplastic, or low-risk-adenoma baseline puts the
+    // patient on FIT, not colonoscopy surveillance, so any later colonoscopy stands
+    // as a fresh baseline: restage it on the current findings rather than asserting
+    // a return to FIT regardless of what this exam found. A current high-risk
+    // adenoma therefore gets its 3-year colonoscopy, not a 10-year FIT.
+    return screeningReset('CA_ON', rawCur)
   if (pb === 'high_adenoma') {
     if (onHighAdenoma(cur))
       return subResult(src, {
@@ -2143,7 +2216,7 @@ const onSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
         quote: 'High risk adenoma(s) | Colonoscopy | 3 years',
         location: 'Recommendation table, "Subsequent colonoscopy" half, page 1',
       })
-    if (cur.sslCount > 0 || cur.tsaCount > 0 || cur.hpMaxSize >= 10 || cur.anyProximalHp)
+    if (cur.sslCount > 0 || cur.tsaCount > 0 || cur.anyProximalHp)
       return subGap('ColonCancerCheck', src, 'ColonCancerCheck sub-stratifies a high-risk-adenoma baseline for a subsequent finding of no polyps, rectosigmoid hyperplastic polyps, a low-risk adenoma, or a repeat high-risk adenoma only. It states no rule when the subsequent exam finds serrated lesions')
     return subResult(src, {
       interval: '5 years',
@@ -2217,39 +2290,41 @@ const abSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
     })
   if (stage === 'second' && abNoSurvNeeded(prior))
     return screeningReset('CA_AB', rawCur)
-  return subGap('ACRCSP', src, 'ACRCSP publishes subsequent-round intervals for high-risk lesions, 3 to 4 tubular adenomas, and piecemeal resection only. It states no subsequent rule for a baseline of low-risk serrated lesions')
+  return subGap('ACRCSP', src, 'ACRCSP publishes subsequent-round intervals for high-risk lesions, 3 to 4 tubular adenomas, and piecemeal resection only. It states no subsequent rule for this combination of prior and current findings')
 }
 
 // --- British Columbia — BCGuidelines 2022, Table 1 column 3 + Figure 1 -----
 const bcSubsequent: SubFn = (prior, cur, _stage, src, rawCur) => {
+  const priorHighTrack = bcHighRisk(prior) || bcPrecancerousCount(prior) >= 5
+  if (priorHighTrack) {
+    // On the 3-year track, an exam with 0 to 4 low-risk lesions (a clean exam
+    // included) de-escalates to 5 years; a repeat high-risk or 5+ low-risk finding
+    // stays on the finding-based interval, taken from the baseline rule so its
+    // wording is that finding's own row rather than a mismatched quote.
+    if (!bcHighRisk(cur) && bcPrecancerousCount(cur) <= 4)
+      return subResult(src, {
+        interval: '5 years, then as per findings',
+        modality: 'Colonoscopy',
+        driver: 'A 3-year-track patient (5 or more low-risk lesions, or a high-risk lesion, at baseline) whose surveillance colonoscopy shows 0 to 4 low-risk lesions',
+        quote: 'If 0 to 4 low risk lesions identified, then follow-up colonoscopy at 5 years and then as per colonoscopy findings',
+        location: 'Table 1, subsequent-surveillance column, page 3',
+      })
+    const re = compute({ jur: 'CA_BC', lesions: rawCur, malignant: false, special: false, bbps: [3, 3, 3] })
+    re.notes = [
+      ...re.notes,
+      'On the 3-year track the interval is applied as per findings at each surveillance colonoscopy (Table 1, subsequent column, page 3), de-escalating to 5 years once an exam shows only 0 to 4 low-risk lesions.',
+    ]
+    return re
+  }
   if (bcPrecancerousCount(cur) === 0)
     return subResult(src, {
       interval: 'FIT in 10 years',
       modality: 'FIT',
-      driver: 'No precancerous lesion at this surveillance colonoscopy',
+      driver: 'No precancerous lesion at this surveillance colonoscopy, on the low-risk track',
       quote: 'No pre-cancerous lesion → FIT in 10 years',
       location: 'Figure 1: Algorithm for surveillance colonoscopy, page 3',
       riskYears: 10,
     })
-  const priorHighTrack = bcHighRisk(prior) || bcPrecancerousCount(prior) >= 5
-  if (priorHighTrack) {
-    if (!bcHighRisk(cur) && bcPrecancerousCount(cur) >= 1 && bcPrecancerousCount(cur) <= 4)
-      return subResult(src, {
-        interval: '5 years, then as per findings',
-        modality: 'Colonoscopy',
-        driver: 'A 3-year-track patient (5 or more low-risk lesions, or a high-risk lesion, at baseline) whose surveillance colonoscopy shows only 0 to 4 low-risk lesions',
-        quote: 'If 0 to 4 low risk lesions identified, then follow-up colonoscopy at 5 years and then as per colonoscopy findings',
-        location: 'Table 1, subsequent-surveillance column, page 3',
-      })
-    return subResult(src, {
-      interval: '3 years',
-      modality: 'Colonoscopy',
-      driver: 'A 3-year-track patient whose surveillance colonoscopy again shows 5 or more low-risk lesions, or a high-risk lesion',
-      quote: 'As per findings at each surveillance colonoscopy',
-      location: 'Table 1, subsequent-surveillance column, page 3',
-      notes: ['On the 3-year track the interval de-escalates to 5 years once an exam shows only 0 to 4 low-risk lesions.'],
-    })
-  }
   // Low-risk track: BC applies the finding-based interval at each surveillance exam.
   const reapplied = compute({ jur: 'CA_BC', lesions: rawCur, malignant: false, special: false, bbps: [3, 3, 3] })
   reapplied.notes = [
@@ -2343,15 +2418,23 @@ const auSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   }
   // This colonoscopy is normal or conventional adenomas only.
   const cur2 = auAdenomaCat(cur)
-  if (auHasCsSerrated(prior)) {
+  const priorSerr = auHasCsSerrated(prior)
+  const prior1 = auAdenomaCat(prior)
+  if (!priorSerr && prior1 === 'none')
+    return screeningReset('AU', rawCur)
+  // The prior exam's tier is the worse (shorter interval) of its serrated (Table
+  // 16) and conventional-adenoma (Table 14) classifications. Adding a serrated
+  // polyp to an adenoma-bearing prior must never lengthen the next interval.
+  const options: { code: AuInt; driver: string; location: string }[] = []
+  if (priorSerr) {
     const cat = au1stSerratedCat(prior)
     const row = cat === 'highest' ? AU_T16_HIGHEST : AU_T14[cat]
-    return auResult(src, row[cur2], `Clinically significant serrated polyps at the first colonoscopy (${cat}-risk), ${AU_CAT_LABEL[cur2]} at this colonoscopy`, 'Table 16, p20', stage)
+    options.push({ code: row[cur2], driver: `Clinically significant serrated polyps at the first colonoscopy (${cat}-risk), ${AU_CAT_LABEL[cur2]} at this colonoscopy`, location: 'Table 16, p20' })
   }
-  const prior1 = auAdenomaCat(prior)
-  if (prior1 === 'none')
-    return screeningReset('AU', rawCur)
-  return auResult(src, AU_T14[prior1][cur2], `${AU_CAT_LABEL[prior1]} at the first colonoscopy, ${AU_CAT_LABEL[cur2]} at this colonoscopy`, 'Table 14, p18', stage)
+  if (prior1 !== 'none')
+    options.push({ code: AU_T14[prior1][cur2], driver: `${AU_CAT_LABEL[prior1]} at the first colonoscopy, ${AU_CAT_LABEL[cur2]} at this colonoscopy`, location: 'Table 14, p18' })
+  const worst = options.sort((a, b) => AU_RISK[a.code] - AU_RISK[b.code])[0]
+  return auResult(src, worst.code, worst.driver, worst.location, stage)
 }
 
 const SUBSEQUENT: Record<JurId, SubFn> = {
@@ -2398,11 +2481,45 @@ export function computeSurveillance(x: SurvExam): Result {
   const cur = aggregate(x.current)
   let res = SUBSEQUENT[x.jur](prior, cur, x.stage, src, x.current)
 
+  // A piecemeal resection's early site check is resection-keyed and mandatory, so
+  // it governs at any round even where a branch returned a not-specified gap or a
+  // longer interval. Detect it by whether the piecemeal flag changes this exam's
+  // own baseline answer, and if so use that (the site check) as the result.
+  if (cur.anyPiecemeal) {
+    const withPiece = compute({ jur: x.jur, lesions: x.current, malignant: false, special: false, bbps: [3, 3, 3] })
+    const noPiece = compute({ jur: x.jur, lesions: x.current.map((l) => ({ ...l, piece: false })), malignant: false, special: false, bbps: [3, 3, 3] })
+    if (!withPiece.notSpecified && !withPiece.override && withPiece.riskYears > 0 && withPiece.interval !== noPiece.interval) {
+      res = withPiece
+    }
+  }
+
+  // A surveillance interval must never be longer than the current exam's own
+  // findings would give as a fresh baseline: prior history can shorten or hold it,
+  // never lengthen it past what this exam alone warrants. This catches any current
+  // finding more advanced than a round branch assumed, without hardcoding it per
+  // guideline. Only concrete intervals are compared; a deliberate gap, scope, or
+  // discretion result is left exactly as the guideline states it.
+  if (!res.notSpecified && !res.override && !res.discretion && res.riskYears > 0) {
+    const currentBaseline = compute({ jur: x.jur, lesions: x.current, malignant: false, special: false, bbps: [3, 3, 3] })
+    if (!currentBaseline.notSpecified && !currentBaseline.override && !currentBaseline.discretion && currentBaseline.riskYears > 0 && currentBaseline.riskYears < res.riskYears) {
+      res = currentBaseline
+    }
+  }
+
   for (const adv of spec.advisories) {
     if (adv.when(cur)) res.notes = [...res.notes, adv.note]
   }
+  // A result reused from compute() (a screening reset, a monotonicity floor, or an
+  // interpretation) has already had these advisories applied, so drop duplicates.
+  res.notes = [...new Set(res.notes)]
 
-  const demotable = !res.notSpecified && !res.override && !res.discretion && res.riskYears > 0 && res.modality === 'Colonoscopy'
+  // An inadequately prepared exam is non-diagnostic whatever its findings, so a
+  // concrete interval is demoted to the society's preparation pathway exactly as
+  // the baseline path does. This includes return-to-screening outcomes (FIT /
+  // FOBT / no surveillance): a clear-looking but under-prepared exam cannot
+  // justify sending the patient back to screening. Only genuine gaps, scope
+  // statements, and discretion results are left undemoted.
+  const demotable = !res.notSpecified && !res.override && !res.discretion && res.riskYears > 0
   return prepBad && demotable ? prepResult(spec, src, res) : res
 }
 

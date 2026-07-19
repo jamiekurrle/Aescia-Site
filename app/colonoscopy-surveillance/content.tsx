@@ -158,7 +158,7 @@ function LesionEntry({ heading, rows, setRows, disabled }: { heading: string; ro
                   <input type="number" min={0} max={40} value={r.count} onChange={(e) => setRow(r.key, { count: clamp(e.target.value, 40) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
                 </label>
                 <label className="flex items-center gap-2 text-[13px] text-foreground/72">
-                  Largest
+                  Largest size
                   <input type="number" min={0} max={90} value={r.size} onChange={(e) => setRow(r.key, { size: clamp(e.target.value, 90) })} className="w-14 bg-secondary border border-border rounded px-2 py-1.5 text-[13px] text-foreground focus:border-accent focus-visible:ring-2 focus-visible:ring-ring outline-none" />
                   <span className="text-foreground/72">mm</span>
                 </label>
@@ -424,7 +424,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
                   </div>
                 ))}
                 <div className="text-[13px] text-foreground/72 mt-3">
-                  Total <b className="font-mono">{total} / 9</b> · <span className={adequate ? 'text-[#1F6B47] font-semibold' : 'text-[#97590C] font-semibold'}>{adequate ? 'Adequate' : 'Inadequate'}</span>
+                  <span className={adequate ? 'text-[#1F6B47] font-semibold' : 'text-[#97590C] font-semibold'}>{adequate ? 'Adequate' : 'Inadequate'}</span> · each segment must score 2 or more <span className="text-foreground/50 font-mono">({total}/9)</span>
                 </div>
               </div>
 
@@ -563,21 +563,20 @@ function Notes({ notes, muted = false }: { notes: string[]; muted?: boolean }) {
 // interval, the rule, and the source rather than the evidence.
 function GuidelineWording({
   quoteLabel = 'Guideline wording',
+  tableRowLabel = 'Guideline table entry',
   strength,
   quote,
   location,
   sourceDoc,
-  notes,
 }: {
   quoteLabel?: string
+  tableRowLabel?: string
   strength?: string
   quote?: string
   location?: string
   sourceDoc?: Source | null
-  notes?: string[]
 }) {
-  const hasNotes = !!notes && notes.length > 0
-  if (!quote && !hasNotes && !sourceDoc && strength === undefined) return null
+  if (!quote && !sourceDoc && strength === undefined) return null
   return (
     <details className="mt-4">
       <summary className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 cursor-pointer hover:text-accent select-none">Show exact guideline wording</summary>
@@ -596,7 +595,7 @@ function GuidelineWording({
           const isTableRow = cells.length === 4
           return (
             <div>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{isTableRow ? 'Guideline table entry' : quoteLabel}</span>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 block mb-1.5">{isTableRow ? tableRowLabel : quoteLabel}</span>
               {isTableRow ? (
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
@@ -634,35 +633,43 @@ function GuidelineWording({
             <a href={sourceDoc.url} target="_blank" rel="noopener noreferrer" className="font-mono text-[11px] text-foreground/72 hover:text-accent leading-relaxed">{sourceDoc.name} ↗</a>
           </div>
         )}
-        {hasNotes && <Notes notes={notes!} />}
       </div>
+    </details>
+  )
+}
+
+// Supporting notes: guideline footnotes and onward-schedule text, related
+// practice points, and calculator clarifications. Kept out of the primary
+// wording panel so that panel holds only the single governing quote, its
+// location, strength, and source.
+function NotesPanel({ notes }: { notes: string[] }) {
+  if (notes.length === 0) return null
+  return (
+    <details className="mt-3">
+      <summary className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-foreground/72 cursor-pointer hover:text-accent select-none">Notes</summary>
+      <div className="mt-3"><Notes notes={notes} /></div>
     </details>
   )
 }
 
 function Breakdown({ breakdown }: { breakdown: BreakdownRow[] }) {
   return (
-    <>
-      <table className="w-full text-left border-collapse mt-4">
-        <thead>
-          <tr className="text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72">
-            <th className="font-normal py-1 pr-4 align-bottom">Prevalence</th>
-            <th className="font-normal py-1 pr-4 align-bottom">Histopathology</th>
-            <th className="font-normal py-1 text-right align-bottom">Guideline interval</th>
+    <table className="w-full text-left border-collapse mt-4">
+      <thead>
+        <tr className="text-[10px] font-mono uppercase tracking-[0.08em] text-foreground/72">
+          <th className="font-normal py-1 pr-4 align-bottom">If pathology confirms</th>
+          <th className="font-normal py-1 text-right align-bottom">Guideline interval</th>
+        </tr>
+      </thead>
+      <tbody>
+        {breakdown.map((b) => (
+          <tr key={b.label} className="border-b border-border/60 last:border-0">
+            <td className="text-[13px] text-foreground/80 py-2 pr-4">{b.label}</td>
+            <td className="text-[13px] font-semibold text-foreground py-2 text-right align-top whitespace-nowrap">{b.interval}</td>
           </tr>
-        </thead>
-        <tbody>
-          {breakdown.map((b) => (
-            <tr key={b.label} className="border-b border-border/60 last:border-0">
-              <td className="font-mono text-[11px] text-foreground/72 tabular-nums py-2 pr-4 whitespace-nowrap align-top">{b.prevalence}</td>
-              <td className="text-[13px] text-foreground/80 py-2 pr-4">{b.label}</td>
-              <td className="text-[13px] font-semibold text-foreground py-2 text-right align-top whitespace-nowrap">{b.interval}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p className="text-[11px] text-foreground/72 mt-3"><a href="https://pubmed.ncbi.nlm.nih.gov/29231190/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Prevalence source ↗</a></p>
-    </>
+        ))}
+      </tbody>
+    </table>
   )
 }
 
@@ -683,9 +690,12 @@ function SupersededBlock({ sup }: { sup: Superseded }) {
         {sup.modality && <div className="text-[11.5px] text-foreground/72 mt-1">{sup.modality}</div>}
         <p className="text-[11.5px] leading-relaxed text-foreground/72 mt-2.5">{sup.driver}.</p>
         {sup.calculatorRule && (
-          <Caveat label="Interval selected by this calculator, not by the guideline">{sup.calculatorRule}</Caveat>
+          <Caveat label="Calculator interpretation — not a published guideline rule">{sup.calculatorRule}</Caveat>
         )}
-        {(sup.quote || sup.precondition || sup.notes.length > 0) && (
+        {sup.interpretation && (
+          <Caveat label="Calculator interpretation — not a published guideline rule">{sup.interpretation}</Caveat>
+        )}
+        {(sup.quote || sup.precondition) && (
           <details className="mt-3">
             <summary className="font-mono text-[10px] uppercase tracking-[0.1em] text-foreground/72 cursor-pointer hover:text-accent select-none">Show exact guideline wording</summary>
             <div className="mt-2.5 space-y-2.5">
@@ -701,10 +711,10 @@ function SupersededBlock({ sup }: { sup: Superseded }) {
                   wording: <span className="italic">“{sup.precondition.quote}”</span> ({sup.precondition.location}).
                 </p>
               )}
-              <Notes notes={sup.notes} muted />
             </div>
           </details>
         )}
+        <NotesPanel notes={sup.notes} />
       </div>
     </div>
   )
@@ -745,7 +755,7 @@ function ResultCard({
 
   // Set on the element: `border-border` covers all four sides, so a left-edge
   // colour has to outrank it rather than sit beside it in the class list.
-  const accent = stopsShort || result.prepInadequate || result.calculatorRule || awaiting ? '#97590C' : 'var(--brass)'
+  const accent = stopsShort || result.prepInadequate || result.calculatorRule || result.interpretation || awaiting ? '#97590C' : 'var(--brass)'
   // Driver, wording and notes belong to the preparation pathway when it is the
   // result, so they show even while histology is outstanding.
   const showDetail = !awaiting || prepPathway
@@ -761,19 +771,36 @@ function ResultCard({
 
       {prepPathway ? (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">
-            {repeatPublished
-              ? 'Inadequate preparation · repeat interval'
-              : repeatUntimed
-                ? 'Inadequate preparation · repeat required'
-                : 'Inadequate preparation · no interval published'}
-          </div>
-          <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
-          {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">{result.modality}</div>}
-          {!repeatPublished && (
-            <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
-              {repeatUntimed ? 'Timing is a clinical decision.' : 'No published replacement; a clinical decision.'}
-            </div>
+          {result.prepByIndication ? (
+            <>
+              <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Inadequate preparation · repeat timing depends on indication</div>
+              <p className="text-[13px] leading-relaxed text-foreground/80">Guideline has different repeat timings by indication; this calculator cannot select one.</p>
+              <div className="mt-3 space-y-2">
+                {result.prepByIndication.map((p) => (
+                  <div key={p.indication} className="bg-secondary/50 border border-border rounded px-3.5 py-2.5">
+                    <div className="text-[12px] leading-relaxed text-foreground/72 mb-0.5">{p.indication}</div>
+                    <div className="text-[15px] font-semibold text-foreground leading-tight">{p.interval}</div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">
+                {repeatPublished
+                  ? 'Inadequate preparation · repeat interval'
+                  : repeatUntimed
+                    ? 'Inadequate preparation · repeat required'
+                    : 'Inadequate preparation · no interval published'}
+              </div>
+              <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
+              {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">{result.modality}</div>}
+              {!repeatPublished && (
+                <div className="text-[13px] leading-relaxed text-foreground/72 mt-2">
+                  {repeatUntimed ? 'Timing is a clinical decision.' : 'No published replacement; a clinical decision.'}
+                </div>
+              )}
+            </>
           )}
           {result.separateDocument && (
             <p className="mt-3 text-[12px] leading-relaxed text-foreground/72">
@@ -810,16 +837,25 @@ function ResultCard({
           <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Not specified by this guideline</div>
           <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
         </>
+      ) : result.interpretation ? (
+        <>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-[#97590C] font-semibold mb-3">Calculator interpretation</div>
+          <div className="text-[12px] text-[#7A5312] mb-2">Guideline does not specify this sequence</div>
+          <div className="font-display text-[24px] lg:text-[27px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
+          {result.modality && <div className="text-[13px] text-foreground/72 mt-1.5">{result.modality}</div>}
+          <p className="text-[13px] leading-relaxed text-foreground/72 mt-2">{result.interpretation}</p>
+        </>
       ) : (
         <>
-          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3">Recommended interval</div>
+          <div className="font-mono text-[11.5px] uppercase tracking-[0.16em] text-brass font-semibold mb-3">Guideline interval</div>
           <div className="font-display text-[30px] lg:text-[34px] font-bold tracking-tight text-foreground leading-tight">{result.interval}</div>
           {result.modality && <div className="text-[13.5px] text-foreground/72 mt-1.5">{result.modality}</div>}
+          {result.strength && <div className="text-[12px] text-foreground/60 mt-1.5">{result.strength}</div>}
         </>
       )}
 
-      {result.calculatorRule && (
-        <Caveat label="Interval selected by this calculator, not by the guideline">{result.calculatorRule}</Caveat>
+      {result.calculatorRule && !result.interpretation && (
+        <Caveat label="Calculator interpretation — not a published guideline rule">{result.calculatorRule}</Caveat>
       )}
 
       {showDetail && (
@@ -830,12 +866,13 @@ function ResultCard({
           </div>
           <GuidelineWording
             quoteLabel={prepPathway ? 'Published wording' : result.override ? 'Basis' : 'Guideline wording'}
+            tableRowLabel={result.interpretation ? 'Baseline-table row for the most recent finding' : undefined}
             strength={hasPathway ? (result.strength ?? 'None printed against this statement in the source document.') : undefined}
             quote={result.quote || undefined}
             location={result.location || undefined}
             sourceDoc={hasPathway ? result.source : null}
-            notes={result.notes}
           />
+          <NotesPanel notes={result.notes} />
         </>
       )}
 
