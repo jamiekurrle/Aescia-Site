@@ -1,75 +1,154 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 import { HeroDiagram } from './hero-diagram'
+import { TypewriterText } from './typewriter-text'
+
+function Arrow() {
+  return (
+    <svg className="w-3.5 h-3.5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+    </svg>
+  )
+}
+
+const TITLE_SPEED_MS = 16
+const HOSPITALS_START_GAP_MS = 250
 
 export function EditorialHero() {
   const { t } = useI18n()
+  const [clinicsTitleDone, setClinicsTitleDone] = useState(false)
+  const [hospitalsTitleDone, setHospitalsTitleDone] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Hospitals starts a quarter second after Clinics finishes typing, rather
+  // than both racing at once. Computed from Clinics' own length so the gap
+  // holds even if that copy changes length later.
+  const hospitalsStartDelayMs = t('clinics.title').length * TITLE_SPEED_MS + HOSPITALS_START_GAP_MS
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause()
+    }
+  }, [])
 
   return (
-    <section className="relative overflow-hidden bg-foreground text-background pt-28 lg:pt-32 pb-32 lg:pb-44">
-      {/* Calm static gradient. Single layer. No overlays fighting each other. */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: [
-            'radial-gradient(ellipse 140% 80% at 30% 120%, oklch(0.47 0.06 175 / 0.32), transparent 60%)',
-            'radial-gradient(ellipse 90% 60% at 85% 15%, oklch(0.73 0.09 80 / 0.08), transparent 55%)',
-          ].join(', '),
-        }}
+    <section className="relative overflow-hidden bg-foreground text-background pt-28 lg:pt-32 pb-24 lg:pb-32">
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
-      />
+      >
+        <source src="/hero-video.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-foreground/35" aria-hidden="true" />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[calc(100vh-240px)] lg:min-h-[calc(100vh-220px)]">
-        <div className="lg:col-span-7 pt-8 lg:pt-12">
-          <div className="flex items-center gap-4 mb-8 lg:mb-10">
-            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hero.eyebrow')}</span>
-            <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
-          </div>
+      {/* Reuses each product page's own reviewed hero copy so the homepage
+          gives both equal billing side by side, rather than leading with
+          one and footnoting the other in a shared paragraph. */}
+      <h1 className="sr-only">Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge monitoring.</h1>
 
-          <h1
-            className="font-display text-[40px] sm:text-[54px] lg:text-[68px] xl:text-[76px] leading-[1.03] tracking-[-0.03em] text-background font-normal"
-            style={{ fontVariationSettings: "'opsz' 144" }}
-          >
-            {t('hero.title')}
-          </h1>
-
-          <p className="mt-8 lg:mt-10 max-w-xl text-[17px] lg:text-[19px] leading-[1.6] text-background/85 font-sans">
-            {t('hero.subtitle')}
-          </p>
-
-          <div className="mt-10 lg:mt-12 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
-            <Link
-              href="/clinics"
-              className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
-            >
-              {t('hero.cta.primary')}
-              <svg className="w-3.5 h-3.5 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-              </svg>
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center text-[14px] text-background/80 hover:text-background tracking-wide transition-colors group"
-            >
-              {t('hero.cta.secondary')}
-              <svg className="w-3.5 h-3.5 ml-2 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="mt-16 lg:mt-24 flex flex-wrap items-center gap-x-6 gap-y-1 text-background/75">
-            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-background/60">{t('hero.note.label')}</span>
-            <span className="text-[12px] text-background/75">{t('hero.note.body')}</span>
-          </div>
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="flex items-center gap-4 mb-10 lg:mb-14">
+          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hero.eyebrow')}</span>
+          <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
         </div>
 
-        <div className="lg:col-span-5 pt-4 lg:pt-0">
-          <HeroDiagram />
+        <div className="divide-y divide-background/15">
+          <div className="max-w-3xl pb-12 lg:pb-14">
+            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-background/55">{t('clinics.eyebrow')}</span>
+
+            <h2
+              className="font-display text-[32px] sm:text-[38px] lg:text-[42px] leading-[1.08] tracking-[-0.02em] text-background font-normal mt-3"
+              style={{ fontVariationSettings: "'opsz' 144" }}
+            >
+              <TypewriterText text={t('clinics.title')} speedMs={TITLE_SPEED_MS} onDone={() => setClinicsTitleDone(true)} />
+            </h2>
+
+            <p
+              className={`hero-reveal mt-6 max-w-md text-[15px] lg:text-[16px] leading-[1.6] text-background/80 font-sans ${clinicsTitleDone ? 'hero-reveal-in' : ''}`}
+            >
+              {t('clinics.subtitle')}
+            </p>
+
+            <div className={`hero-reveal hero-reveal-delay-1 mt-8 ${clinicsTitleDone ? 'hero-reveal-in' : ''}`}>
+              <Link
+                href="/clinics"
+                className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
+              >
+                {t('nav.clinics')}
+                <Arrow />
+              </Link>
+            </div>
+          </div>
+
+          <div className="max-w-3xl pt-12 lg:pt-14">
+            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-background/55">{t('hospitals.eyebrow')}</span>
+
+            <h2
+              className="font-display text-[32px] sm:text-[38px] lg:text-[42px] leading-[1.08] tracking-[-0.02em] text-background font-normal mt-3"
+              style={{ fontVariationSettings: "'opsz' 144" }}
+            >
+              <TypewriterText
+                text={t('hospitals.title')}
+                speedMs={TITLE_SPEED_MS}
+                startDelayMs={hospitalsStartDelayMs}
+                onDone={() => setHospitalsTitleDone(true)}
+              />
+            </h2>
+
+            <p
+              className={`hero-reveal mt-6 max-w-md text-[15px] lg:text-[16px] leading-[1.6] text-background/80 font-sans ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}
+            >
+              {t('hospitals.subtitle')}
+            </p>
+
+            <div className={`hero-reveal hero-reveal-delay-1 mt-8 ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}>
+              <Link
+                href="/hospitals"
+                className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
+              >
+                {t('nav.hospitals')}
+                <Arrow />
+              </Link>
+            </div>
+
+            <div className={`hero-reveal hero-reveal-delay-1 mt-10 lg:mt-12 ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}>
+              <HeroDiagram />
+            </div>
+          </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .hero-reveal {
+          opacity: 0;
+          transform: translateY(10px);
+          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .hero-reveal-delay-1 {
+          transition-delay: 0.08s;
+        }
+        .hero-reveal-in {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-reveal {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
+        }
+      `}</style>
     </section>
   )
 }
