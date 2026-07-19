@@ -25,38 +25,38 @@ export function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Product" className="md:col-span-2">
+          <nav aria-label={t('footer.product')} className="md:col-span-2">
             <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.product')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/platform" className="text-foreground/80 hover:text-foreground">{t('footer.platform')}</Link></li>
               <li><Link href="/hospitals" className="text-foreground/80 hover:text-foreground">{t('footer.hospitals')}</Link></li>
               <li><Link href="/clinics" className="text-foreground/80 hover:text-foreground">{t('footer.clinics')}</Link></li>
-              <li><Link href="/integrations" className="text-foreground/80 hover:text-foreground">Integrations</Link></li>
+              <li><Link href="/integrations" className="text-foreground/80 hover:text-foreground">{t('footer.integrations')}</Link></li>
               <li><Link href="/evidence" className="text-foreground/80 hover:text-foreground">{t('footer.evidence')}</Link></li>
             </ul>
           </nav>
 
-          <nav aria-label="Buy" className="md:col-span-2">
-            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Buy</p>
+          <nav aria-label={t('footer.buy')} className="md:col-span-2">
+            <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.buy')}</p>
             <ul className="space-y-3 text-[14px]">
-              <li><Link href="/design-partner" className="text-foreground/80 hover:text-foreground">Design-partner program</Link></li>
-              <li><Link href="/clinics#roi" className="text-foreground/80 hover:text-foreground">ROI calculator</Link></li>
-              <li><Link href="/security" className="text-foreground/80 hover:text-foreground">Security and HIPAA</Link></li>
+              <li><Link href="/design-partner" className="text-foreground/80 hover:text-foreground">{t('footer.design_partner')}</Link></li>
+              <li><Link href="/clinics#roi" className="text-foreground/80 hover:text-foreground">{t('footer.roi_calculator')}</Link></li>
+              <li><Link href="/security" className="text-foreground/80 hover:text-foreground">{t('footer.security')}</Link></li>
               <li><Link href="/governance" className="text-foreground/80 hover:text-foreground">{t('footer.governance')}</Link></li>
             </ul>
           </nav>
 
-          <nav aria-label="Company" className="md:col-span-2">
+          <nav aria-label={t('footer.company')} className="md:col-span-2">
             <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.company')}</p>
             <ul className="space-y-3 text-[14px]">
               <li><Link href="/team" className="text-foreground/80 hover:text-foreground">{t('footer.team')}</Link></li>
               <li><Link href="/updates" className="text-foreground/80 hover:text-foreground">{t('nav.updates')}</Link></li>
               <li><Link href="/careers" className="text-foreground/80 hover:text-foreground">{t('nav.careers')}</Link></li>
-              <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">FAQ</Link></li>
+              <li><Link href="/faq" className="text-foreground/80 hover:text-foreground">{t('footer.faq')}</Link></li>
               <li><Link href="/contact" className="text-foreground/80 hover:text-foreground">{t('footer.contact')}</Link></li>
               <li><a href="mailto:contact@aesciahealth.com" className="text-foreground/80 hover:text-foreground">contact@aesciahealth.com</a></li>
-              <li><Link href="/privacy" className="text-foreground/80 hover:text-foreground">Privacy policy</Link></li>
-              <li><Link href="/terms" className="text-foreground/80 hover:text-foreground">Terms of use</Link></li>
+              <li><Link href="/privacy" className="text-foreground/80 hover:text-foreground">{t('footer.privacy')}</Link></li>
+              <li><Link href="/terms" className="text-foreground/80 hover:text-foreground">{t('footer.terms')}</Link></li>
             </ul>
           </nav>
 
@@ -71,9 +71,9 @@ export function Footer() {
                   target="_blank"
                   rel="noopener"
                   className="text-foreground/75 hover:text-foreground underline decoration-foreground/25 underline-offset-2 transition-colors"
-                  aria-label="Aescia's registered supplier profile on the NSW Government buy.nsw marketplace (opens in a new window)"
+                  aria-label={t('footer.nsw_supplier_aria')}
                 >
-                  NSW Government registered supplier
+                  {t('footer.nsw_supplier')}
                 </a>
               </li>
               <li className="pt-2">9550-0708 Québec inc (CA)</li>
@@ -84,17 +84,17 @@ export function Footer() {
           </div>
         </div>
 
-        <nav aria-label="Solutions" className="mb-16">
-          <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">Solutions</p>
+        <nav aria-label={t('footer.solutions')} className="mb-16">
+          <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/65 mb-5">{t('footer.solutions')}</p>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-3 text-[14px]">
-            <li><Link href="/bowel-prep-software" className="text-foreground/80 hover:text-foreground">Bowel prep adequacy</Link></li>
-            <li><Link href="/colonoscopy-no-show-software" className="text-foreground/80 hover:text-foreground">Colonoscopy no-shows</Link></li>
-            <li><Link href="/glp1-endoscopy-prep" className="text-foreground/80 hover:text-foreground">GLP-1 before endoscopy</Link></li>
-            <li><Link href="/medication-management-before-endoscopy" className="text-foreground/80 hover:text-foreground">Blood thinners and diabetes meds</Link></li>
-            <li><Link href="/endoscopy-pre-procedure-workflow" className="text-foreground/80 hover:text-foreground">Pre-procedure workflow</Link></li>
-            <li><Link href="/prep-aware-backfill" className="text-foreground/80 hover:text-foreground">Prep-aware backfill</Link></li>
-            <li><Link href="/asc-fit" className="text-foreground/80 hover:text-foreground">ASC fit check</Link></li>
-            <li><Link href="/compare" className="text-foreground/80 hover:text-foreground">How Aescia compares</Link></li>
+            <li><Link href="/bowel-prep-software" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.bowel_prep')}</Link></li>
+            <li><Link href="/colonoscopy-no-show-software" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.no_shows')}</Link></li>
+            <li><Link href="/glp1-endoscopy-prep" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.glp1')}</Link></li>
+            <li><Link href="/medication-management-before-endoscopy" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.meds')}</Link></li>
+            <li><Link href="/endoscopy-pre-procedure-workflow" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.workflow')}</Link></li>
+            <li><Link href="/prep-aware-backfill" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.backfill')}</Link></li>
+            <li><Link href="/asc-fit" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.asc_fit')}</Link></li>
+            <li><Link href="/compare" className="text-foreground/80 hover:text-foreground">{t('footer.solutions.compare')}</Link></li>
           </ul>
         </nav>
 
@@ -103,7 +103,7 @@ export function Footer() {
             {t('footer.disclosure')}
           </p>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-[11px] text-foreground/60 font-mono tracking-wide">
-            <p>© {new Date().getFullYear()} Aescia Pty Ltd. {t('footer.rights')}</p>
+            <p suppressHydrationWarning>© {new Date().getFullYear()} Aescia Pty Ltd. {t('footer.rights')}</p>
             <p>{t('footer.health')}</p>
           </div>
         </div>
