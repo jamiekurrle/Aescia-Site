@@ -6,7 +6,7 @@ and what each page on aesciahealth.com says, without executing JavaScript or
 walking the sitemap. The on-site pages remain the canonical source; this is a
 deduplicated extraction for retrieval.
 
-Last refreshed: 2026-07-02.
+Last refreshed: 2026-07-19.
 
 ────────────────────────────────────────────────────────────────────────
 ENTITY CARD
@@ -69,22 +69,32 @@ tracking, and structured exports back to the chart. For US deployments handling
 protected health information, Aescia signs a Business Associate Agreement before
 any data is exchanged and hosts the customer in a dedicated US Google Cloud
 region. Built to save more than it costs and leave the customer better off than
-without Aescia. Pricing posture: design partners start free during the proof
-period, then move to per-scope pricing once the platform proves the return on
-their own data.
+without Aescia. Pricing posture: design partners start free during a proof
+period of about two months, then move to per-scope pricing once the platform
+proves the return on their own data. Commercial terms are negotiable per
+deal; structures such as a paid pilot with a money-back rebate or third-party
+escrow are available where a customer's procurement prefers them. Every shape
+is built to keep an early partner's risk and exposure low.
 
 ## The platform underneath
 
 A composable pathway engine with five step types: Collect, Follow, Remind,
-Educate, Export. Pathways are authored by practising clinicians; there are no
-AI models outside the clinician-authored rule sets. The same engine runs
-surgical recovery pathways for hospitals and procedural-prep pathways for
-clinics. Integration: HL7 v2 ADT and FHIR R4 inbound, optional flowsheet or
-note write-back, SAML 2.0 / OIDC SSO, role-based access control, tenant
+Educate, Export. Pathways are authored by practising clinicians, and the
+clinical alert rules stay explainable rather than a black box. Aescia does use
+machine learning for back-end analysis and operational tooling; that analysis
+is advisory and kept separate from the clinician-authored rules that drive
+patient-facing alerts. The same engine runs surgical recovery pathways for
+hospitals and procedural-prep pathways for clinics. Integration: Aescia is
+pre-first-customer, so there is no named electronic medical record or
+practice-management integration running in the field yet. A deployment can
+start with manual entry or a simple export of the patient list, with no
+integration required to begin; deeper data exchange is scoped with each
+customer's IT team and documented before any contract is signed. Access uses
+multi-factor authentication and role-based access control, with tenant
 isolation at the database level.
 
 ────────────────────────────────────────────────────────────────────────
-HONEST CLAIM SURFACE (verbatim from /evidence)
+HONEST CLAIM SURFACE (from /evidence and /faq)
 ────────────────────────────────────────────────────────────────────────
 
 What Aescia claims:
@@ -120,17 +130,17 @@ Aescia for Clinics — A workflow tool. Not a medical device:
 - Rule content: Delivers clinician-authored educational content and prep instructions.
 - Escalation: Routes exceptions to named staff, does not act autonomously.
 - Audit: Full record of pathway step, patient response, and clinician review.
-- Engagement: Per-specialty monthly subscription at the clinic level.
+- Engagement: Design-partner program: free during the proof period, then per-scope pricing once the platform proves the return on the clinic's own data.
 
 Security and data:
-- Identity: SAML 2.0 / OIDC SSO; role-based access control with audit trail; tenant isolation at the database level.
+- Identity: Multi-factor authentication enforced on all staff accounts; role-based access control with audit trail; tenant isolation at the database level.
 - Data: Encryption in transit (TLS 1.3) and at rest (AES-256); data residency by deployment region; documented sub-processor list on request; minimum-necessary collection by design.
-- Software: ISO/IEC 27001 controls implemented; IEC 62304 processes for the regulated product; OWASP secure development baseline; independent penetration testing at each release.
-- Integration: HL7 v2 ADT and FHIR R4 inbound; optional flowsheet or note write-back.
+- Software: ISO/IEC 27001 controls implemented (not certified); IEC 62304 processes for the regulated product; OWASP secure development baseline. Aescia has not yet commissioned an independent third-party penetration test; one is planned ahead of the first production customer, with the report made available to that customer under mutual NDA.
+- Integration: One prioritised list for the team, not a new portal; clinician-authored rules and routing; quick to set up, with any data exchange scoped per site. No named electronic medical record or practice-management integration is running in the field yet.
 - Clinical oversight: Clinician-authored pathways and rules; advisory output; escalation policies configurable per institution.
 
 ────────────────────────────────────────────────────────────────────────
-SAFE-DISCHARGE TRIAL (from /evidence)
+SAFE-DISCHARGE TRIAL (from /evidence and /faq)
 ────────────────────────────────────────────────────────────────────────
 
 - Registration: ACTRN12625001425482 — https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482
@@ -197,12 +207,13 @@ TEAM
 ────────────────────────────────────────────────────────────────────────
 
 Founders:
-- James Kurrle, Founder and CEO. Critical-care physician with ten years of clinical and hospital leadership experience, dual-trained across Montréal and Sydney. Authors the clinical pathway engine and leads company strategy. https://www.linkedin.com/in/jameskurrle/
+- James Kurrle, Founder and CEO. Critical-care physician with ten years of clinical and hospital leadership experience, trained and practised across rural New South Wales (Wagga Wagga) and Sydney. Authors the clinical pathway engine and leads company strategy. https://www.linkedin.com/in/jameskurrle/
 - Vasken Dermardiros, Co-founder and CTO. PhD from Concordia University in building-energy machine learning. Owns hosting, AI inference, EMR integration, and the pathway authoring infrastructure that underpins both products.
 
 Operating team:
-- Josh — operations
-- Shannon Kurrle — Australian resident director of Aescia Pty Ltd (statutory requirement under the Australian Corporations Act).
+- Josh Casey — compliance and cybersecurity. Fractional contributor: privacy impact assessments, cybersecurity posture, and the SOC 2 readiness path that opens with the first US design-partner contract.
+- Sara Nejatian — design and user experience. Leads product design for the patient-facing web app and the clinician worklist.
+- Shannon Kurrle — Resident Director of Aescia Pty Ltd (statutory requirement under the Australian Corporations Act; not an operational position).
 
 Clinical:
 - Dr Kei Woldendorp, BMed MBBS MPhil. Cardiothoracic researcher, The Baird Institute and Royal Prince Alfred Hospital. Principal Investigator of the SAFE-Discharge trial and Clinical Advisor to Aescia for Hospitals.
@@ -228,7 +239,7 @@ stores no patient data (the calculation runs in the browser).
 Guidelines covered, side by side:
 - United States: US Multi-Society Task Force (USMSTF) 2020.
 - Canada: no maintained national guideline; the tool offers Ontario
-  (ColonCancerCheck), Alberta (ACRCSP 2023), and British Columbia (BCGuidelines
+  (ColonCancerCheck), Alberta (ACRCSP), and British Columbia (BCGuidelines
   2022) separately, because they give materially different intervals.
 - Australia: NHMRC / Cancer Council Australia.
 - Europe: European Society of Gastrointestinal Endoscopy (ESGE) 2020.
