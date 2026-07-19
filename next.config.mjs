@@ -43,6 +43,22 @@ const nextConfig = {
       { source: '/v2', destination: '/', permanent: true },
     ]
   },
+  async headers() {
+    // Vercel's default for un-hashed public/ files is max-age=0,
+    // must-revalidate, which forces a revalidation round-trip on every
+    // repeat view. These assets are versioned by filename (bump the -v
+    // suffix when content changes), so they can be cached for a year.
+    // Partners logos are not versioned: replace them by RENAMING the
+    // file, never in place, or repeat visitors keep the old one for up
+    // to a year.
+    const immutable = [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }]
+    return [
+      { source: '/hero-video-v2.mp4', headers: immutable },
+      { source: '/hero-video-v2.webm', headers: immutable },
+      { source: '/hero-poster-v2.jpg', headers: immutable },
+      { source: '/partners/:path*', headers: immutable },
+    ]
+  },
 }
 
 export default nextConfig

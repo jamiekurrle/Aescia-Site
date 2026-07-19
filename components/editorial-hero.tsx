@@ -21,6 +21,7 @@ export function EditorialHero() {
   const { t } = useI18n()
   const [clinicsTitleDone, setClinicsTitleDone] = useState(false)
   const [hospitalsTitleDone, setHospitalsTitleDone] = useState(false)
+  const [showVideo, setShowVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   // Hospitals starts a quarter second after Clinics finishes typing, rather
@@ -28,27 +29,60 @@ export function EditorialHero() {
   // holds even if that copy changes length later.
   const hospitalsStartDelayMs = t('clinics.title').length * TITLE_SPEED_MS + HOSPITALS_START_GAP_MS
 
+  // The video element only mounts once we know the visitor has not asked for
+  // reduced motion and is not on a data-saver connection, so those browsers
+  // never request the file at all; the static poster underneath is their hero
+  // background. The change listener honours a mid-session reduced-motion
+  // toggle in both directions (Save-Data is read once at mount).
   useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      video.pause()
-    }
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+    const update = () => setShowVideo(!mql.matches && !connection?.saveData)
+    update()
+    mql.addEventListener('change', update)
+    return () => mql.removeEventListener('change', update)
   }, [])
+
+  // The video mounts after hydration, so the autoplay attribute alone is not
+  // reliably honoured on a dynamically inserted element; kick playback
+  // explicitly and ignore the rejection if the browser refuses (the poster
+  // stays visible).
+  useEffect(() => {
+    if (!showVideo) return
+    videoRef.current?.play().catch(() => {})
+  }, [showVideo])
 
   return (
     <section className="relative overflow-hidden bg-foreground text-background pt-28 lg:pt-32 pb-24 lg:pb-32">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+      {/* Static first frame: present in the server HTML so no-JS, crawler,
+          reduced-motion, and pre-hydration renders all get the hero
+          background immediately. The video, when it mounts, paints over it. */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- decorative
+          full-bleed background, same asset the video uses as its poster */}
+      <img
+        src="/hero-poster-v2.jpg"
+        alt=""
         aria-hidden="true"
-      >
-        <source src="/hero-video.mp4" type="video/mp4" />
-      </video>
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {showVideo && (
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-poster-v2.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source src="/hero-video-v2.webm" type="video/webm" />
+          <source src="/hero-video-v2.mp4" type="video/mp4" />
+        </video>
+      )}
       <div className="absolute inset-0 bg-foreground/35" aria-hidden="true" />
 
       {/* Reuses each product page's own reviewed hero copy so the homepage
