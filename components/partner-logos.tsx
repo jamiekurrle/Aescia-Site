@@ -20,8 +20,8 @@ export function PartnerLogos() {
             <Image
               src="/partners/rpah-crest.png"
               alt="Royal Prince Alfred Hospital"
-              width={120}
-              height={68}
+              width={125}
+              height={208}
               priority
               className="h-12 lg:h-16 w-auto object-contain"
             />
