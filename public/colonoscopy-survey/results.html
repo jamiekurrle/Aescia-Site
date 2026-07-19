@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Colonoscopy experience survey: results so far</title>
+<style>
+  :root{
+    --bg:#F4F6FA; --card:#FFFFFF; --ink:#1B2745; --muted:#475A82;
+    --line:#E2E6EE; --soft:#EBEFF5; --accent:#5C7A99; --accent-soft:#E2EAF4;
+    --accent-strong:#40597A; --brass:#B89D6A; --radius:8px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0F1A33; --card:#1B2745; --ink:#F4F6FA; --muted:#B7CBE0;
+      --line:#2D3A5E; --soft:#243254; --accent:#A8C2D8; --accent-soft:#243254;
+      --accent-strong:#A8C2D8; }
+  }
+  *{box-sizing:border-box}
+  ::selection{background:rgba(184,157,106,0.35);}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.6 'Geist',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  a{color:var(--accent-strong);text-decoration:underline;font-weight:600;}
+  .wrap{max-width:640px;margin:0 auto;padding:26px 18px 80px;}
+  header h1{font-size:1.5rem;margin:.2em 0 .15em;font-weight:700;letter-spacing:-0.025em;}
+  header p{color:var(--muted);margin:.2em 0 0;}
+  .meta{background:var(--accent-soft);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 16px;margin:20px 0;font-size:.95rem;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 16px;margin:14px 0;}
+  .card h2{font-size:1.06rem;margin:0 0 2px;font-weight:600;letter-spacing:-0.01em;}
+  .sub{color:var(--muted);font-size:.9rem;margin:0 0 12px;}
+  .row{display:flex;align-items:center;gap:10px;margin:7px 0;}
+  .lbl{flex:0 0 46%;font-size:.92rem;line-height:1.35;}
+  .barbox{flex:1;background:var(--soft);border-radius:5px;height:20px;overflow:hidden;}
+  .bar{height:100%;background:var(--accent);border-radius:5px;min-width:2px;}
+  .num{flex:0 0 74px;text-align:right;font-size:.9rem;color:var(--muted);white-space:nowrap;}
+  .num b{color:var(--ink);}
+  .state{padding:36px 18px;text-align:center;color:var(--muted);}
+  footer{color:var(--muted);font-size:.85rem;margin-top:30px;line-height:1.7;}
+  .cta{display:block;text-align:center;background:#1B2745;color:#fff;border-radius:var(--radius);
+    padding:14px;margin:26px 0 8px;font-weight:600;text-decoration:none;}
+  @media (prefers-color-scheme: dark){ .cta{background:#F4F6FA;color:#1B2745;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>What people have told us so far</h1>
+    <p>Live combined results from the colonoscopy experience survey. Anonymous, counts only.</p>
+  </header>
+
+  <div class="meta" id="meta">Loading the latest results…</div>
+  <div id="blocks"><div class="state">Fetching the numbers…</div></div>
+
+  <a class="cta" href="./">Had a colonoscopy? Add your experience</a>
+
+  <footer>
+    This page shows combined answers only; no individual response can be identified. It is general
+    information about survey responses, not medical advice. The survey is open until 14 August 2026.
+    <br><br>Run by <a href="https://aesciahealth.com">Aescia</a> · <a href="prize-terms.html">Prize draw terms</a>
+  </footer>
+</div>
+
+<script>
+var ENDPOINT = "https://script.google.com/macros/s/AKfycbxXZ-7JQh0YXK534WvWxUijMFX6OILj4h6q-jidUk17QdFXL6jSYyfVZUz3YkF9sdh7bA/exec?results=1";
+
+// field -> value -> patient-facing label
+var L = {
+  b1: { '1':'Much easier than expected', '2':'A bit easier', '3':'About what they expected', '4':'A bit harder', '5':'Much harder than expected' },
+  b4: { taste:'Taste or nausea made it hard to finish', timing:'Unsure of the timing', ranout:'Ran out of time',
+        instructions:'Did not understand the instructions', diet:'Confused about what they could eat or drink',
+        meds:'Unsure about their regular medications', other:'Something else', none:'Nothing went wrong' },
+  b5: { no:'No', told:'Told it was not good enough (no repeat)', whole:'Had to repeat the whole prep',
+        part:'Repeated part of it', cancelled:'Procedure cancelled or rescheduled', unsure:'Not sure' },
+  concerns: { prep_enough:'Whether their prep was good enough', pain:'Pain or discomfort', sedation:'The sedation or anaesthetic',
+        findings:'What the doctors might find', results:'Waiting for the results', embarrass:'Embarrassment',
+        cost:'Cost', meds:'Managing their medications', none:'Not really worried', other:'Something else' },
+  d2: { called:'Called the clinic', ed:'Went to an emergency department', online:'Searched online',
+        waited:'Waited to see if it passed', family:'Asked family or a friend', nothing:'Did nothing',
+        other:'Something else', noconcern:'Had no concerns' },
+  d6: { date:'Yes, with a specific timeframe', nodate:'Yes, but no date was given', no:'No', unsure:'Not sure' },
+  glp1_instr: { yes:'Yes, clear instructions', vague:'Something, but it was unclear', no:'No, it was never mentioned' },
+  country: { US:'United States', CA:'Canada', AU:'Australia', NZ:'New Zealand', GB:'United Kingdom', IE:'Ireland', Other:'Somewhere else' }
+};
+
+// [field, title, subtitle, ordering] — 'fixed' keeps L order, 'sorted' is by count
+var BLOCKS = [
+  ['b1', 'How the bowel prep compared to what people expected', 'At its most difficult, across all their colonoscopies.', 'fixed'],
+  ['b4', 'What went wrong during the prep', 'People could pick more than one.', 'sorted'],
+  ['b5', 'Were people told their prep was not good enough?', '', 'fixed'],
+  ['concerns', 'What people worried about beforehand', 'People could pick more than one.', 'sorted'],
+  ['d2', 'After going home, what people did about a concern', 'People could pick more than one.', 'sorted'],
+  ['d6', 'Were people told when their next colonoscopy is due?', '', 'fixed'],
+  ['glp1_instr', 'Ozempic-type medicines: were pause instructions given?', 'Among people taking a GLP-1 medicine (Ozempic, Wegovy, Mounjaro or similar).', 'fixed'],
+  ['country', 'Where responses have come from', '', 'sorted']
+];
+
+function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function render(data){
+  var total = data.total || 0;
+  document.getElementById('meta').innerHTML =
+    '<strong>' + total + ' responses so far.</strong> Updated every few minutes. Early numbers from a small, self-selected group, so treat them as a first look rather than a final answer.';
+  var html = '';
+  for (var b = 0; b < BLOCKS.length; b++) {
+    var field = BLOCKS[b][0], title = BLOCKS[b][1], sub = BLOCKS[b][2], mode = BLOCKS[b][3];
+    var counts = (data.counts && data.counts[field]) || {};
+    var labels = L[field];
+    // denominator: glp1_instr is out of people on a GLP-1; everything else out of all responses
+    var denom = total;
+    if (field === 'glp1_instr') {
+      denom = (data.counts && data.counts.glp1 && data.counts.glp1.yes) || 0;
+      if (!denom) continue; // nothing to show yet
+    }
+    var keys = Object.keys(labels);
+    if (mode === 'sorted') keys.sort(function(a,z){ return (counts[z]||0) - (counts[a]||0); });
+    var rowsHtml = '';
+    for (var k = 0; k < keys.length; k++) {
+      var key = keys[k], n = counts[key] || 0;
+      var pct = denom ? Math.round(100 * n / denom) : 0;
+      rowsHtml += '<div class="row"><div class="lbl">' + esc(labels[key]) + '</div>' +
+        '<div class="barbox"><div class="bar" style="width:' + Math.max(pct, n ? 2 : 0) + '%"></div></div>' +
+        '<div class="num"><b>' + n + '</b> · ' + pct + '%</div></div>';
+    }
+    html += '<div class="card"><h2>' + esc(title) + '</h2>' +
+      (sub ? '<p class="sub">' + esc(sub) + '</p>' : '<div style="height:8px"></div>') + rowsHtml + '</div>';
+  }
+  document.getElementById('blocks').innerHTML = html || '<div class="state">No responses yet. Be the first!</div>';
+}
+
+fetch(ENDPOINT)
+  .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+  .then(function(data){
+    if (!data || data.ok !== true) throw new Error('bad payload');
+    render(data);
+  })
+  .catch(function(){
+    document.getElementById('meta').textContent = 'The results are being prepared.';
+    document.getElementById('blocks').innerHTML =
+      '<div class="state">The live results are warming up. Check back in a little while, or come back after the survey closes on 14 August 2026.</div>';
+  });
+</script>
+</body>
+</html>
