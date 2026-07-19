@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: '%s | Aescia',
   },
   description:
-    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, GLP-1 and medication handling, prep-aware backfill, and recall. Not a medical device, and does not make clinical decisions. Aescia for Hospitals adds investigational post-discharge monitoring (intended TGA Class IIa). Pre-first-customer; US clinics engage through design-partner pilots with a money-back rebate.',
+    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, GLP-1 and medication handling, prep-aware backfill, and recall. Not a medical device, and does not make clinical decisions. Aescia for Hospitals adds investigational post-discharge monitoring (intended TGA Class IIa). Pre-first-customer; US clinics engage through design-partner pilots that start free during a two-month proof period, with terms negotiable per deal.',
   keywords:
     'Aescia, Aescia Health, endoscopy prep platform, colonoscopy prep, GLP-1 peri-procedural management, no-show reduction, US ambulatory surgery centre software, post-discharge monitoring, cardiothoracic discharge, specialty clinic workflow, Software as a Medical Device, SaMD, James Kurrle, District 3 Concordia',
   alternates: {

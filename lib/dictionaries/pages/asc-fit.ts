@@ -15,7 +15,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': 'You want one pathway, not four tools',
     'ascfit.bestfit.item4.desc': 'You want prep, recall, and prep-aware backfill on a single pathway rather than stitched across separate point tools.',
     'ascfit.bestfit.item5.title': 'You are open to being a design partner',
-    'ascfit.bestfit.item5.desc': 'You are willing to run a pilot with a pre-specified metric and a money-back rebate, measured against your own baseline.',
+    'ascfit.bestfit.item5.desc': 'You are willing to run a pilot with a pre-specified metric, measured against your own baseline. The default is a free proof period of about two months; a paid pilot with a money-back rebate is available if your procurement prefers it.',
 
     'ascfit.notfit.eyebrow': 'Not the right fit if',
     'ascfit.notfit.item1.title': 'Your only problem is raw same-day clinic backfill',
@@ -61,7 +61,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': 'Vous voulez un seul parcours, pas quatre outils',
     'ascfit.bestfit.item4.desc': 'Vous voulez la préparation, le rappel et le comblement tenant compte de la préparation sur un seul parcours plutôt que dispersés entre des outils ponctuels distincts.',
     'ascfit.bestfit.item5.title': 'Vous êtes ouvert à devenir partenaire de conception',
-    'ascfit.bestfit.item5.desc': 'Vous êtes prêt à mener un pilote avec une mesure pré-spécifiée et un remboursement garanti, évalué par rapport à votre propre référence.',
+    'ascfit.bestfit.item5.desc': 'Vous êtes prêt à mener un pilote avec une mesure pré-spécifiée, évaluée par rapport à votre propre référence. Par défaut, une période de preuve gratuite d\'environ deux mois ; un pilote payant avec remboursement garanti est possible si vos achats le préfèrent.',
 
     'ascfit.notfit.eyebrow': 'Ne convient pas si',
     'ascfit.notfit.item1.title': 'Votre seul problème est le simple comblement le jour même en clinique',
@@ -107,7 +107,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': 'Quiere una sola vía, no cuatro herramientas',
     'ascfit.bestfit.item4.desc': 'Quiere la preparación, el recordatorio y el relleno según la preparación en una sola vía en lugar de repartidos entre herramientas puntuales separadas.',
     'ascfit.bestfit.item5.title': 'Está abierto a ser un socio de diseño',
-    'ascfit.bestfit.item5.desc': 'Está dispuesto a realizar un piloto con una métrica preespecificada y un reembolso garantizado, medido frente a su propia línea base.',
+    'ascfit.bestfit.item5.desc': 'Está dispuesto a realizar un piloto con una métrica preespecificada, medida frente a su propia línea base. La opción predeterminada es un período de prueba gratuito de unos dos meses; hay un piloto de pago con reembolso garantizado disponible si sus compras lo prefieren.',
 
     'ascfit.notfit.eyebrow': 'No es la opción adecuada si',
     'ascfit.notfit.item1.title': 'Su único problema es el simple relleno el mismo día de la clínica',
@@ -153,7 +153,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': '您希望使用一条路径，而非四种工具',
     'ascfit.bestfit.item4.desc': '您希望在一条路径上完成准备、召回和考虑准备情况的补位，而不是分散在各自独立的单点工具之间。',
     'ascfit.bestfit.item5.title': '您愿意成为设计合作伙伴',
-    'ascfit.bestfit.item5.desc': '您愿意以预先设定的指标和退款返利来开展试点，并对照您自己的基线进行衡量。',
+    'ascfit.bestfit.item5.desc': '您愿意以预先设定的指标开展试点，并对照您自己的基线进行衡量。默认为约两个月的免费证明期；如果您的采购流程更倾向于付费试点加退款返利，也可以采用该方式。',
 
     'ascfit.notfit.eyebrow': '在以下情况下不适合',
     'ascfit.notfit.item1.title': '您唯一的问题是当日普通门诊的简单补位',
@@ -199,7 +199,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': 'كنت تريد مساراً واحداً لا أربع أدوات',
     'ascfit.bestfit.item4.desc': 'كنت تريد التحضير والاستدعاء والملء المراعي للتحضير على مسار واحد بدلاً من توزيعها عبر أدوات منفصلة لكل مهمة.',
     'ascfit.bestfit.item5.title': 'كنت منفتحاً على أن تكون شريك تصميم',
-    'ascfit.bestfit.item5.desc': 'كنت على استعداد لإجراء تجربة رائدة بمقياس محدد مسبقاً واسترداد مالي مضمون، يُقاس مقابل خط الأساس الخاص بك.',
+    'ascfit.bestfit.item5.desc': 'كنت على استعداد لإجراء تجربة رائدة بمقياس محدد مسبقاً، يُقاس مقابل خط الأساس الخاص بك. الوضع الافتراضي فترة إثبات مجانية تمتد نحو شهرين؛ وتتوفر تجربة مدفوعة مع استرداد مالي مضمون إذا فضّلتها مشترياتك.',
 
     'ascfit.notfit.eyebrow': 'ليس الخيار المناسب إذا',
     'ascfit.notfit.item1.title': 'كانت مشكلتك الوحيدة هي مجرد ملء العيادة في اليوم نفسه',
@@ -245,7 +245,7 @@ export const dict: Record<string, Record<string, string>> = {
     'ascfit.bestfit.item4.title': 'Bạn muốn một lộ trình, không phải bốn công cụ',
     'ascfit.bestfit.item4.desc': 'Bạn muốn việc chuẩn bị, nhắc tái khám và lấp chỗ trống có tính đến khâu chuẩn bị nằm trên một lộ trình duy nhất thay vì ghép nối qua các công cụ đơn lẻ riêng biệt.',
     'ascfit.bestfit.item5.title': 'Bạn sẵn sàng trở thành đối tác thiết kế',
-    'ascfit.bestfit.item5.desc': 'Bạn sẵn lòng chạy một chương trình thí điểm với một chỉ số được định trước và một khoản hoàn tiền bảo đảm, được đo lường so với mốc cơ sở của chính bạn.',
+    'ascfit.bestfit.item5.desc': 'Bạn sẵn lòng chạy một chương trình thí điểm với một chỉ số được định trước, được đo lường so với mốc cơ sở của chính bạn. Mặc định là một giai đoạn chứng minh miễn phí khoảng hai tháng; một chương trình thí điểm trả phí kèm hoàn tiền bảo đảm cũng sẵn có nếu bộ phận mua sắm của bạn muốn.',
 
     'ascfit.notfit.eyebrow': 'Không phù hợp nếu',
     'ascfit.notfit.item1.title': 'Vấn đề duy nhất của bạn là lấp chỗ trống ngay trong ngày cho phòng khám',

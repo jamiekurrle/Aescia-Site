@@ -13,7 +13,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': 'How it works',
     'designpartner.principles.item1.title': 'You pay once it works.',
-    'designpartner.principles.item1.desc': 'You start free. We tie the pilot to whatever is costing your list the most right now: empty slots, late cancellations, GLP-1 same-day cancellations, surveillance patients lost to follow-up. Which one is yours, we agree before we start, measured against at least twelve months of your own data. You pay nothing until it moves. If it doesn\'t, you owe nothing and you walk away.',
+    'designpartner.principles.item1.desc': 'You start free. We tie the pilot to whatever is costing your list the most right now: empty slots, late cancellations, GLP-1 same-day cancellations, surveillance patients lost to follow-up. Which one is yours, we agree before we start, measured against at least twelve months of your own data. You pay nothing until it moves. If it doesn\'t, you owe nothing and you walk away. The proof period runs about two months, and the commercial structure is negotiable: if your procurement prefers a paid pilot with a money-back rebate, or third-party escrow, those shapes are available too. Every version is built to keep an early partner\'s risk and exposure low.',
     'designpartner.principles.item2.title': 'We don\'t mark our own homework.',
     'designpartner.principles.item2.desc': 'The result is measured on your data and signed off by your own QA committee, against a threshold written down before the pilot and calibrated to your volume so it\'s detectable inside the window.',
     'designpartner.principles.item3.title': 'What stays yours.',
@@ -33,7 +33,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': 'Comment ça marche',
     'designpartner.principles.item1.title': 'Vous payez une fois que ça fonctionne.',
-    'designpartner.principles.item1.desc': 'Vous commencez gratuitement. Nous lions le pilote à ce qui coûte le plus cher à votre liste en ce moment : créneaux vides, annulations tardives, annulations le jour même liées au GLP-1, patients de surveillance perdus de vue. Lequel vous concerne, nous en convenons avant de commencer, mesuré sur au moins douze mois de vos propres données. Vous ne payez rien tant que cela ne bouge pas. Si cela ne bouge pas, vous ne devez rien et vous partez.',
+    'designpartner.principles.item1.desc': 'Vous commencez gratuitement. Nous lions le pilote à ce qui coûte le plus cher à votre liste en ce moment : créneaux vides, annulations tardives, annulations le jour même liées au GLP-1, patients de surveillance perdus de vue. Lequel vous concerne, nous en convenons avant de commencer, mesuré sur au moins douze mois de vos propres données. Vous ne payez rien tant que cela ne bouge pas. Si cela ne bouge pas, vous ne devez rien et vous partez. La période de preuve dure environ deux mois, et la structure commerciale est négociable : si vos achats préfèrent un pilote payant avec remboursement garanti, ou un séquestre par un tiers, ces formules sont aussi possibles. Chaque formule est conçue pour limiter le risque et l\'exposition d\'un partenaire précoce.',
     'designpartner.principles.item2.title': 'Nous ne corrigeons pas notre propre copie.',
     'designpartner.principles.item2.desc': 'Le résultat est mesuré sur vos données et validé par votre propre comité d\'assurance qualité (QA), par rapport à un seuil fixé par écrit avant le pilote et calibré sur votre volume afin qu\'il soit détectable dans la fenêtre.',
     'designpartner.principles.item3.title': 'Ce qui vous reste acquis.',
@@ -53,7 +53,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': 'Cómo funciona',
     'designpartner.principles.item1.title': 'Pagas cuando funciona.',
-    'designpartner.principles.item1.desc': 'Empiezas gratis. Vinculamos el piloto a lo que más le cuesta a tu lista ahora mismo: huecos vacíos, cancelaciones tardías, cancelaciones el mismo día relacionadas con GLP-1, pacientes de vigilancia perdidos durante el seguimiento. Cuál es el tuyo, lo acordamos antes de empezar, medido sobre al menos doce meses de tus propios datos. No pagas nada hasta que se mueva. Si no se mueve, no debes nada y te marchas.',
+    'designpartner.principles.item1.desc': 'Empiezas gratis. Vinculamos el piloto a lo que más le cuesta a tu lista ahora mismo: huecos vacíos, cancelaciones tardías, cancelaciones el mismo día relacionadas con GLP-1, pacientes de vigilancia perdidos durante el seguimiento. Cuál es el tuyo, lo acordamos antes de empezar, medido sobre al menos doce meses de tus propios datos. No pagas nada hasta que se mueva. Si no se mueve, no debes nada y te marchas. El período de prueba dura unos dos meses, y la estructura comercial es negociable: si tu departamento de compras prefiere un piloto de pago con reembolso garantizado, o un depósito en garantía por un tercero, esas fórmulas también están disponibles. Cada versión está pensada para mantener bajos el riesgo y la exposición de un socio temprano.',
     'designpartner.principles.item2.title': 'No calificamos nuestro propio trabajo.',
     'designpartner.principles.item2.desc': 'El resultado se mide sobre tus datos y lo valida tu propio comité de garantía de calidad (QA), frente a un umbral fijado por escrito antes del piloto y calibrado a tu volumen para que sea detectable dentro de la ventana.',
     'designpartner.principles.item3.title': 'Lo que sigue siendo tuyo.',
@@ -73,7 +73,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': '运作方式',
     'designpartner.principles.item1.title': '见效后再付费。',
-    'designpartner.principles.item1.desc': '您可免费开始。我们将试点与当前最消耗您预约单的问题挂钩：空置时段、临时取消、与 GLP-1 相关的当日取消、随访中流失的监测患者。具体是哪一项，我们在开始前共同商定，并以您自己至少十二个月的数据为基准衡量。在指标改善之前，您无需支付任何费用。如果没有改善，您分文不付，随时离开。',
+    'designpartner.principles.item1.desc': '您可免费开始。我们将试点与当前最消耗您预约单的问题挂钩：空置时段、临时取消、与 GLP-1 相关的当日取消、随访中流失的监测患者。具体是哪一项，我们在开始前共同商定，并以您自己至少十二个月的数据为基准衡量。在指标改善之前，您无需支付任何费用。如果没有改善，您分文不付，随时离开。证明期约为两个月，商业结构可以协商：如果您的采购流程更倾向于付费试点加退款返利，或第三方资金托管，这些形式同样可行。每一种形式的目的都是尽量降低早期合作伙伴的风险和敞口。',
     'designpartner.principles.item2.title': '我们不会自说自话。',
     'designpartner.principles.item2.desc': '结果以您的数据衡量，并由您自己的质量保证（QA）委员会签字确认，对照在试点前以书面形式确定、并根据您的业务量校准的阈值，以确保在该时间窗内可被检测到。',
     'designpartner.principles.item3.title': '始终归您所有。',
@@ -93,7 +93,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': 'كيف يعمل',
     'designpartner.principles.item1.title': 'تدفع بمجرد أن ينجح.',
-    'designpartner.principles.item1.desc': 'تبدأ مجانًا. نربط التجربة بما يكلّف قائمتك أكثر شيء الآن: المواعيد الشاغرة، والإلغاءات المتأخرة، وإلغاءات نفس اليوم المرتبطة بـ GLP-1، ومرضى المتابعة المفقودون. أيُّها يخصّك، نتفق عليه قبل أن نبدأ، ويُقاس مقابل ما لا يقل عن اثني عشر شهرًا من بياناتك الخاصة. لا تدفع شيئًا حتى يتحرك. وإن لم يتحرك، فلا تدين بشيء وتنصرف.',
+    'designpartner.principles.item1.desc': 'تبدأ مجانًا. نربط التجربة بما يكلّف قائمتك أكثر شيء الآن: المواعيد الشاغرة، والإلغاءات المتأخرة، وإلغاءات نفس اليوم المرتبطة بـ GLP-1، ومرضى المتابعة المفقودون. أيُّها يخصّك، نتفق عليه قبل أن نبدأ، ويُقاس مقابل ما لا يقل عن اثني عشر شهرًا من بياناتك الخاصة. لا تدفع شيئًا حتى يتحرك. وإن لم يتحرك، فلا تدين بشيء وتنصرف. تستغرق فترة الإثبات نحو شهرين، والهيكل التجاري قابل للتفاوض: فإذا كانت مشترياتك تفضّل تجربة مدفوعة مع استرداد مالي مضمون، أو حجزًا لدى طرف ثالث، فهذه الصيغ متاحة أيضًا. وكل صيغة مصمَّمة لإبقاء مخاطر الشريك المبكر وانكشافه منخفضة.',
     'designpartner.principles.item2.title': 'نحن لا نصحّح أوراقنا بأنفسنا.',
     'designpartner.principles.item2.desc': 'تُقاس النتيجة على بياناتك ويعتمدها فريق ضمان الجودة (QA) لديك، مقابل عتبة مكتوبة قبل التجربة ومعايَرة على حجمك بحيث تكون قابلة للكشف ضمن النافذة.',
     'designpartner.principles.item3.title': 'ما يبقى ملكًا لك.',
@@ -113,7 +113,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'designpartner.principles.eyebrow': 'Cách thức hoạt động',
     'designpartner.principles.item1.title': 'Bạn chỉ trả tiền khi nó hiệu quả.',
-    'designpartner.principles.item1.desc': 'Bạn bắt đầu miễn phí. Chúng tôi gắn chương trình thử nghiệm với điều đang gây tốn kém nhất cho danh sách của bạn ngay lúc này: suất trống, hủy muộn, hủy trong ngày liên quan đến GLP-1, bệnh nhân theo dõi bị mất dấu. Cái nào là của bạn, chúng tôi thống nhất trước khi bắt đầu, đo lường dựa trên ít nhất mười hai tháng dữ liệu của chính bạn. Bạn không trả gì cho đến khi nó cải thiện. Nếu không, bạn không nợ gì và có thể rời đi.',
+    'designpartner.principles.item1.desc': 'Bạn bắt đầu miễn phí. Chúng tôi gắn chương trình thử nghiệm với điều đang gây tốn kém nhất cho danh sách của bạn ngay lúc này: suất trống, hủy muộn, hủy trong ngày liên quan đến GLP-1, bệnh nhân theo dõi bị mất dấu. Cái nào là của bạn, chúng tôi thống nhất trước khi bắt đầu, đo lường dựa trên ít nhất mười hai tháng dữ liệu của chính bạn. Bạn không trả gì cho đến khi nó cải thiện. Nếu không, bạn không nợ gì và có thể rời đi. Giai đoạn chứng minh kéo dài khoảng hai tháng, và cấu trúc thương mại có thể thương lượng: nếu bộ phận mua sắm của bạn muốn một chương trình thí điểm trả phí kèm hoàn tiền bảo đảm, hoặc ký quỹ qua bên thứ ba, các hình thức đó cũng sẵn có. Mọi phương án đều nhằm giảm thiểu rủi ro và mức độ ràng buộc cho đối tác tham gia sớm.',
     'designpartner.principles.item2.title': 'Chúng tôi không tự chấm điểm cho mình.',
     'designpartner.principles.item2.desc': 'Kết quả được đo trên dữ liệu của bạn và được chính ủy ban Đảm bảo Chất lượng (QA) của bạn phê duyệt, đối chiếu với ngưỡng đã ghi rõ bằng văn bản trước khi thử nghiệm và được hiệu chỉnh theo khối lượng của bạn để có thể phát hiện được trong khung thời gian đó.',
     'designpartner.principles.item3.title': 'Những gì vẫn thuộc về bạn.',
