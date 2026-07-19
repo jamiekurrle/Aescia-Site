@@ -31,7 +31,7 @@ eq('US', 'second', TA_34, NORMAL, '10 years', '3-4 baseline collapses to low, no
 eq('US', 'second', HIGH, NORMAL, '5 years', 'high baseline, normal first surv (capped at 5)')
 eq('US', 'second', HIGH, [L('TA', 2, 6)], '5 years', 'high baseline, 1-2 TA')
 eq('US', 'second', HIGH, HIGH, '3 years', 'high baseline, high first surv')
-eq('US', 'subsequent', TA_low, NORMAL, 'Not specified by USMSTF 2020', 'US has no third-round rule')
+eq('US', 'subsequent', TA_low, NORMAL, '10 years', 'US: no 3rd-round rule -> normal current exam gives 10y as a fresh baseline (under a not-specified caveat)')
 
 // --- Europe, ESGE Recs 4 and 5 ---------------------------------------------
 eq('EU', 'second', HIGH, NORMAL, '5 years', 'clear surveillance after high baseline')
@@ -183,8 +183,34 @@ eq('CA_AB', 'second', [LL('TA', 12)], [LL('TA', 25, 1, false, true)], '6 months'
 }
 // #11 A not-specified subsequent gap carries riskYears 0, not the parsed guideline year.
 {
-  const r = computeSurveillance({ jur: 'US', stage: 'subsequent', prior: [LL('TA', 5)], current: [LL('TA', 5)], malignant: false, special: false, bbps: b })
-  ok(r.notSpecified === true && r.riskYears === 0, 'US: subsequent gap has riskYears 0, not 2020')
+  // A gap survives only when the current finding is itself unspecified (nothing to floor to).
+  const r = computeSurveillance({ jur: 'CA_ON', stage: 'subsequent', prior: [LL('TA', 12)], current: [LL('HP', 12, 1, false, false, true)], malignant: false, special: false, bbps: b })
+  ok(r.notSpecified === true && r.riskYears === 0, 'A surviving not-specified gap carries riskYears 0, not the parsed guideline year')
+}
+
+// --- Tail round: attribution and classification cleanups ---------------------
+// Ontario: a proximal-HP-only prior is the gap the baseline reports, not a FIT reset.
+eq('CA_ON', 'second', [LL('HP', 6, 1, false, false, true)], [], '10 years', 'ON: proximal HP prior (a gap) -> clean current gives 10y as a fresh baseline under a not-specified caveat')
+// Ontario: >10-adenoma subsequent is a definite <3 years, not "at endoscopist discretion".
+{
+  const r = computeSurveillance({ jur: 'CA_ON', stage: 'second', prior: [LL('TA', 8, 11)], current: [], malignant: false, special: false, bbps: b })
+  ok(r.interval === 'Under 3 years' && !r.discretion, 'ON: >10 adenomas subsequent is definite <3y, no discretion qualifier')
+}
+// Alberta: an HP >=10mm prior is a gap (no ACRCSP subsequent rule), not a screening reset.
+eq('CA_AB', 'second', [LL('HP', 12, 1, false, false, true)], [], '10 years', 'AB: >=10mm HP prior (a gap) -> clean current gives 10y as a fresh baseline under a not-specified caveat')
+
+// --- Fourth audit round: bare-discretion floor + Alberta >10-adenoma category --
+// A consequential current finding is not masked by a serrated baseline's bare discretion.
+eq('CA_ON', 'second', [LL('SSL', 5)], [LL('TA', 5, 11)], '≤1 year', 'ON: serrated prior + >10 adenomas current -> ≤1y clearing, not bare discretion')
+// Alberta >10 adenomas is its own 1-year category, not the 3y->5y high-risk pathway.
+{
+  const r = computeSurveillance({ jur: 'CA_AB', stage: 'second', prior: [LL('TA', 6, 11)], current: [], malignant: false, special: false, bbps: b })
+  ok(r.interval !== '5 years', 'AB: >10-adenoma prior is not folded into the high-risk 3y->5y pathway')
+}
+// A discretion that names a pathway (return to FIT) is not overridden by the floor.
+{
+  const r = computeSurveillance({ jur: 'CA_AB', stage: 'subsequent', prior: [], current: [], malignant: false, special: false, bbps: b })
+  ok(/FIT/i.test(r.interval), 'AB: return-to-FIT discretion keeps its pathway, not floored to a colonoscopy interval')
 }
 
 console.log(`\n${pass} passed, ${fail} failed`)

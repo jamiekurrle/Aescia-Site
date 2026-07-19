@@ -29,12 +29,14 @@ const HISTOLOGY: [HistOpt, string][] = [
   ['SSL', 'Sessile serrated'],
   ['TSA', 'Traditional serrated'],
 ]
-const AWAIT_TYPES: { hist: LesionInput['hist']; label: string; prevalence: string }[] = [
-  { hist: 'TA', label: 'Tubular adenoma', prevalence: '~45–60%' },
-  { hist: 'HP', label: 'Hyperplastic', prevalence: '~20–30%' },
-  { hist: 'TVA', label: 'Tubulovillous / villous', prevalence: '~5–15%' },
-  { hist: 'SSL', label: 'Sessile serrated', prevalence: '~1–8%' },
-  { hist: 'TSA', label: 'Traditional serrated', prevalence: '<1%' },
+// Ordered most to least common, so the awaiting-histology breakdown reads in
+// prevalence order without stating a probability.
+const AWAIT_TYPES: { hist: LesionInput['hist']; label: string }[] = [
+  { hist: 'TA', label: 'Tubular adenoma' },
+  { hist: 'HP', label: 'Hyperplastic' },
+  { hist: 'TVA', label: 'Tubulovillous / villous' },
+  { hist: 'SSL', label: 'Sessile serrated' },
+  { hist: 'TSA', label: 'Traditional serrated' },
 ]
 const BBPS_SEGMENTS: [string, number][] = [['Right colon', 0], ['Transverse', 1], ['Left colon', 2]]
 // The awaiting-histology breakdown is scored at an adequate preparation, so each
@@ -59,7 +61,7 @@ const STAGES: [Stage, string][] = [
 const SURV_GUIDANCE: Record<JurId, { age: string; risk: string }> = {
   US: {
     age: 'USMSTF 2020 prints no age cap or formal stopping rule for surveillance.',
-    risk: 'A hereditary colorectal cancer syndrome, inflammatory bowel disease, or a personal or family history of colorectal cancer falls outside these recommendations; favour the shortest indicated interval.',
+    risk: 'A hereditary colorectal cancer syndrome, inflammatory bowel disease, or a personal or family history of colorectal cancer falls outside these recommendations. For those patients USMSTF 2020 directs favouring the shortest indicated interval; it does not apply that instruction to the general findings-based intervals.',
   },
   CA_ON: {
     age: 'ColonCancerCheck prints no age cap for surveillance.',
@@ -250,7 +252,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
         const r = twoExam
           ? computeSurveillance({ jur, stage, current: inCurrent ? [...knownLesions, pending] : knownLesions, prior: inCurrent ? knownPrior : [...knownPrior, pending], malignant: false, special: false, bbps: ADEQUATE_BBPS })
           : compute({ jur, lesions: [...knownLesions, pending], malignant: false, special: false, bbps: ADEQUATE_BBPS })
-        return { label: t.label, prevalence: t.prevalence, interval: r.interval }
+        return { label: t.label, interval: r.interval }
       })
     : []
 
@@ -441,7 +443,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             </div>
 
             {/* Result */}
-            <ResultCard result={result} awaiting={awaiting} breakdown={breakdown} sourceName={active.source.name} sourceUrl={active.source.url} />
+            <ResultCard result={result} awaiting={awaiting} breakdown={breakdown} sourceName={active.source.name} sourceUrl={active.source.url} intervalTo={STAGES.find(([k]) => k === stage)?.[1] ?? ''} />
           </div>
         </div>
       </section>
@@ -532,7 +534,7 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
   )
 }
 
-type BreakdownRow = { label: string; prevalence: string; interval: string }
+type BreakdownRow = { label: string; interval: string }
 
 // The page's amber panel: marks a statement the society did not make.
 function Caveat({ label, children }: { label: string; children: ReactNode }) {
@@ -680,7 +682,9 @@ function SupersededBlock({ sup }: { sup: Superseded }) {
     ? 'These findings would still sit outside this guideline’s scope:'
     : sup.discretion || sup.notSpecified
       ? 'This guideline would still publish no interval for these findings:'
-      : 'This guideline’s interval for these findings would be:'
+      : sup.interpretation
+        ? 'Taken from the most recent examination as a fresh baseline, the interval would be:'
+        : 'This guideline’s interval for these findings would be:'
   return (
     <div className="mt-5 pt-4 border-t border-border">
       <div className="bg-secondary/50 border border-border rounded px-3.5 py-3">
@@ -726,12 +730,14 @@ function ResultCard({
   breakdown,
   sourceName,
   sourceUrl,
+  intervalTo,
 }: {
   result: Result
   awaiting: boolean
   breakdown: BreakdownRow[]
   sourceName: string
   sourceUrl: string
+  intervalTo: string
 }) {
   // The guideline itself stops short of an interval: out of its scope, declined,
   // or simply not stated. Amber marks those, an exam outside the guideline's
@@ -762,6 +768,7 @@ function ResultCard({
 
   return (
     <div role="status" aria-live="polite" style={{ borderLeftColor: accent }} className="bg-card border-l-[3px] border-y border-r border-border rounded-lg p-6 lg:p-7">
+      {intervalTo && <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/50 mb-2.5">Interval {intervalTo.replace(/^To /, 'to ')}</div>}
       {result.prepInadequate && !prepPathway && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
           <strong>Bowel preparation inadequate.</strong> These findings are outside the guideline's
