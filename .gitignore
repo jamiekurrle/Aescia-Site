@@ -14,3 +14,6 @@ node_modules/
 next-env.d.ts
 .vercel
 tsconfig.tsbuildinfo
+
+# Ad-hoc engine probe scripts (scratch only, never commit)
+_*.mts
