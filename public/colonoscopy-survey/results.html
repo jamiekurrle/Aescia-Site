@@ -37,6 +37,10 @@
   .num{flex:0 0 74px;text-align:right;font-size:.9rem;color:var(--muted);white-space:nowrap;}
   .num b{color:var(--ink);}
   .state{padding:36px 18px;text-align:center;color:var(--muted);}
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0;}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;}
+  .tile .big{font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;}
+  .tile .cap{color:var(--muted);font-size:.88rem;margin-top:6px;line-height:1.4;}
   footer{color:var(--muted);font-size:.85rem;margin-top:30px;line-height:1.7;}
   .cta{display:block;text-align:center;background:#1B2745;color:#fff;border-radius:var(--radius);
     padding:14px;margin:26px 0 8px;font-weight:600;text-decoration:none;}
@@ -84,17 +88,47 @@ var L = {
   country: { US:'United States', CA:'Canada', AU:'Australia', NZ:'New Zealand', GB:'United Kingdom', IE:'Ireland', Other:'Somewhere else' }
 };
 
-// [field, title, subtitle, ordering] — 'fixed' keeps L order, 'sorted' is by count
+// A deliberately short, lay-reader selection - not every question.
+// [field, title, subtitle, ordering] - 'fixed' keeps L order, 'sorted' is by count
 var BLOCKS = [
   ['b1', 'How the bowel prep compared to what people expected', 'At its most difficult, across all their colonoscopies.', 'fixed'],
   ['b4', 'What went wrong during the prep', 'People could pick more than one.', 'sorted'],
-  ['b5', 'Were people told their prep was not good enough?', '', 'fixed'],
   ['concerns', 'What people worried about beforehand', 'People could pick more than one.', 'sorted'],
-  ['d2', 'After going home, what people did about a concern', 'People could pick more than one.', 'sorted'],
-  ['d6', 'Were people told when their next colonoscopy is due?', '', 'fixed'],
-  ['glp1_instr', 'Ozempic-type medicines: were pause instructions given?', 'Among people taking a GLP-1 medicine (Ozempic, Wegovy, Mounjaro or similar).', 'fixed'],
   ['country', 'Where responses have come from', '', 'sorted']
 ];
+
+function sum(obj, keys) {
+  var t = 0;
+  for (var i = 0; i < keys.length; i++) t += (obj && obj[keys[i]]) || 0;
+  return t;
+}
+
+// Big lay-friendly headline numbers, computed from the same counts.
+function tiles(data) {
+  var c = data.counts || {};
+  var out = [];
+  // harder than expected: b1 of 4-5, out of people who rated the prep
+  var rated = sum(c.b1, ['1', '2', '3', '4', '5']);
+  if (rated >= 5) {
+    var harder = sum(c.b1, ['4', '5']);
+    out.push({ big: Math.round(100 * harder / rated) + '%', cap: 'found the prep harder than they expected' });
+  }
+  // prep flagged / redone / cancelled
+  var redo = sum(c.b5, ['told', 'whole', 'part', 'cancelled']);
+  if (redo > 0) {
+    out.push({ big: String(redo), cap: redo === 1 ? 'person was told their prep was not good enough, or had to redo it' : 'people were told their prep was not good enough, or had to redo it' });
+  }
+  // most common worry (skip the non-worries)
+  var worries = c.concerns || {}; var topKey = null, topN = 0;
+  for (var k in worries) {
+    if (k === 'none' || k === 'other') continue;
+    if (worries[k] > topN) { topN = worries[k]; topKey = k; }
+  }
+  if (topKey && topN >= 3) {
+    out.push({ big: L.concerns[topKey].toLowerCase(), cap: 'the most common worry beforehand', small: true });
+  }
+  return out;
+}
 
 function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 
@@ -103,6 +137,15 @@ function render(data){
   document.getElementById('meta').innerHTML =
     '<strong>' + total + ' responses so far.</strong> Updated every few minutes. Early numbers from a small, self-selected group, so treat them as a first look rather than a final answer.';
   var html = '';
+  var t = tiles(data);
+  if (t.length) {
+    html += '<div class="tiles">';
+    for (var ti = 0; ti < t.length; ti++) {
+      html += '<div class="tile"><div class="big"' + (t[ti].small ? ' style="font-size:1.15rem;line-height:1.3"' : '') + '>' +
+        esc(t[ti].big) + '</div><div class="cap">' + esc(t[ti].cap) + '</div></div>';
+    }
+    html += '</div>';
+  }
   for (var b = 0; b < BLOCKS.length; b++) {
     var field = BLOCKS[b][0], title = BLOCKS[b][1], sub = BLOCKS[b][2], mode = BLOCKS[b][3];
     var counts = (data.counts && data.counts[field]) || {};
