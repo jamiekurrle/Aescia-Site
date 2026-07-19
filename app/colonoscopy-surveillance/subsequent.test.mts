@@ -56,7 +56,7 @@ eq('CA_BC', 'second', HIGH, [L('TA', 2, 6)], '5 years, then as per findings', '3
 eq('AU', 'second', TA_low, NORMAL, 'Return to FOBT screening (National Bowel Cancer Screening Program)', 'low 1st, 0 adenomas 2nd')
 eq('AU', 'second', TA_low, [L('TA', 2, 6)], '10 years', 'low 1st, low 2nd')
 eq('AU', 'second', HIGH, NORMAL, '5 years', 'high 1st, 0 adenomas 2nd')
-eq('AU', 'second', TA_low, [L('TA', 3, 12, true)], '1 year', 'low 1st, 3-4 >=10mm HGD 2nd (highest)')
+eq('AU', 'second', TA_low, [L('TA', 3, 12, true)], '3 years', 'low 1st, 3-4 adenomas >=10mm HGD 2nd -> 3y (1-year tier begins at >=5 adenomas)')
 eq('AU', 'second', TA_low, [L('SSL', 2, 6)], '5 years', 'low 1st, serrated only 2nd (Table 15a)')
 
 // --- A first colonoscopy that found nothing returns to routine screening ----
@@ -211,6 +211,31 @@ eq('CA_ON', 'second', [LL('SSL', 5)], [LL('TA', 5, 11)], '≤1 year', 'ON: serra
 {
   const r = computeSurveillance({ jur: 'CA_AB', stage: 'subsequent', prior: [], current: [], malignant: false, special: false, bbps: b })
   ok(/FIT/i.test(r.interval), 'AB: return-to-FIT discretion keeps its pathway, not floored to a colonoscopy interval')
+}
+
+// --- Fifth (complete) audit round --------------------------------------------
+// Alberta: a prior >=20mm piecemeal follows the piecemeal onward schedule (1y), not 5y.
+eq('CA_AB', 'second', [LL('TA', 25, 1, false, true)], [], '1 year', 'AB: prior >=20mm piecemeal -> 1y onward, not generic 5y high-risk')
+// Australia: 3-4 adenomas never reach the 1-year (>=5) tier, even with a >=10mm HGD lesion.
+{
+  const r = compute({ jur: 'AU', lesions: [LL('TA', 12, 3, true)], malignant: false, special: false, bbps: b })
+  ok(r.interval === '3 years', 'AU baseline: 3 adenomas >=10mm HGD -> 3y, not 1y')
+}
+// Australia: diminutive hyperplastic polyps do not count as clinically-significant serrated polyps.
+{
+  const big = compute({ jur: 'AU', lesions: [LL('HP', 12, 1, false, false, true)], malignant: false, special: false, bbps: b })
+  const plus = compute({ jur: 'AU', lesions: [LL('HP', 12, 1, false, false, true), LL('HP', 4, 2)], malignant: false, special: false, bbps: b })
+  ok(big.interval === plus.interval, 'AU: adding diminutive HPs to one large HP does not escalate the interval')
+}
+// US: a >10-SSP finding (no published interval) coexisting with a low-risk adenoma is flagged, not shown clean.
+{
+  const r = compute({ jur: 'US', lesions: [LL('SSL', 5, 11), LL('TA', 5)], malignant: false, special: false, bbps: b })
+  ok(!!r.calculatorRule, 'US: >10 SSP + low-risk adenoma flags the unaddressed finding, not a clean 7-10y')
+}
+// Ontario: a serrated-baseline discretion is not de-escalated to 10y FIT by a normal exam.
+{
+  const r = computeSurveillance({ jur: 'CA_ON', stage: 'second', prior: [LL('SSL', 12)], current: [], malignant: false, special: false, bbps: b })
+  ok(r.discretion === true, 'ON: serrated baseline + normal exam keeps endoscopist discretion, no 10y FIT de-escalation')
 }
 
 console.log(`\n${pass} passed, ${fail} failed`)

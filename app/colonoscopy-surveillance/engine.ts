@@ -192,6 +192,7 @@ export interface Agg {
   tsaCount: number
   tsaMaxSize: number
   hpCount: number
+  hpLargeCount: number // hyperplastic polyps 10 mm or larger
   hpMaxSize: number
   anyProximalHp: boolean
   hpProximalMaxSize: number // largest hyperplastic polyp proximal to the sigmoid
@@ -218,6 +219,7 @@ function aggregate(lesions: LesionInput[]): Agg {
   let tsaCount = 0
   let tsaMaxSize = 0
   let hpCount = 0
+  let hpLargeCount = 0
   let hpMaxSize = 0
   let anyProximalHp = false
   let hpProximalMaxSize = 0
@@ -254,6 +256,7 @@ function aggregate(lesions: LesionInput[]): Agg {
       tsaMaxSize = Math.max(tsaMaxSize, l.size)
     } else if (l.hist === 'HP') {
       hpCount += n
+      if (l.size >= 10) hpLargeCount += n
       hpMaxSize = Math.max(hpMaxSize, l.size)
       if (l.proximal) {
         anyProximalHp = true
@@ -275,6 +278,7 @@ function aggregate(lesions: LesionInput[]): Agg {
     tsaCount,
     tsaMaxSize,
     hpCount,
+    hpLargeCount,
     hpMaxSize,
     anyProximalHp,
     hpProximalMaxSize,
@@ -1503,8 +1507,9 @@ const AU_SAD4_COMBINED_HIGH =
 const AU_CSSP_DEF =
   'Surveillance is recommended for ‘clinically significant’ serrated polyps: sessile serrated adenomas; traditional serrated adenomas; hyperplastic polyps ≥10mm.'
 
-// Clinically significant serrated polyps: SSA + TSA + HP ≥10mm.
-const auCsspCount = (a: Agg): number => a.sslCount + a.tsaCount + (a.hpMaxSize >= 10 ? a.hpCount : 0)
+// Clinically significant serrated polyps: SSA + TSA + HP ≥10mm (only the HPs that
+// are themselves >=10 mm count, not every HP when one happens to be large).
+const auCsspCount = (a: Agg): number => a.sslCount + a.tsaCount + a.hpLargeCount
 // Table 9 column header: "advanced serrated polyp (≥10mm, dysplasia or TSA)".
 const auAdvSerrated = (a: Agg): boolean =>
   (a.sslCount > 0 && a.sslMaxSize >= 10) || (a.hpCount > 0 && a.hpMaxSize >= 10) || a.anySslDysplasia || a.tsaCount > 0
@@ -1516,13 +1521,13 @@ const auRiskYears = (v: string): number => (v === '10 years' ? YRS.y10 : v === '
 // Table 3 — rows 1–2 / 3–4 / 5–9 / ≥10; columns as named in AU_T3_COLS.
 const AU_T3_GRID: string[][] = [
   ['10 years', '5 years', '3 years', '3 years'],
-  ['5 years', '3 years', '3 years', '1 year'],
+  ['5 years', '3 years', '3 years', '3 years'],
   ['3 years', '1 year', '1 year', '1 year'],
   ['1 year', '1 year', '1 year', '1 year'],
 ]
 const AU_T3_QUOTES: string[][] = [
   [AU_SAD1_10Y, AU_SAD2_5Y, AU_T3_CAPTION, AU_SAD2_3Y],
-  [AU_SAD2_5Y, AU_SAD2_3Y, AU_SAD2_3Y, AU_T3_CAPTION],
+  [AU_SAD2_5Y, AU_SAD2_3Y, AU_SAD2_3Y, AU_SAD2_3Y],
   [AU_SAD5, AU_SAD5, AU_SAD5, AU_SAD5],
   [AU_SAD5, AU_SAD5, AU_SAD5, AU_SAD5],
 ]
@@ -1979,9 +1984,15 @@ export function compute(exam: Exam): Result {
     if (decidedHere(cands) && !spec.selectionPublished(a)) {
       res.calculatorRule = calculatorSelection(spec.short)
     }
-    // A gap alongside a published answer is reported, not resolved.
+    // A gap alongside a published answer is reported and flagged, not resolved: the
+    // headline interval does not account for the finding the guideline leaves
+    // unspecified, and the guideline directs favouring the shortest indicated
+    // interval when findings conflict.
     for (const g of gaps) {
       res.notes = [...res.notes, `${g.driver}. ${g.location}.`]
+    }
+    if (gaps.length > 0 && !res.calculatorRule) {
+      res.calculatorRule = `A coexisting finding has no published ${spec.short} interval and is not reflected in the interval shown. ${spec.short} directs favouring the shortest indicated interval when findings conflict.`
     }
   } else if (gaps.length > 0) {
     res = toResult(gaps[0], a, src)
@@ -2018,6 +2029,7 @@ export function compute(exam: Exam): Result {
     const demotable = !res.override && !res.notSpecified && !res.discretion && res.riskYears > 0
     if (demotable) return prepResult(spec, src, res)
     res.notes = [...res.notes, ...prepNotes(spec)]
+    res.prepInadequate = true
   }
   return res
 }
@@ -2277,6 +2289,22 @@ const abSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   // publishes no subsequent-round rule, so it is a gap rather than "5 years".
   if (prior.adenomaCount > 10)
     return subGap('ACRCSP', src, 'ACRCSP handles more than 10 adenomas as a 1-year, consider-genetic-counselling category and publishes no subsequent-round rule for it')
+  // A large lesion removed piecemeal at the earlier colonoscopy stays on ACRCSP's
+  // piecemeal onward schedule (>=20 mm: 1 year, then 3 years if the site is clear;
+  // 10-19 mm: 3 years, then 5 years), not the generic high-risk 5-year pathway.
+  if (prior.anyPiecemeal && prior.piecemealSize >= 10) {
+    const big = prior.piecemealSize >= 20
+    return subResult(src, {
+      interval: big ? '1 year' : '3 years',
+      modality: 'Colonoscopy',
+      driver: `A ${big ? '20 mm or larger' : '10 to 19 mm'} lesion removed piecemeal at the earlier colonoscopy`,
+      quote: big
+        ? 'If the initial polyp was ≥20 mm, the next surveillance colonoscopy should be in 1 year. If no recurrence is detected at the resection site, the panel recommends subsequent colonoscopy surveillance in 3 years.'
+        : 'If the initial polyp was ≥10 mm–19 mm, the next surveillance colonoscopy should be in 3 years. If no recurrence is detected at the resection site, the panel recommends subsequent colonoscopy surveillance in 5 years.',
+      location: 'Subsection "Piecemeal resection of a large (≥10 mm) non-pedunculated polyp or lesion", onward schedule, Sadowski et al. 2024',
+      notes: ['The onward interval depends on the resection-site result; it lengthens once the site is confirmed clear.'],
+    })
+  }
   if (stage === 'second' && abIs34TA(prior) && abNoSurvNeeded(cur) && cur.adenomaMaxSize < 10 && !cur.anyHgd)
     return subResult(src, {
       interval: '5 to 10 years',
@@ -2389,10 +2417,12 @@ function auAdenomaCat(a: Agg): AuCat {
   const adv = a.anyHgd || a.anyVillous
   if (n >= 10) return 'highest'
   if (n >= 5) return big || adv ? 'highest' : 'high'
-  if (n >= 3) return big && adv ? 'highest' : big || adv ? 'high' : 'int'
+  // 3 to 4 adenomas: the highest (1-year) tier begins at 5 adenomas, so an advanced
+  // feature here escalates only to 'high' (3 years), never to 'highest'.
+  if (n >= 3) return big || adv ? 'high' : 'int'
   return big ? 'high' : adv ? 'int' : 'low' // 1 to 2 adenomas
 }
-const auCsSerratedCount = (a: Agg): number => a.sslCount + a.tsaCount + (a.hpMaxSize >= 10 ? a.hpCount : 0)
+const auCsSerratedCount = (a: Agg): number => a.sslCount + a.tsaCount + a.hpLargeCount
 const auHasCsSerrated = (a: Agg): boolean => auCsSerratedCount(a) > 0
 const auAdvancedSerrated = (a: Agg): boolean => a.tsaCount > 0 || a.anySslDysplasia || a.sslMaxSize >= 10 || a.hpMaxSize >= 10
 function au1stSerratedCat(a: Agg): 'int' | 'high' | 'highest' {
@@ -2524,18 +2554,23 @@ export function computeSurveillance(x: SurvExam): Result {
   // logic had no rule for the combination, the current-baseline interval is still
   // given rather than a bare "not specified", under a caveat that the guideline
   // does not publish a rule for this exact sequence.
-  // A round result gives no timeframe when it is a not-specified gap or a bare
-  // "endoscopist discretion" with no modality (as distinct from a discretion that
-  // does name a pathway, e.g. return to FIT). In both cases the current exam's own
-  // baseline interval is given rather than nothing.
-  const roundGaveNoTimeframe = res.notSpecified || (res.discretion && res.modality === null)
   if (!res.override) {
     const currentBaseline = compute({ jur: x.jur, lesions: x.current, malignant: false, special: false, bbps: [3, 3, 3] })
     const usable = !currentBaseline.notSpecified && !currentBaseline.override && !currentBaseline.discretion && currentBaseline.riskYears > 0
-    if (usable && roundGaveNoTimeframe) {
+    if (usable && res.notSpecified) {
+      // No published rule for the combination: give the current exam's own baseline
+      // interval rather than nothing, under a caveat that the sequence is unspecified.
       res = {
         ...currentBaseline,
-        interpretation: `${spec.short} publishes no interval for this combination of prior and current findings, so the interval is taken from the most recent examination as a new baseline.`,
+        interpretation: `${spec.short} publishes no rule for this combination of prior and current findings, so the interval is taken from the most recent examination as a new baseline.`,
+      }
+    } else if (usable && res.discretion && res.modality === null && currentBaseline.riskYears < YRS.y10) {
+      // A bare "endoscopist discretion" with no timeframe: surface a consequential
+      // current finding it would otherwise mask, but do not de-escalate a normal or
+      // low-risk current exam past the guideline's stated discretion.
+      res = {
+        ...currentBaseline,
+        interpretation: `The most recent examination independently warrants this interval; ${spec.short} otherwise leaves this baseline's subsequent interval to endoscopist discretion.`,
       }
     } else if (usable && !res.discretion && !res.notSpecified && res.riskYears > 0 && currentBaseline.riskYears < res.riskYears) {
       res = currentBaseline

@@ -822,7 +822,7 @@ function ResultCard({
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
           {breakdown.length > 0 ? (
             <>
-              <div className="text-[12.5px] text-foreground/72 mb-3">The interval each possible histology for the pending lesion would give.</div>
+              <div className="text-[12.5px] text-foreground/72 mb-3">The interval for this examination if the pending lesion turns out to be each histology, holding any other lesions entered fixed.</div>
               <Breakdown breakdown={breakdown} />
             </>
           ) : (
@@ -861,8 +861,8 @@ function ResultCard({
         </>
       )}
 
-      {result.calculatorRule && !result.interpretation && (
-        <Caveat label="Calculator interpretation — not a published guideline rule">{result.calculatorRule}</Caveat>
+      {result.calculatorRule && (
+        <Caveat label="This interval requires clinical judgement">{result.calculatorRule}</Caveat>
       )}
 
       {showDetail && (
