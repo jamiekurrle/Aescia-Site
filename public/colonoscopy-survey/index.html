@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Colonoscopy experience survey</title>
+<!-- No external font: 'Geist' is used when present (the Aescia site loads it), otherwise
+     system fonts. Avoids any third-party request before the person consents. -->
+<style>
+  :root{
+    --bg:#F4F6FA; --card:#FFFFFF; --ink:#1B2745; --muted:#475A82;
+    --line:#E2E6EE; --soft:#EBEFF5; --accent:#5C7A99; --accent-soft:#E2EAF4;
+    --primary:#1B2745; --on-primary:#FFFFFF; --on-accent:#FFFFFF; --accent-strong:#40597A;
+    --brass:#B89D6A; --focus:#5C7A99; --error:#B53A2C; --radius:8px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not(.light){ --bg:#0F1A33; --card:#1B2745; --ink:#F4F6FA; --muted:#B7CBE0;
+      --line:#2D3A5E; --soft:#243254; --accent:#A8C2D8; --accent-soft:#243254;
+      --primary:#F4F6FA; --on-primary:#1B2745; --on-accent:#1B2745; --accent-strong:#A8C2D8; --focus:#A8C2D8; --error:#F1A99B; }
+  }
+  .dark{ --bg:#0F1A33; --card:#1B2745; --ink:#F4F6FA; --muted:#B7CBE0;
+    --line:#2D3A5E; --soft:#243254; --accent:#A8C2D8; --accent-soft:#243254;
+    --primary:#F4F6FA; --on-primary:#1B2745; --on-accent:#1B2745; --accent-strong:#A8C2D8; --focus:#A8C2D8; --error:#F1A99B; }
+  *{box-sizing:border-box}
+  ::selection{background:rgba(184,157,106,0.35);}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:17px/1.6 'Geist',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-feature-settings:'ss01','cv11';}
+  .wrap{max-width:640px;margin:0 auto;padding:24px 18px 80px;}
+  /* Text-size toggle */
+  .tsbar{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);}
+  .tsbar-inner{max-width:640px;margin:0 auto;padding:8px 18px;display:flex;align-items:center;gap:12px;}
+  .tslabel{font-size:.9rem;color:var(--muted);font-weight:600;}
+  .tsbtns{display:flex;gap:6px;margin-left:auto;}
+  .tsbtns button{border:1px solid var(--line);background:var(--card);color:var(--ink);
+    border-radius:6px;padding:6px 14px;min-height:40px;min-width:42px;cursor:pointer;line-height:1;font-weight:700;}
+  .tsbtns button[data-size=normal]{font-size:.95rem;}
+  .tsbtns button[data-size=large]{font-size:1.15rem;}
+  .tsbtns button[data-size=xlarge]{font-size:1.4rem;}
+  .tsbtns button.active{background:var(--primary);color:var(--on-primary);border-color:var(--primary);}
+  body[data-size=large] .wrap{zoom:1.12;}
+  body[data-size=xlarge] .wrap{zoom:1.28;}
+  header h1{font-size:1.5rem;margin:.2em 0 .1em;font-weight:700;letter-spacing:-0.025em;}
+  header p{color:var(--muted);margin:.2em 0 0;}
+  .intro{background:var(--accent-soft);border:1px solid var(--line);
+    border-radius:var(--radius);padding:14px 16px;margin:20px 0;font-size:.95rem;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 20px;margin:14px 0;}
+  .sec{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin:34px 4px 8px;}
+  .q{font-weight:600;font-size:1.08rem;margin:0 0 4px;}
+  .hint{color:var(--muted);font-size:.95rem;margin:0 0 12px;}
+  a{color:var(--accent-strong);text-decoration:underline;font-weight:600;}
+  .opts{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+  label.opt{display:flex;align-items:flex-start;gap:12px;border:1px solid var(--line);
+    border-radius:6px;padding:14px 15px;min-height:52px;cursor:pointer;transition:.12s;}
+  label.opt:hover{border-color:var(--accent);}
+  label.opt.checked{border-color:var(--accent);background:var(--accent-soft);}
+  input[type=radio],input[type=checkbox]{margin-top:3px;accent-color:var(--accent);width:18px;height:18px;flex:none;}
+  .scale{display:flex;gap:6px;margin-top:10px;}
+  .scale label{position:relative;flex:1;text-align:center;border:1px solid var(--line);border-radius:6px;
+    padding:15px 4px;cursor:pointer;font-weight:700;font-size:1.15rem;}
+  .scale label.checked{border-color:var(--accent-strong);background:var(--accent-strong);color:var(--on-accent);}
+  /* keep radios operable by keyboard/screen reader (not display:none) */
+  .scale input{position:absolute;opacity:0;width:1px;height:1px;}
+  .scale label:focus-within{outline:2px solid var(--focus);outline-offset:2px;border-color:var(--focus);}
+  .scale-ends{display:flex;justify-content:space-between;gap:10px;color:var(--ink);
+    font-size:1.05rem;font-weight:700;margin-top:10px;}
+  .scale-ends span{max-width:45%;}
+  .scale-ends span:last-child{text-align:right;}
+  textarea,input[type=number],input[type=email],input[type=text],input[type=tel],select{
+    width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);
+    border-radius:6px;padding:11px 13px;font:inherit;margin-top:10px;}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+    background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:36px;}
+  textarea{min-height:78px;resize:vertical;}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--focus);outline-offset:2px;border-color:var(--focus);}
+  .sub{margin-top:12px;padding-left:14px;border-left:2px solid var(--line);}
+  .hidden{display:none;}
+  details.privacy{margin:0 0 14px;border:1px solid var(--line);border-radius:6px;background:var(--card);}
+  details.privacy summary{cursor:pointer;padding:12px 14px;font-weight:600;font-size:.95rem;list-style:none;}
+  details.privacy summary::-webkit-details-marker{display:none;}
+  details.privacy summary::after{content:'▾';float:right;color:var(--muted);}
+  details.privacy[open] summary::after{content:'▴';}
+  details.privacy .pv{padding:0 14px 12px;font-size:.9rem;color:var(--muted);}
+  details.privacy .pv p{margin:.55em 0;}
+  button.submit{background:var(--primary);color:var(--on-primary);border:0;border-radius:var(--radius);
+    padding:15px;font-size:1.05rem;font-weight:600;letter-spacing:-0.01em;width:100%;margin-top:26px;cursor:pointer;}
+  button.submit:hover{filter:brightness(1.05);}
+  .req{color:#c0563f;}
+  .done{text-align:center;padding:50px 20px;}
+  .done h2{color:var(--accent);}
+  footer{color:var(--muted);font-size:.8rem;text-align:center;margin-top:30px;}
+</style>
+</head>
+<body>
+<div class="tsbar">
+  <div class="tsbar-inner">
+    <span class="tslabel">Text size</span>
+    <div class="tsbtns" role="group" aria-label="Text size">
+      <button type="button" data-size="normal" class="active" aria-pressed="true" aria-label="Normal text size" title="Normal">A</button>
+      <button type="button" data-size="large" aria-pressed="false" aria-label="Large text size" title="Large">A</button>
+      <button type="button" data-size="xlarge" aria-pressed="false" aria-label="Largest text size" title="Largest">A</button>
+    </div>
+  </div>
+</div>
+<div class="wrap">
+  <header>
+    <h1>Your colonoscopy experience</h1>
+    <p>A short survey — a few minutes. There are no wrong answers; we're learning what
+       the experience is really like. At the end you can leave your details if you're
+       open to telling us more.</p>
+  </header>
+
+  <!-- novalidate: native constraint validation would otherwise try to validate hidden
+       branch controls (which the collector already excludes) and block submission.
+       Consent gating + the JS checks in the submit handler enforce what we need. -->
+  <form id="survey" novalidate>
+    <!-- CONSENT -->
+    <div class="card" style="background:var(--accent-soft)">
+      <p class="q">Before you start</p>
+      <p class="hint" style="margin-bottom:14px">
+        This short survey is part of research by Aescia into what the colonoscopy experience
+        is really like, led by Dr James Kurrle. Taking part is voluntary — you can skip any
+        question and stop at any time. Your answers and any contact details are stored securely
+        and used only for this research; you can ask us to delete them any time at
+        james@aescia.com.<br><br>
+        This survey is research, not medical care. If you have a health concern, please contact
+        your doctor or your local emergency service.
+      </p>
+
+      <details class="privacy">
+        <summary>How we handle your information</summary>
+        <div class="pv">
+          <p><strong>Who:</strong> this survey is run by Aescia Pty Ltd (ABN 96 687 840 517), 15 Amber Place, Bass Hill NSW 2197, led by Dr James Kurrle, for research into the colonoscopy experience.</p>
+          <p><strong>What we collect:</strong> your survey answers about your colonoscopy experience (health information), including your country and region — and, only if you tick an option below and choose to give them, your name, email, and phone.</p>
+          <p><strong>Why:</strong> to understand what the experience is really like and how to improve care around it. If you tick an option, to send you research updates and/or invite you to a short interview and prize draw. We use your details only for the option you tick.</p>
+          <p><strong>Where it's stored:</strong> in Google Workspace (Google Drive), which may store or process data on servers outside your country, including the United States. Access is limited to the Aescia research team.</p>
+          <p><strong>Sharing:</strong> we don't sell your information or use it for advertising. Anything we publish or present is combined and de-identified so you can't be recognised.</p>
+          <p><strong>How long:</strong> we keep survey answers for up to 24 months, then delete or de-identify them. We delete contact details within 3 months after the interviews and prize draw are finished.</p>
+          <p><strong>Your choices:</strong> taking part is voluntary — you can skip questions and stop at any time. You can ask to see, correct, or delete your information by emailing <strong>james@aescia.com</strong>. If you don't leave contact details, your response isn't linked to your name — though details like your region or free-text answers could still indirectly identify you — and we won't be able to find it later to delete it.</p>
+          <p><strong>Questions or complaints:</strong> email james@aescia.com. You can also contact your local privacy regulator.</p>
+          <p><strong>Not medical care:</strong> this survey doesn't provide medical advice. If you have a health concern, please contact your doctor or your local emergency service.</p>
+        </div>
+      </details>
+
+      <label class="opt">
+        <input type="checkbox" name="consent" value="yes" required>
+        I'm over 18 and I agree to take part.
+      </label>
+    </div>
+
+    <div id="gate" class="hidden">
+    <div class="intro">
+      If you've had more than one colonoscopy, answer across <strong>all of them</strong> — tell us
+      about anything that stands out, even if different things happened at different times.
+    </div>
+
+    <!-- SCREENER -->
+    <div class="card">
+      <p class="q">Have you ever had a colonoscopy?</p>
+      <div class="opts" data-name="screener" data-single>
+        <label class="opt"><input type="radio" name="screener" value="had_lt12">Yes — in the last 12 months</label>
+        <label class="opt"><input type="radio" name="screener" value="had_1to3">Yes — 1 to 3 years ago</label>
+        <label class="opt"><input type="radio" name="screener" value="had_gt3">Yes — more than 3 years ago</label>
+        <label class="opt"><input type="radio" name="screener" value="booked">No — I have one booked but haven't had it yet</label>
+        <label class="opt"><input type="radio" name="screener" value="never">No — never</label>
+      </div>
+    </div>
+
+    <!-- LOCATION (everyone) -->
+    <div class="sec">About you</div>
+    <div class="card">
+      <p class="q">Where are you located?</p>
+      <select name="country" aria-label="Your country">
+        <option value="" selected disabled>Select your country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="AU">Australia</option>
+        <option value="NZ">New Zealand</option>
+        <option value="GB">United Kingdom</option>
+        <option value="IE">Ireland</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="hidden" id="country-other">
+        <input type="text" name="country_other" placeholder="Which country?" aria-label="Which country">
+      </div>
+      <input type="text" name="region" placeholder="State, province, or region" aria-label="Your state, province, or region">
+    </div>
+    <div class="card">
+      <p class="q">How would you describe where you live?</p>
+      <div class="opts" data-name="area" data-single>
+        <label class="opt"><input type="radio" name="area" value="city">A big city or its suburbs</label>
+        <label class="opt"><input type="radio" name="area" value="regional">A regional town or smaller city</label>
+        <label class="opt"><input type="radio" name="area" value="rural">A rural or remote area</label>
+      </div>
+    </div>
+
+    <!-- MAIN (shown if had one) -->
+    <div id="main-branch" class="hidden">
+
+      <div class="sec">A · Context</div>
+      <div class="card">
+        <p class="q">Where were they done?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="a1">
+          <label class="opt"><input type="checkbox" name="a1" value="public">Public hospital</label>
+          <label class="opt"><input type="checkbox" name="a1" value="private">Private hospital / day surgery</label>
+          <label class="opt"><input type="checkbox" name="a1" value="centre">Standalone endoscopy or surgery centre</label>
+          <label class="opt"><input type="checkbox" name="a1" value="unsure">Not sure</label>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">Why did you have them?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="a2">
+          <label class="opt"><input type="checkbox" name="a2" value="screening">Routine screening (no symptoms)</label>
+          <label class="opt"><input type="checkbox" name="a2" value="polyps">Follow-up of previous polyps</label>
+          <label class="opt"><input type="checkbox" name="a2" value="symptoms">Because of symptoms (bleeding, pain, change in bowels)</label>
+          <label class="opt"><input type="checkbox" name="a2" value="family">Family history</label>
+          <label class="opt"><input type="checkbox" name="a2" value="other">Other</label>
+        </div>
+        <div class="sub hidden" data-showif="a2=other">
+          <input type="text" name="a2_other" placeholder="Please tell us" aria-label="Other reason you had a colonoscopy">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">How many colonoscopies have you had in total?</p>
+        <div class="opts" data-name="count" data-single>
+          <label class="opt"><input type="radio" name="count" value="1">1</label>
+          <label class="opt"><input type="radio" name="count" value="2">2</label>
+          <label class="opt"><input type="radio" name="count" value="3">3</label>
+          <label class="opt"><input type="radio" name="count" value="4+">4 or more</label>
+        </div>
+      </div>
+
+      <div class="sec">B · The bowel prep</div>
+      <div class="card">
+        <p class="q">At its most difficult, how was the bowel prep compared to what you expected?</p>
+        <div class="scale" data-name="b1" data-mid="about what you expected"></div>
+        <div class="scale-ends"><span>Much easier</span><span>Much harder</span></div>
+        <p class="hint" style="text-align:center;margin:6px 0 0">3 = about what you expected</p>
+      </div>
+      <div class="card">
+        <p class="q">What was the hardest part of the prep?</p>
+        <textarea name="b2" placeholder="In your own words…"></textarea>
+      </div>
+      <div class="card">
+        <p class="q">Did any of these happen during your prep?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="b4">
+          <label class="opt"><input type="checkbox" name="b4" value="taste">Taste or nausea made it hard to finish</label>
+          <label class="opt"><input type="checkbox" name="b4" value="timing">I wasn't sure of the timing</label>
+          <label class="opt"><input type="checkbox" name="b4" value="ranout">I ran out of time before the procedure</label>
+          <label class="opt"><input type="checkbox" name="b4" value="instructions">I didn't understand the instructions</label>
+          <label class="opt"><input type="checkbox" name="b4" value="diet">I was confused about what I could eat/drink</label>
+          <label class="opt"><input type="checkbox" name="b4" value="meds">I was unsure what to do about my regular medications</label>
+          <label class="opt"><input type="checkbox" name="b4" value="other">Something else</label>
+          <label class="opt"><input type="checkbox" name="b4" value="none" data-exclusive>Nothing went wrong</label>
+        </div>
+        <div class="sub hidden" data-showif="b4=other">
+          <input type="text" name="b4_other" placeholder="What else?" aria-label="Other thing that happened during your prep">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">Were you ever told your bowel prep wasn't good enough — or asked to repeat any of it?</p>
+        <div class="opts" data-name="b5" data-single>
+          <label class="opt"><input type="radio" name="b5" value="no">No</label>
+          <label class="opt"><input type="radio" name="b5" value="told">Yes — told it wasn't good enough, but I didn't have to repeat it</label>
+          <label class="opt"><input type="radio" name="b5" value="whole">Yes, I had to repeat the whole prep</label>
+          <label class="opt"><input type="radio" name="b5" value="part">Yes, part of it</label>
+          <label class="opt"><input type="radio" name="b5" value="cancelled">The procedure was cancelled or rescheduled because of it</label>
+          <label class="opt"><input type="radio" name="b5" value="unsure">Not sure</label>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">When you were unsure about something during the prep, what did you do?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="b6">
+          <label class="opt"><input type="checkbox" name="b6" value="called">Called the clinic</label>
+          <label class="opt"><input type="checkbox" name="b6" value="online">Searched online</label>
+          <label class="opt"><input type="checkbox" name="b6" value="family">Asked a family member or friend</label>
+          <label class="opt"><input type="checkbox" name="b6" value="pharmacist">Asked a pharmacist</label>
+          <label class="opt"><input type="checkbox" name="b6" value="guessed">Just guessed</label>
+          <label class="opt"><input type="checkbox" name="b6" value="skipped">Skipped or gave up on that part</label>
+          <label class="opt"><input type="checkbox" name="b6" value="nothing" data-exclusive>Nothing — waited it out</label>
+          <label class="opt"><input type="checkbox" name="b6" value="other">Something else</label>
+        </div>
+        <div class="sub hidden" data-showif="b6=other">
+          <input type="text" name="b6_other" placeholder="What did you do?" aria-label="Other thing you did when unsure during prep">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">How many times did you contact the clinic before the procedure (call, message, portal)?</p>
+        <div class="opts" data-name="b7" data-single>
+          <label class="opt"><input type="radio" name="b7" value="0">0</label>
+          <label class="opt"><input type="radio" name="b7" value="1">1</label>
+          <label class="opt"><input type="radio" name="b7" value="2">2</label>
+          <label class="opt"><input type="radio" name="b7" value="3+">3 or more</label>
+        </div>
+      </div>
+
+      <div class="sec">C · Instructions &amp; medications</div>
+      <div class="card">
+        <p class="q">How did you get your prep instructions, and from whom?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="c0">
+          <label class="opt"><input type="checkbox" name="c0" value="sheet">A printed sheet or PDF</label>
+          <label class="opt"><input type="checkbox" name="c0" value="nurse_call">A phone call from a nurse</label>
+          <label class="opt"><input type="checkbox" name="c0" value="verbal">Verbally at the clinic or when booking</label>
+          <label class="opt"><input type="checkbox" name="c0" value="gp">From my GP (family doctor)</label>
+          <label class="opt"><input type="checkbox" name="c0" value="video">A video</label>
+          <label class="opt"><input type="checkbox" name="c0" value="portal">An app, portal, or website</label>
+          <label class="opt"><input type="checkbox" name="c0" value="sms">A text message (SMS)</label>
+          <label class="opt"><input type="checkbox" name="c0" value="pharmacist">From a pharmacist</label>
+          <label class="opt"><input type="checkbox" name="c0" value="other">Other</label>
+        </div>
+        <div class="sub hidden" data-showif="c0=other">
+          <input type="text" name="c0_other" placeholder="Please tell us" aria-label="Other source of your prep instructions">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">How clear were the instructions you were given? <span class="hint" style="font-weight:400">If they varied, answer for the least clear time.</span></p>
+        <div class="scale" data-name="c1"></div>
+        <div class="scale-ends"><span>Very unclear</span><span>Very clear</span></div>
+      </div>
+      <div class="card">
+        <p class="q">Around the time of any of your colonoscopies, were you taking any of these?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="c2">
+          <label class="opt"><input type="checkbox" name="c2" value="bloodthinner">Blood thinners (e.g. warfarin, aspirin, clopidogrel, apixaban)</label>
+          <label class="opt"><input type="checkbox" name="c2" value="diabetes">Diabetes medication</label>
+          <label class="opt"><input type="checkbox" name="c2" value="neither" data-exclusive>Neither</label>
+          <label class="opt"><input type="checkbox" name="c2" value="unsure" data-exclusive>Not sure</label>
+        </div>
+        <div class="sub hidden" id="c3-block">
+          <p class="q">Were you clearly told how to manage these around the procedure? <span class="hint" style="font-weight:400">If you take more than one kind, or it varied, answer for whichever you were told about least clearly.</span></p>
+          <div class="scale" data-name="c3"></div>
+          <div class="scale-ends"><span>Not at all</span><span>Completely</span></div>
+          <p class="q" style="margin-top:16px">If you were unsure, what did you do?</p>
+          <textarea name="c3a" aria-label="If you were unsure about your medications, what did you do"></textarea>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">Around the time of any colonoscopy, were you taking a weight-loss or diabetes medicine such as Ozempic, Wegovy, Mounjaro, Saxenda, or Rybelsus (these are known as GLP-1 medicines)?</p>
+        <div class="opts" data-name="glp1" data-single>
+          <label class="opt"><input type="radio" name="glp1" value="no">No</label>
+          <label class="opt"><input type="radio" name="glp1" value="yes">Yes</label>
+          <label class="opt"><input type="radio" name="glp1" value="unsure">Not sure</label>
+        </div>
+        <div class="sub hidden" data-showif="glp1=yes">
+          <p class="q">Were you given any special instructions about pausing it before the procedure?</p>
+          <div class="opts" data-name="glp1_instr" data-single>
+            <label class="opt"><input type="radio" name="glp1_instr" value="yes">Yes, clear instructions</label>
+            <label class="opt"><input type="radio" name="glp1_instr" value="vague">Something, but it was unclear</label>
+            <label class="opt"><input type="radio" name="glp1_instr" value="no">No, it was never mentioned</label>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">At its worst, how anxious did you feel before a colonoscopy?</p>
+        <div class="scale" data-name="c4"></div>
+        <div class="scale-ends"><span>Not at all</span><span>Extremely</span></div>
+      </div>
+      <div class="card">
+        <p class="q">What were you worried about beforehand?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="concerns">
+          <label class="opt"><input type="checkbox" name="concerns" value="prep_enough">Whether my prep was good enough</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="pain">Pain or discomfort</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="sedation">The sedation or anaesthetic</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="findings">What they might find</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="results">Waiting for the results</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="embarrass">Embarrassment</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="cost">Cost</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="meds">Managing my medications</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="none" data-exclusive>I wasn't really worried</label>
+          <label class="opt"><input type="checkbox" name="concerns" value="other">Other</label>
+        </div>
+        <div class="sub hidden" data-showif="concerns=other">
+          <input type="text" name="concerns_other" placeholder="Please tell us" aria-label="Other worry before the procedure">
+        </div>
+      </div>
+
+      <div class="sec">D · After the procedure</div>
+      <div class="card">
+        <p class="q">After you went home, did you have any symptoms you weren't sure about?</p>
+        <div class="opts" data-name="d1" data-single>
+          <label class="opt"><input type="radio" name="d1" value="no">No</label>
+          <label class="opt"><input type="radio" name="d1" value="yes">Yes</label>
+        </div>
+        <div class="sub hidden" data-showif="d1=yes">
+          <p class="q">What were they?</p>
+          <textarea name="d1a"></textarea>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">If you had a concern after going home, what did you do?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="d2">
+          <label class="opt"><input type="checkbox" name="d2" value="called">Called the clinic</label>
+          <label class="opt"><input type="checkbox" name="d2" value="ed">Went to an emergency department</label>
+          <label class="opt"><input type="checkbox" name="d2" value="online">Searched online</label>
+          <label class="opt"><input type="checkbox" name="d2" value="waited">Waited to see if it passed</label>
+          <label class="opt"><input type="checkbox" name="d2" value="family">Asked a family member or friend</label>
+          <label class="opt"><input type="checkbox" name="d2" value="nothing" data-exclusive>Nothing</label>
+          <label class="opt"><input type="checkbox" name="d2" value="other">Something else</label>
+          <label class="opt"><input type="checkbox" name="d2" value="noconcern" data-exclusive>I had no concerns</label>
+        </div>
+        <div class="sub hidden" data-showif="d2=other">
+          <input type="text" name="d2_other" placeholder="What did you do?" aria-label="Other thing you did about a concern after">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">After discharge, did you know who to contact if something wasn't right? <span class="hint" style="font-weight:400">If it varied, answer for the least sure time.</span></p>
+        <div class="scale" data-name="d3_who"></div>
+        <div class="scale-ends"><span>No idea</span><span>Completely clear</span></div>
+      </div>
+      <div class="card">
+        <p class="q">After discharge, did you know what signs meant you should worry? <span class="hint" style="font-weight:400">If it varied, answer for the least sure time.</span></p>
+        <div class="scale" data-name="d3_worry"></div>
+        <div class="scale-ends"><span>No idea</span><span>Completely clear</span></div>
+      </div>
+      <div class="card">
+        <p class="q">After the procedure, did you have any follow-up — and who from?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="d4">
+          <label class="opt"><input type="checkbox" name="d4" value="auto">An automated message from the clinic</label>
+          <label class="opt"><input type="checkbox" name="d4" value="person">A person from the clinic called or messaged me</label>
+          <label class="opt"><input type="checkbox" name="d4" value="gp">I followed up with my GP (family doctor)</label>
+          <label class="opt"><input type="checkbox" name="d4" value="chased">I had to chase it up myself</label>
+          <label class="opt"><input type="checkbox" name="d4" value="none" data-exclusive>No follow-up</label>
+          <label class="opt"><input type="checkbox" name="d4" value="dontremember" data-exclusive>Don't remember</label>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">Were you told you'll need a repeat or surveillance colonoscopy in future?</p>
+        <div class="opts" data-name="d6" data-single>
+          <label class="opt"><input type="radio" name="d6" value="date">Yes — with a specific date/timeframe</label>
+          <label class="opt"><input type="radio" name="d6" value="nodate">Yes — but no date was given</label>
+          <label class="opt"><input type="radio" name="d6" value="no">No</label>
+          <label class="opt"><input type="radio" name="d6" value="unsure">Not sure</label>
+        </div>
+      </div>
+
+      <div class="sec">E · Time &amp; effort</div>
+      <div class="card">
+        <p class="q">Did you take time off work for it?</p>
+        <div class="opts" data-name="e1" data-single>
+          <label class="opt"><input type="radio" name="e1" value="no">No</label>
+          <label class="opt"><input type="radio" name="e1" value="na">I don't work / not applicable</label>
+          <label class="opt"><input type="radio" name="e1" value="yes">Yes</label>
+        </div>
+        <div class="sub hidden" data-showif="e1=yes">
+          <p class="q">How many days?</p>
+          <input type="number" name="e1_days" min="0" step="1" placeholder="days">
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">How long did you have to travel to get to the procedure (one way)?</p>
+        <div class="opts" data-name="e2" data-single>
+          <label class="opt"><input type="radio" name="e2" value="lt30">Under 30 minutes</label>
+          <label class="opt"><input type="radio" name="e2" value="30to60">30 to 59 minutes</label>
+          <label class="opt"><input type="radio" name="e2" value="1to2">1 to 2 hours</label>
+          <label class="opt"><input type="radio" name="e2" value="gt2">More than 2 hours</label>
+        </div>
+      </div>
+      <div class="card">
+        <p class="q">Did someone need to drive you or look after you?</p>
+        <div class="opts" data-name="e3" data-single>
+          <label class="opt"><input type="radio" name="e3" value="no">No</label>
+          <label class="opt"><input type="radio" name="e3" value="yes">Yes</label>
+        </div>
+        <div class="sub hidden" data-showif="e3=yes">
+          <p class="q">Did they have to take time off work to do it?</p>
+          <div class="opts" data-name="e3_timeoff" data-single>
+            <label class="opt"><input type="radio" name="e3_timeoff" value="no">No</label>
+            <label class="opt"><input type="radio" name="e3_timeoff" value="yes">Yes</label>
+            <label class="opt"><input type="radio" name="e3_timeoff" value="unsure">Not sure</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">F · In your own words</div>
+      <div class="card">
+        <p class="q">Was there anything that was handled really well?</p>
+        <textarea name="f0" aria-label="Anything handled well"></textarea>
+      </div>
+      <div class="card">
+        <p class="q">If you could change one thing about the whole experience, what would it be?</p>
+        <textarea name="f1" aria-label="One thing you'd change"></textarea>
+      </div>
+      <div class="card">
+        <p class="q">What was the single most frustrating moment?</p>
+        <textarea name="f2"></textarea>
+      </div>
+    </div>
+
+    <!-- N-BRANCH (booked / never) -->
+    <div id="n-branch" class="hidden">
+      <div class="sec">A few quick questions</div>
+      <div class="card">
+        <p class="q">Which of these are reasons you haven't had it (yet)?</p>
+        <p class="hint">Choose all that apply.</p>
+        <div class="opts" data-name="n1">
+          <label class="opt"><input type="checkbox" name="n1" value="prep">The prep puts me off</label>
+          <label class="opt"><input type="checkbox" name="n1" value="fear">Fear of the procedure</label>
+          <label class="opt"><input type="checkbox" name="n1" value="embarrass">Embarrassment</label>
+          <label class="opt"><input type="checkbox" name="n1" value="cost">Cost</label>
+          <label class="opt"><input type="checkbox" name="n1" value="time">Can't get time off</label>
+          <label class="opt"><input type="checkbox" name="n1" value="roundtoit">Haven't gotten around to it</label>
+          <label class="opt"><input type="checkbox" name="n1" value="nosymptoms">No symptoms so it feels unnecessary</label>
+          <label class="opt"><input type="checkbox" name="n1" value="badpast">Bad past experience</label>
+          <label class="opt"><input type="checkbox" name="n1" value="other">Other</label>
+        </div>
+        <div class="sub hidden" data-showif="n1=other">
+          <input type="text" name="n1_other" placeholder="Please tell us" aria-label="Other reason you haven't had a colonoscopy">
+        </div>
+      </div>
+      <div class="card" id="n2-card">
+        <p class="q">How are you feeling about the prep ahead of you?</p>
+        <textarea name="n2"></textarea>
+      </div>
+      <div class="card">
+        <p class="q">What would have to be true for you to feel comfortable going ahead?</p>
+        <textarea name="n3"></textarea>
+      </div>
+    </div>
+
+    <!-- CONTACT — details appear only after the matching opt-in is ticked -->
+    <div id="contact" class="card hidden" style="background:var(--accent-soft)">
+      <p class="q">Want to find out more?</p>
+      <p class="hint">Both are optional. We only ask for your details for the option you tick,
+        and use them only for that.</p>
+
+      <label class="opt">
+        <input type="checkbox" name="updates_ok" value="yes">
+        Keep me updated about this research
+      </label>
+
+      <!-- INTERVIEW CONSENT — only for people who've had a colonoscopy -->
+      <div id="interview-consent" class="hidden" style="margin-top:12px">
+        <p class="hint" style="margin-bottom:10px">We're also doing short 15-minute interviews — a
+          relaxed chat by phone or video.
+          <!-- RAFFLE PRIZE — edit the amount/currency or remove this sentence:
+               --> Eligible participants go into a prize draw for a A$100 gift card
+          (18+, some countries only — see <a href="prize-terms.html" target="_blank" rel="noopener">draw terms</a>).</p>
+
+        <label class="opt">
+          <input type="checkbox" name="contact_ok" value="yes">
+          Yes — you can contact me for a short interview (and enter me in the prize draw)
+        </label>
+      </div>
+
+      <!-- Fields revealed only when an opt-in is ticked -->
+      <div id="contact-fields" class="hidden" style="margin-top:14px">
+        <input type="email" name="email" placeholder="Email" aria-label="Your email">
+        <div id="interview-fields" class="hidden">
+          <input type="text" name="first_name" placeholder="First name" aria-label="Your first name">
+          <!-- Phone offered only where we can call (Australia / United States / Canada) -->
+          <div id="phone-fields" class="hidden">
+            <input type="tel" name="phone" placeholder="Phone — if you'd prefer a call" aria-label="Your phone number">
+            <p class="q" style="margin-top:18px;font-size:1rem">How should we reach you?</p>
+            <div class="opts" data-name="contact_pref" data-single>
+              <label class="opt"><input type="radio" name="contact_pref" value="email">Email</label>
+              <label class="opt"><input type="radio" name="contact_pref" value="phone">Phone call</label>
+              <label class="opt"><input type="radio" name="contact_pref" value="either">Either is fine</label>
+            </div>
+          </div>
+          <input type="text" name="best_time" placeholder="Best day/time to reach you" aria-label="Best day or time to reach you" style="margin-top:14px">
+        </div>
+      </div>
+    </div>
+
+    <!-- Abuse-protection widget mounts here only if TURNSTILE_SITE_KEY is set (default: empty = no widget, no third-party request). -->
+    <div id="cf-turnstile" style="margin-top:16px"></div>
+    <button type="submit" class="submit">Submit</button>
+    <footer>Your answers and contact details are kept private and used only for this research.
+      Thank you for helping us understand the experience.</footer>
+    </div><!-- /#gate -->
+  </form>
+
+  <div id="thanks" class="done hidden">
+    <h2>Thank you</h2>
+    <p>Your answers help us understand what this experience is really like. If you left your
+       details, we'll be in touch. We appreciate it.</p>
+    <p style="margin-top:18px">Curious what we're building? <a href="https://aesciahealth.com">Learn about Aescia</a>.</p>
+  </div>
+</div>
+
+<script>
+/* ── Where responses go ───────────────────────────────────────────
+   Paste your Google Apps Script Web app URL here (the one ending in /exec)
+   after deploying apps-script.gs from a Sheet in james@aesciahealth.com's
+   Drive. See SETUP.md for the 5-step deploy.
+   Left null = preview mode: answers are logged to the console and the
+   thank-you shows, but nothing is sent anywhere. */
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxXZ-7JQh0YXK534WvWxUijMFX6OILj4h6q-jidUk17QdFXL6jSYyfVZUz3YkF9sdh7bA/exec";
+
+// One id per page load, reused across retries so a re-send dedupes instead of duplicating.
+const SUBMISSION_ID = (self.crypto && crypto.randomUUID)
+  ? crypto.randomUUID()
+  : (String(Date.now()) + '-' + Math.round(performance.now()));
+
+// Abuse protection (Cloudflare Turnstile). OFF unless you set TURNSTILE_SITE_KEY here AND
+// the matching secret in Apps Script Properties (see SETUP.md). When empty, no widget is
+// shown and no third-party request is ever made. The script loads only AFTER consent.
+const TURNSTILE_SITE_KEY = '';   // e.g. "0x4AAAA..." to enable
+let turnstileToken = '';
+function loadTurnstile(){
+  const box=document.getElementById('cf-turnstile');
+  if(!TURNSTILE_SITE_KEY || box.dataset.loaded) return;
+  box.dataset.loaded='1';
+  window.__ts_cb=t=>{ turnstileToken=t; };
+  const sc=document.createElement('script');
+  sc.src='https://challenges.cloudflare.com/turnstile/v0/api.js';
+  sc.async=true; sc.defer=true;
+  sc.onload=()=>{ if(window.turnstile){ window.turnstile.render('#cf-turnstile',{sitekey:TURNSTILE_SITE_KEY,callback:window.__ts_cb}); } };
+  document.head.appendChild(sc);
+}
+
+// gate the survey behind the consent tick
+const consentEl=document.querySelector('[name="consent"]');
+consentEl.addEventListener('change',()=>{
+  document.getElementById('gate').classList.toggle('hidden',!consentEl.checked);
+  if(consentEl.checked) loadTurnstile();
+});
+
+// text-size toggle
+document.querySelectorAll('.tsbtns button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.body.dataset.size=b.dataset.size;
+    document.querySelectorAll('.tsbtns button').forEach(x=>{
+      const on=x===b; x.classList.toggle('active',on); x.setAttribute('aria-pressed',on);
+    });
+  });
+});
+
+// build 1–5 scales (keyboard/screen-reader operable, with end meanings on the radios)
+document.querySelectorAll('.scale[data-name]').forEach(s=>{
+  const n=s.dataset.name;
+  s.setAttribute('role','radiogroup');
+  let lo='', hi='';
+  const ends=s.nextElementSibling;
+  if(ends && ends.classList.contains('scale-ends')){
+    const sp=ends.querySelectorAll('span');
+    if(sp.length>=2){ lo=sp[0].textContent.trim(); hi=sp[sp.length-1].textContent.trim(); }
+  }
+  const mid=s.dataset.mid||'';
+  for(let i=1;i<=5;i++){
+    let lab=`${i} of 5`;
+    if(i===1 && lo) lab=`1 of 5, ${lo}`;
+    if(i===3 && mid) lab=`3 of 5, ${mid}`;
+    if(i===5 && hi) lab=`5 of 5, ${hi}`;
+    s.insertAdjacentHTML('beforeend',
+      `<label><input type="radio" name="${n}" value="${i}" aria-label="${lab}">${i}</label>`);
+  }
+});
+
+// Give every question group + free-text control an accessible name from its
+// question text (equivalent to fieldset/legend without restructuring the markup).
+function nearestQuestion(el){
+  let n=el;
+  while(n && n!==document.body){
+    let p=n.previousElementSibling;
+    while(p){
+      if(p.classList && p.classList.contains('q')) return p.textContent.trim();
+      p=p.previousElementSibling;
+    }
+    n=n.parentElement;
+  }
+  return '';
+}
+document.querySelectorAll('.scale').forEach(g=>{
+  if(!g.getAttribute('aria-label')){ const q=nearestQuestion(g); if(q) g.setAttribute('aria-label',q); }
+});
+document.querySelectorAll('.opts').forEach(g=>{
+  if(!g.getAttribute('aria-label')){ const q=nearestQuestion(g); if(q){ g.setAttribute('role','group'); g.setAttribute('aria-label',q); } }
+});
+document.querySelectorAll('textarea,input[type=number],input[type=text],input[type=tel],input[type=email]').forEach(inp=>{
+  if(!inp.getAttribute('aria-label')){ const q=nearestQuestion(inp); if(q) inp.setAttribute('aria-label',q); }
+  if(!inp.hasAttribute('maxlength') && inp.type!=='number'){
+    inp.setAttribute('maxlength', inp.tagName==='TEXTAREA' ? '2000' : '200');
+  }
+});
+
+function markChecked(name){
+  document.querySelectorAll(`[name="${name}"]`).forEach(r=>{
+    const box=r.closest('label'); if(box) box.classList.toggle('checked',r.checked);
+  });
+}
+
+// highlight selection + enforce exclusive ("none"/"don't remember") options
+document.addEventListener('change',e=>{
+  const el=e.target;
+  if(el.type==='radio'){
+    markChecked(el.name);
+  }
+  if(el.type==='checkbox'){
+    if(el.checked){
+      const group=document.querySelectorAll(`input[type=checkbox][name="${el.name}"]`);
+      if(el.hasAttribute('data-exclusive')){
+        group.forEach(x=>{ if(x!==el) x.checked=false; });   // exclusive clears the rest
+      }else{
+        group.forEach(x=>{ if(x.hasAttribute('data-exclusive')) x.checked=false; }); // others clear exclusive
+      }
+      markChecked(el.name);
+    }else{
+      const box=el.closest('label'); if(box) box.classList.remove('checked');
+    }
+  }
+  applyBranching();
+});
+
+function val(name){const el=document.querySelector(`[name="${name}"]:checked`);return el?el.value:null;}
+
+function applyBranching(){
+  const s=val('screener');
+  const hadOne=['had_lt12','had_1to3','had_gt3'].includes(s);
+  const nBranch=['booked','never'].includes(s);
+  document.getElementById('main-branch').classList.toggle('hidden',!hadOne);
+  document.getElementById('n-branch').classList.toggle('hidden',!nBranch);
+  // everyone can find out more + leave an email — shown whenever the survey is open,
+  // even if the (optional) screener hasn't been answered
+  document.getElementById('contact').classList.remove('hidden');
+  // interview consent (+ prize draw) only for people who've actually had a colonoscopy
+  document.getElementById('interview-consent').classList.toggle('hidden',!hadOne);
+  // n2 (prep-ahead) only for booked
+  document.getElementById('n2-card').classList.toggle('hidden',s!=='booked');
+  // conditional sub-questions (works for both radio and checkbox triggers)
+  document.querySelectorAll('[data-showif]').forEach(sub=>{
+    const [name,v]=sub.dataset.showif.split('=');
+    const on=!!document.querySelector(`[name="${name}"][value="${v}"]:checked`);
+    sub.classList.toggle('hidden',!on);
+  });
+  // medication-management follow-up shows if blood thinners OR diabetes is ticked
+  const medMgmt=!!document.querySelector('[name="c2"][value="bloodthinner"]:checked')
+    || !!document.querySelector('[name="c2"][value="diabetes"]:checked');
+  document.getElementById('c3-block').classList.toggle('hidden',!medMgmt);
+  // contact details appear only after an opt-in is ticked, and interview fields
+  // only after the interview opt-in — so we never collect details without a purpose
+  const wantsUpdates=!!document.querySelector('[name="updates_ok"]:checked');
+  const wantsInterview=!!document.querySelector('[name="contact_ok"]:checked') && hadOne;
+  document.getElementById('contact-fields').classList.toggle('hidden',!(wantsUpdates||wantsInterview));
+  document.getElementById('interview-fields').classList.toggle('hidden',!wantsInterview);
+  // phone only offered for an interview AND where we can call (AU / US / CA)
+  const countryEl=document.querySelector('[name="country"]');
+  const countryVal=countryEl?countryEl.value:'';
+  const callable=['AU','US','CA'].includes(countryVal);
+  document.getElementById('phone-fields').classList.toggle('hidden',!(wantsInterview&&callable));
+  // write-in box when country is "Other"
+  document.getElementById('country-other').classList.toggle('hidden',countryVal!=='Other');
+}
+
+// TEST-EXPORT-START (pure validation helpers — also loaded by run-tests.js)
+function isEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v)); }
+function isPhone(v){ return /^[+()\-\s0-9]{6,20}$/.test(String(v)); }
+function isNonNegInt(v){ return /^\d+$/.test(String(v)); }
+// Returns an error string if the payload's format/contact rules fail, else null.
+function validateClient(out){
+  if(out.email && !isEmail(out.email)) return 'Please enter a valid email address (like name@example.com).';
+  if(out.phone && !isPhone(out.phone)) return 'Please enter a valid phone number.';
+  if(out.e1_days!==undefined && !isNonNegInt(out.e1_days)) return 'Days off work must be a whole number (0 or more).';
+  if(out.updates_ok==='yes' && !(out.email && isEmail(out.email))) return 'To get research updates, please add a valid email address.';
+  if(out.contact_ok==='yes' && !((out.email && isEmail(out.email)) || (out.phone && isPhone(out.phone)))) return 'For an interview, please add a valid email address or phone number.';
+  if(out.contact_ok==='yes' && !out.country) return 'To go in the prize draw, please choose your country near the top.';
+  if(out.contact_pref==='phone' && !(out.phone && isPhone(out.phone))) return 'You chose a phone call — please add a valid phone number.';
+  if(out.contact_pref==='email' && !(out.email && isEmail(out.email))) return 'You chose email — please add a valid email address.';
+  if(out.consent!=='yes') return 'Please tick "I’m over 18 and I agree to take part" first.';
+  return null;
+}
+if(typeof module!=='undefined'&&module.exports){ module.exports={isEmail,isPhone,isNonNegInt,validateClient}; }
+// TEST-EXPORT-END
+
+function showFormError(msg){
+  let box=document.getElementById('form-error');
+  if(!box){
+    box=document.createElement('p');
+    box.id='form-error'; box.setAttribute('role','alert'); box.setAttribute('tabindex','-1');
+    box.style.cssText='color:var(--error);font-weight:600;margin-top:14px';
+    document.querySelector('button.submit').insertAdjacentElement('afterend',box);
+  }
+  box.textContent=msg; box.focus(); box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+document.getElementById('survey').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const form=e.target;
+
+  // Collect only VISIBLE, checked, non-empty controls — skips any hidden branch,
+  // so answers from a path the person navigated away from are never submitted.
+  const out={};
+  form.querySelectorAll('input,select,textarea').forEach(el=>{
+    if(!el.name || el.closest('.hidden')) return;
+    if((el.type==='radio'||el.type==='checkbox') && !el.checked) return;
+    const v=(el.value||'').trim();
+    if(v==='') return;
+    if(out[el.name]!==undefined){ out[el.name]=[].concat(out[el.name],v); }
+    else { out[el.name]=v; }
+  });
+
+  // Native constraint validation, but only on VISIBLE controls (novalidate keeps the
+  // browser from choking on hidden-branch controls; the collector already excluded them).
+  const visibleControls=[...form.querySelectorAll('input,select,textarea')]
+    .filter(el=>el.name && !el.closest('.hidden'));
+  for(const el of visibleControls){
+    if(!el.checkValidity()){
+      el.focus();
+      showFormError(el.validationMessage||'Please check this field.');
+      return;
+    }
+  }
+  // Format + contact-purpose rules (also unit-tested in run-tests.js).
+  const err=validateClient(out);
+  if(err){ showFormError(err); return; }
+
+  // Abuse-protection token (only when enabled).
+  if(TURNSTILE_SITE_KEY){
+    if(!turnstileToken){ showFormError('Please complete the "I’m human" check above and try again.'); return; }
+    out.cf_token=turnstileToken;
+  }
+
+  out.submission_id=SUBMISSION_ID;
+
+  const btn=form.querySelector('button.submit');
+  btn.disabled=true; btn.textContent='Sending…';
+
+  if(FORM_ENDPOINT){
+    try{
+      // text/plain + no-cors avoids a CORS preflight to Apps Script. We can't read the
+      // reply. A thrown error usually means the send never completed (offline/DNS); the
+      // stable SUBMISSION_ID lets a retry dedupe server-side rather than duplicate.
+      await fetch(FORM_ENDPOINT,{method:'POST',mode:'no-cors',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(out)});
+    }catch(err){
+      console.error('submit failed',err);
+      btn.disabled=false; btn.textContent='Submit';
+      showFormError('Sorry — we couldn’t send your answers. Please check your connection and try again.');
+      return;
+    }
+  }else{
+    console.log('Survey response (preview mode — not sent):',out);
+  }
+  form.classList.add('hidden');
+  const thanks=document.getElementById('thanks');
+  thanks.classList.remove('hidden');
+  thanks.setAttribute('role','status');
+  thanks.setAttribute('tabindex','-1');
+  thanks.focus();
+  window.scrollTo(0,0);
+});
+</script>
+</body>
+</html>
