@@ -59,8 +59,11 @@
   .dots span{width:26px;height:26px;border-radius:50%;background:var(--soft);border:1px solid var(--line);}
   .dots span.hit{background:var(--brass);border-color:var(--brass);}
   /* average-on-a-scale bar */
-  .scalewrap{margin:26px 0 6px;}
+  .scalewrap{margin:26px 0 28px;}
   .scaletrack{position:relative;height:26px;background:var(--soft);border-radius:7px;}
+  .tracklabel{position:absolute;left:12px;top:50%;transform:translateY(-50%);
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#1B2745;white-space:nowrap;}
   .scalefill{height:100%;background:var(--brass);border-radius:7px 0 0 7px;}
   .scaletick{position:absolute;top:6px;bottom:6px;width:1px;background:var(--line);}
   .scalemark{position:absolute;top:-7px;bottom:-7px;width:3px;background:var(--ink);border-radius:2px;transform:translateX(-1px);}
@@ -161,11 +164,12 @@ function segBar(segs){
 }
 
 // 1-5 average shown as a filled track with the number marked at its position
-function scaleBar(avg, lowLabel, highLabel){
+function scaleBar(avg, lowLabel, highLabel, trackLabel){
   var pct = Math.max(0, Math.min(100, 100*(avg-1)/4));
-  return '<div class="scalewrap" role="img" aria-label="Average '+avg+' out of 5">'+
+  return '<div class="scalewrap" role="img" aria-label="'+esc(trackLabel||'Average')+' '+avg+' out of 5">'+
     '<div class="scaletrack">'+
       '<div class="scalefill" style="width:'+pct.toFixed(1)+'%"></div>'+
+      (trackLabel ? '<span class="tracklabel">'+esc(trackLabel)+'</span>' : '')+
       '<div class="scaletick" style="left:25%"></div>'+
       '<div class="scaletick" style="left:50%"></div>'+
       '<div class="scaletick" style="left:75%"></div>'+
@@ -281,7 +285,7 @@ function render(data){
     for (var av=1; av<=5; av++) anxSum += av * g(c,'c4',String(av));
     var anxAvg = anxN ? Math.round(10*anxSum/anxN)/10 : 0;
     html += card('The worry', 'What kept people up beforehand', 'People could pick more than one.',
-      (anxN >= 10 ? scaleBar(anxAvg, 'Not at all anxious', 'Extremely anxious') : '') +
+      (anxN >= 10 ? scaleBar(anxAvg, 'Not at all anxious', 'Extremely anxious', 'Anxiety level') : '') +
       bars(worryItems, total) +
       (chill ? '<p class="punch">…while <b>'+pc(chill, total)+'</b> were not really worried at all 😌</p>' : ''));
   }
