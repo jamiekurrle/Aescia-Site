@@ -36,7 +36,7 @@ eq('US', 'subsequent', TA_low, NORMAL, '10 years', 'US: no 3rd-round rule -> nor
 // --- Europe, ESGE Recs 4 and 5 ---------------------------------------------
 eq('EU', 'second', HIGH, NORMAL, '5 years', 'clear surveillance after high baseline')
 eq('EU', 'second', HIGH, HIGH, '3 years', 'polyps requiring surveillance found')
-eq('EU', 'subsequent', NORMAL, NORMAL, 'Return to screening', 'two consecutive clear exams')
+eq('EU', 'subsequent', NORMAL, NORMAL, 'FIT every 2 years', 'two consecutive clear exams')
 eq('EU', 'subsequent', HIGH, HIGH, '3 years', 'high at a later round')
 
 // --- Ontario, ColonCancerCheck subsequent column ---------------------------
@@ -53,7 +53,7 @@ eq('CA_BC', 'second', HIGH, NORMAL, '5 years, then as per findings', 'high-track
 eq('CA_BC', 'second', HIGH, [L('TA', 2, 6)], '5 years, then as per findings', '3-year track, 0-4 low-risk -> 5y')
 
 // --- Australia, Tables 14-16 -----------------------------------------------
-eq('AU', 'second', TA_low, NORMAL, 'Return to FOBT screening (National Bowel Cancer Screening Program)', 'low 1st, 0 adenomas 2nd')
+eq('AU', 'second', TA_low, NORMAL, 'iFOBT every 2 years', 'low 1st, 0 adenomas 2nd')
 eq('AU', 'second', TA_low, [L('TA', 2, 6)], '10 years', 'low 1st, low 2nd')
 eq('AU', 'second', HIGH, NORMAL, '5 years', 'high 1st, 0 adenomas 2nd')
 eq('AU', 'second', TA_low, [L('TA', 3, 12, true)], '3 years', 'low 1st, 3-4 adenomas >=10mm HGD 2nd -> 3y (1-year tier begins at >=5 adenomas)')
@@ -65,8 +65,8 @@ eq('US', 'second', NORMAL, NORMAL, '10 years', 'US: normal 1st -> 10-year screen
 eq('US', 'second', NORMAL, HIGH, '3 years', 'US: normal 1st, high-risk 2nd -> fresh baseline')
 eq('CA_ON', 'second', NORMAL, NORMAL, '10 years', 'ON: normal 1st, normal 2nd -> FIT in 10 years (baseline no-polyp row)')
 eq('CA_AB', 'second', NORMAL, NORMAL, '10 years', 'AB: normal 1st -> FIT in 10 years')
-eq('AU', 'second', NORMAL, NORMAL, 'Return to FOBT screening (National Bowel Cancer Screening Program)', 'AU: normal 1st -> NBCSP')
-eq('EU', 'second', NORMAL, NORMAL, 'Return to screening', 'EU: normal 1st -> screening')
+eq('AU', 'second', NORMAL, NORMAL, 'iFOBT every 2 years', 'AU: normal 1st -> NBCSP')
+eq('EU', 'second', NORMAL, NORMAL, 'FIT every 2 years', 'EU: normal 1st -> screening')
 
 // --- Presentation flags (guideline-reference discipline) -------------------
 function ok(cond: boolean, label: string) {

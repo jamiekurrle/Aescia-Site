@@ -1205,9 +1205,9 @@ const BC: JurSpec = {
       id: 'bc_normal',
       kind: 'rule',
       when: (a) => !a.hasAnyLesion,
-      interval: 'No surveillance required. Resume screening',
-      modality: null,
-      driver: 'A normal colonoscopy',
+      interval: 'FIT in 10 years, then every 2 years',
+      modality: 'Routine screening (BC Colon Screening Program)',
+      driver: 'A normal colonoscopy — no surveillance required; the patient resumes routine screening',
       quote:
         'Individuals with no polyps or only hyperplastic polyps < 10 mm* | No surveillance required. Resume screening as per: BCGuidelines.ca: Screening for the Purposes of Colorectal Cancer Prevention and Detection in Asymptomatic Adults',
       location: 'Table 1: Surveillance Recommendations, row 1, page 3',
@@ -1217,9 +1217,9 @@ const BC: JurSpec = {
       id: 'bc_hp_small_only',
       kind: 'rule',
       when: (a) => a.hpCount > 0 && a.hpMaxSize < 10 && a.adenomaCount === 0 && a.sslCount === 0 && a.tsaCount === 0,
-      interval: 'No surveillance required. Resume screening',
-      modality: null,
-      driver: 'Only hyperplastic polyps under 10 mm',
+      interval: 'FIT in 10 years, then every 2 years',
+      modality: 'Routine screening (BC Colon Screening Program)',
+      driver: 'Only hyperplastic polyps under 10 mm — no surveillance required; the patient resumes routine screening',
       quote:
         'Individuals with no polyps or only hyperplastic polyps < 10 mm* | No surveillance required. Resume screening as per: BCGuidelines.ca: Screening for the Purposes of Colorectal Cancer Prevention and Detection in Asymptomatic Adults',
       location: 'Table 1: Surveillance Recommendations, row 1, page 3',
@@ -1379,8 +1379,8 @@ const EU: JurSpec = {
       id: 'eu_no_polyp',
       kind: 'rule',
       when: (a) => !a.hasAnyLesion,
-      interval: 'Return to screening',
-      modality: 'Screening programme',
+      interval: 'FIT every 2 years',
+      modality: 'Routine screening (national programme)',
       driver:
         'A colonoscopy that found no lesions is outside ESGE post-polypectomy surveillance; the patient returns to their population screening programme',
       // ESGE's post-polypectomy recommendations are scoped to patients who had a
@@ -1391,6 +1391,7 @@ const EU: JurSpec = {
       riskYears: YRS.y10,
       notes: () => [
         'This is the population-screening default, not an ESGE post-polypectomy interval: ESGE\'s recommendations apply to "all patients who had one or more polyps that were completely removed", so a no-lesion colonoscopy falls outside them.',
+        'Routine screening cadence: quantitative faecal immunochemical test generally every 2 years, ages 50 to 74 (Council of the EU 2022 recommendation); the exact interval is set by each national programme.',
       ],
     },
     {
@@ -1695,14 +1696,15 @@ const AU: JurSpec = {
       id: 'au_normal',
       kind: 'rule',
       when: (a) => !a.hasAnyLesion,
-      interval: 'Return to FOBT screening (National Bowel Cancer Screening Program)',
-      modality: 'FOBT',
+      interval: 'iFOBT every 2 years',
+      modality: 'Routine screening (National Bowel Cancer Screening Program)',
       driver:
         'A colonoscopy that found no lesions is not a surveillance starting point; an average-risk patient returns to the National Bowel Cancer Screening Program',
       quote:
         'Surveillance recommendations should be made after the colon has been cleared of all significant neoplasia, once histology is known and in the context of individualised assessment of benefit to the patient.',
       location: 'Table 3 explanatory text, p.102',
       riskYears: YRS.y10,
+      notes: () => ['Routine average-risk screening cadence: immunochemical faecal occult blood test every 2 years, ages 45 to 74 (National Bowel Cancer Screening Program, health.gov.au).'],
     },
     {
       id: 'au_piecemeal',
@@ -1727,9 +1729,9 @@ const AU: JurSpec = {
       // or serrated lesion governs the interval; the practice point that isolated
       // small hyperplastic polyps need no surveillance does not license ignoring it.
       when: (a) => a.hpCount > 0 && a.hpMaxSize < 10 && a.adenomaCount === 0 && a.sslCount === 0 && a.tsaCount === 0,
-      interval: 'No surveillance required',
-      modality: null,
-      driver: 'Small true hyperplastic polyp(s)',
+      interval: 'iFOBT every 2 years',
+      modality: 'Routine screening (National Bowel Cancer Screening Program)',
+      driver: 'Small true hyperplastic polyp(s) only — no colonoscopy surveillance required; the patient continues routine screening',
       quote: 'Small, particularly distal, true hyperplastic polyps do not require surveillance.',
       location: 'Practice point, Summary of recommendations, p.285',
       riskYears: YRS.y10,
@@ -2191,12 +2193,13 @@ const euSubsequent: SubFn = (prior, cur, _stage, src) => {
       strength: 'Weak recommendation, low quality evidence',
     })
   return subResult(src, {
-    interval: 'Return to screening',
-    modality: 'Screening programme',
-    driver: 'No polyps requiring surveillance at this colonoscopy or the previous one',
+    interval: 'FIT every 2 years',
+    modality: 'Routine screening (national programme)',
+    driver: 'No polyps requiring surveillance at this colonoscopy or the previous one — the patient returns to routine screening',
     quote: 'After that, if no polyps requiring surveillance are detected, patients can be returned to screening.',
     location: 'Recommendation 4, 2020 statement',
     strength: 'Weak recommendation, low quality evidence',
+    notes: ['Routine screening cadence: quantitative faecal immunochemical test generally every 2 years, ages 50 to 74 (Council of the EU 2022 recommendation); the exact interval is set by each national programme.'],
     riskYears: 10,
   })
 }
@@ -2327,9 +2330,9 @@ const abSubsequent: SubFn = (prior, cur, stage, src, rawCur) => {
   }
   if (stage === 'subsequent' && abNoSurvNeeded(prior) && abNoSurvNeeded(cur))
     return subResult(src, {
-      interval: 'Consider return to average-risk FIT screening',
-      modality: 'FIT',
-      driver: 'Two clear surveillance colonoscopies with no polyps requiring surveillance',
+      interval: 'FIT every year',
+      modality: 'Routine screening (Alberta Colorectal Cancer Screening Program)',
+      driver: 'Two clear surveillance colonoscopies with no polyps requiring surveillance — consider returning to routine FIT screening',
       quote: 'If no polyps requiring surveillance are detected at both scopes, the panel recommends considering a return to average risk FIT screening.',
       location: 'Recommendation, "Subsequent colonoscopy surveillance after high-risk lesions", Sadowski et al. 2024',
       discretion: true,
@@ -2389,7 +2392,7 @@ const bcSubsequent: SubFn = (prior, cur, _stage, src, rawCur) => {
 // findings. Every cell verified against the source PDF, cell by cell.
 type AuInt = 'FOBT' | '10Y' | '5Y' | '3Y' | '1Y'
 type AuCat = 'none' | 'low' | 'int' | 'high' | 'highest'
-const AU_LABEL: Record<AuInt, string> = { FOBT: 'Return to FOBT screening (National Bowel Cancer Screening Program)', '10Y': '10 years', '5Y': '5 years', '3Y': '3 years', '1Y': '1 year' }
+const AU_LABEL: Record<AuInt, string> = { FOBT: 'iFOBT every 2 years', '10Y': '10 years', '5Y': '5 years', '3Y': '3 years', '1Y': '1 year' }
 const AU_RISK: Record<AuInt, number> = { FOBT: 10, '10Y': 10, '5Y': 5, '3Y': 3, '1Y': 1 }
 const AU_CAT_LABEL: Record<AuCat, string> = { none: 'no adenomas', low: 'low-risk adenomas', int: 'intermediate-risk adenomas', high: 'high-risk adenomas', highest: 'highest-risk adenomas' }
 // Table 14: row = first-colonoscopy adenoma tier, column = this-colonoscopy tier.
@@ -2437,7 +2440,7 @@ const AU_QUOTE =
 function auResult(src: Source, code: AuInt, driver: string, location: string, stage: Stage): Result {
   return subResult(src, {
     interval: AU_LABEL[code],
-    modality: code === 'FOBT' ? 'FOBT' : 'Colonoscopy',
+    modality: code === 'FOBT' ? 'Routine screening (National Bowel Cancer Screening Program)' : 'Colonoscopy',
     driver,
     quote: AU_QUOTE,
     location,

@@ -491,8 +491,8 @@ export function PageContent({ initialJur = 'US' }: { initialJur?: JurId }) {
             <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-foreground/72 mb-4">After a surveillance colonoscopy</h2>
             <p className="text-[14.5px] leading-relaxed text-foreground/80">{SUBSEQUENT_REF[jur]}</p>
             <p className="text-[13px] leading-relaxed text-foreground/72 mt-4">
-              Where the guideline stops, the calculator says so rather than setting a number. Enter the
-              earlier and most recent exams in the calculator above to see the rule and its wording.
+              The calculator gives a timeframe wherever the guideline or the screening programme sets one,
+              and labels anything the guideline does not itself specify.
             </p>
           </div>
           <div>
@@ -771,8 +771,7 @@ function ResultCard({
       {intervalTo && <div className="font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/50 mb-2.5">Interval {intervalTo.replace(/^To /, 'to ')}</div>}
       {result.prepInadequate && !prepPathway && (
         <div className="mb-4 bg-[#FBF3E3] border border-[#EAD9B0] rounded px-3 py-2.5 text-[12px] leading-relaxed text-[#7A5312]">
-          <strong>Bowel preparation inadequate.</strong> These findings are outside the guideline's
-          scope regardless, so that result stands.
+          <strong>Bowel preparation inadequate.</strong> These findings are outside the guideline's scope regardless.
         </div>
       )}
 
@@ -822,7 +821,7 @@ function ResultCard({
           <div className="font-display text-[22px] lg:text-[25px] font-bold tracking-tight text-foreground leading-tight mb-1">Interval depends on the result</div>
           {breakdown.length > 0 ? (
             <>
-              <div className="text-[12.5px] text-foreground/72 mb-3">The interval for this examination if the pending lesion turns out to be each histology, holding any other lesions entered fixed.</div>
+              <div className="text-[12.5px] text-foreground/72 mb-3">Interval for this exam by the pending lesion's final histology (other lesions held fixed).</div>
               <Breakdown breakdown={breakdown} />
             </>
           ) : (
