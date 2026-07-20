@@ -135,6 +135,46 @@ function donut(pct){
 
 function pc(n, denom){ return denom ? Math.round(100*n/denom) + '%' : '0%'; }
 
+// SVG pie: segs = [[label, n, cssColor], ...]
+function pie(segs){
+  var total = 0, i;
+  for(i=0;i<segs.length;i++) total += segs[i][1];
+  if(!total) return '';
+  var r=52, cx=65, cy=65, a0=-Math.PI/2, paths='';
+  for(i=0;i<segs.length;i++){
+    if(!segs[i][1]) continue;
+    var frac = segs[i][1]/total, a1 = a0 + frac*2*Math.PI;
+    if (frac >= 0.999) {
+      paths += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+segs[i][2]+'"/>';
+    } else {
+      var x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+      var large = (a1-a0) > Math.PI ? 1 : 0;
+      paths += '<path d="M'+cx+' '+cy+' L'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+large+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' Z" fill="'+segs[i][2]+'"/>';
+    }
+    a0 = a1;
+  }
+  var legend = '<div class="legend" style="flex-direction:column;gap:7px">';
+  for(i=0;i<segs.length;i++){
+    if(!segs[i][1]) continue;
+    legend += '<span><i style="background:'+segs[i][2]+'"></i>'+esc(segs[i][0])+': <b>'+pc(segs[i][1], total)+'</b></span>';
+  }
+  legend += '</div>';
+  return '<div class="hero"><svg width="130" height="130" viewBox="0 0 130 130" role="img" aria-hidden="true">'+paths+'</svg><div class="side">'+legend+'</div></div>';
+}
+
+// semicircle gauge for a 1-5 average
+function gauge(avg, lowLabel, highLabel){
+  var frac = Math.max(0, Math.min(1, (avg-1)/4));
+  var r=58, cx=75, cy=78, circ=Math.PI*r;
+  return '<div style="text-align:center;margin:4px 0 2px">'+
+    '<svg width="150" height="92" viewBox="0 0 150 92" role="img" aria-label="'+avg+' out of 5">'+
+    '<path d="M17 78 A58 58 0 0 1 133 78" fill="none" stroke="var(--soft)" stroke-width="16" stroke-linecap="round"/>'+
+    '<path d="M17 78 A58 58 0 0 1 133 78" fill="none" stroke="var(--brass)" stroke-width="16" stroke-linecap="round" stroke-dasharray="'+(circ*frac).toFixed(1)+' '+circ.toFixed(1)+'"/>'+
+    '<text x="75" y="72" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink)">'+avg+'</text>'+
+    '<text x="75" y="88" text-anchor="middle" font-size="11" fill="var(--muted)">out of 5</text></svg>'+
+    '<div class="legend" style="justify-content:space-between;max-width:200px;margin:0 auto"><span>'+esc(lowLabel)+'</span><span>'+esc(highLabel)+'</span></div></div>';
+}
+
 function render(data){
   var c = data.counts || {}, total = data.total || 0;
   document.getElementById('meta').innerHTML = '<strong>Live results from everyone who has shared their experience so far.</strong> The page updates as more people take the survey.';
@@ -150,6 +190,18 @@ function render(data){
       '<div class="hero">'+donut(pct)+
       '<div class="side"><div class="big">'+pct+'% found the bowel prep harder than they expected.</div>'+
       '<p class="sub" style="margin-top:8px">Only '+pc(easier, rated)+' found it easier than expected. The rest got roughly what they braced for.</p></div></div>');
+  }
+
+  // 1b — first-timers vs veterans pie
+  var vetTot = sumKeys(c,'count',['1','2','3','4+']);
+  if (vetTot >= 10) {
+    html += card('The people', 'First-timers and veterans', 'How many colonoscopies respondents have had.',
+      pie([
+        ['First colonoscopy', g(c,'count','1'), 'var(--accent-strong)'],
+        ['Second', g(c,'count','2'), 'var(--accent)'],
+        ['Third', g(c,'count','3'), 'var(--brass)'],
+        ['Four or more', g(c,'count','4+'), 'var(--brass-soft)']
+      ]));
   }
 
   // 2 — what actually went wrong
@@ -195,23 +247,22 @@ function render(data){
         : (called === 0 && online > 0 ? '<p class="punch">The clinic barely got a call.</p>' : '')));
   }
 
-  // 5 — paper vs apps
+  // 5 — how instructions arrived, one ranked list
   var sheet = g(c,'c0','sheet'), digital = g(c,'c0','portal') + g(c,'c0','video');
   if (sheet >= 5) {
     var chanItems = [
+      ['📄 A printed sheet or PDF', sheet],
       ['🗣️ Told verbally at the clinic or booking', g(c,'c0','verbal')],
       ['📞 A phone call from a nurse', g(c,'c0','nurse_call')],
       ['💊 From a pharmacist', g(c,'c0','pharmacist')],
       ['🩺 From their GP', g(c,'c0','gp')],
-      ['💬 A text message', g(c,'c0','sms')]
+      ['💬 A text message', g(c,'c0','sms')],
+      ['🎬 A video', g(c,'c0','video')],
+      ['📱 An app or portal', g(c,'c0','portal')]
     ].filter(function(x){return x[1]>0;}).sort(function(a,z){return z[1]-a[1];});
     html += card('The instructions', 'Everyone got paper', 'How people received their prep instructions. People could pick more than one.',
-      '<div class="pva">'+
-      '<div class="opt"><div class="em">📄</div><div class="val">'+pc(sheet,total)+'</div><div class="cap">got a printed sheet or PDF</div></div>'+
-      '<div class="opt"><div class="em">📱</div><div class="val">'+pc(digital,total)+'</div><div class="cap">got an app, portal, or video</div></div>'+
-      '</div>' +
-      (chanItems.length ? '<p class="sub" style="margin:14px 0 4px">The in-between channels:</p>' + bars(chanItems, total) : '') +
-      (digital===0 ? '<p class="punch">For a multi-day, easy-to-fumble process, <b>nobody</b> has reported getting digital help. In '+(new Date().getFullYear())+'.</p>' : ''));
+      bars(chanItems, total) +
+      (digital===0 ? '<p class="punch">For a multi-day, easy-to-fumble process, <b>nobody</b> has reported getting an app, portal, or video. In '+(new Date().getFullYear())+'.</p>' : ''));
   }
 
   // 6 — what people worried about
@@ -226,7 +277,12 @@ function render(data){
   ].filter(function(x){return x[1]>0;}).sort(function(a,z){return z[1]-a[1];});
   if (worryItems.length >= 3) {
     var chill = g(c,'concerns','none');
+    var anxN = sumKeys(c,'c4',['1','2','3','4','5']);
+    var anxSum = 0;
+    for (var av=1; av<=5; av++) anxSum += av * g(c,'c4',String(av));
+    var anxAvg = anxN ? Math.round(10*anxSum/anxN)/10 : 0;
     html += card('The worry', 'What kept people up beforehand', 'People could pick more than one.',
+      (anxN >= 10 ? gauge(anxAvg, 'Not at all anxious', 'Extremely') : '') +
       bars(worryItems, total) +
       (chill ? '<p class="punch">…while <b>'+pc(chill, total)+'</b> were not really worried at all 😌</p>' : ''));
   }
@@ -266,6 +322,23 @@ function render(data){
       '<div class="opt"><div class="em">🧑‍🤝‍🧑</div><div class="val">'+pc(carerOff, carer)+'</div><div class="cap">of those helpers ALSO took time off work</div></div>'+
       '</div>');
   }
+
+  // 8b — recurring themes from written answers (curated, paraphrased, updated
+  // periodically; only themes raised independently by multiple people, never quotes)
+  var THEMES = [
+    ['🥤', 'The sheer volume of the prep drink is the thing people mention most. Several said the hardest part was physically getting that much liquid down, some to the point of struggling to keep it down at all.'],
+    ['🤢', 'The taste came up again and again. For several people it triggered gagging or vomiting, and more than one asked why nothing better-tasting exists.'],
+    ['🌙', 'The overnight toll surprised people: preps that kicked in hours later than expected, whole nights spent in the bathroom, and final doses set for before dawn.'],
+    ['⏳', 'Procedure-day waiting, while hungry, dehydrated, and tired, was described by several as the worst stretch, especially when start times slipped and nobody gave updates.'],
+    ['🍽️', 'Food kept coming up: boring restricted diets, headaches from not eating, sore skin, and a wish for the practical survival tips that nobody official ever mentions.'],
+    ['💚', 'The bright spot, mentioned by many: the people. Kind nurses, calm anaesthetists, and doctors who came by afterwards to explain what they found.']
+  ];
+  var themeHtml = '';
+  for (var th=0; th<THEMES.length; th++) {
+    themeHtml += '<div class="brow" style="align-items:flex-start"><div style="flex:0 0 30px;font-size:1.3rem;line-height:1.3">'+THEMES[th][0]+'</div>'+
+      '<div style="flex:1;font-size:.95rem;line-height:1.55">'+esc(THEMES[th][1])+'</div></div>';
+  }
+  html += card('In their own words (almost)', 'What people kept writing in', 'Recurring themes from the written answers, paraphrased. We never publish individual quotes.', themeHtml);
 
   // 9 — where from
   var flags = [['🇦🇺 Australia','AU'],['🇺🇸 United States','US'],['🇬🇧 United Kingdom','GB'],['🇨🇦 Canada','CA'],['🇳🇿 New Zealand','NZ'],['🇮🇪 Ireland','IE'],['🌍 Somewhere else','Other']];
