@@ -46,7 +46,7 @@
   .brow .fill{height:100%;background:var(--accent);border-radius:6px;min-width:3px;
     transition:width .6s ease;}
   .brow.top .fill{background:var(--brass);}
-  .brow .n{flex:0 0 34px;text-align:right;font-weight:700;font-size:.95rem;}
+  .brow .n{flex:0 0 46px;text-align:right;font-weight:700;font-size:.95rem;}
   /* faceoff */
   .face{display:flex;gap:12px;text-align:center;margin-top:14px;flex-wrap:wrap;}
   .face .opt{flex:1;min-width:110px;background:var(--soft);border-radius:var(--radius);padding:14px 8px;}
@@ -110,7 +110,7 @@ function card(kick, title, sub, body){
     (sub?'<p class="sub">'+esc(sub)+'</p>':'')+body+'</div>';
 }
 
-function bars(items, denom){ // items: [label, n], first row highlighted
+function bars(items, denom){ // items: [label, n]; shows % of denom, first row highlighted
   var max = 0, i;
   for(i=0;i<items.length;i++) if(items[i][1]>max) max=items[i][1];
   if(!max) return '';
@@ -119,7 +119,7 @@ function bars(items, denom){ // items: [label, n], first row highlighted
     var w = Math.round(100*items[i][1]/max);
     h+='<div class="brow'+(i===0?' top':'')+'"><div class="lbl">'+esc(items[i][0])+'</div>'+
        '<div class="track"><div class="fill" style="width:'+Math.max(w,3)+'%"></div></div>'+
-       '<div class="n">'+items[i][1]+'</div></div>';
+       '<div class="n">'+pc(items[i][1], denom)+'</div></div>';
   }
   return h;
 }
@@ -133,9 +133,11 @@ function donut(pct){
     '<text x="75" y="84" text-anchor="middle" font-size="34" font-weight="700" fill="var(--ink)">'+pct+'%</text></svg>';
 }
 
+function pc(n, denom){ return denom ? Math.round(100*n/denom) + '%' : '0%'; }
+
 function render(data){
   var c = data.counts || {}, total = data.total || 0;
-  document.getElementById('meta').innerHTML = '<strong>'+total+' people have shared their experience so far.</strong> The page updates as more come in.';
+  document.getElementById('meta').innerHTML = '<strong>Live results from everyone who has shared their experience so far.</strong> The page updates as more people take the survey.';
   var html = '';
 
   // 1 — the prep vs expectations donut
@@ -147,7 +149,7 @@ function render(data){
     html += card('The prep', 'It was harder than people expected', null,
       '<div class="hero">'+donut(pct)+
       '<div class="side"><div class="big">'+pct+'% found the bowel prep harder than they expected.</div>'+
-      '<p class="sub" style="margin-top:8px">'+easier+' of '+rated+' found it easier than expected. The rest got roughly what they braced for.</p></div></div>');
+      '<p class="sub" style="margin-top:8px">Only '+pc(easier, rated)+' found it easier than expected. The rest got roughly what they braced for.</p></div></div>');
   }
 
   // 2 — what actually went wrong
@@ -162,8 +164,8 @@ function render(data){
   if (wrongItems.length >= 2) {
     var smooth = g(c,'b4','none');
     html += card('The prep', 'What went wrong on the night', 'People could pick more than one.',
-      bars(wrongItems) +
-      (smooth ? '<p class="punch">…and <b>'+smooth+'</b> sailed through with no problems at all 🎉</p>' : ''));
+      bars(wrongItems, total) +
+      (smooth ? '<p class="punch">…and <b>'+pc(smooth, total)+'</b> sailed through with no problems at all 🎉</p>' : ''));
   }
 
   // 3 — one in N had prep flagged or redone
@@ -174,21 +176,23 @@ function render(data){
     for (var d=0; d<oneIn; d++) dots += '<span'+(d===0?' class="hit"':'')+'></span>';
     html += card('The prep', 'About 1 in '+oneIn+' had their prep flagged', null,
       '<div class="dots" role="img" aria-label="1 in '+oneIn+'">'+dots+'</div>'+
-      '<p class="punch"><b>'+redo+' of '+total+'</b> were told their prep was not good enough, or had to redo some or all of it'+
-      (g(c,'b5','whole') ? ', including <b>'+g(c,'b5','whole')+'</b> who repeated the whole thing' : '')+'.</p>');
+      '<p class="punch"><b>About 1 in '+oneIn+'</b> were told their prep was not good enough, or had to redo some or all of it'+
+      (g(c,'b5','whole') ? ' — including full start-again redos' : '')+'.</p>');
   }
 
   // 4 — who people asked when confused
   var online = g(c,'b6','online'), called = g(c,'b6','called');
   var toughed = sumKeys(c,'b6',['guessed','skipped','nothing']);
   if (online + called + toughed >= 8) {
+    var ratio = called > 0 ? Math.round(online / called) : 0;
     html += card('The 3am question', 'Who people asked when they got stuck', 'During the prep, when something was unclear.',
       '<div class="face">'+
-      '<div class="opt'+(online>=called&&online>=toughed?' win':'')+'"><div class="em">🔍</div><div class="val">'+online+'</div><div class="cap">searched the internet</div></div>'+
-      '<div class="opt'+(toughed>online&&toughed>=called?' win':'')+'"><div class="em">🤞</div><div class="val">'+toughed+'</div><div class="cap">guessed, skipped it, or waited</div></div>'+
-      '<div class="opt'+(called>online&&called>toughed?' win':'')+'"><div class="em">📞</div><div class="val">'+called+'</div><div class="cap">called the clinic</div></div>'+
+      '<div class="opt'+(online>=called&&online>=toughed?' win':'')+'"><div class="em">🔍</div><div class="val">'+pc(online,total)+'</div><div class="cap">searched the internet</div></div>'+
+      '<div class="opt'+(toughed>online&&toughed>=called?' win':'')+'"><div class="em">🤞</div><div class="val">'+pc(toughed,total)+'</div><div class="cap">guessed, skipped it, or waited</div></div>'+
+      '<div class="opt'+(called>online&&called>toughed?' win':'')+'"><div class="em">📞</div><div class="val">'+pc(called,total)+'</div><div class="cap">called the clinic</div></div>'+
       '</div>'+
-      (online > called ? '<p class="punch">The internet is winning <b>'+online+' to '+called+'</b> against the people who actually know the answer.</p>' : ''));
+      (called > 0 && ratio >= 2 ? '<p class="punch">The internet is winning roughly <b>'+ratio+' to 1</b> against the people who actually know the answer.</p>'
+        : (called === 0 && online > 0 ? '<p class="punch">The clinic barely got a call.</p>' : '')));
   }
 
   // 5 — paper vs apps
@@ -196,8 +200,8 @@ function render(data){
   if (sheet >= 5) {
     html += card('The instructions', 'Everyone got paper', 'How people received their prep instructions.',
       '<div class="pva">'+
-      '<div class="opt"><div class="em">📄</div><div class="val">'+sheet+'</div><div class="cap">got a printed sheet or PDF</div></div>'+
-      '<div class="opt"><div class="em">📱</div><div class="val">'+digital+'</div><div class="cap">got an app, portal, or video</div></div>'+
+      '<div class="opt"><div class="em">📄</div><div class="val">'+pc(sheet,total)+'</div><div class="cap">got a printed sheet or PDF</div></div>'+
+      '<div class="opt"><div class="em">📱</div><div class="val">'+pc(digital,total)+'</div><div class="cap">got an app, portal, or video</div></div>'+
       '</div>' +
       (digital===0 ? '<p class="punch">For a multi-day, easy-to-fumble process, <b>nobody</b> has reported getting digital help. In '+(new Date().getFullYear())+'.</p>' : ''));
   }
@@ -215,8 +219,8 @@ function render(data){
   if (worryItems.length >= 3) {
     var chill = g(c,'concerns','none');
     html += card('The worry', 'What kept people up beforehand', 'People could pick more than one.',
-      bars(worryItems) +
-      (chill ? '<p class="punch">…while <b>'+chill+'</b> were not really worried at all 😌</p>' : ''));
+      bars(worryItems, total) +
+      (chill ? '<p class="punch">…while <b>'+pc(chill, total)+'</b> were not really worried at all 😌</p>' : ''));
   }
 
   // 7 — the next-scope mystery
@@ -233,13 +237,13 @@ function render(data){
     for (var si=0; si<segs.length; si++){
       if(!segs[si][0]) continue;
       segHtml += '<div style="flex:'+segs[si][0]+';background:'+segs[si][1]+'"></div>';
-      legHtml += '<span><i style="background:'+segs[si][1]+'"></i>'+esc(segs[si][2])+': <b>'+segs[si][0]+'</b></span>';
+      legHtml += '<span><i style="background:'+segs[si][1]+'"></i>'+esc(segs[si][2])+': <b>'+pc(segs[si][0], dTot)+'</b></span>';
     }
     segHtml += '</div>'; legHtml += '</div>';
     var told = dDate + dNo;
     html += card('The follow-up', 'You need another one. When? Nobody said.', null,
       segHtml + legHtml +
-      (told >= 4 && dNo > 0 ? '<p class="punch">Of the <b>'+told+'</b> told they would need another colonoscopy, <b>'+dNo+'</b> left without any timeframe for it.</p>' : ''));
+      (told >= 4 && dNo > 0 ? '<p class="punch">Of those told they would need another colonoscopy, <b>'+pc(dNo, told)+'</b> left without any timeframe for it.</p>' : ''));
   }
 
   // 8 — it takes two
@@ -249,9 +253,9 @@ function render(data){
   if (carerAns >= 10) {
     html += card('The hidden cost', 'It takes two people to have one colonoscopy', null,
       '<div class="face">'+
-      '<div class="opt"><div class="em">🧑‍💼</div><div class="val">'+workOff+'/'+workAns+'</div><div class="cap">of workers took time off for their own procedure</div></div>'+
-      '<div class="opt win"><div class="em">🚗</div><div class="val">'+carer+'/'+carerAns+'</div><div class="cap">needed someone to drive or look after them</div></div>'+
-      '<div class="opt"><div class="em">🧑‍🤝‍🧑</div><div class="val">'+carerOff+'</div><div class="cap">of those helpers ALSO took time off work</div></div>'+
+      '<div class="opt"><div class="em">🧑‍💼</div><div class="val">'+pc(workOff, workAns)+'</div><div class="cap">of workers took time off for their own procedure</div></div>'+
+      '<div class="opt win"><div class="em">🚗</div><div class="val">'+pc(carer, carerAns)+'</div><div class="cap">needed someone to drive or look after them</div></div>'+
+      '<div class="opt"><div class="em">🧑‍🤝‍🧑</div><div class="val">'+pc(carerOff, carer)+'</div><div class="cap">of those helpers ALSO took time off work</div></div>'+
       '</div>');
   }
 
@@ -260,7 +264,7 @@ function render(data){
   var flagRows = [];
   for (var fi=0; fi<flags.length; fi++){
     var fn = g(c,'country',flags[fi][1]);
-    if (fn) flagRows.push(flags[fi][0]+' <b>'+fn+'</b>');
+    if (fn) flagRows.push(flags[fi][0]+' <b>'+pc(fn, total)+'</b>');
   }
   if (flagRows.length >= 2) {
     html += card('The map', 'Where responses have come from', null, '<p class="flags">'+flagRows.join(' &nbsp;·&nbsp; ')+'</p>');
