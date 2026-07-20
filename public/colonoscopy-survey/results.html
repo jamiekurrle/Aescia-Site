@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Colonoscopy experience survey: results so far</title>
+<title>Colonoscopy experience survey: what people told us</title>
 <style>
   :root{
     --bg:#F4F6FA; --card:#FFFFFF; --ink:#1B2745; --muted:#475A82;
     --line:#E2E6EE; --soft:#EBEFF5; --accent:#5C7A99; --accent-soft:#E2EAF4;
-    --accent-strong:#40597A; --brass:#B89D6A; --radius:8px;
+    --accent-strong:#40597A; --brass:#B89D6A; --brass-soft:#DEC9A5; --radius:10px;
   }
   @media (prefers-color-scheme: dark){
     :root{ --bg:#0F1A33; --card:#1B2745; --ink:#F4F6FA; --muted:#B7CBE0;
@@ -21,47 +21,79 @@
   body{margin:0;background:var(--bg);color:var(--ink);
     font:17px/1.6 'Geist',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
   a{color:var(--accent-strong);text-decoration:underline;font-weight:600;}
-  .wrap{max-width:640px;margin:0 auto;padding:26px 18px 80px;}
-  header h1{font-size:1.5rem;margin:.2em 0 .15em;font-weight:700;letter-spacing:-0.025em;}
+  .wrap{max-width:660px;margin:0 auto;padding:26px 18px 80px;}
+  header h1{font-size:1.6rem;margin:.2em 0 .15em;font-weight:700;letter-spacing:-0.025em;}
   header p{color:var(--muted);margin:.2em 0 0;}
   .meta{background:var(--accent-soft);border:1px solid var(--line);border-radius:var(--radius);
     padding:13px 16px;margin:20px 0;font-size:.95rem;}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px 18px 16px;margin:14px 0;}
-  .card h2{font-size:1.06rem;margin:0 0 2px;font-weight:600;letter-spacing:-0.01em;}
-  .sub{color:var(--muted);font-size:.9rem;margin:0 0 12px;}
-  .row{display:flex;align-items:center;gap:10px;margin:7px 0;}
-  .lbl{flex:0 0 46%;font-size:.92rem;line-height:1.35;}
-  .barbox{flex:1;background:var(--soft);border-radius:5px;height:20px;overflow:hidden;}
-  .bar{height:100%;background:var(--accent);border-radius:5px;min-width:2px;}
-  .num{flex:0 0 74px;text-align:right;font-size:.9rem;color:var(--muted);white-space:nowrap;}
-  .num b{color:var(--ink);}
+    padding:20px 20px 18px;margin:16px 0;}
+  .card h2{font-size:1.12rem;margin:0 0 4px;font-weight:700;letter-spacing:-0.01em;}
+  .kick{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);
+    font-weight:700;margin:0 0 6px;}
+  .sub{color:var(--muted);font-size:.92rem;margin:2px 0 14px;}
+  .punch{font-size:1.02rem;margin:12px 0 0;line-height:1.55;}
+  .punch b{color:var(--accent-strong);}
+  /* hero donut */
+  .hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+  .hero .donut{flex:0 0 150px;}
+  .hero .side{flex:1;min-width:200px;}
+  .hero .side .big{font-size:1.25rem;font-weight:700;line-height:1.35;}
+  /* bars */
+  .brow{display:flex;align-items:center;gap:10px;margin:9px 0;}
+  .brow .lbl{flex:0 0 52%;font-size:.93rem;line-height:1.3;}
+  .brow .track{flex:1;background:var(--soft);border-radius:6px;height:24px;overflow:hidden;}
+  .brow .fill{height:100%;background:var(--accent);border-radius:6px;min-width:3px;
+    transition:width .6s ease;}
+  .brow.top .fill{background:var(--brass);}
+  .brow .n{flex:0 0 34px;text-align:right;font-weight:700;font-size:.95rem;}
+  /* faceoff */
+  .face{display:flex;gap:12px;text-align:center;margin-top:14px;flex-wrap:wrap;}
+  .face .opt{flex:1;min-width:110px;background:var(--soft);border-radius:var(--radius);padding:14px 8px;}
+  .face .opt .em{font-size:1.7rem;line-height:1;}
+  .face .opt .val{font-size:1.7rem;font-weight:700;margin:6px 0 2px;}
+  .face .opt .cap{font-size:.84rem;color:var(--muted);line-height:1.35;}
+  .face .opt.win{background:var(--accent-soft);border:1px solid var(--accent);}
+  /* dots pictogram */
+  .dots{display:flex;gap:8px;margin:14px 0 6px;flex-wrap:wrap;}
+  .dots span{width:26px;height:26px;border-radius:50%;background:var(--soft);border:1px solid var(--line);}
+  .dots span.hit{background:var(--brass);border-color:var(--brass);}
+  /* segmented bar */
+  .seg{display:flex;height:30px;border-radius:7px;overflow:hidden;margin:14px 0 10px;}
+  .seg div{min-width:2px;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:.86rem;color:var(--muted);}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;}
+  /* paper vs app */
+  .pva{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;}
+  .pva .opt{flex:1;min-width:120px;text-align:center;background:var(--soft);border-radius:var(--radius);padding:16px 10px;}
+  .pva .em{font-size:2rem;}
+  .pva .val{font-size:1.8rem;font-weight:700;}
+  .pva .cap{font-size:.85rem;color:var(--muted);}
+  .flags{font-size:1rem;line-height:2;}
+  .flags b{font-size:1.05rem;}
   .state{padding:36px 18px;text-align:center;color:var(--muted);}
-  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:14px 0;}
-  .tile{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 14px;}
-  .tile .big{font-size:1.9rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;}
-  .tile .cap{color:var(--muted);font-size:.88rem;margin-top:6px;line-height:1.4;}
   footer{color:var(--muted);font-size:.85rem;margin-top:30px;line-height:1.7;}
   .cta{display:block;text-align:center;background:#1B2745;color:#fff;border-radius:var(--radius);
-    padding:14px;margin:26px 0 8px;font-weight:600;text-decoration:none;}
+    padding:15px;margin:28px 0 8px;font-weight:600;text-decoration:none;font-size:1.02rem;}
   @media (prefers-color-scheme: dark){ .cta{background:#F4F6FA;color:#1B2745;} }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>What people have told us so far</h1>
-    <p>Live combined results from the colonoscopy experience survey. Anonymous, counts only.</p>
+    <h1>What people told us about their colonoscopies</h1>
+    <p>Live results from the colonoscopy experience survey. Anonymous, combined answers only.</p>
   </header>
 
   <div class="meta" id="meta">Loading the latest results…</div>
-  <div id="blocks"><div class="state">Fetching the numbers…</div></div>
+  <div id="blocks"><div class="state">Crunching the numbers…</div></div>
 
-  <a class="cta" href="./">Had a colonoscopy? Add your experience</a>
+  <a class="cta" href="./">Had a colonoscopy? Add your experience, it takes about 4 minutes</a>
 
   <footer>
-    This page shows combined answers only; no individual response can be identified. It is general
-    information about survey responses, not medical advice. The survey is open until 14 August 2026.
+    Early numbers from a small, self-selected group; a first look, not a study. This page shows
+    combined answers only; no individual response can be identified. General information, not
+    medical advice. The survey is open until 14 August 2026.
     <br><br>Run by <a href="https://aesciahealth.com">Aescia</a> · <a href="prize-terms.html">Prize draw terms</a>
   </footer>
 </div>
@@ -69,119 +101,181 @@
 <script>
 var ENDPOINT = "https://script.google.com/macros/s/AKfycbxXZ-7JQh0YXK534WvWxUijMFX6OILj4h6q-jidUk17QdFXL6jSYyfVZUz3YkF9sdh7bA/exec?results=1";
 
-// field -> value -> patient-facing label
-var L = {
-  b1: { '1':'Much easier than expected', '2':'A bit easier', '3':'About what they expected', '4':'A bit harder', '5':'Much harder than expected' },
-  b4: { taste:'Taste or nausea made it hard to finish', timing:'Unsure of the timing', ranout:'Ran out of time',
-        instructions:'Did not understand the instructions', diet:'Confused about what they could eat or drink',
-        meds:'Unsure about their regular medications', other:'Something else', none:'Nothing went wrong' },
-  b5: { no:'No', told:'Told it was not good enough (no repeat)', whole:'Had to repeat the whole prep',
-        part:'Repeated part of it', cancelled:'Procedure cancelled or rescheduled', unsure:'Not sure' },
-  concerns: { prep_enough:'Whether their prep was good enough', pain:'Pain or discomfort', sedation:'The sedation or anaesthetic',
-        findings:'What the doctors might find', results:'Waiting for the results', embarrass:'Embarrassment',
-        cost:'Cost', meds:'Managing their medications', none:'Not really worried', other:'Something else' },
-  d2: { called:'Called the clinic', ed:'Went to an emergency department', online:'Searched online',
-        waited:'Waited to see if it passed', family:'Asked family or a friend', nothing:'Did nothing',
-        other:'Something else', noconcern:'Had no concerns' },
-  d6: { date:'Yes, with a specific timeframe', nodate:'Yes, but no date was given', no:'No', unsure:'Not sure' },
-  glp1_instr: { yes:'Yes, clear instructions', vague:'Something, but it was unclear', no:'No, it was never mentioned' },
-  country: { US:'United States', CA:'Canada', AU:'Australia', NZ:'New Zealand', GB:'United Kingdom', IE:'Ireland', Other:'Somewhere else' }
-};
-
-// A deliberately short, lay-reader selection - not every question.
-// [field, title, subtitle, ordering] - 'fixed' keeps L order, 'sorted' is by count
-var BLOCKS = [
-  ['b1', 'How the bowel prep compared to what people expected', 'At its most difficult, across all their colonoscopies.', 'fixed'],
-  ['b4', 'What went wrong during the prep', 'People could pick more than one.', 'sorted'],
-  ['concerns', 'What people worried about beforehand', 'People could pick more than one.', 'sorted'],
-  ['country', 'Where responses have come from', '', 'sorted']
-];
-
-function sum(obj, keys) {
-  var t = 0;
-  for (var i = 0; i < keys.length; i++) t += (obj && obj[keys[i]]) || 0;
-  return t;
-}
-
-// Big lay-friendly headline numbers, computed from the same counts.
-function tiles(data) {
-  var c = data.counts || {};
-  var out = [];
-  // harder than expected: b1 of 4-5, out of people who rated the prep
-  var rated = sum(c.b1, ['1', '2', '3', '4', '5']);
-  if (rated >= 5) {
-    var harder = sum(c.b1, ['4', '5']);
-    out.push({ big: Math.round(100 * harder / rated) + '%', cap: 'found the prep harder than they expected' });
-  }
-  // prep flagged / redone / cancelled
-  var redo = sum(c.b5, ['told', 'whole', 'part', 'cancelled']);
-  if (redo > 0) {
-    out.push({ big: String(redo), cap: redo === 1 ? 'person was told their prep was not good enough, or had to redo it' : 'people were told their prep was not good enough, or had to redo it' });
-  }
-  // most common worry (skip the non-worries)
-  var worries = c.concerns || {}; var topKey = null, topN = 0;
-  for (var k in worries) {
-    if (k === 'none' || k === 'other') continue;
-    if (worries[k] > topN) { topN = worries[k]; topKey = k; }
-  }
-  if (topKey && topN >= 3) {
-    out.push({ big: L.concerns[topKey].toLowerCase(), cap: 'the most common worry beforehand', small: true });
-  }
-  return out;
-}
-
 function esc(s){ var d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function g(c,f,k){ return (c[f] && c[f][k]) || 0; }
+function sumKeys(c,f,keys){ var t=0; for(var i=0;i<keys.length;i++) t+=g(c,f,keys[i]); return t; }
+
+function card(kick, title, sub, body){
+  return '<div class="card"><p class="kick">'+esc(kick)+'</p><h2>'+esc(title)+'</h2>'+
+    (sub?'<p class="sub">'+esc(sub)+'</p>':'')+body+'</div>';
+}
+
+function bars(items, denom){ // items: [label, n], first row highlighted
+  var max = 0, i;
+  for(i=0;i<items.length;i++) if(items[i][1]>max) max=items[i][1];
+  if(!max) return '';
+  var h='';
+  for(i=0;i<items.length;i++){
+    var w = Math.round(100*items[i][1]/max);
+    h+='<div class="brow'+(i===0?' top':'')+'"><div class="lbl">'+esc(items[i][0])+'</div>'+
+       '<div class="track"><div class="fill" style="width:'+Math.max(w,3)+'%"></div></div>'+
+       '<div class="n">'+items[i][1]+'</div></div>';
+  }
+  return h;
+}
+
+function donut(pct){
+  var r=60, c=2*Math.PI*r, on=c*pct/100;
+  return '<svg class="donut" width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="'+pct+' percent">'+
+    '<circle cx="75" cy="75" r="'+r+'" fill="none" stroke="var(--soft)" stroke-width="18"/>'+
+    '<circle cx="75" cy="75" r="'+r+'" fill="none" stroke="var(--brass)" stroke-width="18" stroke-linecap="round" '+
+    'stroke-dasharray="'+on.toFixed(1)+' '+c.toFixed(1)+'" transform="rotate(-90 75 75)"/>'+
+    '<text x="75" y="84" text-anchor="middle" font-size="34" font-weight="700" fill="var(--ink)">'+pct+'%</text></svg>';
+}
 
 function render(data){
-  var total = data.total || 0;
-  document.getElementById('meta').innerHTML =
-    '<strong>' + total + ' responses so far.</strong> Updated every few minutes. Early numbers from a small, self-selected group, so treat them as a first look rather than a final answer.';
+  var c = data.counts || {}, total = data.total || 0;
+  document.getElementById('meta').innerHTML = '<strong>'+total+' people have shared their experience so far.</strong> The page updates as more come in.';
   var html = '';
-  var t = tiles(data);
-  if (t.length) {
-    html += '<div class="tiles">';
-    for (var ti = 0; ti < t.length; ti++) {
-      html += '<div class="tile"><div class="big"' + (t[ti].small ? ' style="font-size:1.15rem;line-height:1.3"' : '') + '>' +
-        esc(t[ti].big) + '</div><div class="cap">' + esc(t[ti].cap) + '</div></div>';
-    }
-    html += '</div>';
+
+  // 1 — the prep vs expectations donut
+  var rated = sumKeys(c,'b1',['1','2','3','4','5']);
+  if (rated >= 10) {
+    var harder = sumKeys(c,'b1',['4','5']);
+    var pct = Math.round(100*harder/rated);
+    var easier = sumKeys(c,'b1',['1','2']);
+    html += card('The prep', 'It was harder than people expected', null,
+      '<div class="hero">'+donut(pct)+
+      '<div class="side"><div class="big">'+pct+'% found the bowel prep harder than they expected.</div>'+
+      '<p class="sub" style="margin-top:8px">'+easier+' of '+rated+' found it easier than expected. The rest got roughly what they braced for.</p></div></div>');
   }
-  for (var b = 0; b < BLOCKS.length; b++) {
-    var field = BLOCKS[b][0], title = BLOCKS[b][1], sub = BLOCKS[b][2], mode = BLOCKS[b][3];
-    var counts = (data.counts && data.counts[field]) || {};
-    var labels = L[field];
-    // denominator: glp1_instr is out of people on a GLP-1; everything else out of all responses
-    var denom = total;
-    if (field === 'glp1_instr') {
-      denom = (data.counts && data.counts.glp1 && data.counts.glp1.yes) || 0;
-      if (!denom) continue; // nothing to show yet
-    }
-    var keys = Object.keys(labels);
-    if (mode === 'sorted') keys.sort(function(a,z){ return (counts[z]||0) - (counts[a]||0); });
-    var rowsHtml = '';
-    for (var k = 0; k < keys.length; k++) {
-      var key = keys[k], n = counts[key] || 0;
-      var pct = denom ? Math.round(100 * n / denom) : 0;
-      rowsHtml += '<div class="row"><div class="lbl">' + esc(labels[key]) + '</div>' +
-        '<div class="barbox"><div class="bar" style="width:' + Math.max(pct, n ? 2 : 0) + '%"></div></div>' +
-        '<div class="num"><b>' + n + '</b> · ' + pct + '%</div></div>';
-    }
-    html += '<div class="card"><h2>' + esc(title) + '</h2>' +
-      (sub ? '<p class="sub">' + esc(sub) + '</p>' : '<div style="height:8px"></div>') + rowsHtml + '</div>';
+
+  // 2 — what actually went wrong
+  var wrongItems = [
+    ['🤢 Taste or nausea', g(c,'b4','taste')],
+    ['⏰ Confused about timing', g(c,'b4','timing')],
+    ['🍽️ Confused about food and drink rules', g(c,'b4','diet')],
+    ['💊 Unsure about their medications', g(c,'b4','meds')],
+    ['🏃 Ran out of time', g(c,'b4','ranout')],
+    ['📄 Could not follow the instructions', g(c,'b4','instructions')]
+  ].filter(function(x){return x[1]>0;}).sort(function(a,z){return z[1]-a[1];});
+  if (wrongItems.length >= 2) {
+    var smooth = g(c,'b4','none');
+    html += card('The prep', 'What went wrong on the night', 'People could pick more than one.',
+      bars(wrongItems) +
+      (smooth ? '<p class="punch">…and <b>'+smooth+'</b> sailed through with no problems at all 🎉</p>' : ''));
   }
-  document.getElementById('blocks').innerHTML = html || '<div class="state">No responses yet. Be the first!</div>';
+
+  // 3 — one in N had prep flagged or redone
+  var redo = sumKeys(c,'b5',['told','whole','part','cancelled']);
+  if (redo >= 2 && total >= 10) {
+    var oneIn = Math.max(2, Math.round(total/redo));
+    var dots = '';
+    for (var d=0; d<oneIn; d++) dots += '<span'+(d===0?' class="hit"':'')+'></span>';
+    html += card('The prep', 'About 1 in '+oneIn+' had their prep flagged', null,
+      '<div class="dots" role="img" aria-label="1 in '+oneIn+'">'+dots+'</div>'+
+      '<p class="punch"><b>'+redo+' of '+total+'</b> were told their prep was not good enough, or had to redo some or all of it'+
+      (g(c,'b5','whole') ? ', including <b>'+g(c,'b5','whole')+'</b> who repeated the whole thing' : '')+'.</p>');
+  }
+
+  // 4 — who people asked when confused
+  var online = g(c,'b6','online'), called = g(c,'b6','called');
+  var toughed = sumKeys(c,'b6',['guessed','skipped','nothing']);
+  if (online + called + toughed >= 8) {
+    html += card('The 3am question', 'Who people asked when they got stuck', 'During the prep, when something was unclear.',
+      '<div class="face">'+
+      '<div class="opt'+(online>=called&&online>=toughed?' win':'')+'"><div class="em">🔍</div><div class="val">'+online+'</div><div class="cap">searched the internet</div></div>'+
+      '<div class="opt'+(toughed>online&&toughed>=called?' win':'')+'"><div class="em">🤞</div><div class="val">'+toughed+'</div><div class="cap">guessed, skipped it, or waited</div></div>'+
+      '<div class="opt'+(called>online&&called>toughed?' win':'')+'"><div class="em">📞</div><div class="val">'+called+'</div><div class="cap">called the clinic</div></div>'+
+      '</div>'+
+      (online > called ? '<p class="punch">The internet is winning <b>'+online+' to '+called+'</b> against the people who actually know the answer.</p>' : ''));
+  }
+
+  // 5 — paper vs apps
+  var sheet = g(c,'c0','sheet'), digital = g(c,'c0','portal') + g(c,'c0','video');
+  if (sheet >= 5) {
+    html += card('The instructions', 'Everyone got paper', 'How people received their prep instructions.',
+      '<div class="pva">'+
+      '<div class="opt"><div class="em">📄</div><div class="val">'+sheet+'</div><div class="cap">got a printed sheet or PDF</div></div>'+
+      '<div class="opt"><div class="em">📱</div><div class="val">'+digital+'</div><div class="cap">got an app, portal, or video</div></div>'+
+      '</div>' +
+      (digital===0 ? '<p class="punch">For a multi-day, easy-to-fumble process, <b>nobody</b> has reported getting digital help. In '+(new Date().getFullYear())+'.</p>' : ''));
+  }
+
+  // 6 — what people worried about
+  var worryItems = [
+    ['😰 Whether their prep was good enough', g(c,'concerns','prep_enough')],
+    ['😖 Pain or discomfort', g(c,'concerns','pain')],
+    ['💉 The sedation', g(c,'concerns','sedation')],
+    ['🔬 What the doctors might find', g(c,'concerns','findings')],
+    ['⏳ Waiting for the results', g(c,'concerns','results')],
+    ['💸 Cost', g(c,'concerns','cost')],
+    ['😳 Embarrassment', g(c,'concerns','embarrass')]
+  ].filter(function(x){return x[1]>0;}).sort(function(a,z){return z[1]-a[1];});
+  if (worryItems.length >= 3) {
+    var chill = g(c,'concerns','none');
+    html += card('The worry', 'What kept people up beforehand', 'People could pick more than one.',
+      bars(worryItems) +
+      (chill ? '<p class="punch">…while <b>'+chill+'</b> were not really worried at all 😌</p>' : ''));
+  }
+
+  // 7 — the next-scope mystery
+  var dDate = g(c,'d6','date'), dNo = g(c,'d6','nodate'), dNone = g(c,'d6','no'), dUn = g(c,'d6','unsure');
+  var dTot = dDate + dNo + dNone + dUn;
+  if (dTot >= 10) {
+    var segs = [
+      [dDate, 'var(--accent-strong)', 'Given a timeframe'],
+      [dNo, 'var(--brass)', 'Told "you need another one" but no date'],
+      [dNone, 'var(--soft)', 'Not told they need one'],
+      [dUn, 'var(--line)', 'Not sure']
+    ];
+    var segHtml = '<div class="seg">', legHtml = '<div class="legend">';
+    for (var si=0; si<segs.length; si++){
+      if(!segs[si][0]) continue;
+      segHtml += '<div style="flex:'+segs[si][0]+';background:'+segs[si][1]+'"></div>';
+      legHtml += '<span><i style="background:'+segs[si][1]+'"></i>'+esc(segs[si][2])+': <b>'+segs[si][0]+'</b></span>';
+    }
+    segHtml += '</div>'; legHtml += '</div>';
+    var told = dDate + dNo;
+    html += card('The follow-up', 'You need another one. When? Nobody said.', null,
+      segHtml + legHtml +
+      (told >= 4 && dNo > 0 ? '<p class="punch">Of the <b>'+told+'</b> told they would need another colonoscopy, <b>'+dNo+'</b> left without any timeframe for it.</p>' : ''));
+  }
+
+  // 8 — it takes two
+  var carer = g(c,'e3','yes'), carerAns = carer + g(c,'e3','no');
+  var carerOff = g(c,'e3_timeoff','yes');
+  var workOff = g(c,'e1','yes'), workAns = workOff + g(c,'e1','no');
+  if (carerAns >= 10) {
+    html += card('The hidden cost', 'It takes two people to have one colonoscopy', null,
+      '<div class="face">'+
+      '<div class="opt"><div class="em">🧑‍💼</div><div class="val">'+workOff+'/'+workAns+'</div><div class="cap">of workers took time off for their own procedure</div></div>'+
+      '<div class="opt win"><div class="em">🚗</div><div class="val">'+carer+'/'+carerAns+'</div><div class="cap">needed someone to drive or look after them</div></div>'+
+      '<div class="opt"><div class="em">🧑‍🤝‍🧑</div><div class="val">'+carerOff+'</div><div class="cap">of those helpers ALSO took time off work</div></div>'+
+      '</div>');
+  }
+
+  // 9 — where from
+  var flags = [['🇦🇺 Australia','AU'],['🇺🇸 United States','US'],['🇬🇧 United Kingdom','GB'],['🇨🇦 Canada','CA'],['🇳🇿 New Zealand','NZ'],['🇮🇪 Ireland','IE'],['🌍 Somewhere else','Other']];
+  var flagRows = [];
+  for (var fi=0; fi<flags.length; fi++){
+    var fn = g(c,'country',flags[fi][1]);
+    if (fn) flagRows.push(flags[fi][0]+' <b>'+fn+'</b>');
+  }
+  if (flagRows.length >= 2) {
+    html += card('The map', 'Where responses have come from', null, '<p class="flags">'+flagRows.join(' &nbsp;·&nbsp; ')+'</p>');
+  }
+
+  document.getElementById('blocks').innerHTML = html || '<div class="state">Not enough responses yet for the fun graphs. Be the first!</div>';
 }
 
 fetch(ENDPOINT)
-  .then(function(r){ if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
-  .then(function(data){
-    if (!data || data.ok !== true) throw new Error('bad payload');
-    render(data);
-  })
+  .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+  .then(function(data){ if(!data || data.ok !== true) throw new Error('bad payload'); render(data); })
   .catch(function(){
     document.getElementById('meta').textContent = 'The results are being prepared.';
     document.getElementById('blocks').innerHTML =
-      '<div class="state">The live results are warming up. Check back in a little while, or come back after the survey closes on 14 August 2026.</div>';
+      '<div class="state">The live results are warming up. Check back in a little while.</div>';
   });
 </script>
 </body>

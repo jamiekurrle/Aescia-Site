@@ -11,6 +11,9 @@ const nextConfig = {
       // People retype or share the bare path, so catch it at the root too.
       { source: '/prize-terms.html', destination: '/colonoscopy-survey/prize-terms.html', permanent: false },
       { source: '/prize-terms', destination: '/colonoscopy-survey/prize-terms.html', permanent: false },
+      // Same treatment for the survey results page: people share the bare path.
+      { source: '/results.html', destination: '/colonoscopy-survey/results.html', permanent: false },
+      { source: '/results', destination: '/colonoscopy-survey/results.html', permanent: false },
       // Dead URLs from the old information architecture (returned genuine 404s).
       // Permanent redirects to the closest live page so old external links and
       // stale search-index entries land somewhere relevant instead of a 404.
