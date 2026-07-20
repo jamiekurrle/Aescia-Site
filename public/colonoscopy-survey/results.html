@@ -58,6 +58,14 @@
   .dots{display:flex;gap:8px;margin:14px 0 6px;flex-wrap:wrap;}
   .dots span{width:26px;height:26px;border-radius:50%;background:var(--soft);border:1px solid var(--line);}
   .dots span.hit{background:var(--brass);border-color:var(--brass);}
+  /* average-on-a-scale bar */
+  .scalewrap{margin:26px 0 6px;}
+  .scaletrack{position:relative;height:26px;background:var(--soft);border-radius:7px;}
+  .scalefill{height:100%;background:var(--brass);border-radius:7px 0 0 7px;}
+  .scaletick{position:absolute;top:6px;bottom:6px;width:1px;background:var(--line);}
+  .scalemark{position:absolute;top:-7px;bottom:-7px;width:3px;background:var(--ink);border-radius:2px;transform:translateX(-1px);}
+  .scalemark span{position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+    font-weight:700;font-size:1.05rem;color:var(--ink);white-space:nowrap;}
   /* segmented bar */
   .seg{display:flex;height:30px;border-radius:7px;overflow:hidden;margin:14px 0 10px;}
   .seg div{min-width:2px;}
@@ -135,44 +143,32 @@ function donut(pct){
 
 function pc(n, denom){ return denom ? Math.round(100*n/denom) + '%' : '0%'; }
 
-// SVG pie: segs = [[label, n, cssColor], ...]
-function pie(segs){
+// segmented horizontal bar + legend: segs = [[label, n, cssColor], ...]
+function segBar(segs){
   var total = 0, i;
   for(i=0;i<segs.length;i++) total += segs[i][1];
   if(!total) return '';
-  var r=52, cx=65, cy=65, a0=-Math.PI/2, paths='';
+  var segHtml = '<div class="seg">', legHtml = '<div class="legend">';
   for(i=0;i<segs.length;i++){
     if(!segs[i][1]) continue;
-    var frac = segs[i][1]/total, a1 = a0 + frac*2*Math.PI;
-    if (frac >= 0.999) {
-      paths += '<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="'+segs[i][2]+'"/>';
-    } else {
-      var x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
-      var large = (a1-a0) > Math.PI ? 1 : 0;
-      paths += '<path d="M'+cx+' '+cy+' L'+x0.toFixed(1)+' '+y0.toFixed(1)+' A'+r+' '+r+' 0 '+large+' 1 '+x1.toFixed(1)+' '+y1.toFixed(1)+' Z" fill="'+segs[i][2]+'"/>';
-    }
-    a0 = a1;
+    segHtml += '<div style="flex:'+segs[i][1]+';background:'+segs[i][2]+'"></div>';
+    legHtml += '<span><i style="background:'+segs[i][2]+'"></i>'+esc(segs[i][0])+': <b>'+pc(segs[i][1], total)+'</b></span>';
   }
-  var legend = '<div class="legend" style="flex-direction:column;gap:7px">';
-  for(i=0;i<segs.length;i++){
-    if(!segs[i][1]) continue;
-    legend += '<span><i style="background:'+segs[i][2]+'"></i>'+esc(segs[i][0])+': <b>'+pc(segs[i][1], total)+'</b></span>';
-  }
-  legend += '</div>';
-  return '<div class="hero"><svg width="130" height="130" viewBox="0 0 130 130" role="img" aria-hidden="true">'+paths+'</svg><div class="side">'+legend+'</div></div>';
+  return segHtml + '</div>' + legHtml + '</div>';
 }
 
-// semicircle gauge for a 1-5 average
-function gauge(avg, lowLabel, highLabel){
-  var frac = Math.max(0, Math.min(1, (avg-1)/4));
-  var r=58, cx=75, cy=78, circ=Math.PI*r;
-  return '<div style="text-align:center;margin:4px 0 2px">'+
-    '<svg width="150" height="92" viewBox="0 0 150 92" role="img" aria-label="'+avg+' out of 5">'+
-    '<path d="M17 78 A58 58 0 0 1 133 78" fill="none" stroke="var(--soft)" stroke-width="16" stroke-linecap="round"/>'+
-    '<path d="M17 78 A58 58 0 0 1 133 78" fill="none" stroke="var(--brass)" stroke-width="16" stroke-linecap="round" stroke-dasharray="'+(circ*frac).toFixed(1)+' '+circ.toFixed(1)+'"/>'+
-    '<text x="75" y="72" text-anchor="middle" font-size="26" font-weight="700" fill="var(--ink)">'+avg+'</text>'+
-    '<text x="75" y="88" text-anchor="middle" font-size="11" fill="var(--muted)">out of 5</text></svg>'+
-    '<div class="legend" style="justify-content:space-between;max-width:200px;margin:0 auto"><span>'+esc(lowLabel)+'</span><span>'+esc(highLabel)+'</span></div></div>';
+// 1-5 average shown as a filled track with the number marked at its position
+function scaleBar(avg, lowLabel, highLabel){
+  var pct = Math.max(0, Math.min(100, 100*(avg-1)/4));
+  return '<div class="scalewrap" role="img" aria-label="Average '+avg+' out of 5">'+
+    '<div class="scaletrack">'+
+      '<div class="scalefill" style="width:'+pct.toFixed(1)+'%"></div>'+
+      '<div class="scaletick" style="left:25%"></div>'+
+      '<div class="scaletick" style="left:50%"></div>'+
+      '<div class="scaletick" style="left:75%"></div>'+
+      '<div class="scalemark" style="left:'+pct.toFixed(1)+'%"><span>'+avg+'</span></div>'+
+    '</div>'+
+    '<div class="legend" style="justify-content:space-between;margin-top:14px"><span>1  '+esc(lowLabel)+'</span><span>5  '+esc(highLabel)+'</span></div></div>';
 }
 
 function render(data){
@@ -196,7 +192,7 @@ function render(data){
   var vetTot = sumKeys(c,'count',['1','2','3','4+']);
   if (vetTot >= 10) {
     html += card('The people', 'First-timers and veterans', 'How many colonoscopies respondents have had.',
-      pie([
+      segBar([
         ['First colonoscopy', g(c,'count','1'), 'var(--accent-strong)'],
         ['Second', g(c,'count','2'), 'var(--accent)'],
         ['Third', g(c,'count','3'), 'var(--brass)'],
@@ -282,7 +278,7 @@ function render(data){
     for (var av=1; av<=5; av++) anxSum += av * g(c,'c4',String(av));
     var anxAvg = anxN ? Math.round(10*anxSum/anxN)/10 : 0;
     html += card('The worry', 'What kept people up beforehand', 'People could pick more than one.',
-      (anxN >= 10 ? gauge(anxAvg, 'Not at all anxious', 'Extremely') : '') +
+      (anxN >= 10 ? scaleBar(anxAvg, 'Not at all anxious', 'Extremely anxious') : '') +
       bars(worryItems, total) +
       (chill ? '<p class="punch">…while <b>'+pc(chill, total)+'</b> were not really worried at all 😌</p>' : ''));
   }
