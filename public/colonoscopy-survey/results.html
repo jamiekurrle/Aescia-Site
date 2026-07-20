@@ -177,7 +177,7 @@ function render(data){
     html += card('The prep', 'About 1 in '+oneIn+' had their prep flagged', null,
       '<div class="dots" role="img" aria-label="1 in '+oneIn+'">'+dots+'</div>'+
       '<p class="punch"><b>About 1 in '+oneIn+'</b> were told their prep was not good enough, or had to redo some or all of it'+
-      (g(c,'b5','whole') ? ' — including full start-again redos' : '')+'.</p>');
+      (g(c,'b5','whole') ? ', including full start-again redos' : '')+'.</p>');
   }
 
   // 4 — who people asked when confused
@@ -198,11 +198,19 @@ function render(data){
   // 5 — paper vs apps
   var sheet = g(c,'c0','sheet'), digital = g(c,'c0','portal') + g(c,'c0','video');
   if (sheet >= 5) {
-    html += card('The instructions', 'Everyone got paper', 'How people received their prep instructions.',
+    var chanItems = [
+      ['🗣️ Told verbally at the clinic or booking', g(c,'c0','verbal')],
+      ['📞 A phone call from a nurse', g(c,'c0','nurse_call')],
+      ['💊 From a pharmacist', g(c,'c0','pharmacist')],
+      ['🩺 From their GP', g(c,'c0','gp')],
+      ['💬 A text message', g(c,'c0','sms')]
+    ].filter(function(x){return x[1]>0;}).sort(function(a,z){return z[1]-a[1];});
+    html += card('The instructions', 'Everyone got paper', 'How people received their prep instructions. People could pick more than one.',
       '<div class="pva">'+
       '<div class="opt"><div class="em">📄</div><div class="val">'+pc(sheet,total)+'</div><div class="cap">got a printed sheet or PDF</div></div>'+
       '<div class="opt"><div class="em">📱</div><div class="val">'+pc(digital,total)+'</div><div class="cap">got an app, portal, or video</div></div>'+
       '</div>' +
+      (chanItems.length ? '<p class="sub" style="margin:14px 0 4px">The in-between channels:</p>' + bars(chanItems, total) : '') +
       (digital===0 ? '<p class="punch">For a multi-day, easy-to-fumble process, <b>nobody</b> has reported getting digital help. In '+(new Date().getFullYear())+'.</p>' : ''));
   }
 
