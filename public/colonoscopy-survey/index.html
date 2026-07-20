@@ -118,6 +118,10 @@
        branch controls (which the collector already excludes) and block submission.
        Consent gating + the JS checks in the submit handler enforce what we need. -->
   <form id="survey" novalidate>
+    <!-- How the visitor reached the survey: ?src= share-link tag, else referrer
+         hostname, else "direct". Non-identifying; used to learn which shared
+         links bring responses. Populated on load. -->
+    <input type="hidden" name="source" value="">
     <!-- CONSENT -->
     <div class="card" style="background:var(--accent-soft)">
       <p class="q">Before you start</p>
@@ -135,7 +139,7 @@
         <summary>How we handle your information</summary>
         <div class="pv">
           <p><strong>Who:</strong> this survey is run by Aescia Pty Ltd (ABN 96 687 840 517), 15 Amber Place, Bass Hill NSW 2197, led by Dr James Kurrle, for research into the colonoscopy experience.</p>
-          <p><strong>What we collect:</strong> your survey answers about your colonoscopy experience (health information), including your country and region — and, only if you tick an option below and choose to give them, your name, email, and phone.</p>
+          <p><strong>What we collect:</strong> your survey answers about your colonoscopy experience (health information), including your country and region, plus which shared link you arrived from — and, only if you tick an option below and choose to give them, your name, email, and phone.</p>
           <p><strong>Why:</strong> to understand what the experience is really like and how to improve care around it. If you tick an option, to send you research updates and/or invite you to a short interview and prize draw. We use your details only for the option you tick.</p>
           <p><strong>Where it's stored:</strong> in Google Workspace (Google Drive), which may store or process data on servers outside your country, including the United States. Access is limited to the Aescia research team.</p>
           <p><strong>Sharing:</strong> we don't sell your information or use it for advertising. Anything we publish or present is combined and de-identified so you can't be recognised.</p>
@@ -628,6 +632,18 @@ consentEl.addEventListener('change',()=>{
   document.getElementById('gate').classList.toggle('hidden',!consentEl.checked);
   if(consentEl.checked) loadTurnstile();
 });
+
+// record how the visitor got here: ?src= tag beats utm_source beats referrer host.
+// Sanitised to a short slug so nothing identifying or messy is ever stored.
+(function(){
+  function clean(s){ return String(s||'').replace(/[^A-Za-z0-9._-]/g,'').slice(0,80); }
+  var q = new URLSearchParams(window.location.search);
+  var src = clean(q.get('src')) || clean(q.get('utm_source'));
+  if (!src && document.referrer) {
+    try { src = clean('ref-' + new URL(document.referrer).hostname); } catch (e) {}
+  }
+  document.querySelector('[name="source"]').value = src || 'direct';
+})();
 
 // text-size toggle
 document.querySelectorAll('.tsbtns button').forEach(b=>{
