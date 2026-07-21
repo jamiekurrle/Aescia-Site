@@ -380,6 +380,17 @@ function render(data){
   document.getElementById('blocks').innerHTML = html || '<div class="state">Not enough responses yet for the fun graphs. Be the first!</div>';
 }
 
+// Carry a ?src= share tag through to the survey link, so a respondent who
+// arrives via the results page keeps their group attribution.
+(function(){
+  var q = new URLSearchParams(window.location.search);
+  var s = q.get('src') || q.get('utm_source');
+  if (s) {
+    var a = document.querySelector('.cta');
+    if (a) a.href = './?src=' + encodeURIComponent(s);
+  }
+})();
+
 fetch(ENDPOINT)
   .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
   .then(function(data){ if(!data || data.ok !== true) throw new Error('bad payload'); render(data); })
