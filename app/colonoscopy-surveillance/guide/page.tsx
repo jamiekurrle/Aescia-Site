@@ -93,7 +93,7 @@ export default function SurveillanceGuidePage() {
               <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Common questions</span>
               <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
             </div>
-            <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-8">Colonoscopy surveillance intervals — quick answers</h2>
+            <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-8">Colonoscopy surveillance intervals: quick answers</h2>
             <div className="divide-y divide-border">
               {FAQ_ITEMS.map((item) => (
                 <div key={item.q} className="py-5">

@@ -17,7 +17,7 @@ import {
 } from './engine'
 import { JUR_TO_SLUG, routeToJur } from './slugs'
 import { SEO_CONTENT } from './seo-content'
-import { FAQ_ITEMS, LAST_CLINICAL_REVIEW_DISPLAY } from './faq'
+import { type FaqItem, LAST_CLINICAL_REVIEW_DISPLAY } from './faq'
 
 type HistOpt = LesionInput['hist'] | 'AWAIT' | 'NONE'
 const HISTOLOGY: [HistOpt, string][] = [
@@ -182,7 +182,7 @@ function LesionEntry({ heading, rows, setRows, disabled }: { heading: string; ro
   )
 }
 
-export function PageContent({ initialJur = 'US', showFaq = false }: { initialJur?: JurId; showFaq?: boolean }) {
+export function PageContent({ initialJur = 'US', faqItems = [] }: { initialJur?: JurId; faqItems?: FaqItem[] }) {
   const [jur, setJur] = useState<JurId>(initialJur)
   const [stage, setStage] = useState<Stage>('first')
   const [rows, setRows] = useState<Row[]>([newRow('NONE')])
@@ -504,17 +504,17 @@ export function PageContent({ initialJur = 'US', showFaq = false }: { initialJur
         </div>
       </section>
 
-      {/* FAQ (base route only) ------------------------------------------- */}
-      {showFaq && (
+      {/* FAQ (guideline-specific, per route) ----------------------------- */}
+      {faqItems.length > 0 && (
         <section className="px-6 lg:px-10 py-14 lg:py-20 border-b border-border">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">Common questions</span>
               <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
             </div>
-            <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-8">Colonoscopy surveillance intervals — quick answers</h2>
+            <h2 className="font-display text-[26px] lg:text-[34px] font-bold tracking-tight mb-8">Colonoscopy surveillance intervals: quick answers</h2>
             <div className="divide-y divide-border">
-              {FAQ_ITEMS.map((item) => (
+              {faqItems.map((item) => (
                 <div key={item.q} className="py-5">
                   <h3 className="text-[16px] font-semibold text-foreground mb-2">{item.q}</h3>
                   <p className="text-[14px] leading-relaxed text-foreground/80">{item.a}</p>

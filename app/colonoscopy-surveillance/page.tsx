@@ -10,5 +10,5 @@ import { makeMetadata, SurveillancePageShell } from './shared'
 export const metadata: Metadata = makeMetadata('US', '/colonoscopy-surveillance')
 
 export default function ColonoscopySurveillancePage() {
-  return <SurveillancePageShell jur="US" canonicalPath="/colonoscopy-surveillance" showFaq />
+  return <SurveillancePageShell jur="US" canonicalPath="/colonoscopy-surveillance" />
 }

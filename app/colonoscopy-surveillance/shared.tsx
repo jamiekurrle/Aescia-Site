@@ -3,7 +3,7 @@ import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { breadcrumbSchema, webPageSchema, faqPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
 import { PageContent } from './content'
-import { FAQ_ITEMS, LAST_CLINICAL_REVIEW } from './faq'
+import { FAQ_BY_JUR, LAST_CLINICAL_REVIEW } from './faq'
 import type { JurId } from './engine'
 
 const SITE_URL = 'https://www.aesciahealth.com'
@@ -88,10 +88,10 @@ export function makeMetadata(jur: JurId, canonicalPath: string): Metadata {
 // `jur` drives the page's SEO metadata + JSON-LD (stable per canonical URL).
 // `initialJur` is the visitor's client-side starting jurisdiction (geo default
 // on the base page); it does not affect crawlable metadata. Defaults to `jur`.
-// `showFaq` renders the visible FAQ + FAQPage JSON-LD. It is set only on the base
-// canonical route so the same Q&A block is not duplicated across the six
-// near-identical per-guideline pages.
-export function SurveillancePageShell({ jur, canonicalPath, initialJur, showFaq = false }: { jur: JurId; canonicalPath: string; initialJur?: JurId; showFaq?: boolean }) {
+// Each route renders its own guideline-specific FAQ + FAQPage JSON-LD, keyed to
+// the route's guideline, so every page's Q&A is unique to that guideline rather
+// than a shared block duplicated across the six pages.
+export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur: JurId; canonicalPath: string; initialJur?: JurId }) {
   const url = `${SITE_URL}${canonicalPath}`
   const m = JUR_META[jur]
   const breadcrumbs = breadcrumbSchema([
@@ -146,8 +146,9 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur, showFaq 
     isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntityOfPage: { '@id': `${url}#webpage` },
   }
-  const faqSchema = showFaq
-    ? { ...faqPageSchema(FAQ_ITEMS.map((f) => ({ q: f.q, a: f.a }))), '@id': `${url}#faq` }
+  const faqItems = FAQ_BY_JUR[jur]
+  const faqSchema = faqItems.length
+    ? { ...faqPageSchema(faqItems.map((f) => ({ q: f.q, a: f.a }))), '@id': `${url}#faq` }
     : null
 
   return (
@@ -158,7 +159,7 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur, showFaq 
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <SiteNav />
       <main id="main" className="bg-background min-h-screen">
-        <PageContent initialJur={initialJur ?? jur} showFaq={showFaq} />
+        <PageContent initialJur={initialJur ?? jur} faqItems={faqItems} />
       </main>
       <Footer />
     </>
