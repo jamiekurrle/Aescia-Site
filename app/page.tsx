@@ -1,5 +1,6 @@
 import { SiteNav } from '@/components/site-nav'
 import { EditorialHero } from '@/components/editorial-hero'
+import { InstrumentPanel } from '@/components/instrument-panel'
 import { CredibilityFacts } from '@/components/credibility-facts'
 import { AudienceSplit } from '@/components/audience-split'
 import { TrustStrip } from '@/components/trust-strip'
@@ -43,6 +44,7 @@ export default function Home() {
       />
       <SiteNav transparent />
       <EditorialHero />
+      <InstrumentPanel />
       <CredibilityFacts />
       <AudienceSplit />
       <TrustStrip />

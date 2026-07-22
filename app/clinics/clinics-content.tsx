@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
 import { ClinicsRoi } from '@/components/clinics-roi'
+import { ClinicsKpiCards } from '@/components/clinics-kpi-cards'
 import { useI18n } from '@/lib/i18n'
 
 export default function ClinicsContent() {
@@ -71,6 +72,8 @@ export default function ClinicsContent() {
           </div>
         </div>
       </section>
+
+      <ClinicsKpiCards />
 
       {/* Features */}
       <section className="py-24 lg:py-32 px-6 lg:px-10">

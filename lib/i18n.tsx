@@ -56,7 +56,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Hero (home)
     'hero.eyebrow': 'A continuous-care platform',
     'hero.title': 'Patients who arrive ready. Lists that run on time.',
-    'hero.subtitle': 'Aescia for Clinics is pre-procedure pathway software for endoscopy ASCs and specialty clinics: bowel-prep readiness, medication and GLP-1 handling, prep-aware backfill, and recall. Aescia for Hospitals adds structured post-discharge monitoring on the same pathway engine.',
+    'hero.subtitle': 'Pre-procedure pathway software for endoscopy ASCs. Prep, medications, backfill, recall. Aescia for Hospitals adds post-discharge monitoring on the same engine.',
     'hero.cta.primary': 'See Aescia for Clinics',
     'hero.cta.secondary': 'Talk to our team',
     'hero.note.label': 'For US endoscopy ASCs',
@@ -69,12 +69,12 @@ const translations: Record<Locale, Record<string, string>> = {
     'split.hospital.eyebrow': 'For Hospitals',
     'split.hospital.regtag': 'Medical device, in evaluation',
     'split.hospital.title': 'Post-surgical recovery observed.',
-    'split.hospital.desc': 'A structured follow-up layer for cardiothoracic surgery and other high-acuity discharges. Daily patient check-ins, transparent rule-based prioritisation, one prioritised clinical list for the nursing team.',
+    'split.hospital.desc': 'Daily check-ins after cardiothoracic surgery. Clinician-authored rules turn them into one prioritised list for the nursing team.',
     'split.hospital.cta': 'Aescia for Hospitals',
     'split.clinic.eyebrow': 'For Clinics',
     'split.clinic.regtag': 'Not a medical device',
     'split.clinic.title': 'Better prep. Lists that run on time.',
-    'split.clinic.desc': 'Pre-procedure pathways for endoscopy and other specialty clinics. Multichannel reach by SMS and email into a patient web-app, diabetic, anticoagulant, and GLP-1 overlays, recall management, fewer phone calls to the front desk.',
+    'split.clinic.desc': 'Pre-procedure pathways by text and email. Diabetic, anticoagulant, and GLP-1 overlays. Fewer phone calls to the front desk.',
     'split.clinic.cta': 'Aescia for Clinics',
 
     // Trust strip (operational, not clinical)
@@ -90,7 +90,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Platform blurb (home)
     'platform.eyebrow': 'One engine. Two doorways.',
     'platform.title': 'A pathway engine shared by both products.',
-    'platform.body': 'Every Aescia pathway is a sequence of five step types: Collect a structured signal, Follow a clinician-authored rule, Remind the patient, Educate at the right moment, Export the structured record. We build the engine once and apply it to the two moments where care most often falls apart: the week after discharge, and the week before a scheduled procedure.',
+    'platform.body': 'Every pathway is a sequence of five step types. One engine, built once, applied to the two moments care most often falls apart: the week after discharge, and the week before a procedure.',
     'platform.pill.collect': 'Collect',
     'platform.pill.follow': 'Follow',
     'platform.pill.remind': 'Remind',
@@ -109,7 +109,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Evidence ribbon (home)
     'evidence.eyebrow': 'Where we are today',
     'evidence.title': 'The clinical programme is recruiting.',
-    'evidence.body': 'The SAFE-Discharge trial is a single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Enrolment commenced on 21 June 2026, with the first participant enrolled on 24 June 2026. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total. Led by Dr Kei Woldendorp, Principal Investigator, and sponsored by Sydney Local Health District. Aescia for Hospitals has an intended Class IIa classification under TGA Rule 3.4; a regulatory submission is in preparation. Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not a medical device.',
+    'evidence.body': 'SAFE-Discharge is a single-centre evaluation of post-surgical monitoring at the Royal Prince Alfred Hospital cardiothoracic unit in Sydney. Enrolment opened June 2026, led by Dr Kei Woldendorp as Principal Investigator and sponsored by Sydney Local Health District. Full protocol and timeline on the evidence page.',
     'evidence.fact1.value': 'ACTRN12625001425482',
     'evidence.fact1.label': 'Trial registration',
     'evidence.fact2.value': '550',
@@ -120,7 +120,7 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // CTA
     'cta.title': 'Ready to see the platform?',
-    'cta.subtitle': 'A thirty-minute call with someone on the clinical team. We show the worklist, the pathway editor, and what the week after surgery or the night before a colonoscopy actually looks like.',
+    'cta.subtitle': 'A thirty-minute call with the clinical team. We show the worklist, the pathway editor, the week after surgery and the night before a colonoscopy.',
     'cta.button': 'Request a briefing',
 
     // Footer
@@ -161,7 +161,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Hospitals page
     'hospitals.eyebrow': 'For Hospitals',
     'hospitals.title': 'The quietest days after surgery carry the loudest risk.',
-    'hospitals.subtitle': 'Aescia for Hospitals is a post-surgical recovery monitoring platform, built first for cardiothoracic surgery. Structured daily check-ins, clinician-authored prioritisation, one list for the nursing team. In clinical evaluation through the SAFE-Discharge trial at a major Australian cardiothoracic unit.',
+    'hospitals.subtitle': 'Post-surgical recovery monitoring, built first for cardiothoracic surgery. Daily check-ins, clinician-authored prioritisation, one list for the nursing team. In clinical evaluation through the SAFE-Discharge trial.',
     'hospitals.cta.primary': 'Request a health-system briefing',
     'hospitals.cta.secondary': 'Read the trial summary',
     'hospitals.status.label': 'Status',
@@ -261,7 +261,7 @@ const translations: Record<Locale, Record<string, string>> = {
     // Clinics page
     'clinics.eyebrow': 'For Clinics',
     'clinics.title': 'Better prep. Fewer no-shows. Less phone work.',
-    'clinics.subtitle': 'Aescia for Clinics is a workflow platform for specialty clinics, with endoscopy as the first home. Pre-procedure pathways delivered by SMS and email into a patient web-app. Diabetic, anticoagulant, and GLP-1 overlays. Recall tracking that stops slipping. It does not propose clinical decisions. It is not a medical device.',
+    'clinics.subtitle': 'Pre-procedure pathways by text and email, with endoscopy as the first home. Diabetic, anticoagulant, and GLP-1 overlays. Recall that stops slipping. It does not propose clinical decisions and is not a medical device.',
     'clinics.cta.primary': 'See a clinic demo',
     'clinics.cta.secondary': 'See pricing posture',
     'clinics.posture.label': 'Posture',

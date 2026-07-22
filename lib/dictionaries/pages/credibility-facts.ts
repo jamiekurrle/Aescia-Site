@@ -5,22 +5,22 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact1.eyebrow': 'Data and privacy',
     'credfacts.fact1.title': 'Data hosted in country with the relevant agreement in place.',
-    'credfacts.fact1.body': 'Aescia hosts customer data in the customer\'s jurisdiction on Google Cloud and signs the relevant data agreement (BAA in the US, DPA under the GDPR, the equivalent under the Australian Privacy Principles or PIPEDA) before any patient data is exchanged. SOC 2 path opens with the first design-partner contract.',
+    'credfacts.fact1.body': 'Customer data stays in your jurisdiction on Google Cloud, under the relevant agreement (Business Associate Agreement in the US, or the local equivalent) signed before any patient data moves.',
     'credfacts.fact1.cta': 'Read the security pack',
 
     'credfacts.fact2.eyebrow': 'Getting started',
     'credfacts.fact2.title': 'Designed to deploy quickly.',
-    'credfacts.fact2.body': 'Aescia is pre-first-customer and says so plainly. A clinic can start with manual data entry or a simple export, with no integration required to begin. Any deeper data exchange with your systems is scoped with you.',
+    'credfacts.fact2.body': 'Start with manual entry or a simple export. No integration required to begin. Deeper data exchange is scoped with you.',
     'credfacts.fact2.cta': 'How we start with you',
 
     'credfacts.fact3.eyebrow': 'Economics',
     'credfacts.fact3.title': 'Run your own numbers on /clinics.',
-    'credfacts.fact3.body': 'Interactive ROI calculator with conservative, expected, and better-case bands. Prep-coaching effect sizes from Guo 2016, Tian 2021 and Faveri 2025; ASC facility fees from Wang 2023, Transparency in Coverage ($989–$1,034, n=17,052 ASC fees); inadequate-prep risk factors from Beran 2024 (n=358,257); surveillance non-return from Cooper 2013. No point estimates. Assumptions are visible.',
+    'credfacts.fact3.body': 'Conservative, expected, and better-case bands. Every input cited, from prep-coaching trials to 17,052 real ASC facility fees. No point estimates; assumptions visible.',
     'credfacts.fact3.cta': 'Open the calculator',
 
     'credfacts.fact4.eyebrow': 'First customers',
     'credfacts.fact4.title': 'A structured first-customer program.',
-    'credfacts.fact4.body': 'A small named set of ASCs. Outcomes pre-specified in writing before the pilot starts, measured against the customer\'s own historical data, adjudicated by the customer\'s QA committee. Commercial terms negotiated per deal.',
+    'credfacts.fact4.body': 'Aescia is pre-first-customer and says so plainly. A small named set of ASCs, outcomes pre-specified in writing, measured against your own baseline, adjudicated by your QA committee.',
     'credfacts.fact4.cta': 'Read the program terms',
   },
   fr: {
