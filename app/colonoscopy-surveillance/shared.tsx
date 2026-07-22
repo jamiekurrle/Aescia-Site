@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { SiteNav } from '@/components/site-nav'
 import { Footer } from '@/components/footer'
-import { breadcrumbSchema, webPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
+import { breadcrumbSchema, webPageSchema, faqPageSchema, SITE_LAST_UPDATED } from '@/lib/schema'
 import { PageContent } from './content'
+import { FAQ_ITEMS, LAST_CLINICAL_REVIEW } from './faq'
 import type { JurId } from './engine'
 
 const SITE_URL = 'https://www.aesciahealth.com'
@@ -10,11 +11,6 @@ const SITE_URL = 'https://www.aesciahealth.com'
 // crawlers. True: each page is indexable (index,follow) with its self-referencing
 // canonical. False: each page emits robots noindex,nofollow.
 const GO_PUBLIC = true
-
-// Date the Aescia clinical team last reviewed the rules against the published
-// guidelines. Bump this ONLY when a real review happens — it is not the build
-// date, because a site deploy is not a clinical review.
-const LAST_CLINICAL_REVIEW = '2026-07-14'
 
 // `title` is appended with " | Aescia" by the root layout's title template, so
 // it must stay short. Descriptions are kept under ~155 chars to avoid SERP
@@ -92,7 +88,10 @@ export function makeMetadata(jur: JurId, canonicalPath: string): Metadata {
 // `jur` drives the page's SEO metadata + JSON-LD (stable per canonical URL).
 // `initialJur` is the visitor's client-side starting jurisdiction (geo default
 // on the base page); it does not affect crawlable metadata. Defaults to `jur`.
-export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur: JurId; canonicalPath: string; initialJur?: JurId }) {
+// `showFaq` renders the visible FAQ + FAQPage JSON-LD. It is set only on the base
+// canonical route so the same Q&A block is not duplicated across the six
+// near-identical per-guideline pages.
+export function SurveillancePageShell({ jur, canonicalPath, initialJur, showFaq = false }: { jur: JurId; canonicalPath: string; initialJur?: JurId; showFaq?: boolean }) {
   const url = `${SITE_URL}${canonicalPath}`
   const m = JUR_META[jur]
   const breadcrumbs = breadcrumbSchema([
@@ -147,15 +146,19 @@ export function SurveillancePageShell({ jur, canonicalPath, initialJur }: { jur:
     isPartOf: { '@id': `${SITE_URL}#website` },
     mainEntityOfPage: { '@id': `${url}#webpage` },
   }
+  const faqSchema = showFaq
+    ? { ...faqPageSchema(FAQ_ITEMS.map((f) => ({ q: f.q, a: f.a }))), '@id': `${url}#faq` }
+    : null
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       <SiteNav />
       <main id="main" className="bg-background min-h-screen">
-        <PageContent initialJur={initialJur ?? jur} />
+        <PageContent initialJur={initialJur ?? jur} showFaq={showFaq} />
       </main>
       <Footer />
     </>

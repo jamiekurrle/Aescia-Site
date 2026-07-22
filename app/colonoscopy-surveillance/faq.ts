@@ -6,6 +6,13 @@
 
 export type FaqItem = { q: string; a: string }
 
+// Single source of truth for the last clinical review date. Rendered visibly on
+// the page and emitted as the WebApplication schema's dateReviewed, so the two
+// never drift. Bump ONLY when a real review against the published guidelines
+// happens — a site deploy is not a clinical review.
+export const LAST_CLINICAL_REVIEW = '2026-07-14'
+export const LAST_CLINICAL_REVIEW_DISPLAY = '14 July 2026'
+
 export const FAQ_ITEMS: FaqItem[] = [
   {
     q: 'How soon should you repeat a colonoscopy after polyp removal?',
@@ -13,11 +20,11 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: 'What is the surveillance interval for 1–2 small (<10 mm) tubular adenomas?',
-    a: 'US (USMSTF 2020): 7–10 years. Australia (NHMRC / Cancer Council): 10 years, or return to iFOBT screening after 4 years. Canada–Ontario (ColonCancerCheck): FIT in 5 years. Canada–Alberta (ACRCSP): FIT in 5 years. Canada–British Columbia: 10-year colonoscopy. Europe (ESGE 2020): return to screening. ESGE returns these patients to the screening programme without naming an interval or a test, so the cadence is whatever the local programme runs.',
+    a: 'US (USMSTF 2020): 7–10 years. Australia (NHMRC / Cancer Council): 10 years. Canada–Ontario (ColonCancerCheck): FIT in 5 years. Canada–Alberta (ACRCSP): FIT in 5 years. Canada–British Columbia: 10-year colonoscopy. Europe (ESGE 2020): 10 years, the usual screening interval, because ESGE treats low-risk adenomas as a return to screening rather than a surveillance trigger.',
   },
   {
     q: 'When should a colonoscopy be repeated after 3–4 adenomas?',
-    a: 'This is where the guidelines diverge most. US: 3–5 years. Canada–Ontario: 3 years. Canada–Alberta: 5 years. Canada–British Columbia: 10 years. Australia: 5 years. Europe (ESGE): return to screening — 3–4 small adenomas are deliberately not a surveillance trigger in the European guideline.',
+    a: 'This is where the guidelines diverge most. US: 3–5 years. Canada–Ontario: 3 years. Canada–Alberta: 5 years. Canada–British Columbia: 10 years. Australia: 5 years. Europe (ESGE): 10 years, the usual screening interval, because 3–4 small adenomas are deliberately not a surveillance trigger in the European guideline.',
   },
   {
     q: 'What is the follow-up interval for an adenoma with high-grade dysplasia?',
@@ -29,7 +36,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: 'How often should sessile serrated lesions be surveilled?',
-    a: 'For 1–2 small (<10 mm) sessile serrated lesions without dysplasia: 5–10 years in the US, and 5 years in Australia and Canada (Ontario and Alberta); Europe returns them to screening. A sessile serrated lesion 10 mm or larger, or with dysplasia, and any traditional serrated adenoma, is surveilled at 3 years.',
+    a: 'For 1–2 small (<10 mm) sessile serrated lesions without dysplasia: 5–10 years in the US, and 5 years in Australia and Canada (Ontario and Alberta); Europe returns them to usual (10-year) screening. A sessile serrated lesion 10 mm or larger, or with dysplasia, and any traditional serrated adenoma, is surveilled at 3 years.',
   },
   {
     q: 'What is the follow-up after piecemeal removal of a large polyp?',
