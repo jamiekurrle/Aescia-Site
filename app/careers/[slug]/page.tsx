@@ -18,13 +18,20 @@ export async function generateMetadata({
   const { slug } = await params
   const role = getRole(slug)
   if (!role) return { title: 'Role not found' }
+  // A paused role says so in the snippet, so anyone reading a search result or
+  // a shared link knows before they click.
+  const description = role.open
+    ? role.summary
+    : `Not currently hiring for this role. ${role.summary}`
   return {
-    title: `${role.title} | Careers`,
-    description: role.summary,
+    title: role.open ? `${role.title} | Careers` : `${role.title} | Not currently hiring`,
+    description,
     alternates: { canonical: `/careers/${role.slug}` },
     openGraph: {
-      title: `${role.title} | Careers at Aescia`,
-      description: role.summary,
+      title: role.open
+        ? `${role.title} | Careers at Aescia`
+        : `${role.title} | Not currently hiring at Aescia`,
+      description,
       url: `/careers/${role.slug}`,
     },
   }
@@ -47,15 +54,20 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
     description: role.summary,
   })
 
-  const jobSchema = jobPostingSchema({
-    slug: role.slug,
-    title: role.title,
-    description: roleDescriptionHtml(role),
-    datePosted: role.datePosted,
-    employmentType: role.employmentType,
-    remote: role.remote,
-    applicantCountries: role.applicantCountries,
-  })
+  // Only an open role advertises itself as a job. A paused role keeps its page
+  // but drops the JobPosting markup, so Google for Jobs and the aggregators
+  // that ingest from it stop treating the page as a live vacancy.
+  const jobSchema = role.open
+    ? jobPostingSchema({
+        slug: role.slug,
+        title: role.title,
+        description: roleDescriptionHtml(role),
+        datePosted: role.datePosted,
+        employmentType: role.employmentType,
+        remote: role.remote,
+        applicantCountries: role.applicantCountries,
+      })
+    : null
 
   return (
     <>
@@ -67,10 +79,12 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobSchema) }}
-      />
+      {jobSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jobSchema) }}
+        />
+      )}
       <SiteNav />
       <RoleContent role={role} />
       <Footer />

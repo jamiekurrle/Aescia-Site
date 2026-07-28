@@ -51,7 +51,7 @@ export type Role = {
 
 const seniorFrontendEngineer: Role = {
   slug: 'senior-frontend-engineer',
-  open: true,
+  open: false,
   title: 'Senior Frontend / Full-Stack Engineer',
   summary:
     'Own the front end of a medical platform: the patient and clinician apps, plus a research dashboard. Vue 3 first, with React for analytics. Remote, working closely with our CTO.',
@@ -78,7 +78,7 @@ const seniorFrontendEngineer: Role = {
   remote: true,
   applicantCountries: ['Canada'],
   mission: [
-    'We are hiring a senior frontend / full-stack engineer who can work remotely and largely independently, in close partnership with our CTO. You will build the next versions of our patient-facing and clinician-facing apps. A native phone app is on the roadmap, but it is down the road, not the first job.',
+    'The role is a senior frontend / full-stack engineer who can work remotely and largely independently, in close partnership with our CTO. The job is to build the next versions of our patient-facing and clinician-facing apps. A native phone app is on the roadmap, but it is down the road, not the first job.',
     'Aescia builds continuous-care software for the period between hospital discharge and the next appointment, the stretch where patients deteriorate and no one is watching. Two products run on one platform: a regulated post-discharge monitoring system for hospitals, and pre-admission patient engagement for specialty clinics.',
   ],
   responsibilities: [
@@ -140,6 +140,11 @@ const seniorFrontendEngineer: Role = {
 export const ROLES: Role[] = [seniorFrontendEngineer]
 
 export const OPEN_ROLES = ROLES.filter((r) => r.open)
+
+// Roles kept on the site with hiring paused. Their URLs stay alive and 200 so
+// that anyone arriving from an aggregator lands on an honest page rather than a
+// 404, but they emit no JobPosting structured data and no apply call-to-action.
+export const CLOSED_ROLES = ROLES.filter((r) => !r.open)
 
 export function getRole(slug: string): Role | undefined {
   return ROLES.find((r) => r.slug === slug)

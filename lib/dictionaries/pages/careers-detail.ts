@@ -2,8 +2,17 @@ export const dict: Record<string, Record<string, string>> = {
   en: {
     'roledetail.back': 'Careers',
     'roledetail.openRole': 'Open role',
+    'roledetail.closedRole': 'Not currently hiring',
     'roledetail.hero.apply': 'Apply for this role',
     'roledetail.hero.readDetails': 'Read the details',
+
+    'roledetail.closed.title': 'We are not currently hiring for this role',
+    'roledetail.closed.body': 'If LinkedIn sent you here, we are sorry for the wasted trip. That listing was not posted by us. It was scraped from this page and published automatically. The description below stays up so you can see what the role involves.',
+    'roledetail.closed.ctaPre': 'If it fits you, write to ',
+    'roledetail.closed.ctaPost': ' anyway. We read everything, and we will come back to you when the role reopens.',
+    'roledetail.closed.apply.heading': 'This role is closed for now.',
+    'roledetail.closed.apply.body': 'We are not taking applications for it at the moment. Send a note anyway if you want to be first to hear when it reopens.',
+    'roledetail.closed.apply.cta': 'Write to the team',
 
     'roledetail.glance.team': 'Team',
     'roledetail.glance.engagement': 'Engagement',
@@ -40,7 +49,16 @@ export const dict: Record<string, Record<string, string>> = {
   fr: {
     'roledetail.back': 'Carrières',
     'roledetail.openRole': 'Poste ouvert',
+    'roledetail.closedRole': 'Recrutement suspendu',
     'roledetail.hero.apply': 'Postuler à ce poste',
+
+    'roledetail.closed.title': 'Nous ne recrutons pas pour ce poste en ce moment',
+    'roledetail.closed.body': 'Si LinkedIn vous a envoyé ici, nous sommes désolés du temps perdu. Cette annonce n\'a pas été publiée par nous : elle a été reprise automatiquement depuis cette page, puis publiée automatiquement. La description ci-dessous reste en ligne pour que vous puissiez voir en quoi consiste le poste.',
+    'roledetail.closed.ctaPre': 'Si le poste vous correspond, écrivez tout de même à ',
+    'roledetail.closed.ctaPost': '. Nous lisons tout, et nous reviendrons vers vous à sa réouverture.',
+    'roledetail.closed.apply.heading': 'Ce poste est fermé pour le moment.',
+    'roledetail.closed.apply.body': 'Nous ne recevons pas de candidatures pour ce poste actuellement. Écrivez-nous quand même si vous voulez être prévenu en premier de sa réouverture.',
+    'roledetail.closed.apply.cta': 'Écrire à l\'équipe',
     'roledetail.hero.readDetails': 'Lire les détails',
 
     'roledetail.glance.team': 'Équipe',
@@ -78,7 +96,16 @@ export const dict: Record<string, Record<string, string>> = {
   es: {
     'roledetail.back': 'Empleo',
     'roledetail.openRole': 'Vacante abierta',
+    'roledetail.closedRole': 'No estamos contratando',
     'roledetail.hero.apply': 'Postularse a este puesto',
+
+    'roledetail.closed.title': 'No estamos contratando para esta vacante en este momento',
+    'roledetail.closed.body': 'Si LinkedIn te trajo hasta aquí, sentimos haberte hecho perder el tiempo. Ese anuncio no lo publicamos nosotros: se tomó automáticamente de esta página y se publicó de forma automática. La descripción de abajo sigue publicada para que veas en qué consiste el puesto.',
+    'roledetail.closed.ctaPre': 'Si encaja contigo, escribe de todos modos a ',
+    'roledetail.closed.ctaPost': '. Leemos todo y te avisaremos cuando la vacante vuelva a abrirse.',
+    'roledetail.closed.apply.heading': 'Esta vacante está cerrada por ahora.',
+    'roledetail.closed.apply.body': 'No estamos recibiendo candidaturas en este momento. Escríbenos igualmente si quieres ser el primero en saber cuándo se reabre.',
+    'roledetail.closed.apply.cta': 'Escribir al equipo',
     'roledetail.hero.readDetails': 'Leer los detalles',
 
     'roledetail.glance.team': 'Equipo',
@@ -116,7 +143,16 @@ export const dict: Record<string, Record<string, string>> = {
   zh: {
     'roledetail.back': '招聘',
     'roledetail.openRole': '开放职位',
+    'roledetail.closedRole': '暂不招聘',
     'roledetail.hero.apply': '申请此职位',
+
+    'roledetail.closed.title': '我们目前暂不招聘该职位',
+    'roledetail.closed.body': '如果你是从 LinkedIn 来到这里的，让你白跑一趟，我们深表歉意。那条招聘信息并非由我们发布，而是从本页面自动抓取后自动发布的。下面的职位描述仍然保留，方便你了解这个职位的内容。',
+    'roledetail.closed.ctaPre': '如果这个职位适合你，仍然欢迎写信至 ',
+    'roledetail.closed.ctaPost': '。我们会阅读每一封来信，职位重新开放时会与你联系。',
+    'roledetail.closed.apply.heading': '该职位暂时关闭。',
+    'roledetail.closed.apply.body': '我们目前不接收该职位的申请。如果你希望在职位重新开放时第一时间获知，仍可写信给我们。',
+    'roledetail.closed.apply.cta': '写信给团队',
     'roledetail.hero.readDetails': '查看详情',
 
     'roledetail.glance.team': '团队',
@@ -154,7 +190,16 @@ export const dict: Record<string, Record<string, string>> = {
   ar: {
     'roledetail.back': 'الوظائف',
     'roledetail.openRole': 'وظيفة شاغرة',
+    'roledetail.closedRole': 'التوظيف متوقف حاليًا',
     'roledetail.hero.apply': 'التقدّم لهذه الوظيفة',
+
+    'roledetail.closed.title': 'لا نوظّف لهذه الوظيفة في الوقت الحالي',
+    'roledetail.closed.body': 'إذا وصلت إلى هنا من LinkedIn، فنعتذر لك عن إضاعة وقتك. ذلك الإعلان لم ننشره نحن، بل أُخذ تلقائيًا من هذه الصفحة ونُشر تلقائيًا. يبقى الوصف أدناه منشورًا لتتمكّن من الاطلاع على طبيعة الوظيفة.',
+    'roledetail.closed.ctaPre': 'إذا كانت تناسبك، فاكتب رغم ذلك إلى ',
+    'roledetail.closed.ctaPost': '. نقرأ كل رسالة، وسنعود إليك عند إعادة فتح الوظيفة.',
+    'roledetail.closed.apply.heading': 'هذه الوظيفة مغلقة في الوقت الحالي.',
+    'roledetail.closed.apply.body': 'لا نستقبل طلبات لهذه الوظيفة حاليًا. اكتب إلينا على أي حال إذا أردت أن تكون أول من يعلم عند إعادة فتحها.',
+    'roledetail.closed.apply.cta': 'اكتب إلى الفريق',
     'roledetail.hero.readDetails': 'قراءة التفاصيل',
 
     'roledetail.glance.team': 'الفريق',
@@ -192,7 +237,16 @@ export const dict: Record<string, Record<string, string>> = {
   vi: {
     'roledetail.back': 'Tuyển dụng',
     'roledetail.openRole': 'Vị trí đang tuyển',
+    'roledetail.closedRole': 'Hiện không tuyển',
     'roledetail.hero.apply': 'Ứng tuyển vị trí này',
+
+    'roledetail.closed.title': 'Chúng tôi hiện không tuyển cho vị trí này',
+    'roledetail.closed.body': 'Nếu LinkedIn đưa bạn đến đây, chúng tôi xin lỗi vì đã làm bạn mất thời gian. Tin tuyển dụng đó không phải do chúng tôi đăng: nó được tự động lấy từ trang này rồi tự động đăng lên. Phần mô tả bên dưới vẫn được giữ lại để bạn hình dung công việc này gồm những gì.',
+    'roledetail.closed.ctaPre': 'Nếu vị trí này phù hợp với bạn, hãy cứ viết thư đến ',
+    'roledetail.closed.ctaPost': '. Chúng tôi đọc mọi thư và sẽ liên hệ lại khi vị trí mở lại.',
+    'roledetail.closed.apply.heading': 'Vị trí này tạm thời đóng.',
+    'roledetail.closed.apply.body': 'Hiện chúng tôi không nhận hồ sơ cho vị trí này. Bạn vẫn có thể viết thư nếu muốn là người đầu tiên biết khi vị trí mở lại.',
+    'roledetail.closed.apply.cta': 'Viết thư cho đội ngũ',
     'roledetail.hero.readDetails': 'Xem chi tiết',
 
     'roledetail.glance.team': 'Nhóm',

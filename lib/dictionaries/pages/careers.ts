@@ -8,6 +8,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': 'No open roles right now. If you are a clinician or an engineer who thinks you should be working on this, write to ',
     'careers.roles.empty.post': '. We read everything.',
     'careers.roles.viewrole': 'View role',
+    'careers.roles.closed.eyebrow': 'Not currently hiring',
+    'careers.roles.closed.note': 'Paused for now. The description stays up so you can see what the role involves, and we still read every note sent to us.',
+    'careers.roles.closed.tag': 'Closed',
 
     'careers.spontaneous.eyebrow': 'No role that fits?',
     'careers.spontaneous.title': 'Tell us what you would build.',
@@ -24,6 +27,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': 'Aucun poste ouvert pour le moment. Si vous êtes clinicien ou ingénieur et pensez que vous devriez travailler là-dessus, écrivez à ',
     'careers.roles.empty.post': '. Nous lisons tout.',
     'careers.roles.viewrole': 'Voir le poste',
+    'careers.roles.closed.eyebrow': 'Recrutement suspendu',
+    'careers.roles.closed.note': 'En pause pour le moment. La description reste en ligne pour que vous puissiez voir en quoi consiste le poste, et nous lisons toujours tous les messages qui nous parviennent.',
+    'careers.roles.closed.tag': 'Fermé',
 
     'careers.spontaneous.eyebrow': 'Aucun poste ne correspond ?',
     'careers.spontaneous.title': 'Dites-nous ce que vous bâtiriez.',
@@ -40,6 +46,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': 'No hay vacantes abiertas en este momento. Si eres médico o ingeniero y crees que deberías estar trabajando en esto, escribe a ',
     'careers.roles.empty.post': '. Leemos todo.',
     'careers.roles.viewrole': 'Ver vacante',
+    'careers.roles.closed.eyebrow': 'No estamos contratando',
+    'careers.roles.closed.note': 'En pausa por ahora. La descripción sigue publicada para que veas en qué consiste el puesto, y seguimos leyendo todo lo que nos escriben.',
+    'careers.roles.closed.tag': 'Cerrada',
 
     'careers.spontaneous.eyebrow': '¿Ninguna vacante encaja?',
     'careers.spontaneous.title': 'Cuéntanos qué construirías.',
@@ -56,6 +65,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': '目前暂无开放职位。如果你是临床医生或工程师，并认为自己应当从事这项工作，请写信至 ',
     'careers.roles.empty.post': '。我们会阅读每一封来信。',
     'careers.roles.viewrole': '查看职位',
+    'careers.roles.closed.eyebrow': '暂不招聘',
+    'careers.roles.closed.note': '目前暂停。职位描述仍然保留，方便你了解这个职位的内容，我们也会阅读每一封来信。',
+    'careers.roles.closed.tag': '已关闭',
 
     'careers.spontaneous.eyebrow': '没有合适的职位？',
     'careers.spontaneous.title': '告诉我们你会打造什么。',
@@ -72,6 +84,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': 'لا توجد وظائف متاحة في الوقت الحالي. إذا كنت طبيباً سريرياً أو مهندساً وترى أنه ينبغي لك العمل على هذا، فاكتب إلى ',
     'careers.roles.empty.post': '. نقرأ كل رسالة.',
     'careers.roles.viewrole': 'عرض الوظيفة',
+    'careers.roles.closed.eyebrow': 'التوظيف متوقف حاليًا',
+    'careers.roles.closed.note': 'متوقفة في الوقت الحالي. يبقى الوصف منشورًا لتتمكّن من الاطلاع على طبيعة الوظيفة، ولا نزال نقرأ كل ما يُرسل إلينا.',
+    'careers.roles.closed.tag': 'مغلقة',
 
     'careers.spontaneous.eyebrow': 'لا توجد وظيفة تناسبك؟',
     'careers.spontaneous.title': 'أخبرنا بما ستبنيه.',
@@ -88,6 +103,9 @@ export const dict: Record<string, Record<string, string>> = {
     'careers.roles.empty.pre': 'Hiện không có vị trí nào đang tuyển. Nếu bạn là bác sĩ lâm sàng hoặc kỹ sư và cho rằng bạn nên làm việc này, hãy viết thư đến ',
     'careers.roles.empty.post': '. Chúng tôi đọc mọi thư.',
     'careers.roles.viewrole': 'Xem vị trí',
+    'careers.roles.closed.eyebrow': 'Hiện không tuyển',
+    'careers.roles.closed.note': 'Tạm dừng lúc này. Phần mô tả vẫn được giữ lại để bạn hình dung công việc này gồm những gì, và chúng tôi vẫn đọc mọi thư gửi đến.',
+    'careers.roles.closed.tag': 'Đã đóng',
 
     'careers.spontaneous.eyebrow': 'Không có vị trí nào phù hợp?',
     'careers.spontaneous.title': 'Hãy cho chúng tôi biết bạn sẽ xây dựng điều gì.',
