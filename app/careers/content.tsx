@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 import { dict } from '@/lib/dictionaries/pages/careers'
-import { OPEN_ROLES, APPLY_EMAIL } from '@/lib/careers'
+import { OPEN_ROLES, CLOSED_ROLES, APPLY_EMAIL } from '@/lib/careers'
 
 // Self-contained translation lookup for /careers. The shared i18n provider
 // supplies the active locale; careers.* keys live in
@@ -100,6 +100,68 @@ export function PageContent() {
                 </li>
               ))}
             </ul>
+          )}
+
+          {/* Paused roles. Still listed, greyed back, and still reachable so
+              anyone arriving from an aggregator can read what the role was. */}
+          {CLOSED_ROLES.length > 0 && (
+            <div className={OPEN_ROLES.length === 0 ? 'mt-16' : 'mt-20'}>
+              <div className="flex items-center gap-3 mb-5">
+                <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/45">
+                  {t('careers.roles.closed.eyebrow')}
+                </span>
+                <span className="h-px w-10 bg-foreground/20" aria-hidden="true" />
+              </div>
+              <p className="text-[15px] leading-[1.7] text-foreground/60 max-w-2xl mb-8">
+                {t('careers.roles.closed.note')}
+              </p>
+              <ul className="divide-y divide-border border-y border-border">
+                {CLOSED_ROLES.map((role) => (
+                  <li key={role.slug}>
+                    <Link
+                      href={`/careers/${role.slug}`}
+                      className="group block py-8 lg:py-10 px-2 lg:px-4 -mx-2 lg:-mx-4 opacity-55 transition-opacity hover:opacity-80"
+                    >
+                      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-5 lg:gap-12 lg:items-center">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-3 mb-3">
+                            <h2
+                              className="font-display text-[24px] lg:text-[30px] leading-[1.15] tracking-[-0.02em] text-foreground/70"
+                              style={{ fontVariationSettings: "'opsz' 96" }}
+                            >
+                              {role.title}
+                            </h2>
+                            <span className="border border-border px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-foreground/55">
+                              {t('careers.roles.closed.tag')}
+                            </span>
+                          </div>
+                          <p className="text-[15px] lg:text-[16px] leading-[1.6] text-foreground/55 max-w-2xl">
+                            {role.summary}
+                          </p>
+                          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[13px] uppercase tracking-[0.16em] text-foreground/45">
+                            <span>{role.team}</span>
+                            <span>{role.location}</span>
+                            <span>{role.engagement}</span>
+                          </div>
+                        </div>
+                        <span className="inline-flex items-center gap-2 text-[13px] font-medium tracking-wide text-foreground/60 whitespace-nowrap">
+                          {t('careers.roles.viewrole')}
+                          <svg
+                            className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                          </svg>
+                        </span>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
       </section>

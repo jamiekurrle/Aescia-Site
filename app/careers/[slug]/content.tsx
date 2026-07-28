@@ -21,6 +21,11 @@ const SECTION_H2 =
 export function RoleContent({ role }: { role: Role }) {
   const t = useRoleT()
 
+  // A paused role keeps the whole description, but reads as inactive: greyed
+  // back, no apply call-to-action, and a banner at the top for anyone who
+  // arrived from a job board still advertising it.
+  const isOpen = role.open
+
   const mailto = `mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(`${role.title} application`)}`
   const formHref = `/contact?intent=${encodeURIComponent(`careers-${role.slug}`)}`
 
@@ -46,26 +51,59 @@ export function RoleContent({ role }: { role: Role }) {
             </svg>
             {t('roledetail.back')}
           </Link>
+          {!isOpen && (
+            <div
+              role="status"
+              className="mb-10 border-l-2 border-brass bg-secondary px-6 py-6 lg:px-8 lg:py-7 max-w-3xl"
+            >
+              <p
+                className="font-display text-[20px] lg:text-[24px] leading-[1.25] tracking-[-0.018em] mb-3"
+                style={{ fontVariationSettings: "'opsz' 80" }}
+              >
+                {t('roledetail.closed.title')}
+              </p>
+              <p className="text-[15px] leading-[1.7] text-foreground/85">{t('roledetail.closed.body')}</p>
+              <p className="text-[15px] leading-[1.7] text-foreground/85 mt-3">
+                {t('roledetail.closed.ctaPre')}
+                <a
+                  href={mailto}
+                  className="underline underline-offset-4 decoration-brass decoration-2"
+                >
+                  {APPLY_EMAIL}
+                </a>
+                {t('roledetail.closed.ctaPost')}
+              </p>
+            </div>
+          )}
           <div className="flex items-center gap-3 mb-7">
-            <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('roledetail.openRole')}</span>
-            <span className="h-px w-10 bg-accent/60" aria-hidden="true" />
+            <span
+              className={`font-mono text-[13px] uppercase tracking-[0.22em] ${isOpen ? 'text-accent' : 'text-foreground/50'}`}
+            >
+              {isOpen ? t('roledetail.openRole') : t('roledetail.closedRole')}
+            </span>
+            <span
+              className={`h-px w-10 ${isOpen ? 'bg-accent/60' : 'bg-foreground/25'}`}
+              aria-hidden="true"
+            />
           </div>
           <h1
-            className="font-display text-[40px] sm:text-[54px] lg:text-[68px] leading-[1.05] tracking-[-0.03em] mb-8"
+            className={`font-display text-[40px] sm:text-[54px] lg:text-[68px] leading-[1.05] tracking-[-0.03em] mb-8 ${isOpen ? '' : 'text-foreground/60'}`}
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
             {role.title}
           </h1>
-          <p className="text-[17px] lg:text-[19px] leading-[1.65] text-foreground/80 max-w-3xl">
+          <p className={`text-[17px] lg:text-[19px] leading-[1.65] max-w-3xl ${isOpen ? 'text-foreground/80' : 'text-foreground/65'}`}>
             {role.summary}
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <a
-              href={mailto}
-              className="inline-flex items-center justify-center bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors min-h-[44px]"
-            >
-              {t('roledetail.hero.apply')}
-            </a>
+            {isOpen && (
+              <a
+                href={mailto}
+                className="inline-flex items-center justify-center bg-foreground text-background px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/90 transition-colors min-h-[44px]"
+              >
+                {t('roledetail.hero.apply')}
+              </a>
+            )}
             <a
               href="#what-you-will-build"
               className="inline-flex items-center justify-center border border-foreground/30 text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/5 transition-colors min-h-[44px]"
@@ -228,6 +266,7 @@ export function RoleContent({ role }: { role: Role }) {
       </section>
 
       {/* Apply */}
+      {isOpen && (
       <section className="py-20 lg:py-28 px-6 lg:px-10 bg-foreground text-background">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-7 justify-center">
@@ -271,6 +310,45 @@ export function RoleContent({ role }: { role: Role }) {
           </div>
         </div>
       </section>
+      )}
+
+      {/* Closed: no application call-to-action, just a way to stay in touch. */}
+      {!isOpen && (
+        <section className="py-20 lg:py-28 px-6 lg:px-10 bg-secondary border-t border-border">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="flex items-center gap-3 mb-7 justify-center">
+              <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-foreground/50">
+                {t('roledetail.closedRole')}
+              </span>
+              <span className="h-px w-10 bg-foreground/25" aria-hidden="true" />
+            </div>
+            <h2 className={`${SECTION_H2} mb-6`} style={{ fontVariationSettings: "'opsz' 120" }}>
+              {t('roledetail.closed.apply.heading')}
+            </h2>
+            <p className="text-[15px] leading-[1.7] text-foreground/80 max-w-2xl mx-auto mb-10">
+              {t('roledetail.closed.apply.body')}
+            </p>
+            <div className="flex flex-col items-center gap-4">
+              <a
+                href={mailto}
+                className="inline-flex items-center gap-2.5 border border-foreground/30 text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-foreground/5 transition-colors min-h-[44px]"
+              >
+                {t('roledetail.closed.apply.cta')}
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
+                </svg>
+              </a>
+              <p className="text-[13px] text-foreground/65">
+                {t('roledetail.apply.formPre')}
+                <Link href={formHref} className="underline underline-offset-4 decoration-brass decoration-2">
+                  {t('roledetail.apply.contactPage')}
+                </Link>
+                {t('roledetail.apply.formPost')}
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
     </main>
   )
 }
