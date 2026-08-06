@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aescia for MedElevate Solutions</title>
+<meta name="description" content="What Aescia fixes at a surgery center, and what it is worth. Prepared for MedElevate Solutions.">
+<link rel="icon" href="/icon.svg">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/Geist-Variable.woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/Geist-Variable.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist Mono';
+    src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
+  * { box-sizing: border-box; }
+</style>
+<style>
+  :root {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EBEFF5;
+    --ink: #1B2745; --ink-2: #2D3A5E; --muted: #475A82;
+    --line: #E2E6EE; --line-strong: #C7D3E5;
+    --accent: #40597A; --accent-soft: #E2EAF4;
+    --loss: #B53A2C; --gain: #1F6B47; --field: #FFFFFF;
+    --brass: #B89D6A; --mist: #5C7A99;
+    --shadow: 0 1px 2px rgba(27,39,69,.06), 0 8px 24px -12px rgba(27,39,69,.18);
+    --serif: 'Geist', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --sans: 'Geist', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --maxw: 68rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F1A33; --surface: #1B2745; --surface-2: #243254;
+      --ink: #F4F6FA; --ink-2: #DCE4F0; --muted: #B7CBE0;
+      --line: #2D3A5E; --line-strong: #475A82;
+      --accent: #A8C2D8; --accent-soft: #243254;
+      --loss: #E08A78; --gain: #6FC49B; --field: #16203A;
+      --brass: #DEC9A5; --mist: #A8C2D8;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1A33; --surface: #1B2745; --surface-2: #243254;
+    --ink: #F4F6FA; --ink-2: #DCE4F0; --muted: #B7CBE0;
+    --line: #2D3A5E; --line-strong: #475A82;
+    --accent: #A8C2D8; --accent-soft: #243254;
+    --loss: #E08A78; --gain: #6FC49B; --field: #16203A;
+    --brass: #DEC9A5; --mist: #A8C2D8;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"] {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EBEFF5;
+    --ink: #1B2745; --ink-2: #2D3A5E; --muted: #475A82;
+    --line: #E2E6EE; --line-strong: #C7D3E5;
+    --accent: #40597A; --accent-soft: #E2EAF4;
+    --loss: #B53A2C; --gain: #1F6B47; --field: #FFFFFF;
+    --brass: #B89D6A; --mist: #5C7A99;
+    --shadow: 0 1px 2px rgba(27,39,69,.06), 0 8px 24px -12px rgba(27,39,69,.18);
+  }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; font-feature-settings: 'ss01', 'cv11'; margin: 0; }
+  ::selection { background: rgba(184, 157, 106, .35); }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 3rem 1.25rem 5rem; display: flex; flex-direction: column; gap: 3.25rem; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 700; letter-spacing: -.025em; text-wrap: balance; line-height: 1.2; }
+  p { margin: 0; }
+
+  .eyebrow { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass); font-weight: 700; }
+
+  .masthead { display: flex; flex-direction: column; gap: 1rem; }
+  .masthead h1 { font-size: clamp(2rem, 5vw, 2.8rem); margin: 0; letter-spacing: -.03em; }
+  .masthead .lede { font-size: 1.06rem; color: var(--ink-2); }
+  .fornyleen { border: 2px solid var(--accent); border-radius: 4px; padding: 1.5rem 1.6rem; display: flex; flex-direction: column; gap: .6rem; }
+  .fornyleen h2 { font-size: 1.15rem; margin: 0; color: var(--accent); }
+  .fornyleen .oneliner { font-family: var(--serif); font-size: clamp(1.2rem, 2.6vw, 1.5rem); line-height: 1.35; color: var(--ink); text-wrap: balance; }
+  .fornyleen .ntext { font-size: .95rem; color: var(--ink-2); line-height: 1.6; }
+  .fornyleen .sub { font-size: .82rem; color: var(--muted); font-style: italic; margin-bottom: .5rem; }
+  .honest { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .honest div { background: var(--surface); padding: .8rem .95rem; font-size: .84rem; color: var(--ink-2); line-height: 1.5; }
+  .honest b { display: block; font-family: var(--sans); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: .25rem; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding-top: 1rem; border-top: 2px solid var(--line-strong); font-size: .85rem; color: var(--muted); }
+  .meta-row strong { color: var(--ink-2); font-weight: 600; }
+
+  .sec-head { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1.4rem; }
+  .sec-head h2 { font-size: clamp(1.35rem, 3vw, 1.75rem); margin: 0; }
+  .sec-head p { color: var(--muted); font-size: .92rem; }
+  .sec-head.tight { margin-bottom: .9rem; }
+  .sec-head h2.label {
+    font-family: var(--sans); font-size: .74rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ---------- problem categories ---------- */
+  .cats { display: flex; flex-direction: column; gap: .9rem; }
+
+  details.cat {
+    background: var(--surface); border: 1px solid var(--line-strong); border-radius: 6px;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  details.cat:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+  details.cat[open] { border-color: var(--accent); box-shadow: var(--shadow); }
+  details.cat.has-picks { border-left: 4px solid var(--accent); }
+
+  details.cat > summary {
+    cursor: pointer; list-style: none;
+    min-height: 4.75rem; padding: 1.35rem 1.5rem;
+    display: flex; align-items: center; gap: 1.15rem;
+    font-family: var(--serif); font-weight: 600; color: var(--ink);
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem); line-height: 1.2; letter-spacing: -.012em;
+  }
+  details.cat > summary::-webkit-details-marker { display: none; }
+  details.cat > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; border-radius: 5px; }
+
+  /* the affordance: a real target, not a glyph */
+  .cat-toggle {
+    flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sans); font-size: 1.5rem; font-weight: 400; line-height: 1;
+    transition: background .2s ease, transform .25s ease;
+  }
+  details.cat > summary:hover .cat-toggle { background: var(--accent); color: var(--surface); }
+  @media (prefers-color-scheme: dark) { details.cat > summary:hover .cat-toggle { color: #08171B; } }
+  :root[data-theme="dark"] details.cat > summary:hover .cat-toggle { color: #08171B; }
+  details.cat[open] .cat-toggle { transform: rotate(45deg); }
+
+  .cat-label { flex: 1 1 auto; min-width: 0; }
+
+  .cat-count {
+    flex: none; font-family: var(--sans); font-size: .78rem; font-weight: 700;
+    letter-spacing: .04em; color: var(--muted);
+    padding: .3rem .6rem; border: 1px solid var(--line-strong); border-radius: 100px;
+    white-space: nowrap; transition: color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  details.cat.has-picks .cat-count {
+    color: var(--accent); border-color: var(--accent); background: var(--accent-soft);
+  }
+
+  .cat-body { padding: 0 1.5rem 1.1rem; display: flex; flex-direction: column; }
+
+  .cl-item {
+    display: flex; align-items: center; gap: .85rem;
+    min-height: 3rem; padding: .1rem .65rem; margin: 0 -.65rem;
+    border-radius: 4px; cursor: pointer;
+    transition: background .15s ease;
+  }
+  .cl-item:hover { background: var(--surface-2); }
+  .cl-item + .cl-item { border-top: 1px solid var(--line); border-radius: 0; }
+  .cl-item input {
+    width: 1.25rem; height: 1.25rem; accent-color: var(--accent);
+    cursor: pointer; margin: 0; flex: none;
+  }
+  .cl-item input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .cl-item b {
+    font-family: var(--sans); font-size: 1.02rem; font-weight: 500;
+    color: var(--ink-2); line-height: 1.35;
+  }
+  .cl-item:hover b { color: var(--ink); }
+  .cl-item input:checked + b { color: var(--accent); font-weight: 600; }
+
+  .foldstrip {
+    width: 100%; text-align: left; cursor: pointer;
+    display: flex; align-items: baseline; gap: .8rem;
+    padding: 1rem 1.4rem; border: 1px dashed var(--line-strong); border-radius: 6px;
+    background: transparent; transition: border-color .2s ease, background .2s ease;
+  }
+  .foldstrip:hover { border-color: var(--accent); background: var(--surface); }
+  .foldstrip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .foldstrip::before { content: "+"; font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-size: 1.1rem; color: var(--accent); line-height: 1; flex: none; }
+  .fs-label { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--ink-2); }
+  .fs-meta { margin-left: auto; font-family: var(--sans); font-size: .78rem; color: var(--muted); flex: none; }
+
+  #toCasc, #toFixes { opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+  #toCasc.in, #toFixes.in { opacity: 1; transform: none; }
+
+  /* ---------- what we do ---------- */
+  .wwd { display: flex; flex-direction: column; gap: 1.4rem; }
+  .wwd p { font-size: 1.02rem; line-height: 1.65; color: var(--ink-2); }
+  .assurances { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .assurances div { background: var(--surface); padding: .85rem 1rem; font-size: .86rem; color: var(--ink-2); }
+  .assurances b { color: var(--ink); font-weight: 700; }
+
+  .flowdiag { width: 100%; height: auto; display: block; }
+  .flowdiag text { font-family: var(--sans); }
+  .dg-h { font-size: 15px; font-weight: 700; fill: var(--ink); }
+  .dg-b { font-size: 13px; fill: var(--ink-2); }
+  .dg-s { font-size: 11.5px; fill: var(--muted); }
+  .dg-f { font-size: 13px; font-weight: 600; fill: var(--accent); }
+  .dg-box { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+  .dg-band { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1; }
+  .dg-node { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+  .dg-rail { stroke: var(--line-strong); stroke-width: 2; }
+  .dg-dash { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 4 4; fill: none; }
+  .dg-arrow { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .dg-head { fill: var(--accent); }
+
+  /* ---------- fix panel ---------- */
+  .fix-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .fix-item { background: var(--surface); padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: .25rem; }
+  .fix-item h4 { font-family: var(--sans); font-size: .86rem; font-weight: 700; margin: 0; color: var(--accent); }
+  .fix-item p { font-size: .91rem; color: var(--ink-2); line-height: 1.55; }
+  .fix-synth { margin-top: 1rem; padding: .9rem 1.1rem; background: var(--accent-soft); border-left: 3px solid var(--accent); font-size: .93rem; color: var(--ink-2); line-height: 1.55; }
+  .fix-empty { font-size: .92rem; color: var(--muted); font-style: italic; }
+
+  /* ---------- chooser ---------- */
+  .chooser { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .8rem; }
+  .choice {
+    cursor: pointer; padding: 1rem 1.1rem; border-radius: 4px; text-align: left;
+    background: var(--surface); border: 1px solid var(--line-strong);
+    font-family: var(--serif); font-size: 1.02rem; font-weight: 600; color: var(--ink);
+  }
+  .choice:hover { border-color: var(--accent); }
+  .choice:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .choice[aria-pressed="true"] { border-color: var(--accent); border-width: 2px; background: var(--accent-soft); padding: calc(1rem - 1px) calc(1.1rem - 1px); }
+
+  /* ---------- calculators ---------- */
+  .calcs { display: flex; flex-direction: column; gap: 2rem; margin-top: 1.5rem; }
+  .calc { border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--shadow); background: var(--surface); }
+  .calc-head { padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--line); background: var(--surface-2); border-radius: 3px 3px 0 0; }
+  .calc-head h3 { font-size: 1.2rem; margin: 0; }
+  .calc-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 1px; background: var(--line); }
+  @media (max-width: 54rem) { .calc-body { grid-template-columns: 1fr; } }
+  .calc-col { background: var(--surface); padding: 1.35rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .calc-col.out { background: var(--surface-2); }
+
+  .field-group { display: flex; flex-direction: column; }
+  .block-label { font-family: var(--sans); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 .65rem; }
+  .col-key { display: grid; grid-template-columns: minmax(0,1fr) 6.5rem 5.5rem; gap: .7rem; padding-bottom: .35rem; border-bottom: 1px solid var(--line-strong); }
+  .col-key span { font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; text-align: right; }
+  .col-key span:first-child { text-align: left; }
+  .field { display: grid; grid-template-columns: minmax(0,1fr) 6.5rem 5.5rem; align-items: center; gap: .7rem; padding: .5rem 0; border-bottom: 1px solid var(--line); }
+  .field:last-child { border-bottom: none; }
+  .field label { font-size: .875rem; color: var(--ink-2); line-height: 1.35; }
+  .field .hint { display: block; font-size: .72rem; color: var(--muted); margin-top: .1rem; }
+  .typ { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-size: .74rem; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; line-height: 1.3; }
+  .typ.txt { font-family: var(--sans); font-size: .7rem; font-style: italic; }
+  @media (max-width: 30rem) {
+    .field, .col-key { grid-template-columns: minmax(0,1fr) 6.5rem; }
+    .typ { grid-column: 2; text-align: right; margin-top: -.3rem; }
+    .col-key span:last-child { display: none; }
+  }
+
+  .input-shell { display: flex; align-items: center; gap: .25rem; justify-content: flex-end; }
+  .input-shell .pre, .input-shell .post { font-size: .8rem; color: var(--muted); font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; }
+  .calc input[type="number"] {
+    width: 100%; min-width: 0; text-align: right;
+    font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-variant-numeric: tabular-nums;
+    font-size: .9rem; font-weight: 600; color: var(--ink);
+    background: var(--field); border: 1px solid var(--line-strong);
+    border-radius: 3px; padding: .35rem .5rem;
+  }
+  .calc input[type="number"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+  .calc input[type="checkbox"] { width: 1.1rem; height: 1.1rem; accent-color: var(--accent); cursor: pointer; margin: 0; }
+  .calc input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  details.more { border-top: 1px solid var(--line); padding-top: .8rem; }
+  details.more > summary {
+    cursor: pointer; font-family: var(--sans); font-size: .72rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+    list-style: none; display: flex; align-items: center; gap: .45rem;
+  }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::before { content: "+"; font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-size: 1rem; line-height: 1; }
+  details.more[open] > summary::before { content: "–"; }
+  details.more > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  details.more .field-group + .field-group { margin-top: 1.3rem; }
+  details.more > .field-group:first-of-type { margin-top: .9rem; }
+
+
+  .derived { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .5rem 0 .1rem; font-size: .8rem; color: var(--muted); }
+  .derived .val { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--ink-2); }
+  .derived .note-inline { display: block; font-size: .72rem; margin-top: .12rem; }
+
+  .src {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 1rem; height: 1rem; margin-left: .3rem; padding: 0; vertical-align: middle;
+    border: 1px solid var(--line-strong); border-radius: 50%; background: transparent;
+    color: var(--muted); font-family: var(--serif); font-style: italic; font-size: .68rem;
+    line-height: 1; cursor: help; flex: none;
+  }
+  .src:hover, .src:focus-visible { border-color: var(--accent); color: var(--accent); }
+  .src:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .src::after {
+    content: attr(data-tip); position: absolute; right: -.25rem; bottom: calc(100% + .45rem);
+    width: 17rem; max-width: 60vw; background: var(--ink); color: var(--bg);
+    font-family: var(--sans); font-style: normal; font-size: .74rem; font-weight: 400;
+    line-height: 1.45; text-align: left; padding: .6rem .7rem; border-radius: 3px;
+    opacity: 0; visibility: hidden; transition: opacity .12s ease; z-index: 20;
+    pointer-events: none; box-shadow: 0 8px 24px -10px rgba(0,0,0,.55);
+  }
+  .src:hover::after, .src:focus-visible::after { opacity: 1; visibility: visible; }
+  @media (prefers-reduced-motion: reduce) { .src::after { transition: none; } }
+
+  .metrics-wrap { overflow-x: auto; }
+  table.res { width: 100%; border-collapse: collapse; font-size: .85rem; min-width: 20rem; }
+  table.res th { text-align: left; font-family: var(--sans); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; padding: 0 0 .5rem 0; border-bottom: 1px solid var(--line-strong); }
+  table.res th:not(:first-child), table.res td:not(:first-child) { text-align: right; padding-left: .75rem; }
+  table.res td { padding: .5rem 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-variant-numeric: tabular-nums; font-size: .82rem; }
+  table.res td:first-child { font-family: var(--sans); font-size: .85rem; color: var(--ink-2); }
+  table.res td.rec { color: var(--gain); font-weight: 600; }
+  table.res td.dim { color: var(--muted); }
+  table.res tr:last-child td { border-bottom: none; }
+
+  .summary { display: flex; flex-direction: column; gap: .6rem; }
+  .sum-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .88rem; }
+  .sum-row .lbl { color: var(--ink-2); }
+  .sum-row .val { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+  .sum-row.total { border-top: 2px solid var(--line-strong); padding-top: .7rem; font-size: 1rem; font-weight: 700; }
+  .sum-row.total .val { color: var(--gain); font-size: 1.2rem; }
+  .stakes { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .stake { background: var(--surface); padding: .95rem 1.1rem; display: flex; flex-direction: column; gap: .45rem; }
+  .stake h4 { font-family: var(--sans); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 .1rem; }
+  .stake .sum-row { font-size: .85rem; }
+  .stake .sum-row.total { border-top: 1px solid var(--line-strong); padding-top: .5rem; font-size: .92rem; }
+  .stake .sum-row.total .val { font-size: 1.1rem; color: var(--gain); }
+  .stake-note { font-size: .76rem; color: var(--muted); line-height: 1.45; margin-top: .15rem; }
+
+  .headline { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: .85rem 1rem; display: flex; flex-direction: column; gap: .15rem; }
+  .headline .big { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-size: 1.25rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .headline .cap { font-size: .78rem; color: var(--muted); }
+  .headline.warn { background: transparent; border-left-color: var(--loss); }
+  .headline.warn .big { color: var(--loss); }
+
+  .calc-disclaimer { border-left-color: var(--loss); margin-top: .25rem; }
+  .note { padding: .8rem 1rem; background: var(--surface); border-left: 3px solid var(--line-strong); font-size: .84rem; color: var(--muted); line-height: 1.55; }
+  .note strong { color: var(--ink-2); }
+
+  .pricing { background: var(--accent); color: #FFFFFF; border-radius: 4px; padding: 1.9rem 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+  @media (prefers-color-scheme: dark) { .pricing { color: #08171B; } }
+  :root[data-theme="dark"] .pricing { color: #08171B; }
+  :root[data-theme="light"] .pricing { color: #FFFFFF; }
+  .pricing h2 { font-size: 1.4rem; margin: 0; color: inherit; }
+  .pricing .rule { font-size: 1.1rem; font-family: var(--serif); font-style: italic; opacity: .95; }
+  .pricing ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .5rem; }
+  .pricing li { font-size: .92rem; padding-left: 1.1rem; position: relative; opacity: .95; }
+  .pricing li::before { content: ""; position: absolute; left: 0; top: .6rem; width: 6px; height: 6px; background: currentColor; border-radius: 50%; opacity: .6; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 1.4rem; font-size: .84rem; color: var(--muted); display: flex; flex-direction: column; gap: .6rem; }
+  .srclist { display: flex; flex-direction: column; gap: .45rem; margin: 0; padding: 0; list-style: none; }
+  .srclist li { font-size: .79rem; line-height: 1.5; padding-left: 1.2rem; position: relative; }
+  .srclist li strong { color: var(--ink-2); font-weight: 600; }
+  .srclist li::before { content: "i"; position: absolute; left: 0; top: .16rem; width: 1rem; height: 1rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--line-strong); border-radius: 50%; font-family: var(--serif); font-style: italic; font-size: .66rem; }
+
+  [hidden] { display: none !important; }
+
+  @media print {
+    .wrap { max-width: none; padding: 0; gap: 1.5rem; }
+    .choice, .src, .fix-empty { display: none !important; }
+    details.more { display: block !important; }
+    details.more > summary { display: none; }
+    .calc[hidden] { display: block !important; }
+    .calc, .checklist, .fix-list, .assurances { box-shadow: none; break-inside: avoid; }
+    .calc { break-before: page; }
+    .pricing { background: none; color: #1B2745; border: 1px solid #C7D3E5; }
+    .sitebar, .sitefoot { display: none !important; }
+    a[href]::after { content: ""; }
+  }
+
+  /* ---------- reveal gating ---------- */
+  .stage { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+  .stage.in { opacity: 1; transform: none; }
+  .stage[hidden] { display: none !important; }
+
+  .gobtn {
+    align-self: flex-start; cursor: pointer; font-family: var(--sans);
+    font-size: .95rem; font-weight: 700; letter-spacing: .01em;
+    padding: .8rem 1.4rem; border-radius: 4px;
+    background: var(--accent); color: #FFF; border: 1px solid var(--accent);
+  }
+  @media (prefers-color-scheme: dark) { .gobtn { color: #08171B; } }
+  :root[data-theme="dark"] .gobtn { color: #08171B; }
+  :root[data-theme="light"] .gobtn { color: #FFF; }
+  .gobtn:disabled { background: transparent; color: var(--muted); border-color: var(--line-strong); cursor: default; }
+  #go { opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
+  #go.in { opacity: 1; transform: none; }
+  .gobtn:not(:disabled):hover { opacity: .9; }
+  .gobtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .gonote { font-size: .8rem; color: var(--muted); }
+
+  /* ---------- selected problem tiles ---------- */
+  .tiles { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tile {
+    font-family: var(--sans); font-size: .82rem; font-weight: 600;
+    padding: .4rem .7rem; border-radius: 3px;
+    background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent);
+    opacity: 0; transform: translateY(-26px);
+    transition: transform .55s cubic-bezier(.34,1.3,.64,1), opacity .35s ease;
+  }
+  .tile.in { opacity: 1; transform: none; }
+  .cats.spent { opacity: .4; transition: opacity .6s ease; }
+  .cats.spent details { pointer-events: none; }
+
+  /* ---------- typewriter ---------- */
+  .type { white-space: pre-wrap; }
+  .type.going::after { content: "▍"; color: var(--accent); animation: blink .7s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- diagram ---------- */
+  .stairwrap { overflow-x: auto; overflow-y: hidden; }
+  .stairs {
+    display: grid; grid-template-columns: 1fr auto 1fr; grid-template-rows: auto auto auto;
+    column-gap: 2.5rem; row-gap: 2.75rem; min-width: 42rem; position: relative; padding: .5rem 0 1rem;
+  }
+  .stairs > *:not(svg) { position: relative; z-index: 2; }
+
+  .pos-before { grid-column: 1; grid-row: 1; align-self: start; }
+  .pos-case   { grid-column: 2; grid-row: 1; align-self: center; justify-self: center; }
+  .pos-after  { grid-column: 3; grid-row: 1; align-self: start; }
+  .pos-rules  { grid-column: 2; grid-row: 2; justify-self: center; min-width: 13rem; }
+  .pos-esc    { grid-column: 2; grid-row: 3; justify-self: center; min-width: 13rem; }
+
+  .sbox {
+    background: var(--surface); border: 1.5px solid var(--accent); border-radius: 4px;
+    padding: .85rem 1rem; opacity: 0; transform: translateY(16px);
+    transition: opacity .45s ease, transform .45s ease;
+  }
+  .sbox.in { opacity: 1; transform: none; }
+  .sbox h4 { font-family: var(--sans); font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 .5rem; }
+  .sbox ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .3rem; }
+  .sbox li { font-size: .86rem; color: var(--ink-2); min-height: 1.25rem; }
+  .sbox li.gap { margin-top: .5rem; padding-top: .5rem; border-top: 1px dashed var(--line-strong); }
+
+  .casecircle {
+    width: 7.5rem; height: 7.5rem; border-radius: 50%; background: var(--surface);
+    border: 2px solid var(--ink-2); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    opacity: 0; transform: translateX(50px); transition: opacity .5s ease, transform .5s ease;
+  }
+  .casecircle.in { opacity: 1; transform: none; }
+  .casecircle b { font-family: var(--serif); font-size: 1.02rem; color: var(--ink); }
+  .casecircle span { font-size: .72rem; color: var(--muted); }
+
+  .flyup { transform: translateY(-22px); }
+  .flyup.in { transform: none; }
+
+  .rulesbox { background: var(--surface-2); border-color: var(--line-strong); }
+  .escbox { border-color: var(--loss); }
+  .escbox h4 { color: var(--loss); }
+
+  .stairsvg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+  .stairsvg path {
+    fill: none; stroke: var(--line-strong); stroke-width: 2;
+    stroke-dasharray: var(--len) var(--len); stroke-dashoffset: var(--len);
+    transition: stroke-dashoffset .6s ease;
+  }
+  .stairsvg path.drawn { stroke-dashoffset: 0; }
+  .stairsvg path.hot { stroke: var(--accent); }
+  .stairsvg path.warm { stroke: var(--loss); }
+
+  /* ---------- cancellation cascade ---------- */
+  .cascwrap { overflow-x: auto; overflow-y: hidden; }
+  .casc-outer { position: relative; min-width: 40rem; padding: 1rem 0 2rem; }
+  .casc { display: grid; grid-template-columns: repeat(3, minmax(12rem, 1fr)); gap: 1.5rem; }
+  .day h4 { font-family: var(--sans); font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 0 0 .55rem; }
+  .slot {
+    display: grid; grid-template-columns: 1.3rem 1fr auto; align-items: center; gap: .1rem .45rem;
+    padding: .45rem .6rem; margin-bottom: .4rem; min-height: 2.6rem;
+    background: var(--surface); border: 1px solid var(--line-strong); border-radius: 3px;
+    font-size: .84rem; color: var(--ink-2);
+  }
+  .slot .mark { font-family: var(--mono); font-feature-settings: 'tnum', 'zero'; font-weight: 700; text-align: center; font-size: 1rem; }
+  .slot .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .slot .crit { font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .01em; white-space: nowrap; }
+  .slot .proc { font-family: var(--sans); font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .slot.gastro .proc { color: var(--accent); }
+  .slot.asking { border-color: var(--accent); }
+  .slot.asking .mark { color: var(--accent); font-size: 1.35rem; }
+  .slot.no { border-color: var(--line); color: var(--muted); }
+  .slot.no .mark, .slot.no .crit { color: var(--loss); }
+  .slot.yes { border: 2px solid var(--gain); padding: calc(.5rem - 1px) calc(.6rem - 1px); }
+  .slot.yes .mark, .slot.yes .crit { color: var(--gain); }
+  .slot.gone { border-color: var(--loss); border-style: dashed; color: var(--loss); }
+  .slot.gone .mark { color: var(--loss); font-size: 1.4rem; }
+  .slot.open { border-style: dashed; color: var(--muted); background: transparent; }
+  .slot.landing { animation: land .65s ease; }
+  @keyframes land { 0% { box-shadow: 0 0 0 6px var(--accent-soft); } 100% { box-shadow: none; } }
+
+  .bigx {
+    position: absolute; left: 5.5rem; top: 4.1rem; z-index: 6;
+    font-size: 5.5rem; line-height: 1; font-weight: 700; color: var(--loss);
+    opacity: 0; transform: scale(.3) rotate(-12deg); pointer-events: none;
+    transition: opacity .3s ease, transform .45s cubic-bezier(.34,1.5,.64,1);
+  }
+  .bigx.in { opacity: .92; transform: scale(1) rotate(-12deg); }
+  .bigsay {
+    position: absolute; left: 0; top: 10.5rem; z-index: 8; max-width: 12.5rem;
+    font-family: var(--serif); font-size: 1.12rem; line-height: 1.25; font-weight: 700;
+    color: var(--loss); background: var(--surface);
+    border: 2px solid var(--loss); border-radius: 6px; padding: .55rem .8rem;
+    box-shadow: 0 6px 18px -8px rgba(0,0,0,.35);
+    opacity: 0; transform: translateX(-12px) scale(.94); transform-origin: left center;
+    pointer-events: none; transition: opacity .3s ease, transform .35s cubic-bezier(.34,1.4,.64,1);
+  }
+  .bigsay.in { opacity: 1; transform: none; }
+  /* tail, pointing back at the patient it came from */
+  .bigsay::before, .bigsay::after {
+    content: ""; position: absolute; top: 50%; right: 100%; width: 0; height: 0;
+    border: 9px solid transparent; margin-top: -9px;
+  }
+  .bigsay::before { border-right-color: var(--loss); }
+  .bigsay::after { border-right-color: var(--surface); margin-right: -2px; }
+  .bigsay.in { opacity: 1; }
+
+  .qfield { position: absolute; inset: 0; z-index: 5; pointer-events: none; }
+  .qfield span {
+    position: absolute; font-family: var(--serif); font-weight: 700; color: var(--accent);
+    opacity: 0; transform: scale(.4); transition: opacity .3s ease, transform .4s cubic-bezier(.34,1.6,.64,1);
+  }
+  .qfield span.in { opacity: .8; transform: scale(1); }
+  .qfield span.out { opacity: 0; transform: scale(1.5); }
+
+  /* ---------- per-problem fixes ---------- */
+  .fix-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .fix-item { background: var(--surface); padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: .25rem; }
+  .fix-item h4 { font-family: var(--sans); font-size: .86rem; font-weight: 700; margin: 0; color: var(--accent); }
+  .fix-item p { font-size: .91rem; color: var(--ink-2); line-height: 1.55; }
+  .fix-synth { margin-top: 1rem; padding: .9rem 1.1rem; background: var(--accent-soft); border-left: 3px solid var(--accent); font-size: .93rem; color: var(--ink-2); line-height: 1.55; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stage, .sbox, .casecircle, .flyright, .tile, .slot, .said { transition: none !important; }
+    .type.going::after { display: none; }
+  }
+
+  /* ---------- site chrome ---------- */
+  .sitebar {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .sitebar-in {
+    max-width: var(--maxw); margin: 0 auto; padding: .85rem 1.25rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .wordmark { display: inline-flex; align-items: baseline; gap: .4rem; text-decoration: none; }
+  .wordmark .wm-name {
+    font-family: var(--sans); font-weight: 700; font-size: 1.35rem;
+    letter-spacing: -.03em; color: var(--ink); line-height: 1;
+  }
+  .wordmark .wm-sub {
+    font-family: var(--mono); font-feature-settings: 'tnum', 'zero';
+    font-size: .7rem; text-transform: uppercase; letter-spacing: .22em;
+    color: var(--muted); line-height: 1;
+  }
+  .sitebar a.back {
+    font-family: var(--mono); font-feature-settings: 'tnum', 'zero';
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .16em;
+    color: var(--muted); text-decoration: none; font-weight: 600;
+    border-bottom: 1px solid transparent; padding-bottom: 2px;
+  }
+  .sitebar a.back:hover { color: var(--ink); border-bottom-color: var(--brass); }
+
+  .sitefoot { border-top: 1px solid var(--line); background: var(--surface); }
+  .sitefoot-in {
+    max-width: var(--maxw); margin: 0 auto; padding: 2.25rem 1.25rem 2.75rem;
+    display: flex; flex-wrap: wrap; align-items: flex-end;
+    justify-content: space-between; gap: 1.25rem;
+  }
+  .sitefoot .blurb { font-size: .88rem; color: var(--muted); max-width: 30rem; line-height: 1.6; margin-top: .7rem; }
+  .sitefoot nav { display: flex; flex-wrap: wrap; gap: .55rem 1.4rem; font-size: .88rem; }
+  .sitefoot nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 1px; }
+  .sitefoot nav a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+  @media (max-width: 34rem) {
+    .sitebar a.back { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sitebar">
+  <div class="sitebar-in">
+    <a class="wordmark" href="https://www.aesciahealth.com">
+      <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
+    </a>
+    <a class="back" href="https://www.aesciahealth.com">aesciahealth.com &#8599;</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Prepared for MedElevate Solutions</span>
+    <h1>The problems we solve, and what they are worth</h1>
+    <p class="lede">Aescia runs the patient contact around a procedure, so fewer cases fall over and fewer slots go empty.</p>
+    <div class="meta-row">
+      <span><strong>Dr James Kurrle</strong>, Founder and Chief Executive</span>
+      <span>james@aesciahealth.com</span>
+      <span>aesciahealth.com</span>
+    </div>
+  </header>
+
+  <section class="fornyleen">
+    <p class="oneliner">Aescia handles the patient contact around a procedure for surgery centers: getting patients ready, refilling the slots that fall out, and checking on them afterwards.</p>
+    <p class="ntext">We already have a trial running in a tertiary hospital. What we are after now is a pilot at a deep discount with a few ASCs, to improve prep, refill cancellations, and more.</p>
+  </section>
+
+  <section id="problems">
+    <div class="sec-head tight"><h2 class="label">What problems do you need solving?</h2></div>
+    <button type="button" class="foldstrip" id="fold-problems" hidden>
+      <span class="fs-label">What problems do you need solving?</span>
+      <span class="fs-meta" id="fold-problems-meta"></span>
+    </button>
+    <div class="cats">
+      <details class="cat">
+        <summary><span class="cat-toggle" aria-hidden="true">+</span><span class="cat-label">I have wasted block time</span><span class="cat-count">6 problems</span></summary>
+        <div class="cat-body">
+          <label class="cl-item"><input type="checkbox" data-key="late-cancellations"><b>Late cancellations</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="no-shows"><b>No-shows</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="block-utilization"><b>Block utilization</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="waitlist"><b>Waitlist not matched to open slots</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="clinic-cancels"><b>Cancelling on patients who have already prepped</b></label>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="cat-toggle" aria-hidden="true">+</span><span class="cat-label">Patients turn up unprepared</span><span class="cat-count">4 problems</span></summary>
+        <div class="cat-body">
+          <label class="cl-item"><input type="checkbox" data-key="poor-prep"><b>Poor prep</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="instructions"><b>Pre-op instructions not followed</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="understanding"><b>Patients do not really understand the procedure</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="consent"><b>Patients arrive unconsented</b></label>
+        </div>
+      </details>
+      <details class="cat">
+        <summary><span class="cat-toggle" aria-hidden="true">+</span><span class="cat-label">My staff are overworked</span><span class="cat-count">4 problems</span></summary>
+        <div class="cat-body">
+          <label class="cl-item"><input type="checkbox" data-key="staff-time"><b>Staff time calling patients</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="surveillance"><b>Surveillance recall never goes out</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="prep-questions"><b>Patients ringing in with prep questions</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="follow-up"><b>No follow-up after discharge</b></label>
+          <label class="cl-item"><input type="checkbox" data-key="quality-data"><b>Quality reporting data</b></label>
+        </div>
+      </details>
+    </div>
+
+    <div style="display:flex;margin-top:1.5rem">
+      <button type="button" class="gobtn" id="go" hidden>How do we fix it?</button>
+    </div>
+  </section>
+
+  <!-- ============ revealed on click ============ -->
+
+  <section class="stage" id="s-wwd" hidden>
+    <div class="sec-head"><h2>What we do</h2></div>
+    <p class="what-we-do type" id="wwd-type"></p>
+  </section>
+
+  <section class="stage" id="s-stairs" hidden>
+    <div class="stairwrap">
+      <div class="stairs" id="stairs">
+        <svg class="stairsvg" id="stairsvg" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+          <path id="p1" d=""></path>
+          <path id="p2" d=""></path>
+          <path id="p3" d=""></path>
+          <path id="p4" d=""></path>
+          <path id="p5" d=""></path>
+        </svg>
+
+        <div class="sbox pos-before" id="st1">
+          <h4>Before the procedure</h4>
+          <ul>
+            <li class="type" data-t="Education first"></li>
+            <li class="type" data-t="Prep with reminders"></li>
+            <li class="type" data-t="Medication holds"></li>
+            <li class="type" data-t="Clearance and transport"></li>
+            <li class="type" data-t="Available to move appointments?"></li>
+          </ul>
+        </div>
+
+        <div class="casecircle pos-case" id="stCase"><b>The case</b><span>on the list</span></div>
+
+        <div class="sbox pos-after" id="st3">
+          <h4>After the procedure</h4>
+          <ul>
+            <li class="type" data-t="Check-in"></li>
+            <li class="type" data-t="Complications caught early"></li>
+            <li class="type gap" data-t="Surveillance recall"></li>
+          </ul>
+        </div>
+
+        <div class="sbox rulesbox pos-rules" id="stRules">
+          <h4>Rules engine</h4>
+          <ul><li>Reads every answer</li><li>Flags who needs a call</li></ul>
+        </div>
+
+        <div class="sbox escbox pos-esc flyup" id="stEsc">
+          <h4>Problems?</h4>
+          <ul><li>Escalated to get resolved</li></ul>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;margin-top:1.75rem">
+      <button type="button" class="gobtn" id="toCasc" hidden>How do we fix late cancellations?</button>
+    </div>
+  </section>
+
+  <button type="button" class="foldstrip" id="fold-diagram" hidden>
+    <span class="fs-label">What we do</span>
+    <span class="fs-meta">show the diagram again</span>
+  </button>
+
+  <section class="stage" id="s-casc" hidden>
+    <div class="sec-head"><h2 id="casc-title" class="type"></h2></div>
+    <div class="cascwrap">
+      <div class="casc-outer">
+        <div class="casc" id="casc">
+          <div class="day" id="d0"><h4>Tomorrow</h4></div>
+          <div class="day" id="d1"><h4>In 2 days</h4></div>
+          <div class="day" id="d2"><h4>In 3 days</h4></div>
+        </div>
+        <div class="bigx" id="bigx">&#10005;</div>
+        <div class="bigsay" id="bigsay">I can&rsquo;t do my colonoscopy</div>
+        <div class="qfield" id="qfield" aria-hidden="true"></div>
+      </div>
+    </div>
+    <p class="gonote" id="casc-caption" style="margin-top:1rem"></p>
+    <div style="display:flex;margin-top:1.75rem">
+      <button type="button" class="gobtn" id="toFixes" hidden>What about the problems I selected?</button>
+    </div>
+  </section>
+
+  <button type="button" class="foldstrip" id="fold-casc" hidden>
+    <span class="fs-label">Last-minute cancellations</span>
+    <span class="fs-meta">watch it again</span>
+  </button>
+
+  <section class="stage" id="s-fixes" hidden>
+    <div class="sec-head"><h2>Your problems, one by one</h2></div>
+    <div class="tiles" id="tiles"></div>
+    <div id="fixpanel" style="margin-top:1.25rem"></div>
+  </section>
+
+  <button type="button" class="foldstrip" id="fold-fixes" hidden>
+    <span class="fs-label">Your problems</span>
+    <span class="fs-meta" id="fold-fixes-meta"></span>
+  </button>
+
+  <section class="stage" id="s-gain" hidden>
+    <button type="button" class="gobtn" id="gain">How much could you gain?</button>
+  </section>
+
+  <section class="stage" id="s-calc" hidden>
+    <div class="chooser">
+      <button type="button" class="choice" data-target="asc" aria-pressed="false">Gastroenterology surgery center</button>
+      <button type="button" class="choice" data-target="ortho" aria-pressed="false">Orthopedic surgery center</button>
+      <button type="button" class="choice" data-target="cah" aria-pressed="false">Critical access hospital</button>
+    </div>
+    <div class="calcs">
+<div class="calc" data-calc="asc" hidden hidden>
+        <div class="calc-head"><h3>Gastroenterology surgery center</h3></div>
+        <div class="calc-body">
+          <div class="calc-col">
+            <div class="field-group">
+              <p class="block-label">The numbers you already track</p>
+              <div class="col-key"><span>&nbsp;</span><span>Yours</span><span>Typical</span></div>
+              <div class="field"><label for="a_perWeek">Procedures a week</label><div class="input-shell"><input type="number" id="a_perWeek" value="200" min="0" step="5"></div><span class="typ">&mdash;</span></div>
+              <div class="field"><label for="a_weeks">Operating weeks a year</label><div class="input-shell"><input type="number" id="a_weeks" value="50" min="0" step="1"></div><span class="typ">48&ndash;50</span></div>
+              <div class="field"><label for="a_fee">Facility fee a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="a_fee" value="450" min="0" step="10"></div><span class="typ">$450&ndash;636<button type="button" class="src" aria-label="Source" data-tip="Two real anchors, different markets. A managed-Medicare gastroenterology center in Miami reported $400 to $500 a case (July 2026). A New York endoscopy center works off $636 a scope on its own scorecard. Use whichever matches your payer mix rather than blending them.">i</button></span></div>
+              <div class="field"><label for="a_marginPct">Margin on a case<span class="hint">After room, nursing, sedation and reprocessing</span></label><div class="input-shell"><input type="number" id="a_marginPct" value="62" min="0" max="100" step="1"><span class="post">%</span></div><span class="typ">62%<button type="button" class="src" aria-label="Source" data-tip="HST Pathways 2024 (207 centers, 560,470 cases) puts gastroenterology ASC net revenue at $1,420 a case against roughly $888 of facility margin, which is about 62 percent. Applied to your own fee rather than to the industry average.">i</button></span></div>
+              <div class="field"><label for="a_noShow">No-show rate</label><div class="input-shell"><input type="number" id="a_noShow" value="6" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">8&ndash;10%<button type="button" class="src" aria-label="Source" data-tip="Published endoscopy cohorts span 4 to 23 percent, most clustering at 8 to 10. Safety-net centers run far higher.">i</button></span></div>
+              <div class="field"><label for="a_cancel">Cancellations you never refill</label><div class="input-shell"><input type="number" id="a_cancel" value="5" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">5.6&ndash;22%<button type="button" class="src" aria-label="Source" data-tip="Two definitions. ASGE benchmarking puts net unfilled cancellations at 5.6 to 8.45 percent. HST Pathways 2024, across 207 centers, reports 22 percent gross, which counts any reschedule. Use the narrower figure for slots you truly never refill.">i</button></span></div>
+              <div class="field"><label for="a_denial">Denied, non-billable or unauthorized</label><div class="input-shell"><input type="number" id="a_denial" value="4" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">10%<button type="button" class="src" aria-label="Source" data-tip="HST Pathways 2024 reports a 10 percent claim denial rate across 207 gastroenterology centers, up 3 points year on year. We only reach the share of those caused by something checkable before the case.">i</button></span></div>
+              <div class="field"><label for="a_profFee">Endoscopist fee a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="a_profFee" value="350" min="0" step="10"></div><span class="typ">$300&ndash;400<button type="button" class="src" aria-label="Source" data-tip="CPT 45378 professional fee: Medicare roughly $170 to $280 in a facility setting for 2026; commercial averages around $440 (United $472, Aetna $522, Blue Cross $442, Cigna $331, verified July 2026). Polypectomy codes pay about 40 percent more. Blended, $300 to $400 a case.">i</button></span></div>
+              <div class="field"><label for="a_anesFee">Anesthesia fee a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="a_anesFee" value="300" min="0" step="10"></div><span class="typ">$250&ndash;350<button type="button" class="src" aria-label="Source" data-tip="CPT 00811 and 00812: three to four base units plus roughly two time units. At the 2026 Medicare conversion factor of $20.50 a unit that is about $100 a case; at a commercial median of $78 a unit it is $400 to $470. Blended, $250 to $350.">i</button></span></div>
+              <div class="field"><label for="a_owners">Owner-endoscopists</label><div class="input-shell"><input type="number" id="a_owners" value="4" min="1" step="1"></div><span class="typ">&mdash;</span></div>
+            </div>
+            <details class="more">
+              <summary>More detail</summary>
+              <div class="field-group">
+                <p class="block-label">Prep and capacity</p>
+                <div class="field"><label for="a_wait">Wait for a routine scope</label><div class="input-shell"><input type="number" id="a_wait" value="4" min="0" step="1"><span class="post">wks</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_prep">Inadequate prep</label><div class="input-shell"><input type="number" id="a_prep" value="20" min="0" max="100" step="1"><span class="post">%</span></div><span class="typ">20&ndash;25%<button type="button" class="src" aria-label="Source" data-tip="Published colonoscopy cohorts. Rates run lower in private and higher-income populations.">i</button></span></div>
+                <div class="field"><label for="a_prepRep">of those, repeated early</label><div class="input-shell"><input type="number" id="a_prepRep" value="25" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_extraPerWeek">Extra cases a week from shorter, cleaner lists<span class="hint">Only counts if there is a queue to fill them from</span></label><div class="input-shell"><input type="number" id="a_extraPerWeek" value="2" min="0" step="1"></div><span class="typ">be mean<button type="button" class="src" aria-label="Source" data-tip="A poorly prepped colonoscopy runs materially longer. The vault's own modelling sizes prep-improvement throughput plus freed room time at roughly $42,000 a year for a four-physician center, so keep this conservative. It only converts to revenue if there is a queue to pull the extra case from.">i</button></span></div>
+              </div>
+              <div class="field-group">
+                <p class="block-label">Quality reporting</p>
+                <div class="field"><label for="a_ascqrRev">Annual Medicare facility revenue</label><div class="input-shell"><span class="pre">$</span><input type="number" id="a_ascqrRev" value="1800000" min="0" step="100000"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_ascqrPct">ASCQR penalty if you miss reporting</label><div class="input-shell"><input type="number" id="a_ascqrPct" value="2" min="0" max="10" step=".5"><span class="post">%</span></div><span class="typ">2 points<button type="button" class="src" aria-label="Source" data-tip="Ambulatory surgery centers report under ASCQR, not MIPS. Failing to submit costs a 2 percentage point reduction to the annual ASC Fee Schedule payment rate update.">i</button></span></div>
+              </div>
+
+              <div class="field-group">
+                <p class="block-label">Recovery</p>
+                <div class="field"><label for="a_rNoShow">of no-shows</label><div class="input-shell"><input type="number" id="a_rNoShow" value="25" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_rCancel">of unfilled cancellations</label><div class="input-shell"><input type="number" id="a_rCancel" value="40" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_rPrep">of repeated preps</label><div class="input-shell"><input type="number" id="a_rPrep" value="30" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_rDenial">of denials, where nobody checked</label><div class="input-shell"><input type="number" id="a_rDenial" value="20" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+              </div>
+              <div class="field-group">
+                <p class="block-label">Staff and physicians</p>
+                <div class="field"><label for="a_staffHrs">Staff hours a week calling patients</label><div class="input-shell"><input type="number" id="a_staffHrs" value="60" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_rStaff">of that time returned</label><div class="input-shell"><input type="number" id="a_rStaff" value="50" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="a_anesShare">Cases using anesthesia</label><div class="input-shell"><input type="number" id="a_anesShare" value="90" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+              </div>
+            </details>
+          </div>
+
+          <div class="calc-col out">
+            <div class="headline">
+              <span class="big" id="a_sCases">580 cases</span>
+              <span class="cap">put back on the list a year, out of <strong id="a_hVol">10,000</strong> scheduled.</span>
+            </div>
+            <div>
+              <p class="block-label">Margin recovered</p>
+              <div class="metrics-wrap">
+                <table class="res">
+                  <thead><tr><th>Loss</th><th>Cases</th><th>Recovered</th></tr></thead>
+                  <tbody id="a_rows"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="stakes">
+              <div class="stake">
+                <h4>The center</h4>
+                <div class="sum-row total"><span class="lbl">Value to the center</span><span class="val" id="a_sNet">&mdash;</span></div>
+                <p class="stake-note"><span id="a_sHrs">&mdash;</span> of calling time freed as well, not counted here.</p>
+              </div>
+              <div class="stake">
+                <h4>The endoscopists</h4>
+                <div class="sum-row"><span class="lbl">Professional fees recovered</span><span class="val" id="a_sProf">&mdash;</span></div>
+                <div class="sum-row total"><span class="lbl">Each owner</span><span class="val" id="a_sPerOwner">&mdash;</span></div>
+                <p class="stake-note">Owners take the facility line and this one.</p>
+              </div>
+              <div class="stake">
+                <h4>The anesthesia group</h4>
+                <div class="sum-row total"><span class="lbl">Fees recovered</span><span class="val" id="a_sAnes">&mdash;</span></div>
+                <p class="stake-note">Not your money, but it is why they will back you.</p>
+              </div>
+            </div>
+            <div class="note calc-disclaimer">
+              <strong>These are estimates, not a health economics assessment.</strong> Facility payment, professional fees and payer mix vary substantially between states and between contracts, so treat any figure here as a starting point for a proper costed assessment against your own remittance data rather than as a forecast.
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="calc" data-calc="ortho" hidden hidden>
+        <div class="calc-head"><h3>Orthopedic surgery center</h3></div>
+        <div class="calc-body">
+          <div class="calc-col">
+            <div class="field-group">
+              <p class="block-label">The numbers you already track</p>
+              <div class="col-key"><span>&nbsp;</span><span>Yours</span><span>Typical</span></div>
+              <div class="field"><label for="o_perWeek">Cases a week, all orthopedics</label><div class="input-shell"><input type="number" id="o_perWeek" value="20" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+              <div class="field"><label for="o_weeks">Operating weeks a year</label><div class="input-shell"><input type="number" id="o_weeks" value="50" min="0" step="1"></div><span class="typ">48&ndash;50</span></div>
+              <div class="field"><label for="o_tja">Facility fee for a total joint</label><div class="input-shell"><span class="pre">$</span><input type="number" id="o_tja" value="9400" min="0" step="100"></div><span class="typ">$9.2&ndash;9.4K<button type="button" class="src" aria-label="Source" data-tip="Medicare ambulatory surgery center facility fees were about $10,204 for total knee and $9,983 for total hip through 2024 (Journal of Arthroplasty, 2025), with 2026 reducing both by roughly 7.8 percent.">i</button></span></div>
+              <div class="field"><label for="o_canx">Same-day cancellation rate</label><div class="input-shell"><input type="number" id="o_canx" value="3" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">TJA ~1%<button type="button" class="src" aria-label="Source" data-tip="Published same-day cancellation for elective total joint arthroplasty is about 1 percent: 362 of 38,849 scheduled cases at an urban academic center, 2017 to 2023. Arthroscopy and sports cases cancel more often. Most were acute health issues and medication non-compliance.">i</button></span></div>
+              <div class="field"><label for="o_joints">Total joints a year</label><div class="input-shell"><input type="number" id="o_joints" value="220" min="0" step="10"></div><span class="typ">&mdash;</span></div>
+              <div class="derived"><span>Blended facility fee across your mix<span class="note-inline" id="o_blendNote">220 of 1,000 cases are joints</span></span><span class="val" id="o_blendVal">$4,268</span></div>
+            </div>
+            <details class="more">
+              <summary>More detail</summary>
+              <div class="field-group">
+                <p class="block-label">Slots</p>
+                <div class="field"><label for="o_noShow">No-show rate</label><div class="input-shell"><input type="number" id="o_noShow" value="2" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="o_otherRatio">A non-joint case pays, as a share of a joint</label><div class="input-shell"><input type="number" id="o_otherRatio" value="30" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="o_rSlot">of cancellations and no-shows we recover<span class="hint">Lower than a scope center: there is no queue of prepped joint patients waiting</span></label><div class="input-shell"><input type="number" id="o_rSlot" value="20" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="o_profFee">Surgeon professional fee a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="o_profFee" value="1200" min="0" step="50"></div><span class="typ txt">varies by code</span></div>
+              </div>
+              <div class="field-group">
+                <p class="block-label">Quality reporting</p>
+                <div class="field"><label for="o_ascqrRev">Annual Medicare facility revenue</label><div class="input-shell"><span class="pre">$</span><input type="number" id="o_ascqrRev" value="2400000" min="0" step="100000"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="o_ascqrPct">ASCQR penalty if you miss reporting</label><div class="input-shell"><input type="number" id="o_ascqrPct" value="2" min="0" max="10" step=".5"><span class="post">%</span></div><span class="typ">2 points<button type="button" class="src" aria-label="Source" data-tip="Ambulatory surgery centers report under the ASCQR program, not MIPS. Failing to submit costs a 2 percentage point reduction to the annual ASC Fee Schedule payment rate update.">i</button></span></div>
+                <div class="field"><label for="o_promMins">Minutes to chase one patient-reported outcome by hand</label><div class="input-shell"><input type="number" id="o_promMins" value="22" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="o_staffRate">Loaded staff cost an hour</label><div class="input-shell"><span class="pre">$</span><input type="number" id="o_staffRate" value="42" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+              </div>
+            </details>
+          </div>
+
+          <div class="calc-col out">
+            <div class="headline">
+              <span class="big" id="o_hOne">$4,268</span>
+              <span class="cap">is what one recovered case is worth to the center.</span>
+            </div>
+            <div>
+              <p class="block-label">Margin recovered</p>
+              <div class="metrics-wrap">
+                <table class="res">
+                  <thead><tr><th>Source</th><th>Volume</th><th>Recovered</th></tr></thead>
+                  <tbody id="o_rows"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="summary">
+              <div class="sum-row"><span class="lbl">Cases put back on the list</span><span class="val" id="o_sCases">&mdash;</span></div>
+              <div class="sum-row total"><span class="lbl">Value to the center</span><span class="val" id="o_sNet">&mdash;</span></div>
+              <div class="sum-row aside"><span class="lbl">Surgeon professional fees on those cases, not yours</span><span class="val" id="o_sProf">&mdash;</span></div>
+            </div>
+            <div class="note">
+              <strong>The 2027 measure, named.</strong> The total hip and knee arthroplasty patient-reported outcome-based performance measure (THA/TKA PRO-PM) becomes mandatory under ASCQR in 2027. It needs a matched pair per patient: one within 90 days before surgery and one between 300 and 425 days after, on at least half your eligible joints. Chasing a patient for a survey a year after their knee is the part nobody has staff for, and it is the same check-in loop.
+              <button type="button" class="src" aria-label="Source" data-tip="CMS finalised adopting the THA/TKA PRO-PM into the OQR and ASCQR programs, voluntary from 2025 and mandatory from 2027. Pre-operative collection within 90 days before the procedure, post-operative between 300 and 425 days after, with a 50 percent minimum reporting rate.">i</button>
+            </div>
+            <div class="note calc-disclaimer">
+              <strong>These are estimates, not a health economics assessment.</strong> Facility payment, professional fees and payer mix vary substantially between states and between contracts, so treat any figure here as a starting point for a proper costed assessment against your own remittance data rather than as a forecast.
+            </div>
+          </div>
+        </div>
+      </div>
+
+<div class="calc" data-calc="cah" hidden hidden>
+        <div class="calc-head"><h3>Critical access hospital</h3></div>
+        <div class="calc-body">
+          <div class="calc-col">
+            <div class="field-group">
+              <p class="block-label">The numbers you already track</p>
+              <div class="col-key"><span>&nbsp;</span><span>Yours</span><span>Typical</span></div>
+              <div class="field"><label for="c_perWeek">Gastroenterology cases a week</label><div class="input-shell"><input type="number" id="c_perWeek" value="50" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+              <div class="field"><label for="c_weeks">Operating weeks a year</label><div class="input-shell"><input type="number" id="c_weeks" value="50" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+              <div class="field"><label for="c_lostPct">Slots lost to no-show or cancellation</label><div class="input-shell"><input type="number" id="c_lostPct" value="12" min="0" max="100" step=".5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+              <div class="field"><label for="c_alos">Annual average acute stay<span class="hint">Your figure for the whole year, not any one patient</span></label><div class="input-shell"><input type="number" id="c_alos" value="84" min="0" step="1"><span class="post">hrs</span></div><span class="typ">max 96<button type="button" class="src" aria-label="Source" data-tip="A Medicare condition of participation: the ANNUAL AVERAGE acute inpatient stay must sit at or under 96 hours. Individual patients staying longer is normal. This is a different rule from the per-patient 96-hour physician certification, which is a condition of payment for that claim.">i</button></span></div>
+              <div class="field"><label for="c_method2">You bill Method II</label><div class="input-shell"><input type="checkbox" id="c_method2" checked></div><span class="typ txt">?<button type="button" class="src" aria-label="Source" data-tip="Method II lets the hospital bill outpatient professional services and be paid 115 percent of the physician fee schedule. It requires every practitioner to have reassigned billing rights to the hospital in PECOS. On Method I the physician bills directly and keeps the fee.">i</button></span></div>
+            </div>
+            <details class="more">
+              <summary>More detail</summary>
+              <div class="field-group">
+                <p class="block-label">Outpatient</p>
+                <div class="field"><label for="c_profFee">Professional fee a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="c_profFee" value="250" min="0" step="10"></div><span class="typ txt">varies by code</span></div>
+                <div class="field"><label for="c_rLost">of lost slots we recover</label><div class="input-shell"><input type="number" id="c_rLost" value="35" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_nonMed">Share of cases that are non-Medicare</label><div class="input-shell"><input type="number" id="c_nonMed" value="30" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_nonMedRate">Non-Medicare margin a case</label><div class="input-shell"><span class="pre">$</span><input type="number" id="c_nonMedRate" value="300" min="0" step="25"></div><span class="typ">&mdash;</span></div>
+              </div>
+              <div class="field-group">
+                <p class="block-label">Transfers and swing beds</p>
+                <div class="field"><label for="c_transfers">Transfers out a month that could have stayed</label><div class="input-shell"><input type="number" id="c_transfers" value="6" min="0" step="1"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_rTransfer">of those we help you keep</label><div class="input-shell"><input type="number" id="c_rTransfer" value="30" min="0" max="100" step="5"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_swingRate">Swing-bed day, reimbursed</label><div class="input-shell"><span class="pre">$</span><input type="number" id="c_swingRate" value="1200" min="0" step="50"></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_swingLos">Average swing-bed stay</label><div class="input-shell"><input type="number" id="c_swingLos" value="8" min="0" step="1"><span class="post">days</span></div><span class="typ">&mdash;</span></div>
+                <div class="field"><label for="c_swingMargin">Contribution margin on a retained day<span class="hint">After cost settlement, whatever your finance office puts on it</span></label><div class="input-shell"><input type="number" id="c_swingMargin" value="8" min="0" max="100" step="1"><span class="post">%</span></div><span class="typ">&mdash;</span></div>
+              </div>
+            </details>
+          </div>
+
+          <div class="calc-col out">
+            <div class="note">
+              <strong>Headroom on the 96-hour annual average: <span id="c_headroom">12 hours</span>.</strong> Swing-bed days are excluded from that average, so moving a long stay into a swing bed protects it and earns reimbursed revenue at the same time.
+            </div>
+            <div>
+              <p class="block-label">Where the money is</p>
+              <div class="metrics-wrap">
+                <table class="res">
+                  <thead><tr><th>Source</th><th>Volume</th><th>Value a year</th></tr></thead>
+                  <tbody id="c_rows"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="summary">
+              <div class="sum-row total"><span class="lbl">Value to the hospital</span><span class="val" id="c_sNet">&mdash;</span></div>
+            </div>
+            <div class="note">
+              <strong>What we have left out on purpose.</strong> Shortening a Medicare inpatient stay lowers your allowable cost, so Medicare pays you less. Saved nursing hours are an allowable cost too. Neither is in this model. Nor is the cost-report pickup on our own fee, which is real but is Medicare's money arriving as a settlement a year or two later, not a reason to buy. Sequestration takes the effective rate to roughly 99 percent of cost, so treat the 101 as nominal.
+            </div>
+            <div class="note calc-disclaimer">
+              <strong>These are estimates, not a health economics assessment.</strong> Facility payment, professional fees and payer mix vary substantially between states and between contracts, so treat any figure here as a starting point for a proper costed assessment against your own remittance data rather than as a forecast.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stage pricing" id="s-price" hidden>
+    <h2>Pricing</h2>
+    <p class="rule">We charge less than we improve your economic situation.</p>
+    <ul>
+      <li>Early sites are free. We need the evidence more than the revenue.</li>
+      <li>After that, a per-case rate set once we have measured the recovery on your own log.</li>
+      <li>Whatever an early site is paying is the lowest price we offer anyone.</li>
+    </ul>
+  </section>
+
+  <footer class="stage" id="s-foot" hidden>
+    <ul class="srclist">
+      <li><strong>Cancellations.</strong> ASGE benchmarking puts net unfilled at 5.6 to 8.45 percent; HST Pathways 2024 reports 22 percent gross across 207 centers.</li>
+      <li><strong>Margin, 62 percent.</strong> HST Pathways 2024: $1,420 net revenue a case against roughly $888 facility margin.</li>
+      <li><strong>Denials, 10 percent.</strong> HST Pathways 2024, up three points year on year.</li>
+      <li><strong>Inadequate prep, 20 to 25 percent.</strong> Published colonoscopy cohorts.</li>
+      <li><strong>Total joint facility fee.</strong> Journal of Arthroplasty 2025: about $10,204 knee and $9,983 hip through 2024, less roughly 7.8 percent in 2026.</li>
+      <li><strong>Total joint same-day cancellation, about 1 percent.</strong> 362 of 38,849 scheduled cases, 2017 to 2023.</li>
+      <li><strong>THA/TKA PRO-PM.</strong> Mandatory under ASCQR from 2027. Pre-operative within 90 days before, post-operative 300 to 425 days after, 50 percent minimum reporting rate.</li>
+      <li><strong>ASCQR penalty.</strong> Two percentage point reduction to the annual ASC Fee Schedule payment rate update.</li>
+      <li><strong>96-hour annual average.</strong> Medicare condition of participation. Swing-bed and distinct-part-unit days excluded.</li>
+      <li><strong>Method II at 115 percent.</strong> Social Security Act section 1834(g)(2)(B).</li>
+    </ul>
+  </footer>
+
+</div>
+
+<footer class="sitefoot">
+  <div class="sitefoot-in">
+    <div>
+      <a class="wordmark" href="https://www.aesciahealth.com">
+        <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
+      </a>
+      <p class="blurb">Aescia runs the patient contact around a procedure: getting patients ready, refilling the slots that fall out, and checking on them afterwards.</p>
+    </div>
+    <nav>
+      <a href="https://www.aesciahealth.com">Home</a>
+      <a href="https://www.aesciahealth.com/clinics">For surgery centers</a>
+      <a href="https://www.aesciahealth.com/evidence">Evidence</a>
+      <a href="https://www.aesciahealth.com/contact">Contact</a>
+      <a href="mailto:james@aesciahealth.com">james@aesciahealth.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+
+  function n(id) { var el = document.getElementById(id); if (!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+  function money(v) { return (v < 0 ? '−$' : '$') + Math.abs(Math.round(v)).toLocaleString('en-US'); }
+  function count(v) { return Math.round(v).toLocaleString('en-US'); }
+  function set(id, t) { var el = document.getElementById(id); if (el) el.textContent = t; }
+
+  /* ---------------- gastroenterology ---------------- */
+  function calcAsc() {
+    var volume = n('a_perWeek') * n('a_weeks'), fee = n('a_fee');
+    var margin = fee * n('a_marginPct') / 100;
+    var wait = n('a_wait');
+    var atCap = wait >= 1;
+    var rows = [
+      { name: 'No-shows', cases: volume * n('a_noShow') / 100, rec: n('a_rNoShow') / 100 },
+      { name: 'Cancellations unfilled', cases: volume * n('a_cancel') / 100, rec: n('a_rCancel') / 100 },
+      { name: 'Denied or unauthorized', cases: volume * n('a_denial') / 100, rec: n('a_rDenial') / 100 }
+    ];
+    if (atCap) {
+      rows.push({ name: 'Preps repeated, refilling the wait', cases: volume * n('a_prep') / 100 * n('a_prepRep') / 100, rec: n('a_rPrep') / 100 });
+    }
+    var html = '', recovered = 0, casesBack = 0;
+    rows.forEach(function (b) {
+      var back = Math.round(b.cases * b.rec), g = back * margin;
+      recovered += g; casesBack += back;
+      html += '<tr><td>' + b.name + '</td><td>' + count(back) + '</td><td class="rec">' + money(g) + '</td></tr>';
+    });
+    if (!atCap) {
+      html += '<tr><td>Preps repeated</td><td class="dim">&mdash;</td><td class="dim">no wait, slot not lost</td></tr>';
+    }
+    document.getElementById('a_rows').innerHTML = html;
+
+    // Extra cases from shorter lists, only if there is a queue to pull from.
+    var extra = atCap ? n('a_extraPerWeek') * n('a_weeks') : 0;
+    if (extra > 0) {
+      recovered += extra * margin;
+      casesBack += extra;
+      document.getElementById('a_rows').innerHTML += '<tr><td>Extra cases from shorter lists</td><td>' + count(extra) + '</td><td class="rec">' + money(extra * margin) + '</td></tr>';
+    }
+
+    var ascqr = n('a_ascqrRev') * n('a_ascqrPct') / 100;
+    if (ascqr > 0) {
+      recovered += ascqr;
+      document.getElementById('a_rows').innerHTML += '<tr><td>ASCQR payment update protected</td><td class="dim">2 points</td><td class="rec">' + money(ascqr) + '</td></tr>';
+    }
+
+    var net = recovered;
+    var hrsBack = n('a_staffHrs') * n('a_rStaff') / 100;
+
+    set('a_hVol', count(volume));
+    set('a_sCases', count(casesBack) + ' cases');
+    set('a_sNet', money(net));
+    set('a_sHrs', count(hrsBack) + ' hrs a week');
+    var profTotal = casesBack * n('a_profFee');
+    var owners = n('a_owners') > 0 ? n('a_owners') : 1;
+    set('a_sProf', money(profTotal));
+    set('a_sPerOwner', money(profTotal / owners));
+    set('a_sAnes', money(casesBack * n('a_anesFee') * n('a_anesShare') / 100));
+    document.getElementById('a_sNet').style.color = net >= 0 ? 'var(--gain)' : 'var(--loss)';
+  }
+
+  /* ---------------- orthopedics ---------------- */
+  function calcOrtho() {
+    var volume = n('o_perWeek') * n('o_weeks'), joints = n('o_joints'), tja = n('o_tja');
+    var jointShare = volume > 0 ? Math.min(joints / volume, 1) : 0;
+    var fee = jointShare * tja + (1 - jointShare) * tja * n('o_otherRatio') / 100;
+    set('o_blendVal', money(fee));
+    set('o_blendNote', count(joints) + ' of ' + count(volume) + ' cases are joints');
+
+    var lost = volume * (n('o_canx') + n('o_noShow')) / 100;
+    var casesBack = Math.round(lost * n('o_rSlot') / 100);
+    var slotValue = casesBack * fee;
+
+    var ascqr = n('o_ascqrRev') * n('o_ascqrPct') / 100;
+    var promHours = joints * 2 * n('o_promMins') / 60;
+    var promCost = promHours * n('o_staffRate');
+
+    var html = '';
+    html += '<tr><td>Cancelled and missed slots recovered</td><td>' + count(casesBack) + ' cases</td><td class="rec">' + money(slotValue) + '</td></tr>';
+    html += '<tr><td>ASCQR payment update protected</td><td class="dim">2 points</td><td class="rec">' + money(ascqr) + '</td></tr>';
+    html += '<tr><td>Chasing the 2027 outcome pairs by hand</td><td>' + count(promHours) + ' hrs</td><td class="rec">' + money(promCost) + '</td></tr>';
+    document.getElementById('o_rows').innerHTML = html;
+
+    var recovered = slotValue + ascqr + promCost;
+    var net = recovered;
+
+    set('o_hOne', money(fee));
+    set('o_sCases', count(casesBack) + ' cases');
+    set('o_sNet', money(net));
+    set('o_sProf', money(casesBack * n('o_profFee')));
+    document.getElementById('o_sNet').style.color = net >= 0 ? 'var(--gain)' : 'var(--loss)';
+  }
+
+  /* ---------------- critical access ---------------- */
+  function calcCah() {
+    var volume = n('c_perWeek') * n('c_weeks');
+    var recovered = Math.round(volume * n('c_lostPct') / 100 * n('c_rLost') / 100);
+    var m2 = document.getElementById('c_method2').checked;
+    var nonMedShare = n('c_nonMed') / 100;
+    var nonMedCases = Math.round(recovered * nonMedShare);
+    var medCases = recovered - nonMedCases;
+
+    // Method II is a Medicare election, so it applies to the Medicare cases only.
+    var profValue = m2 ? medCases * n('c_profFee') * 1.15 : 0;
+    var nonMedValue = nonMedCases * n('c_nonMedRate');
+
+    var kept = Math.round(n('c_transfers') * 12 * n('c_rTransfer') / 100);
+    var swingDays = kept * n('c_swingLos');
+    var swingValue = swingDays * n('c_swingRate') * n('c_swingMargin') / 100;
+
+    var html = '';
+    html += '<tr><td>' + (m2 ? 'Medicare professional fees, Method II at 115%' : 'Professional fees on Method I, paid to the physician') + '</td><td>' + count(medCases) + ' cases</td><td class="' + (m2 ? 'rec' : 'dim') + '">' + money(profValue) + '</td></tr>';
+    html += '<tr><td>Non-Medicare margin on recovered slots</td><td>' + count(nonMedCases) + ' cases</td><td class="rec">' + money(nonMedValue) + '</td></tr>';
+    html += '<tr><td>Transfers kept, margin on retained days</td><td>' + count(swingDays) + ' days</td><td class="rec">' + money(swingValue) + '</td></tr>';
+    document.getElementById('c_rows').innerHTML = html;
+
+    var total = profValue + nonMedValue + swingValue;
+    var net = total;
+
+    var headroom = 96 - n('c_alos');
+    set('c_headroom', (headroom > 0 ? headroom : 0) + (headroom === 1 ? ' hour' : ' hours'));
+
+    set('c_sNet', money(net));
+    document.getElementById('c_sNet').style.color = net >= 0 ? 'var(--gain)' : 'var(--loss)';
+  }
+
+  var calcs = { asc: calcAsc, cah: calcCah, ortho: calcOrtho };
+  Object.keys(calcs).forEach(function (key) {
+    var root = document.querySelector('[data-calc="' + key + '"]');
+    if (!root) return;
+    root.querySelectorAll('input[type="number"], input[type="checkbox"]').forEach(function (el) {
+      el.addEventListener('input', calcs[key]);
+      el.addEventListener('change', calcs[key]);
+    });
+    calcs[key]();
+  });
+
+  var calcs = { asc: calcAsc, cah: calcCah, ortho: calcOrtho };
+  Object.keys(calcs).forEach(function (key) {
+    var root = document.querySelector('[data-calc="' + key + '"]');
+    if (!root) return;
+    root.querySelectorAll('input[type="number"], input[type="checkbox"]').forEach(function (el) {
+      el.addEventListener('input', calcs[key]);
+      el.addEventListener('change', calcs[key]);
+    });
+    calcs[key]();
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); };
+
+  function nextFrame() {
+    return new Promise(function (r) {
+      var fired = false;
+      var go = function () { if (!fired) { fired = true; r(); } };
+      requestAnimationFrame(go);
+      setTimeout(go, 120);
+    });
+  }
+
+  async function show(id) {
+    var el = document.getElementById(id);
+    el.hidden = false;
+    await nextFrame();
+    el.classList.add('in');
+    await wait(120);
+  }
+
+  function typeInto(el, text, speed) {
+    if (reduce) { el.textContent = text; return Promise.resolve(); }
+    el.textContent = '';
+    el.classList.add('going');
+    return new Promise(function (done) {
+      var i = 0;
+      (function step() {
+        var chunk = Math.max(1, Math.round(text.length / 90));
+        i = Math.min(text.length, i + chunk);
+        el.textContent = text.slice(0, i);
+        if (i < text.length) setTimeout(step, speed);
+        else { el.classList.remove('going'); done(); }
+      })();
+    });
+  }
+
+  async function typeList(box) {
+    var items = box.querySelectorAll('li.type');
+    for (var i = 0; i < items.length; i++) {
+      await typeInto(items[i], items[i].dataset.t, 12);
+      await wait(90);
+    }
+  }
+
+  function drawLines() {
+    var wrap = document.getElementById('stairs').getBoundingClientRect();
+    if (!wrap.width || !wrap.height) return ['p1','p2','p3','p4','p5'];
+    function box(id) {
+      var r = document.getElementById(id).getBoundingClientRect();
+      var sx = 1000 / wrap.width, sy = 520 / wrap.height;
+      return { l: (r.left - wrap.left) * sx, t: (r.top - wrap.top) * sy,
+               r: (r.right - wrap.left) * sx, b: (r.bottom - wrap.top) * sy,
+               cx: (r.left + r.width / 2 - wrap.left) * sx, cy: (r.top + r.height / 2 - wrap.top) * sy };
+    }
+    var B = box('st1'), C = box('stCase'), A = box('st3'), R = box('stRules'), E = box('stEsc');
+    var defs = [
+      // before -> case -> after, across the top
+      ['p1', 'M' + (B.r + 5) + ' ' + C.cy + ' H' + (C.l - 8), ''],
+      ['p2', 'M' + (C.r + 8) + ' ' + C.cy + ' H' + (A.l - 5), ''],
+      // before and after both feed the rules engine below
+      ['p3', 'M' + B.cx + ' ' + (B.b + 5) + ' V' + (R.cy) + ' H' + (R.l - 5), 'hot'],
+      ['p4', 'M' + A.cx + ' ' + (A.b + 5) + ' V' + (R.cy) + ' H' + (R.r + 5), 'hot'],
+      // rules engine -> problems
+      ['p5', 'M' + R.cx + ' ' + (R.b + 5) + ' V' + (E.t - 5), 'warm']
+    ];
+    defs.forEach(function (d) {
+      var el = document.getElementById(d[0]);
+      el.setAttribute('d', d[1]);
+      if (d[2]) el.classList.add(d[2]);
+      var len = el.getTotalLength ? el.getTotalLength() : 500;
+      el.style.setProperty('--len', len);
+    });
+    return defs.map(function (d) { return d[0]; });
+  }
+
+  async function runStairs() {
+    await show('s-stairs');
+    var st1 = document.getElementById('st1');
+    st1.classList.add('in');
+    await wait(280);
+    await typeList(st1);
+    await wait(200);
+
+    var ids = drawLines();
+    document.getElementById('p1').classList.add('drawn');
+    await wait(420);
+
+    document.getElementById('stCase').classList.add('in');
+    await wait(450);
+
+    drawLines();
+    document.getElementById('p1').classList.add('drawn');
+    document.getElementById('p2').classList.add('drawn');
+    await wait(420);
+
+    var st3 = document.getElementById('st3');
+    st3.classList.add('in');
+    await wait(280);
+    await typeList(st3);
+    await wait(250);
+
+    document.getElementById('stRules').classList.add('in');
+    await wait(420);
+
+    drawLines();
+    ['p1', 'p2'].forEach(function (i) { document.getElementById(i).classList.add('drawn'); });
+    document.getElementById('p3').classList.add('drawn');
+    await wait(300);
+    document.getElementById('p4').classList.add('drawn');
+    await wait(500);
+
+    document.getElementById('stEsc').classList.add('in');
+    await wait(350);
+    drawLines();
+    ids.forEach(function (i) { document.getElementById(i).classList.add('drawn'); });
+    await wait(400);
+  }
+
+  /* ---- FLIP so shifts and cross-column moves animate for real ---- */
+  function flip(mutate) {
+    var nodes = [].slice.call(document.querySelectorAll('#casc .slot'));
+    var first = new Map();
+    nodes.forEach(function (n) { first.set(n, n.getBoundingClientRect()); });
+    mutate();
+    if (reduce) return Promise.resolve();
+    var moved = [];
+    [].slice.call(document.querySelectorAll('#casc .slot')).forEach(function (n) {
+      var f = first.get(n); if (!f) return;
+      var l = n.getBoundingClientRect();
+      var dx = f.left - l.left, dy = f.top - l.top;
+      if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+      n.style.transition = 'none';
+      n.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+      moved.push(n);
+    });
+    if (!moved.length) return Promise.resolve();
+    return nextFrame().then(function () {
+      moved.forEach(function (n) {
+        n.style.transition = 'transform .85s cubic-bezier(.4,0,.2,1)';
+        n.style.transform = '';
+      });
+      return new Promise(function (done) {
+        setTimeout(function () { moved.forEach(function (n) { n.style.transition = ''; }); done(); }, 900);
+      });
+    });
+  }
+
+  /* ---- the roster ---- */
+  var ROSTER = {
+    d0: [['Alvarez','colo'],['Boyd','colo'],['Chen','gastro'],['Diaz','colo'],['Ellis','gastro'],['Fischer','colo']],
+    d1: [['Gallagher','colo'],['Iqbal','colo'],['Hayes','colo'],['Jensen','gastro'],['Kaur','colo'],['Lopez','gastro']],
+    d2: [['Mensah','colo'],['Patel','gastro'],['Novak','colo'],['Okafor','colo'],['Quinn','gastro'],['Reyes','colo']]
+  };
+  var NO_REASONS = ['no ride', 'prep not started', 'working', 'away', 'on blood thinners', 'no ride'];
+  // per cycle: who cancels (index in d0), who says yes in d1, who says yes in d2
+  // d1 = [Gallagher colo, Iqbal colo, Hayes colo, Jensen gastro, Kaur colo, Lopez gastro]
+  // d2 = [Mensah colo, Patel gastro, Novak colo, Okafor colo, Quinn gastro, Reyes colo]
+  // Mostly colonoscopies fill the gap; gastroscopy appears twice so the no-prep point still lands.
+  var CYCLES = [
+    { cancel: 1, w1: 2, w2: 0 },
+    { cancel: 3, w1: 4, w2: 1 },
+    { cancel: 0, w1: 3, w2: 2 },
+    { cancel: 4, w1: 1, w2: 5 }
+  ];
+
+  function slotEl(name, proc) {
+    var d = document.createElement('div');
+    d.className = 'slot' + (proc === 'gastro' ? ' gastro' : '');
+    d.innerHTML = '<span class="mark">&nbsp;</span><span class="nm">' + name + '</span>'
+                + '<span class="crit"></span>'
+                + '<span></span><span class="proc">' + (proc === 'gastro' ? 'gastroscopy' : 'colonoscopy') + '</span><span></span>';
+    d.dataset.proc = proc;
+    d.dataset.name = name;
+    return d;
+  }
+  function openSlot() {
+    var d = document.createElement('div');
+    d.className = 'slot open';
+    d.innerHTML = '<span class="mark">&mdash;</span><span class="nm">open slot</span><span class="crit"></span>'
+                + '<span></span><span class="proc">&nbsp;</span><span></span>';
+    return d;
+  }
+  function renderDays() {
+    ['d0', 'd1', 'd2'].forEach(function (id) {
+      var col = document.getElementById(id);
+      col.querySelectorAll('.slot').forEach(function (n) { n.remove(); });
+      ROSTER[id].forEach(function (p) { col.appendChild(slotEl(p[0], p[1])); });
+    });
+    document.getElementById('qfield').innerHTML = '';
+  }
+
+  var QS = [
+    [14, 6, 3.4], [30, 22, 2.6], [22, 44, 3.8], [36, 62, 2.8], [16, 78, 3.2], [32, 90, 2.4],
+    [62, 10, 3.2], [78, 26, 2.6], [68, 48, 3.6], [84, 66, 2.8], [64, 82, 3.0], [80, 94, 2.4],
+    [46, 16, 2.2], [50, 56, 2.4], [44, 86, 2.2]
+  ];
+
+  async function answerColumn(col, winnerIdx, prepMatters) {
+    var slots = [].slice.call(col.querySelectorAll('.slot'));
+    for (var i = 0; i < slots.length; i++) {
+      var sl = slots[i];
+      sl.classList.remove('asking');
+      if (i === winnerIdx) {
+        sl.classList.add('yes');
+        sl.querySelector('.mark').textContent = '✓';
+        sl.querySelector('.crit').textContent = sl.dataset.proc === 'gastro'
+          ? 'ride ✓  no prep needed'
+          : (prepMatters ? 'ride ✓  prep ✓' : 'ride ✓  can move ✓');
+      } else {
+        sl.classList.add('no');
+        sl.querySelector('.mark').textContent = '✕';
+        // never hand a prep excuse to a gastroscopy patient
+        var why = NO_REASONS[i];
+        if (sl.dataset.proc === 'gastro' && why.indexOf('prep') === 0) why = 'away';
+        sl.querySelector('.crit').textContent = why;
+      }
+      await wait(220);
+    }
+  }
+
+  async function runCascadeOnce(cyc) {
+    var C = CYCLES[cyc % CYCLES.length];
+    renderDays();
+    var d0 = document.getElementById('d0'), d1 = document.getElementById('d1'), d2 = document.getElementById('d2');
+    var cap = document.getElementById('casc-caption');
+    cap.textContent = '';
+
+    var canceller = d0.querySelectorAll('.slot')[C.cancel];
+    var proc = canceller.dataset.proc === 'gastro' ? 'gastroscopy' : 'colonoscopy';
+    var bx = document.getElementById('bigx'), bs = document.getElementById('bigsay');
+    bs.textContent = 'I can\u2019t do my ' + proc;
+
+    // position the shout next to whoever is cancelling
+    var cr = canceller.getBoundingClientRect();
+    var outer = document.querySelector('.casc-outer').getBoundingClientRect();
+    if (outer.width && outer.height) {
+      // the cross sits over the patient, the shout sits to their right where there is room
+      bx.style.left = (cr.left - outer.left + cr.width / 2 - 44) + 'px';
+      bx.style.top = (cr.top - outer.top + cr.height / 2 - 56) + 'px';
+      bs.style.left = (cr.right - outer.left + 11) + 'px';
+      bs.style.top = (cr.top - outer.top + cr.height / 2 - 26) + 'px';
+    }
+
+    canceller.classList.add('gone');
+    canceller.querySelector('.mark').textContent = '✕';
+    bx.classList.add('in');
+    await wait(480);
+    bs.classList.add('in');
+    await wait(2000);
+    bx.classList.remove('in');
+    bs.classList.remove('in');
+    await wait(400);
+
+    await flip(function () { canceller.remove(); d0.appendChild(openSlot()); });
+    cap.textContent = 'Everyone moves up and the gap lands at the end of tomorrow, the night before the list runs.';
+    await wait(950);
+
+    // question marks
+    var qf = document.getElementById('qfield');
+    qf.innerHTML = QS.map(function (q) {
+      return '<span style="top:' + q[1] + '%;left:' + q[0] + '%;font-size:' + q[2] + 'rem">?</span>';
+    }).join('');
+    var qs = qf.querySelectorAll('span');
+    d1.querySelectorAll('.slot').forEach(function (sl) { sl.classList.add('asking'); sl.querySelector('.mark').textContent = '?'; });
+    d2.querySelectorAll('.slot').forEach(function (sl) { sl.classList.add('asking'); sl.querySelector('.mark').textContent = '?'; });
+    for (var i = 0; i < qs.length; i++) { qs[i].classList.add('in'); await wait(75); }
+    await wait(700);
+    qs.forEach(function (q) { q.classList.add('out'); });
+
+    await answerColumn(d1, C.w1, true);
+    await wait(800);
+
+    var winner = d1.querySelector('.slot.yes');
+    var wproc = winner.dataset.proc;
+    await flip(function () {
+      d0.querySelector('.slot.open').remove();
+      d0.appendChild(winner);
+      d1.appendChild(openSlot());
+    });
+    winner.classList.add('landing');
+    cap.textContent = wproc === 'gastro'
+      ? 'A gastroscopy needs no prep, so that patient could take the slot with a few hours notice. Tomorrow is full again.'
+      : 'That patient had already finished prep for their own list, so they could move up a day. Tomorrow is full again.';
+    await wait(1200);
+
+    await answerColumn(d2, C.w2, false);
+    await wait(700);
+
+    var w2 = d2.querySelector('.slot.yes');
+    await flip(function () {
+      d1.querySelector('.slot.open').remove();
+      d1.appendChild(w2);
+      d2.appendChild(openSlot());
+    });
+    w2.classList.add('landing');
+    await wait(550);
+
+    cap.textContent = 'Nobody made a phone call. The only gap left is three days out, which is the easiest kind to fill.';
+  }
+
+  var cascCycle = 0;
+  var cascVisible = true;
+  async function cascadeLoop() {
+    while (true) {
+      await wait(3800);
+      if (document.hidden || !cascVisible) { await wait(1200); continue; }
+      cascCycle++;
+      try { await runCascadeOnce(cascCycle); } catch (e) { return; }
+    }
+  }
+
+  async function runCascade() {
+    await show('s-casc');
+    await typeInto(document.getElementById('casc-title'), 'But how do we fix last-minute cancellations?', 14);
+    await wait(250);
+    await runCascadeOnce(0);
+    if (!reduce && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { cascVisible = es[0].isIntersecting; }, { threshold: 0.15 })
+        .observe(document.getElementById('s-casc'));
+      cascadeLoop();
+    }
+  }
+
+  /* ---------------- the fixes ---------------- */
+  var FIXES = {
+    'late-cancellations': { t: 'Late cancellations', g: 'day', f: 'The moment a slot opens we message patients who are already prepped and have said yes to an earlier date, confirm the doctor and anesthesia, and lock it in.' },
+    'no-shows': { t: 'No-shows', g: 'day', f: 'A confirmation sequence, and the patients who are drifting show up days out while there is still time to fix them or release the slot.' },
+    'block-utilization': { t: 'Block utilization', g: 'day', f: 'Gaps inside a block get offered out the same way a cancellation does, and released early enough to be useful to someone else.' },
+    'waitlist': { t: 'Waitlist not matched to open slots', g: 'day', f: 'Run the same engine against the practice waiting list and their patients fill your gaps, without either side phoning the other.' },
+    'clinic-cancels': { t: 'Cancelling on patients who have already prepped', g: 'day', f: 'We know where every patient is in their prep. When you have to cancel a list, you get told immediately who has already started drinking and who has not, so the ones who can still be spared are.' },
+    'prep-questions': { t: 'Patients ringing in with prep questions', g: 'before', f: 'The ten situations patients actually call about are answered in the app: vomited the prep, nothing happening, not running clear, drank the wrong thing, forgot a med hold, started late. Anything genuinely urgent tells them to ring you instead.' },
+    'surveillance': { t: 'Surveillance recall never goes out', g: 'after', f: 'The interval sits in the system and fires on your own protocol, so nobody has to remember three years later.' },
+    'staff-time': { t: 'Staff time calling patients', g: 'before', f: 'Rules read every answer, so instead of phoning the whole list your staff only see the patients who need a call. The hours that remain go to the patients who actually need them.' },
+    'follow-up': { t: 'No follow-up after discharge', g: 'after', f: 'Check-ins on days 1, 3, 7 and 30. Anything concerning goes to whoever you nominate, rather than waiting for the patient to decide it is worth a call.' },
+    'quality-data': { t: 'Quality reporting data', g: 'after', f: 'Outcomes are collected as structured answers inside the normal flow, so the ASCQR and patient-reported outcome data already exists at year end.' },
+    'poor-prep': { t: 'Poor prep', g: 'before', f: 'Prep goes out on a timer set to that doctor’s own regimen, with check-ins confirming they started, are on clear fluids, and what their output looks like.' },
+    'understanding': { t: 'Patients do not really understand the procedure', g: 'before', f: 'Short pieces of education go out across the weeks before, not as one packet at booking, with a check-in asking whether anything is unclear. The questions reach you a week out rather than in the waiting room.' },
+    'consent': { t: 'Patients arrive unconsented', g: 'before', f: 'Consent stays a conversation with the clinician, and we do not touch that. What changes is that the patient has already read the material and had somewhere to put their questions, and you know before the day who has not opened any of it.' },
+    'instructions': { t: 'Pre-op instructions not followed', g: 'before', f: 'Medication holds, clearance, fasting and transport become check-in questions timed to the point where they matter, and anything unresolved is on the morning list.' }
+  };
+  var GROUP_NAMES = { before: 'the pre-procedure runway', day: 'the refill engine', after: 'the post-procedure loop' };
+
+  function picked() {
+    return [].slice.call(document.querySelectorAll('.cl-item input:checked')).map(function (i) { return i.dataset.key; });
+  }
+
+  function renderFixes() {
+    var keys = picked();
+    var html = '<div class="fix-list">';
+    keys.forEach(function (k) { html += '<div class="fix-item"><h4>' + FIXES[k].t + '</h4><p>' + FIXES[k].f + '</p></div>'; });
+    html += '</div>';
+    var groups = [];
+    keys.forEach(function (k) { if (groups.indexOf(FIXES[k].g) < 0) groups.push(FIXES[k].g); });
+    var synth;
+    if (keys.length === 1) synth = 'That sits in ' + GROUP_NAMES[groups[0]] + ', one part of a platform that covers everything either side of it.';
+    else if (groups.length === 1) synth = (keys.length === 2 ? 'Both of those come off ' : 'All ' + keys.length + ' of those come off ') + GROUP_NAMES[groups[0]] + '. One thing, not ' + keys.length + '.';
+    else {
+      var names = groups.map(function (g) { return GROUP_NAMES[g]; });
+      var last = names.pop();
+      synth = 'One platform, ' + groups.length + ' surfaces: ' + names.join(', ') + ' and ' + last + '. Same patient, same check-ins, same rules.';
+    }
+    document.getElementById('fixpanel').innerHTML = html + '<div class="fix-synth">' + synth + '</div>';
+
+    document.getElementById('tiles').innerHTML = keys.map(function (k) {
+      return '<span class="tile">' + FIXES[k].t + '</span>';
+    }).join('');
+  }
+
+  /* ---------------- wiring ---------------- */
+  var ran = false;
+  var go = document.getElementById('go');
+
+  function refreshCats() {
+    document.querySelectorAll('details.cat').forEach(function (cat) {
+      var boxes = cat.querySelectorAll('.cl-item input');
+      var hit = cat.querySelectorAll('.cl-item input:checked').length;
+      cat.classList.toggle('has-picks', hit > 0);
+      var chip = cat.querySelector('.cat-count');
+      chip.textContent = hit > 0 ? hit + ' of ' + boxes.length + ' selected'
+                                 : boxes.length + (boxes.length === 1 ? ' problem' : ' problems');
+    });
+  }
+
+  function refreshGo() {
+    refreshCats();
+    if (ran) {
+      if (mode === 'update') go.textContent = picked().length ? 'Update the answer' : 'Back to the answer';
+      return;
+    }
+    var n = picked().length;
+    if (n > 0 && go.hidden) {
+      go.hidden = false;
+      go.classList.remove('in');
+      nextFrame().then(function () { go.classList.add('in'); });
+    } else if (n === 0) {
+      go.classList.remove('in');
+      go.hidden = true;
+    }
+  }
+  document.querySelectorAll('.cl-item input').forEach(function (cb) { cb.addEventListener('change', refreshGo); });
+  refreshGo();
+
+  var mode = 'first';   // first -> back -> update -> back ...
+
+  var secHead = document.querySelector('#problems .sec-head');
+  var foldProblems = document.getElementById('fold-problems');
+  var foldDiagram = document.getElementById('fold-diagram');
+
+  function setProblemsFolded(on) {
+    document.querySelector('.cats').hidden = on;
+    secHead.hidden = on;
+    foldProblems.hidden = !on;
+    if (on) {
+      var n = picked().length;
+      document.getElementById('fold-problems-meta').textContent =
+        n + (n === 1 ? ' problem selected' : ' problems selected');
+    }
+  }
+  foldProblems.addEventListener('click', function () { setProblemsFolded(false); });
+
+  function setDiagramFolded(on) {
+    document.getElementById('s-wwd').hidden = on;
+    document.getElementById('s-stairs').hidden = on;
+    foldDiagram.hidden = !on;
+  }
+  var foldFixes = document.getElementById('fold-fixes');
+  function setFixesFolded(on) {
+    document.getElementById('s-fixes').hidden = on;
+    foldFixes.hidden = !on;
+    if (on) {
+      var n = document.querySelectorAll('#fixpanel .fix-item').length;
+      document.getElementById('fold-fixes-meta').textContent =
+        n + (n === 1 ? ' problem answered' : ' problems answered');
+    }
+  }
+  foldFixes.addEventListener('click', function () {
+    setFixesFolded(false);
+    document.getElementById('s-fixes').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  var foldCasc = document.getElementById('fold-casc');
+  function setCascFolded(on) {
+    document.getElementById('s-casc').hidden = on;
+    foldCasc.hidden = !on;
+  }
+  foldCasc.addEventListener('click', function () {
+    setCascFolded(false);
+    document.getElementById('s-casc').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  foldDiagram.addEventListener('click', function () {
+    setDiagramFolded(false);
+    document.getElementById('s-wwd').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  go.addEventListener('click', async function () {
+    if (mode === 'back') {
+      setProblemsFolded(false);
+      mode = 'update';
+      go.textContent = 'Update the answer';
+      document.getElementById('problems').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      return;
+    }
+    if (mode === 'update') {
+      renderFixes();
+      setFixesFolded(false);
+      document.querySelectorAll('#tiles .tile').forEach(function (t) { t.classList.add('in'); });
+      setProblemsFolded(true);
+      mode = 'back';
+      go.textContent = 'Back to the list';
+      document.getElementById('s-fixes').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      return;
+    }
+    ran = true;
+    go.disabled = true;
+    go.textContent = 'Working through it';
+
+    renderFixes();
+    document.querySelectorAll('details.cat').forEach(function (d) { d.open = false; });
+    setProblemsFolded(true);
+
+    await show('s-wwd');
+    document.getElementById('s-wwd').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    await typeInto(document.getElementById('wwd-type'),
+      'Patients answer short check-ins on their phone before and after a procedure. Written clinical rules read the answers, so instead of phoning the whole list your staff only see the patients who need a call.', 12);
+    await wait(250);
+
+    await runStairs();
+    await wait(300);
+
+    var toCasc = document.getElementById('toCasc');
+    toCasc.hidden = false;
+    await nextFrame();
+    toCasc.classList.add('in');
+    go.disabled = false;
+    mode = 'back';
+    go.textContent = 'Back to the list';
+  });
+
+  document.getElementById('toCasc').addEventListener('click', async function () {
+    this.disabled = true;
+    setDiagramFolded(true);
+    await runCascade();
+    var tf = document.getElementById('toFixes');
+    tf.hidden = false;
+    await nextFrame();
+    tf.classList.add('in');
+  });
+
+  document.getElementById('toFixes').addEventListener('click', async function () {
+    this.disabled = true;
+    setCascFolded(true);
+    await show('s-fixes');
+    document.getElementById('s-fixes').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    var tiles = document.querySelectorAll('#tiles .tile');
+    for (var t = 0; t < tiles.length; t++) { tiles[t].classList.add('in'); await wait(90); }
+    await wait(250);
+    await show('s-gain');
+  });
+
+  document.getElementById('gain').addEventListener('click', async function () {
+    setFixesFolded(true);
+    await show('s-calc');
+    document.getElementById('s-calc').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    this.disabled = true;
+  });
+
+  var choices = document.querySelectorAll('.choice');
+  var picked_type = false;
+  choices.forEach(function (c) {
+    c.addEventListener('click', async function () {
+      var target = c.dataset.target;
+      choices.forEach(function (o) { o.setAttribute('aria-pressed', String(o === c)); });
+      document.querySelectorAll('.calc').forEach(function (calc) { calc.hidden = calc.dataset.calc !== target; });
+      var shown = document.querySelector('.calc[data-calc="' + target + '"]');
+      if (shown) shown.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      // pricing and the sources only make sense once there is a calculator to price
+      if (!picked_type) {
+        picked_type = true;
+        await show('s-price');
+        await show('s-foot');
+      }
+    });
+  });
+})();
+</script>
+
+
+</body>
+</html>

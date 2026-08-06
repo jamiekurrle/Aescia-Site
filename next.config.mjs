@@ -32,6 +32,9 @@ const nextConfig = {
       // so this was broken on prod for its whole life; robots disallows /tools/,
       // but redirect it in case it was crawled before robots.txt existed.
       { source: '/tools/roi-calculator/index.html', destination: '/clinics#roi', permanent: true },
+      // Unlisted partner page under /tools/ (robots-disallowed). The file is
+      // public/tools/medelevate/index.html; this makes the shareable URL clean.
+      { source: '/tools/medelevate', destination: '/tools/medelevate/index.html', permanent: false },
       // A stray scaffold page ("test page works") that shipped to prod and was
       // indexed before being removed in the 2026-04-19 redesign.
       { source: '/test-page', destination: '/', permanent: true },

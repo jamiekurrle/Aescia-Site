@@ -38,7 +38,7 @@ export function GET() {
   )
 
   for (const bot of AI_BOTS) {
-    blocks.push(['User-Agent: ' + bot, 'Allow: /', 'Disallow: /v2/'].join('\n'))
+    blocks.push(['User-Agent: ' + bot, 'Allow: /', 'Disallow: /tools/', 'Disallow: /v2/'].join('\n'))
   }
 
   blocks.push('Sitemap: ' + SITE_URL + '/sitemap.xml')
