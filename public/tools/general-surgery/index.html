@@ -182,11 +182,14 @@
     .navcta a { font-size: 7.1pt; padding: .3rem .6rem; }
     .navmini { display: none; }
 
-    .sitefoot { padding: .7rem 0 0; }
+    /* Push the footer toward the foot of the sheet, keeping a little air above it. */
+    html { height: 100%; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .sitefoot { padding: .7rem 0 0; margin-top: auto; }
     .sitefoot-in { max-width: none; }
-    /* Link columns are dead weight on paper. Keep identity, contact, legal and the disclosure. */
-    .sitefoot nav { display: none; }
-    .foot-grid { grid-template-columns: 1.6fr 1fr; gap: 2rem; margin-bottom: .5rem; align-items: start; }
+    /* Link columns and the entity block are dead weight on paper. Keep identity, contact and the disclosure. */
+    .sitefoot nav, .foot-legalcol { display: none; }
+    .foot-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: .45rem; }
     .foot-brand .wm-name { font-size: 12.5pt; }
     .foot-brand .wordmark { margin-bottom: .28rem; }
     .foot-tag { font-size: 7pt; max-width: none; }
@@ -418,7 +421,7 @@
           <li><a href="https://www.aesciahealth.com/terms">Terms of use</a></li>
         </ul>
       </nav>
-      <div>
+      <div class="foot-legalcol">
         <h3>Legal</h3>
         <ul class="foot-legal">
           <li>Aescia Pty Ltd (AU)</li>
