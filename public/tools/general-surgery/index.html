@@ -141,41 +141,89 @@
 
   .sources { font-size: .78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: .9rem; }
 
+  /* --- site footer, static replica of components/footer.tsx --- */
+  .sitefoot { background: var(--surface); border-top: 1px solid var(--line); padding: 3.5rem 1.5rem 2.5rem; }
+  .sitefoot-in { max-width: 80rem; margin: 0 auto; }
+  .foot-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  .foot-brand .wordmark { margin-bottom: 1.1rem; }
+  .foot-brand .wm-name { font-size: 26px; }
+  .foot-tag { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: 24rem; }
+  .sitefoot h3 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .22em; color: var(--muted); margin: 0 0 1.1rem; font-weight: 400; }
+  .sitefoot ul { list-style: none; margin: 0; padding: 0; }
+  .sitefoot li { margin-bottom: .68rem; font-size: 14px; }
+  .sitefoot a { color: var(--ink-2); text-decoration: none; }
+  .sitefoot a:hover { color: var(--ink); }
+  .foot-legal li { font-size: 13px; color: var(--ink-2); margin-bottom: .45rem; }
+  .foot-legal .abn { font-family: var(--mono); font-size: 12px; }
+  .foot-legal a { text-decoration: underline; text-underline-offset: 2px; }
+  .foot-base { border-top: 1px solid var(--line); padding-top: 2rem; }
+  .foot-disc { font-size: 12.5px; line-height: 1.65; color: var(--muted); max-width: 52rem; margin-bottom: 1.5rem; font-style: italic; }
+  .foot-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); }
+  @media (min-width: 48rem) {
+    .foot-grid { grid-template-columns: 3fr 2fr 2fr 2fr 3fr; gap: 3rem; }
+  }
+  @media (min-width: 64rem) {
+    .sitefoot { padding: 5rem 2.5rem 2.5rem; }
+  }
+
   @media print {
     @page { margin: 11mm; size: A4 portrait; }
-    .sitebar { display: none; }
-    body { background: #fff; font-size: 8.19pt; line-height: 1.34; }
-    .wrap { padding: 0; gap: .52rem; max-width: none; }
+    body { background: #fff; font-size: 7.86pt; line-height: 1.34; }
+    .wrap { padding: .7rem 0 0; gap: .42rem; max-width: none; }
+
+    .sitebar { position: static; }
+    .sitebar-in { max-width: none; padding: 0 0 .5rem; }
+    .wm-name { font-size: 14.4pt; }
+    .wm-sub { font-size: 7.2pt; }
+    .navlinks { display: flex; gap: 1rem; }
+    .navlinks a { font-size: 7.1pt; }
+    .navcta { display: flex; }
+    .navcta a { font-size: 7.1pt; padding: .3rem .6rem; }
+    .navmini { display: none; }
+
+    .sitefoot { padding: .55rem 0 0; }
+    .sitefoot-in { max-width: none; }
+    .foot-grid { grid-template-columns: 3fr 2fr 2fr 2fr 3fr; gap: .8rem; margin-bottom: .55rem; }
+    .foot-brand .wm-name { font-size: 11.52pt; }
+    .foot-brand .wordmark { margin-bottom: .3rem; }
+    .foot-tag { font-size: 6.53pt; }
+    .sitefoot h3 { font-size: 6.24pt; margin-bottom: .3rem; letter-spacing: .16em; }
+    .sitefoot li { font-size: 6.53pt; margin-bottom: .1rem; }
+    .foot-legal li { font-size: 6.34pt; margin-bottom: .08rem; }
+    .foot-legal .abn { font-size: 5.95pt; }
+    .foot-base { padding-top: .5rem; }
+    .foot-disc { font-size: 5.95pt; margin-bottom: .4rem; line-height: 1.45; }
+    .foot-meta { font-size: 5.76pt; }
     .swimwrap, .believe, .benefit, .sec-head, ol.asks { break-inside: avoid; }
-    .masthead h1 { font-size: 15.5pt; }
-    .masthead .lede { font-size: 8.6pt; }
+    .masthead h1 { font-size: 14.88pt; }
+    .masthead .lede { font-size: 8.26pt; }
     .masthead { gap: .22rem; }
-    .meta-row { padding-top: .25rem; font-size: 7pt; }
+    .meta-row { padding-top: .25rem; font-size: 6.72pt; }
     .sec-head, .sec-head.tight { margin-bottom: .3rem; }
-    .sec-head h2 { font-size: 10.49pt; }
-    .sec-head p { font-size: 7.4pt; }
+    .sec-head h2 { font-size: 10.07pt; }
+    .sec-head p { font-size: 7.1pt; }
     .swimwrap { overflow: visible; }
     .swim { min-width: 0; grid-template-columns: 4.2rem repeat(6, 1fr); }
-    .swim > * { padding: .24rem .3rem; font-size: 6.3pt; line-height: 1.26; }
-    .swim .ph, .swim .lane { font-size: 5.9pt; }
-    .swim .lane small { font-size: 5.2pt; }
+    .swim > * { padding: .24rem .3rem; font-size: 6.05pt; line-height: 1.26; }
+    .swim .ph, .swim .lane { font-size: 5.66pt; }
+    .swim .lane small { font-size: 4.99pt; }
     .swim ul.mini { margin-top: .1rem; padding-left: .6rem; }
-    .swim .cost { font-size: 5.9pt; }
+    .swim .cost { font-size: 5.66pt; }
     .believe { grid-template-columns: repeat(3, 1fr); }
     .benefit { grid-template-columns: repeat(2, 1fr); }
     .believe > div, .benefit > div { padding: .38rem .5rem; }
-    .believe p, .benefit ul { font-size: 7.09pt; }
+    .believe p, .benefit ul { font-size: 6.81pt; }
     .believe .num { margin-bottom: .2rem; }
-    .benefit h3 { font-size: 8pt; margin-bottom: .3rem; }
+    .benefit h3 { font-size: 7.68pt; margin-bottom: .3rem; }
     .benefit li { margin-bottom: .15rem; }
-    .kicker { font-size: 7.4pt; margin-top: .38rem; }
-    ol.asks { font-size: 7.8pt; line-height: 1.45; }
+    .kicker { font-size: 7.1pt; margin-top: .38rem; }
+    ol.asks { font-size: 7.49pt; line-height: 1.45; }
     ol.asks li { margin-bottom: .22rem; }
-    .sources { padding-top: .4rem; font-size: 7pt; }
+    .sources { padding-top: .4rem; font-size: 6.72pt; }
     .sources a { color: var(--accent); text-decoration: underline; }
-    .btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .55rem; font-size: 8pt; }
+    .btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .55rem; font-size: 7.68pt; }
     .btnrow { margin-top: .5rem; gap: .5rem; }
-    .btnrow .hint { font-size: 7.4pt; }
+    .btnrow .hint { font-size: 7.1pt; }
     .printurl { display: inline; color: var(--accent); }
   }
 </style>
@@ -265,7 +313,7 @@
     <div class="believe">
       <div>
         <span class="num">01</span>
-        <p><strong>The procedure is the safe part.</strong> The failure happens at home, unsupervised, in the days either side, where nobody is looking and nothing is measured.</p>
+        <p><strong>The failure happens at home.</strong> In the days either side, unsupervised, where nobody is looking and nothing is measured. The procedure itself is the safe part.</p>
       </div>
       <div>
         <span class="num">02</span>
@@ -327,5 +375,68 @@
   </section>
 
 </div>
+
+<footer class="sitefoot">
+  <div class="sitefoot-in">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="https://www.aesciahealth.com"><span class="wm-name">Aescia</span><span class="wm-sub">Health</span></a>
+        <p class="foot-tag">A continuous-care platform for the weeks that matter.</p>
+      </div>
+      <nav aria-label="Product">
+        <h3>Product</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/platform">Platform</a></li>
+          <li><a href="https://www.aesciahealth.com/hospitals">For Hospitals</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics">For Clinics</a></li>
+          <li><a href="https://www.aesciahealth.com/integrations">Integrations</a></li>
+          <li><a href="https://www.aesciahealth.com/evidence">Evidence</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Buy">
+        <h3>Buy</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/design-partner">Design-partner program</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics#roi">ROI calculator</a></li>
+          <li><a href="https://www.aesciahealth.com/security">Security and HIPAA</a></li>
+          <li><a href="https://www.aesciahealth.com/governance">Governance</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/team">Team</a></li>
+          <li><a href="https://www.aesciahealth.com/updates">Updates</a></li>
+          <li><a href="https://www.aesciahealth.com/careers">Careers</a></li>
+          <li><a href="https://www.aesciahealth.com/faq">FAQ</a></li>
+          <li><a href="https://www.aesciahealth.com/contact">Contact</a></li>
+          <li><a href="mailto:contact@aesciahealth.com">contact@aesciahealth.com</a></li>
+          <li><a href="https://www.aesciahealth.com/privacy">Privacy policy</a></li>
+          <li><a href="https://www.aesciahealth.com/terms">Terms of use</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Legal</h3>
+        <ul class="foot-legal">
+          <li>Aescia Pty Ltd (AU)</li>
+          <li class="abn">ABN 96 687 840 517</li>
+          <li><a href="https://buy.nsw.gov.au/supplier/profile/12460268">NSW Government registered supplier</a></li>
+          <li>9550-0708 Qu&eacute;bec inc (CA)</li>
+          <li class="abn">NEQ 1181312316</li>
+          <li>Sydney, Australia</li>
+          <li>Montr&eacute;al, Canada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <p class="foot-disc">Aescia for Hospitals is an investigational Software as a Medical Device, intended Class IIa under TGA Rule 3.4. A regulatory submission is in preparation. The product is in clinical evaluation through the SAFE-Discharge trial and is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.</p>
+      <div class="foot-meta">
+        <p>&copy; 2026 Aescia Pty Ltd. All rights reserved.</p>
+        <p>A continuous-care platform.</p>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

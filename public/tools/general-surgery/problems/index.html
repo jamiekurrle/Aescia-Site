@@ -547,16 +547,30 @@
     .navlinks, .navcta { display: flex; }
     .navmini { display: none; }
   }
-  .sitefoot { border-top: 1px solid var(--line); background: var(--surface); }
-  .sitefoot-in {
-    max-width: var(--maxw); margin: 0 auto; padding: 2.25rem 1.25rem 2.75rem;
-    display: flex; flex-wrap: wrap; align-items: flex-end;
-    justify-content: space-between; gap: 1.25rem;
+  /* --- site footer, static replica of components/footer.tsx --- */
+  .sitefoot { background: var(--surface); border-top: 1px solid var(--line); padding: 3.5rem 1.5rem 2.5rem; }
+  .sitefoot-in { max-width: 80rem; margin: 0 auto; }
+  .foot-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  .foot-brand .wordmark { margin-bottom: 1.1rem; }
+  .foot-brand .wm-name { font-size: 26px; }
+  .foot-tag { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: 24rem; }
+  .sitefoot h3 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .22em; color: var(--muted); margin: 0 0 1.1rem; font-weight: 400; }
+  .sitefoot ul { list-style: none; margin: 0; padding: 0; }
+  .sitefoot li { margin-bottom: .68rem; font-size: 14px; }
+  .sitefoot a { color: var(--ink-2); text-decoration: none; }
+  .sitefoot a:hover { color: var(--ink); }
+  .foot-legal li { font-size: 13px; color: var(--ink-2); margin-bottom: .45rem; }
+  .foot-legal .abn { font-family: var(--mono); font-size: 12px; }
+  .foot-legal a { text-decoration: underline; text-underline-offset: 2px; }
+  .foot-base { border-top: 1px solid var(--line); padding-top: 2rem; }
+  .foot-disc { font-size: 12.5px; line-height: 1.65; color: var(--muted); max-width: 52rem; margin-bottom: 1.5rem; font-style: italic; }
+  .foot-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); }
+  @media (min-width: 48rem) {
+    .foot-grid { grid-template-columns: 3fr 2fr 2fr 2fr 3fr; gap: 3rem; }
   }
-  .sitefoot .blurb { font-size: .88rem; color: var(--muted); max-width: 30rem; line-height: 1.6; margin-top: .7rem; }
-  .sitefoot nav { display: flex; flex-wrap: wrap; gap: .55rem 1.4rem; font-size: .88rem; }
-  .sitefoot nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 1px; }
-  .sitefoot nav a:hover { color: var(--ink); border-bottom-color: var(--brass); }
+  @media (min-width: 64rem) {
+    .sitefoot { padding: 5rem 2.5rem 2.5rem; }
+  }
 </style>
 </head>
 <body>
@@ -992,19 +1006,64 @@
 
 <footer class="sitefoot">
   <div class="sitefoot-in">
-    <div>
-      <a class="wordmark" href="https://www.aesciahealth.com">
-        <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
-      </a>
-      <p class="blurb">Aescia runs the patient contact around a procedure: getting patients ready, refilling the slots that fall out, and checking on them afterwards.</p>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="https://www.aesciahealth.com"><span class="wm-name">Aescia</span><span class="wm-sub">Health</span></a>
+        <p class="foot-tag">A continuous-care platform for the weeks that matter.</p>
+      </div>
+      <nav aria-label="Product">
+        <h3>Product</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/platform">Platform</a></li>
+          <li><a href="https://www.aesciahealth.com/hospitals">For Hospitals</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics">For Clinics</a></li>
+          <li><a href="https://www.aesciahealth.com/integrations">Integrations</a></li>
+          <li><a href="https://www.aesciahealth.com/evidence">Evidence</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Buy">
+        <h3>Buy</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/design-partner">Design-partner program</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics#roi">ROI calculator</a></li>
+          <li><a href="https://www.aesciahealth.com/security">Security and HIPAA</a></li>
+          <li><a href="https://www.aesciahealth.com/governance">Governance</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/team">Team</a></li>
+          <li><a href="https://www.aesciahealth.com/updates">Updates</a></li>
+          <li><a href="https://www.aesciahealth.com/careers">Careers</a></li>
+          <li><a href="https://www.aesciahealth.com/faq">FAQ</a></li>
+          <li><a href="https://www.aesciahealth.com/contact">Contact</a></li>
+          <li><a href="mailto:contact@aesciahealth.com">contact@aesciahealth.com</a></li>
+          <li><a href="https://www.aesciahealth.com/privacy">Privacy policy</a></li>
+          <li><a href="https://www.aesciahealth.com/terms">Terms of use</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Legal</h3>
+        <ul class="foot-legal">
+          <li>Aescia Pty Ltd (AU)</li>
+          <li class="abn">ABN 96 687 840 517</li>
+          <li><a href="https://buy.nsw.gov.au/supplier/profile/12460268">NSW Government registered supplier</a></li>
+          <li>9550-0708 Qu&eacute;bec inc (CA)</li>
+          <li class="abn">NEQ 1181312316</li>
+          <li>Sydney, Australia</li>
+          <li>Montr&eacute;al, Canada</li>
+        </ul>
+      </div>
     </div>
-    <nav>
-      <a href="https://www.aesciahealth.com">Home</a>
-      <a href="https://www.aesciahealth.com/clinics">For surgery centers</a>
-      <a href="https://www.aesciahealth.com/evidence">Evidence</a>
-      <a href="https://www.aesciahealth.com/contact">Contact</a>
-      <a href="mailto:james@aesciahealth.com">james@aesciahealth.com</a>
-    </nav>
+
+    <div class="foot-base">
+      <p class="foot-disc">Aescia for Hospitals is an investigational Software as a Medical Device, intended Class IIa under TGA Rule 3.4. A regulatory submission is in preparation. The product is in clinical evaluation through the SAFE-Discharge trial and is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.</p>
+      <div class="foot-meta">
+        <p>&copy; 2026 Aescia Pty Ltd. All rights reserved.</p>
+        <p>A continuous-care platform.</p>
+      </div>
+    </div>
   </div>
 </footer>
 
