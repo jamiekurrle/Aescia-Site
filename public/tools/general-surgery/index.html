@@ -148,6 +148,7 @@
   .foot-brand .wordmark { margin-bottom: 1.1rem; }
   .foot-brand .wm-name { font-size: 26px; }
   .foot-tag { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: 24rem; }
+  .foot-tag .contact { display: none; }
   .sitefoot h3 { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .22em; color: var(--muted); margin: 0 0 1.1rem; font-weight: 400; }
   .sitefoot ul { list-style: none; margin: 0; padding: 0; }
   .sitefoot li { margin-bottom: .68rem; font-size: 14px; }
@@ -181,19 +182,21 @@
     .navcta a { font-size: 7.1pt; padding: .3rem .6rem; }
     .navmini { display: none; }
 
-    .sitefoot { padding: .55rem 0 0; }
+    .sitefoot { padding: .7rem 0 0; }
     .sitefoot-in { max-width: none; }
-    .foot-grid { grid-template-columns: 3fr 2fr 2fr 2fr 3fr; gap: .8rem; margin-bottom: .55rem; }
-    .foot-brand .wm-name { font-size: 11.52pt; }
-    .foot-brand .wordmark { margin-bottom: .3rem; }
-    .foot-tag { font-size: 6.53pt; }
-    .sitefoot h3 { font-size: 6.24pt; margin-bottom: .3rem; letter-spacing: .16em; }
-    .sitefoot li { font-size: 6.53pt; margin-bottom: .1rem; }
-    .foot-legal li { font-size: 6.34pt; margin-bottom: .08rem; }
-    .foot-legal .abn { font-size: 5.95pt; }
+    /* Link columns are dead weight on paper. Keep identity, contact, legal and the disclosure. */
+    .sitefoot nav { display: none; }
+    .foot-grid { grid-template-columns: 1.6fr 1fr; gap: 2rem; margin-bottom: .5rem; align-items: start; }
+    .foot-brand .wm-name { font-size: 12.5pt; }
+    .foot-brand .wordmark { margin-bottom: .28rem; }
+    .foot-tag { font-size: 7pt; max-width: none; }
+    .foot-tag .contact { display: block; margin-top: .2rem; color: var(--ink-2); }
+    .sitefoot h3 { font-size: 6.4pt; margin-bottom: .28rem; letter-spacing: .16em; }
+    .foot-legal li { font-size: 6.8pt; margin-bottom: .1rem; }
+    .foot-legal .abn { font-size: 6.3pt; }
     .foot-base { padding-top: .5rem; }
-    .foot-disc { font-size: 5.95pt; margin-bottom: .4rem; line-height: 1.45; }
-    .foot-meta { font-size: 5.76pt; }
+    .foot-disc { font-size: 6.1pt; margin-bottom: .4rem; line-height: 1.45; }
+    .foot-meta { font-size: 6pt; }
     .swimwrap, .believe, .benefit, .sec-head, ol.asks { break-inside: avoid; }
     .masthead h1 { font-size: 14.88pt; }
     .masthead .lede { font-size: 8.26pt; }
@@ -381,7 +384,7 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="wordmark" href="https://www.aesciahealth.com"><span class="wm-name">Aescia</span><span class="wm-sub">Health</span></a>
-        <p class="foot-tag">A continuous-care platform for the weeks that matter.</p>
+        <p class="foot-tag">A continuous-care platform for the weeks that matter.<span class="contact">Dr James Kurrle, Founder &#183; <a href="mailto:james@aesciahealth.com">james@aesciahealth.com</a> &#183; <a href="https://www.aesciahealth.com">aesciahealth.com</a></span></p>
       </div>
       <nav aria-label="Product">
         <h3>Product</h3>
