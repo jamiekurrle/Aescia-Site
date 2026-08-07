@@ -467,58 +467,54 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
                   'a1-d3a','a1-d3b','a1-d3c','a1-d4a','a1-d4b','a1-d4c',
                   'a1-r0','a1-r1','a1-r2','a1-r3'];
 
-  // day 4 and the readmission column are rewritten by the Aescia branch, so keep originals
-  var A1_ORIG = null;
-  function snapshotA1() {
-    if (A1_ORIG) return;
-    A1_ORIG = {};
-    ['a1-d4a','a1-d4b','a1-d4c'].forEach(function (id) { A1_ORIG[id] = $(id).innerHTML + '|' + $(id).className; });
-    A1_ORIG.zre = $('a1-zre').textContent;
-    A1_ORIG.aesc = $('a1-aesc-t').textContent;
+  // Day 4 and the last column are the only things that differ between the two
+  // runs, so the whole week can replay with Aescia on rather than being patched.
+  var A1_MODE = {
+    plain: {
+      d4: [['&#10005;','Fever 38.4','bx'], ['&#10005;','Not eating','bx'],
+           ['&#10005;','Getting worse','bx big bad']],
+      last: [['&#10005;','Wound infection','bx bad'], ['&#10005;','Intravenous antibiotics','bx bad'],
+             ['&#10005;','Six days inpatient','bx bad'], ['&#10005;','Readmitted','bx big bad']],
+      day: 'Day 6', zone: 'Readmission', zoneColor: ''
+    },
+    aescia: {
+      d4: [['&#10003;','Antibiotics started','bx ok'], ['&#10003;','Fever settling','bx ok'],
+           ['&#10003;','Recovering','bx big ok']],
+      last: [['&#10003;','Seen by the GP on day 3','bx ok'], ['&#10003;','Oral antibiotics at home','bx ok'],
+             ['&#10003;','No inpatient stay','bx ok'], ['&#10003;','Recovered at home','bx big ok']],
+      day: 'Day 6', zone: 'No readmission', zoneColor: 'var(--green)'
+    }
+  };
+  var A1_D4 = ['a1-d4a','a1-d4b','a1-d4c'];
+  var A1_LAST = ['a1-r0','a1-r1','a1-r2','a1-r3'];
+
+  function paint(ids, rows) {
+    ids.forEach(function (id, i) {
+      var el = $(id);
+      el.innerHTML = '<span class="ic">' + rows[i][0] + '</span>' + rows[i][1];
+      el.className = rows[i][2];            // deliberately drops .in so it re-reveals
+    });
   }
 
-  function buildA1() {
-    snapshotA1();
+  function buildA1(mode) {
+    var m = A1_MODE[mode || 'plain'];
     A1_BOXES.forEach(function (id) { $(id).classList.remove('in'); });
-    ['a1-d4a','a1-d4b','a1-d4c'].forEach(function (id) {
-      var parts = A1_ORIG[id].split('|');
-      $(id).innerHTML = parts[0];
-      $(id).className = parts[1].replace(/\bin\b/, '').trim();
-    });
-    $('a1-zre').textContent = A1_ORIG.zre;
-    $('a1-zre').style.color = ''; $('a1-zre').style.borderBottomColor = '';
-    $('a1-aesc-t').textContent = A1_ORIG.aesc;
-    $('a1-tl').classList.remove('clear');
+    paint(A1_D4, m.d4);
+    paint(A1_LAST, m.last);
+    var z = $('a1-zre');
+    z.textContent = m.zone;
+    z.style.color = m.zoneColor;
+    z.style.borderBottomColor = m.zoneColor;
+    $('a1-tl').classList.toggle('clear', mode === 'aescia');   // Aescia run is never blurred
     $('a1-re').classList.remove('fade');
     $('a1-aesc').classList.remove('in');
+    $('a1-aesc-t').textContent = 'Day 3 answers reach the ward team the same morning.';
     var b = $('a1-btn');
     b.hidden = true; b.classList.remove('gone', 'pulse'); b.disabled = false;
   }
 
   async function reveal(ids, gap) {
     for (var i = 0; i < ids.length; i++) { $(ids[i]).classList.add('in'); await wait(gap || 160); }
-  }
-
-  async function runA1() {
-    buildA1();
-    await reveal(['a1-h0','a1-h1','a1-h2'], 220);
-    await wait(260);
-    await reveal(['a1-h3'], 0);
-    await wait(520);
-    await reveal(['a1-d1a','a1-d1b','a1-d1c'], 150);
-    await wait(240);
-    await reveal(['a1-d2a','a1-d2b','a1-d2c'], 150);
-    await wait(240);
-    await reveal(['a1-d3a','a1-d3b','a1-d3c'], 190);
-    await wait(300);
-    await reveal(['a1-d4a','a1-d4b','a1-d4c'], 190);
-    await wait(420);
-    await reveal(['a1-r0','a1-r1','a1-r2','a1-r3'], 170);
-    await wait(500);
-    var b = $('a1-btn');
-    b.hidden = false;
-    await nextFrame();
-    b.classList.add('pulse');
   }
 
   // fly a clone of src across to dst; bails cleanly if geometry is unusable
@@ -536,38 +532,52 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
     if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
   }
 
-  async function aesciaEffect() {
+  var a1Run = 0;   // cancels an in-flight run when the week is restarted
+  async function runA1(mode) {
+    mode = mode || 'plain';
+    var token = ++a1Run;
+    var alive = function () { return token === a1Run; };
+    buildA1(mode);
+
+    await reveal(['a1-h0','a1-h1','a1-h2'], 220); if (!alive()) return;
+    await wait(260);
+    await reveal(['a1-h3'], 0); if (!alive()) return;
+    await wait(520);
+    await reveal(['a1-d1a','a1-d1b','a1-d1c'], 150); if (!alive()) return;
+    await wait(240);
+    await reveal(['a1-d2a','a1-d2b','a1-d2c'], 150); if (!alive()) return;
+    await wait(240);
+    await reveal(['a1-d3a','a1-d3b','a1-d3c'], 190); if (!alive()) return;
+    await wait(320);
+
+    if (mode === 'aescia') {
+      // the same day-3 flag, but this time somebody is reading it
+      await flyTo($('a1-d3c'), $('a1-aesc')); if (!alive()) return;
+      $('a1-aesc').classList.add('in');
+      await wait(650);
+      $('a1-aesc-t').textContent = 'Called that morning. Sent to the GP the same day.';
+      await wait(700); if (!alive()) return;
+    }
+
+    await reveal(A1_D4, 190); if (!alive()) return;
+    await wait(420);
+    await reveal(A1_LAST, 170); if (!alive()) return;
+
+    if (mode === 'plain') {
+      await wait(500); if (!alive()) return;
+      var b = $('a1-btn');
+      b.hidden = false;
+      await nextFrame();
+      b.classList.add('pulse');
+    }
+  }
+
+  // the button replays the whole week with Aescia switched on, from the start
+  function aesciaEffect() {
     var b = $('a1-btn');
     b.disabled = true;
-    b.classList.remove('pulse');
     b.classList.add('gone');
-    $('a1-tl').classList.add('clear');           // the week at home comes into focus
-    await wait(900);
-
-    await flyTo($('a1-d3c'), $('a1-aesc'));      // the day-3 flag reaches the ward team
-    $('a1-aesc').classList.add('in');
-    await wait(700);
-    $('a1-aesc-t').textContent = 'Called that morning. Sent to the GP the same day.';
-    await wait(800);
-
-    // day 4 is rewritten: treated, not deteriorating
-    var d4 = [['a1-d4a','&#10003;','Antibiotics started','bx ok in'],
-              ['a1-d4b','&#10003;','Fever settling','bx ok in'],
-              ['a1-d4c','&#10003;','Recovering','bx big ok in']];
-    for (var i = 0; i < d4.length; i++) {
-      var el = $(d4[i][0]);
-      el.innerHTML = '<span class="ic">' + d4[i][1] + '</span>' + d4[i][2];
-      el.className = d4[i][3];
-      await wait(260);
-    }
-    await wait(500);
-
-    $('a1-re').classList.add('fade');            // and the readmission never happens
-    await wait(720);
-    var z = $('a1-zre');
-    z.textContent = 'No readmission';
-    z.style.color = 'var(--green)';
-    z.style.borderBottomColor = 'var(--green)';
+    runA1('aescia');
   }
 
   // ---------------- act 2 ----------------
