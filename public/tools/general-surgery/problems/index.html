@@ -528,34 +528,25 @@
   }
 
   /* ---------- site chrome ---------- */
-  .sitebar {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: saturate(1.4) blur(10px);
-    border-bottom: 1px solid var(--line);
+  /* --- site nav, static replica of components/site-nav.tsx --- */
+  .sitebar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .sitebar-in { max-width: 80rem; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .wordmark { text-decoration: none; display: flex; align-items: baseline; gap: .375rem; }
+  .wm-name { font-size: 22px; line-height: 1; letter-spacing: -.02em; color: var(--ink); font-weight: 500; }
+  .wm-sub { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); transform: translateY(-2px); }
+  .navlinks { display: none; align-items: center; gap: 2rem; }
+  .navlinks a { font-size: 13px; letter-spacing: .01em; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+  .navlinks a:hover { color: var(--ink); }
+  .navcta { display: none; align-items: center; }
+  .navcta a { font-size: 13px; font-weight: 500; padding: .625rem 1.25rem; border: 1px solid var(--ink); background: var(--ink); color: var(--surface); text-decoration: none; white-space: nowrap; }
+  .navcta a:hover { opacity: .9; }
+  .navmini { font-size: 13px; color: var(--muted); text-decoration: none; }
+  .navmini:hover { color: var(--ink); }
+  @media (min-width: 64rem) {
+    .sitebar-in { padding: 1rem 2.5rem; }
+    .navlinks, .navcta { display: flex; }
+    .navmini { display: none; }
   }
-  .sitebar-in {
-    max-width: var(--maxw); margin: 0 auto; padding: .85rem 1.25rem;
-    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  }
-  .wordmark { display: inline-flex; align-items: baseline; gap: .4rem; text-decoration: none; }
-  .wordmark .wm-name {
-    font-family: var(--sans); font-weight: 700; font-size: 1.35rem;
-    letter-spacing: -.03em; color: var(--ink); line-height: 1;
-  }
-  .wordmark .wm-sub {
-    font-family: var(--mono); font-feature-settings: 'tnum', 'zero';
-    font-size: .7rem; text-transform: uppercase; letter-spacing: .22em;
-    color: var(--muted); line-height: 1;
-  }
-  .sitebar a.back {
-    font-family: var(--mono); font-feature-settings: 'tnum', 'zero';
-    font-size: .72rem; text-transform: uppercase; letter-spacing: .16em;
-    color: var(--muted); text-decoration: none; font-weight: 600;
-    border-bottom: 1px solid transparent; padding-bottom: 2px;
-  }
-  .sitebar a.back:hover { color: var(--ink); border-bottom-color: var(--brass); }
-
   .sitefoot { border-top: 1px solid var(--line); background: var(--surface); }
   .sitefoot-in {
     max-width: var(--maxw); margin: 0 auto; padding: 2.25rem 1.25rem 2.75rem;
@@ -566,19 +557,26 @@
   .sitefoot nav { display: flex; flex-wrap: wrap; gap: .55rem 1.4rem; font-size: .88rem; }
   .sitefoot nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 1px; }
   .sitefoot nav a:hover { color: var(--ink); border-bottom-color: var(--brass); }
-  @media (max-width: 34rem) {
-    .sitebar a.back { display: none; }
-  }
 </style>
 </head>
 <body>
 
-<nav class="sitebar">
+<nav class="sitebar" aria-label="Primary">
   <div class="sitebar-in">
     <a class="wordmark" href="https://www.aesciahealth.com">
       <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
     </a>
-    <a class="back" href="/tools/general-surgery/">&#8592; Back to the one-pager</a>
+    <div class="navlinks">
+      <a href="https://www.aesciahealth.com/platform">Platform</a>
+      <a href="https://www.aesciahealth.com/hospitals">For Hospitals</a>
+      <a href="https://www.aesciahealth.com/clinics">For Clinics</a>
+      <a href="https://www.aesciahealth.com/evidence">Evidence</a>
+      <a href="https://www.aesciahealth.com/updates">Updates</a>
+      <a href="https://www.aesciahealth.com/team">Team</a>
+      <a href="https://www.aesciahealth.com/contact">Contact</a>
+    </div>
+    <div class="navcta"><a href="https://www.aesciahealth.com/contact">Request a briefing</a></div>
+    <a class="navmini" href="https://www.aesciahealth.com/tools/general-surgery">&#8592; One-pager</a>
   </div>
 </nav>
 

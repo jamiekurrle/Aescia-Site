@@ -60,13 +60,25 @@
   h1, h2, h3 { font-weight: 700; letter-spacing: -.025em; text-wrap: balance; line-height: 1.2; }
   p { margin: 0; }
 
-  .sitebar { border-bottom: 1px solid var(--line); background: var(--surface); }
-  .sitebar-in { max-width: var(--maxw); margin: 0 auto; padding: .85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-  .wordmark { text-decoration: none; display: flex; align-items: baseline; gap: .32rem; }
-  .wm-name { font-size: 1.05rem; font-weight: 700; color: var(--ink); letter-spacing: -.02em; }
-  .wm-sub { font-family: var(--mono); font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass); font-weight: 700; }
-  .back { font-size: .8rem; color: var(--muted); text-decoration: none; }
-  .back:hover { color: var(--ink); }
+  /* --- site nav, static replica of components/site-nav.tsx --- */
+  .sitebar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .sitebar-in { max-width: 80rem; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .wordmark { text-decoration: none; display: flex; align-items: baseline; gap: .375rem; }
+  .wm-name { font-size: 22px; line-height: 1; letter-spacing: -.02em; color: var(--ink); font-weight: 500; }
+  .wm-sub { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); transform: translateY(-2px); }
+  .navlinks { display: none; align-items: center; gap: 2rem; }
+  .navlinks a { font-size: 13px; letter-spacing: .01em; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+  .navlinks a:hover { color: var(--ink); }
+  .navcta { display: none; align-items: center; }
+  .navcta a { font-size: 13px; font-weight: 500; padding: .625rem 1.25rem; border: 1px solid var(--ink); background: var(--ink); color: var(--surface); text-decoration: none; white-space: nowrap; }
+  .navcta a:hover { opacity: .9; }
+  .navmini { font-size: 13px; color: var(--muted); text-decoration: none; }
+  .navmini:hover { color: var(--ink); }
+  @media (min-width: 64rem) {
+    .sitebar-in { padding: 1rem 2.5rem; }
+    .navlinks, .navcta { display: flex; }
+    .navmini { display: none; }
+  }
 
   .eyebrow { font-family: var(--mono); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brass); font-weight: 700; }
   .masthead { display: flex; flex-direction: column; gap: .85rem; }
@@ -170,12 +182,22 @@
 </head>
 <body>
 
-<nav class="sitebar">
+<nav class="sitebar" aria-label="Primary">
   <div class="sitebar-in">
     <a class="wordmark" href="https://www.aesciahealth.com">
       <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
     </a>
-    <a class="back" href="https://www.aesciahealth.com">aesciahealth.com &#8599;</a>
+    <div class="navlinks">
+      <a href="https://www.aesciahealth.com/platform">Platform</a>
+      <a href="https://www.aesciahealth.com/hospitals">For Hospitals</a>
+      <a href="https://www.aesciahealth.com/clinics">For Clinics</a>
+      <a href="https://www.aesciahealth.com/evidence">Evidence</a>
+      <a href="https://www.aesciahealth.com/updates">Updates</a>
+      <a href="https://www.aesciahealth.com/team">Team</a>
+      <a href="https://www.aesciahealth.com/contact">Contact</a>
+    </div>
+    <div class="navcta"><a href="https://www.aesciahealth.com/contact">Request a briefing</a></div>
+    <a class="navmini" href="https://www.aesciahealth.com">aesciahealth.com &#8599;</a>
   </div>
 </nav>
 
