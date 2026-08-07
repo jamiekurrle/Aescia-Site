@@ -119,11 +119,24 @@
   .sources a { color: var(--accent); text-decoration: none; }
   .sources a:hover { text-decoration: underline; }
 
-  .believe { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
-  .believe > div { background: var(--surface); padding: 1rem 1.15rem; box-shadow: 0 0 0 1px var(--line); }
-  .believe .num { font-family: var(--mono); font-size: .66rem; letter-spacing: .12em; color: var(--brass); font-weight: 700; display: block; margin-bottom: .4rem; }
-  .believe p { font-size: .89rem; color: var(--ink-2); line-height: 1.55; }
-  .believe strong { color: var(--ink); }
+  /* patient flow */
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "before case after" "rules rules esc"; gap: .8rem 1rem; align-items: center; }
+  .fbox { border: 1px solid var(--line); border-radius: 3px; background: var(--surface); padding: .85rem 1rem; }
+  .fbefore { grid-area: before; }
+  .fafter { grid-area: after; }
+  .fbox h4 { margin: 0 0 .45rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  .fbox ul { margin: 0; padding-left: 1rem; font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
+  .fbox li { margin-bottom: .18rem; }
+  .fcase { grid-area: case; width: 7.4rem; height: 7.4rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; }
+  .fcase b { font-size: .96rem; color: var(--ink); letter-spacing: -.02em; }
+  .fcase span { font-size: .74rem; color: var(--muted); }
+  .frules { grid-area: rules; background: var(--accent-soft); border-color: var(--accent-soft); }
+  .fesc { grid-area: esc; border-color: var(--loss); }
+  .fesc h4 { color: var(--loss); }
+  @media (max-width: 44rem) {
+    .flow { grid-template-columns: 1fr; grid-template-areas: "before" "case" "after" "rules" "esc"; }
+    .fcase { margin: 0 auto; }
+  }
 
   .benefit { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
   .benefit > div { background: var(--surface); padding: 1.05rem 1.2rem; box-shadow: 0 0 0 1px var(--line); }
@@ -169,17 +182,17 @@
 
   @media print {
     @page { margin: 11mm; size: A4 portrait; }
-    body { background: #fff; font-size: 7.86pt; line-height: 1.34; }
-    .wrap { padding: .7rem 0 0; gap: .42rem; max-width: none; }
+    body { background: #fff; font-size: 7.51pt; line-height: 1.34; }
+    .wrap { padding: .5rem 0 0; gap: .32rem; max-width: none; }
 
     .sitebar { position: static; }
     .sitebar-in { max-width: none; padding: 0 0 .5rem; }
-    .wm-name { font-size: 14.4pt; }
-    .wm-sub { font-size: 7.2pt; }
+    .wm-name { font-size: 13.75pt; }
+    .wm-sub { font-size: 6.88pt; }
     .navlinks { display: flex; gap: 1rem; }
-    .navlinks a { font-size: 7.1pt; }
+    .navlinks a { font-size: 6.78pt; }
     .navcta { display: flex; }
-    .navcta a { font-size: 7.1pt; padding: .3rem .6rem; }
+    .navcta a { font-size: 6.78pt; padding: .3rem .6rem; }
     .navmini { display: none; }
 
     /* Push the footer toward the foot of the sheet, keeping a little air above it. */
@@ -190,46 +203,53 @@
     /* Link columns and the entity block are dead weight on paper. Keep identity, contact and the disclosure. */
     .sitefoot nav, .foot-legalcol { display: none; }
     .foot-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: .45rem; }
-    .foot-brand .wm-name { font-size: 12.5pt; }
+    .foot-brand .wm-name { font-size: 11.94pt; }
     .foot-brand .wordmark { margin-bottom: .28rem; }
-    .foot-tag { font-size: 7pt; max-width: none; }
+    .foot-tag { font-size: 6.68pt; max-width: none; }
     .foot-tag .contact { display: block; margin-top: .2rem; color: var(--ink-2); }
-    .sitefoot h3 { font-size: 6.4pt; margin-bottom: .28rem; letter-spacing: .16em; }
-    .foot-legal li { font-size: 6.8pt; margin-bottom: .1rem; }
-    .foot-legal .abn { font-size: 6.3pt; }
+    .sitefoot h3 { font-size: 6.11pt; margin-bottom: .28rem; letter-spacing: .16em; }
+    .foot-legal li { font-size: 6.49pt; margin-bottom: .1rem; }
+    .foot-legal .abn { font-size: 6.02pt; }
     .foot-base { padding-top: .5rem; }
-    .foot-disc { font-size: 6.1pt; margin-bottom: .4rem; line-height: 1.45; }
-    .foot-meta { font-size: 6pt; }
-    .swimwrap, .believe, .benefit, .sec-head, ol.asks { break-inside: avoid; }
-    .masthead h1 { font-size: 14.88pt; }
-    .masthead .lede { font-size: 8.26pt; }
+    .foot-disc { font-size: 5.83pt; margin-bottom: .4rem; line-height: 1.45; }
+    .foot-meta { font-size: 5.73pt; }
+    .swimwrap, .flow, .benefit, .sec-head, ol.asks { break-inside: avoid; }
+    .masthead h1 { font-size: 14.21pt; }
+    .masthead .lede { font-size: 7.89pt; }
     .masthead { gap: .22rem; }
-    .meta-row { padding-top: .25rem; font-size: 6.72pt; }
+    .meta-row { padding-top: .25rem; font-size: 6.42pt; }
     .sec-head, .sec-head.tight { margin-bottom: .3rem; }
-    .sec-head h2 { font-size: 10.07pt; }
-    .sec-head p { font-size: 7.1pt; }
+    .sec-head h2 { font-size: 9.62pt; }
+    .sec-head p { font-size: 6.78pt; }
     .swimwrap { overflow: visible; }
     .swim { min-width: 0; grid-template-columns: 4.2rem repeat(6, 1fr); }
-    .swim > * { padding: .24rem .3rem; font-size: 6.05pt; line-height: 1.26; }
-    .swim .ph, .swim .lane { font-size: 5.66pt; }
-    .swim .lane small { font-size: 4.99pt; }
+    .swim > * { padding: .24rem .3rem; font-size: 5.78pt; line-height: 1.26; }
+    .swim .ph, .swim .lane { font-size: 5.41pt; }
+    .swim .lane small { font-size: 4.77pt; }
     .swim ul.mini { margin-top: .1rem; padding-left: .6rem; }
-    .swim .cost { font-size: 5.66pt; }
-    .believe { grid-template-columns: repeat(3, 1fr); }
+    .swim .cost { font-size: 5.41pt; }
+    
     .benefit { grid-template-columns: repeat(2, 1fr); }
-    .believe > div, .benefit > div { padding: .38rem .5rem; }
-    .believe p, .benefit ul { font-size: 6.81pt; }
-    .believe .num { margin-bottom: .2rem; }
-    .benefit h3 { font-size: 7.68pt; margin-bottom: .3rem; }
+    .fbox, .benefit > div { padding: .4rem .55rem; }
+    .fbox ul, .benefit ul { font-size: 6.5pt; }
+    .flow { gap: .3rem .5rem; }
+    .fbox { padding: .3rem .45rem; }
+    .fbox h4 { font-size: 5.44pt; margin-bottom: .18rem; }
+    .fbox li { margin-bottom: .05rem; }
+    .fcase { width: 3.9rem; height: 3.9rem; }
+    .fcase b { font-size: 7.07pt; }
+    .fcase span { font-size: 5.54pt; }
+    
+    .benefit h3 { font-size: 7.33pt; margin-bottom: .3rem; }
     .benefit li { margin-bottom: .15rem; }
-    .kicker { font-size: 7.1pt; margin-top: .38rem; }
-    ol.asks { font-size: 7.49pt; line-height: 1.45; }
+    .kicker { font-size: 6.78pt; margin-top: .38rem; }
+    ol.asks { font-size: 7.15pt; line-height: 1.45; }
     ol.asks li { margin-bottom: .22rem; }
-    .sources { padding-top: .4rem; font-size: 6.72pt; }
+    .sources { padding-top: .4rem; font-size: 6.42pt; }
     .sources a { color: var(--accent); text-decoration: underline; }
-    .btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .55rem; font-size: 7.68pt; }
+    .btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .55rem; font-size: 7.33pt; }
     .btnrow { margin-top: .5rem; gap: .5rem; }
-    .btnrow .hint { font-size: 7.1pt; }
+    .btnrow .hint { font-size: 6.78pt; }
     .printurl { display: inline; color: var(--accent); }
   }
 </style>
@@ -315,19 +335,36 @@
   </section>
 
   <section>
-    <div class="sec-head tight"><h2>What we believe</h2></div>
-    <div class="believe">
-      <div>
-        <span class="num">01</span>
-        <p><strong>The failure happens at home.</strong> In the days either side, unsupervised, where nobody is looking and nothing is measured. The procedure itself is the safe part.</p>
+    <div class="sec-head">
+      <h2>What the patient gets</h2>
+      <p>Every answer runs through the rules engine. A patient who needs a person reaches one.</p>
+    </div>
+    <div class="flow">
+      <div class="fbox fbefore">
+        <h4>Before the procedure</h4>
+        <ul>
+          <li>Education first</li>
+          <li>Prep with reminders</li>
+          <li>Medication holds</li>
+          <li>Clearance and transport</li>
+        </ul>
       </div>
-      <div>
-        <span class="num">02</span>
-        <p><strong>Preparation has to start at booking.</strong> Pre-admission sits one to two weeks out, by which time the window to fix anything has closed. Booking is the only moment early enough.</p>
+      <div class="fcase"><b>The case</b><span>on the list</span></div>
+      <div class="fbox fafter">
+        <h4>After the procedure</h4>
+        <ul>
+          <li>Check-in</li>
+          <li>Complications caught early</li>
+          <li>Surveillance recall</li>
+        </ul>
       </div>
-      <div>
-        <span class="num">03</span>
-        <p><strong>The questions are not the product.</strong> The value is in the guidance attached to the answer, a human call when someone goes quiet, and a summary in front of whoever reviews it.</p>
+      <div class="fbox frules">
+        <h4>Rules engine</h4>
+        <ul><li>Reads every answer</li><li>Flags who needs a call</li></ul>
+      </div>
+      <div class="fbox fesc">
+        <h4>Problems</h4>
+        <ul><li>Escalated to a human until resolved</li></ul>
       </div>
     </div>
   </section>
