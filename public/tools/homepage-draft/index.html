@@ -171,6 +171,12 @@ a.btn.ghost:hover{color:var(--ink)}
 .slot.moving{transform:translateY(-2.55rem)}
 .slot.arrive{animation:arriveA .8s ease}
 @keyframes arriveA{0%{transform:translateX(2.5rem);opacity:0}100%{transform:none;opacity:1}}
+/* Same-document view transitions: Baseline since Oct 2025 (Chrome/Edge 111+,
+   Firefox 133+, Safari 18+). Used only for the list reflow in act 3, where the
+   browser can tween each row to its new row position without us hard-coding a
+   row height. Absent support falls back to the .moving transform path below. */
+::view-transition-group(*){animation-duration:.6s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*){animation-duration:1ms}}
 
 /* ---------- comparison ---------- */
 .cmp{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1.5rem}
@@ -644,6 +650,20 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
     return '<div class="slot ' + (cls || '') + '"><span class="mk">' + mk + '</span>' +
            '<span class="nm">' + nm + '</span><span class="pr">' + pr + '</span></div>';
   }
+  // Run a DOM mutation inside a view transition when the browser has one, so the
+  // rows tween to their new positions on their own. Falls back to running the
+  // mutation directly, which still leaves the list correct, just unanimated.
+  // ?novt on the URL forces the pre-View-Transitions path, so the fallback stays testable
+  var CAN_VT = typeof document.startViewTransition === 'function' &&
+               location.search.indexOf('novt') === -1;
+  function viewTransition(mutate) {
+    if (!CAN_VT || reduce) { mutate(); return Promise.resolve(); }
+    try {
+      var vt = document.startViewTransition(mutate);
+      return vt.finished.catch(function () {});
+    } catch (e) { mutate(); return Promise.resolve(); }
+  }
+
   function buildA3() {
     $('a3-list').innerHTML = A3.map(function (s, i) {
       return '<div class="slot" id="a3s' + i + '"><span class="mk">' + (i + 1) + '</span>' +
@@ -653,7 +673,14 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
       return '<div class="slot" id="a3p' + i + '"><span class="mk">&#10003;</span>' +
              '<span class="nm">' + p.n + '</span><span class="pr">' + p.s + '</span></div>';
     }).join('');
+    // Name each row by PATIENT, not by position, so the browser matches the same
+    // person before and after the reflow and animates them to the new row.
+    if (CAN_VT) {
+      A3.forEach(function (s, i) { $('a3s' + i).style.viewTransitionName = 'a3row' + i; });
+      POOL.forEach(function (p, i) { $('a3p' + i).style.viewTransitionName = 'a3pool' + i; });
+    }
   }
+
   async function runA3() {
     buildA3();
     await wait(800);
@@ -663,27 +690,45 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
     gone.querySelector('.mk').innerHTML = '&#10005;';
     gone.querySelector('.pr').textContent = 'Cancelled';
     await wait(900);
-    for (var i = cancelIdx + 1; i < A3.length; i++) { $('a3s' + i).classList.add('moving'); }
-    await wait(800);
-    gone.style.display = 'none';
-    for (var i = cancelIdx + 1; i < A3.length; i++) {
-      var el = $('a3s' + i);
-      el.classList.remove('moving');
-      el.querySelector('.mk').textContent = i;
-    }
+
     var tail = document.createElement('div');
     tail.className = 'slot open';
     tail.innerHTML = '<span class="mk">' + A3.length + '</span><span class="nm">Open slot</span><span class="pr">&mdash;</span>';
-    $('a3-list').appendChild(tail);
+
+    if (CAN_VT && !reduce) {
+      // one mutation, the browser works out every row's move for itself
+      await viewTransition(function () {
+        gone.style.display = 'none';
+        for (var i = cancelIdx + 1; i < A3.length; i++) {
+          $('a3s' + i).querySelector('.mk').textContent = i;
+        }
+        $('a3-list').appendChild(tail);
+      });
+    } else {
+      for (var i = cancelIdx + 1; i < A3.length; i++) { $('a3s' + i).classList.add('moving'); }
+      await wait(800);
+      gone.style.display = 'none';
+      for (var j = cancelIdx + 1; j < A3.length; j++) {
+        var el = $('a3s' + j);
+        el.classList.remove('moving');
+        el.querySelector('.mk').textContent = j;
+      }
+      $('a3-list').appendChild(tail);
+    }
+
     await wait(700);
     var taken = $('a3p0');
     taken.classList.add('fill');
     taken.querySelector('.pr').textContent = 'Yes, I can come in';
     await wait(750);
-    taken.style.display = 'none';
-    tail.className = 'slot fill arrive';
-    tail.innerHTML = '<span class="mk">' + A3.length + '</span><span class="nm">' + POOL[0].n +
-                     '</span><span class="pr">Filled</span>';
+
+    await viewTransition(function () {
+      taken.style.display = 'none';
+      tail.className = 'slot fill';
+      tail.innerHTML = '<span class="mk">' + A3.length + '</span><span class="nm">' + POOL[0].n +
+                       '</span><span class="pr">Filled</span>';
+    });
+    if (!CAN_VT) tail.classList.add('arrive');
   }
 
   // ---------------- gating ----------------
