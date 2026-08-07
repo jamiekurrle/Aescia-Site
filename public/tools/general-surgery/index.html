@@ -120,21 +120,16 @@
   .sources a:hover { text-decoration: underline; }
 
   /* patient flow */
-  .flow { display: grid; grid-template-columns: 1fr auto 1fr; grid-template-areas: "before case after" "rules rules esc"; gap: .8rem 1rem; align-items: center; }
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; }
   .fbox { border: 1px solid var(--line); border-radius: 3px; background: var(--surface); padding: .85rem 1rem; }
-  .fbefore { grid-area: before; }
-  .fafter { grid-area: after; }
-  .fbox h4 { margin: 0 0 .45rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+      .fbox h4 { margin: 0 0 .45rem; font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
   .fbox ul { margin: 0; padding-left: 1rem; font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
   .fbox li { margin-bottom: .18rem; }
-  .fcase { grid-area: case; width: 7.4rem; height: 7.4rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; }
+  .fcase { width: 7.4rem; height: 7.4rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; }
   .fcase b { font-size: .96rem; color: var(--ink); letter-spacing: -.02em; }
   .fcase span { font-size: .74rem; color: var(--muted); }
-  .frules { grid-area: rules; background: var(--accent-soft); border-color: var(--accent-soft); }
-  .fesc { grid-area: esc; border-color: var(--loss); }
-  .fesc h4 { color: var(--loss); }
-  @media (max-width: 44rem) {
-    .flow { grid-template-columns: 1fr; grid-template-areas: "before" "case" "after" "rules" "esc"; }
+    @media (max-width: 44rem) {
+    .flow { grid-template-columns: 1fr; }
     .fcase { margin: 0 auto; }
   }
 
@@ -291,7 +286,7 @@
   <section>
     <div class="sec-head">
       <h2>What we do</h2>
-      <p>Short check-ins on the patient’s phone, before and after. Every answer runs through the rules engine, and anyone who needs a person gets one.</p>
+      <p>Short check-ins on the patient’s phone. Every answer is read against our rules, and anything concerning reaches your nurse the same day.</p>
     </div>
     <div class="flow">
       <div class="fbox fbefore">
@@ -311,14 +306,6 @@
           <li>Complications caught early</li>
           <li>Surveillance recall</li>
         </ul>
-      </div>
-      <div class="fbox frules">
-        <h4>Rules engine</h4>
-        <ul><li>Reads every answer</li><li>Flags who needs a call</li></ul>
-      </div>
-      <div class="fbox fesc">
-        <h4>Problems</h4>
-        <ul><li>Escalated to a human until resolved</li></ul>
       </div>
     </div>
   </section>
