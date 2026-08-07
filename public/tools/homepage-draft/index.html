@@ -84,31 +84,51 @@ a.btn.ghost:hover{color:var(--ink)}
 .caption b{color:var(--ink);font-weight:600}
 .cite{font-family:var(--mono);font-size:.68rem;color:var(--ink-40);margin-top:.5rem;line-height:1.5}
 
-/* ---- act 1: two lanes ---- */
-.lanes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
-@media (max-width:46rem){.lanes{grid-template-columns:1fr}}
-.lane{background:var(--paper);padding:1.1rem 1.2rem 1.3rem}
-.lane h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:.9rem;font-weight:600}
-.lane.b h4{color:var(--brass)}
-.track{position:relative;height:8.5rem}
-.dayrow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;color:var(--ink-40);margin-bottom:.45rem}
-.rail{position:absolute;left:0;right:0;top:1.15rem;height:2px;background:var(--line)}
-.pt{position:absolute;top:.3rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--stone-soft);
-  border:2px solid var(--line-cool);display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--ink-60);
-  transition:left .9s cubic-bezier(.4,0,.2,1),background .4s,border-color .4s,color .4s;left:0}
-.pt.amber{background:#FBF1DC;border-color:var(--amber);color:var(--amber)}
-.pt.red{background:#F8E4E0;border-color:var(--red);color:var(--red)}
-.pt.green{background:#E3F1EA;border-color:var(--green);color:var(--green)}
-.ping{position:absolute;top:.55rem;width:1.2rem;height:1.2rem;border-radius:50%;border:2px solid var(--brass);
-  opacity:0;transform:scale(.4)}
-.ping.on{animation:pingA .9s ease-out}
-@keyframes pingA{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(2.1)}}
-.outcome{margin-top:.7rem;font-size:.85rem;font-weight:600;opacity:0;transform:translateY(6px);
-  transition:opacity .45s,transform .45s}
-.outcome.on{opacity:1;transform:none}
-.outcome.bad{color:var(--red)}
-.outcome.good{color:var(--green)}
+/* ---- act 1: the discharge timeline ---- */
+.tlwrap{overflow-x:auto;overflow-y:hidden;position:relative;padding-bottom:.3rem}
+.tl{display:grid;grid-template-columns:12rem repeat(4,10.5rem) 12rem;gap:.8rem;min-width:66rem;position:relative}
+.tlhead{display:grid;grid-template-columns:12rem repeat(4,10.5rem) 12rem;gap:.8rem;min-width:66rem;margin-bottom:.7rem}
+.zone{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-40);padding-bottom:.35rem;border-bottom:2px solid var(--line-cool)}
+.zone.home{grid-column:2 / span 4;color:var(--brass);border-bottom-color:var(--brass)}
+.zone.re{color:var(--red);border-bottom-color:var(--red)}
+.col{display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.col h5{font-family:var(--mono);font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-40);margin:0 0 .15rem}
+.bx{display:flex;align-items:center;gap:.45rem;background:var(--stone-soft);border:1px solid var(--line-cool);
+  border-radius:4px;padding:.42rem .55rem;font-size:.78rem;color:var(--ink-70);line-height:1.25;
+  opacity:0;transform:translateY(7px);transition:opacity .4s,transform .4s,background .5s,border-color .5s,color .5s}
+.bx.in{opacity:1;transform:none}
+.bx .ic{font-family:var(--mono);font-weight:700;font-size:.8rem;flex:none;width:.9rem;text-align:center}
+.bx.ok{background:#E3F1EA;border-color:var(--green);color:var(--green)}
+.bx.bad{background:#F8E4E0;border-color:var(--red);color:var(--red)}
+.bx.big{margin-top:.25rem;padding:.6rem .65rem;font-weight:700;font-size:.82rem;border-width:2px}
+.bx.neutral{background:var(--paper);border-color:var(--line-cool);color:var(--ink-70)}
+@media (prefers-color-scheme:dark){
+  .bx.ok{background:#16352A}.bx.bad{background:#3A211E}
+}
+.col.fade{opacity:0;transform:scale(.94);transition:opacity .7s,transform .7s}
+
+/* the blur: what happens at home, nobody can see */
+.homezone{position:relative;grid-column:2 / span 4;display:grid;grid-template-columns:repeat(4,10.5rem);gap:.8rem}
+.homezone .col{filter:blur(5px);opacity:.8;transition:filter .8s ease,opacity .8s ease}
+.tl.clear .homezone .col{filter:blur(0);opacity:1}
+.unblur{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;
+  background:var(--ink);color:var(--stone);border:none;border-radius:100px;cursor:pointer;
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:.7rem 1.3rem;box-shadow:0 6px 22px rgba(27,39,69,.35);white-space:nowrap;
+  transition:opacity .4s,transform .4s}
+.unblur:hover{transform:translate(-50%,-50%) scale(1.04)}
+.unblur.gone{opacity:0;pointer-events:none}
+.unblur.pulse{animation:pulseA 2s ease-in-out infinite}
+@keyframes pulseA{0%,100%{box-shadow:0 6px 22px rgba(27,39,69,.35)}50%{box-shadow:0 6px 30px rgba(184,157,106,.75)}}
+
+.aescbox{border:2px dashed var(--brass);border-radius:5px;padding:.55rem .6rem;margin-top:.3rem;
+  opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.aescbox.in{opacity:1;transform:none}
+.aescbox b{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:.3rem}
+.aescbox p{font-size:.76rem;color:var(--ink-70);line-height:1.35}
 
 /* ---- act 2: readiness board ---- */
 .board{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
@@ -235,28 +255,64 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
   </div>
   <div class="stage">
     <button class="replay" type="button" data-replay="1">Replay</button>
-    <div class="lanes">
-      <div class="lane a">
-        <h4>Today</h4>
-        <div class="dayrow"><span>Day 1</span><span>Day 5</span><span>Day 10</span><span>Day 14</span></div>
-        <div class="track" id="a1-track-a">
-          <div class="rail"></div>
-          <div class="pt" id="a1-pa">JM</div>
-        </div>
-        <p class="outcome bad" id="a1-out-a">Readmitted on day 9. Nobody saw it coming.</p>
+    <div class="tlwrap">
+      <div class="tlhead">
+        <div class="zone">Hospital</div>
+        <div class="zone home">Home</div>
+        <div class="zone re" id="a1-zre">Readmission</div>
       </div>
-      <div class="lane b">
-        <h4>With Aescia</h4>
-        <div class="dayrow"><span>Day 1</span><span>Day 5</span><span>Day 10</span><span>Day 14</span></div>
-        <div class="track" id="a1-track-b">
-          <div class="rail"></div>
-          <div class="ping" id="a1-ping"></div>
-          <div class="pt" id="a1-pb">JM</div>
+      <div class="tl" id="a1-tl">
+        <div class="col" id="a1-hosp">
+          <h5>Discharge day</h5>
+          <div class="bx" id="a1-h0"><span class="ic">&#10003;</span>Well</div>
+          <div class="bx" id="a1-h1"><span class="ic">&#10003;</span>Mobile</div>
+          <div class="bx" id="a1-h2"><span class="ic">&#10003;</span>Appointments booked</div>
+          <div class="bx big ok" id="a1-h3"><span class="ic">&#10003;</span>Ready for discharge</div>
+          <div class="aescbox" id="a1-aesc">
+            <b>Aescia flags it</b>
+            <p id="a1-aesc-t">Day 3 answers reach the ward team the same morning.</p>
+          </div>
         </div>
-        <p class="outcome good" id="a1-out-b">Flagged day 3. One call, seen in clinic day 4.</p>
+
+        <div class="homezone" id="a1-home">
+          <div class="col" id="a1-d1">
+            <h5>Day 1</h5>
+            <div class="bx" id="a1-d1a"><span class="ic">&#10003;</span>Eating</div>
+            <div class="bx" id="a1-d1b"><span class="ic">&#10003;</span>Pain settled</div>
+            <div class="bx big ok" id="a1-d1c"><span class="ic">&#10003;</span>Recovering</div>
+          </div>
+          <div class="col" id="a1-d2">
+            <h5>Day 2</h5>
+            <div class="bx" id="a1-d2a"><span class="ic">&#10003;</span>Walking</div>
+            <div class="bx" id="a1-d2b"><span class="ic">&#10003;</span>Wound dry</div>
+            <div class="bx big ok" id="a1-d2c"><span class="ic">&#10003;</span>Recovering</div>
+          </div>
+          <div class="col" id="a1-d3">
+            <h5>Day 3</h5>
+            <div class="bx" id="a1-d3a"><span class="ic">&#10005;</span>Wound weeping</div>
+            <div class="bx" id="a1-d3b"><span class="ic">&#10005;</span>Pain rising</div>
+            <div class="bx big bad" id="a1-d3c"><span class="ic">&#9888;</span>Early signs of infection</div>
+          </div>
+          <div class="col" id="a1-d4">
+            <h5>Day 4</h5>
+            <div class="bx" id="a1-d4a"><span class="ic">&#10005;</span>Fever 38.4</div>
+            <div class="bx" id="a1-d4b"><span class="ic">&#10005;</span>Not eating</div>
+            <div class="bx big bad" id="a1-d4c"><span class="ic">&#10005;</span>Getting worse</div>
+          </div>
+          <button class="unblur" type="button" id="a1-btn" hidden>Click for Aescia's effect</button>
+        </div>
+
+        <div class="col" id="a1-re">
+          <h5>Day 6</h5>
+          <div class="bx bad" id="a1-r0"><span class="ic">&#10005;</span>Wound infection</div>
+          <div class="bx bad" id="a1-r1"><span class="ic">&#10005;</span>Intravenous antibiotics</div>
+          <div class="bx bad" id="a1-r2"><span class="ic">&#10005;</span>Six days inpatient</div>
+          <div class="bx big bad" id="a1-r3"><span class="ic">&#10005;</span>Readmitted</div>
+        </div>
+
       </div>
     </div>
-    <p class="caption"><b>Same patient.</b> The difference is whether anyone was asking.</p>
+    <p class="caption"><b>The only part you can see clearly is the part that costs you.</b></p>
   </div>
 </div></section>
 
@@ -396,29 +452,122 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
   var $ = function (id) { return document.getElementById(id); };
 
   // ---------------- act 1 ----------------
-  function buildA1() {
-    ['a1-out-a', 'a1-out-b'].forEach(function (id) { $(id).classList.remove('on'); });
-    var pa = $('a1-pa'), pb = $('a1-pb');
-    pa.className = 'pt'; pb.className = 'pt';
-    pa.style.left = '0'; pb.style.left = '0';
+  // rAF can stall in a tab that is not compositing, so always race a timeout.
+  function nextFrame() {
+    return new Promise(function (r) {
+      var done = false;
+      var fin = function () { if (!done) { done = true; r(); } };
+      if (window.requestAnimationFrame) requestAnimationFrame(function () { requestAnimationFrame(fin); });
+      setTimeout(fin, 120);
+    });
   }
+
+  var A1_BOXES = ['a1-h0','a1-h1','a1-h2','a1-h3',
+                  'a1-d1a','a1-d1b','a1-d1c','a1-d2a','a1-d2b','a1-d2c',
+                  'a1-d3a','a1-d3b','a1-d3c','a1-d4a','a1-d4b','a1-d4c',
+                  'a1-r0','a1-r1','a1-r2','a1-r3'];
+
+  // day 4 and the readmission column are rewritten by the Aescia branch, so keep originals
+  var A1_ORIG = null;
+  function snapshotA1() {
+    if (A1_ORIG) return;
+    A1_ORIG = {};
+    ['a1-d4a','a1-d4b','a1-d4c'].forEach(function (id) { A1_ORIG[id] = $(id).innerHTML + '|' + $(id).className; });
+    A1_ORIG.zre = $('a1-zre').textContent;
+    A1_ORIG.aesc = $('a1-aesc-t').textContent;
+  }
+
+  function buildA1() {
+    snapshotA1();
+    A1_BOXES.forEach(function (id) { $(id).classList.remove('in'); });
+    ['a1-d4a','a1-d4b','a1-d4c'].forEach(function (id) {
+      var parts = A1_ORIG[id].split('|');
+      $(id).innerHTML = parts[0];
+      $(id).className = parts[1].replace(/\bin\b/, '').trim();
+    });
+    $('a1-zre').textContent = A1_ORIG.zre;
+    $('a1-zre').style.color = ''; $('a1-zre').style.borderBottomColor = '';
+    $('a1-aesc-t').textContent = A1_ORIG.aesc;
+    $('a1-tl').classList.remove('clear');
+    $('a1-re').classList.remove('fade');
+    $('a1-aesc').classList.remove('in');
+    var b = $('a1-btn');
+    b.hidden = true; b.classList.remove('gone', 'pulse'); b.disabled = false;
+  }
+
+  async function reveal(ids, gap) {
+    for (var i = 0; i < ids.length; i++) { $(ids[i]).classList.add('in'); await wait(gap || 160); }
+  }
+
   async function runA1() {
     buildA1();
-    var pa = $('a1-pa'), pb = $('a1-pb'), ping = $('a1-ping');
-    var stops = ['0%', '30%', '62%', '92%'];
-    for (var i = 1; i < stops.length; i++) {
-      await wait(700);
-      pa.style.left = 'calc(' + stops[i] + ' - .85rem)';
-      pb.style.left = 'calc(' + stops[i] + ' - .85rem)';
-      ping.style.left = 'calc(' + stops[i] + ' - .6rem)';
-      ping.classList.remove('on'); void ping.offsetWidth; ping.classList.add('on');
-      if (i === 1) { await wait(500); pb.classList.add('amber'); }
-      if (i === 2) { pa.classList.add('red'); pb.classList.remove('amber'); pb.classList.add('green'); }
+    await reveal(['a1-h0','a1-h1','a1-h2'], 220);
+    await wait(260);
+    await reveal(['a1-h3'], 0);
+    await wait(520);
+    await reveal(['a1-d1a','a1-d1b','a1-d1c'], 150);
+    await wait(240);
+    await reveal(['a1-d2a','a1-d2b','a1-d2c'], 150);
+    await wait(240);
+    await reveal(['a1-d3a','a1-d3b','a1-d3c'], 190);
+    await wait(300);
+    await reveal(['a1-d4a','a1-d4b','a1-d4c'], 190);
+    await wait(420);
+    await reveal(['a1-r0','a1-r1','a1-r2','a1-r3'], 170);
+    await wait(500);
+    var b = $('a1-btn');
+    b.hidden = false;
+    await nextFrame();
+    b.classList.add('pulse');
+  }
+
+  // fly a clone of src across to dst; bails cleanly if geometry is unusable
+  async function flyTo(src, dst) {
+    var s = src.getBoundingClientRect(), d = dst.getBoundingClientRect();
+    if (!s.width || !d.width) return;
+    var ghost = src.cloneNode(true);
+    ghost.style.cssText = 'position:fixed;margin:0;z-index:90;left:' + s.left + 'px;top:' + s.top +
+      'px;width:' + s.width + 'px;opacity:1;transition:transform .95s cubic-bezier(.4,0,.2,1),opacity .95s ease';
+    document.body.appendChild(ghost);
+    await nextFrame();
+    ghost.style.transform = 'translate(' + (d.left - s.left) + 'px,' + (d.top - s.top) + 'px) scale(.9)';
+    ghost.style.opacity = '.15';
+    await wait(1000);
+    if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
+  }
+
+  async function aesciaEffect() {
+    var b = $('a1-btn');
+    b.disabled = true;
+    b.classList.remove('pulse');
+    b.classList.add('gone');
+    $('a1-tl').classList.add('clear');           // the week at home comes into focus
+    await wait(900);
+
+    await flyTo($('a1-d3c'), $('a1-aesc'));      // the day-3 flag reaches the ward team
+    $('a1-aesc').classList.add('in');
+    await wait(700);
+    $('a1-aesc-t').textContent = 'Called that morning. Sent to the GP the same day.';
+    await wait(800);
+
+    // day 4 is rewritten: treated, not deteriorating
+    var d4 = [['a1-d4a','&#10003;','Antibiotics started','bx ok in'],
+              ['a1-d4b','&#10003;','Fever settling','bx ok in'],
+              ['a1-d4c','&#10003;','Recovering','bx big ok in']];
+    for (var i = 0; i < d4.length; i++) {
+      var el = $(d4[i][0]);
+      el.innerHTML = '<span class="ic">' + d4[i][1] + '</span>' + d4[i][2];
+      el.className = d4[i][3];
+      await wait(260);
     }
-    await wait(450);
-    $('a1-out-a').classList.add('on');
-    await wait(250);
-    $('a1-out-b').classList.add('on');
+    await wait(500);
+
+    $('a1-re').classList.add('fade');            // and the readmission never happens
+    await wait(720);
+    var z = $('a1-zre');
+    z.textContent = 'No readmission';
+    z.style.color = 'var(--green)';
+    z.style.borderBottomColor = 'var(--green)';
   }
 
   // ---------------- act 2 ----------------
@@ -547,6 +696,7 @@ footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;f
   document.querySelectorAll('[data-replay]').forEach(function (b) {
     b.addEventListener('click', function () { RUN[b.getAttribute('data-replay')](); });
   });
+  $('a1-btn').addEventListener('click', aesciaEffect);
 })();
 </script>
 </body>
