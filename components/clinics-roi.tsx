@@ -23,7 +23,7 @@ function useRoiT() {
 // Aescia for Clinics — interactive ROI calculator.
 // Honest ranges (conservative / expected / potential), every assumption
 // visible inline, no manufactured urgency. Each effect size traces to a named,
-// verified source: Guo 2016 / Tian 2021 / Faveri 2025 / Deng 2014 (prep coaching),
+// verified source: Guo 2016 / Tian 2021 / Faveri 2025 (prep coaching; see the caveat at inadequatePrepReduction),
 // Li 2022 / Lam 2020 / Seoane 2020 (no-show), Gaucher 2016 / Keswani 2020 /
 // El Bizri 2021 (late cancellation), Wang 2023 (facility fee), Beran 2024
 // (inadequate-prep risk factors), Cooper 2013 (surveillance non-return).
@@ -60,8 +60,13 @@ const ASSUMPTIONS = {
   // Lam 2020 (J Gastroenterol Hepatol 36(4):1044-1050, randomised, n=2,225, Hong Kong; 11.9%
   // to 8.9%, p=0.022; PMID 32803820) and Seoane 2020 (World J Gastroenterol 26(47):7568-7583,
   // randomised, n=1,484, Spain; 14.3% to 8.4% with a nurse education call; PMID 33384555).
-  // Both US trials are null: Mahmud 2021 (JAMA Netw Open 4(1):e2034553, randomised, n=753;
-  // PMID 33492374) and Keswani 2020 (n=830), so US transfer stays pilot-to-prove.
+  // ⚠️ US evidence is MIXED, not null. Corrected 2026-08-07; the page previously said "both US
+  // trials were null", which is false. Null: Mahmud 2021 (JAMA Netw Open 4(1):e2034553,
+  // randomised, n=753; PMID 33492374) and Keswani 2020 (n=830). Positive and larger than either:
+  // Solonowicz 2022 (J Clin Gastroenterol 56(2):166-172, randomised, n=1,625, University of
+  // Chicago; no-shows 8% vs 14%, p<0.0001; adequate prep for screening/surveillance 93% vs 88%,
+  // p=0.04; PMID 33471486, verified at source). US transfer still stays pilot-to-prove, but on
+  // heterogeneity, not on absence of a positive US result.
   noShowReduction: { conservative: 0.15, expected: 0.25, better: 0.4 },
   // Aescia-achieved backfill rate on LATE cancellations (SOC baseline ~40%). The lever
   // credits only the INCREMENTAL lift over the site's current rate. Pilot-to-prove.
@@ -83,9 +88,13 @@ const ASSUMPTIONS = {
   // consume a future slot. Shown as an ADDITIVE pool, separate from the cancellation/no-show headline.
   inadequatePrepReduction: { conservative: 0.25, expected: 0.4, better: 0.5 }, // relative reduction in inadequate
   // prep from coaching/navigation/SMS (Guo 2016 GIE; Tian 2021 JMIR; Faveri 2025 J Surg Res).
-  // Deng 2014 (J Med Syst 39(1):169, randomised, n=1,786, sedation GI endoscopy centre, West China
-  // Hospital) is the endoscopy-centre anchor for the expected 0.4: same-day cancellation for
-  // inadequate preparation fell 8.0% to 4.8%, p<0.001, a 40% reduction. PMID 25476268.
+  // ⚠️ Deng 2014/2015 was removed as the endoscopy-centre anchor for the expected 0.4 on 2026-08-07.
+  // It is a real paper (J Med Syst 2015;39(1):169, PMID 25476268) and its 8.0%->4.8% digits are correct,
+  // but it measures ALL-CAUSE same-day cancellation at a mostly-gastroscopy sedation centre in Chengdu,
+  // and gastroscopy patients take no bowel preparation. It never reports prep adequacy. El Bizri 2021,
+  // which this same page cites, excluded Deng for that reason and pooled 8 colonoscopy trials finding
+  // no cancellation effect. The 0.4 now rests only on Guo/Tian/Faveri, WHICH ARE NOT YET VERIFIED AT
+  // SOURCE. Verify those three before this default is quoted to a buyer, or lower it.
   prepRepeatFraction: 0.3, // share of inadequate preps that consume a repeat/aborted slot. GIQuIC 31.9%
   // recommended-within-1yr (Calderwood 2022 GIE) x VA 59.2% completed (Wongjarupong 2024 Fed Pract) = 0.19 floor;
   // 0.30 default also captures aborts and later/sooner-than-recommended repeats.

@@ -13,11 +13,14 @@ function useKpiT() {
   }
 }
 
+// Every figure is stated as its source states it. No card carries a number the
+// paper does not print, except c3, which is the midpoint of a range the paper
+// does print and says so on its face.
 const CARDS = [
-  { key: 'c1', value: 40, prefix: '−', suffix: '%' },
+  { key: 'c1', value: 93, prefix: '', suffix: '%' },
   { key: 'c2', value: 26, prefix: '−', suffix: '%' },
   { key: 'c3', value: 1011, prefix: '$', suffix: '' },
-  { key: 'c4', value: 54, prefix: '', suffix: '%' },
+  { key: 'c4', value: 46, prefix: '', suffix: '%' },
 ] as const
 
 export function ClinicsKpiCards() {
