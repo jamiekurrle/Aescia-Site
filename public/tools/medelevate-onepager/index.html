@@ -249,7 +249,26 @@
     .btnrow .hint { font-size: 6.78pt; }
     .printurl { display: inline; color: var(--accent); }
   }
-</style>
+
+    /* --- pressable call to action (screen only) --- */
+    .btnrow{background:var(--accent-soft);border:1px solid var(--line-strong);
+      border-radius:10px;padding:1rem 1.15rem;gap:.85rem;align-items:center}
+    .btn{font-size:1rem;padding:.8rem 1.4rem;border-radius:8px;
+      box-shadow:0 2px 0 #2b3f5c,0 10px 22px -10px rgba(27,39,69,.55);
+      transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+      cursor:pointer;white-space:nowrap}
+    .btn:hover{background:#354c68;transform:translateY(-1px);
+      box-shadow:0 3px 0 #2b3f5c,0 14px 26px -10px rgba(27,39,69,.6)}
+    .btn:active{transform:translateY(2px);box-shadow:0 0 0 #2b3f5c,0 4px 10px -6px rgba(27,39,69,.5)}
+    .btn:focus-visible{outline:3px solid var(--brass);outline-offset:3px}
+    .btnrow .hint{flex:1 1 14rem;min-width:0}
+  
+    @media print{
+      .btnrow{background:none;border:1px solid var(--line-strong);border-radius:4px;
+        padding:.35rem .5rem;gap:.4rem}
+      .btn{box-shadow:none!important;transform:none!important;border-radius:3px}
+    }
+  </style>
 </head>
 <body>
 
