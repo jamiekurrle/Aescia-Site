@@ -266,7 +266,14 @@
     @media print{
       .btnrow{background:none;border:1px solid var(--line-strong);border-radius:4px;
         padding:.35rem .5rem;gap:.4rem}
-      .btn{box-shadow:none!important;transform:none!important;border-radius:3px}
+      /* Keep the button SOLID DARK on paper. The inherited print rule stripped it
+         back to an outline; a filled control reads as the thing to click even in
+         a PDF. print-color-adjust is required or the fill is dropped. */
+      .btn{background:var(--accent)!important;color:#fff!important;border:none!important;
+        box-shadow:none!important;transform:none!important;border-radius:3px;
+        padding:.34rem .62rem!important;font-weight:700;
+        -webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .btn *{color:#fff!important}
     }
   </style>
 </head>
