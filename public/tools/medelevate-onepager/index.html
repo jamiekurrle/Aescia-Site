@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aescia for MedElevate Solutions</title>
+<style>
+  @font-face {
+    font-family: 'Geist';
+    src: url('/fonts/Geist-Variable.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist Mono';
+    src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+    font-weight: 100 900; font-style: normal; font-display: swap;
+  }
+  * { box-sizing: border-box; }
+  :root {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EBEFF5;
+    --ink: #1B2745; --ink-2: #2D3A5E; --muted: #475A82;
+    --line: #E2E6EE; --line-strong: #C7D3E5;
+    --accent: #40597A; --accent-soft: #E2EAF4;
+    --loss: #B53A2C; --gain: #1F6B47;
+    --brass: #B89D6A; --mist: #5C7A99;
+    --sans: 'Geist', system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --maxw: 62rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F1A33; --surface: #1B2745; --surface-2: #243254;
+      --ink: #F4F6FA; --ink-2: #DCE4F0; --muted: #B7CBE0;
+      --line: #2D3A5E; --line-strong: #475A82;
+      --accent: #A8C2D8; --accent-soft: #243254;
+      --loss: #E08A78; --gain: #6FC49B;
+      --brass: #DEC9A5; --mist: #A8C2D8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1A33; --surface: #1B2745; --surface-2: #243254;
+    --ink: #F4F6FA; --ink-2: #DCE4F0; --muted: #B7CBE0;
+    --line: #2D3A5E; --line-strong: #475A82;
+    --accent: #A8C2D8; --accent-soft: #243254;
+    --loss: #E08A78; --gain: #6FC49B;
+    --brass: #DEC9A5; --mist: #A8C2D8;
+  }
+  :root[data-theme="light"] {
+    --bg: #F4F6FA; --surface: #FFFFFF; --surface-2: #EBEFF5;
+    --ink: #1B2745; --ink-2: #2D3A5E; --muted: #475A82;
+    --line: #E2E6EE; --line-strong: #C7D3E5;
+    --accent: #40597A; --accent-soft: #E2EAF4;
+    --loss: #B53A2C; --gain: #1F6B47;
+    --brass: #B89D6A; --mist: #5C7A99;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; font-feature-settings: 'ss01','cv11'; margin: 0; }
+  ::selection { background: rgba(184,157,106,.35); }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2.25rem 1.25rem 4rem; display: flex; flex-direction: column; gap: 2rem; }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -.025em; text-wrap: balance; line-height: 1.2; }
+  p { margin: 0; }
+
+  /* --- site nav, static replica of components/site-nav.tsx --- */
+  .sitebar { position: sticky; top: 0; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .sitebar-in { max-width: 80rem; margin: 0 auto; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .wordmark { text-decoration: none; display: flex; align-items: baseline; gap: .375rem; }
+  .wm-name { font-size: 22px; line-height: 1; letter-spacing: -.02em; color: var(--ink); font-weight: 500; }
+  .wm-sub { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .18em; color: var(--muted); transform: translateY(-2px); }
+  .navlinks { display: none; align-items: center; gap: 2rem; }
+  .navlinks a { font-size: 13px; letter-spacing: .01em; color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+  .navlinks a:hover { color: var(--ink); }
+  .navcta { display: none; align-items: center; }
+  .navcta a { font-size: 13px; font-weight: 500; padding: .625rem 1.25rem; border: 1px solid var(--ink); background: var(--ink); color: var(--surface); text-decoration: none; white-space: nowrap; }
+  .navcta a:hover { opacity: .9; }
+  .navmini { font-size: 13px; color: var(--muted); text-decoration: none; }
+  .navmini:hover { color: var(--ink); }
+  @media (min-width: 64rem) {
+    .sitebar-in { padding: 1rem 2.5rem; }
+    .navlinks, .navcta { display: flex; }
+    .navmini { display: none; }
+  }
+
+  .eyebrow { font-size: .84rem; letter-spacing: .06em; text-transform: uppercase; color: var(--brass); font-weight: 700; }
+  .masthead { display: flex; flex-direction: column; gap: .85rem; }
+  .masthead h1 { font-size: clamp(1.85rem, 4.4vw, 2.5rem); margin: 0; letter-spacing: -.03em; }
+  .masthead .lede { font-size: 1.03rem; color: var(--ink-2); }
+  .meta-row { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font-size: .82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: .8rem; }
+
+  .sec-head { display: flex; flex-direction: column; gap: .3rem; margin-bottom: 1rem; }
+  .sec-head h2 { font-size: clamp(1.25rem, 2.8vw, 1.6rem); margin: 0; }
+  .sec-head p { color: var(--muted); font-size: .92rem; }
+  .sec-head.tight { margin-bottom: .75rem; }
+
+  .swimwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; }
+  .swim { display: grid; grid-template-columns: 5.4rem repeat(6, minmax(7.6rem, 1fr)); min-width: 52rem; background: var(--surface); }
+  .swim > * { padding: .58rem .65rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: .78rem; line-height: 1.4; color: var(--ink-2); }
+  .swim > *:nth-child(7n) { border-right: 0; }
+  .swim > *:nth-last-child(-n+7) { border-bottom: 0; }
+  .swim .ph { font-size: .8rem; letter-spacing: .005em; color: var(--ink); font-weight: 700; background: var(--surface-2); }
+  .swim .lane { font-weight: 700; color: var(--ink); font-size: .86rem; background: var(--surface-2); display: flex; flex-direction: column; gap: .12rem; }
+  .swim .lane small { font-weight: 400; font-size: .74rem; color: var(--muted); }
+  .swim .corner { background: var(--surface-2); }
+  .swim .op { background: var(--accent-soft); }
+  .swim .us { color: var(--accent); font-weight: 600; }
+  .swim .now { color: var(--muted); }
+  .swim ul.mini { margin: .25rem 0 0; padding-left: .9rem; font-weight: 400; }
+  .swim ul.mini li { margin-bottom: .05rem; }
+  .swim .cost { font-size: .82rem; font-weight: 700; text-align: center; color: var(--muted); }
+  .swim .c1 { background: color-mix(in srgb, var(--gain) 9%, var(--surface)); color: var(--gain); }
+  .swim .c2 { background: color-mix(in srgb, var(--brass) 14%, var(--surface)); color: var(--brass); }
+  .swim .c3 { background: color-mix(in srgb, var(--loss) 12%, var(--surface)); color: var(--loss); }
+  .swim .c4 { background: color-mix(in srgb, var(--loss) 24%, var(--surface)); color: var(--loss); }
+
+  .btnrow { display: flex; flex-wrap: wrap; gap: .7rem; align-items: center; margin-top: 1rem; }
+  .btn { display: inline-flex; align-items: center; gap: .45rem; background: var(--accent); color: var(--bg); text-decoration: none; font-size: .88rem; font-weight: 700; padding: .62rem 1.05rem; border-radius: 3px; letter-spacing: -.01em; }
+  .btn:hover { filter: brightness(1.08); }
+  .btnrow .hint { font-size: .82rem; color: var(--muted); }
+  .printurl { display: none; }
+  .sources a { color: var(--accent); text-decoration: none; }
+  .sources a:hover { text-decoration: underline; }
+
+  /* patient flow */
+  .flow { display: grid; grid-template-columns: 1fr 2rem auto 2rem 1fr; gap: 0; align-items: stretch; }
+  .fline { align-self: center; height: 1px; background: var(--line-strong); }
+  .fbox { border: 1px solid var(--line); border-radius: 3px; background: var(--surface); padding: .7rem .85rem; display: flex; flex-direction: column; justify-content: center; }
+      .fbox h4 { margin: 0 0 .5rem; font-size: 1.02rem; letter-spacing: -.015em; color: var(--ink); font-weight: 700; }
+  .fbox ul { margin: 0; padding-left: 1rem; font-size: .85rem; color: var(--ink-2); line-height: 1.5; }
+  .fbox li { margin-bottom: .18rem; }
+  .fcase { align-self: center; width: 7.4rem; height: 7.4rem; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: .4rem; }
+  .fcase b { font-size: .96rem; color: var(--ink); letter-spacing: -.02em; }
+  .fcase span { font-size: .74rem; color: var(--muted); }
+    @media (max-width: 44rem) {
+    .flow { grid-template-columns: 1fr; gap: .75rem; }
+    .fline { display: none; }
+    .fcase { margin: 0 auto; }
+  }
+
+  .benefit { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1px; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
+  .benefit > div { background: var(--surface); padding: 1.05rem 1.2rem; box-shadow: 0 0 0 1px var(--line); }
+  .benefit h3 { margin: 0 0 .5rem; font-size: 1rem; color: var(--accent); }
+  .benefit .vol { font-size: .82rem; letter-spacing: .01em; color: var(--brass); font-weight: 700; display: block; margin-bottom: .25rem; }
+  .benefit ul { margin: 0; padding-left: 1.05rem; font-size: .87rem; color: var(--ink-2); line-height: 1.55; }
+  .benefit li { margin-bottom: .32rem; }
+
+  .kicker { font-size: .92rem; color: var(--ink-2); margin-top: 1rem; }
+  .kicker strong { color: var(--ink); }
+
+  ol.asks { margin: 0; padding-left: 1.25rem; font-size: .96rem; color: var(--ink-2); line-height: 1.6; }
+  ol.asks li { margin-bottom: .6rem; }
+  ol.asks b { color: var(--ink); }
+
+  .sources { font-size: .78rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: .9rem; }
+
+  /* --- site footer, static replica of components/footer.tsx --- */
+  .sitefoot { background: var(--surface); border-top: 1px solid var(--line); padding: 3.5rem 1.5rem 2.5rem; }
+  .sitefoot-in { max-width: 80rem; margin: 0 auto; }
+  .foot-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 3rem; }
+  .foot-brand .wordmark { margin-bottom: 1.1rem; }
+  .foot-brand .wm-name { font-size: 26px; }
+  .foot-tag { font-size: 14px; line-height: 1.65; color: var(--ink-2); max-width: 24rem; }
+  .foot-tag .contact { display: none; }
+  .sitefoot h3 { font-size: 15px; letter-spacing: -.005em; color: var(--ink); margin: 0 0 .9rem; font-weight: 700; }
+  .sitefoot ul { list-style: none; margin: 0; padding: 0; }
+  .sitefoot li { margin-bottom: .68rem; font-size: 14px; }
+  .sitefoot a { color: var(--ink-2); text-decoration: none; }
+  .sitefoot a:hover { color: var(--ink); }
+  .foot-legal li { font-size: 13px; color: var(--ink-2); margin-bottom: .45rem; }
+  .foot-legal .abn { font-family: var(--mono); font-size: 12px; }
+  .foot-legal a { text-decoration: underline; text-underline-offset: 2px; }
+  .foot-base { border-top: 1px solid var(--line); padding-top: 2rem; }
+  .foot-disc { font-size: 12.5px; line-height: 1.65; color: var(--muted); max-width: 52rem; margin-bottom: 1.5rem; font-style: italic; }
+  .foot-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--muted); }
+  @media (min-width: 48rem) {
+    .foot-grid { grid-template-columns: 3fr 2fr 2fr 2fr 3fr; gap: 3rem; }
+  }
+  @media (min-width: 64rem) {
+    .sitefoot { padding: 5rem 2.5rem 2.5rem; }
+  }
+
+  @media print {
+    @page { margin: 11mm; size: A4 portrait; }
+    body { background: #fff; font-size: 7.51pt; line-height: 1.34; }
+    .wrap { padding: .5rem 0 0; gap: .32rem; max-width: none; }
+
+    .sitebar { position: static; }
+    .sitebar-in { max-width: none; padding: 0 0 .5rem; }
+    .wm-name { font-size: 13.75pt; }
+    .wm-sub { font-size: 6.88pt; }
+    .navlinks { display: flex; gap: 1rem; }
+    .navlinks a { font-size: 6.78pt; }
+    .navcta { display: flex; }
+    .navcta a { font-size: 6.78pt; padding: .3rem .6rem; }
+    .navmini { display: none; }
+
+    /* Push the footer toward the foot of the sheet, keeping a little air above it. */
+    html { height: 100%; }
+    body { display: flex; flex-direction: column; min-height: 100vh; }
+    .sitefoot { padding: .7rem 0 0; margin-top: auto; }
+    .sitefoot-in { max-width: none; }
+    /* Link columns and the entity block are dead weight on paper. Keep identity, contact and the disclosure. */
+    .sitefoot nav, .foot-legalcol { display: none; }
+    .foot-grid { grid-template-columns: 1fr; gap: 0; margin-bottom: .45rem; }
+    .foot-brand .wm-name { font-size: 11.94pt; }
+    .foot-brand .wordmark { margin-bottom: .28rem; }
+    .foot-tag { font-size: 6.68pt; max-width: none; }
+    .foot-tag .contact { display: block; margin-top: .2rem; color: var(--ink-2); }
+    .sitefoot h3 { font-size: 7.6pt; margin-bottom: .26rem; }
+    .foot-legal li { font-size: 6.49pt; margin-bottom: .1rem; }
+    .foot-legal .abn { font-size: 6.02pt; }
+    .foot-base { padding-top: .5rem; }
+    .foot-disc { font-size: 5.83pt; margin-bottom: .4rem; line-height: 1.45; }
+    .foot-meta { font-size: 5.73pt; }
+    .swimwrap, .flow, .benefit, .sec-head, ol.asks { break-inside: avoid; }
+    .masthead h1 { font-size: 14.21pt; }
+    .masthead .lede { font-size: 7.89pt; }
+    .masthead { gap: .22rem; }
+    .meta-row { padding-top: .25rem; font-size: 6.42pt; }
+    .sec-head, .sec-head.tight { margin-bottom: .3rem; }
+    .sec-head h2 { font-size: 9.62pt; }
+    .sec-head p { font-size: 6.78pt; }
+    .swimwrap { overflow: visible; }
+    .swim { min-width: 0; grid-template-columns: 4.2rem repeat(6, 1fr); }
+    .swim > * { padding: .24rem .3rem; font-size: 5.78pt; line-height: 1.26; }
+    .swim .ph, .swim .lane { font-size: 6.9pt; }
+    .swim .lane small { font-size: 6pt; }
+    .swim ul.mini { margin-top: .1rem; padding-left: .6rem; }
+    .swim .cost { font-size: 5.41pt; }
+    
+    .benefit { grid-template-columns: repeat(2, 1fr); }
+    .fbox, .benefit > div { padding: .4rem .55rem; }
+    .fbox ul, .benefit ul { font-size: 6.5pt; }
+    .flow { grid-template-columns: 1fr 1.1rem auto 1.1rem 1fr; }
+    .fbox { padding: .32rem .45rem; }
+    .fbox h4 { font-size: 8.4pt; margin-bottom: .22rem; }
+    .fbox li { margin-bottom: .05rem; }
+    .fcase { width: 3.9rem; height: 3.9rem; }
+    .fcase b { font-size: 7.07pt; }
+    .fcase span { font-size: 5.54pt; }
+    
+    .benefit h3 { font-size: 7.33pt; margin-bottom: .3rem; }
+    .benefit li { margin-bottom: .15rem; }
+    .kicker { font-size: 6.78pt; margin-top: .38rem; }
+    ol.asks { font-size: 7.15pt; line-height: 1.45; }
+    ol.asks li { margin-bottom: .22rem; }
+    .sources { padding-top: .4rem; font-size: 6.42pt; }
+    .sources a { color: var(--accent); text-decoration: underline; }
+    .btn { background: none; color: var(--accent); border: 1px solid var(--accent); padding: .3rem .55rem; font-size: 7.33pt; }
+    .btnrow { margin-top: .5rem; gap: .5rem; }
+    .btnrow .hint { font-size: 6.78pt; }
+    .printurl { display: inline; color: var(--accent); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="sitebar" aria-label="Primary">
+  <div class="sitebar-in">
+    <a class="wordmark" href="https://www.aesciahealth.com">
+      <span class="wm-name">Aescia</span><span class="wm-sub">Health</span>
+    </a>
+    <div class="navlinks">
+      <a href="https://www.aesciahealth.com/platform">Platform</a>
+      <a href="https://www.aesciahealth.com/hospitals">For Hospitals</a>
+      <a href="https://www.aesciahealth.com/clinics">For Clinics</a>
+      <a href="https://www.aesciahealth.com/evidence">Evidence</a>
+      <a href="https://www.aesciahealth.com/updates">Updates</a>
+      <a href="https://www.aesciahealth.com/team">Team</a>
+      <a href="https://www.aesciahealth.com/contact">Contact</a>
+    </div>
+    <div class="navcta"><a href="https://www.aesciahealth.com/contact">Request a briefing</a></div>
+    <a class="navmini" href="https://www.aesciahealth.com">aesciahealth.com &#8599;</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <span class="eyebrow">Prepared for Nyleen Flores, MedElevate Solutions &#183; August 2026</span>
+    <h1>We check in with your patients before and after their procedure</h1>
+    <p class="lede">So they turn up ready, and so what goes wrong at home reaches your nurse rather than an emergency department.</p>
+    <div class="meta-row">
+      <span><strong>Dr James Kurrle</strong>, Founder</span>
+      <span>james@aesciahealth.com</span>
+      <span>aesciahealth.com</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <h2>What we do</h2>
+      <p>Short check-ins on the patient’s phone. Every answer is read against our rules, and anything concerning reaches your nurse the same day.</p>
+    </div>
+    <div class="flow">
+      <div class="fbox fbefore">
+        <h4>Before the procedure</h4>
+<ul>
+<li>Education first</li>
+<li>Prep with reminders</li>
+<li>Fasting, meds, clearance, transport</li>
+<li>Optimization beforehand</li>
+<li>Cancelled slots refilled automatically</li>
+</ul>
+      </div>
+      <div class="fline"></div>
+      <div class="fcase"><b>The case</b><span>on the list</span></div>
+      <div class="fline"></div>
+      <div class="fbox fafter">
+        <h4>After the procedure</h4>
+<ul>
+<li>Recovery check-ins</li>
+<li>Complications caught early</li>
+<li>Recall and post-procedure plans</li>
+</ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>How we ensure your list runs and patients get the best outcomes</h2>
+      <p>The same case, run twice. Time moves left to right.</p>
+    </div>
+    <div class="swimwrap">
+      <div class="swim">
+        <div class="corner"></div>
+        <div class="ph">At booking</div>
+        <div class="ph">2 weeks out</div>
+        <div class="ph">48 hours out</div>
+        <div class="ph op">Day of</div>
+        <div class="ph">Days 1 to 3</div>
+        <div class="ph">Weeks 1 to 4</div>
+
+        <div class="lane">Today<small>status quo</small></div>
+        <div class="now">Instructions handed over. Nothing more until pre-admission</div>
+        <div class="now">Staff start phone rounds. Voicemail, callbacks, repeat attempts</div>
+        <div class="now">Confirmation calls. Anything found now is too late to fix</div>
+        <div class="op now">Cancellation discovered on arrival. Slot lost</div>
+        <div class="now">Patient calls the office, or drives to an emergency room</div>
+        <div class="now">Silence read as recovery. Recall slips</div>
+
+        <div class="lane">With Aescia</div>
+        <div class="us">Patient onboards to Aescia, which<ul class="mini"><li>educates</li><li>prepares</li><li>verifies needs</li></ul></div>
+        <div class="us">Holds, fasting, escort and cardiology clearances confirmed automatically</div>
+        <div class="us">Readiness verified. A drop-out is known while the slot can still be refilled</div>
+        <div class="op us">Full list, prepared patients</div>
+        <div class="us">Symptoms triaged. Urgent items to a nurse the same day</div>
+        <div class="us">Ensures the discharge plan is followed. Recall tracked and booked</div>
+
+        <div class="lane">Empty slot<small>cost to refill</small></div>
+        <div class="cost c1">Trivial</div>
+        <div class="cost c2">Workable</div>
+        <div class="cost c3">Hard</div>
+        <div class="cost c4 op">Gone</div>
+        <div class="cost"></div>
+        <div class="cost"></div>
+      </div>
+    </div>
+    <div class="btnrow">
+      <a class="btn" href="https://www.aesciahealth.com/tools/medelevate/">Pick your problems and price them &#8594;</a>
+      <span class="hint">Interactive. Choose what is real at your centers and it totals as you go. <span class="printurl">aesciahealth.com/tools/medelevate</span></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>What it does for a surgery center</h2>
+      <p>One engine, different content per procedure. A day case is a colonoscopy minus the bowel prep.</p>
+    </div>
+    <div class="benefit">
+      <div>
+        <span class="vol">Gastroenterology</span>
+        <h3>Fewer wasted slots and better prepared patients</h3>
+        <ul>
+          <li>Bowel preparation is one to three days of unsupervised patient work, and it is where most avoidable failure lives</li>
+          <li>Prep quality checked before the patient travels, not discovered on the table</li>
+          <li>Cancellations flagged early enough that the slot can still be refilled</li>
+          <li>Surveillance recall tracked, so the three-year patient comes back</li>
+        </ul>
+      </div>
+      <div>
+        <span class="vol">Everything else on the list</span>
+<h3>Fewer day-of cancellations and safer recovery at home</h3>
+<ul>
+<li>Fasting, escort and anticoagulant holds confirmed rather than assumed</li>
+<li>In one US center's arthroscopy list, 84 percent of short-notice cancellations were patient-side, most often the patient having eaten</li>
+<li>Pain and wound worries routed to a nurse instead of an emergency room</li>
+<li>Specialty modules where the preparation differs. The engine is the same</li>
+</ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>What I would like from you</h2>
+<p>The next step is a pilot at one of your centers.</p>
+    </div>
+    <ol class="asks">
+      <li><b>Your read on this as an operations consultant.</b> Where it breaks, and what an administrator would want to see before letting it near a list.</li>
+<li><b>An introduction to a decision-maker at one of your centers.</b> Thirty minutes, no commitment beyond hearing it.</li>
+<li><b>What do your centers measure?</b> Ambulatory Surgical Center Quality Reporting, case volume, block utilization, whatever the board sees each month. If we can move one of those, that is the number worth talking about.</li>
+    </ol>
+    <p class="kicker">Happy to agree referral terms and a listing on the MedElevate site alongside this.</p>
+  </section>
+
+  <section class="sources">
+    <p>Live monitoring trial at Royal Prince Alfred Hospital, Sydney &#183; ACTRN12625001425482 &#183; interim readout September 2026</p>
+    <p style="margin-top:.45rem">Interactive version: <a href="https://www.aesciahealth.com/tools/medelevate/">aesciahealth.com/tools/medelevate</a> &#183; <a href="https://www.aesciahealth.com">aesciahealth.com</a> &#183; <a href="mailto:james@aesciahealth.com">james@aesciahealth.com</a></p>
+  </section>
+
+</div>
+
+<footer class="sitefoot">
+  <div class="sitefoot-in">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="https://www.aesciahealth.com"><span class="wm-name">Aescia</span><span class="wm-sub">Health</span></a>
+        <p class="foot-tag">A continuous-care platform for the weeks that matter.<span class="contact">Dr James Kurrle, Founder &#183; <a href="mailto:james@aesciahealth.com">james@aesciahealth.com</a> &#183; <a href="https://www.aesciahealth.com">aesciahealth.com</a></span></p>
+      </div>
+      <nav aria-label="Product">
+        <h3>Product</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/platform">Platform</a></li>
+          <li><a href="https://www.aesciahealth.com/hospitals">For Hospitals</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics">For Clinics</a></li>
+          <li><a href="https://www.aesciahealth.com/integrations">Integrations</a></li>
+          <li><a href="https://www.aesciahealth.com/evidence">Evidence</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Buy">
+        <h3>Buy</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/design-partner">Design-partner program</a></li>
+          <li><a href="https://www.aesciahealth.com/clinics#roi">ROI calculator</a></li>
+          <li><a href="https://www.aesciahealth.com/security">Security and HIPAA</a></li>
+          <li><a href="https://www.aesciahealth.com/governance">Governance</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="https://www.aesciahealth.com/team">Team</a></li>
+          <li><a href="https://www.aesciahealth.com/updates">Updates</a></li>
+          <li><a href="https://www.aesciahealth.com/careers">Careers</a></li>
+          <li><a href="https://www.aesciahealth.com/faq">FAQ</a></li>
+          <li><a href="https://www.aesciahealth.com/contact">Contact</a></li>
+          <li><a href="mailto:contact@aesciahealth.com">contact@aesciahealth.com</a></li>
+          <li><a href="https://www.aesciahealth.com/privacy">Privacy policy</a></li>
+          <li><a href="https://www.aesciahealth.com/terms">Terms of use</a></li>
+        </ul>
+      </nav>
+      <div class="foot-legalcol">
+        <h3>Legal</h3>
+        <ul class="foot-legal">
+          <li>Aescia Pty Ltd (AU)</li>
+          <li class="abn">ABN 96 687 840 517</li>
+          <li><a href="https://buy.nsw.gov.au/supplier/profile/12460268">NSW Government registered supplier</a></li>
+          <li>9550-0708 Qu&eacute;bec inc (CA)</li>
+          <li class="abn">NEQ 1181312316</li>
+          <li>Sydney, Australia</li>
+          <li>Montr&eacute;al, Canada</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-base">
+      <p class="foot-disc">Aescia for Hospitals is an investigational Software as a Medical Device, intended Class IIa under TGA Rule 3.4. A regulatory submission is in preparation. The product is in clinical evaluation through the SAFE-Discharge trial and is not yet available for commercial supply. Aescia for Clinics is a workflow platform and is not a medical device.</p>
+      <div class="foot-meta">
+        <p>&copy; 2026 Aescia Pty Ltd. All rights reserved.</p>
+        <p>A continuous-care platform.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
