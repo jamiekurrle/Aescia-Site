@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Aescia homepage draft</title>
+<link rel="icon" href="/icon.svg">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/Geist-Variable.woff2" crossorigin>
+<style>
+@font-face{font-family:'Geist';src:url('/fonts/Geist-Variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Geist Mono';src:url('/fonts/GeistMono-Variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+
+:root{
+  --stone:#F4F6FA; --stone-soft:#EBEFF5; --paper:#FFFFFF;
+  --ink:#1B2745; --ink-soft:#243254; --ink-90:#0F1A33; --ink-70:#2D3A5E; --ink-60:#475A82; --ink-40:#7B8AAA;
+  --brass:#B89D6A; --brass-soft:#DEC9A5; --mist:#A8C2D8; --mist-deep:#5C7A99;
+  --line:#E2E6EE; --line-cool:#C7D3E5; --tint:#E2EAF4;
+  --green:#1F6B47; --amber:#C8902F; --red:#B53A2C;
+  --sans:'Geist',system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --maxw:72rem;
+  --shadow:0 1px 2px rgba(27,39,69,.05),0 10px 30px rgba(27,39,69,.06);
+}
+@media (prefers-color-scheme:dark){
+  :root{--stone:#0F1A33;--stone-soft:#243254;--paper:#1B2745;--ink:#F4F6FA;--ink-70:#DCE4F0;--ink-60:#B7CBE0;--ink-40:#8FA3C2;
+    --line:#2D3A5E;--line-cool:#475A82;--tint:#243254;--brass:#DEC9A5;--green:#6FC49B;--amber:#E0B15C;--red:#E08A78;
+    --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 30px rgba(0,0,0,.35)}
+}
+*{box-sizing:border-box}
+::selection{background:rgba(184,157,106,.35)}
+body{margin:0;background:var(--stone);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;font-feature-settings:'ss01','cv11'}
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.025em;line-height:1.15;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
+
+/* ---------- draft banner ---------- */
+.draftbar{background:var(--ink);color:var(--stone);font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;text-align:center;padding:.55rem 1rem}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--stone) 88%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.wordmark{display:inline-flex;align-items:baseline;gap:.4rem;text-decoration:none}
+.wm-name{font-weight:700;font-size:1.35rem;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.wm-sub{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-60);line-height:1}
+.nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;font-size:.9rem}
+.nav a{color:var(--ink-70);text-decoration:none}
+.nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--ink);color:var(--stone);text-decoration:none;font-weight:600;font-size:.9rem;
+  padding:.6rem 1.1rem;border-radius:4px;border:1px solid var(--ink)}
+.btn:hover{opacity:.9}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line-cool)}
+/* nav sets `.nav a` colour at equal specificity, so buttons need `a.btn` to win */
+a.btn{color:var(--stone)}
+a.btn.ghost{color:var(--ink)}
+a.btn:hover{color:var(--stone)}
+a.btn.ghost:hover{color:var(--ink)}
+@media (max-width:64rem){.nav ul{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:5.5rem 0 4rem}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.5rem);max-width:20ch}
+.hero .sub{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--ink-70);max-width:46ch;margin-top:1.25rem;line-height:1.5}
+.hero .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+.eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--brass)}
+.hero .eyebrow{display:block;margin-bottom:1.1rem}
+
+/* ---------- acts ---------- */
+.act{padding:4rem 0;border-top:1px solid var(--line)}
+.act-head{display:flex;flex-direction:column;gap:.7rem;max-width:52ch;margin-bottom:2.25rem}
+.act-head h2{font-size:clamp(1.5rem,3.2vw,2.1rem)}
+.act-head p{color:var(--ink-70);font-size:1.02rem}
+.act-num{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;color:var(--ink-40)}
+.stage{background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);
+  padding:1.6rem;position:relative;overflow:hidden}
+.replay{position:absolute;top:.8rem;right:.9rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-40);background:transparent;border:1px solid var(--line);
+  border-radius:100px;padding:.3rem .7rem;cursor:pointer}
+.replay:hover{color:var(--ink);border-color:var(--brass)}
+.caption{margin-top:1.1rem;font-size:.9rem;color:var(--ink-60);display:flex;gap:.5rem;align-items:baseline}
+.caption b{color:var(--ink);font-weight:600}
+.cite{font-family:var(--mono);font-size:.68rem;color:var(--ink-40);margin-top:.5rem;line-height:1.5}
+
+/* ---- act 1: two lanes ---- */
+.lanes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+@media (max-width:46rem){.lanes{grid-template-columns:1fr}}
+.lane{background:var(--paper);padding:1.1rem 1.2rem 1.3rem}
+.lane h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:.9rem;font-weight:600}
+.lane.b h4{color:var(--brass)}
+.track{position:relative;height:8.5rem}
+.dayrow{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.6rem;color:var(--ink-40);margin-bottom:.45rem}
+.rail{position:absolute;left:0;right:0;top:1.15rem;height:2px;background:var(--line)}
+.pt{position:absolute;top:.3rem;width:1.7rem;height:1.7rem;border-radius:50%;background:var(--stone-soft);
+  border:2px solid var(--line-cool);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:.62rem;font-weight:700;color:var(--ink-60);
+  transition:left .9s cubic-bezier(.4,0,.2,1),background .4s,border-color .4s,color .4s;left:0}
+.pt.amber{background:#FBF1DC;border-color:var(--amber);color:var(--amber)}
+.pt.red{background:#F8E4E0;border-color:var(--red);color:var(--red)}
+.pt.green{background:#E3F1EA;border-color:var(--green);color:var(--green)}
+.ping{position:absolute;top:.55rem;width:1.2rem;height:1.2rem;border-radius:50%;border:2px solid var(--brass);
+  opacity:0;transform:scale(.4)}
+.ping.on{animation:pingA .9s ease-out}
+@keyframes pingA{0%{opacity:.9;transform:scale(.4)}100%{opacity:0;transform:scale(2.1)}}
+.outcome{margin-top:.7rem;font-size:.85rem;font-weight:600;opacity:0;transform:translateY(6px);
+  transition:opacity .45s,transform .45s}
+.outcome.on{opacity:1;transform:none}
+.outcome.bad{color:var(--red)}
+.outcome.good{color:var(--green)}
+
+/* ---- act 2: readiness board ---- */
+.board{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:5px;overflow:hidden}
+.brow{display:grid;grid-template-columns:8.5rem 1fr auto;gap:.9rem;align-items:center;background:var(--paper);padding:.6rem .9rem;
+  transition:background .45s}
+.brow .nm{font-size:.9rem;color:var(--ink-70)}
+.chips{display:flex;gap:.4rem;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.2rem .5rem;border-radius:100px;border:1px solid var(--line-cool);color:var(--ink-40);
+  transition:background .35s,border-color .35s,color .35s}
+.chip.on{background:#E3F1EA;border-color:var(--green);color:var(--green)}
+.chip.miss{background:#F8E4E0;border-color:var(--red);color:var(--red)}
+.tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  opacity:0;transition:opacity .4s}
+.tag.on{opacity:1}
+.tag.ready{color:var(--green)}
+.tag.call{color:var(--red)}
+.brow.flag{background:#FDF6F4}
+@media (prefers-color-scheme:dark){.brow.flag{background:#2A2226}}
+.worklist{margin-top:1rem;border:1px dashed var(--line-cool);border-radius:5px;padding:.85rem 1rem;
+  opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.worklist.on{opacity:1;transform:none}
+.worklist h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);margin-bottom:.4rem}
+.worklist p{font-size:.88rem;color:var(--ink-70)}
+
+/* ---- act 3: the list ---- */
+.days{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media (max-width:46rem){.days{grid-template-columns:1fr}}
+.day h4{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-40);margin-bottom:.7rem;font-weight:600}
+.slot{display:grid;grid-template-columns:1.4rem 1fr auto;align-items:center;gap:.55rem;background:var(--paper);
+  border:1px solid var(--line-cool);border-radius:4px;padding:.5rem .7rem;margin-bottom:.4rem;font-size:.86rem;color:var(--ink-70);
+  transition:transform .7s cubic-bezier(.4,0,.2,1),opacity .5s,border-color .4s,background .4s}
+.slot .mk{font-family:var(--mono);font-weight:700;text-align:center}
+.slot .pr{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-40)}
+.slot.gone{border-style:dashed;border-color:var(--red);color:var(--red);opacity:.55}
+.slot.gone .mk{color:var(--red)}
+.slot.open{border-style:dashed;background:transparent;color:var(--ink-40)}
+.slot.fill{border:2px solid var(--green);padding:calc(.5rem - 1px) calc(.7rem - 1px)}
+.slot.fill .mk,.slot.fill .pr{color:var(--green)}
+.slot.moving{transform:translateY(-2.55rem)}
+.slot.arrive{animation:arriveA .8s ease}
+@keyframes arriveA{0%{transform:translateX(2.5rem);opacity:0}100%{transform:none;opacity:1}}
+
+/* ---------- comparison ---------- */
+.cmp{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:1.5rem}
+.cmp th{text-align:left;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-40);font-weight:600;padding:0 1rem .7rem 0;border-bottom:1px solid var(--line-cool)}
+.cmp th:last-child{color:var(--brass)}
+.cmp td{padding:.85rem 1rem .85rem 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-60)}
+.cmp td:last-child{color:var(--ink);font-weight:500}
+.cmp tr td:first-child{font-style:italic}
+@media (max-width:52rem){.cmp,.cmp tbody,.cmp tr,.cmp td{display:block;width:100%}.cmp thead{display:none}
+  .cmp tr{border-bottom:1px solid var(--line-cool);padding:.7rem 0}.cmp td{border:none;padding:.15rem 0}
+  .cmp td:first-child::before{content:"They say: "}.cmp td:nth-child(2)::before{content:"You need: "}
+  .cmp td:last-child::before{content:"Aescia: ";color:var(--brass)}}
+
+/* ---------- doors ---------- */
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:1.5rem}
+@media (max-width:46rem){.doors{grid-template-columns:1fr}}
+.door{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.6rem 1.7rem;
+  display:flex;flex-direction:column;gap:.7rem;box-shadow:var(--shadow)}
+.door h3{font-size:1.2rem}
+.door p{color:var(--ink-70);font-size:.94rem}
+.door .who{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.door a{margin-top:auto;padding-top:.5rem;color:var(--ink);font-weight:600;font-size:.9rem;text-decoration:none;border-bottom:1px solid var(--brass);align-self:flex-start}
+
+/* ---------- proof / governance ---------- */
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:1.5rem}
+.proof div{background:var(--paper);padding:1.1rem 1.2rem}
+.proof b{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--brass);margin-bottom:.4rem}
+.proof p{font-size:.9rem;color:var(--ink-70)}
+.gov{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.7rem;margin-top:1.5rem}
+.gov ul{list-style:none;margin:.9rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.9rem 1.6rem}
+.gov li{font-size:.9rem;color:var(--ink-70);padding-left:1.1rem;position:relative}
+.gov li::before{content:"";position:absolute;left:0;top:.62rem;width:5px;height:5px;border-radius:50%;background:var(--brass)}
+
+.closer{padding:4.5rem 0 5.5rem;border-top:1px solid var(--line);text-align:center}
+.closer h2{font-size:clamp(1.6rem,3.4vw,2.3rem);max-width:22ch;margin:0 auto}
+.closer p{color:var(--ink-70);margin:1rem auto 0;max-width:44ch}
+.closer .cta{margin-top:1.8rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);background:var(--paper);padding:2rem 0;font-size:.85rem;color:var(--ink-60)}
+
+@media (prefers-reduced-motion:reduce){
+  .pt,.slot,.chip,.outcome,.worklist,.tag{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="draftbar">Draft &nbsp;&middot;&nbsp; not linked from the live site</div>
+
+<nav class="nav"><div class="nav-in">
+  <a class="wordmark" href="/"><span class="wm-name">Aescia</span><span class="wm-sub">Health</span></a>
+  <ul>
+    <li><a href="/platform">Platform</a></li>
+    <li><a href="/hospitals">For Hospitals</a></li>
+    <li><a href="/clinics">For Clinics</a></li>
+    <li><a href="/evidence">Evidence</a></li>
+    <li><a href="/team">Team</a></li>
+  </ul>
+  <a class="btn" href="/contact">Request a briefing</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Peri-procedure patient contact</span>
+  <h1>Your team already knows which patients will go wrong. They just find out too late.</h1>
+  <p class="sub">Aescia keeps in touch with patients through the whole window around a procedure, and hands your staff a short list of the ones who need a person today.</p>
+  <div class="cta">
+    <a class="btn" href="/contact">Request a briefing</a>
+    <a class="btn ghost" href="#acts">See how it works</a>
+  </div>
+</div></header>
+
+<main id="acts">
+
+<!-- ============ ACT 1 ============ -->
+<section class="act" data-act="1"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">01 &nbsp;/&nbsp; After discharge</span>
+    <h2>The patient goes home, and the line goes quiet</h2>
+    <p>A courtesy call the next morning, then nothing. Whatever happens next comes back through an emergency department, and you hear about it late.</p>
+  </div>
+  <div class="stage">
+    <button class="replay" type="button" data-replay="1">Replay</button>
+    <div class="lanes">
+      <div class="lane a">
+        <h4>Today</h4>
+        <div class="dayrow"><span>Day 1</span><span>Day 5</span><span>Day 10</span><span>Day 14</span></div>
+        <div class="track" id="a1-track-a">
+          <div class="rail"></div>
+          <div class="pt" id="a1-pa">JM</div>
+        </div>
+        <p class="outcome bad" id="a1-out-a">Readmitted on day 9. Nobody saw it coming.</p>
+      </div>
+      <div class="lane b">
+        <h4>With Aescia</h4>
+        <div class="dayrow"><span>Day 1</span><span>Day 5</span><span>Day 10</span><span>Day 14</span></div>
+        <div class="track" id="a1-track-b">
+          <div class="rail"></div>
+          <div class="ping" id="a1-ping"></div>
+          <div class="pt" id="a1-pb">JM</div>
+        </div>
+        <p class="outcome good" id="a1-out-b">Flagged day 3. One call, seen in clinic day 4.</p>
+      </div>
+    </div>
+    <p class="caption"><b>Same patient.</b> The difference is whether anyone was asking.</p>
+  </div>
+</div></section>
+
+<!-- ============ ACT 2 ============ -->
+<section class="act" data-act="2"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">02 &nbsp;/&nbsp; Before admission</span>
+    <h2>Ready is decided in the patient's kitchen, not in your pre-op call</h2>
+    <p>The prep that was never collected. The blood thinner nobody said to stop. The ride that fell through on the Sunday. Your call happened a fortnight ago.</p>
+  </div>
+  <div class="stage">
+    <button class="replay" type="button" data-replay="2">Replay</button>
+    <div class="board" id="a2-board"></div>
+    <div class="worklist" id="a2-work">
+      <h4>Tomorrow's call list</h4>
+      <p><b id="a2-count">2</b> patients need a person. The other <b id="a2-rest">4</b> are ready and nobody had to ring them.</p>
+    </div>
+    <p class="caption"><b>17 percent</b> of scope time is spent washing out a colon that should have arrived clean. Nobody bills for it.</p>
+    <p class="cite">525 outpatients, timed with a stopwatch, mean 4.1 minutes a case &middot; MacPhail, Gastrointest Endosc 2015;81(3):525-30 &middot; measured in a unit already reaching 96 percent adequate</p>
+  </div>
+</div></section>
+
+<!-- ============ ACT 3 ============ -->
+<section class="act" data-act="3"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">03 &nbsp;/&nbsp; The cancellation</span>
+    <h2>Two days out, someone drops. The room does not have to go dark</h2>
+    <p>Finding a replacement takes about a week of phone calls, so in practice nobody tries. Unless the people who are already prepared have said they could come in early.</p>
+  </div>
+  <div class="stage">
+    <button class="replay" type="button" data-replay="3">Replay</button>
+    <div class="days">
+      <div class="day">
+        <h4>Tomorrow's list</h4>
+        <div id="a3-list"></div>
+      </div>
+      <div class="day">
+        <h4>Already prepped, said yes to earlier</h4>
+        <div id="a3-pool"></div>
+      </div>
+    </div>
+    <p class="caption"><b>5.6 to 8.45 percent</b> of scheduled patients are a no-show or a cancellation. That is gross, before any refill.</p>
+    <p class="cite">American Society for Gastrointestinal Endoscopy, GI Operations Benchmarking Survey 2019 &middot; ASGE calls these holes in the schedule, and notes a gastroenterology list often cannot refill one inside 48 hours</p>
+  </div>
+</div></section>
+
+<!-- ============ COMPARISON ============ -->
+<section class="act"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">Where we differ</span>
+    <h2>Everyone messages patients. The question is what happens to the answer.</h2>
+  </div>
+  <table class="cmp">
+    <thead><tr><th>What the category says</th><th>What your team needs</th><th>What Aescia does</th></tr></thead>
+    <tbody>
+      <tr><td>"Our agent calls your patients"</td><td>Know which patient will not be ready</td><td>Clinician-authored rules read the answers and flag the exceptions</td></tr>
+      <tr><td>"AI-powered patient engagement"</td><td>Explain to a regulator why it did that</td><td>Every flag traces to a written rule your clinician signed off</td></tr>
+      <tr><td>"Automated appointment reminders"</td><td>Change what the patient actually does</td><td>Prep pathways that adapt to the medicines and conditions they report</td></tr>
+      <tr><td>"Fill the cancelled slot"</td><td>Fill it with someone who is prepared</td><td>Offers the slot only to patients whose prep is already on track</td></tr>
+      <tr><td>"One platform for everything"</td><td>Depth on the pathway you actually run</td><td>One pathway, done properly, alongside the systems you already have</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<!-- ============ PROOF ============ -->
+<section class="act"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">Where we are</span>
+    <h2>Early, and saying so</h2>
+    <p>We would rather tell you exactly what exists today than show you a wall of logos.</p>
+  </div>
+  <div class="proof">
+    <div><b>In trial</b><p>Recruiting now in an adult cardiothoracic trial at a tertiary hospital in Sydney.</p></div>
+    <div><b>Backed</b><p>Came through District 3, Concordia University's startup accelerator in Montreal.</p></div>
+    <div><b>Built with clinicians</b><p>Founded and led by a practising doctor. Every rule set is authored and signed off by the clinical team that owns the pathway.</p></div>
+    <div><b>What we do not have yet</b><p>A named reference site in the United States. That is what the first pilots are for, and the verification period is free.</p></div>
+  </div>
+</div></section>
+
+<!-- ============ DOORS ============ -->
+<section class="act"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">Two products</span>
+    <h2>The same engine, pointed at two different problems</h2>
+  </div>
+  <div class="doors">
+    <div class="door">
+      <span class="who">Hospitals</span>
+      <h3>Aescia for Hospitals</h3>
+      <p>Structured check-ins after discharge, with escalation to the treating team. Investigational Software as a Medical Device on the Australian TGA Class IIa pathway, in trial now.</p>
+      <a href="/hospitals">See how it works for a hospital</a>
+    </div>
+    <div class="door">
+      <span class="who">Surgery centers and clinics</span>
+      <h3>Aescia for Clinics</h3>
+      <p>Preparation, readiness and slot recovery around endoscopy. A workflow and patient-preparation tool, in use configuration today.</p>
+      <a href="/clinics">See how it works for a clinic</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section class="act"><div class="wrap">
+  <div class="act-head">
+    <span class="act-num">Governance</span>
+    <h2>Built so your compliance officer can read it</h2>
+  </div>
+  <div class="gov">
+    <ul>
+      <li>Rules-based and deterministic. Not generative artificial intelligence.</li>
+      <li>Every flag traces to a written rule a clinician can read and change.</li>
+      <li>Aescia proposes. The treating clinician decides, with the patient in front of them.</li>
+      <li>Runs alongside your existing systems. No rip and replace, no second login.</li>
+      <li>Aescia for Hospitals is investigational under the TGA Class IIa pathway and not yet available for commercial supply.</li>
+      <li>Aescia for Clinics is a workflow and patient-preparation tool and sits outside the device pathway.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="closer"><div class="wrap">
+  <h2>Thirty minutes on one of your lists</h2>
+  <p>We pick one pathway, walk your own numbers through it, and tell you honestly whether it is worth your time.</p>
+  <div class="cta">
+    <a class="btn" href="/contact">Request a briefing</a>
+    <a class="btn ghost" href="/tools/medelevate">Work your own numbers</a>
+  </div>
+</div></section>
+
+</main>
+
+<footer><div class="wrap">Aescia Health &nbsp;&middot;&nbsp; Dr James Kurrle &nbsp;&middot;&nbsp; james@aesciahealth.com</div></footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, reduce ? 0 : ms); }); }
+  var $ = function (id) { return document.getElementById(id); };
+
+  // ---------------- act 1 ----------------
+  function buildA1() {
+    ['a1-out-a', 'a1-out-b'].forEach(function (id) { $(id).classList.remove('on'); });
+    var pa = $('a1-pa'), pb = $('a1-pb');
+    pa.className = 'pt'; pb.className = 'pt';
+    pa.style.left = '0'; pb.style.left = '0';
+  }
+  async function runA1() {
+    buildA1();
+    var pa = $('a1-pa'), pb = $('a1-pb'), ping = $('a1-ping');
+    var stops = ['0%', '30%', '62%', '92%'];
+    for (var i = 1; i < stops.length; i++) {
+      await wait(700);
+      pa.style.left = 'calc(' + stops[i] + ' - .85rem)';
+      pb.style.left = 'calc(' + stops[i] + ' - .85rem)';
+      ping.style.left = 'calc(' + stops[i] + ' - .6rem)';
+      ping.classList.remove('on'); void ping.offsetWidth; ping.classList.add('on');
+      if (i === 1) { await wait(500); pb.classList.add('amber'); }
+      if (i === 2) { pa.classList.add('red'); pb.classList.remove('amber'); pb.classList.add('green'); }
+    }
+    await wait(450);
+    $('a1-out-a').classList.add('on');
+    await wait(250);
+    $('a1-out-b').classList.add('on');
+  }
+
+  // ---------------- act 2 ----------------
+  var A2 = [
+    { n: 'R. Okafor',   c: [1, 1, 1] },
+    { n: 'D. Alvarez',  c: [1, 0, 1] },
+    { n: 'S. Whitfield',c: [1, 1, 1] },
+    { n: 'P. Nakamura', c: [1, 1, 1] },
+    { n: 'B. Toussaint',c: [0, 1, 0] },
+    { n: 'L. Ferreira', c: [1, 1, 1] }
+  ];
+  var LBL = ['Prep', 'Meds', 'Ride'];
+  function buildA2() {
+    var b = $('a2-board'); b.innerHTML = '';
+    A2.forEach(function (p, i) {
+      var row = document.createElement('div');
+      row.className = 'brow'; row.id = 'a2r' + i;
+      row.innerHTML = '<span class="nm">' + p.n + '</span><span class="chips">' +
+        LBL.map(function (l, j) { return '<span class="chip" id="a2c' + i + '-' + j + '">' + l + '</span>'; }).join('') +
+        '</span><span class="tag" id="a2t' + i + '"></span>';
+      b.appendChild(row);
+    });
+    $('a2-work').classList.remove('on');
+  }
+  async function runA2() {
+    buildA2();
+    for (var j = 0; j < 3; j++) {
+      for (var i = 0; i < A2.length; i++) {
+        var chip = $('a2c' + i + '-' + j);
+        chip.classList.add(A2[i].c[j] ? 'on' : 'miss');
+        await wait(70);
+      }
+      await wait(320);
+    }
+    await wait(300);
+    var flagged = 0;
+    for (var i = 0; i < A2.length; i++) {
+      var ok = A2[i].c.every(function (x) { return x === 1; });
+      var t = $('a2t' + i);
+      t.textContent = ok ? 'Ready' : 'Call';
+      t.className = 'tag on ' + (ok ? 'ready' : 'call');
+      if (!ok) { $('a2r' + i).classList.add('flag'); flagged++; }
+      await wait(110);
+    }
+    $('a2-count').textContent = flagged;
+    $('a2-rest').textContent = A2.length - flagged;
+    await wait(350);
+    $('a2-work').classList.add('on');
+  }
+
+  // ---------------- act 3 ----------------
+  var A3 = [
+    { n: 'A. Bardem',   p: 'Colonoscopy' },
+    { n: 'M. Osei',     p: 'Colonoscopy' },
+    { n: 'K. Lindqvist',p: 'Gastroscopy' },
+    { n: 'T. Reyes',    p: 'Colonoscopy' },
+    { n: 'H. Ibrahim',  p: 'Colonoscopy' }
+  ];
+  var POOL = [
+    { n: 'C. Mwangi', s: 'Prep on track' },
+    { n: 'J. Halloran', s: 'Prep on track' }
+  ];
+  function slotHTML(mk, nm, pr, cls) {
+    return '<div class="slot ' + (cls || '') + '"><span class="mk">' + mk + '</span>' +
+           '<span class="nm">' + nm + '</span><span class="pr">' + pr + '</span></div>';
+  }
+  function buildA3() {
+    $('a3-list').innerHTML = A3.map(function (s, i) {
+      return '<div class="slot" id="a3s' + i + '"><span class="mk">' + (i + 1) + '</span>' +
+             '<span class="nm">' + s.n + '</span><span class="pr">' + s.p + '</span></div>';
+    }).join('');
+    $('a3-pool').innerHTML = POOL.map(function (p, i) {
+      return '<div class="slot" id="a3p' + i + '"><span class="mk">&#10003;</span>' +
+             '<span class="nm">' + p.n + '</span><span class="pr">' + p.s + '</span></div>';
+    }).join('');
+  }
+  async function runA3() {
+    buildA3();
+    await wait(800);
+    var cancelIdx = 1;
+    var gone = $('a3s' + cancelIdx);
+    gone.classList.add('gone');
+    gone.querySelector('.mk').innerHTML = '&#10005;';
+    gone.querySelector('.pr').textContent = 'Cancelled';
+    await wait(900);
+    for (var i = cancelIdx + 1; i < A3.length; i++) { $('a3s' + i).classList.add('moving'); }
+    await wait(800);
+    gone.style.display = 'none';
+    for (var i = cancelIdx + 1; i < A3.length; i++) {
+      var el = $('a3s' + i);
+      el.classList.remove('moving');
+      el.querySelector('.mk').textContent = i;
+    }
+    var tail = document.createElement('div');
+    tail.className = 'slot open';
+    tail.innerHTML = '<span class="mk">' + A3.length + '</span><span class="nm">Open slot</span><span class="pr">&mdash;</span>';
+    $('a3-list').appendChild(tail);
+    await wait(700);
+    var taken = $('a3p0');
+    taken.classList.add('fill');
+    taken.querySelector('.pr').textContent = 'Yes, I can come in';
+    await wait(750);
+    taken.style.display = 'none';
+    tail.className = 'slot fill arrive';
+    tail.innerHTML = '<span class="mk">' + A3.length + '</span><span class="nm">' + POOL[0].n +
+                     '</span><span class="pr">Filled</span>';
+  }
+
+  // ---------------- gating ----------------
+  var RUN = { 1: runA1, 2: runA2, 3: runA3 };
+  var played = {};
+  Object.keys(RUN).forEach(function (k) {
+    if (k === '1') buildA1(); if (k === '2') buildA2(); if (k === '3') buildA3();
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var k = e.target.getAttribute('data-act');
+        if (e.isIntersecting && !played[k]) { played[k] = 1; RUN[k](); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.act[data-act]').forEach(function (s) { io.observe(s); });
+  } else {
+    Object.keys(RUN).forEach(function (k) { RUN[k](); });
+  }
+  document.querySelectorAll('[data-replay]').forEach(function (b) {
+    b.addEventListener('click', function () { RUN[b.getAttribute('data-replay')](); });
+  });
+})();
+</script>
+</body>
+</html>
