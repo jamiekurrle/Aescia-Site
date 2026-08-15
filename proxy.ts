@@ -31,6 +31,36 @@ export async function proxy(req: NextRequest) {
   // serve their own representations). Fails open: any error returns the normal
   // response.
   const pathname = req.nextUrl.pathname
+
+  // Private preview: /tools/rpah is the RPAH SAFE-Discharge patient app demo.
+  // Password-gated at the edge, so the password never ships to the browser, and
+  // the static file underneath cannot be reached around the gate. Any username
+  // is accepted; only the password is checked. /tools/ is already Disallow'd in
+  // robots.txt, and the header below covers a link leaking somewhere anyway.
+  if (pathname === '/tools/rpah' || pathname.startsWith('/tools/rpah/')) {
+    const expected = process.env.RPAH_PREVIEW_PASSWORD || 'rpah'
+    const header = req.headers.get('authorization') || ''
+    const [scheme, encoded] = header.split(' ')
+    let ok = false
+    if (scheme === 'Basic' && encoded) {
+      try {
+        const decoded = atob(encoded)
+        ok = decoded.slice(decoded.indexOf(':') + 1) === expected
+      } catch {
+        ok = false
+      }
+    }
+    if (!ok) {
+      return new NextResponse('This preview is password protected.', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="RPAH preview", charset="UTF-8"',
+          'X-Robots-Tag': 'noindex, nofollow, noarchive',
+          'Cache-Control': 'no-store',
+        },
+      })
+    }
+  }
   const isContentPage = !pathname.startsWith('/api') && !/\.[a-z0-9]+$/i.test(pathname)
   if (
     req.method === 'GET' &&
@@ -57,6 +87,12 @@ export async function proxy(req: NextRequest) {
   }
 
   const res = NextResponse.next()
+
+  // Nothing under /tools/ is public-facing. robots.txt disallows it; this makes
+  // it explicit for anything that fetches the page without reading robots.
+  if (pathname.startsWith('/tools/')) {
+    res.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive')
+  }
 
   // RFC 8288 Link headers on the homepage: point agents at the machine-readable
   // descriptions of the site that actually exist — the /llms.txt index, the

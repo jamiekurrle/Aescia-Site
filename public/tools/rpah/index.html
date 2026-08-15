@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAFE-Discharge check-in v2 — preview</title>
+<style>
+  :root{
+    /* Sampled from the Figma: vVPURQ1Y8nBlRe40qOWgGU, "Last version" section. */
+    --bg:#091721; --panel:#12293D;
+    --grad:linear-gradient(180deg,#427A9D 0%,#1D4D71 28%,#164164 48%,#0C2E4B 72%,#091721 100%);
+    --ink:#FFFFFF; --ink70:#E7FAFF; --ink50:rgba(231,250,255,.62); --ink35:rgba(231,250,255,.38);
+    --divider:rgba(231,250,255,.16); --card:rgba(255,255,255,.07); --cardline:rgba(231,250,255,.16);
+    --cta:#76D4FF; --ctaink:#0B2540;
+    --surface:#F7FBFF; --surfink:#0C2941; --steel:#294D6C; --bubble:#00AEFF; --done:#34C759;
+    --tick:#0C2941; --tickfg:#F7FBFF;
+    --ok-bg:rgba(118,212,255,.12); --ok-line:rgba(118,212,255,.32); --ok:#76D4FF;
+    --warn-bg:#6B4A16; --warn-line:rgba(255,202,122,.35); --warn-ink:#FFE7C2; --warn:#FFC46B;
+    --crit-bg:#7A2318; --crit-line:rgba(255,138,122,.35); --crit-ink:#FFD9D2; --crit:#FF8A7A;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  .wrap{display:flex;gap:28px;align-items:flex-start;justify-content:center;padding:28px 20px 60px;flex-wrap:wrap}
+
+  /* Phone */
+  .phone{width:100%;max-width:430px;min-height:760px;border-radius:28px;overflow:hidden;
+    background:var(--grad);
+    box-shadow:0 24px 70px rgba(0,0,0,.5);display:flex;flex-direction:column;position:relative}
+  header{padding:20px 20px 16px}
+  .eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:var(--ink50)}
+  .hrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .aa{display:inline-flex;align-items:baseline;gap:3px;min-height:36px;padding:6px 14px;border-radius:99px;
+    background:rgba(255,255,255,.12);color:#fff;font-weight:700}
+  .aa .s{font-size:12px} .aa .l{font-size:18px;line-height:1}
+  h1{margin:8px 0 4px;font-size:28px;line-height:1.1;letter-spacing:-.02em}
+  .sub{font-size:14px;color:var(--ink70);margin:0}
+  main{flex:1;padding:0 20px 96px;overflow-y:auto}
+  .dots{display:flex;gap:6px;margin:4px 0 16px}
+  .dot{height:6px;width:6px;border-radius:99px;background:var(--ink35)}
+  .dot.on{width:22px;background:var(--ok)}
+  .stage-eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:var(--ink50)}
+  h2{margin:8px 0 6px;font-size:26px;line-height:1.15;letter-spacing:-.02em}
+  .stage-sub{font-size:15px;line-height:1.6;color:var(--ink70);margin:0 0 20px}
+  .stage-sub:empty{display:none;margin:0 0 8px}
+
+  .q{padding-bottom:20px;border-bottom:1px solid var(--divider);margin-bottom:20px}
+  .q:last-child{border-bottom:none}
+  .qtext{font-size:17px;font-weight:700;letter-spacing:-.01em;margin:0}
+  .qtext u{text-decoration:underline;text-underline-offset:3px}
+  .qtext .opt{font-weight:400;font-size:13px;color:var(--ink50);margin-left:6px}
+  .qhelp{font-size:14px;line-height:1.6;color:var(--ink70);margin:5px 0 0}
+  .flag{display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--warn);border:1px solid var(--warn-line);border-radius:99px;padding:2px 7px;margin-left:6px}
+  .ctrl{margin-top:12px}
+
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  .yn{display:flex;gap:8px}
+  .pill{flex:1;min-height:52px;border-radius:99px;font-size:16px;font-weight:700;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.28);color:#fff}
+  .pill.on{background:var(--surface);color:var(--surfink);border-color:var(--surface)}
+  .scale{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .num{min-height:44px;border-radius:12px;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.22);color:#fff}
+  .num.on{background:var(--cta);color:var(--ctaink);border-color:var(--cta)}
+  .list{display:flex;flex-direction:column;gap:8px}
+  .row{display:flex;gap:12px;align-items:flex-start;text-align:left;min-height:48px;padding:12px 16px;border-radius:16px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.28);color:#fff}
+  .row.on{background:var(--surface);color:var(--surfink);border-color:var(--surface)}
+  .box{flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(255,255,255,.4);
+    display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1}
+  .row.on .box{background:var(--tick);border-color:var(--tick);color:var(--tickfg)}
+  .box.round{border-radius:99px}
+  .rowlabel{font-size:16px;font-weight:600;line-height:1.35}
+  .rowsub{display:block;font-size:13.5px;font-weight:400;opacity:.75;margin-top:2px}
+  .sl{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+  .sl .end{font-size:13.5px;font-weight:600;color:var(--ink50)}
+  .sl .val{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+  .sl .val.unset{color:var(--ink35)}
+  input[type=range]{width:100%;min-height:44px;accent-color:var(--cta);background:transparent}
+  .band{text-align:center;font-size:15px;font-weight:600;color:var(--ink70);margin:4px 0 0}
+  .band.unset{color:var(--ink35)}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .chip{min-height:60px;padding:14px 16px;border-radius:16px;text-align:left;font-size:15.5px;font-weight:700;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.22);color:#fff}
+  .chip.on{background:var(--cta);color:var(--ctaink);border-color:var(--cta)}
+  .chip.wide{grid-column:1/-1}
+  textarea,input[type=number]{width:100%;border-radius:12px;padding:12px 14px;font-family:inherit;font-size:16px;
+    line-height:1.6;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.20);color:#fff;resize:vertical}
+  textarea:focus,input:focus{outline:2px solid var(--cta);outline-offset:1px}
+  /* Router groups that expand in place */
+  .rgroup{border-radius:16px;overflow:hidden}
+  .rgroup.open{background:var(--card);border:1px solid var(--ok-line)}
+  .rgroup .row{border-radius:16px;width:100%}
+  .rgroup.open .row{border-radius:16px 16px 0 0;border:none}
+  .rgbody{padding:16px 16px 4px}
+  .rgbody .q:last-child{border-bottom:none}
+  .critnow{margin:0 0 14px;padding:12px 14px;border-radius:12px;background:var(--crit-bg);
+    border:1px solid var(--crit-line);color:var(--crit-ink);font-size:14px;line-height:1.5}
+
+  /* Optional device readings */
+  .reading{border-radius:16px;overflow:hidden;background:rgba(255,255,255,.05);border:1px solid rgba(231,250,255,.26)}
+  .reading.has{border-color:var(--ok-line)}
+  .rhead{width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;min-height:54px;text-align:left}
+  .plus{color:var(--ok);font-size:18px;font-weight:700;line-height:1;transition:transform .15s}
+  .plus.open{transform:rotate(45deg)}
+  .rlabel{flex:1;font-size:16px;font-weight:600}
+  .rval{display:block;font-size:13.5px;font-weight:600;color:var(--ok);margin-top:2px;font-variant-numeric:tabular-nums}
+  .rtag{font-size:13px;color:var(--ink50)}
+  .rbody{padding:0 16px 16px;border-top:1px solid var(--divider)}
+  .rrow{display:flex;align-items:flex-end;gap:10px;margin-top:12px}
+  .rin{flex:1}
+  .rin input{width:100%;min-height:54px;text-align:center;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+  .rcap{display:block;text-align:center;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--ink50);margin-top:4px}
+  .rslash{font-size:20px;font-weight:700;color:var(--ink50);padding-bottom:26px}
+  .runit{font-size:13.5px;font-weight:600;color:var(--ink50);padding-bottom:26px}
+
+  /* Today */
+  .tophead{display:flex;align-items:center;justify-content:space-between;padding:4px 0 18px}
+  .avatar{min-width:56px;height:34px;border-radius:99px;background:var(--steel);color:#fff;font-size:13px;
+    font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.04em}
+  .burger{width:38px;height:38px;border-radius:99px;background:rgba(255,255,255,.10);display:flex;
+    align-items:center;justify-content:center;font-size:16px}
+  .daybar{margin:2px 0 22px}
+  .dayrow{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
+  .dayrow b{font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .dayrow span{font-size:14px;color:var(--ink50)}
+  .cal{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .cal-day{aspect-ratio:1;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+  .cal-day.ahead{background:rgba(255,255,255,.05);border:1px solid rgba(231,250,255,.16);color:var(--ink35)}
+  .cal-day.done{background:var(--cta);color:var(--ctaink)}
+  .cal-day.now{background:transparent;border:2px solid var(--cta);color:#fff}
+  .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:22px}
+  .wd{text-align:center}
+  .wd .lab{font-size:11px;font-weight:600;color:var(--ink50);letter-spacing:.06em}
+  .wd .ring{margin:6px auto 0;width:30px;height:30px;border-radius:99px;border:1.5px solid rgba(231,250,255,.32);
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--ink70)}
+  .wd.done .ring{background:var(--cta);border-color:var(--cta);color:var(--ctaink)}
+  .wd.today .ring{border-color:var(--cta);border-width:2.5px;color:#fff}
+  .tiplab{font-size:14px;color:var(--ink50);margin:0 0 4px}
+  .tiptitle{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 16px;line-height:1.15}
+  .tipcard{display:flex;align-items:center;gap:12px;background:var(--surface);color:var(--surfink);
+    border-radius:99px;padding:15px 20px;font-size:16px;font-weight:600;width:100%;text-align:left;min-height:54px}
+  .tipcard .chev{margin-left:auto;opacity:.5}
+  .tipnote{text-align:center;font-size:13px;color:var(--ink50);margin:10px 0 22px}
+  .trow{display:flex;align-items:center;gap:14px;width:100%;text-align:left;background:var(--card);
+    border:1px solid var(--cardline);border-radius:18px;padding:16px 18px;margin-bottom:10px;color:inherit}
+  .trow .ic{width:38px;height:38px;border-radius:99px;background:rgba(255,255,255,.08);display:flex;
+    align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+  .trow .tt{flex:1;min-width:0}
+  .trow .tt b{display:block;font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+  .trow .tt span{display:block;font-size:13.5px;color:var(--ink50);margin-top:2px}
+  .trow .chev{opacity:.5}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
+  .tile{background:var(--card);border:1px solid var(--cardline);border-radius:18px;padding:18px;text-align:left;
+    min-height:112px;display:flex;flex-direction:column;gap:6px;color:inherit}
+  .tile .big{font-size:24px}
+  .tile b{display:block;font-size:16px;margin-top:auto}
+  .tile span{font-size:13px;color:var(--ink50)}
+  .progressline{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:18px;padding:16px 18px;
+    margin-bottom:22px;font-size:15px;line-height:1.6}
+
+  /* Learn */
+  .lhead{display:flex;align-items:center;gap:12px;padding:2px 0 18px}
+  .lback{width:34px;height:34px;border-radius:99px;background:rgba(255,255,255,.10);display:flex;
+    align-items:center;justify-content:center;font-size:18px}
+  .lhead .lt{flex:1;text-align:center;margin-right:34px}
+  .lhead .lt b{display:block;font-size:17px;font-weight:600}
+  .lhead .lt span{display:block;font-size:13px;color:var(--ink50)}
+  .lsearch{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--cardline);
+    border-radius:14px;padding:12px 14px;margin-bottom:6px}
+  .lsearch input{flex:1;background:none;border:none;color:#fff;font-size:15px;font-family:inherit;outline:none}
+  .lgroup{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--ink50);margin:18px 0 10px}
+  .lcard{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);
+    border:1px solid var(--cardline);border-radius:18px;padding:14px;margin-bottom:10px;color:inherit}
+  .lthumb{width:72px;height:60px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;
+    justify-content:center;font-size:22px}
+  .lbody{flex:1;min-width:0}
+  .lbody b{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .lbody p{margin:3px 0 0;font-size:13.5px;color:var(--ink50);line-height:1.45}
+  .ltag{display:inline-block;font-size:11px;font-weight:700;color:var(--done);margin-left:6px}
+  .lgo{width:36px;height:36px;border-radius:99px;background:var(--cta);color:var(--ctaink);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700}
+  .lgo.done{background:var(--done);color:#fff}
+
+  /* Router, on the same page as the daily questions */
+  .routerhead u{text-decoration:underline;text-underline-offset:3px}
+  .routerhead{font-size:19px;font-weight:700;letter-spacing:-.01em;margin:8px 0 4px;padding-top:22px;
+    border-top:1px solid var(--divider)}
+  .routersub{font-size:14px;color:var(--ink50);margin:0 0 14px}
+
+  /* Learn topics */
+  .topic .ttitle{font-size:24px;font-weight:700;letter-spacing:-.02em;margin:0 0 10px;line-height:1.2}
+  .topic .tlead{font-size:16px;line-height:1.65;color:var(--ink70);margin:0}
+  .tsec{margin-top:22px}
+  .tlab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--ok);margin:0 0 8px}
+  .tsec ul{margin:0;padding-left:20px}
+  .tsec li{font-size:15.5px;line-height:1.6;margin-bottom:9px}
+  .turgent{margin-top:22px;padding:14px 16px;border-radius:14px;background:var(--crit-bg);
+    border:1px solid var(--crit-line);color:var(--crit-ink);font-size:15px;line-height:1.6}
+  .topiclink{display:block;width:100%;text-align:left;margin-top:12px;padding:14px 16px;border-radius:14px;
+    background:var(--card);border:1px solid var(--cardline);color:var(--ink);font-size:15px;font-weight:600}
+
+  /* Messages */
+  .msgs{display:flex;flex-direction:column;gap:12px;padding-bottom:4px}
+  .bub{max-width:86%;padding:13px 16px;border-radius:18px;font-size:15px;line-height:1.55}
+  .bub.team{align-self:flex-start;background:var(--bubble);color:#fff;border-bottom-left-radius:6px}
+  .bub.you{align-self:flex-end;background:var(--card);border:1px solid var(--cardline);border-bottom-right-radius:6px}
+  .bub .who{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+    opacity:.8;margin-bottom:5px}
+  .bub .when{display:block;font-size:11.5px;opacity:.6;margin-top:6px}
+  .qr{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 10px}
+  .qrb{background:var(--surface);color:var(--surfink);border-radius:99px;padding:11px 16px;font-size:14px;font-weight:600}
+  .composer{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--cardline);
+    border-radius:99px;padding:8px 8px 8px 18px;margin-top:6px}
+  .composer input{flex:1;background:none;border:none;color:#fff;font-size:15px;font-family:inherit;outline:none}
+  .composer .send{width:38px;height:38px;border-radius:99px;background:var(--cta);color:var(--ctaink);
+    font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .mnote{font-size:13px;color:var(--ink50);line-height:1.6;margin:14px 0 0}
+
+  .blockhint{display:flex;gap:8px;align-items:flex-start;margin-top:22px;padding:12px 14px;border-radius:12px;
+    background:rgba(255,196,107,.10);border:1px solid var(--warn-line);color:var(--warn-ink);
+    font-size:14px;line-height:1.5}
+  .blockhint b{color:var(--warn)}
+  .q.missing{border-left:3px solid var(--warn);padding-left:12px;margin-left:-15px}
+  .foot{display:flex;gap:10px;margin-top:26px}
+  .cta{flex:1;min-height:54px;border-radius:99px;background:var(--cta);color:var(--ctaink);font-size:17px;font-weight:700}
+  .cta[disabled]{opacity:.4;cursor:not-allowed}
+  .ghost{min-height:54px;padding:0 20px;border-radius:99px;font-size:16px;font-weight:600;
+    background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.28);color:#fff}
+
+  .card{border-radius:16px;padding:20px;border:1px solid}
+  .card.green,.card.blue{background:var(--ok-bg);border-color:var(--ok-line)}
+  .card.amber,.card.orange{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-ink)}
+  .card.red{background:var(--crit-bg);border-color:var(--crit-line);color:var(--crit-ink)}
+  .card .tone{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.22em}
+  .card.green .tone,.card.blue .tone{color:var(--ok)}
+  .card.amber .tone,.card.orange .tone{color:var(--warn)}
+  .card.red .tone{color:var(--crit)}
+  .card h3{margin:8px 0 0;font-size:21px;line-height:1.2;letter-spacing:-.02em}
+  .card p{font-size:15.5px;line-height:1.65;margin:12px 0 0}
+  .card .hist{font-weight:600}
+  .card ul{margin:6px 0 0;padding-left:18px}
+  .card li{font-size:15px;line-height:1.6;margin-top:6px}
+  .card .doing{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;margin-top:16px}
+  .card .fb{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18)}
+  .fbrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .fbbtn{padding:10px 16px;border-radius:99px;font-size:14px;font-weight:600;border:1px solid rgba(255,255,255,.3);color:inherit}
+  .fbbtn.on{background:var(--surface);color:var(--surfink);border-color:var(--surface)}
+
+  .done{text-align:center;padding:60px 10px}
+  .done .tick{width:64px;height:64px;border-radius:99px;background:var(--ok-bg);color:var(--ok);
+    display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto}
+  .anytime{position:absolute;right:16px;bottom:66px;padding:10px 16px;border-radius:99px;background:var(--surface);color:var(--surfink);
+    font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+  nav{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);
+    background:rgba(9,23,33,.82);backdrop-filter:blur(8px);border-top:1px solid var(--divider)}
+  nav span{padding:12px 0;text-align:center;font-size:12px;font-weight:600;color:var(--ink35)}
+  nav span.on{color:var(--ok)}
+
+  /* Side panel */
+  .side{width:100%;max-width:520px}
+  .side h2{font-size:20px;margin:0 0 4px}
+  .panel{background:var(--panel);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:20px;margin-bottom:16px}
+  .panel .lab{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.22em;color:var(--ok);margin:0 0 10px}
+  .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat{background:rgba(255,255,255,.04);border-radius:12px;padding:12px 14px}
+  .stat b{display:block;font-size:26px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .stat span{font-size:11px;color:var(--ink50)}
+  .log{font-size:12.5px;line-height:1.6;color:var(--ink70);margin:0}
+  .trace{font-size:12px;line-height:1.7;color:var(--ink70);margin:0;max-height:280px;overflow-y:auto;
+    font-variant-numeric:tabular-nums}
+  .trace b{color:#fff;font-weight:600}
+  .lvl{display:inline-block;min-width:66px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+  .lvl.critical{color:var(--crit)} .lvl.high{color:var(--warn)} .lvl.moderate{color:var(--ok)} .lvl.message{color:var(--ink50)}
+  .note{font-size:12px;line-height:1.6;color:var(--ink50);margin:12px 0 0}
+  .banner{max-width:1010px;margin:0 auto 6px;padding:0 20px}
+  .banner p{font-size:13px;line-height:1.7;color:var(--ink70)}
+  .reset{margin-top:10px;padding:8px 14px;border-radius:99px;font-size:12px;font-weight:600;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#fff}
+</style>
+</head>
+<body>
+<div class="banner">
+  <p><strong>SAFE-Discharge check-in, instrument v2</strong> (2026-08-12). Standalone preview,
+  generated from the same <code>_shared/instrument.ts</code> the app renders from. Synthetic patient, cardiac
+  pathway, day 7. Nothing here is sent anywhere.</p>
+</div>
+<div class="wrap">
+  <div class="phone">
+    <header>
+      <div class="hrow">
+        <div class="eyebrow">RPAH SAFE-Discharge preview</div>
+        <button class="aa" id="aa" aria-label="Text size. Tap to change."><span class="s">A</span><span class="l">A</span></button>
+      </div>
+      <h1 id="ph1">Day 7 at home</h1>
+      <p class="sub" id="psub">Ken · Triple bypass</p>
+    </header>
+    <main id="main"></main>
+    <div class="anytime" id="anytime">I am not doing well</div>
+    <nav id="nav"></nav>
+  </div>
+
+  <div class="side">
+    <div class="panel">
+      <p class="lab">What changed in v2</p>
+      <div class="stats">
+        <div class="stat"><b>47</b><span>questions, was 54</span></div>
+        <div class="stat"><b>11</b><span>branches, 3 removed</span></div>
+        <div class="stat"><b>19</b><span>education cards</span></div>
+        <div class="stat"><b>6</b><span>alert rules retired</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <p class="lab">What the clinician would see</p>
+      <p class="trace" id="trace">Nothing raised yet. Answers appear here as you go, with the alert each one fires.</p>
+      <button class="reset" id="reset">Start again</button>
+    </div>
+
+    <div class="panel">
+      <p class="lab">Answers captured</p>
+      <p class="trace" id="answers">—</p>
+    </div>
+  </div>
+</div>
+
+<script>
+const D = {"version":"v2","date":"2026-08-12","stats":{"dailyItems":9,"branches":11,"branchItems":32,"closingItems":6,"cards":19,"branchesRemoved":3,"rulesRetired":6,"totalItems":47,"v1TotalItems":54},"daily":[{"id":"pain_score","text":"After your usual pain medicine, how bad is your pain today?","kind":"scale-0-10","scale":{"low":"No pain","high":"Worst pain","bands":[{"upTo":0,"label":"No pain at all"},{"upTo":3,"label":"Mild"},{"upTo":6,"label":"Moderate"},{"upTo":8,"label":"Severe"},{"upTo":10,"label":"As bad as it gets"}]}},{"id":"pain_relief_more","text":"Did you need more strong pain relief than yesterday?","kind":"yes-no"},{"id":"breathing_exercises","text":"Have you done your breathing and physiotherapy exercises today?","kind":"yes-no","changedInV2":"c4"},{"id":"walking_minutes","text":"About how long did you walk yesterday?","kind":"single-select","options":[{"id":"lt10","label":"Under 10 minutes"},{"id":"10to30","label":"10 to 30 minutes"},{"id":"gt30","label":"More than 30 minutes"}]},{"id":"eating_drinking_normal","text":"Can you eat and drink as normal today?","kind":"yes-no"},{"id":"sleep_quality","text":"How well did you sleep last night?","kind":"scale-0-10","changedInV2":"c15","scale":{"low":"No sleep","high":"Slept well","bands":[{"upTo":2,"label":"Hardly slept"},{"upTo":4,"label":"Poorly"},{"upTo":6,"label":"Broken, but some sleep"},{"upTo":8,"label":"Reasonable"},{"upTo":10,"label":"A good night"}]}},{"id":"meds_all_taken","text":"Did you take all your medicines today?","kind":"single-select","options":[{"id":"all","label":"Yes, all of them"},{"id":"missed","label":"I missed some"}]},{"id":"meds_missed_reason","text":"Tell us more. What got in the way?","kind":"free-text","askWhen":{"item":"meds_all_taken","isAnyOf":["missed"]},"changedInV2":"c18"},{"id":"readings","text":"Any readings from your devices?","help":"All optional.","kind":"readings","optional":true,"changedInV2":"c21"}],"branches":[{"id":"arrhythmia","routerLabel":"Racing or irregular heartbeat","title":"Your heartbeat","specialty":"both","items":[{"id":"palp_episodes","text":"In the last two days, has your heart been racing, pounding, or beating irregularly?","kind":"yes-no"},{"id":"palp_presyncope","text":"During those episodes, did you feel dizzy or nearly faint?","kind":"yes-no","askWhen":{"item":"palp_episodes","isAnyOf":["yes"]}},{"id":"arr_red_flag","text":"Have you fainted, or nearly fainted, today?","kind":"yes-no","askWhen":{"item":"palp_episodes","isAnyOf":["yes"]},"redFlagWhen":["yes"],"redFlagLevel":"critical","changedInV2":"c5"}]},{"id":"breathlessness","routerLabel":"Shortness of breath","title":"Your breathing","specialty":"both","changedInV2":"c12","items":[{"id":"breathless_worse_lying","text":"Is your breathing worse than yesterday, or worse when you lie flat?","kind":"yes-no","newOrWorse":true},{"id":"orthopnea","text":"Do you wake at night short of breath, or need extra pillows to breathe?","kind":"yes-no"},{"id":"pleff_sharp_one_sided","text":"Do you have a new sharp pain on one side of your chest?","kind":"yes-no"},{"id":"breath_red_flag","text":"Right now, are you short of breath while sitting still, or unable to finish a sentence?","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"critical","changedInV2":"c5"}]},{"id":"chest_pain","routerLabel":"Chest pain or tightness","routerSub":"Including tightness that comes on when you move about","title":"Your chest pain","specialty":"both","items":[{"id":"ischemia_exertional","text":"Does the tightness come on when you move about, and ease when you rest?","kind":"yes-no"},{"id":"ischemia_radiation","text":"Does the pain spread to your jaw, arm or back, or come with sweating or feeling sick?","kind":"yes-no"},{"id":"chest_red_flag","text":"Is the pain there while you are resting, and lasting more than a few minutes?","help":"This one means call 000, not wait for us.","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"critical","changedInV2":"c6"}]},{"id":"wound","routerLabel":"Wound or skin problems","title":"Your wound","specialty":"both","items":[{"id":"wound_redness_spreading","text":"Is redness spreading out from your wound, or is it warmer or more painful than yesterday?","kind":"yes-no","newOrWorse":true},{"id":"wound_drainage_soiled","text":"Is anything leaking from the wound, or is the dressing soiled or smelly?","kind":"yes-no"},{"id":"wound_temp_high","text":"Is your temperature 38 °C or higher right now?","kind":"yes-no"},{"id":"sternal_clicking","text":"Do you feel or hear a click in your breastbone when you move?","kind":"yes-no","specialty":"cardiac"},{"id":"wound_thoracic_side_pain","text":"Is the pain on your operated side worse than yesterday?","kind":"yes-no","specialty":"thoracic","newOrWorse":true},{"id":"wound_photo","text":"A photo helps more than a description. Add one if you can.","help":"Same light each day, so we can compare.","kind":"single-select","optional":true,"options":[{"id":"added","label":"Photo added"},{"id":"skip","label":"Not today"}]},{"id":"wound_red_flag","text":"Is the wound opening up, or is there pus or heavy leaking?","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"critical","changedInV2":"c5"}]},{"id":"fever","routerLabel":"Fever or chills","title":"Your temperature","specialty":"both","items":[{"id":"resp_fever","text":"Is your temperature 38 °C or higher, or have you had chills?","kind":"yes-no"},{"id":"resp_night_sweats","text":"Are you sweating more than usual, or waking up drenched?","kind":"yes-no"}]},{"id":"cough","routerLabel":"Cough","title":"Your cough","specialty":"both","items":[{"id":"resp_productive_cough","text":"Is your cough bringing up yellow, green or bloody phlegm?","kind":"yes-no"},{"id":"resp_haemoptysis","text":"Have you coughed up more than about a tablespoon of blood?","kind":"yes-no","specialty":"thoracic","redFlagWhen":["yes"],"redFlagLevel":"critical","changedInV2":"c10"}]},{"id":"fatigue","routerLabel":"Feeling much more tired than usual","title":"Tiredness","specialty":"both","items":[{"id":"deconditioning_screen","text":"Are you more tired or weak than you expected, especially alongside more breathlessness?","kind":"yes-no"}]},{"id":"dizziness","routerLabel":"Dizziness","title":"Feeling dizzy","specialty":"both","items":[{"id":"dizzy_postural","text":"Does it come on when you stand up from sitting or lying down?","kind":"yes-no"},{"id":"dizzy_red_flag","text":"Have you fainted, or nearly fainted, today?","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"critical"}]},{"id":"fluid","routerLabel":"Swelling","title":"Swelling and weight","specialty":"both","items":[{"id":"weight_gain_2kg","text":"Since you left hospital, has your weight gone up by 2 kg or more?","kind":"yes-no"},{"id":"ankle_leg_swelling_pillows","text":"Is the swelling in your ankles or legs worse, or do you need more pillows to sleep?","kind":"yes-no","newOrWorse":true},{"id":"dvt_one_leg_swollen","text":"Is ONE leg more swollen, warmer, or more painful than the other?","help":"One leg only, not both.","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"high","changedInV2":"c11"}]},{"id":"medications","routerLabel":"Medicine problems or side effects","title":"Your medicines","specialty":"both","items":[{"id":"meds_side_effects","text":"Have you had side effects, or started any medicine from a chemist or health shop?","kind":"yes-no"},{"id":"colchicine_taking","text":"Are you taking colchicine?","help":"Often given for six weeks after surgery.","kind":"yes-no","specialty":"cardiac"},{"id":"colchicine_diarrhoea","text":"Has your bowel been loose or watery since you started it?","kind":"yes-no","askWhen":{"item":"colchicine_taking","isAnyOf":["yes"]}}]},{"id":"other","routerLabel":"Something else not listed here","title":"Tell us in your own words","specialty":"both","items":[{"id":"free_text_urgent_screen","text":"First, does any of these apply right now?","kind":"single-select","options":[{"id":"bleeding","label":"Vomiting blood, or black bowel motions"},{"id":"breathless","label":"Badly short of breath"},{"id":"syncope","label":"Fainted or nearly fainted"},{"id":"none","label":"None of these"}],"redFlagWhen":["bleeding","breathless","syncope"],"redFlagLevel":"critical","changedInV2":"c9"},{"id":"free_text_other","text":"Tell us what is going on.","help":"A few words is plenty.","kind":"free-text","askWhen":{"item":"free_text_urgent_screen","isAnyOf":["none"]}}]}],"closing":[{"id":"help_called_ambulance","text":"Have you called an ambulance or been to emergency since your last check-in?","kind":"yes-no","redFlagWhen":["yes"],"redFlagLevel":"critical"},{"id":"help_called_gp","text":"Have you seen or called your GP since your last check-in?","kind":"yes-no"},{"id":"gp_routine","text":"What was that visit for?","kind":"single-select","askWhen":{"item":"help_called_gp","isAnyOf":["yes"]},"options":[{"id":"routine","label":"Something already planned","sub":"Stitches out, a wound dressing, a repeat script, or a booked check-up"},{"id":"concern","label":"A new or worse problem that you think we should know about"}],"changedInV2":"c19"},{"id":"gp_concern_text","text":"In a few words, what took you there?","kind":"free-text","askWhen":{"item":"gp_routine","isAnyOf":["concern"]}},{"id":"final_questions","text":"Anything you would like us to pass on to your team?","help":"A question for the nurses.","kind":"free-text","optional":true},{"id":"day_diary","text":"How was your day? How is your recovery?","help":"This does not alert anyone. It is read only if something else in your check-in needs looking at, so whoever picks that up has the fuller picture. If something needs attention today, use the button in the corner instead.","kind":"free-text","optional":true,"changedInV2":"c20"}],"cards":[{"id":"pain-green","branch":"daily","tone":"green","theme":"Pain","title":"Your pain is settling","body":["A score like this after your pain medicine is what we expect at this stage. The ache around the breastbone eases over the first four to six weeks, with the odd worse day in between."],"actionLabel":"Keep doing","actions":["Take your pain relief on a regular schedule rather than waiting for the pain to build. It makes walking and deep breathing much easier."],"tellUs":"Tell us if the pain starts going up instead of down, becomes sharp on one side, or comes with a temperature of 38 °C or more.","usesHistory":true},{"id":"pain-amber","branch":"daily","tone":"amber","theme":"Pain","title":"Let’s get on top of this","body":["Pain at this level makes it harder to walk and to do your breathing exercises, and that is what slows recovery down."],"actionLabel":"Do now","actions":["Take your pain relief on time for the next two days rather than waiting until you need it.","Hold a rolled towel or small pillow against your chest when you cough or stand up. It braces the breastbone and helps a lot."],"tellUs":"A nurse will look at this at the next weekday review. Call sooner if the pain is sharp on one side, worse when you breathe in, or comes with breathlessness."},{"id":"arrhythmia-green","branch":"arrhythmia","tone":"green","theme":"Heartbeat","title":"No irregular heartbeat today","body":["Irregular rhythms are common in the first two weeks after heart surgery, which is why we ask. Nothing to do today."],"tellUs":"Tell us if your heart starts racing or fluttering, especially with dizziness."},{"id":"arrhythmia-orange","branch":"arrhythmia","tone":"orange","theme":"Heartbeat","title":"We have flagged this for your team","body":["A fast or fluttery heartbeat in the first few weeks after heart surgery happens to roughly one person in three, usually in the first two weeks, and it is usually treatable."],"actionLabel":"Do now","actions":["Go easy on coffee and alcohol until we have spoken.","A nurse will call you at the next weekday review."],"tellUs":"Do not wait for our call if you feel faint, become very short of breath, or get chest pain."},{"id":"chest-green","branch":"chest_pain","tone":"green","theme":"Chest pain","title":"This sounds like healing pain, not heart pain","body":["Pain that is sharp, sits over the breastbone or the scar, changes when you move or press on it, and is worse when you cough or turn over in bed is almost always the chest wall healing. It is uncomfortable, but it is not dangerous.","Heart pain feels different: a heavy pressure or tightness in the middle of the chest that comes on with effort and eases with rest, sometimes spreading to the jaw, arm or back, often with sweating or feeling sick."],"actionLabel":"Do now","actions":["Regular pain relief, and brace your chest with a pillow when you cough."],"tellUs":"Call 000 if you get that pressure-type pain at rest, or it lasts more than a few minutes and does not ease."},{"id":"chest-orange","branch":"chest_pain","tone":"orange","theme":"Chest pain","title":"We want a doctor to look at this","body":["What you have described could be the heart not getting enough blood during effort. It may well turn out to be nothing, but it is not something we leave until next week."],"actionLabel":"Do now","actions":["Stop and rest when it comes on rather than pushing through.","If you have a spray for chest pain, use it the way you were shown."],"tellUs":"A clinician will review this at the next weekday review. Call 000 if the pain comes on at rest, lasts more than 10 minutes, or comes with sweating, feeling sick, or breathlessness."},{"id":"breath-green","branch":"breathlessness","tone":"green","theme":"Breathing","title":"Your breathing is stable","body":["Feeling puffed on stairs or after a walk is expected for the first several weeks. Your lungs and chest muscles are recovering too."],"actionLabel":"Keep doing","actions":["Your breathing exercises, and walking a little more each day."],"tellUs":"Tell us if you need extra pillows to sleep, wake short of breath at night, or your breathing is worse than the day before."},{"id":"breath-amber","branch":"breathlessness","tone":"amber","theme":"Breathing","title":"We have noted this and will review it","body":["Fluid can collect around the lung after heart surgery and cause exactly this. It is common, we look for it routinely, and it is straightforward to treat."],"actionLabel":"Do now","actions":["Sit upright.","Weigh yourself at the same time each morning so we can see the trend."],"tellUs":"Get help now if you cannot speak in full sentences, wake up gasping, or your lips or fingers look blue."},{"id":"wound-green","branch":"wound","tone":"green","theme":"Wound","title":"Your wound is behaving as expected","body":["Itching, numbness, tingling and a firm ridge along the scar are all normal and can last months."],"actionLabel":"Keep doing","actions":["Keep it clean and dry, pat rather than rub after showering, and no creams or powders unless we have told you to."],"tellUs":"Tell us if redness starts spreading, there is any discharge or smell, or you feel a click or grating in your breastbone."},{"id":"wound-amber","branch":"wound","tone":"amber","theme":"Wound","title":"We are keeping an eye on this","body":["A little redness right at the edges of the wound is common and often settles. With no discharge and no temperature, this does not look like an infection today."],"actionLabel":"Do now","actions":["Take a photo through the app in the same light each day. Comparing photos is far more reliable than memory."],"tellUs":"A nurse will review this at the next weekday review. Get help sooner if the redness spreads past the wound edges, you get a temperature of 38 °C or more, or any discharge starts."},{"id":"wound-red","branch":"wound","tone":"red","theme":"Wound","title":"Your wound needs to be seen today","body":["A wound that is opening, or leaking pus, needs looking at today rather than at the next review."],"tellUs":"Call the number on your discharge letter now. If you cannot get through, go to your nearest emergency department."},{"id":"resp-green","branch":"respiratory","tone":"green","theme":"Cough","title":"No sign of a chest infection today","body":["A dry cough for a few weeks after surgery is normal, especially when you take a deep breath."],"tellUs":"Tell us if you cough up yellow, green or bloody phlegm, or your temperature reaches 38 °C."},{"id":"resp-amber","branch":"respiratory","tone":"amber","theme":"Cough","title":"Keep your lungs moving","body":["Coughing hurts after chest surgery, so people avoid it. Holding a cough in is how chest infections start."],"actionLabel":"Do now","actions":["Hug a pillow firmly against your chest and cough properly a few times each hour.","Keep up your breathing exercises and drink plenty."],"tellUs":"Tell us if the phlegm changes colour, or your temperature reaches 38 °C."},{"id":"fluid-green","branch":"fluid","tone":"green","theme":"Fluid","title":"Your fluid balance looks steady","body":["Weighing yourself at the same time each morning is the most reliable way to pick up fluid building up before you can feel it."],"tellUs":"Tell us if you gain 2 kg or more, need extra pillows at night, or become more breathless."},{"id":"fluid-amber","branch":"fluid","tone":"amber","theme":"Fluid","title":"Worth watching closely","body":["A small gain can just be your appetite returning, but it can also be early fluid building up, so we would rather look at it."],"actionLabel":"Do now","actions":["Stick to your fluid and salt advice.","Put your feet up when sitting.","Weigh yourself at the same time tomorrow."],"tellUs":"A nurse will review this at the next weekday review. Contact us sooner if you gain 2 kg or more or become more breathless."},{"id":"fluid-orange","branch":"fluid","tone":"orange","theme":"Fluid","title":"One swollen leg needs checking today","body":["One leg more swollen, warmer or more painful than the other can be a clot in the deep veins of the leg. It is treatable, and it is checked with a simple scan."],"tellUs":"A clinician will contact you today. Get help now if you become short of breath or get sharp chest pain when you breathe in."},{"id":"meds-amber","branch":"medications","tone":"amber","theme":"Medicines","title":"Loose bowels on colchicine — do not stop it yourself","body":["Loose stools are the commonest side effect of colchicine, which you take to prevent inflammation around the heart. The dose can often be adjusted, but that is your team’s decision."],"actionLabel":"Do now","actions":["Keep taking it for now.","Drink plenty of fluids. This is the part that gets people into trouble.","Keep taking your other medicines as normal."],"tellUs":"A clinician will review this at the next weekday review. Get help sooner if you cannot keep fluids down, are passing very little urine, or feel dizzy when you stand."},{"id":"rehab-blue","branch":"daily","tone":"blue","theme":"Rehab","title":"Cardiac rehab is the single best thing for your recovery","body":["People who attend have fewer repeat problems and live longer. It is a supervised exercise and education programme, and it is for everyone after heart surgery."],"tellUs":"Tell us if the programme has not contacted you by the end of this week and we will chase it."},{"id":"emergency-red","branch":"any","tone":"red","theme":"Emergency","title":"Please get medical help now","body":["What you have told us needs to be seen straight away, not at the next review."],"tellUs":"Call 000. Tell them you have had heart or chest surgery and give them the date. Your team will see your answers too, but 000 is faster."}],"readings":[{"id":"bp","label":"Blood pressure","device":"From your cuff","unit":"mmHg","pair":{"leftLabel":"Top","rightLabel":"Bottom"},"placeholder":"120"},{"id":"spo2","label":"Oxygen level","device":"From the finger clip","unit":"%","min":50,"max":100,"placeholder":"96"},{"id":"hr","label":"Heart rate","device":"From the finger clip, or feel your pulse for 15 seconds and multiply by 4","unit":"bpm","min":20,"max":220,"placeholder":"72"},{"id":"weight","label":"Weight","device":"Ideally the same time each morning, before breakfast","unit":"kg","min":30,"max":250,"placeholder":"82.4"}],"topics":[{"id":"topic-pain","title":"Pain after your operation","branch":"daily","lead":"Chest pain after heart or chest surgery is expected, and it follows a pattern. Knowing the pattern is what makes it possible to tell an ordinary day from one worth reporting.","normal":["The ache around the breastbone eases steadily over the first four to six weeks, with the odd worse day in between. A worse day on its own is not a setback.","If an artery was taken from your arm or a vein from your leg, burning, tingling, numbness or shooting pain along that limb is very common. It comes from small nerves disturbed during surgery, and it improves over weeks to months.","Pain that changes when you move or press on it, and is worse when you cough or turn over in bed, is the chest wall healing."],"helps":["Take your pain relief on a regular schedule rather than waiting for the pain to build. It makes walking and deep breathing much easier, and those two are what drive recovery.","Hold a rolled towel or a small pillow against your chest when you cough or stand up. It braces the breastbone and helps a lot.","For nerve pain in an arm or leg: keep the limb moving rather than protecting it, and wear loose sleeves or trouser legs."],"tell":["Your pain starts going up day on day instead of down.","It becomes sharp and one-sided, or worse when you breathe in.","It comes with a temperature of 38 °C or more.","An arm or leg becomes cold, pale or weak."]},{"id":"topic-chest","title":"Telling healing pain from heart pain","branch":"chest_pain","lead":"This is the most useful thing on this page. Almost every trip back to hospital for chest pain after surgery is healing pain that felt frightening, and the two feel genuinely different once you know what to compare.","normal":["Healing pain is sharp, sits over the breastbone or the scar, changes when you move or press on it, and is worse when you cough or turn over in bed. It is uncomfortable, but it is not dangerous.","Heart pain is different: a heavy pressure or tightness in the middle of the chest that comes on with effort and eases with rest, sometimes spreading to the jaw, arm or back, often with sweating or feeling sick."],"helps":["For healing pain: regular pain relief, and brace your chest with a pillow when you cough.","For tightness that comes on with effort: stop and rest when it comes on rather than pushing through. If you have a spray for chest pain, use it the way you were shown."],"tell":["You get tightness on effort that eases with rest — that needs a doctor to look at it, and not next week.","The pain spreads to your jaw, arm or back, or comes with sweating or feeling sick."],"urgent":"Call 000 if you get pressure-type pain while resting, or it lasts more than a few minutes and does not ease."},{"id":"topic-wound","title":"Your wound","branch":"wound","lead":"Wounds look alarming long before they are a problem. Most of what changes in the first weeks is normal healing.","normal":["Itching, numbness, tingling and a firm ridge along the scar are all normal, and can last months.","A little redness right at the edges of the wound is common and often settles on its own.","If a vein was taken from your leg, that leg is often more swollen, bruised and numb than the other for several weeks. Swelling worse by evening and better in the morning is typical."],"helps":["Keep it clean and dry, pat rather than rub after showering, and use no creams or powders unless your team told you to.","Take a photo through the app in the same light each day. Comparing photos is far more reliable than memory, and it is the single most useful thing you can send us."],"tell":["Redness starts spreading out beyond the wound edges.","Anything starts leaking, or the dressing smells.","You get a temperature of 38 °C or more.","You feel or hear a click or grating in your breastbone when you move."],"urgent":"A wound that is opening, or leaking pus, needs to be seen today. Call the number on your discharge letter, and go to your nearest emergency department if you cannot get through."},{"id":"topic-breathing","title":"Breathing and breathlessness","branch":"breathlessness","lead":"Feeling puffed is expected for weeks after chest surgery. What matters is the direction it is moving in, and whether it changes when you lie down.","normal":["Being short of breath on stairs or after a walk is expected for the first several weeks. Your lungs and chest muscles are recovering too.","Fluid can collect around the lung after heart surgery. It is common, it is looked for routinely, and it is straightforward to treat."],"helps":["Keep doing your breathing exercises, and walk a little more each day.","Sit upright when your breathing feels tight.","Weigh yourself at the same time each morning so a trend is visible before you can feel it."],"tell":["Your breathing is worse than the day before, or worse when you lie flat.","You wake at night short of breath, or need extra pillows.","You get a new sharp pain on one side of the chest."],"urgent":"Get help now if you cannot speak in full sentences, wake up gasping, or your lips or fingers look blue."},{"id":"topic-heartbeat","title":"A fast or irregular heartbeat","branch":"arrhythmia","lead":"An irregular rhythm in the first weeks after heart surgery is common enough that we ask about it every day.","normal":["A fast or fluttery heartbeat happens to roughly one person in three after heart surgery, usually in the first two weeks, and it is usually treatable."],"helps":["Go easy on coffee and alcohol until you have spoken to the team.","If you have a finger clip, take a heart rate while it is happening. A number from the moment itself is far more useful than a description afterwards."],"tell":["Your heart races, pounds or beats irregularly, especially if it comes with dizziness."],"urgent":"Do not wait for a call if you feel faint, become very short of breath, or get chest pain."},{"id":"topic-fluid","title":"Swelling, weight and fluid","branch":"fluid","lead":"Weight is the earliest warning we have. Fluid builds up for days before anyone can feel it, and the scales pick it up first.","normal":["Weighing yourself at the same time each morning, before breakfast, is the most reliable way to spot fluid building up early.","A small gain can just be your appetite returning. It is looked at rather than acted on straight away.","Both ankles a little puffy by the end of the day, better by morning, is common after this surgery."],"helps":["Stick to the fluid and salt advice you were given.","Put your feet up when sitting.","Weigh yourself at the same time the next morning so the trend is clear."],"tell":["Your weight goes up by 2 kg or more since you left hospital.","Ankle or leg swelling is worse, or you need more pillows to sleep."],"urgent":"One leg more swollen, warmer or more painful than the other can be a clot in the deep veins of the leg. That needs checking the same day. Get help now if you also become short of breath or get sharp chest pain when you breathe in."},{"id":"topic-cough","title":"Cough, temperature and chest infection","branch":"respiratory","lead":"Coughing hurts after chest surgery, so people avoid it. Holding a cough in is how chest infections start, which makes this one of the few places where doing the uncomfortable thing is the right call.","normal":["A dry cough for a few weeks after surgery is normal, especially when you take a deep breath."],"helps":["Hug a pillow firmly against your chest and cough properly a few times each hour.","Keep up your breathing exercises and drink plenty."],"tell":["You cough up yellow, green or bloody phlegm.","Your temperature reaches 38 °C, or you get chills.","You are sweating more than usual, or waking up drenched."],"urgent":"Coughing up more than about a tablespoon of blood needs to be seen straight away."},{"id":"topic-medicines","title":"Your medicines","branch":"medications","lead":"Most medicine problems after surgery are practical rather than clinical: a pack running out, a side effect nobody warned you about, or something bought over the counter that does not mix.","normal":["Bruising more easily, and small cuts taking longer to stop, is expected on a blood thinner. That is the medicine doing its job.","Loose stools are the commonest side effect of colchicine, which is often given for six weeks after the operation."],"helps":["Do not stop anything on your own, including colchicine when it upsets your bowel. The dose can often be adjusted, but that is your team’s decision.","Keep your fluids up if your bowel is loose. That is the part that gets people into trouble.","Book a repeat script before you run out, not on the last day, and take your discharge summary with you.","Check cold and flu remedies with a pharmacist. Many contain decongestants that raise blood pressure, or anti-inflammatories many heart patients are asked to avoid.","A weekly pill box is the single thing that helps most if doses are being missed."],"tell":["You have missed doses, and what got in the way. Running out, losing track of the day and feeling too unwell each need something different from us.","You started anything from a chemist or health-food shop.","A nosebleed will not stop after 10 minutes of pinching, or you see blood in your urine, black tarry stools, or vomit blood."]},{"id":"topic-sleep","title":"Sleep and tiredness","branch":"daily","lead":"Sleep is usually the last thing to come back after this surgery, and it does come back. It is also the thing people worry about most unnecessarily.","normal":["Not finding a comfortable position, vivid dreams and waking early are all normal after heart surgery.","Being stuck on your back for weeks makes the back, neck and shoulders ache, often more than the chest wound itself.","Tiredness out of proportion to what you did is expected in the first weeks."],"helps":["A pillow tucked under each arm takes the drag off the breastbone.","Sleep propped slightly up rather than flat.","A pillow under the knees flattens the lower back.","No naps after mid-afternoon, and get outside in daylight during the day.","Take your night-time pain relief before bed, not after the pain wakes you."],"tell":["You are waking up short of breath, or needing more pillows than last week. That is a different problem and we want to know.","You feel more tired or weak than expected, especially alongside more breathlessness."]},{"id":"topic-rehab","title":"Cardiac rehab","branch":"daily","lead":"Cardiac rehab is a supervised exercise and education programme, and it is one of the best-evidenced things available after heart surgery.","normal":["People who attend have fewer repeat problems and live longer. It is for everyone after heart surgery, not only for people who feel unfit.","Your referral went in at discharge, and the programme normally telephones within the first couple of weeks."],"helps":["Say yes to the first date offered. Waiting for a more convenient one is how people end up not going."],"tell":["The programme has not contacted you by the end of the second week, and we will chase it."]},{"id":"topic-help","title":"When to call us, and when to call 000","branch":"any","lead":"The app is read during the day shift on weekdays. It is not watched overnight or at weekends, so it is worth knowing what goes where.","normal":["Anything you send through a check-in, a message or the \"I am not doing well\" button reaches the same nursing worklist.","The button on every screen exists because most of the times people need us, it is not first thing in the morning."],"helps":["For something that can wait for a weekday: a check-in answer or a message.","For something that has changed today and worries you: the \"I am not doing well\" button.","For an emergency: 000, without waiting for us."],"tell":["You called an ambulance or went to emergency, even if everything turned out fine. We need it on your record."],"urgent":"Call 000 for severe chest pain at rest, breathlessness at rest, heavy bleeding, fainting, or stroke-like symptoms such as face droop, arm weakness or trouble speaking. Tell them you have had heart or chest surgery, and give them the date."}],"patient":{"first":"Ken","initials":"KW","procedure":"Triple bypass"},"tasks":[{"id":"checkin","kind":"check-in","title":"Your daily check-in","sub":"Under three minutes on most days","min":3},{"id":"photo","kind":"photo","title":"Wound photo","sub":"Same light each time so we can compare","min":1},{"id":"rehab","kind":"milestone","title":"Cardiac rehab should have called","sub":"Your referral went in at discharge","min":2}],"messages":[{"from":"team","who":"Francesca, cardiothoracic nurse","time":"Day 5, 8:55 am","body":"Thanks Ken, that is exactly the right thing to do. The photo looks unchanged to me too. Keep it dry and we will look again on Friday."},{"from":"you","who":"You","time":"Day 6, 7:40 pm","body":"Walked to the end of the street and back twice today. Chest sore afterwards but it settled with the tablets."},{"from":"team","who":"Francesca, cardiothoracic nurse","time":"Day 7, 9:10 am","body":"That is a good distance for day 7, and soreness afterwards is expected. Cardiac rehab should ring you in the next few days. Tell me if they have not by Friday."}],"quickReplies":["I want to talk with a nurse","I have a fever","My pain increased","My wound hurts","I have swelling"],"toneLabel":{"green":"On track","blue":"Reminder","amber":"Do this now","orange":"We have flagged this","red":"Get help now"},"anytime":{"buttonLabel":"I am not doing well","heading":"Tell us what has changed.","body":"You do not have to wait for tomorrow’s check-in. Most of the times people need us, it is not first thing in the morning.","options":[{"id":"worse","label":"Something is worse than this morning"},{"id":"new","label":"Something new has started"},{"id":"unsure","label":"I am not sure, but I do not feel right"},{"id":"question","label":"I have a question, nothing urgent"}],"emergency":"If this is severe chest pain, bad breathlessness, or heavy bleeding, call 000 now rather than using this form.","promise":"Anything sent through here goes to the same worklist your morning check-in does, marked as raised out of hours."},"changes":[{"id":"c1","area":"Daily check-in","change":"Symptom chips now ask only for what is new or worse than yesterday.","rationale":"Patients tick pain and breathlessness every day because those persist for weeks after surgery. Undated, the daily signal means nothing.","verdict":"applied"},{"id":"c2","area":"Daily check-in","change":"\"Swelling\" is now \"Leg swelling\".","rationale":"The bare word was ambiguous against the fluid-overload branch, which asks about swelling and weight together.","verdict":"applied"},{"id":"c3","area":"Daily check-in","change":"Headache, nausea and loss of appetite removed from the chips.","rationale":"They fed the stroke and general-wellness paths, which v2 no longer runs on self-report.","verdict":"applied"},{"id":"c4","area":"Daily check-in","change":"Breathing and physiotherapy exercises promoted to the front page, and broadened from incentive spirometry to any prescribed exercise.","rationale":"It works as a daily reminder rather than an alert trigger, and patients kept asking about spirometry specifically.","verdict":"applied"},{"id":"c5","area":"Safety questions","change":"The seven-question safety gateway no longer runs every day. Each item now closes the branch it belongs to, and only when the patient has opened that branch.","rationale":"Asking about severe chest pain and fainting daily trains people to click \"no\" without reading, and it makes the app feel like an interrogation.","verdict":"applied"},{"id":"c6","area":"Safety questions","change":"The angina comparison is gone. The chest-pain red flag now reads \"severe chest pain at rest, or chest pain much worse than it has been\".","rationale":"Many post-op patients never had angina, so the comparator is meaningless to them — and where they did, pain matching their usual angina is the more worrying answer, so the old wording inverted the logic.","verdict":"applied"},{"id":"c7","area":"Safety questions","change":"The confusion and delirium question is removed from the patient-facing set.","rationale":"A patient who is confused will not self-report it accurately. It is inferred clinician-side from a change in check-in behaviour instead.","verdict":"applied","note":"Replaced by the engagement-drift signal on the clinician worklist, not simply dropped."},{"id":"c8","area":"Router","change":"Pericarditis branch removed.","rationale":"Low yield, and the positional-pain question was pushing patients into diagnosing themselves.","verdict":"applied","note":"Its moderate alert only fired from day 11 onward, so the coverage lost is small. Worth rechecking at the 50-patient interim."},{"id":"c9","area":"Router","change":"Anticoagulation branch removed.","rationale":"Anticoagulation-related readmissions are pericardial or pleural effusions, which the fluid and breathlessness branches already catch.","verdict":"applied","note":"Safe because major bleeding (vomited blood, black stools, blood in urine) survives as the gate on the free-text branch."},{"id":"c10","area":"Router","change":"Haemoptysis moved into the respiratory branch, asked of thoracic patients.","rationale":"It belongs with the thoracic questions rather than sitting in a daily gateway.","verdict":"applied"},{"id":"c11","area":"Router","change":"The combined \"leg pain / weakness or trouble speaking / urinary problems\" option is split. Leg symptoms stay as their own option; the stroke and urinary items are gone.","rationale":"Three unrelated symptoms welded into one option, so a tick told you nothing about which one the patient meant.","verdict":"applied-with-variation","note":"Kei suggested dropping the whole option. Keeping the leg limb of it: the branch has already produced a confirmed catch in this trial (the leg-swelling patient who turned out to have a deep vein thrombosis), and his stated objection was the composite, not leg symptoms themselves. Flagged for his decision."},{"id":"c12","area":"Router","change":"The breathlessness option now reads \"Shortness of breath that is worse than yesterday\".","rationale":"Same reason as the chips: unqualified breathlessness is near-universal for weeks post-op.","verdict":"applied"},{"id":"c13","area":"Whole instrument","change":"Every branch now ends with an education card instead of a dead end: green normalises, amber gives self-management, orange and red say what happens next.","rationale":"The trials that moved readmissions were reassurance-and-education based; the ones that only tracked symptoms did worse. In one study the card library was the most-used part of the whole service.","verdict":"applied"},{"id":"c14","area":"Whole app","change":"An any-time \"I am not doing well\" button, available on every screen, not just at check-in time.","rationale":"In the trial Kei read, most patient contact and most prevented readmissions happened outside the app’s normal contact window.","verdict":"applied"},{"id":"c15","area":"Daily check-in","change":"Sleep quality retained, marked for review at the 50-patient interim.","rationale":"Kei’s ask was conditional — drop it only if the interim shows it yields nothing.","verdict":"deferred","note":"Decision belongs to the interim analysis, not to this refactor."},{"id":"c16","area":"Whole instrument","change":"Copy rewritten to a grade 6–7 reading level; each item carries its own reading-level note.","rationale":"Matches the reading level another trial in this space recommended.","verdict":"applied"},{"id":"c18","area":"Daily check-in","change":"Answering \"I missed some\" now opens a \"tell us more\" box asking what got in the way, instead of ending there.","rationale":"A missed-dose count on its own is not actionable. Ran out, lost track of the day, felt too unwell, and the tablets disagreeing with them each need a different response from the team, and the patient is the only one who knows which it was.","verdict":"applied","note":"Required rather than optional, matching how the general-practitioner concern box already behaves."},{"id":"c19","area":"Closing block","change":"The general-practitioner follow-up asks what the visit was for, and names the planned reasons in the option itself: stitches out, a dressing, a repeat script, a booked check-up.","rationale":"\"Routine, nothing to report\" asked the patient to judge what counts as worth reporting, which is our job, not theirs. Naming the planned reasons is what stops \"I had my sutures out, just so you know\" arriving as a concern.","verdict":"applied"},{"id":"c20","area":"Closing block","change":"A free-text day diary at the very end, optional, raising no alert. The mid-flow \"anything else\" box in the daily block is removed.","rationale":"Free text is where this cohort actually says things — 165 unprompted messages across the first 47 participants. A diary gives an alert its context and builds an unstructured corpus for later analysis, without adding a third box or a daily worklist item.","verdict":"applied","note":"Raises nothing on its own by design, so it cannot add to the alert load. It attaches to the day’s record and to any alert that fires that day. The open question is whether text a patient writes here should be keyword-screened for red flags — that is a clinical call, not an engineering one."},{"id":"c21","area":"Daily check-in","change":"Blood pressure, oxygen level, heart rate and weight sit together as optional device readings, each behind its own tap rather than as an empty field.","rationale":"The first 50 finger oximeters and heart-rate monitors were ordered in August, and cleaner heart-rate and breathlessness inputs were the reason. Showing an empty box to a patient who has no device just reads as a question they are failing.","verdict":"applied","note":"Resting heart rate had no home in v2 after the daily gateway was dismantled; this is where it lands."},{"id":"c23","area":"Daily check-in","change":"The symptom chips and the concern list are one vertical list. \"Is anything new or worse than yesterday?\" is answered by picking from it, and a pick opens its questions in place.","rationale":"Two lists asking overlapping questions, one in a two-column grid and one below it, made a patient answer the same thing twice. One column, one question, one place the answer goes.","verdict":"applied","note":"Fever and cough split into their own options rather than the shared \"Cough or fever\", since fever was already its own chip. Tiredness and dizziness were chips with nowhere to go and now open a question each. \"Swelling or weight gain\" is just \"Swelling\"."},{"id":"c17","area":"Closing block","change":"The general-practitioner question keeps its routine-versus-concern split, and only the concern path raises anything.","rationale":"The undifferentiated version was 59% of all alerts, and the nurses were drowning in it.","verdict":"applied"}],"alerts":[{"level":"critical","when":"Chest pain at rest lasting more than a few minutes","branch":"chest_pain","changedInV2":"c6"},{"level":"critical","when":"Short of breath at rest, or cannot finish a sentence","branch":"breathlessness"},{"level":"critical","when":"Fainted or nearly fainted","branch":"arrhythmia"},{"level":"critical","when":"Wound opening, pus, or heavy drainage","branch":"wound"},{"level":"critical","when":"Coughed up more than a tablespoon of blood (thoracic)","branch":"respiratory","changedInV2":"c10"},{"level":"critical","when":"Vomiting blood, black bowel motions, breathless or syncope on the free-text gate","branch":"other"},{"level":"critical","when":"Called an ambulance or attended emergency"},{"level":"high","when":"Palpitations with dizziness or near-fainting","branch":"arrhythmia"},{"level":"high","when":"Weight up 2 kg or more since discharge","branch":"fluid"},{"level":"high","when":"One leg more swollen, warm or painful than the other","branch":"fluid","changedInV2":"c11"},{"level":"high","when":"Wound drainage with temperature 38 °C or higher","branch":"wound"},{"level":"high","when":"Sternal click with breathlessness lying flat (cardiac)","branch":"wound"},{"level":"high","when":"Exertional tightness that spreads to jaw, arm or back","branch":"chest_pain"},{"level":"high","when":"Pain score 9 or more (cardiac) / 8 or more (thoracic)"},{"level":"moderate","when":"Palpitations without dizziness","branch":"arrhythmia"},{"level":"moderate","when":"Breathing worse lying flat plus waking breathless","branch":"breathlessness"},{"level":"moderate","when":"New sharp one-sided chest pain","branch":"breathlessness"},{"level":"moderate","when":"Ankle or leg swelling worse, or needing more pillows","branch":"fluid"},{"level":"moderate","when":"Wound redness spreading, no fever, no drainage","branch":"wound"},{"level":"moderate","when":"Fever with a new productive cough","branch":"respiratory"},{"level":"moderate","when":"Diarrhoea on colchicine","branch":"medications"},{"level":"moderate","when":"Pain score 5–8 (cardiac) / 5–7 (thoracic)"},{"level":"moderate","when":"Any-time \"I am not doing well\" button pressed","newInV2":true,"changedInV2":"c14"},{"level":"message","when":"Missed doses, with the patient’s own reason attached","newInV2":true,"changedInV2":"c18"},{"level":"message","when":"GP visit about a problem (routine visits raise nothing)","changedInV2":"c17"},{"level":"message","when":"Any free-text description submitted"},{"level":"message","when":"Question for the care team submitted"},{"level":"none","when":"Day diary submitted — stored and attached to the day’s record, no worklist item","newInV2":true,"changedInV2":"c20"}],"removedBranches":[{"label":"Chest pain that’s worse lying down","tree":"Pericarditis","why":"Low yield, and it pushed patients into diagnosing themselves. Its moderate alert only ran from day 11.","change":"c8"},{"label":"Bleeding or bruising","tree":"Anticoagulation","why":"Those readmissions are effusions, caught by the fluid and breathing branches. Major bleeding survives on the free-text gate.","change":"c9"},{"label":"Leg pain/swelling, weakness or trouble speaking, or urinary problems","tree":"Other concerns","why":"Split, not deleted. Leg symptoms moved into the swelling branch; the stroke and urinary items are gone.","change":"c11"}],"retiredRules":[{"when":"Any of the seven daily gateway questions = Yes","why":"The gateway no longer runs daily; each item closes its own branch.","change":"c5"},{"when":"Confused, drowsy or not yourself = Yes","why":"Self-report is unreliable for exactly this. Inferred from engagement drift instead.","change":"c7"},{"when":"Pericarditis positional pain (+ red flags)","why":"Branch removed.","change":"c8"},{"when":"Anticoagulation bleeding, or missed anticoagulant doses","why":"Branch removed.","change":"c9"},{"when":"Stroke-like symptoms = Yes","why":"Removed with the composite router option.","change":"c11"},{"when":"Any GP contact = Message","why":"Was 59% of all alerts. Only the concern path raises anything now.","change":"c17"}],"specialty":"cardiac"};
+
+const state = { tab:'today', answers:{}, stage:{kind:'daily'}, queue:[], visited:[], visitedRouter:false, fired:[], fb:{}, openReadings:[], sent:[], sentMsgs:[], openCard:null, openTopic:null, q:'', draft:'', notWell:null, notWellSent:false };
+const HIST = { painFrom:7, painNow:4, walkNow:23 };
+
+const applies = x => !x.specialty || x.specialty === 'both' || x.specialty === D.specialty;
+const branches = D.branches.filter(applies);
+
+function shouldAsk(it){
+  if(!applies(it)) return false;
+  if(!it.askWhen) return true;
+  const prior = state.answers[it.askWhen.item];
+  return prior !== undefined && it.askWhen.isAnyOf.includes(String(prior));
+}
+function answered(it){
+  if(it.optional) return true;
+  const v = state.answers[it.id];
+  if(v === undefined) return false;
+  if(Array.isArray(v)) return v.length > 0;
+  if(typeof v === 'string') return v.trim() !== '';
+  return true;
+}
+function redFlag(b){
+  let worst = null;
+  for(const it of b.items){
+    if(!it.redFlagWhen || !shouldAsk(it)) continue;
+    const v = state.answers[it.id];
+    if(v === undefined) continue;
+    if(it.redFlagWhen.includes(String(v))){
+      const lvl = it.redFlagLevel || 'high';
+      if(lvl === 'critical') return 'critical';
+      worst = worst || lvl;
+    }
+  }
+  return worst;
+}
+function hasConcern(b){
+  return b.items.some(it => !it.redFlagWhen && shouldAsk(it) && state.answers[it.id] === 'yes');
+}
+const RANK = {green:0, blue:1, amber:2, orange:3, red:4};
+function pickCard(b){
+  const pool = D.cards.filter(c => c.branch === b.id);
+  const f = redFlag(b);
+  if(f === 'critical') return pool.find(c=>c.tone==='red') || D.cards.find(c=>c.id==='emergency-red');
+  if(f === 'high'){ const o = pool.find(c=>c.tone==='orange'); if(o) return o; }
+  if(f || hasConcern(b)){
+    const raised = pool.filter(c=>c.tone==='amber'||c.tone==='orange').sort((a,b2)=>RANK[b2.tone]-RANK[a.tone])[0];
+    if(raised) return raised;
+  }
+  return pool.find(c=>c.tone==='green') || pool[0] || D.cards[0];
+}
+
+function qtext(it){
+  const words = it.underline;
+  if(!words || !words.length) return esc(it.text);
+  let parts = [it.text];
+  for(const w of words){
+    parts = parts.flatMap(part => words.includes(part) ? [part]
+      : part.split(w).flatMap((piece,i) => i===0 ? [piece] : [w, piece]));
+  }
+  return parts.filter(p=>p!=='').map(p => words.includes(p) ? '<u>'+esc(p)+'</u>' : esc(p)).join('');
+}
+function band(it, v){
+  if(!it.scale) return '';
+  const b = it.scale.bands.find(x => v <= x.upTo);
+  return b ? b.label : it.scale.bands[it.scale.bands.length-1].label;
+}
+function openItems(){
+  const picked = (Array.isArray(state.answers.router)?state.answers.router:[]).filter(x=>x!=='none');
+  return picked.map(id => branches.find(b=>b.id===id)).filter(Boolean)
+    .flatMap(b => b.items.filter(shouldAsk));
+}
+function blocker(){
+  const s = state.stage;
+  const miss = itemsFor().find(it => !answered(it));
+  if(miss) return miss.text;
+  if(s.kind==='daily'){
+    const picked = Array.isArray(state.answers.router) ? state.answers.router : [];
+    if(!picked.length) return 'Pick anything that applies, or “Nothing new today”.';
+    const m2 = openItems().find(it => !answered(it));
+    return m2 ? m2.text : null;
+  }
+  return null;
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function itemsFor(){
+  if(state.stage.kind === 'daily') return D.daily.filter(shouldAsk);
+  if(state.stage.kind === 'closing') return D.closing.filter(shouldAsk);
+  if(state.stage.kind === 'branch') return branches.find(b=>b.id===state.stage.branchId).items.filter(shouldAsk);
+  return [];
+}
+
+function meta(){
+  const s = state.stage;
+  if(s.kind==='daily') return {e:'Day 7', t:'How has today been?', s:''};
+  if(s.kind==='closing') return {e:'Last few', t:'Since your last check-in.', s:''};
+  const b = branches.find(x=>x.id===s.branchId);
+  return {e:'Follow-up', t:b.title, s:''};
+}
+
+function ctrl(it){
+  const v = state.answers[it.id];
+  if(it.kind==='yes-no') return '<div class="yn">' +
+    ['no','yes'].map(o=>'<button class="pill'+(v===o?' on':'')+'" data-set="'+it.id+'" data-val="'+o+'">'+(o==='yes'?'Yes':'No')+'</button>').join('') + '</div>';
+  if(it.kind==='scale-0-10'){
+    const has = typeof v === 'number', n = has ? v : 5, sc = it.scale;
+    return '<div class="sl"><span class="end">'+esc(sc?sc.low:'0')+'</span>'+
+      '<span class="val'+(has?'':' unset')+'">'+(has?n+'/10':'–')+'</span>'+
+      '<span class="end">'+esc(sc?sc.high:'10')+'</span></div>'+
+      '<input type="range" min="0" max="10" step="1" value="'+n+'" data-range="'+it.id+'" aria-label="'+esc(it.text)+'">'+
+      '<p class="band'+(has?'':' unset')+'">'+(has?esc(band(it,n)):'Slide to set')+'</p>';
+  }
+  if(it.kind==='single-select') return '<div class="list">' + it.options.map(o =>
+    '<button class="row'+(v===o.id?' on':'')+'" data-set="'+it.id+'" data-val="'+o.id+'"><span class="box round">'+(v===o.id?'✓':'')+'</span>'+
+    '<span class="rowlabel">'+esc(o.label)+(o.sub?'<span class="rowsub">'+esc(o.sub)+'</span>':'')+'</span></button>').join('') + '</div>';
+  if(it.kind==='multi-select'){ const picked = Array.isArray(v)?v:[];
+    return '<div class="chips">' + it.options.map(o =>
+      '<button class="chip'+(picked.includes(o.id)?' on':'')+(o.id==='none'?' wide':'')+'" data-chip="'+it.id+'" data-val="'+o.id+'">'+
+      esc(o.label)+(o.sub?'<span class="rowsub">'+esc(o.sub)+'</span>':'')+'</button>').join('') + '</div>'; }
+  if(it.kind==='readings'){
+    return '<div class="list">' + D.readings.map(r => {
+      const open = state.openReadings.includes(r.id);
+      const has = r.pair ? (state.answers[r.id+'_left']!==undefined && state.answers[r.id+'_left']!=='' &&
+                            state.answers[r.id+'_right']!==undefined && state.answers[r.id+'_right']!=='')
+                         : (state.answers[r.id]!==undefined && state.answers[r.id]!=='');
+      const shown = has ? (r.pair ? state.answers[r.id+'_left']+'/'+state.answers[r.id+'_right']+' '+r.unit
+                                  : state.answers[r.id]+' '+r.unit) : '';
+      return '<div class="reading'+(has?' has':'')+'">' +
+        '<button class="rhead" data-reading="'+r.id+'"><span class="plus'+(open?' open':'')+'">+</span>' +
+        '<span class="rlabel">'+esc(r.label)+(has&&!open?'<span class="rval">'+esc(shown)+'</span>':'')+'</span>' +
+        '<span class="rtag">'+(has?'Added':'Optional')+'</span></button>' +
+        (open ? '<div class="rbody"><p class="qhelp">'+esc(r.device)+'</p><div class="rrow">' +
+          (r.pair
+            ? '<label class="rin"><input type="number" data-text="'+r.id+'_left" placeholder="'+esc(r.placeholder||'')+'" value="'+(state.answers[r.id+'_left']??'')+'"><span class="rcap">'+esc(r.pair.leftLabel)+'</span></label>' +
+              '<span class="rslash">/</span>' +
+              '<label class="rin"><input type="number" data-text="'+r.id+'_right" placeholder="80" value="'+(state.answers[r.id+'_right']??'')+'"><span class="rcap">'+esc(r.pair.rightLabel)+'</span></label>'
+            : '<label class="rin"><input type="number" data-text="'+r.id+'" placeholder="'+esc(r.placeholder||'')+'" value="'+(state.answers[r.id]??'')+'"></label>') +
+          '<span class="runit">'+esc(r.unit)+'</span></div></div>' : '') +
+      '</div>';
+    }).join('') + '</div>';
+  }
+  if(it.kind==='number') return '<input type="number" step="0.1" placeholder="82.4" data-text="'+it.id+'" value="'+(v===undefined?'':v)+'">';
+  return '<textarea rows="3" placeholder="A few words is plenty" data-text="'+it.id+'">'+(v===undefined?'':esc(v))+'</textarea>';
+}
+
+function cardHtml(c){
+  const fb = state.fb[c.id];
+  return '<div class="card '+c.tone+'">' +
+    '<div class="tone">'+esc(D.toneLabel[c.tone])+' · '+esc(c.theme)+'</div>' +
+    '<h3>'+esc(c.title)+'</h3>' +
+    (c.usesHistory ? '<p class="hist">Your pain has come down from '+HIST.painFrom+' to '+HIST.painNow+
+      ' since you came home, and you walked about '+HIST.walkNow+' minutes yesterday.</p>' : '') +
+    c.body.map(p=>'<p>'+esc(p)+'</p>').join('') +
+    (c.actions && c.actions.length ? '<div class="doing">'+esc(c.actionLabel||'Do now')+'</div><ul>'+
+      c.actions.map(a=>'<li>'+esc(a)+'</li>').join('')+'</ul>' : '') +
+    '<p>'+esc(c.tellUs)+'</p>' +
+    '<div class="fb"><div style="font-size:12px;font-weight:600">Was this helpful?</div><div class="fbrow">' +
+      ['Yes','No','I’d like someone to call me'].map(l=>'<button class="fbbtn'+(fb===l?' on':'')+'" data-fb="'+c.id+'" data-val="'+esc(l)+'">'+esc(l)+'</button>').join('') +
+    '</div></div></div>';
+}
+
+
+const TABS = [
+  {id:'today',    label:'Today'},
+  {id:'checkin',  label:'Check-in'},
+  {id:'learn',    label:'Learn'},
+  {id:'messages', label:'Messages'},
+];
+
+function paintChrome(){
+  document.getElementById('nav').innerHTML = TABS.map(t =>
+    '<span class="'+(state.tab===t.id?'on':'')+'" data-tab="'+t.id+'">'+t.label+'</span>').join('');
+  const H = {today:'Day 7 at home', checkin:'Your check-in', learn:'Learn',
+             messages:'Your care team', notwell:'Tell us what changed'};
+  const S = {today:D.patient.first+' \u00b7 '+D.patient.procedure, checkin:'Day 7 of 30',
+             learn:D.cards.length+' topics, searchable any time', messages:'Read weekdays, day shift',
+             notwell:'You do not have to wait for tomorrow'};
+  document.getElementById('ph1').textContent = H[state.tab] || H.today;
+  document.getElementById('psub').textContent = S[state.tab] || '';
+  document.getElementById('anytime').style.display = state.tab === 'notwell' ? 'none' : '';
+}
+
+function todayScreen(){
+  // A Sunday-to-Saturday ring row reads as a calendar, which is wrong for a
+  // fixed-length programme: it resets mid-trial and says nothing about how far
+  // through you are. Day-of-30 with the days done underneath cannot be misread.
+  const DAY = 7, TOTAL = 30, DONE = 6;
+  const cells = Array.from({length: TOTAL}, (_, i) => {
+    const n = i + 1;
+    const cls = n <= DONE ? 'done' : (n === DAY ? 'now' : 'ahead');
+    return '<span class="cal-day '+cls+'">'+(n <= DONE ? '✓' : n)+'</span>';
+  }).join('');
+  const done = state.sent;
+  const rows = D.tasks.filter(t=>t.id!=='checkin').map(t =>
+    '<button class="trow" data-go="'+(t.kind==='milestone'?'learn':'checkin')+'">'+
+    '<span class="ic">'+(t.kind==='check-in'?'\u270E':(t.kind==='photo'?'\u25A3':'\u2691'))+'</span>'+
+    '<span class="tt"><b>'+esc(t.title)+'</b><span>'+esc(t.sub)+' \u00b7 about '+t.min+' min</span></span>'+
+    '<span class="chev">\u203A</span></button>').join('');
+  return '<div class="daybar"><div class="dayrow"><b>Day '+DAY+' of '+TOTAL+'</b>'+
+      '<span>'+DONE+' check-ins done</span></div><div class="cal">'+cells+'</div></div>' +
+    '<div class="progressline">Your pain has come down from 7 to 4 since you came home, and you walked about 23 minutes yesterday. That is what we expect at day 7.</div>' +
+    '<p class="tiplab">Today</p>' +
+    '<h2 class="tiptitle">'+(done.includes('checkin')?'You are up to date':'Your check-in is ready')+'</h2>' +
+    '<button class="tipcard" data-go="checkin"><span>\u270E</span>'+
+      (done.includes('checkin')?'Do another check-in':'Start today\u2019s check-in')+
+      '<span class="chev">\u203A</span></button>' +
+    '<p class="tipnote">Under three minutes on most days</p>' +
+    rows +
+    '<div class="tiles">'+
+      '<button class="tile" data-go="learn"><span class="big">\u25A4</span><b>Learn</b><span>'+D.cards.length+' topics</span></button>'+
+      '<button class="tile" data-go="messages"><span class="big">\u2709</span><b>Messages</b><span>Your care team</span></button>'+
+    '</div>';
+}
+
+function topicHtml(t){
+  const sec = (label, items) => items && items.length
+    ? '<div class="tsec"><p class="tlab">'+esc(label)+'</p><ul>'+items.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>' : '';
+  return '<div class="topic">' +
+    '<h3 class="ttitle">'+esc(t.title)+'</h3>' +
+    '<p class="tlead">'+esc(t.lead)+'</p>' +
+    sec('What is normal', t.normal) + sec('What helps', t.helps) + sec('Tell us if', t.tell) +
+    (t.urgent ? '<div class="turgent">'+esc(t.urgent)+'</div>' : '') + '</div>';
+}
+
+function learnScreen(){
+  if(state.openTopic){
+    const t = D.topics.find(x=>x.id===state.openTopic);
+    return '<div class="lhead"><button class="lback" data-topic="" aria-label="All topics">‹</button>'+
+      '<span class="lt"><b>Recovery guide</b><span>'+D.topics.length+' topics</span></span></div>' + topicHtml(t);
+  }
+  if(state.openCard){
+    const c = D.cards.find(x=>x.id===state.openCard);
+    return '<div class="lhead"><button class="lback" data-card="">\u2039</button>'+
+      '<span class="lt"><b>'+esc(c.theme)+'</b><span>'+esc(D.toneLabel[c.tone])+'</span></span></div>' +
+      cardHtml(c);
+  }
+  const q = (state.q||'').toLowerCase();
+  const hits = D.topics.filter(t => !q ||
+    [t.title, t.lead].concat(t.normal, t.helps, t.tell, [t.urgent||'']).join(' ').toLowerCase().indexOf(q) + 1);
+  return '<div class="lsearch"><span>⌕</span><input placeholder="Search, e.g. cough, wound, sleep" value="'+esc(state.q||'')+'" data-q="1"></div>' +
+    '<p class="mnote" style="margin:0 0 16px">Everything the app tells you, in one place. Written to be read cold, not only when something is wrong.</p>' +
+    (hits.length ? hits.map(t =>
+      '<button class="lcard" data-topic="'+t.id+'">'+
+      '<span class="lbody"><b>'+esc(t.title)+'</b><p>'+esc(t.lead.slice(0,100))+'…</p></span>'+
+      '<span class="lgo">→</span></button>').join('')
+      : '<p class="mnote">Nothing matches that. Try a shorter word, or message your team.</p>');
+}
+
+function messagesScreen(){
+  const bubbles = D.messages.map(m =>
+    '<div class="bub '+(m.from==='you'?'you':'team')+'">'+
+    (m.from==='team'?'<span class="who">'+esc(m.who)+'</span>':'')+
+    esc(m.body)+'<span class="when">'+esc(m.time)+'</span></div>').join('');
+  const mine = state.sentMsgs.map(t =>
+    '<div class="bub you">'+esc(t)+'<span class="when">Just now \u00b7 sent</span></div>').join('');
+  return '<div class="msgs">'+bubbles+mine+'</div>' +
+    '<div class="qr">'+D.quickReplies.map(r=>'<button class="qrb" data-qr="'+esc(r)+'">'+esc(r)+'</button>').join('')+'</div>' +
+    '<div class="composer"><input placeholder="Ask your care team" data-msg="1" value="'+esc(state.draft||'')+'"><button class="send" data-send="1">\u2191</button></div>' +
+    '<p class="mnote">Read during the day shift, Monday to Friday. Not monitored overnight or at weekends. For anything that cannot wait, use the button in the corner. For an emergency, call 000.</p>';
+}
+
+function notWellScreen(){
+  const back = '<div class="lhead"><button class="lback" data-go="today" aria-label="Back to Today">\u2039</button>'+
+    '<span class="lt"><b>Not doing well</b><span>Any time</span></span></div>';
+  if(state.notWellSent){
+    return back + '<div class="done"><div class="tick">\u2713</div><h2 style="margin-top:20px">Your team has this.</h2>'+
+      '<p class="stage-sub">It is on the nursing worklist now, marked as raised outside your check-in. Someone will look at it during the day shift.</p>'+
+      '<p class="stage-sub">If things get worse before then, do not wait for us. Call 000.</p>'+
+      '<div class="foot"><button class="cta" data-go="today">Back to Today</button></div></div>';
+  }
+  const a = D.anytime, picked = state.notWell;
+  return back + '<div class="critnow"><b>'+esc(a.emergency)+'</b></div>' +
+    '<p class="stage-sub">'+esc(a.body)+'</p>' +
+    '<div class="list">'+a.options.map(o =>
+      '<button class="row'+(picked===o.id?' on':'')+'" data-nw="'+o.id+'"><span class="box round">'+
+      (picked===o.id?'\u2713':'')+'</span><span class="rowlabel">'+esc(o.label)+'</span></button>').join('')+'</div>' +
+    (picked ? '<div class="q" style="border-bottom:none;margin-top:18px"><p class="qtext">Tell us in your own words.</p>'+
+      '<div class="ctrl"><textarea rows="4" placeholder="A few words is plenty" data-text="notwell_text">'+esc(state.answers.notwell_text||'')+'</textarea>'+
+      '<p class="qhelp">'+esc(a.promise)+'</p></div></div>' : '') +
+    '<div class="foot"><button class="ghost" data-go="today">Back</button>'+
+    '<button class="cta" id="nwsend"'+(picked?'':' disabled')+'>Send to my team</button></div>';
+}
+
+function render(){
+  paintChrome();
+  const m = document.getElementById('main');
+  if(state.tab === 'today'){ m.innerHTML = todayScreen(); return paint(); }
+  if(state.tab === 'learn'){ m.innerHTML = learnScreen(); return paint(); }
+  if(state.tab === 'messages'){ m.innerHTML = messagesScreen(); return paint(); }
+  if(state.tab === 'notwell'){
+    m.innerHTML = notWellScreen();
+    const b = document.getElementById('nwsend');
+    if(b) b.onclick = () => { state.notWellSent = true; fire('moderate','Any-time report, raised outside the check-in'); render(); };
+    return paint();
+  }
+
+  const s = state.stage;
+
+  if(s.kind==='done'){
+    if(!state.sent.includes('checkin')) state.sent.push('checkin');
+    m.innerHTML = '<div class="done"><div class="tick">✓</div><h2 style="margin-top:20px">Sent to your team.</h2>' +
+      '<p class="stage-sub">A nurse reads today’s answers during the day shift. If anything needs a call, they will ring you.</p>' +
+      '<button class="ghost" id="again">Run it again</button></div>';
+    document.getElementById('again').onclick = reset;
+    return paint();
+  }
+
+  if(s.kind==='emergency'){
+    const b = branches.find(x=>x.id===s.branchId); const c = pickCard(b);
+    m.innerHTML = cardHtml(c) + '<div class="foot"><button class="cta" id="next">Continue check-in</button></div>';
+    document.getElementById('next').onclick = () => { state.stage={kind:'card',branchId:s.branchId}; render(); };
+    return paint();
+  }
+
+  if(s.kind==='card'){
+    const b = branches.find(x=>x.id===s.branchId); const c = pickCard(b);
+    const tp = D.topics.find(t => t.branch === b.id);
+    m.innerHTML = cardHtml(c) +
+      (tp ? '<button class="topiclink" data-topic="'+tp.id+'">More about '+esc(tp.title.toLowerCase())+' →</button>' : '') +
+      '<div class="foot"><button class="cta" id="next">Continue</button></div>';
+    document.getElementById('next').onclick = () => afterCard(s.branchId);
+    return paint();
+  }
+
+  const mm = meta();
+  const stageIdx = {daily:0, branch:0, card:0, closing:1}[s.kind] ?? 0;
+  let body = '<div class="dots">' + [0,1].map(i=>'<span class="dot'+(i<=stageIdx?' on':'')+'"></span>').join('') + '</div>' +
+    '<div class="stage-eyebrow">'+esc(mm.e)+'</div><h2>'+esc(mm.t)+'</h2><p class="stage-sub">'+esc(mm.s)+'</p>';
+
+  {
+    const firstMissing = (itemsFor().find(it => !answered(it)) || {}).id;
+    body += itemsFor().map(it =>
+      '<div class="q'+(it.id===firstMissing?' missing':'')+'"><p class="qtext">'+qtext(it)+(it.optional?'<span class="opt">optional</span>':'')+'</p>'+
+      (it.help?'<p class="qhelp">'+esc(it.help)+'</p>':'')+'<div class="ctrl">'+ctrl(it)+'</div></div>').join('');
+  }
+
+  // The router lives on the same page as the daily questions: everything the
+  // patient answers is one screen, and a branch opens under its own row.
+  if(s.kind==='daily'){
+    const picked = Array.isArray(state.answers.router)?state.answers.router:[];
+    const firstOpenMissing = (openItems().find(it => !answered(it)) || {}).id;
+    body += '<div class="routerhead">Is anything <u>new</u> or <u>worse</u> than yesterday?</div>' +
+      '<p class="routersub">Pick anything that applies. Most days the answer is nothing.</p>' +
+      '<div class="list">' + branches.map(b => {
+      const open = picked.includes(b.id);
+      const items = b.items.filter(shouldAsk);
+      const crit = open && redFlag(b) === 'critical';
+      return '<div class="rgroup'+(open?' open':'')+'">' +
+        '<button class="row'+(open?' on':'')+'" data-chip="router" data-val="'+b.id+'">' +
+        '<span class="box">'+(open?'✓':'')+'</span>' +
+        '<span class="rowlabel">'+esc(b.routerLabel)+(b.routerSub?'<span class="rowsub">'+esc(b.routerSub)+'</span>':'')+'</span></button>' +
+        (open ? '<div class="rgbody">' + items.map(it =>
+            '<div class="q'+(it.id===firstOpenMissing?' missing':'')+'"><p class="qtext">'+qtext(it)+'</p>'+
+            (it.help?'<p class="qhelp">'+esc(it.help)+'</p>':'')+'<div class="ctrl">'+ctrl(it)+'</div></div>').join('') +
+          (crit ? '<div class="critnow"><b>These are concerning answers, please seek medical care</b></div>' : '') +
+        '</div>' : '') +
+      '</div>';
+    }).join('') +
+      '<button class="row'+(picked.includes('none')?' on':'')+'" data-chip="router" data-val="none"><span class="box">'+(picked.includes('none')?'✓':'')+'</span>'+
+      '<span class="rowlabel">Nothing new today</span></button></div>';
+  }
+
+  const routerPicked = Array.isArray(state.answers.router) ? state.answers.router : [];
+  const can = s.kind==='daily'
+    ? (itemsFor().every(answered) && routerPicked.length>0 && openItems().every(answered))
+    : itemsFor().every(answered);
+
+  const why = can ? null : blocker();
+  const isPickPrompt = why && why.indexOf('Nothing new today') + 1;
+  if(why) body += '<div class="blockhint"><b>&#8593;</b><span>' +
+    (isPickPrompt ? esc(why) : 'Still to answer: ' + esc(why)) + '</span></div>';
+
+  body += '<div class="foot">' + (s.kind!=='daily' ? '<button class="ghost" id="back">Start</button>' : '') +
+    '<button class="cta" id="next"'+(can?'':' disabled')+'>'+(s.kind==='closing'?'Finish check-in':'Continue')+'</button></div>';
+
+  m.innerHTML = body;
+  const back = document.getElementById('back');
+  if(back) back.onclick = () => { state.stage={kind:'daily'}; render(); };
+  document.getElementById('next').onclick = advance;
+  paint();
+}
+
+function advance(){
+  const s = state.stage;
+  if(s.kind==='daily'){
+    state.visitedRouter = true;
+    const picked = (Array.isArray(state.answers.router)?state.answers.router:[]).filter(x=>x!=='none');
+    state.visited = picked;
+    picked.forEach(id => recordBranch(branches.find(b=>b.id===id)));
+    const crit = picked.find(id => redFlag(branches.find(b=>b.id===id)) === 'critical');
+    if(crit){ state.queue = picked; state.stage = {kind:'emergency',branchId:crit}; }
+    else from(picked);
+  } else if(s.kind==='branch'){
+    if(!state.visited.includes(s.branchId)) state.visited.push(s.branchId);
+    const b = branches.find(x=>x.id===s.branchId);
+    recordBranch(b);
+    state.stage = redFlag(b)==='critical' ? {kind:'emergency',branchId:s.branchId} : {kind:'card',branchId:s.branchId};
+  } else if(s.kind==='closing'){
+    recordClosing();
+    state.stage = {kind:'done'};
+  }
+  render();
+}
+function from(rest){
+  if(rest.length){ state.queue = rest; state.stage = {kind:'card',branchId:rest[0]}; }
+  else { state.queue = []; state.stage = {kind:'closing'}; }
+}
+function afterCard(id){
+  from(state.queue.filter(q=>q!==id));
+  render();
+}
+
+function fire(level, why){ state.fired.push({level, why}); }
+function recordBranch(b){
+  const f = redFlag(b);
+  if(f){
+    const item = b.items.find(it => it.redFlagWhen && it.redFlagWhen.includes(String(state.answers[it.id])));
+    fire(f, b.title + ' — ' + (item ? item.text : 'red flag'));
+  } else if(hasConcern(b)) {
+    fire('moderate', b.title + ' — reported, no red flag');
+  }
+}
+function recordClosing(){
+  if(state.answers.help_called_ambulance === 'yes') fire('critical','Called an ambulance or attended emergency');
+  if(state.answers.gp_routine === 'concern') fire('message','GP visit about a problem');
+  if(state.answers.gp_routine === 'routine') fire('none','GP visit was something already planned — raises nothing');
+  if((state.answers.final_questions||'').trim()) fire('message','Question for the care team');
+  if((state.answers.day_diary||'').trim()) fire('none','Day diary — stored with the day’s record, no worklist item');
+  if((state.answers.meds_missed_reason||'').trim()) fire('message','Missed doses, with the reason attached');
+}
+
+function paint(){
+  const t = document.getElementById('trace');
+  t.innerHTML = state.fired.length
+    ? state.fired.map(f => '<div><span class="lvl '+f.level+'">'+(f.level==='none'?'no alert':f.level)+'</span> '+esc(f.why)+'</div>').join('')
+    : 'Nothing raised yet. Answers appear here as you go, with the alert each one fires.';
+
+  const a = document.getElementById('answers');
+  const keys = Object.keys(state.answers).filter(k => {
+    const v = state.answers[k];
+    return v !== undefined && v !== '' && !(Array.isArray(v) && !v.length);
+  });
+  a.innerHTML = keys.length ? keys.map(k => '<div><b>'+esc(k)+'</b> — '+esc(Array.isArray(state.answers[k])?state.answers[k].join(', '):state.answers[k])+'</div>').join('') : '—';
+}
+
+document.addEventListener('click', e => {
+  const tab = e.target.closest('[data-tab]');
+  if(tab){ state.tab = tab.dataset.tab; if(state.tab==='learn'){ state.openCard=null; state.openTopic=null; } return render(); }
+  const go = e.target.closest('[data-go]');
+  if(go){
+    const to = go.dataset.go;
+    if(to === 'checkin'){ state.tab='checkin'; state.stage={kind:'daily'}; }
+    else state.tab = to;
+    return render();
+  }
+  const topic = e.target.closest('[data-topic]');
+  if(topic){ state.openTopic = topic.dataset.topic || null; state.openCard = null; state.tab='learn'; return render(); }
+  const card = e.target.closest('[data-card]');
+  if(card){ state.openCard = card.dataset.card || null; state.tab='learn'; return render(); }
+  const nw = e.target.closest('[data-nw]');
+  if(nw){ state.notWell = nw.dataset.nw; return render(); }
+  const qr = e.target.closest('[data-qr]');
+  if(qr){ state.sentMsgs.push(qr.dataset.qr); fire('message','Message to the care team'); return render(); }
+  const sendBtn = e.target.closest('[data-send]');
+  if(sendBtn){
+    const t = (state.draft||'').trim();
+    if(t){ state.sentMsgs.push(t); state.draft=''; fire('message','Message to the care team'); }
+    return render();
+  }
+  const set = e.target.closest('[data-set]');
+  if(set){
+    const id = set.dataset.set;
+    state.answers[id] = set.dataset.num !== undefined ? Number(set.dataset.num) : set.dataset.val;
+    return render();
+  }
+  const chip = e.target.closest('[data-chip]');
+  if(chip){
+    const id = chip.dataset.chip, val = chip.dataset.val;
+    const cur = Array.isArray(state.answers[id]) ? state.answers[id] : [];
+    if(val === 'none') state.answers[id] = cur.includes('none') ? [] : ['none'];
+    else state.answers[id] = cur.includes(val) ? cur.filter(x=>x!==val) : cur.filter(x=>x!=='none').concat(val);
+    if(id === 'symptoms_new_or_worse'){
+      const chips = Array.isArray(state.answers[id]) ? state.answers[id] : [];
+      const opened = branches.filter(b=>b.openedByChip && chips.includes(b.openedByChip)).map(b=>b.id);
+      const cur2 = (Array.isArray(state.answers.router)?state.answers.router:[]).filter(x=>x!=='none');
+      state.answers.router = Array.from(new Set(cur2.concat(opened)));
+    }
+    return render();
+  }
+  const fb = e.target.closest('[data-fb]');
+  if(fb){ state.fb[fb.dataset.fb] = fb.dataset.val; return render(); }
+});
+document.addEventListener('input', e => {
+  const qq = e.target.closest('[data-q]');
+  if(qq){ state.q = qq.value; const m=document.getElementById('main');
+    const pos=qq.selectionStart; m.innerHTML = learnScreen();
+    const nq=m.querySelector('[data-q]'); if(nq){ nq.focus(); nq.setSelectionRange(pos,pos); } return; }
+  const mm = e.target.closest('[data-msg]');
+  if(mm){ state.draft = mm.value; return; }
+  const r = e.target.closest('[data-range]');
+  if(r){ state.answers[r.dataset.range] = Number(r.value); return render(); }
+  const t = e.target.closest('[data-text]');
+  if(!t) return;
+  state.answers[t.dataset.text] = t.type === 'number' ? (t.value === '' ? '' : Number(t.value)) : t.value;
+  const btn = document.getElementById('next');
+  if(btn) btn.disabled = !(state.stage.kind==='router' ? true : itemsFor().every(answered));
+  paint();
+});
+const FONT_STEPS = [1, 1.25, 1.5];
+let fontStep = 0;
+document.getElementById('aa').onclick = () => {
+  fontStep = (fontStep + 1) % FONT_STEPS.length;
+  document.getElementById('main').style.zoom = FONT_STEPS[fontStep];
+};
+document.getElementById('anytime').onclick = () => { state.tab = 'notwell'; render(); };
+function reset(){
+  state.answers = {}; state.stage = {kind:'daily'}; state.queue = []; state.visited = [];
+  state.visitedRouter = false; state.fired = []; state.fb = {}; state.openReadings=[]; state.tab='today'; state.sent=[]; state.sentMsgs=[]; state.openCard=null; state.openTopic=null; state.q=''; state.draft=''; state.notWell=null; state.notWellSent=false;
+  render();
+}
+document.getElementById('reset').onclick = reset;
+render();
+</script>
+</body>
+</html>
