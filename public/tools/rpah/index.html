@@ -367,9 +367,11 @@ const branches = D.branches.filter(applies);
 // stale answer from before.
 function shouldAsk(it, seen){
   if(!applies(it)) return false;
+  // Array.prototype.filter passes (item, index, array), so seen arrives as a
+  // number when this is used point-free. Coerce rather than trust the caller.
+  const guard = Array.isArray(seen) ? seen : [];
   if(it.askOnDays && (DEMO_DAY < it.askOnDays.from || DEMO_DAY > it.askOnDays.to)) return false;
   if(!it.askWhen) return true;
-  const guard = seen || [];
   if(guard.indexOf(it.id) + 1) return false;
   const parent = allItems().find(x => x.id === it.askWhen.item);
   if(parent && !shouldAsk(parent, guard.concat(it.id))) return false;
@@ -444,7 +446,7 @@ function band(it, v){
 function openItems(){
   const picked = (Array.isArray(state.answers.router)?state.answers.router:[]).filter(x=>x!=='none');
   return picked.map(id => branches.find(b=>b.id===id)).filter(Boolean)
-    .flatMap(b => b.items.filter(shouldAsk));
+    .flatMap(b => b.items.filter(i => shouldAsk(i)));
 }
 function blocker(){
   const s = state.stage;
@@ -461,9 +463,9 @@ function blocker(){
 function esc(s){ return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 function itemsFor(){
-  if(state.stage.kind === 'daily') return D.daily.filter(shouldAsk);
-  if(state.stage.kind === 'closing') return D.closing.filter(shouldAsk);
-  if(state.stage.kind === 'branch') return branches.find(b=>b.id===state.stage.branchId).items.filter(shouldAsk);
+  if(state.stage.kind === 'daily') return D.daily.filter(i => shouldAsk(i));
+  if(state.stage.kind === 'closing') return D.closing.filter(i => shouldAsk(i));
+  if(state.stage.kind === 'branch') return branches.find(b=>b.id===state.stage.branchId).items.filter(i => shouldAsk(i));
   return [];
 }
 
@@ -763,7 +765,7 @@ function render(){
       '<p class="routersub">Pick anything that applies. Most days the answer is nothing.</p>' +
       '<div class="list">' + branches.map(b => {
       const open = picked.includes(b.id);
-      const items = b.items.filter(shouldAsk);
+      const items = b.items.filter(i => shouldAsk(i));
       const crit = open && redFlag(b) === 'critical';
       return '<div class="rgroup'+(open?' open':'')+'">' +
         '<button class="row'+(open?' on':'')+'" data-chip="router" data-val="'+b.id+'">' +
