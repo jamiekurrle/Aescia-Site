@@ -298,7 +298,12 @@
     font-variant-numeric:tabular-nums}
   .trace b{color:#fff;font-weight:600}
   .lvl{display:inline-block;min-width:66px;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
-  .lvl.critical{color:var(--crit)} .lvl.high{color:var(--warn)} .lvl.moderate{color:var(--ok)} .lvl.message{color:var(--ink50)}
+  .lvl.critical{color:var(--crit)} .lvl.high{color:var(--warn)} .lvl.moderate{color:var(--ok)}
+  .lvl.message{color:var(--ink50)} .lvl.finding{color:var(--ink70)} .lvl.none{color:var(--ink35)}
+  .tgroup{margin-bottom:14px}
+  .tgname{margin:0 0 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--ok)}
+  .trow{display:flex;gap:8px;align-items:baseline;margin-bottom:4px}
+  .trow>span:last-child{flex:1;min-width:0}
   .note{font-size:12px;line-height:1.6;color:var(--ink50);margin:12px 0 0}
   .banner{max-width:1010px;margin:0 auto 6px;padding:0 20px}
   .banner p{font-size:13px;line-height:1.7;color:var(--ink70)}
@@ -808,6 +813,9 @@ function advance(){
     state.visitedRouter = true;
     const picked = (Array.isArray(state.answers.router)?state.answers.router:[]).filter(x=>x!=='none');
     state.visited = picked;
+    recordDaily();
+    recordBreadth();
+    recordRules();
     picked.forEach(id => recordBranch(branches.find(b=>b.id===id)));
     const crit = picked.find(id => redFlag(branches.find(b=>b.id===id)) === 'critical');
     if(crit){ state.queue = picked; state.stage = {kind:'emergency',branchId:crit}; }
@@ -832,29 +840,117 @@ function afterCard(id){
   render();
 }
 
-function fire(level, why){ state.fired.push({level, why}); }
+function fire(level, why, group){ state.fired.push({level, why, group: group || 'Check-in'}); }
+
+// Every positive answer is listed, not one summary line per concern. A nurse
+// opening this needs the findings, not the headline: a temperature, a
+// productive cough and night sweats are three things to act on, and the second
+// and third disappear if only the alert is shown.
+function isPositive(it){
+  const v = state.answers[it.id];
+  if(v === undefined || v === '') return false;
+  if(it.redFlagWhen && it.redFlagWhen.includes(String(v))) return true;
+  if(v === 'yes') return true;
+  if(it.kind === 'free-text') return String(v).trim() !== '';
+  if(it.kind === 'single-select' && !['none','routine','all'].includes(String(v))) return true;
+  return false;
+}
+function answerLabel(it){
+  const v = state.answers[it.id];
+  if(it.options){
+    const o = it.options.find(x => x.id === String(v));
+    if(o) return o.label;
+  }
+  if(it.kind === 'free-text') return '“' + String(v).slice(0, 60) + '”';
+  if(v === 'yes') return 'Yes';
+  return String(v);
+}
 function recordBranch(b){
-  const f = redFlag(b);
-  if(f){
-    const item = b.items.find(it => it.redFlagWhen && it.redFlagWhen.includes(String(state.answers[it.id])));
-    fire(f, b.title + ' — ' + (item ? item.text : 'red flag'));
-  } else if(hasConcern(b)) {
-    fire('moderate', b.title + ' — reported, no red flag');
+  const positives = b.items.filter(it => shouldAsk(it)).filter(isPositive);
+  if(!positives.length){ fire('none', 'Opened, nothing positive', b.routerLabel); return; }
+  for(const it of positives){
+    const v = String(state.answers[it.id]);
+    const isFlag = it.redFlagWhen && it.redFlagWhen.includes(v);
+    fire(isFlag ? (it.redFlagLevel || 'high') : 'finding',
+         it.text + ' — ' + answerLabel(it), b.routerLabel);
   }
 }
+
+// The alert rules that are not simply "this red-flag answer was given". Kept as
+// a table so the trace shows the level a nurse would actually get, rather than
+// grading every positive the same.
+function recordRules(){
+  const a = state.answers, yes = id => a[id] === 'yes';
+  const R = [
+    ['moderate', 'Temperature 38 °C or higher, on its own',        () => yes('resp_fever'), 'Fever or chills'],
+    ['moderate', 'Fever with a new productive cough',                    () => yes('resp_fever') && yes('resp_productive_cough'), 'Cough'],
+    ['high',     'Palpitations with dizziness or near-fainting',         () => yes('palp_episodes') && yes('palp_presyncope'), 'Racing or irregular heartbeat'],
+    ['moderate', 'Palpitations without dizziness',                       () => yes('palp_episodes') && a.palp_presyncope === 'no', 'Racing or irregular heartbeat'],
+    ['moderate', 'Breathing worse lying flat plus waking breathless',    () => yes('breathless_worse_lying') && yes('orthopnea'), 'Shortness of breath'],
+    ['moderate', 'New sharp one-sided chest pain',                       () => yes('pleff_sharp_one_sided'), 'Shortness of breath'],
+    ['high',     'Exertional tightness spreading to jaw, arm or back',   () => yes('ischemia_exertional') && yes('ischemia_radiation'), 'Chest pain or tightness'],
+    ['moderate', 'Pericarditic pattern: eased leaning forward',          () => yes('chest_positional'), 'Chest pain or tightness'],
+    ['moderate', 'Chest pain reported, no red-flag features',            () => yes('ischemia_exertional') && !yes('ischemia_radiation') && a.chest_red_flag !== 'yes', 'Chest pain or tightness'],
+    ['high',     'Sternal click with breathlessness lying flat',         () => yes('chest_sternal_click') && yes('breathless_worse_lying'), 'Chest pain or tightness'],
+    ['high',     'Wound drainage with temperature 38 °C or higher',    () => yes('wound_drainage_soiled') && yes('wound_temp_high'), 'Wound or skin problems'],
+    ['moderate', 'Wound redness spreading, no fever, no drainage',       () => yes('wound_redness_spreading') && !yes('wound_temp_high') && !yes('wound_drainage_soiled'), 'Wound or skin problems'],
+    ['high',     'Weight up 2 kg or more since discharge',               () => yes('weight_gain_2kg'), 'Swelling'],
+    ['moderate', 'Ankle or leg swelling worse, or needing more pillows', () => yes('ankle_leg_swelling_pillows'), 'Swelling'],
+    ['moderate', 'Diarrhoea on colchicine',                              () => yes('colchicine_diarrhoea'), 'Medicine problems or side effects'],
+  ];
+  for(const [level, why, when, group] of R){ if(when()) fire(level, why, group); }
+}
+
+// Breadth is its own signal: the quietly deteriorating patient trips nothing
+// individually. Instrument change c29.
+function recordBreadth(){
+  const picked = (Array.isArray(state.answers.router) ? state.answers.router : []).filter(x => x !== 'none');
+  if(picked.length >= 3) fire('moderate', picked.length + ' concerns raised in one check-in', 'Pattern');
+}
+function recordDaily(){
+  const pain = state.answers.pain_score;
+  if(typeof pain === 'number'){
+    if(pain >= 9) fire('high', 'Pain ' + pain + '/10', 'Daily');
+    else if(pain >= 5) fire('moderate', 'Pain ' + pain + '/10', 'Daily');
+  }
+  const hr = state.answers.hr;
+  if(typeof hr === 'number' && (hr >= 110 || hr < 45))
+    fire('high', 'Resting heart rate ' + hr + ' bpm', 'Daily');
+}
 function recordClosing(){
-  if(state.answers.help_called_ambulance === 'yes') fire('critical','Called an ambulance or attended emergency');
-  if(state.answers.gp_routine === 'concern') fire('message','GP visit about a problem');
-  if(state.answers.gp_routine === 'routine') fire('none','GP visit was something already planned — raises nothing');
-  if((state.answers.final_questions||'').trim()) fire('message','Question for the care team');
-  if((state.answers.day_diary||'').trim()) fire('none','Day diary — stored with the day’s record, no worklist item');
-  if((state.answers.meds_missed_reason||'').trim()) fire('message','Missed doses, with the reason attached');
+  const amb = state.answers.help_called_ambulance;
+  if(amb && amb !== 'none'){
+    fire('critical', answerLabel(D.closing.find(x => x.id === 'help_called_ambulance')), 'Since last check-in');
+  }
+  if(state.answers.gp_routine === 'concern'){
+    const why = (state.answers.gp_concern_text || '').trim();
+    fire('message', 'GP visit about a problem' + (why ? ' — “' + why.slice(0,60) + '”' : ''), 'Since last check-in');
+  }
+  if(state.answers.gp_routine === 'routine') fire('none','GP visit was something already planned', 'Since last check-in');
+  if((state.answers.meds_all_taken) === 'missed'){
+    const why = (state.answers.meds_missed_reason || '').trim();
+    fire('message', 'Missed doses' + (why ? ' — “' + why.slice(0,60) + '”' : ''), 'Daily');
+  }
+  if((state.answers.final_questions||'').trim()) fire('message','Question for the care team', 'Since last check-in');
+  if((state.answers.day_diary||'').trim()) fire('none','Day diary — stored, no worklist item', 'Since last check-in');
 }
 
 function paint(){
   const t = document.getElementById('trace');
-  t.innerHTML = state.fired.length
-    ? state.fired.map(f => '<div><span class="lvl '+f.level+'">'+(f.level==='none'?'no alert':f.level)+'</span> '+esc(f.why)+'</div>').join('')
+  const RANKS = {critical:0, high:1, moderate:2, message:3, finding:4, none:5};
+  const groups = [];
+  for(const f of state.fired){
+    let g = groups.find(x => x.name === f.group);
+    if(!g){ g = {name: f.group, rows: []}; groups.push(g); }
+    g.rows.push(f);
+  }
+  groups.forEach(g => g.rows.sort((a,b) => RANKS[a.level] - RANKS[b.level]));
+  const label = l => l === 'none' ? 'no alert' : (l === 'finding' ? 'positive' : l);
+  t.innerHTML = groups.length
+    ? groups.map(g =>
+        '<div class="tgroup"><p class="tgname">'+esc(g.name)+'</p>' +
+        g.rows.map(f => '<div class="trow"><span class="lvl '+f.level+'">'+label(f.level)+'</span>'+
+          '<span>'+esc(f.why)+'</span></div>').join('') + '</div>').join('')
     : 'Nothing raised yet. Answers appear here as you go, with the alert each one fires.';
 
   const a = document.getElementById('answers');
