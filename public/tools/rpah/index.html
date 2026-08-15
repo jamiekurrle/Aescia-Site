@@ -137,10 +137,22 @@
   .cal-cell .dnum{font-size:12px;font-weight:700}
   .cal-cell .dmon{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.7}
   .cal-cell .dtick{position:absolute;right:3px;top:2px;font-size:8px;font-weight:700;opacity:.85}
-  .cal-cell.blank{background:transparent}
-  .cal-cell.ahead{background:rgba(255,255,255,.05);border:1px solid rgba(231,250,255,.14);color:var(--ink35)}
-  .cal-cell.done{background:var(--cta);color:var(--ctaink)}
-  .cal-cell.now{background:transparent;border:1.5px solid var(--cta);color:#fff}
+  /* Prefixed on purpose: a bare .done here inherits the finished-screen rule
+     (.done{padding:60px 10px}) and every completed day grows to five times its
+     height. Same trap for .now and .blank against the pill and nav classes. */
+  .cal-cell.cal-is-blank{background:transparent;border:none}
+  .cal-cell.cal-is-ahead{background:rgba(255,255,255,.05);border:1px solid rgba(231,250,255,.14);color:var(--ink35)}
+  .cal-cell.cal-is-done{background:var(--cta);color:var(--ctaink)}
+  .cal-cell.cal-is-now{background:transparent;border:1.5px solid var(--cta);color:#fff}
+  .cal-cell{padding:0}
+  .cal-cell.cal-is-home{box-shadow:inset 0 0 0 2px var(--surface)}
+  .cal-cell .dhome{position:absolute;left:3px;top:1px;font-size:9px;font-weight:700;opacity:.8}
+  .cal-key{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:11.5px;color:var(--ink50)}
+  .cal-key span{display:inline-flex;align-items:center;gap:5px}
+  .cal-key i{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .k-home{background:transparent;box-shadow:inset 0 0 0 2px var(--surface)}
+  .k-done{background:var(--cta)}
+  .k-now{background:transparent;border:1.5px solid var(--cta)}
   .week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:22px}
   .wd{text-align:center}
   .wd .lab{font-size:11px;font-weight:600;color:var(--ink50);letter-spacing:.06em}
@@ -550,19 +562,22 @@ function todayScreen(){
   const DOW = ['M','T','W','T','F','S','S'];
   const cells = [];
   const lead = (START.getDay() + 6) % 7;                          // Monday-first
-  for (let i = 0; i < lead; i++) cells.push('<span class="cal-cell blank"></span>');
+  for (let i = 0; i < lead; i++) cells.push('<span class="cal-cell cal-is-blank"></span>');
   for (let n = 1; n <= TOTAL; n++) {
     const d = new Date(START.getTime() + (n - 1) * 86400000);
-    const cls = n <= DONE ? 'done' : (n === DAY ? 'now' : 'ahead');
+    const cls = n <= DONE ? 'cal-is-done' : (n === DAY ? 'cal-is-now' : 'cal-is-ahead');
     const first = d.getDate() === 1 || n === 1;
+    const home = n === 1;   // day 1 is the day the hospital stay ended
     cells.push(
-      '<span class="cal-cell ' + cls + '" title="Day ' + n + '">' +
+      '<span class="cal-cell ' + cls + (home ? ' cal-is-home' : '') + '" title="' +
+        (home ? 'Day 1 — came home' : 'Day ' + n) + '">' +
         '<span class="dnum">' + d.getDate() + '</span>' +
         (first ? '<span class="dmon">' + d.toLocaleString('en-AU', { month: 'short' }) + '</span>' : '') +
         (n <= DONE ? '<span class="dtick">✓</span>' : '') +
+        (home ? '<span class="dhome" aria-hidden>⌂</span>' : '') +
       '</span>');
   }
-  while (cells.length % 7) cells.push('<span class="cal-cell blank"></span>');
+  while (cells.length % 7) cells.push('<span class="cal-cell cal-is-blank"></span>');
   const head = DOW.map(d => '<span class="cal-dow">' + d + '</span>').join('');
   const done = state.sent;
   const rows = D.tasks.filter(t=>t.id!=='checkin').map(t =>
@@ -572,7 +587,10 @@ function todayScreen(){
     '<span class="chev">\u203A</span></button>').join('');
   return '<div class="daybar"><div class="dayrow"><b>Day '+DAY+' of '+TOTAL+'</b>'+
       '<span>'+DONE+' check-ins done</span></div>'+
-      '<div class="cal-head">'+head+'</div><div class="cal">'+cells.join('')+'</div></div>' +
+      '<div class="cal-head">'+head+'</div><div class="cal">'+cells.join('')+'</div>'+
+      '<div class="cal-key"><span><i class="k-home"></i>Came home</span>'+
+        '<span><i class="k-done"></i>Checked in</span>'+
+        '<span><i class="k-now"></i>Today</span></div></div>' +
     '<div class="progressline">Your pain has come down from 7 to 4 since you came home, and you walked about 23 minutes yesterday. That is what we expect at day 7.</div>' +
     '<p class="tiplab">Today</p>' +
     '<h2 class="tiptitle">'+(done.includes('checkin')?'You are up to date':'Your check-in is ready')+'</h2>' +
