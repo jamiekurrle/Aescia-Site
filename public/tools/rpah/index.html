@@ -129,8 +129,8 @@
   .dayrow{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px}
   .dayrow b{font-size:19px;font-weight:700;letter-spacing:-.01em}
   .dayrow span{font-size:14px;color:var(--ink50)}
-  .cal{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:4px}
-  .cal-day{min-width:0;aspect-ratio:1;border-radius:6px;display:flex;align-items:center;
+  .cal{display:flex;flex-wrap:wrap;gap:4px}
+  .cal-day{flex:0 0 auto;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;
     justify-content:center;font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
   .cal-day.ahead{background:rgba(255,255,255,.05);border:1px solid rgba(231,250,255,.16);color:var(--ink35)}
   .cal-day.done{background:var(--cta);color:var(--ctaink)}
@@ -339,11 +339,31 @@ const HIST = { painFrom:7, painNow:4, walkNow:23 };
 const applies = x => !x.specialty || x.specialty === 'both' || x.specialty === D.specialty;
 const branches = D.branches.filter(applies);
 
-function shouldAsk(it){
+// A follow-up is only asked when its parent is still asked AND still answered
+// the way that opened it. Without the first half, answering "no" higher up
+// leaves the child on screen, because the child's own condition still matches a
+// stale answer from before.
+function shouldAsk(it, seen){
   if(!applies(it)) return false;
   if(!it.askWhen) return true;
+  const guard = seen || [];
+  if(guard.indexOf(it.id) + 1) return false;
+  const parent = allItems().find(x => x.id === it.askWhen.item);
+  if(parent && !shouldAsk(parent, guard.concat(it.id))) return false;
   const prior = state.answers[it.askWhen.item];
   return prior !== undefined && it.askWhen.isAnyOf.includes(String(prior));
+}
+function allItems(){
+  return D.daily.concat(D.closing, branches.reduce((a,b) => a.concat(b.items), []));
+}
+// Drop answers to questions that are no longer asked, so a retracted "yes"
+// cannot leave a stale free-text behind for the alert engine to read.
+function pruneAnswers(){
+  for(const it of allItems()){
+    if(it.askWhen && !shouldAsk(it) && state.answers[it.id] !== undefined){
+      delete state.answers[it.id];
+    }
+  }
 }
 function answered(it){
   if(it.optional) return true;
@@ -806,6 +826,7 @@ document.addEventListener('click', e => {
   if(set){
     const id = set.dataset.set;
     state.answers[id] = set.dataset.num !== undefined ? Number(set.dataset.num) : set.dataset.val;
+    pruneAnswers();
     return render();
   }
   const chip = e.target.closest('[data-chip]');
