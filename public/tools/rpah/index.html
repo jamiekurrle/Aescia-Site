@@ -10,6 +10,9 @@
     --bg:#091721; --panel:#12293D;
     --grad:linear-gradient(180deg,#427A9D 0%,#1D4D71 28%,#164164 48%,#0C2E4B 72%,#091721 100%);
     --ink:#FFFFFF; --ink70:#E7FAFF; --ink50:rgba(231,250,255,.62); --ink35:rgba(231,250,255,.38);
+    /* Placeholders were falling through to the browser default, which on this
+       navy is barely legible. These readers are 65 and over. */
+    --placeholder:rgba(231,250,255,.74);
     --divider:rgba(231,250,255,.16); --card:rgba(255,255,255,.07); --cardline:rgba(231,250,255,.16);
     --cta:#76D4FF; --ctaink:#0B2540;
     /* Days with something on them, so a plan day never reads as a check-in day. */
@@ -222,9 +225,11 @@
   .lhead .lt{flex:1;text-align:center;margin-right:34px}
   .lhead .lt b{display:block;font-size:17px;font-weight:600}
   .lhead .lt span{display:block;font-size:13px;color:var(--ink50)}
+  input::placeholder,textarea::placeholder{color:var(--placeholder);opacity:1}
   .lsearch{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--cardline);
-    border-radius:14px;padding:12px 14px;margin-bottom:6px}
-  .lsearch input{flex:1;background:none;border:none;color:#fff;font-size:15px;font-family:inherit;outline:none}
+    border-radius:14px;padding:13px 14px;margin-bottom:6px}
+  .lsearch>span{color:var(--ink70);font-size:17px;line-height:1}
+  .lsearch input{flex:1;background:none;border:none;color:#fff;font-size:16px;font-family:inherit;outline:none}
   .lgroup{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--ink50);margin:18px 0 10px}
   .lcard{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);
     border:1px solid var(--cardline);border-radius:18px;padding:14px;margin-bottom:10px;color:inherit}
