@@ -24,20 +24,109 @@
     --crit-bg:#7A2318; --crit-line:rgba(255,138,122,.35); --crit-ink:#FFD9D2; --crit:#FF8A7A;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
+  /* Demo colour schemes. Each sets only what makes it that scheme; everything
+     else falls through to :root above. Light mode restates the ink separately,
+     because a near-white ink inherited onto a white page is how the RPAH light
+     theme in the app went white on white. */
+  body[data-scheme="slate"]{
+    --bg:#0E1418; --panel:#1B252C;
+    --grad:linear-gradient(180deg,#6E8A9C 0%,#41586A 28%,#33475A 48%,#22303E 72%,#0E1418 100%);
+    --cta:#9FD8E8; --ctaink:#12222B; --ok:#9FD8E8;
+    --ok-bg:rgba(159,216,232,.12); --ok-line:rgba(159,216,232,.32);
+    --tick:#12222B; --brass:#D6C08F;
+  }
+  body[data-scheme="forest"]{
+    --bg:#0B1712; --panel:#132A21;
+    --grad:linear-gradient(180deg,#4E8C6E 0%,#2F6350 28%,#255242 48%,#183A2E 72%,#0B1712 100%);
+    --cta:#8FE3B4; --ctaink:#0C2419; --ok:#8FE3B4;
+    --ok-bg:rgba(143,227,180,.12); --ok-line:rgba(143,227,180,.32);
+    --tick:#0C2419; --brass:#E0C58A;
+  }
+  body[data-scheme="plum"]{
+    --bg:#150E1C; --panel:#26193046;
+    --panel:#261930;
+    --grad:linear-gradient(180deg,#8067A0 0%,#573F71 28%,#46335C 48%,#2E2140 72%,#150E1C 100%);
+    --cta:#D9B8FF; --ctaink:#241436; --ok:#D9B8FF;
+    --ok-bg:rgba(217,184,255,.12); --ok-line:rgba(217,184,255,.32);
+    --tick:#241436; --brass:#E3C79A;
+  }
+
+  /* Light mode. Ink, surfaces and edges all restated, never inherited. */
+  body[data-mode="light"]{
+    --bg:#E9EFF6; --panel:#FFFFFF;
+    --grad:linear-gradient(180deg,#DCE9F5 0%,#EAF1F8 34%,#F4F8FC 66%,#FFFFFF 100%);
+    --ink:#122436; --ink70:rgba(18,36,54,.78); --ink50:rgba(18,36,54,.60); --ink35:rgba(18,36,54,.42);
+    --placeholder:rgba(18,36,54,.66);
+    --divider:rgba(18,36,54,.14); --card:rgba(18,36,54,.05); --cardline:rgba(18,36,54,.16);
+    --cta:#12496E; --ctaink:#FFFFFF;
+    --surface:#12496E; --surfink:#FFFFFF;
+    --tick:#12496E; --tickfg:#FFFFFF;
+    --ok:#0F5C86; --ok-bg:rgba(15,92,134,.10); --ok-line:rgba(15,92,134,.30);
+    --brass:#8A6A20;
+    --warn-bg:#FBF1DD; --warn-line:rgba(168,110,20,.34); --warn-ink:#5E410F; --warn:#8A6413;
+    --crit-bg:#FDEDEA; --crit-line:rgba(197,56,42,.34); --crit-ink:#7C2419; --crit:#B23325;
+  }
+  body[data-mode="light"] nav{background:rgba(255,255,255,.9)}
+  body[data-mode="light"] .phone{box-shadow:0 24px 70px rgba(18,36,54,.22)}
+  body[data-mode="light"] .chip,body[data-mode="light"] .row,body[data-mode="light"] .fbbtn{
+    background:rgba(18,36,54,.04);border-color:rgba(18,36,54,.20);color:var(--ink)}
+  body[data-mode="light"] .row.on,body[data-mode="light"] .chip.on{
+    background:var(--cta);color:var(--ctaink);border-color:var(--cta)}
+  body[data-mode="light"] .reading{background:rgba(18,36,54,.04);border-color:rgba(18,36,54,.20)}
+  body[data-mode="light"] .lsearch input,body[data-mode="light"] textarea,
+  body[data-mode="light"] input[type=number]{color:var(--ink)}
+
+  /* Type schemes */
+  body[data-type="serif"]{--font:Georgia,"Iowan Old Style","Times New Roman",serif}
+  body[data-type="mono"]{--font:"Atkinson Hyperlegible",Verdana,Tahoma,"Segoe UI",sans-serif;letter-spacing:.005em}
+
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
-  .wrap{display:flex;gap:28px;align-items:flex-start;justify-content:center;padding:28px 20px 60px;flex-wrap:wrap}
+  /* A fixed shell: the banner keeps its place, the area below it scrolls, and
+     the phone is sticky inside that area. Capping the phone against the viewport
+     was not enough on its own, because the banner sits above it and pushed the
+     tab bar under the fold before any scrolling had happened. */
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;
+    height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+  .banner{flex:0 0 auto}
+  .wrap{flex:1;min-height:0;overflow-y:auto;display:flex;gap:28px;align-items:flex-start;
+    justify-content:center;padding:20px 20px 60px;flex-wrap:wrap}
 
   /* Phone */
-  .phone{width:100%;max-width:430px;min-height:760px;border-radius:28px;overflow:hidden;
+  /* Sticky and capped to the viewport, so the tab bar is always on screen.
+     Capping height alone was not enough: the banner and the page padding still
+     pushed the bottom of the phone past the fold. Sticky also keeps the phone
+     in place while the notes panel beside it scrolls. */
+  .phone{width:100%;max-width:430px;position:sticky;top:0;
+    height:100%;max-height:880px;min-height:520px;
+    border-radius:28px;overflow:hidden;
     background:var(--grad);
     box-shadow:0 24px 70px rgba(0,0,0,.5);display:flex;flex-direction:column;position:relative}
   header{padding:20px 20px 16px}
   .eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:var(--ink50)}
   .hrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
-  .aa{display:inline-flex;align-items:baseline;gap:3px;min-height:36px;padding:6px 14px;border-radius:99px;
-    background:rgba(255,255,255,.12);color:#fff;font-weight:700}
+  .hbtns{display:flex;align-items:center;gap:8px}
+  .aa,.demobtn{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:6px 14px;border-radius:99px;
+    background:var(--card);border:1px solid var(--cardline);color:var(--ink);font-weight:700;
+    font-family:inherit;cursor:pointer}
+  .aa{align-items:baseline}
   .aa .s{font-size:12px} .aa .l{font-size:18px;line-height:1}
+  .demobtn{font-size:13px}
+
+  /* Demo drawer */
+  .scrim{position:absolute;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end}
+  .sheet{width:100%;max-height:88%;overflow-y:auto;background:var(--panel);border-top:1px solid var(--divider);
+    border-radius:18px 18px 0 0;padding:18px 20px 24px}
+  .sheet .shead{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+  .sheet .slab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ok)}
+  .sheet .sclose{background:none;border:0;color:var(--ink70);font-size:20px;line-height:1;cursor:pointer;
+    padding:4px 6px;font-family:inherit}
+  .sheet .snote{font-size:13.5px;line-height:1.5;color:var(--ink70);margin:0 0 16px}
+  .sgroup{margin-top:16px}
+  .sgroup>b{display:block;font-size:14px;font-weight:700;margin-bottom:7px;color:var(--ink)}
+  .spills{display:flex;flex-wrap:wrap;gap:7px}
+  .spill{padding:9px 14px;border-radius:99px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:inherit;
+    background:var(--card);border:1px solid var(--cardline);color:var(--ink)}
+  .spill.on{background:var(--cta);border-color:var(--cta);color:var(--ctaink)}
   h1{margin:8px 0 4px;font-size:28px;line-height:1.1;letter-spacing:-.02em}
   .sub{font-size:14px;color:var(--ink70);margin:0}
   main{flex:1;padding:0 20px 96px;overflow-y:auto}
@@ -315,7 +404,9 @@
     font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.35)}
   nav{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);
     background:rgba(9,23,33,.82);backdrop-filter:blur(8px);border-top:1px solid var(--divider)}
-  nav span{padding:12px 0;text-align:center;font-size:12px;font-weight:600;color:var(--ink35)}
+  /* Inactive tabs were on the decorative ink and measured under 3:1 in every
+     scheme. They are labels a patient navigates by, not decoration. */
+  nav span{padding:16px 0;text-align:center;font-size:13px;font-weight:600;color:var(--ink50);cursor:pointer}
   nav span.on{color:var(--ok)}
 
   /* Side panel */
@@ -356,7 +447,10 @@
     <header>
       <div class="hrow">
         <div class="eyebrow">RPAH SAFE-Discharge preview</div>
-        <button class="aa" id="aa" aria-label="Text size. Tap to change."><span class="s">A</span><span class="l">A</span></button>
+        <div class="hbtns">
+          <button class="aa" id="aa" aria-label="Text size. Tap to change."><span class="s">A</span><span class="l">A</span></button>
+          <button class="demobtn" id="demobtn" aria-label="Demo options">&#9881; Demo</button>
+        </div>
       </div>
       <h1 id="ph1">Day 7 at home</h1>
       <p class="sub" id="psub">Ken · Triple bypass</p>
@@ -364,6 +458,7 @@
     <main id="main"></main>
     <div class="anytime" id="anytime">I am not doing well</div>
     <nav id="nav"></nav>
+    <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet"></div></div>
   </div>
 
   <div class="side">
@@ -1210,12 +1305,69 @@ document.addEventListener('input', e => {
     : !(state.stage.kind==='router' ? true : itemsFor().every(answered));
   paint();
 });
+// Demo controls. Presentation only: none of this changes a question, a rule or
+// an alert, and it is here so the same instrument can be shown against a few
+// house styles without rebuilding.
+const SCHEMES = [
+  { id:'figma',  label:'RPAH navy' },
+  { id:'slate',  label:'Slate' },
+  { id:'forest', label:'Forest' },
+  { id:'plum',   label:'Plum' },
+];
+const TYPES = [
+  { id:'system', label:'System' },
+  { id:'serif',  label:'Serif' },
+  { id:'mono',   label:'High legibility' },
+];
+const MODES = [{ id:'dark', label:'Dark' }, { id:'light', label:'Light' }];
+const SIZES = [{ id:0, label:'Standard' }, { id:1, label:'Large' }, { id:2, label:'Largest' }];
+
+const demo = { scheme:'figma', type:'system', mode:'dark', size:0 };
+
+function applyDemo(){
+  const b = document.body;
+  if(demo.scheme === 'figma') b.removeAttribute('data-scheme'); else b.dataset.scheme = demo.scheme;
+  if(demo.type === 'system') b.removeAttribute('data-type'); else b.dataset.type = demo.type;
+  if(demo.mode === 'dark') b.removeAttribute('data-mode'); else b.dataset.mode = demo.mode;
+  fontStep = demo.size;
+  document.getElementById('main').style.zoom = FONT_STEPS[fontStep];
+}
+
+function pills(group, opts, current){
+  return '<div class="spills">' + opts.map(o =>
+    '<button class="spill'+(String(o.id)===String(current)?' on':'')+'" data-demo="'+group+'" data-val="'+o.id+'">'+
+    o.label+'</button>').join('') + '</div>';
+}
+
+function paintSheet(){
+  document.getElementById('sheet').innerHTML =
+    '<div class="shead"><span class="slab">Demo options</span>' +
+    '<button class="sclose" id="sclose" aria-label="Close demo options">&times;</button></div>' +
+    '<p class="snote">Presentation only. The questions, the rules and the alerts are the same whatever you pick here.</p>' +
+    '<div class="sgroup"><b>Colour scheme</b>'+pills('scheme', SCHEMES, demo.scheme)+'</div>' +
+    '<div class="sgroup"><b>Light or dark</b>'+pills('mode', MODES, demo.mode)+'</div>' +
+    '<div class="sgroup"><b>Type</b>'+pills('type', TYPES, demo.type)+'</div>' +
+    '<div class="sgroup"><b>Text size</b>'+pills('size', SIZES, demo.size)+'</div>';
+}
+
 const FONT_STEPS = [1, 1.25, 1.5];
 let fontStep = 0;
 document.getElementById('aa').onclick = () => {
-  fontStep = (fontStep + 1) % FONT_STEPS.length;
-  document.getElementById('main').style.zoom = FONT_STEPS[fontStep];
+  demo.size = (demo.size + 1) % FONT_STEPS.length;
+  applyDemo();
+  if(!document.getElementById('scrim').hidden) paintSheet();
 };
+const scrim = document.getElementById('scrim');
+document.getElementById('demobtn').onclick = () => { paintSheet(); scrim.hidden = false; };
+scrim.addEventListener('click', e => {
+  if(e.target === scrim || e.target.closest('#sclose')){ scrim.hidden = true; return; }
+  const pill = e.target.closest('[data-demo]');
+  if(!pill) return;
+  const g = pill.dataset.demo;
+  demo[g] = g === 'size' ? Number(pill.dataset.val) : pill.dataset.val;
+  applyDemo();
+  paintSheet();
+});
 document.getElementById('anytime').onclick = () => { state.tab = 'notwell'; render(); };
 function reset(){
   state.answers = {}; state.stage = {kind:'daily'}; state.queue = []; state.visited = [];
