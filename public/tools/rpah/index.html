@@ -81,23 +81,18 @@
   body[data-type="mono"]{--font:"Atkinson Hyperlegible",Verdana,Tahoma,"Segoe UI",sans-serif;letter-spacing:.005em}
 
   *{box-sizing:border-box}
-  /* A fixed shell: the banner keeps its place, the area below it scrolls, and
-     the phone is sticky inside that area. Capping the phone against the viewport
-     was not enough on its own, because the banner sits above it and pushed the
-     tab bar under the fold before any scrolling had happened. */
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;
-    height:100dvh;display:flex;flex-direction:column;overflow:hidden}
-  .banner{flex:0 0 auto}
-  .wrap{flex:1;min-height:0;overflow-y:auto;display:flex;gap:28px;align-items:flex-start;
-    justify-content:center;padding:20px 20px 60px;flex-wrap:wrap}
+  /* Never take over the body's height or overflow. This file is also published
+     as an artifact, where it is injected into a host page and shares its body,
+     so a fixed 100dvh shell there clipped the whole preview. */
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  .wrap{display:flex;gap:28px;align-items:flex-start;justify-content:center;padding:20px 20px 60px;flex-wrap:wrap}
 
   /* Phone */
   /* Sticky and capped to the viewport, so the tab bar is always on screen.
      Capping height alone was not enough: the banner and the page padding still
      pushed the bottom of the phone past the fold. Sticky also keeps the phone
      in place while the notes panel beside it scrolls. */
-  .phone{width:100%;max-width:430px;position:sticky;top:0;
-    height:100%;max-height:880px;min-height:520px;
+  .phone{width:100%;max-width:430px;height:min(880px,calc(100dvh - 40px));min-height:560px;
     border-radius:28px;overflow:hidden;
     background:var(--grad);
     box-shadow:0 24px 70px rgba(0,0,0,.5);display:flex;flex-direction:column;position:relative}
@@ -409,6 +404,24 @@
   nav span{padding:16px 0;text-align:center;font-size:13px;font-weight:600;color:var(--ink50);cursor:pointer}
   nav span.on{color:var(--ok)}
 
+  /* Wide enough for the notes panel to sit alongside: pin the phone so the tab
+     bar is always on screen while those notes scroll past. Narrow, the phone is
+     the whole page and pinning it would trap the scroll, so it stays in flow.
+     --topgap is the banner height, measured at runtime, so the phone fits under
+     it without a magic number. */
+  @media (min-width:900px){
+    .phone{position:sticky;top:12px;height:min(880px,calc(100dvh - 120px));min-height:560px}
+  }
+
+  /* Scroll position, as a bar rather than a scrollbar */
+  main{scrollbar-width:none;-ms-overflow-style:none}
+  main::-webkit-scrollbar{width:0;height:0}
+  .sprog{position:absolute;left:0;right:0;top:0;height:3px;background:var(--divider);
+    opacity:0;transition:opacity .2s;pointer-events:none;z-index:5}
+  .sprog.show{opacity:1}
+  .sprog i{display:block;height:100%;width:0;background:var(--cta);border-radius:0 99px 99px 0;
+    transition:width .08s linear}
+
   /* Side panel */
   .side{width:100%;max-width:520px}
   .side h2{font-size:20px;margin:0 0 4px}
@@ -455,6 +468,7 @@
       <h1 id="ph1">Day 7 at home</h1>
       <p class="sub" id="psub">Ken · Triple bypass</p>
     </header>
+    <div class="sprog" id="sprog" aria-hidden><i></i></div>
     <main id="main"></main>
     <div class="anytime" id="anytime">I am not doing well</div>
     <nav id="nav"></nav>
@@ -1190,6 +1204,8 @@ function recordClosing(){
 }
 
 function paint(){
+  // Content just changed, so how much room there is to scroll changed with it.
+  if(typeof paintScrollProgress === 'function') paintScrollProgress();
   const t = document.getElementById('trace');
   const RANKS = {critical:0, high:1, moderate:2, message:3, finding:4, none:5};
   const groups = [];
@@ -1357,6 +1373,21 @@ document.getElementById('aa').onclick = () => {
   applyDemo();
   if(!document.getElementById('scrim').hidden) paintSheet();
 };
+// The native scrollbar read as a browser artefact sitting on top of the phone.
+// This is the same information as a bar across the top of the scrolling area,
+// which appears only while there is somewhere to scroll to.
+const mainEl = document.getElementById('main');
+const sprog = document.getElementById('sprog');
+function paintScrollProgress(){
+  const room = mainEl.scrollHeight - mainEl.clientHeight;
+  if(room < 8){ sprog.classList.remove('show'); sprog.firstElementChild.style.width = '0%'; return; }
+  sprog.classList.add('show');
+  const pct = Math.min(100, Math.max(0, (mainEl.scrollTop / room) * 100));
+  sprog.firstElementChild.style.width = pct + '%';
+}
+mainEl.addEventListener('scroll', paintScrollProgress, { passive: true });
+window.addEventListener('resize', paintScrollProgress);
+
 const scrim = document.getElementById('scrim');
 document.getElementById('demobtn').onclick = () => { paintSheet(); scrim.hidden = false; };
 scrim.addEventListener('click', e => {
