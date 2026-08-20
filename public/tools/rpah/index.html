@@ -1573,19 +1573,18 @@ function phaseSummaryShort(){
     const short = p === 'preadmission' && state.day > -14;
     title = set.heading;
     line = p === 'preadmission'
-      ? (short
-          ? 'Same questions. Anything that no longer has time to work says so and tells them to raise it, because a bad tooth before a valve is the surgeon’s call to make, not something to drop off a list.'
-          : 'Learns what coming home will look like before they get here: how far they walk, who is at home, whether there are stairs. The suggestions are the ones that change the operation, stopping smoking above all.')
-      : 'Catches what sends people back before they leave, when a nurse is thirty seconds away. It also records the weight and the pain relief that the first week at home gets read against.';
+      ? 'Patient education, current state and relevant history, nudges that improve surgical outcomes, and a route to raise a problem before admission.' +
+        (short ? ' Anything without the lead time to work is marked for the team rather than dropped.' : '')
+      : 'Verification of readiness for discharge, the baselines the home alerts are read against, education for what starts at home, and two-way contact.';
   } else if(p === 'cominghome'){
     title = 'Coming home today';
-    line = 'Discharge day is left alone. The first check-in is the next morning.';
+    line = 'Nothing asked. First check-in the next morning.';
   } else if(p === 'survey'){
     title = 'The exit survey';
-    line = 'Asks what got in the way, so the next version can drop what nobody used.';
+    line = 'Acceptability, usability and adherence, and whether they would use it again.';
   } else {
     title = 'The daily check-in';
-    line = 'A few minutes to find the patient who is getting worse quietly, before they are ringing an ambulance.';
+    line = 'Daily symptom capture, escalation of anything new or worse, patient education at the point of concern, and two-way contact.';
   }
   return '<div class="sumshort"><b>' + esc(title) + '</b><span>' + esc(line) + '</span></div>';
 }
