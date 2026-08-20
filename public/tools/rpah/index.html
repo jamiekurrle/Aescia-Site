@@ -20,8 +20,12 @@
     --surface:#F7FBFF; --surfink:#0C2941; --steel:#294D6C; --bubble:#00AEFF; --done:#34C759;
     --tick:#0C2941; --tickfg:#F7FBFF;
     --ok-bg:rgba(118,212,255,.12); --ok-line:rgba(118,212,255,.32); --ok:#76D4FF;
-    --warn-bg:#6B4A16; --warn-line:rgba(255,202,122,.35); --warn-ink:#FFE7C2; --warn:#FFC46B;
-    --crit-bg:#7A2318; --crit-line:rgba(255,138,122,.35); --crit-ink:#FFD9D2; --crit:#FF8A7A;
+    /* Tints over the gradient, not opaque fills. A solid #6B4A16 mustard and a
+       solid #7A2318 brick sat on the navy as two muddy blocks, while the green
+       cards beside them were a translucent wash of their own accent. The
+       border and the tone label carry the amber and the red. */
+    --warn-bg:rgba(255,196,107,.13); --warn-line:rgba(255,202,122,.38); --warn-ink:#FFE3BE; --warn:#FFC46B;
+    --crit-bg:rgba(255,138,122,.14); --crit-line:rgba(255,138,122,.40); --crit-ink:#FFD3CB; --crit:#FF8A7A;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   /* Demo colour schemes. Each sets only what makes it that scheme; everything
@@ -167,6 +171,9 @@
   .mrow .mtt{flex:1;min-width:0}
   .mrow .mtt b{display:block;font-size:16px;font-weight:700}
   .mrow .mtt span{display:block;font-size:13.5px;color:var(--ink50);margin-top:2px}
+  .sumrow{padding:10px 0;border-top:1px solid var(--divider)}
+  .sumrow b{display:block;font-size:13.5px;font-weight:700;color:var(--ok)}
+  .sumrow span{display:block;font-size:13.5px;line-height:1.45;color:var(--ink70);margin-top:2px}
   .dayread{margin:0 0 8px;font-size:16px;font-weight:700;color:var(--ink)}
   .dayscrub{width:100%;margin:0 0 10px;accent-color:var(--cta)}
   .sheet .slab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ok)}
@@ -1520,21 +1527,73 @@ function paintPreview(){
 
     '<button class="tipcard" type="button">✎ Start today’s check-in<span class="chev">›</span></button>' +
 
+    // A question with a sub-label and a raised answer, so the preview shows the
+    // selected state, the secondary line, and an alert card in one go.
     '<div class="q" style="border:0;padding:12px 0 0">' +
-      '<p class="qtext">Is your breathing worse than yesterday?</p>' +
+      '<p class="qtext">What was that visit for?</p>' +
       '<div class="list">' +
-        '<button class="row" type="button"><span class="box">' + '</span><span class="rowlabel">No</span></button>' +
-        '<button class="row on" type="button"><span class="box">✓</span><span class="rowlabel">Yes</span></button>' +
+        '<button class="row" type="button"><span class="box"></span>' +
+        '<span class="rowlabel">It was something we had already planned' +
+        '<span class="rowsub">Stitches out, a dressing, a repeat script</span></span></button>' +
+        '<button class="row on" type="button"><span class="box">✓</span>' +
+        '<span class="rowlabel">A new or worse problem that you think we should know about</span></button>' +
       '</div>' +
     '</div>' +
 
     '<div class="card amber" style="margin-top:14px">' +
-      '<div class="tone">Worth watching · Breathing</div>' +
-      '<h3>Fluid around the lung</h3>' +
-      '<p>It is common after heart surgery, and it is straightforward to treat.</p>' +
+      '<div class="tone">Worth watching · Seeing your doctor</div>' +
+      '<h3>Thanks for telling us</h3>' +
+      '<p>A nurse will read this with the rest of today’s answers and ring you if it needs a closer look.</p>' +
     '</div>' +
 
     '<div class="tpnav"><span class="on">Today</span><span>Check-in</span><span>Learn</span><span>Messages</span></div>';
+}
+
+// What the questionnaire at the current day actually is. The demo menu used to
+// blank this area, which left the top half of the screen empty while you were
+// choosing the very thing it could have been describing.
+function phaseSummary(){
+  const p = phase(), set = D.phases[p];
+  let title, blurb, rows;
+
+  if(set){
+    const short = p === 'preadmission' && state.day > -14;
+    const tips = set.tips.filter(t => !short || t.whenRunway !== 'long');
+    title = set.heading;
+    blurb = set.body;
+    rows = [
+      [set.items.length + ' questions', p === 'preadmission'
+        ? 'Walking, smoking, weight, who is at home, stairs, help for the first week, and how they feel about it'
+        : 'Walking, breathing, heart rhythm, pain and what is giving it, sleep, gut, wound, weight, medicines, the lift home'],
+      [tips.length + ' suggestions', p === 'preadmission'
+        ? (short ? 'The short list. Close to surgery, the ones needing weeks are dropped' : 'Prehabilitation: stopping smoking, breathing practice, walking, food, the house')
+        : 'What to practise on the ward and what to have ready before leaving'],
+      ['Alerts', p === 'preadmission'
+        ? 'None. This one collects and suggests'
+        : 'Breathless at rest, a wound opening, fainting, and vomiting all raise one'],
+    ];
+  } else if(p === 'cominghome'){
+    title = 'Coming home today';
+    blurb = 'No questionnaire today. The first check-in is tomorrow morning, and the calendar treats today as the day they came home rather than day 1.';
+    rows = [['Nothing asked', 'Deliberate. Discharge day is not a day to be asked questions']];
+  } else if(p === 'survey'){
+    title = 'The exit survey';
+    blurb = 'One last set, the day after the daily questions stop. It asks what worked, what got in the way, and whether they would use it again.';
+    rows = [['Once only', 'Not a check-in. It is about the programme, not about them']];
+  } else {
+    title = 'The daily check-in';
+    blurb = 'The set that runs every day at home. Nine daily questions, then anything new or worse, then a few closing ones.';
+    rows = [
+      ['Every day', 'Pain, exercises, walking, eating, sleep, medicines, optional readings'],
+      ['If something is new or worse', 'One of eleven concerns opens its own questions in place'],
+      ['At the end', 'General practitioner visits, ambulance or readmission, a diary, a question for the team'],
+    ];
+  }
+
+  return '<p class="tplab">What this day asks</p>' +
+    '<h2 class="tph">' + esc(title) + '</h2>' +
+    '<p class="tpsub">' + esc(blurb) + '</p>' +
+    rows.map(r => '<div class="sumrow"><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span></div>').join('');
 }
 
 // The demo menu. Theme is one entry in it rather than the whole panel, so
@@ -1542,12 +1601,12 @@ function paintPreview(){
 function paintMenu(){
   const scheme = (SCHEMES.find(x => x.id === demo.scheme) || {}).label || '';
   const mode = demo.mode === 'light' ? 'Light' : 'Dark';
-  document.getElementById('tprev').innerHTML = '';
+  document.getElementById('tprev').innerHTML = phaseSummary();
   const JUMPS = [
-    { d:-21, label:'3 weeks out' }, { d:-10, label:'10 days out' },
-    { d:-3,  label:'On the ward' }, { d:0,   label:'Coming home' },
-    { d:1,   label:'Day 1' },       { d:7,   label:'Day 7' },
-    { d:12,  label:'Day 12' },      { d:30,  label:'Last day' },
+    { d:-21, label:'3 weeks before' }, { d:-10, label:'10 days before' },
+    { d:-3,  label:'On the ward' },    { d:0,   label:'Coming home' },
+    { d:1,   label:'Day 1' },          { d:7,   label:'Day 7' },
+    { d:12,  label:'Day 12' },         { d:30,  label:'Last day' },
     { d:31,  label:'Survey' },
   ];
   document.getElementById('sheet').innerHTML =
