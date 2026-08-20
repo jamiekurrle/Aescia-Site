@@ -145,6 +145,13 @@
   /* An author display beats the hidden attribute's UA display:none, so the
      panel sat over the whole phone swallowing every tap while looking shut. */
   .scrim[hidden]{display:none}
+  /* The demo menu is a sheet at the top over the running app, so the screen it
+     is describing stays visible behind it. The theme panel keeps the gradient
+     and its own preview, because there the app is the thing being shown. */
+  .scrim[data-showing="demo"]{background:rgba(0,0,0,.45);justify-content:flex-start}
+  .scrim[data-showing="demo"] .tprev{display:none}
+  .scrim[data-showing="demo"] .sheet{order:-1;max-height:82%;border-radius:0 0 18px 18px;
+    border-top:0;border-bottom:1px solid var(--divider)}
   .tprev{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 8px;scrollbar-width:none}
   .tprev::-webkit-scrollbar{width:0}
   .tplab{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ink50);margin:0 0 8px}
@@ -174,6 +181,9 @@
   .sumrow{padding:10px 0;border-top:1px solid var(--divider)}
   .sumrow b{display:block;font-size:13.5px;font-weight:700;color:var(--ok)}
   .sumrow span{display:block;font-size:13.5px;line-height:1.45;color:var(--ink70);margin-top:2px}
+  .sumshort{margin-top:12px;padding-top:10px;border-top:1px solid var(--divider)}
+  .sumshort b{display:block;font-size:14px;font-weight:700;color:var(--ok)}
+  .sumshort span{display:block;font-size:13.5px;line-height:1.45;color:var(--ink70);margin-top:2px}
   .dayread{margin:0 0 8px;font-size:16px;font-weight:700;color:var(--ink)}
   .dayscrub{width:100%;margin:0 0 10px;accent-color:var(--cta)}
   .sheet .slab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ok)}
@@ -1549,9 +1559,35 @@ function paintPreview(){
     '<div class="tpnav"><span class="on">Today</span><span>Check-in</span><span>Learn</span><span>Messages</span></div>';
 }
 
-// What the questionnaire at the current day actually is. The demo menu used to
-// blank this area, which left the top half of the screen empty while you were
-// choosing the very thing it could have been describing.
+// One line about the questionnaire at the selected day, to sit under the day
+// controls. The long version filled a screen; this belongs next to the thing it
+// describes, so it says what the set is and moves on.
+function phaseSummaryShort(){
+  const p = phase(), set = D.phases[p];
+  let title, line;
+  if(set){
+    const short = p === 'preadmission' && state.day > -14;
+    const tips = set.tips.filter(t => !short || t.whenRunway !== 'long');
+    title = set.heading;
+    line = set.items.length + ' questions and ' + tips.length + ' suggestions' +
+      (p === 'preadmission'
+        ? (short ? '. Close to surgery, so the ones needing weeks are dropped.'
+                 : '. Baseline, and things that help before surgery.')
+        : '. Readiness for home, and what the alerts will watch for.');
+  } else if(p === 'cominghome'){
+    title = 'Coming home today';
+    line = 'Nothing asked. The first check-in is tomorrow morning.';
+  } else if(p === 'survey'){
+    title = 'The exit survey';
+    line = 'Once only, about the programme rather than about them.';
+  } else {
+    title = 'The daily check-in';
+    line = 'Nine daily questions, then anything new or worse, then a few closing ones.';
+  }
+  return '<div class="sumshort"><b>' + esc(title) + '</b><span>' + esc(line) + '</span></div>';
+}
+
+// The full-screen version, kept for the theme panel where there is room.
 function phaseSummary(){
   const p = phase(), set = D.phases[p];
   let title, blurb, rows;
@@ -1601,7 +1637,7 @@ function phaseSummary(){
 function paintMenu(){
   const scheme = (SCHEMES.find(x => x.id === demo.scheme) || {}).label || '';
   const mode = demo.mode === 'light' ? 'Light' : 'Dark';
-  document.getElementById('tprev').innerHTML = phaseSummary();
+  document.getElementById('tprev').innerHTML = '';
   const JUMPS = [
     { d:-21, label:'3 weeks before' }, { d:-10, label:'10 days before' },
     { d:-3,  label:'On the ward' },    { d:0,   label:'Coming home' },
@@ -1619,6 +1655,7 @@ function paintMenu(){
       '<div class="spills">' + JUMPS.map(j =>
         '<button class="spill' + (state.day === j.d ? ' on' : '') + '" data-jump="' + j.d + '">' +
         j.label + '</button>').join('') + '</div>' +
+      phaseSummaryShort() +
     '</div>' +
     '<button class="mrow" data-panel="theme">' +
       '<span class="mic">☼</span>' +
@@ -1688,6 +1725,8 @@ function openPanel(which){
 document.getElementById('demobtn').onclick = () => openPanel('demo');
 scrim.addEventListener('click', e => {
   if(e.target.closest('#sclose')){ scrim.hidden = true; return; }
+  // The demo sheet leaves the app visible below it, so a tap down there closes.
+  if(e.target === scrim){ scrim.hidden = true; return; }
   const go = e.target.closest('[data-panel]');
   if(go) return openPanel(go.dataset.panel);
   if(e.target.closest('[data-menu="reset"]')){ scrim.hidden = true; return reset(); }
