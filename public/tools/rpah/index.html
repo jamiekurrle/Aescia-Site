@@ -109,6 +109,9 @@
 
   /* Demo drawer */
   .scrim{position:absolute;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end}
+  /* An author display beats the hidden attribute's UA display:none, so the
+     drawer sat over the whole phone swallowing every tap while looking shut. */
+  .scrim[hidden]{display:none}
   .sheet{width:100%;max-height:88%;overflow-y:auto;background:var(--panel);border-top:1px solid var(--divider);
     border-radius:18px 18px 0 0;padding:18px 20px 24px}
   .sheet .shead{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
