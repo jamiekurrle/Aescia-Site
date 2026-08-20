@@ -178,9 +178,6 @@
   .mrow .mtt{flex:1;min-width:0}
   .mrow .mtt b{display:block;font-size:16px;font-weight:700}
   .mrow .mtt span{display:block;font-size:13.5px;color:var(--ink50);margin-top:2px}
-  .sumrow{padding:10px 0;border-top:1px solid var(--divider)}
-  .sumrow b{display:block;font-size:13.5px;font-weight:700;color:var(--ok)}
-  .sumrow span{display:block;font-size:13.5px;line-height:1.45;color:var(--ink70);margin-top:2px}
   .sumshort{margin-top:12px;padding-top:10px;border-top:1px solid var(--divider)}
   .sumshort b{display:block;font-size:14px;font-weight:700;color:var(--ok)}
   .sumshort span{display:block;font-size:13.5px;line-height:1.45;color:var(--ink70);margin-top:2px}
@@ -1567,69 +1564,23 @@ function phaseSummaryShort(){
   let title, line;
   if(set){
     const short = p === 'preadmission' && state.day > -14;
-    const tips = set.tips.filter(t => !short || t.whenRunway !== 'long');
     title = set.heading;
-    line = set.items.length + ' questions and ' + tips.length + ' suggestions' +
-      (p === 'preadmission'
-        ? (short ? '. Close to surgery, so the ones needing weeks are dropped.'
-                 : '. Baseline, and things that help before surgery.')
-        : '. Readiness for home, and what the alerts will watch for.');
+    line = p === 'preadmission'
+      ? (short
+          ? 'Same questions, but only the suggestions that still fit in days. Someone admitted after an angiogram cannot be told to see a dentist.'
+          : 'Learns what coming home will look like before they get here: how far they walk, who is at home, whether there are stairs. The suggestions are the ones that change the operation, stopping smoking above all.')
+      : 'Catches what sends people back before they leave, when a nurse is thirty seconds away. It also records the weight and the pain relief that the first week at home gets read against.';
   } else if(p === 'cominghome'){
     title = 'Coming home today';
-    line = 'Nothing asked. The first check-in is tomorrow morning.';
+    line = 'Discharge day is left alone. The first check-in is the next morning.';
   } else if(p === 'survey'){
     title = 'The exit survey';
-    line = 'Once only, about the programme rather than about them.';
+    line = 'Asks what got in the way, so the next version can drop what nobody used.';
   } else {
     title = 'The daily check-in';
-    line = 'Nine daily questions, then anything new or worse, then a few closing ones.';
+    line = 'A few minutes to find the patient who is getting worse quietly, before they are ringing an ambulance.';
   }
   return '<div class="sumshort"><b>' + esc(title) + '</b><span>' + esc(line) + '</span></div>';
-}
-
-// The full-screen version, kept for the theme panel where there is room.
-function phaseSummary(){
-  const p = phase(), set = D.phases[p];
-  let title, blurb, rows;
-
-  if(set){
-    const short = p === 'preadmission' && state.day > -14;
-    const tips = set.tips.filter(t => !short || t.whenRunway !== 'long');
-    title = set.heading;
-    blurb = set.body;
-    rows = [
-      [set.items.length + ' questions', p === 'preadmission'
-        ? 'Walking, smoking, weight, who is at home, stairs, help for the first week, and how they feel about it'
-        : 'Walking, breathing, heart rhythm, pain and what is giving it, sleep, gut, wound, weight, medicines, the lift home'],
-      [tips.length + ' suggestions', p === 'preadmission'
-        ? (short ? 'The short list. Close to surgery, the ones needing weeks are dropped' : 'Prehabilitation: stopping smoking, breathing practice, walking, food, the house')
-        : 'What to practise on the ward and what to have ready before leaving'],
-      ['Alerts', p === 'preadmission'
-        ? 'None. This one collects and suggests'
-        : 'Breathless at rest, a wound opening, fainting, and vomiting all raise one'],
-    ];
-  } else if(p === 'cominghome'){
-    title = 'Coming home today';
-    blurb = 'No questionnaire today. The first check-in is tomorrow morning, and the calendar treats today as the day they came home rather than day 1.';
-    rows = [['Nothing asked', 'Deliberate. Discharge day is not a day to be asked questions']];
-  } else if(p === 'survey'){
-    title = 'The exit survey';
-    blurb = 'One last set, the day after the daily questions stop. It asks what worked, what got in the way, and whether they would use it again.';
-    rows = [['Once only', 'Not a check-in. It is about the programme, not about them']];
-  } else {
-    title = 'The daily check-in';
-    blurb = 'The set that runs every day at home. Nine daily questions, then anything new or worse, then a few closing ones.';
-    rows = [
-      ['Every day', 'Pain, exercises, walking, eating, sleep, medicines, optional readings'],
-      ['If something is new or worse', 'One of eleven concerns opens its own questions in place'],
-      ['At the end', 'General practitioner visits, ambulance or readmission, a diary, a question for the team'],
-    ];
-  }
-
-  return '<p class="tplab">What this day asks</p>' +
-    '<h2 class="tph">' + esc(title) + '</h2>' +
-    '<p class="tpsub">' + esc(blurb) + '</p>' +
-    rows.map(r => '<div class="sumrow"><b>' + esc(r[0]) + '</b><span>' + esc(r[1]) + '</span></div>').join('');
 }
 
 // The demo menu. Theme is one entry in it rather than the whole panel, so
