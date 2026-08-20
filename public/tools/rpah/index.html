@@ -76,6 +76,32 @@
   body[data-mode="light"] .lsearch input,body[data-mode="light"] textarea,
   body[data-mode="light"] input[type=number]{color:var(--ink)}
 
+  /* Per-scheme light palettes. The block above and the scheme blocks carry the
+     same specificity and it comes later, so it was overriding the gradient and
+     the accent for every scheme: all four light modes rendered the same navy.
+     Two attributes beat one, so these win. */
+  body[data-scheme="slate"][data-mode="light"]{
+    --bg:#EDEFF1; --panel:#FFFFFF;
+    --grad:linear-gradient(180deg,#DEE4E8 0%,#EAEEF1 34%,#F4F6F8 66%,#FFFFFF 100%);
+    --cta:#2D4654; --ctaink:#FFFFFF; --ok:#2A5568;
+    --ok-bg:rgba(42,85,104,.10); --ok-line:rgba(42,85,104,.30);
+    --surface:#2D4654; --surfink:#FFFFFF; --tick:#2D4654; --brass:#7A6224;
+  }
+  body[data-scheme="forest"][data-mode="light"]{
+    --bg:#EBF2ED; --panel:#FFFFFF;
+    --grad:linear-gradient(180deg,#D8E8DE 0%,#E6F0EA 34%,#F2F8F4 66%,#FFFFFF 100%);
+    --cta:#1F5C3F; --ctaink:#FFFFFF; --ok:#1B6344;
+    --ok-bg:rgba(27,99,68,.10); --ok-line:rgba(27,99,68,.30);
+    --surface:#1F5C3F; --surfink:#FFFFFF; --tick:#1F5C3F; --brass:#7B6320;
+  }
+  body[data-scheme="plum"][data-mode="light"]{
+    --bg:#F0EBF5; --panel:#FFFFFF;
+    --grad:linear-gradient(180deg,#E4DAEE 0%,#EDE6F3 34%,#F6F2F9 66%,#FFFFFF 100%);
+    --cta:#4A3168; --ctaink:#FFFFFF; --ok:#563878;
+    --ok-bg:rgba(86,56,120,.10); --ok-line:rgba(86,56,120,.30);
+    --surface:#4A3168; --surfink:#FFFFFF; --tick:#4A3168; --brass:#7A5F22;
+  }
+
   /* Type schemes */
   body[data-type="serif"]{--font:Georgia,"Iowan Old Style","Times New Roman",serif}
   body[data-type="mono"]{--font:"Atkinson Hyperlegible",Verdana,Tahoma,"Segoe UI",sans-serif;letter-spacing:.005em}
@@ -108,16 +134,31 @@
   .demobtn{font-size:13px}
 
   /* Demo drawer */
-  .scrim{position:absolute;inset:0;z-index:60;background:rgba(0,0,0,.55);display:flex;align-items:flex-end}
+  /* The theme screen. Not a dark overlay: the top half is the app drawn in the
+     scheme being chosen, so a tap on a pill shows the answer straight away
+     rather than dimming everything and making you close the panel to look. */
+  .scrim{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;background:var(--grad)}
   /* An author display beats the hidden attribute's UA display:none, so the
-     drawer sat over the whole phone swallowing every tap while looking shut. */
+     panel sat over the whole phone swallowing every tap while looking shut. */
   .scrim[hidden]{display:none}
-  .sheet{width:100%;max-height:88%;overflow-y:auto;background:var(--panel);border-top:1px solid var(--divider);
-    border-radius:18px 18px 0 0;padding:18px 20px 24px}
+  .tprev{flex:1;min-height:0;overflow-y:auto;padding:16px 18px 8px;scrollbar-width:none}
+  .tprev::-webkit-scrollbar{width:0}
+  .tplab{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ink50);margin:0 0 8px}
+  .tph{margin:0 0 2px;font-size:23px;line-height:1.15;letter-spacing:-.02em;color:var(--ink)}
+  .tpsub{margin:0 0 14px;font-size:13.5px;color:var(--ink70)}
+  .tpgrid{display:flex;gap:8px;margin-bottom:12px}
+  .tpsw{flex:1;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;letter-spacing:.04em}
+  .tpnav{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--divider);
+    background:var(--card);border-radius:12px;overflow:hidden;margin-top:12px}
+  .tpnav span{padding:12px 0;text-align:center;font-size:12px;font-weight:600;color:var(--ink50)}
+  .tpnav span.on{color:var(--ok)}
+  .sheet{width:100%;flex:0 0 auto;max-height:50%;overflow-y:auto;background:var(--panel);
+    border-top:1px solid var(--divider);border-radius:18px 18px 0 0;padding:16px 20px 20px}
   .sheet .shead{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
   .sheet .slab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ok)}
-  .sheet .sclose{background:none;border:0;color:var(--ink70);font-size:20px;line-height:1;cursor:pointer;
-    padding:4px 6px;font-family:inherit}
+  .sheet .sclose{background:var(--cta);border:0;color:var(--ctaink);font-size:13.5px;font-weight:700;
+    line-height:1;cursor:pointer;padding:9px 16px;border-radius:99px;font-family:inherit}
   .sheet .snote{font-size:13.5px;line-height:1.5;color:var(--ink70);margin:0 0 16px}
   .sgroup{margin-top:16px}
   .sgroup>b{display:block;font-size:14px;font-weight:700;margin-bottom:7px;color:var(--ink)}
@@ -465,7 +506,7 @@
         <div class="eyebrow">RPAH SAFE-Discharge preview</div>
         <div class="hbtns">
           <button class="aa" id="aa" aria-label="Text size. Tap to change."><span class="s">A</span><span class="l">A</span></button>
-          <button class="demobtn" id="demobtn" aria-label="Demo options">&#9881; Demo</button>
+          <button class="demobtn" id="demobtn" aria-label="Theme">&#9788; Theme</button>
         </div>
       </div>
       <h1 id="ph1">Day 7 at home</h1>
@@ -475,7 +516,10 @@
     <main id="main"></main>
     <div class="anytime" id="anytime">I am not doing well</div>
     <nav id="nav"></nav>
-    <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet"></div></div>
+    <div class="scrim" id="scrim" hidden>
+      <div class="tprev" id="tprev"></div>
+      <div class="sheet" id="sheet"></div>
+    </div>
   </div>
 
   <div class="side">
@@ -1358,11 +1402,47 @@ function pills(group, opts, current){
     o.label+'</button>').join('') + '</div>';
 }
 
+// Real component classes, so this is the app rather than a drawing of it: change
+// a token and every one of these moves with it.
+function paintPreview(){
+  const scheme = (SCHEMES.find(x => x.id === demo.scheme) || {}).label || '';
+  const mode = demo.mode === 'light' ? 'Light' : 'Dark';
+  document.getElementById('tprev').innerHTML =
+    '<p class="tplab">' + esc(scheme + ' · ' + mode) + '</p>' +
+    '<h2 class="tph">Day 7 at home</h2>' +
+    '<p class="tpsub">Ken · Triple bypass</p>' +
+
+    '<div class="tpgrid">' +
+      '<span class="tpsw" style="background:var(--cta);color:var(--ctaink)">Action</span>' +
+      '<span class="tpsw" style="background:var(--card);border:1px solid var(--cardline);color:var(--ink)">Card</span>' +
+      '<span class="tpsw" style="background:transparent;border:1.5px solid var(--brass);color:var(--brass)">Plan</span>' +
+    '</div>' +
+
+    '<button class="tipcard" type="button">✎ Start today’s check-in<span class="chev">›</span></button>' +
+
+    '<div class="q" style="border:0;padding:12px 0 0">' +
+      '<p class="qtext">Is your breathing worse than yesterday?</p>' +
+      '<div class="list">' +
+        '<button class="row" type="button"><span class="box">' + '</span><span class="rowlabel">No</span></button>' +
+        '<button class="row on" type="button"><span class="box">✓</span><span class="rowlabel">Yes</span></button>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="card amber" style="margin-top:14px">' +
+      '<div class="tone">Worth watching · Breathing</div>' +
+      '<h3>Fluid around the lung</h3>' +
+      '<p>It is common after heart surgery, and it is straightforward to treat.</p>' +
+    '</div>' +
+
+    '<div class="tpnav"><span class="on">Today</span><span>Check-in</span><span>Learn</span><span>Messages</span></div>';
+}
+
 function paintSheet(){
+  paintPreview();
   document.getElementById('sheet').innerHTML =
-    '<div class="shead"><span class="slab">Demo options</span>' +
-    '<button class="sclose" id="sclose" aria-label="Close demo options">&times;</button></div>' +
-    '<p class="snote">Presentation only. The questions, the rules and the alerts are the same whatever you pick here.</p>' +
+    '<div class="shead"><span class="slab">Theme</span>' +
+    '<button class="sclose" id="sclose" aria-label="Close theme options">Done</button></div>' +
+    '<p class="snote">Presentation only. The questions, the rules and the alerts are the same whatever you pick.</p>' +
     '<div class="sgroup"><b>Colour scheme</b>'+pills('scheme', SCHEMES, demo.scheme)+'</div>' +
     '<div class="sgroup"><b>Light or dark</b>'+pills('mode', MODES, demo.mode)+'</div>' +
     '<div class="sgroup"><b>Type</b>'+pills('type', TYPES, demo.type)+'</div>' +
