@@ -846,10 +846,9 @@ function paintChrome(){
   document.getElementById('nav').innerHTML = TABS.map(t =>
     '<span class="'+(state.tab===t.id?'on':'')+'" data-tab="'+t.id+'">'+t.label+'</span>').join('');
   const ph = phase();
-  const homeH = ph === 'home' ? 'Day ' + state.day + ' at home'
+  const homeH = ph === 'home' ? 'Discharge day ' + state.day
               : ph === 'preadmission' ? 'Getting ready'
-              : ph === 'hospital' ? 'Before you go home'
-              : ph === 'cominghome' ? 'Welcome home' : 'One last survey';
+              : ph === 'hospital' ? 'Before you go home' : 'The exit survey';
   const H = {today:homeH, checkin:'Your check-in', learn:'Learn',
              messages:'Your care team', notwell:'Tell us what changed'};
   const S = {today:D.patient.first+' · '+D.patient.procedure, checkin:label(),
@@ -865,18 +864,20 @@ function paintChrome(){
 function phase(){
   const d = state.day;
   if(d <= -8) return 'preadmission';
-  if(d < 0) return 'hospital';
-  if(d === 0) return 'cominghome';
+  // Discharge day is still on the ward, so it belongs to the hospital set.
+  if(d <= 0) return 'hospital';
   if(d <= 30) return 'home';
   return 'survey';
 }
 function label(){
   const d = state.day, p = phase(), n = Math.abs(d);
   if(p === 'preadmission') return n === 1 ? 'Surgery tomorrow' : n + ' days until surgery';
-  if(p === 'hospital') return n === 1 ? 'Home tomorrow' : 'In hospital, home in about ' + n + ' days';
-  if(p === 'cominghome') return 'Coming home today';
-  if(p === 'survey') return 'One last survey';
-  return 'Day ' + d + ' of 30';
+  if(p === 'hospital'){
+    if(n === 0) return 'Going home today';
+    return n === 1 ? 'Home tomorrow' : 'In hospital, home in about ' + n + ' days';
+  }
+  if(p === 'survey') return 'The exit survey';
+  return 'Discharge day ' + d + ' of 30';
 }
 
 // The phases either side of the daily check-ins. Same components, same rules,
@@ -1576,9 +1577,6 @@ function phaseSummaryShort(){
       ? 'Patient education, current state and relevant history, nudges that improve surgical outcomes, and a route to raise a problem before admission.' +
         (short ? ' Anything without the lead time to work is marked for the team rather than dropped.' : '')
       : 'Verification of readiness for discharge, the baselines the home alerts are read against, education for what starts at home, and two-way contact.';
-  } else if(p === 'cominghome'){
-    title = 'Coming home today';
-    line = 'Nothing asked. First check-in the next morning.';
   } else if(p === 'survey'){
     title = 'The exit survey';
     line = 'Acceptability, usability and adherence, and whether they would use it again.';
@@ -1597,10 +1595,9 @@ function paintMenu(){
   document.getElementById('tprev').innerHTML = '';
   const JUMPS = [
     { d:-21, label:'3 weeks before' }, { d:-10, label:'10 days before' },
-    { d:-3,  label:'On the ward' },    { d:0,   label:'Coming home' },
-    { d:1,   label:'Day 1' },          { d:7,   label:'Day 7' },
-    { d:12,  label:'Day 12' },         { d:30,  label:'Last day' },
-    { d:31,  label:'Survey' },
+    { d:-3,  label:'On the ward' },    { d:1,   label:'Discharge day 1' },
+    { d:7,   label:'Discharge day 7' }, { d:12,  label:'Discharge day 12' },
+    { d:30,  label:'Last day of monitoring' }, { d:31, label:'Exit survey' },
   ];
   document.getElementById('sheet').innerHTML =
     '<div class="shead"><span class="slab">Demo</span>' +
