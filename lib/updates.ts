@@ -7,6 +7,12 @@ import type { UpdatesEntry } from '@/lib/schema'
 // English snapshot is the canonical machine-readable version.
 export const updatesEntries: UpdatesEntry[] = [
   {
+    n: 15,
+    date: '2026-08-17',
+    title: 'St. Boniface seed grant awarded for the TPD-CONNECT study.',
+    body: 'Dr Shuangbo Liu at St. Boniface Hospital in Winnipeg has won a St. Boniface cardiovascular seed grant, funded through the National Bank Cardiac Classic, for TPD-CONNECT. It is a 12-month study that co-designs and prototypes tailored post-discharge support for cardiac patients. Aescia is a named collaborator, configuring the platform and building the prototype. Dr Liu is the principal applicant and the work runs at St. Boniface.',
+  },
+  {
     n: 14,
     date: '2026-08-13',
     title: 'SAFE-Discharge completes its 50-patient pilot cohort.',
