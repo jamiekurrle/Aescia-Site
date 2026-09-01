@@ -380,6 +380,18 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.title': 'A log of what shipped and what is next.',
     'updates.subtitle': 'We publish plainly. No press copy, no launch videos, no "we are thrilled" posts. Just dated entries when something real happened.',
     'updates.cta': 'Request a briefing',
+    'updates.entry14.date': '13 August 2026',
+    'updates.entry14.tag': 'Trial',
+    'updates.entry14.title': 'SAFE-Discharge completes its 50-patient pilot cohort.',
+    'updates.entry14.body': 'Enrolment passed 50 participants in August 2026, completing the verification cohort that leads into the 500-patient trial. Recruitment continues at the Royal Prince Alfred Hospital cardiothoracic unit.',
+    'updates.entry13.date': '17 July 2026',
+    'updates.entry13.tag': 'Tools',
+    'updates.entry13.title': 'A free colonoscopy surveillance interval reference.',
+    'updates.entry13.body': 'Published an open surveillance-interval reference for clinicians. Enter what a colonoscopy found and it returns the recommended interval together with the wording of the guideline it came from, across six guideline sets covering the United States, Ontario, Alberta, British Columbia, Australia, and Europe. It runs in the browser, needs no account, and stores nothing.',
+    'updates.entry12.date': '24 June 2026',
+    'updates.entry12.tag': 'Trial',
+    'updates.entry12.title': 'First participants enrolled in SAFE-Discharge.',
+    'updates.entry12.body': 'The first participant was enrolled at the Royal Prince Alfred Hospital cardiothoracic unit on 24 June 2026, three days after recruitment opened, and the first participants completed the full 30-day monitoring window at the end of July. Sydney Local Health District is the trial sponsor and Dr Kei Woldendorp is the principal investigator.',
     'updates.entry11.date': '21 June 2026',
     'updates.entry11.tag': 'Trial',
     'updates.entry11.title': 'SAFE-Discharge begins recruiting at Royal Prince Alfred Hospital.',
@@ -411,7 +423,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry4.date': '10 April 2026',
     'updates.entry4.tag': 'Grants',
     'updates.entry4.title': 'NSW MVP Ventures Round 3 submitted.',
-    'updates.entry4.body': 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Decision expected late June 2026.',
+    'updates.entry4.body': 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Recipients are expected to be announced later in 2026.',
     'updates.entry2.date': '20 October 2025',
     'updates.entry2.tag': 'Press',
     'updates.entry2.title': 'Concordia News features Aescia in Beat the Odds program.',
@@ -791,6 +803,18 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.title': 'Ce qui a été livré, ce qui a été ouvert, et ce qui suit.',
     'updates.subtitle': 'Nous publions sobrement. Pas de communiqués, pas de vidéos de lancement, pas de posts « nous sommes ravis ». Juste des entrées datées quand quelque chose de réel s\'est passé.',
     'updates.cta': 'Demander un briefing',
+    'updates.entry14.date': '13 août 2026',
+    'updates.entry14.tag': 'Essai',
+    'updates.entry14.title': 'SAFE-Discharge complète sa cohorte pilote de 50 patients.',
+    'updates.entry14.body': 'Les inclusions ont dépassé 50 participants en août 2026, achevant la cohorte de vérification qui précède l\'essai de 500 patients. Le recrutement se poursuit à l\'unité de chirurgie cardiothoracique du Royal Prince Alfred Hospital.',
+    'updates.entry13.date': '17 juillet 2026',
+    'updates.entry13.tag': 'Outils',
+    'updates.entry13.title': 'Une référence gratuite sur les intervalles de surveillance après coloscopie.',
+    'updates.entry13.body': 'Publication d\'une référence ouverte sur les intervalles de surveillance, destinée aux cliniciens. On saisit ce qu\'a trouvé la coloscopie et l\'outil renvoie l\'intervalle recommandé ainsi que le libellé de la recommandation dont il provient, pour six corpus de recommandations couvrant les États-Unis, l\'Ontario, l\'Alberta, la Colombie-Britannique, l\'Australie et l\'Europe. Il fonctionne dans le navigateur, sans compte et sans rien enregistrer.',
+    'updates.entry12.date': '24 juin 2026',
+    'updates.entry12.tag': 'Essai',
+    'updates.entry12.title': 'Premiers participants inclus dans SAFE-Discharge.',
+    'updates.entry12.body': 'Le premier participant a été inclus à l\'unité de chirurgie cardiothoracique du Royal Prince Alfred Hospital le 24 juin 2026, trois jours après l\'ouverture du recrutement, et les premiers participants ont terminé la fenêtre complète de suivi de 30 jours à la fin juillet. Le promoteur de l\'essai est le Sydney Local Health District et l\'investigateur principal est le Dr Kei Woldendorp.',
     'updates.entry11.date': '21 juin 2026',
     'updates.entry11.tag': 'Essai',
     'updates.entry11.title': 'SAFE-Discharge commence le recrutement au Royal Prince Alfred Hospital.',
@@ -822,7 +846,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry4.date': '10 avril 2026',
     'updates.entry4.tag': 'Subventions',
     'updates.entry4.title': 'NSW MVP Ventures Round 3 soumis.',
-    'updates.entry4.body': 'Demande MVPV25RD3347 déposée auprès d\'Investment NSW le 10 avril 2026. Programme de financement à part égale pour des travaux de commercialisation ciblés. Décision attendue fin juin 2026.',
+    'updates.entry4.body': 'Demande MVPV25RD3347 déposée auprès d\'Investment NSW le 10 avril 2026. Programme de financement à part égale pour des travaux de commercialisation ciblés. Les bénéficiaires devraient être annoncés plus tard en 2026.',
     'updates.entry2.date': '20 octobre 2025',
     'updates.entry2.tag': 'Presse',
     'updates.entry2.title': 'Concordia News présente Aescia dans le programme Beat the Odds.',
@@ -1327,7 +1351,11 @@ export function LanguageSwitcher({ onDark = false }: { onDark?: boolean }) {
         aria-label="Select language"
         className={`inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest uppercase px-2.5 py-2 border transition-colors min-h-[36px] outline-none ${
           onDark
-            ? 'text-white/90 border-white/40 hover:text-white hover:border-white/70 focus-visible:border-white'
+            // On the transparent nav this control sits at the far right of the
+            // hero, over the brightest part of the image, where an outline
+            // alone leaves 11px type at 2.7:1. Its own translucent fill takes
+            // it to 6.9:1 without darkening the photograph to get there.
+            ? 'text-white bg-[rgba(26,22,20,0.55)] backdrop-blur-[2px] border-white/45 hover:border-white/80 focus-visible:border-white'
             : 'text-foreground/80 border-foreground/30 hover:text-foreground hover:border-foreground/60 focus-visible:border-foreground'
         }`}
       >

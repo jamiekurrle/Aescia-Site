@@ -7,7 +7,7 @@ import { useI18n } from '@/lib/i18n'
 
 // Entries are ordered newest-first. Numbered keys reflect chronological index
 // (entry1 = oldest, entryN = newest). Display reverses to show newest first.
-const entryNumbers = [11, 10, 9, 8, 7, 6, 5, 4, 2, 1] as const
+const entryNumbers = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 2, 1] as const
 
 // Outbound references for entries with public sources. Keyed by chronological
 // entry number. Labels render the same in both locales — short and factual.
@@ -25,6 +25,14 @@ const entryLinks: Record<number, { url: string; label: { en: string; fr: string 
     label: { en: 'MTAA MedTech Compass', fr: 'MTAA MedTech Compass' },
   },
   11: {
+    url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
+    label: { en: 'Trial registration', fr: 'Enregistrement de l\'essai' },
+  },
+  13: {
+    url: '/colonoscopy-surveillance',
+    label: { en: 'Open the reference', fr: 'Ouvrir la référence' },
+  },
+  14: {
     url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
     label: { en: 'Trial registration', fr: 'Enregistrement de l\'essai' },
   },

@@ -7,6 +7,26 @@ import type { UpdatesEntry } from '@/lib/schema'
 // English snapshot is the canonical machine-readable version.
 export const updatesEntries: UpdatesEntry[] = [
   {
+    n: 14,
+    date: '2026-08-13',
+    title: 'SAFE-Discharge completes its 50-patient pilot cohort.',
+    body: 'Enrolment passed 50 participants in August 2026, completing the verification cohort that leads into the 500-patient trial. Recruitment continues at the Royal Prince Alfred Hospital cardiothoracic unit.',
+    url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
+  },
+  {
+    n: 13,
+    date: '2026-07-17',
+    title: 'A free colonoscopy surveillance interval reference.',
+    body: 'Published an open surveillance-interval reference for clinicians. Enter what a colonoscopy found and it returns the recommended interval together with the wording of the guideline it came from, across six guideline sets covering the United States, Ontario, Alberta, British Columbia, Australia, and Europe. It runs in the browser, needs no account, and stores nothing.',
+    url: 'https://aesciahealth.com/colonoscopy-surveillance',
+  },
+  {
+    n: 12,
+    date: '2026-06-24',
+    title: 'First participants enrolled in SAFE-Discharge.',
+    body: 'The first participant was enrolled at the Royal Prince Alfred Hospital cardiothoracic unit on 24 June 2026, three days after recruitment opened, and the first participants completed the full 30-day monitoring window at the end of July. Sydney Local Health District is the trial sponsor and Dr Kei Woldendorp is the principal investigator.',
+  },
+  {
     n: 11,
     date: '2026-06-21',
     title: 'SAFE-Discharge begins recruiting at Royal Prince Alfred Hospital.',
@@ -54,7 +74,7 @@ export const updatesEntries: UpdatesEntry[] = [
     n: 4,
     date: '2026-04-10',
     title: 'NSW MVP Ventures Round 3 submitted.',
-    body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Decision expected late June 2026.',
+    body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Recipients are expected to be announced later in 2026.',
   },
   {
     n: 2,
