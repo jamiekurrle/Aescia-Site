@@ -117,6 +117,17 @@
   <!-- novalidate: native constraint validation would otherwise try to validate hidden
        branch controls (which the collector already excludes) and block submission.
        Consent gating + the JS checks in the submit handler enforce what we need. -->
+  <!-- The survey closed on 14 August 2026. The prize-draw terms promise a winner
+       drawn from entries received by that date, so the form must stop taking new
+       ones: a late entrant would be told they had entered a draw they cannot win.
+       Date-driven rather than deleted, so the page keeps working if it is reopened. -->
+  <div id="closed-notice" hidden style="border:1px solid #d8d2c4;background:#faf8f3;padding:20px 22px;margin:0 0 28px;border-radius:4px;line-height:1.6">
+    <strong>This survey has closed.</strong>
+    <p style="margin:10px 0 0">Thank you to everyone who shared their experience. The survey
+       ran until 14 August 2026 and is no longer accepting responses.
+       <a href="results.html">See what people told us</a>.</p>
+  </div>
+
   <form id="survey" novalidate>
     <!-- How the visitor reached the survey: ?src= share-link tag, else referrer
          hostname, else "direct". Non-identifying; used to learn which shared
@@ -806,6 +817,12 @@ document.getElementById('survey').addEventListener('submit',async e=>{
   e.preventDefault();
   const form=e.target;
 
+  // Refuse anything submitted after the close, including from a tab opened before it.
+  if(surveyIsClosed()){
+    showFormError('This survey closed on 14 August 2026 and is no longer accepting responses.');
+    return;
+  }
+
   // Collect only VISIBLE, checked, non-empty controls — skips any hidden branch,
   // so answers from a path the person navigated away from are never submitted.
   const out={};
@@ -868,6 +885,25 @@ document.getElementById('survey').addEventListener('submit',async e=>{
   thanks.focus();
   window.scrollTo(0,0);
 });
+</script>
+<script>
+// Close guard. SURVEY_CLOSES is the end of 14 August 2026 in UTC-11, so the survey
+// stays open until the date has passed everywhere on earth. Past it, the form is
+// hidden and the notice shown; the submit handler below also refuses, so a stale
+// tab left open overnight cannot post an entry after the close.
+var SURVEY_CLOSES = Date.parse('2026-08-15T11:00:00Z');
+function surveyIsClosed(){ return Date.now() > SURVEY_CLOSES; }
+(function(){
+  if(!surveyIsClosed()) return;
+  var f = document.getElementById('survey');
+  var n = document.getElementById('closed-notice');
+  if(f) f.hidden = true;
+  if(n) n.hidden = false;
+  // The header still promises "a short survey, a few minutes"; that reads as an
+  // invitation directly above a notice saying the thing is shut.
+  var lede = document.querySelector('header p');
+  if(lede) lede.hidden = true;
+})();
 </script>
 </body>
 </html>

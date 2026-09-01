@@ -94,18 +94,16 @@
 <div class="wrap">
   <header>
     <h1>What people told us about their colonoscopies</h1>
-    <p>Live results from the colonoscopy experience survey. Anonymous, combined answers only.</p>
+    <p>Results from the colonoscopy experience survey. Anonymous, combined answers only.</p>
   </header>
 
-  <div class="meta" id="meta">Loading the latest results…</div>
+  <div class="meta" id="meta">Loading the results…</div>
   <div id="blocks"><div class="state">Crunching the numbers…</div></div>
 
-  <a class="cta" href="./">Had a colonoscopy? Add your experience, it takes about 4 minutes</a>
-
   <footer>
-    Early numbers from a small, self-selected group; a first look, not a study. This page shows
+    Numbers from a small, self-selected group; a first look, not a study. This page shows
     combined answers only; no individual response can be identified. General information, not
-    medical advice. The survey is open until 14 August 2026.
+    medical advice. The survey closed on 14 August 2026 and these are the final numbers.
     <br><br>Run by <a href="https://aesciahealth.com">Aescia</a> · <a href="prize-terms.html">Prize draw terms</a>
   </footer>
 </div>
@@ -185,7 +183,7 @@ function scaleBar(avg, lowLabel, highLabel, trackLabel){
 
 function render(data){
   var c = data.counts || {}, total = data.total || 0;
-  document.getElementById('meta').innerHTML = '<strong>Live results from everyone who has shared their experience so far.</strong> The page updates as more people take the survey.';
+  document.getElementById('meta').innerHTML = '<strong>Final results from everyone who shared their experience.</strong> The survey ran until 14 August 2026.';
   var html = '';
 
   // 1 — the prep vs expectations donut
