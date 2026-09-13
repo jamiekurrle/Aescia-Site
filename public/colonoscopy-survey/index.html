@@ -117,14 +117,12 @@
   <!-- novalidate: native constraint validation would otherwise try to validate hidden
        branch controls (which the collector already excludes) and block submission.
        Consent gating + the JS checks in the submit handler enforce what we need. -->
-  <!-- The survey closed on 14 August 2026. The prize-draw terms promise a winner
-       drawn from entries received by that date, so the form must stop taking new
-       ones: a late entrant would be told they had entered a draw they cannot win.
-       Date-driven rather than deleted, so the page keeps working if it is reopened. -->
+  <!-- Shown in place of the form only once SURVEY_CLOSES (close guard, bottom of the
+       page) is set to a date and that date has passed. -->
   <div id="closed-notice" hidden style="border:1px solid #d8d2c4;background:#faf8f3;padding:20px 22px;margin:0 0 28px;border-radius:4px;line-height:1.6">
     <strong>This survey has closed.</strong>
     <p style="margin:10px 0 0">Thank you to everyone who shared their experience. The survey
-       ran until 14 August 2026 and is no longer accepting responses.
+       is no longer accepting responses.
        <a href="results.html">See what people told us</a>.</p>
   </div>
 
@@ -151,10 +149,10 @@
         <div class="pv">
           <p><strong>Who:</strong> this survey is run by Aescia Pty Ltd (ABN 96 687 840 517), 15 Amber Place, Bass Hill NSW 2197, led by Dr James Kurrle, for research into the colonoscopy experience.</p>
           <p><strong>What we collect:</strong> your survey answers about your colonoscopy experience (health information), including your country and region, plus which shared link you arrived from. Your name, email, and phone are collected only if you tick an option below and choose to give them.</p>
-          <p><strong>Why:</strong> to understand what the experience is really like and how to improve care around it. If you tick an option, to send you research updates and/or invite you to a short interview and prize draw. We use your details only for the option you tick.</p>
+          <p><strong>Why:</strong> to understand what the experience is really like and how to improve care around it. If you tick an option, to send you research updates and/or invite you to a short interview. We use your details only for the option you tick.</p>
           <p><strong>Where it's stored:</strong> in Google Workspace (Google Drive), which may store or process data on servers outside your country, including the United States. Access is limited to the Aescia research team.</p>
           <p><strong>Sharing:</strong> we don't sell your information or use it for advertising. Anything we publish or present is combined and de-identified so you can't be recognised.</p>
-          <p><strong>How long:</strong> we keep survey answers for up to 24 months, then delete or de-identify them. We delete contact details within 3 months after the interviews and prize draw are finished.</p>
+          <p><strong>How long:</strong> we keep survey answers for up to 24 months, then delete or de-identify them. We delete contact details within 3 months after the interviews are finished.</p>
           <p><strong>Your choices:</strong> taking part is voluntary: you can skip questions and stop at any time. You can ask to see, correct, or delete your information by emailing <strong>james@aescia.com</strong>. If you don't leave contact details, your response isn't linked to your name (though details like your region or free-text answers could still indirectly identify you), and we won't be able to find it later to delete it.</p>
           <p><strong>Questions or complaints:</strong> email james@aescia.com. You can also contact your local privacy regulator.</p>
           <p><strong>Not medical care:</strong> this survey doesn't provide medical advice. If you have a health concern, please contact your doctor or your local emergency service.</p>
@@ -558,14 +556,11 @@
       <!-- INTERVIEW CONSENT — only for people who've had a colonoscopy -->
       <div id="interview-consent" class="hidden" style="margin-top:12px">
         <p class="hint" style="margin-bottom:10px">We're also doing short 15-minute interviews: a
-          relaxed chat by phone or video.
-          <!-- RAFFLE PRIZE — edit the amount/currency or remove this sentence:
-               --> Eligible participants go into a prize draw for a A$100 gift card
-          (18+, some countries only; see <a href="prize-terms.html" target="_blank" rel="noopener">draw terms</a>).</p>
+          relaxed chat by phone or video.</p>
 
         <label class="opt">
           <input type="checkbox" name="contact_ok" value="yes">
-          Yes, you can contact me for a short interview (and enter me in the prize draw)
+          Yes, you can contact me for a short interview
         </label>
       </div>
 
@@ -753,7 +748,7 @@ function applyBranching(){
   // everyone can find out more + leave an email — shown whenever the survey is open,
   // even if the (optional) screener hasn't been answered
   document.getElementById('contact').classList.remove('hidden');
-  // interview consent (+ prize draw) only for people who've actually had a colonoscopy
+  // interview consent only for people who've actually had a colonoscopy
   document.getElementById('interview-consent').classList.toggle('hidden',!hadOne);
   // n2 (prep-ahead) only for booked
   document.getElementById('n2-card').classList.toggle('hidden',s!=='booked');
@@ -793,7 +788,7 @@ function validateClient(out){
   if(out.e1_days!==undefined && !isNonNegInt(out.e1_days)) return 'Days off work must be a whole number (0 or more).';
   if(out.updates_ok==='yes' && !(out.email && isEmail(out.email))) return 'To get research updates, please add a valid email address.';
   if(out.contact_ok==='yes' && !((out.email && isEmail(out.email)) || (out.phone && isPhone(out.phone)))) return 'For an interview, please add a valid email address or phone number.';
-  if(out.contact_ok==='yes' && !out.country) return 'To go in the prize draw, please choose your country near the top.';
+  if(out.contact_ok==='yes' && !out.country) return 'For an interview, please choose your country near the top.';
   if(out.contact_pref==='phone' && !(out.phone && isPhone(out.phone))) return 'You chose a phone call. Please add a valid phone number.';
   if(out.contact_pref==='email' && !(out.email && isEmail(out.email))) return 'You chose email. Please add a valid email address.';
   if(out.consent!=='yes') return 'Please tick "I’m over 18 and I agree to take part" first.';
@@ -819,7 +814,7 @@ document.getElementById('survey').addEventListener('submit',async e=>{
 
   // Refuse anything submitted after the close, including from a tab opened before it.
   if(surveyIsClosed()){
-    showFormError('This survey closed on 14 August 2026 and is no longer accepting responses.');
+    showFormError('This survey has closed and is no longer accepting responses.');
     return;
   }
 
@@ -887,12 +882,14 @@ document.getElementById('survey').addEventListener('submit',async e=>{
 });
 </script>
 <script>
-// Close guard. SURVEY_CLOSES is the end of 14 August 2026 in UTC-11, so the survey
-// stays open until the date has passed everywhere on earth. Past it, the form is
-// hidden and the notice shown; the submit handler below also refuses, so a stale
-// tab left open overnight cannot post an entry after the close.
-var SURVEY_CLOSES = Date.parse('2026-08-15T11:00:00Z');
-function surveyIsClosed(){ return Date.now() > SURVEY_CLOSES; }
+// Close guard. The survey is open while SURVEY_CLOSES is null. To close it, set
+// Date.parse('YYYY-MM-DDT11:00:00Z') using the day AFTER the last open day: 11:00 UTC
+// is midnight in UTC-11, so the survey stays open until the last day has passed
+// everywhere on earth. Past it, the form is hidden and the notice shown; the submit
+// handler also refuses, so a stale tab left open overnight cannot post after the close.
+// The null check matters: Date.now() > null is true, which would close the survey.
+var SURVEY_CLOSES = null;
+function surveyIsClosed(){ return SURVEY_CLOSES !== null && Date.now() > SURVEY_CLOSES; }
 (function(){
   if(!surveyIsClosed()) return;
   var f = document.getElementById('survey');
