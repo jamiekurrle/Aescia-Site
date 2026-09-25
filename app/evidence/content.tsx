@@ -138,7 +138,6 @@ export function PageContent() {
                 [t('evidence.page.programme.row.sponsor.label'), t('evidence.page.programme.row.sponsor.value'), false],
                 [t('evidence.page.programme.row.pi.label'), t('evidence.page.programme.row.pi.value'), false],
                 [t('evidence.page.programme.row.population.label'), t('evidence.page.programme.row.population.value'), false],
-                [t('evidence.page.programme.row.sample.label'), t('evidence.page.programme.row.sample.value'), false],
                 [t('evidence.page.programme.row.status.label'), t('evidence.page.programme.row.status.value'), false],
               ] as Array<[string, React.ReactNode, boolean]>).map(([k, v, mono], i) => (
                 <div key={i} className="grid grid-cols-[180px_1fr] gap-6 py-6">

@@ -5,13 +5,13 @@ import { breadcrumbSchema } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Governance: regulatory posture and quality systems',
+  title: 'Governance: regulatory posture and standards',
   description:
-    'How Aescia is governed. Investigational medical device posture for Hospitals. Non-device workflow posture for Clinics. Certifications not yet obtained. Full security pack available under NDA.',
+    'How Aescia is governed. Investigational medical device posture for Hospitals. Non-device workflow posture for Clinics. Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304; certification is planned. Full security pack available under a non-disclosure agreement.',
   alternates: { canonical: '/governance' },
   openGraph: {
     title: 'Aescia governance and regulatory posture',
-    description: 'Regulatory posture, security frameworks, corporate structure, and the boundary between products.',
+    description: 'Regulatory posture, certification status, corporate structure, and the boundary between products.',
     url: '/governance',
   },
 }

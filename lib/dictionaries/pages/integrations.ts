@@ -2,7 +2,7 @@ export const dict: Record<string, Record<string, string>> = {
   en: {
     'integrations.hero.eyebrow': 'Integration',
     'integrations.hero.title': 'How Aescia fits with your systems.',
-    'integrations.hero.body': 'The honest version. Aescia is pre-first-customer, so there is no named electronic medical record or practice-management integration running in the field yet. This page tells you how a deployment actually starts and how integration gets scoped, rather than listing capabilities we have not field-proven.',
+    'integrations.hero.body': 'Aescia for Clinics has no customers yet, and no named electronic medical record or practice-management integration is running in the field yet. This page tells you how a deployment starts and how integration gets scoped, rather than listing capabilities we have not field-proven.',
 
     'integrations.approach.eyebrow': 'How it works',
     'integrations.approach.item1.term': 'You can start with no integration',
@@ -20,13 +20,13 @@ export const dict: Record<string, Record<string, string>> = {
   fr: {
     'integrations.hero.eyebrow': 'Intégration',
     'integrations.hero.title': 'Comment Aescia s\'intègre à vos systèmes.',
-    'integrations.hero.body': 'La version honnête. Aescia n\'a pas encore de premier client, il n\'y a donc aucune intégration nommée de dossier médical électronique ou de gestion de cabinet en service sur le terrain pour le moment. Cette page vous explique comment un déploiement commence réellement et comment l\'intégration est cadrée, plutôt que d\'énumérer des capacités que nous n\'avons pas éprouvées sur le terrain.',
+    'integrations.hero.body': 'Aescia for Clinics n\'a pas encore de clients, et aucune intégration nommée de dossier médical électronique ou de gestion de cabinet n\'est encore en service sur le terrain. Cette page vous explique comment un déploiement commence et comment l\'intégration est cadrée, plutôt que d\'énumérer des capacités que nous n\'avons pas éprouvées sur le terrain.',
 
     'integrations.approach.eyebrow': 'Comment ça marche',
     'integrations.approach.item1.term': 'Vous pouvez commencer sans aucune intégration',
     'integrations.approach.item1.desc': 'Une clinique ou un service peut commencer par une saisie manuelle ou un simple export de la liste des patients. Rien n\'a besoin d\'être raccordé à vos systèmes pour qu\'Aescia exécute un premier parcours.',
     'integrations.approach.item2.term': 'L\'échange de données plus poussé est cadré avec vous',
-    'integrations.approach.item2.desc': 'Si vous voulez qu\'Aescia lise depuis un système existant ou y écrive, nous cadrons cela avec votre équipe informatique pour votre environnement précis, et documentons le travail avant la signature de tout contrat. Nous ne revendiquons pas un connecteur préconçu que nous n\'avons pas mis en œuvre avec un client.',
+    'integrations.approach.item2.desc': 'Si vous voulez qu\'Aescia lise depuis un système existant ou y écrive, nous cadrons cela avec votre équipe informatique pour votre environnement précis, et documentons le travail avant la signature de tout contrat. Nous ne revendiquons pas un connecteur préconçu que nous n\'avons pas fait fonctionner avec un client.',
     'integrations.approach.item3.term': 'Conçu pour une mise en place rapide',
     'integrations.approach.item3.desc': 'Le produit est conçu pour se déployer en semaines, pas en trimestres, et pour ajouter une seule liste priorisée plutôt qu\'un second portail dans lequel votre équipe doit se connecter.',
     'integrations.approach.item4.term': 'Nous vous dirons l\'effort à fournir d\'emblée',
@@ -38,7 +38,7 @@ export const dict: Record<string, Record<string, string>> = {
   es: {
     'integrations.hero.eyebrow': 'Integración',
     'integrations.hero.title': 'Cómo encaja Aescia con sus sistemas.',
-    'integrations.hero.body': 'La versión honesta. Aescia aún no tiene su primer cliente, por lo que todavía no hay ninguna integración nombrada con un registro médico electrónico ni con gestión de consultorios funcionando en campo. Esta página le explica cómo empieza realmente una implementación y cómo se acota la integración, en lugar de enumerar capacidades que no hemos comprobado en campo.',
+    'integrations.hero.body': 'Aescia for Clinics aún no tiene clientes, y todavía no hay ninguna integración nombrada con un registro médico electrónico ni con gestión de consultorios funcionando en campo. Esta página le explica cómo empieza una implementación y cómo se acota la integración, en lugar de enumerar capacidades que no hemos comprobado en campo.',
 
     'integrations.approach.eyebrow': 'Cómo funciona',
     'integrations.approach.item1.term': 'Puede empezar sin ninguna integración',
@@ -56,7 +56,7 @@ export const dict: Record<string, Record<string, string>> = {
   zh: {
     'integrations.hero.eyebrow': '集成',
     'integrations.hero.title': 'Aescia 如何与您的系统协作。',
-    'integrations.hero.body': '坦诚的说法。Aescia 尚未有第一位客户，因此目前还没有任何已命名的电子病历或诊所管理系统集成在实地运行。本页面告诉您一次部署实际上是如何开始的，以及集成是如何界定范围的，而不是罗列我们尚未在实地验证的能力。',
+    'integrations.hero.body': 'Aescia for Clinics 目前还没有客户，目前也还没有任何已命名的电子病历或诊所管理系统集成在实地运行。本页面告诉您一次部署是如何开始的，以及集成是如何界定范围的，而不是罗列我们尚未在实地验证的能力。',
 
     'integrations.approach.eyebrow': '运作方式',
     'integrations.approach.item1.term': '您可以在没有任何集成的情况下起步',
@@ -74,7 +74,7 @@ export const dict: Record<string, Record<string, string>> = {
   ar: {
     'integrations.hero.eyebrow': 'التكامل',
     'integrations.hero.title': 'كيف تتلاءم Aescia مع أنظمتك.',
-    'integrations.hero.body': 'النسخة الصادقة. لا يزال لدى Aescia ما قبل أول عميل، لذا لا يوجد بعد أي تكامل مُسمّى مع سجل طبي إلكتروني أو مع إدارة العيادات يعمل ميدانيًا. تخبرك هذه الصفحة كيف يبدأ النشر فعليًا وكيف يُحدَّد نطاق التكامل، بدلًا من سرد قدرات لم نُثبتها ميدانيًا.',
+    'integrations.hero.body': 'ليس لدى Aescia for Clinics عملاء بعد، ولا يوجد بعد أي تكامل مُسمّى مع سجل طبي إلكتروني أو مع إدارة العيادات يعمل ميدانيًا. تخبرك هذه الصفحة كيف يبدأ النشر وكيف يُحدَّد نطاق التكامل، بدلًا من سرد قدرات لم نُثبتها ميدانيًا.',
 
     'integrations.approach.eyebrow': 'كيف يعمل',
     'integrations.approach.item1.term': 'يمكنك البدء دون أي تكامل',
@@ -92,7 +92,7 @@ export const dict: Record<string, Record<string, string>> = {
   vi: {
     'integrations.hero.eyebrow': 'Tích hợp',
     'integrations.hero.title': 'Aescia khớp với hệ thống của bạn như thế nào.',
-    'integrations.hero.body': 'Phiên bản trung thực. Aescia chưa có khách hàng đầu tiên, nên hiện chưa có tích hợp được nêu tên nào với hồ sơ bệnh án điện tử hay phần mềm quản lý phòng khám đang chạy thực tế. Trang này cho bạn biết một lần triển khai thực sự bắt đầu ra sao và việc tích hợp được xác định phạm vi như thế nào, thay vì liệt kê những khả năng mà chúng tôi chưa kiểm chứng trên thực địa.',
+    'integrations.hero.body': 'Aescia for Clinics chưa có khách hàng nào, và hiện chưa có tích hợp được nêu tên nào với hồ sơ bệnh án điện tử hay phần mềm quản lý phòng khám đang chạy thực tế. Trang này cho bạn biết một lần triển khai bắt đầu ra sao và việc tích hợp được xác định phạm vi như thế nào, thay vì liệt kê những khả năng mà chúng tôi chưa kiểm chứng trên thực địa.',
 
     'integrations.approach.eyebrow': 'Cách thức hoạt động',
     'integrations.approach.item1.term': 'Bạn có thể bắt đầu mà không cần tích hợp nào',

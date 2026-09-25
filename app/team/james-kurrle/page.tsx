@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   // "... | Founder of Aescia | Aescia".
   title: { absolute: 'James Kurrle | Founder and CEO of Aescia Health' },
   description:
-    'James Kurrle is a critical-care physician and the founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
+    'James Kurrle is a hospital doctor with critical care experience and the founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
   alternates: { canonical: '/team/james-kurrle' },
   openGraph: {
     title: 'James Kurrle | Founder of Aescia',
     description:
-      'James Kurrle is a critical-care physician and the founder of Aescia, building a continuous-care platform for hospitals and specialty clinics.',
+      'James Kurrle is a hospital doctor with critical care experience and the founder of Aescia, building a continuous-care platform for hospitals and specialty clinics.',
     url: '/team/james-kurrle',
     type: 'profile',
   },
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'James Kurrle | Founder of Aescia',
     description:
-      'Critical-care physician and founder of Aescia. Authors the clinical pathway engine; leads company strategy.',
+      'A hospital doctor with critical care experience and the founder of Aescia. Authors the clinical pathway engine; leads company strategy.',
   },
   other: {
     // IndieAuth / rel-me: links this page to the LinkedIn profile so that

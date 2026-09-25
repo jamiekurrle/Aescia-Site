@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'GLP-1 screening and prep before endoscopy software',
   description:
-    'GLP-1 agonists (semaglutide, tirzepatide, liraglutide) slow gastric emptying, which raised peri-procedural aspiration concern and produced evolving 2023 to 2024 guidance for endoscopy. Aescia for Clinics flags every GLP-1 patient at intake and applies the clinic’s authored protocol consistently. Pre-first-customer; not a medical device.',
+    'GLP-1 agonists (semaglutide, tirzepatide, liraglutide) slow gastric emptying, which raised peri-procedural aspiration concern and produced evolving 2023 to 2024 guidance for endoscopy. Aescia for Clinics flags every GLP-1 patient at intake and applies the clinic’s authored protocol consistently. It has no customers yet and is not a medical device.',
   alternates: { canonical: '/glp1-endoscopy-prep' },
   openGraph: {
     title: 'GLP-1 screening and prep before endoscopy | Aescia for Clinics',

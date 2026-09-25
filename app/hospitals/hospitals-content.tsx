@@ -349,10 +349,6 @@ export default function HospitalsContent() {
                 <dd className="text-[15px] text-foreground">{t('hospitals.trial.unit')}</dd>
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
-                <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Patients</dt>
-                <dd className="font-display text-[20px] text-foreground" style={{ fontVariationSettings: "'opsz' 72" }}>550 (50 interim + 500 main), single centre</dd>
-              </div>
-              <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Sponsor</dt>
                 <dd className="text-[15px] text-foreground">Sydney Local Health District (SLHD)</dd>
               </div>
@@ -362,7 +358,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
-                <dd className="text-[15px] text-foreground">Recruiting. Enrolment commenced 21 June 2026, with the first participant enrolled on 24 June 2026.</dd>
+                <dd className="text-[15px] text-foreground">Live at Royal Prince Alfred Hospital since June 2026, with good early results.</dd>
               </div>
             </dl>
           </div>

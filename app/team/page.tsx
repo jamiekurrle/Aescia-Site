@@ -5,11 +5,11 @@ import { TeamContent } from './team-content'
 export const metadata: Metadata = {
   title: 'The Aescia team and how we support customers',
   description:
-    'James Kurrle (CEO, critical-care physician) and Vasken Dermardiros (CTO, Concordia PhD) lead Aescia, with named clinical collaborators including Kei Woldendorp at Royal Prince Alfred Hospital. Bootstrapped to date; non-dilutive grants in flight; SAFE round opens Q4 2026. Named implementation contact during the design-partner phase; coverage across Sydney, Barcelona, and US timezones.',
+    'James Kurrle (Chief Executive Officer, a hospital doctor with critical care experience) and Dr Vasken Dermardiros (Chief Technology Officer, Concordia PhD) work on Aescia full time. Dr Kei Woldendorp is Principal Investigator of the SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney Local Health District. Funded to date through founder capital.',
   alternates: { canonical: '/team' },
   openGraph: {
     title: 'Team | Aescia',
-    description: 'Founders, operating team, and named clinical collaborators. Funding posture and support model.',
+    description: 'The two founders, company officers and the SAFE-Discharge Principal Investigator. Funding posture and support model.',
     url: '/team',
   },
 }

@@ -343,7 +343,7 @@ export default function ClinicsContent() {
               </ul>
             </div>
             <div className="border-l-2 border-brass pl-5">
-              <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia is pre-first-customer</h3>
+              <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia for Clinics has no customers yet</h3>
               <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80">
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Aescia for Clinics has not published its own outcomes yet.</span></li>
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The Hospitals product is in clinical evaluation (SAFE-Discharge, Royal Prince Alfred Hospital), though that is cardiothoracic recovery, not endoscopy prep.</span></li>
@@ -395,7 +395,7 @@ export default function ClinicsContent() {
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <p className="text-[16px] lg:text-[17px] leading-[1.7] text-foreground/80">
-                A busy endoscopy list loses more to cancelled prep, medication confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three honest bands, conservative through potential, anchored to the literature beneath.
+                A busy endoscopy list loses more to cancelled prep, medication confusion, and follow-up drift in a week than Aescia costs for the month. The numbers below are yours, not ours. Set the four inputs to your ASC and the model rescales. Three bands, conservative through potential, anchored to the literature beneath.
               </p>
             </div>
           </div>
@@ -412,7 +412,7 @@ export default function ClinicsContent() {
               The literature the calculator is anchored to.
             </h3>
             <p className="text-[14.5px] text-foreground/75 leading-[1.65] max-w-3xl mb-8">
-              Eight published figures the model relies on. They are listed here in plain text so a procurement reviewer, a clinical advisor, or a retrieval-augmented assistant can verify each one without operating the calculator.
+              Eight published figures the model relies on. They are listed here in plain text so a procurement reviewer, a clinician, or a retrieval-augmented assistant can verify each one without operating the calculator.
             </p>
             <dl className="grid md:grid-cols-2 gap-px bg-border border-y border-border">
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (

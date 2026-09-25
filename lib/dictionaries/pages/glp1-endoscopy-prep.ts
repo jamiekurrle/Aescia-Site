@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': 'Endoscopy ASC · GLP-1 prep',
     'glp1.hero.title': 'What software flags GLP-1 patients and adjusts endoscopy prep?',
     'glp1.hero.lede': 'Aescia for Clinics flags every patient on a GLP-1 medication at intake and applies your gastroenterologist’s current peri-procedural protocol to them automatically, instead of relying on a front-desk staffer to remember. GLP-1 agonists (glucagon-like peptide-1 agonists such as semaglutide, tirzepatide, and liraglutide) slow gastric emptying, which raised aspiration concern for sedated endoscopy and produced guidance that changed between 2023 and 2024, so the practical problem is applying your clinic’s chosen rule consistently to a fast-growing group of patients.',
-    'glp1.hero.disclaimer': 'Aescia for Clinics is not a medical device and does not decide the protocol. It delivers the clinician-authored rule your clinic has set; the gastroenterologist remains the decision-maker. Aescia is pre-first-customer.',
+    'glp1.hero.disclaimer': 'Aescia for Clinics is not a medical device and does not decide the protocol. It delivers the clinician-authored rule your clinic has set; the gastroenterologist remains the decision-maker. Aescia for Clinics has no customers yet.',
 
     'glp1.why.eyebrow': 'Why it matters',
     'glp1.why.title': 'GLP-1 agonists slow gastric emptying, and the guidance is still moving.',
@@ -22,7 +22,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': 'Resurface and confirm',
     'glp1.steps.item4.desc': 'The GLP-1 step is checked again in the prep-night confirmation, so the clinic knows the patient has acknowledged it before the day of the list.',
 
-    'glp1.scope.eyebrow': 'Honest scope',
+    'glp1.scope.eyebrow': 'Scope',
     'glp1.scope.title': 'What Aescia does, and what stays with the clinician.',
     'glp1.scope.item1': 'Aescia delivers the rule and confirms acknowledgment. It does not decide whether to hold a GLP-1 medication; the gastroenterologist sets the protocol.',
     'glp1.scope.item2': 'Aescia cannot guarantee a patient stopped a medication; it can flag, instruct, remind, and capture the patient’s confirmation, which is more than a paper leaflet does.',
@@ -41,7 +41,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': 'ASC d’endoscopie · Préparation GLP-1',
     'glp1.hero.title': 'Quel logiciel signale les patients sous GLP-1 et adapte la préparation à l’endoscopie ?',
     'glp1.hero.lede': 'Aescia for Clinics signale chaque patient sous un médicament GLP-1 dès l’admission et leur applique automatiquement le protocole péri-procédural actuel de votre gastroentérologue, au lieu de compter sur la mémoire d’un agent d’accueil. Les agonistes du GLP-1 (agonistes du glucagon-like peptide-1 tels que le sémaglutide, le tirzépatide et le liraglutide) ralentissent la vidange gastrique, ce qui a soulevé une préoccupation d’aspiration pour l’endoscopie sous sédation et produit des recommandations qui ont changé entre 2023 et 2024 ; le problème pratique est donc d’appliquer la règle choisie par votre clinique de façon constante à un groupe de patients en croissance rapide.',
-    'glp1.hero.disclaimer': 'Aescia for Clinics n’est pas un dispositif médical et ne décide pas du protocole. Il délivre la règle rédigée par le clinicien que votre clinique a définie ; le gastroentérologue reste le décideur. Aescia est en phase pré-premier-client.',
+    'glp1.hero.disclaimer': 'Aescia for Clinics n’est pas un dispositif médical et ne décide pas du protocole. Il délivre la règle rédigée par le clinicien que votre clinique a définie ; le gastroentérologue reste le décideur. Aescia for Clinics n’a pas encore de clients.',
 
     'glp1.why.eyebrow': 'Pourquoi c’est important',
     'glp1.why.title': 'Les agonistes du GLP-1 ralentissent la vidange gastrique, et les recommandations évoluent encore.',
@@ -60,7 +60,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': 'La rappeler et la confirmer',
     'glp1.steps.item4.desc': 'L’étape GLP-1 est vérifiée de nouveau lors de la confirmation la veille de la préparation, afin que la clinique sache que le patient l’a confirmée avant le jour de la liste.',
 
-    'glp1.scope.eyebrow': 'Périmètre honnête',
+    'glp1.scope.eyebrow': 'Périmètre',
     'glp1.scope.title': 'Ce que fait Aescia, et ce qui reste au clinicien.',
     'glp1.scope.item1': 'Aescia délivre la règle et confirme la prise de connaissance. Il ne décide pas s’il faut suspendre un médicament GLP-1 ; c’est le gastroentérologue qui définit le protocole.',
     'glp1.scope.item2': 'Aescia ne peut pas garantir qu’un patient a arrêté un médicament ; il peut signaler, instruire, rappeler et recueillir la confirmation du patient, ce qui est davantage qu’un dépliant papier.',
@@ -79,7 +79,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': 'ASC de endoscopia · Preparación con GLP-1',
     'glp1.hero.title': '¿Qué software identifica a los pacientes con GLP-1 y ajusta la preparación para la endoscopia?',
     'glp1.hero.lede': 'Aescia for Clinics identifica a cada paciente que toma un medicamento GLP-1 en el momento de la admisión y les aplica automáticamente el protocolo periprocedimiento vigente de su gastroenterólogo, en lugar de depender de que un miembro de recepción lo recuerde. Los agonistas del GLP-1 (agonistas del péptido similar al glucagón tipo 1, como la semaglutida, la tirzepatida y la liraglutida) ralentizan el vaciamiento gástrico, lo que generó preocupación por aspiración en la endoscopia bajo sedación y produjo guías que cambiaron entre 2023 y 2024, por lo que el problema práctico es aplicar de forma constante la regla elegida por su clínica a un grupo de pacientes en rápido crecimiento.',
-    'glp1.hero.disclaimer': 'Aescia for Clinics no es un dispositivo médico y no decide el protocolo. Entrega la regla redactada por el clínico que su clínica ha establecido; el gastroenterólogo sigue siendo quien toma las decisiones. Aescia está en etapa previa al primer cliente.',
+    'glp1.hero.disclaimer': 'Aescia for Clinics no es un dispositivo médico y no decide el protocolo. Entrega la regla redactada por el clínico que su clínica ha establecido; el gastroenterólogo sigue siendo quien toma las decisiones. Aescia for Clinics aún no tiene clientes.',
 
     'glp1.why.eyebrow': 'Por qué importa',
     'glp1.why.title': 'Los agonistas del GLP-1 ralentizan el vaciamiento gástrico, y las guías siguen cambiando.',
@@ -98,7 +98,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': 'Volver a mostrarla y confirmar',
     'glp1.steps.item4.desc': 'El paso del GLP-1 se vuelve a verificar en la confirmación de la noche previa a la preparación, de modo que la clínica sepa que el paciente lo ha confirmado antes del día de la lista.',
 
-    'glp1.scope.eyebrow': 'Alcance honesto',
+    'glp1.scope.eyebrow': 'Alcance',
     'glp1.scope.title': 'Qué hace Aescia, y qué queda en manos del clínico.',
     'glp1.scope.item1': 'Aescia entrega la regla y confirma la toma de conocimiento. No decide si se debe suspender un medicamento GLP-1; el gastroenterólogo define el protocolo.',
     'glp1.scope.item2': 'Aescia no puede garantizar que un paciente haya dejado de tomar un medicamento; puede identificar, instruir, recordar y registrar la confirmación del paciente, lo cual es más de lo que hace un folleto en papel.',
@@ -117,7 +117,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': '内镜门诊手术中心 · GLP-1 准备',
     'glp1.hero.title': '哪种软件能标记 GLP-1 患者并调整内镜检查前的准备？',
     'glp1.hero.lede': 'Aescia for Clinics 在登记时标记每一位正在使用 GLP-1 药物的患者，并自动为他们应用您的消化科医生当前的围操作期方案，而不是依赖前台工作人员去记住。GLP-1 激动剂（胰高血糖素样肽-1 激动剂，例如司美格鲁肽、替尔泊肽和利拉鲁肽）会减缓胃排空，这引起了对镇静下内镜检查误吸的担忧，并产生了在 2023 年至 2024 年间发生变化的指南，因此实际问题在于将贵诊所选定的规则一致地应用于一个快速增长的患者群体。',
-    'glp1.hero.disclaimer': 'Aescia for Clinics 不是医疗器械，也不决定方案。它传递贵诊所所设定的、由临床医生撰写的规则；消化科医生仍然是决策者。Aescia 处于首位客户之前的阶段。',
+    'glp1.hero.disclaimer': 'Aescia for Clinics 不是医疗器械，也不决定方案。它传递贵诊所所设定的、由临床医生撰写的规则；消化科医生仍然是决策者。Aescia for Clinics 目前还没有客户。',
 
     'glp1.why.eyebrow': '为何重要',
     'glp1.why.title': 'GLP-1 激动剂会减缓胃排空，而指南仍在变化。',
@@ -136,7 +136,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': '再次呈现并确认',
     'glp1.steps.item4.desc': '在准备前一晚的确认中会再次核查 GLP-1 步骤，从而让诊所在排单日之前知道患者已经确认。',
 
-    'glp1.scope.eyebrow': '诚实的范围',
+    'glp1.scope.eyebrow': '范围',
     'glp1.scope.title': 'Aescia 做什么，以及哪些仍由临床医生负责。',
     'glp1.scope.item1': 'Aescia 传递规则并确认知悉。它不决定是否暂停某种 GLP-1 药物；由消化科医生设定方案。',
     'glp1.scope.item2': 'Aescia 无法保证患者已停用某种药物；它可以标记、指导、提醒并采集患者的确认，这比一张纸质宣传单所能做的更多。',
@@ -155,7 +155,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': 'مركز جراحة التنظير الداخلي للمرضى المتنقلين · تحضير GLP-1',
     'glp1.hero.title': 'ما البرنامج الذي يرصد مرضى GLP-1 ويعدّل التحضير قبل التنظير الداخلي؟',
     'glp1.hero.lede': 'يرصد Aescia for Clinics كل مريض يتناول دواء GLP-1 عند الاستقبال ويطبّق عليه تلقائيًا البروتوكول المحيط بالإجراء الحالي لطبيب الجهاز الهضمي لديك، بدلًا من الاعتماد على ذاكرة موظف الاستقبال. تبطئ ناهضات GLP-1 (ناهضات الببتيد الشبيه بالغلوكاغون نوع 1 مثل السيماغلوتيد والتيرزيباتيد والليراغلوتيد) إفراغ المعدة، وهو ما أثار قلقًا من الشفط أثناء التنظير الداخلي تحت التخدير وأنتج توجيهات تغيّرت بين عامي 2023 و2024، لذا فإن المشكلة العملية هي تطبيق القاعدة التي اختارتها عيادتك باتساق على مجموعة من المرضى تتنامى بسرعة.',
-    'glp1.hero.disclaimer': 'إن Aescia for Clinics ليس جهازًا طبيًا ولا يقرّر البروتوكول. فهو يقدّم القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك؛ ويظلّ طبيب الجهاز الهضمي هو صاحب القرار. وAescia في مرحلة ما قبل أول عميل.',
+    'glp1.hero.disclaimer': 'إن Aescia for Clinics ليس جهازًا طبيًا ولا يقرّر البروتوكول. فهو يقدّم القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك؛ ويظلّ طبيب الجهاز الهضمي هو صاحب القرار. وليس لدى Aescia for Clinics عملاء بعد.',
 
     'glp1.why.eyebrow': 'لماذا يهم ذلك',
     'glp1.why.title': 'تبطئ ناهضات GLP-1 إفراغ المعدة، ولا تزال التوجيهات في تغيّر.',
@@ -174,7 +174,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': 'إعادة الإظهار والتأكيد',
     'glp1.steps.item4.desc': 'يُعاد التحقق من خطوة GLP-1 في تأكيد ليلة التحضير، حتى تعرف العيادة أن المريض قد أقرّ بها قبل يوم القائمة.',
 
-    'glp1.scope.eyebrow': 'نطاق صادق',
+    'glp1.scope.eyebrow': 'النطاق',
     'glp1.scope.title': 'ما الذي يفعله Aescia، وما الذي يبقى من اختصاص الطبيب.',
     'glp1.scope.item1': 'يقدّم Aescia القاعدة ويؤكّد الإقرار بها. وهو لا يقرّر ما إذا كان ينبغي إيقاف دواء GLP-1؛ فطبيب الجهاز الهضمي هو من يضع البروتوكول.',
     'glp1.scope.item2': 'لا يستطيع Aescia ضمان أن المريض قد أوقف دواءً؛ لكنه يستطيع الرصد والإرشاد والتذكير وتسجيل تأكيد المريض، وهو أكثر مما تفعله النشرة الورقية.',
@@ -193,7 +193,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.hero.eyebrow': 'Trung tâm phẫu thuật nội soi ngoại trú · Chuẩn bị GLP-1',
     'glp1.hero.title': 'Phần mềm nào đánh dấu bệnh nhân dùng GLP-1 và điều chỉnh việc chuẩn bị nội soi?',
     'glp1.hero.lede': 'Aescia for Clinics đánh dấu mọi bệnh nhân đang dùng thuốc GLP-1 ngay khi tiếp nhận và tự động áp dụng cho họ phác đồ quanh thủ thuật hiện hành của bác sĩ tiêu hóa của bạn, thay vì dựa vào trí nhớ của nhân viên lễ tân. Các chất chủ vận GLP-1 (chất chủ vận peptide giống glucagon loại 1 như semaglutide, tirzepatide và liraglutide) làm chậm quá trình làm rỗng dạ dày, điều này làm dấy lên lo ngại về hít sặc trong nội soi có an thần và tạo ra hướng dẫn đã thay đổi giữa năm 2023 và 2024, nên vấn đề thực tế là áp dụng nhất quán quy tắc mà phòng khám của bạn đã chọn cho một nhóm bệnh nhân đang tăng nhanh.',
-    'glp1.hero.disclaimer': 'Aescia for Clinics không phải là thiết bị y tế và không quyết định phác đồ. Nó cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập; bác sĩ tiêu hóa vẫn là người ra quyết định. Aescia đang ở giai đoạn trước khách hàng đầu tiên.',
+    'glp1.hero.disclaimer': 'Aescia for Clinics không phải là thiết bị y tế và không quyết định phác đồ. Nó cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập; bác sĩ tiêu hóa vẫn là người ra quyết định. Aescia for Clinics chưa có khách hàng nào.',
 
     'glp1.why.eyebrow': 'Vì sao điều này quan trọng',
     'glp1.why.title': 'Các chất chủ vận GLP-1 làm chậm quá trình làm rỗng dạ dày, và hướng dẫn vẫn đang thay đổi.',
@@ -212,7 +212,7 @@ export const dict: Record<string, Record<string, string>> = {
     'glp1.steps.item4.title': 'Hiển thị lại và xác nhận',
     'glp1.steps.item4.desc': 'Bước GLP-1 được kiểm tra lại trong lần xác nhận vào tối trước khi chuẩn bị, để phòng khám biết bệnh nhân đã xác nhận trước ngày của danh sách.',
 
-    'glp1.scope.eyebrow': 'Phạm vi trung thực',
+    'glp1.scope.eyebrow': 'Phạm vi',
     'glp1.scope.title': 'Aescia làm gì, và điều gì vẫn thuộc về bác sĩ.',
     'glp1.scope.item1': 'Aescia cung cấp quy tắc và xác nhận việc tiếp nhận. Nó không quyết định có nên ngừng một thuốc GLP-1 hay không; bác sĩ tiêu hóa là người thiết lập phác đồ.',
     'glp1.scope.item2': 'Aescia không thể bảo đảm rằng một bệnh nhân đã ngừng một thuốc; nó có thể đánh dấu, hướng dẫn, nhắc nhở và ghi nhận xác nhận của bệnh nhân, nhiều hơn những gì một tờ rơi giấy làm được.',

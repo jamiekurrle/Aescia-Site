@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'Endoscopy ASC · Blood thinners and diabetes',
     'medmgmt.hero.title': 'What software manages blood thinners and diabetes before a colonoscopy?',
     'medmgmt.hero.lede': 'Aescia for Clinics flags anticoagulants, antiplatelets, and diabetes medications at intake and applies your clinic’s authored peri-procedural rule to each patient automatically. Blood thinners drive bleeding risk at polypectomy and a long tail of late cancellations when patients stop the wrong drug or none at all, and diabetes medications interact with the fasting and bowel-prep window, so both need the right instruction delivered at the right time rather than left to a front-desk call.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics is not a medical device. It delivers the clinician-authored rule your clinic has set; it does not decide whether to bridge, hold, or adjust a dose. The treating clinician remains the decision-maker. Aescia is pre-first-customer.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics is not a medical device. It delivers the clinician-authored rule your clinic has set; it does not decide whether to bridge, hold, or adjust a dose. The treating clinician remains the decision-maker. Aescia for Clinics has no customers yet.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulants and antiplatelets',
     'medmgmt.bt.title': 'Blood thinners: the right hold, for the right drug, at the right time.',
@@ -51,7 +51,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'ASC d’endoscopie · Anticoagulants et diabète',
     'medmgmt.hero.title': 'Quel logiciel gère les anticoagulants et le diabète avant une coloscopie ?',
     'medmgmt.hero.lede': 'Aescia for Clinics signale les anticoagulants, les antiplaquettaires et les médicaments du diabète dès l’admission et applique automatiquement à chaque patient la règle péri-procédurale rédigée par votre clinique. Les anticoagulants entraînent un risque hémorragique lors de la polypectomie et une longue série d’annulations tardives lorsque les patients arrêtent le mauvais médicament ou n’en arrêtent aucun, et les médicaments du diabète interagissent avec la période de jeûne et de préparation intestinale ; les deux exigent donc la bonne consigne délivrée au bon moment plutôt que laissée à un appel au secrétariat.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics n’est pas un dispositif médical. Il délivre la règle rédigée par le clinicien que votre clinique a définie ; il ne décide pas s’il faut faire un relais, suspendre ou ajuster une dose. Le clinicien traitant reste le décideur. Aescia est en phase pré-premier-client.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics n’est pas un dispositif médical. Il délivre la règle rédigée par le clinicien que votre clinique a définie ; il ne décide pas s’il faut faire un relais, suspendre ou ajuster une dose. Le clinicien traitant reste le décideur. Aescia for Clinics n’a pas encore de clients.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulants et antiplaquettaires',
     'medmgmt.bt.title': 'Anticoagulants : la bonne suspension, pour le bon médicament, au bon moment.',
@@ -99,7 +99,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'ASC de endoscopia · Anticoagulantes y diabetes',
     'medmgmt.hero.title': '¿Qué software gestiona los anticoagulantes y la diabetes antes de una colonoscopia?',
     'medmgmt.hero.lede': 'Aescia for Clinics identifica los anticoagulantes, los antiplaquetarios y los medicamentos para la diabetes en el momento de la admisión y aplica automáticamente a cada paciente la regla periprocedimiento redactada por su clínica. Los anticoagulantes generan riesgo de sangrado en la polipectomía y una larga cola de cancelaciones tardías cuando los pacientes suspenden el medicamento equivocado o ninguno, y los medicamentos para la diabetes interactúan con la ventana de ayuno y de preparación intestinal, por lo que ambos requieren la indicación correcta entregada en el momento correcto, en lugar de quedar en manos de una llamada de recepción.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics no es un dispositivo médico. Entrega la regla redactada por el clínico que su clínica ha establecido; no decide si hacer puente, suspender o ajustar una dosis. El clínico tratante sigue siendo quien toma las decisiones. Aescia está en etapa previa al primer cliente.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics no es un dispositivo médico. Entrega la regla redactada por el clínico que su clínica ha establecido; no decide si hacer puente, suspender o ajustar una dosis. El clínico tratante sigue siendo quien toma las decisiones. Aescia for Clinics aún no tiene clientes.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulantes y antiplaquetarios',
     'medmgmt.bt.title': 'Anticoagulantes: la suspensión correcta, para el medicamento correcto, en el momento correcto.',
@@ -147,7 +147,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': '内镜门诊手术中心 · 抗凝药与糖尿病',
     'medmgmt.hero.title': '哪种软件能在结肠镜检查前管理抗凝药和糖尿病用药？',
     'medmgmt.hero.lede': 'Aescia for Clinics 在登记时标记抗凝药、抗血小板药和糖尿病用药，并自动为每位患者应用贵诊所撰写的围操作期规则。抗凝药会带来息肉切除时的出血风险，并在患者停用错误的药物或根本不停药时造成大量临近时刻的取消，而糖尿病用药则与禁食和肠道准备的时间窗相互影响，因此两者都需要在恰当的时间送达正确的指示，而不是交由前台的一通电话来处理。',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics 不是医疗器械。它传递贵诊所所设定的、由临床医生撰写的规则；它不决定是否进行桥接、暂停或调整剂量。主治临床医生仍然是决策者。Aescia 处于首位客户之前的阶段。',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics 不是医疗器械。它传递贵诊所所设定的、由临床医生撰写的规则；它不决定是否进行桥接、暂停或调整剂量。主治临床医生仍然是决策者。Aescia for Clinics 目前还没有客户。',
 
     'medmgmt.bt.eyebrow': '抗凝药与抗血小板药',
     'medmgmt.bt.title': '抗凝药：为正确的药物，在正确的时间，作出正确的暂停。',
@@ -195,7 +195,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'مركز جراحة التنظير الداخلي للمرضى المتنقلين · مميّعات الدم والسكري',
     'medmgmt.hero.title': 'ما البرنامج الذي يدير مميّعات الدم والسكري قبل تنظير القولون؟',
     'medmgmt.hero.lede': 'يرصد Aescia for Clinics مضادات التخثر ومضادات الصفيحات وأدوية السكري عند الاستقبال، ويطبّق تلقائيًا على كل مريض القاعدة المحيطة بالإجراء التي صاغتها عيادتك. تسبّب مميّعات الدم خطر النزف عند استئصال السليلة وذيلًا طويلًا من الإلغاءات المتأخرة حين يوقف المرضى الدواء الخاطئ أو لا يوقفون أيًا منها، كما تتفاعل أدوية السكري مع فترة الصيام وتحضير الأمعاء، لذا يحتاج كلاهما إلى التعليمة الصحيحة المُسلَّمة في الوقت الصحيح بدلًا من تركها لمكالمة من موظف الاستقبال.',
-    'medmgmt.hero.disclaimer': 'إن Aescia for Clinics ليس جهازًا طبيًا. فهو يقدّم القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك؛ وهو لا يقرّر ما إذا كان ينبغي إجراء جسر علاجي أو إيقاف أو تعديل جرعة. ويظلّ الطبيب المعالج هو صاحب القرار. وAescia في مرحلة ما قبل أول عميل.',
+    'medmgmt.hero.disclaimer': 'إن Aescia for Clinics ليس جهازًا طبيًا. فهو يقدّم القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك؛ وهو لا يقرّر ما إذا كان ينبغي إجراء جسر علاجي أو إيقاف أو تعديل جرعة. ويظلّ الطبيب المعالج هو صاحب القرار. وليس لدى Aescia for Clinics عملاء بعد.',
 
     'medmgmt.bt.eyebrow': 'مضادات التخثر ومضادات الصفيحات',
     'medmgmt.bt.title': 'مميّعات الدم: الإيقاف الصحيح، للدواء الصحيح، في الوقت الصحيح.',
@@ -243,7 +243,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'Trung tâm phẫu thuật nội soi ngoại trú · Thuốc chống đông và đái tháo đường',
     'medmgmt.hero.title': 'Phần mềm nào quản lý thuốc chống đông và đái tháo đường trước khi nội soi đại tràng?',
     'medmgmt.hero.lede': 'Aescia for Clinics đánh dấu thuốc chống đông, thuốc chống kết tập tiểu cầu và thuốc đái tháo đường ngay khi tiếp nhận và tự động áp dụng cho mỗi bệnh nhân quy tắc quanh thủ thuật do phòng khám của bạn soạn thảo. Thuốc chống đông gây nguy cơ chảy máu khi cắt polyp và một chuỗi dài các trường hợp hủy lịch muộn khi bệnh nhân ngừng sai thuốc hoặc không ngừng thuốc nào, còn thuốc đái tháo đường thì tương tác với khoảng thời gian nhịn ăn và chuẩn bị ruột, nên cả hai đều cần chỉ dẫn đúng được gửi đến vào đúng thời điểm thay vì để mặc cho một cuộc gọi của lễ tân.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics không phải là thiết bị y tế. Nó cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập; nó không quyết định có nên bắc cầu, ngừng hay điều chỉnh liều. Bác sĩ điều trị vẫn là người ra quyết định. Aescia đang ở giai đoạn trước khách hàng đầu tiên.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics không phải là thiết bị y tế. Nó cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập; nó không quyết định có nên bắc cầu, ngừng hay điều chỉnh liều. Bác sĩ điều trị vẫn là người ra quyết định. Aescia for Clinics chưa có khách hàng nào.',
 
     'medmgmt.bt.eyebrow': 'Thuốc chống đông và thuốc chống kết tập tiểu cầu',
     'medmgmt.bt.title': 'Thuốc chống đông: ngừng đúng cách, đúng thuốc, đúng thời điểm.',

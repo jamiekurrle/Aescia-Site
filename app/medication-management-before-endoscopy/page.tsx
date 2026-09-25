@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Blood thinner and diabetes management before endoscopy software',
   description:
-    'Anticoagulants, antiplatelets, and diabetes medications each need peri-procedural handling before colonoscopy. Aescia for Clinics flags them at intake and applies the clinic’s authored hold, bridge, or adjustment rule consistently to every patient. Pre-first-customer; not a medical device.',
+    'Anticoagulants, antiplatelets, and diabetes medications each need peri-procedural handling before colonoscopy. Aescia for Clinics flags them at intake and applies the clinic’s authored hold, bridge, or adjustment rule consistently to every patient. It has no customers yet and is not a medical device.',
   alternates: { canonical: '/medication-management-before-endoscopy' },
   openGraph: {
     title: 'Blood thinner and diabetes handling before endoscopy | Aescia for Clinics',

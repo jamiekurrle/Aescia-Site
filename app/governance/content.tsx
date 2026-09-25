@@ -48,9 +48,7 @@ export function PageContent() {
               {([
                 ['gov.hospitals.classification.label', 'gov.hospitals.classification.value', t('gov.hospitals.classification.value')],
                 ['gov.hospitals.roadmap.label', 'gov.hospitals.roadmap.value', t('gov.hospitals.roadmap.value')],
-                ['gov.hospitals.lifecycle.label', 'gov.hospitals.lifecycle.value', t('gov.hospitals.lifecycle.value')],
-                ['gov.hospitals.quality.label', 'gov.hospitals.quality.value', t('gov.hospitals.quality.value')],
-                ['gov.hospitals.infosec.label', 'gov.hospitals.infosec.value', t('gov.hospitals.infosec.value')],
+                ['gov.hospitals.certification.label', 'gov.hospitals.certification.value', t('gov.hospitals.certification.value')],
                 [
                   'gov.hospitals.clinical.label',
                   'gov.hospitals.clinical.value',
@@ -94,7 +92,6 @@ export function PageContent() {
                 ['gov.clinics.posture.label', 'gov.clinics.posture.value'],
                 ['gov.clinics.rule.label', 'gov.clinics.rule.value'],
                 ['gov.clinics.escalation.label', 'gov.clinics.escalation.value'],
-                ['gov.clinics.audit.label', 'gov.clinics.audit.value'],
                 ['gov.clinics.engagement.label', 'gov.clinics.engagement.value'],
               ].map(([kKey, vKey]) => (
                 <div key={vKey} className="grid grid-cols-[130px_1fr] gap-4 py-5">
@@ -121,19 +118,11 @@ export function PageContent() {
             {t('gov.security.title')}
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-px bg-border">
+          <div className="grid md:grid-cols-2 gap-px bg-border">
             {[
               {
-                titleKey: 'gov.security.identity.title',
-                itemKeys: ['gov.security.identity.item1', 'gov.security.identity.item2', 'gov.security.identity.item3'],
-              },
-              {
                 titleKey: 'gov.security.data.title',
-                itemKeys: ['gov.security.data.item1', 'gov.security.data.item2', 'gov.security.data.item3', 'gov.security.data.item4'],
-              },
-              {
-                titleKey: 'gov.security.software.title',
-                itemKeys: ['gov.security.software.item1', 'gov.security.software.item2', 'gov.security.software.item3'],
+                itemKeys: ['gov.security.data.item1', 'gov.security.data.item2', 'gov.security.data.item3', 'gov.security.data.item4', 'gov.security.data.item5'],
               },
               {
                 titleKey: 'gov.security.integration.title',
@@ -181,7 +170,6 @@ export function PageContent() {
           </h2>
           <dl className="divide-y divide-border border-y border-border">
             {[
-              ['gov.corporate.holding.label', 'gov.corporate.holding.value'],
               ['gov.corporate.rd.label', 'gov.corporate.rd.value'],
               ['gov.corporate.applicant.label', 'gov.corporate.applicant.value'],
               ['gov.corporate.director.label', 'gov.corporate.director.value'],

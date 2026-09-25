@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Endoscopy pre-procedure workflow and patient pathway software',
   description:
-    'Endoscopy pre-procedure workflow software automates the patient journey from booking confirmation to procedure day: prep instructions, medication overlays (GLP-1, anticoagulant, diabetic), reminders, consent, and prep confirmation. Aescia for Clinics is a clinician-authored platform in this category. Pre-first-customer.',
+    'Endoscopy pre-procedure workflow software automates the patient journey from booking confirmation to procedure day: prep instructions, medication overlays (GLP-1, anticoagulant, diabetic), reminders, consent, and prep confirmation. Aescia for Clinics is a clinician-authored platform in this category. It has no customers yet.',
   alternates: { canonical: '/endoscopy-pre-procedure-workflow' },
   openGraph: {
     title: 'Endoscopy pre-procedure workflow software | Aescia for Clinics',

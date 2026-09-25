@@ -5,13 +5,13 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Data hosted in country. Privacy law aligned to your jurisdiction.',
+  title: 'Security',
   description:
-    'Aescia hosts customer data in the customer\'s jurisdiction on Google Cloud, with the relevant data agreement signed before any patient data is exchanged. Sub-processors, breach notification, SOC 2 status, and exit terms listed in full. Aescia is pre-first-customer.',
+    'Aescia trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase). Aescia holds liability and cyber insurance with Chubb. An independent penetration test, a privacy impact assessment and International Organization for Standardization (ISO) 27001 certification are planned.',
   alternates: { canonical: '/security' },
   openGraph: {
-    title: 'Security and compliance | Aescia',
-    description: 'In-country data hosting on Google Cloud, per-jurisdiction privacy-law alignment, named sub-processors, plain-text breach notification and exit terms.',
+    title: 'Security | Aescia',
+    description: 'Trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase). Aescia is not yet certified; International Organization for Standardization (ISO) 27001 certification is planned.',
     url: '/security',
   },
 }
@@ -23,9 +23,9 @@ const breadcrumbs = breadcrumbSchema([
 
 const pageSchema = webPageSchema({
   url: '/security',
-  name: 'Security and compliance',
+  name: 'Security',
   description:
-    'How Aescia handles in-country data hosting, per-jurisdiction privacy-law alignment, data-processing agreements, SOC 2, sub-processors, breach notification, and data ownership.',
+    'Where Aescia stores trial data, how its hosting providers are certified, its insurance, and its planned penetration test, privacy impact assessment and International Organization for Standardization (ISO) 27001 certification.',
 })
 
 export default function SecurityPage() {

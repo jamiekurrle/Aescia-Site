@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'How Aescia differs from patient-engagement and scheduling tools',
   description:
-    'Aescia for Clinics does the same patient-engagement work that reduces no-shows and late cancellations, and adds prep-readiness tracking and prep-aware backfill on top. A fair, row-by-row comparison with patient-engagement, texting, and OR block-utilisation tools, including where they are stronger. Pre-first-customer.',
+    'Aescia for Clinics does the same patient-engagement work that reduces no-shows and late cancellations, and adds prep-readiness tracking and prep-aware backfill on top. A fair, row-by-row comparison with patient-engagement, texting, and OR block-utilisation tools, including where they are stronger. Aescia for Clinics has no customers yet.',
   alternates: { canonical: '/compare' },
   openGraph: {
     title: 'How Aescia differs from engagement and scheduling tools | Aescia',
