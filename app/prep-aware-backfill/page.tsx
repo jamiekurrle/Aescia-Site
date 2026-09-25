@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Prep-aware waitlist backfill: recover cancelled endoscopy slots',
   description:
-    'Prep-aware backfill recovers a cancelled colonoscopy slot by giving it to a patient who can actually be prep-ready in time, not just the next person who says yes. Aescia for Clinics catches the early cancellation signal at prep check-ins, finds and preps a candidate, and flags the swap to staff in the morning. Pre-first-customer; not a medical device.',
+    'Prep-aware backfill recovers a cancelled colonoscopy slot by giving it to a patient who can actually be prep-ready in time, not just the next person who says yes. Aescia for Clinics catches the early cancellation signal at prep check-ins, finds and preps a candidate, and flags the swap to staff in the morning. It has no customers yet and is not a medical device.',
   alternates: { canonical: '/prep-aware-backfill' },
   openGraph: {
     title: 'Recover cancelled endoscopy slots: prep-aware backfill | Aescia',
@@ -26,7 +26,7 @@ const pageSchema = webPageSchema({
   url: '/prep-aware-backfill',
   name: 'Prep-aware waitlist backfill: recover cancelled endoscopy slots',
   description:
-    'How Aescia for Clinics recovers cancelled colonoscopy slots with prep-aware backfill: the early cancellation signal from prep check-ins, finding and prepping a candidate, the clinic-authored eligibility rules, the honest ceiling, and what one recovered slot is worth.',
+    'How Aescia for Clinics recovers cancelled colonoscopy slots with prep-aware backfill: the early cancellation signal from prep check-ins, finding and prepping a candidate, the clinic-authored eligibility rules, the ceiling on recovery, and what one recovered slot is worth.',
   isMedicalPage: true,
 })
 

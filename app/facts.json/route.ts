@@ -30,8 +30,8 @@ export function GET() {
         name: 'Aescia for Hospitals',
         category: 'investigational Software as a Medical Device',
         regulatory:
-          'Intended TGA Class IIa (Rule 3.4). No regulatory application has been lodged.',
-        status: 'In clinical evaluation through the SAFE-Discharge trial.',
+          'Intended Therapeutic Goods Administration (TGA) Class IIa. No regulatory application has been lodged.',
+        status: 'In a live trial at Royal Prince Alfred Hospital since June 2026, with good early results (SAFE-Discharge).',
         firstIndication: 'cardiothoracic surgical recovery',
         url: `${SITE_URL}/hospitals`,
       },
@@ -59,7 +59,6 @@ export function GET() {
       id: 'ACTRN12625001425482',
       status: medicalStudySchema.status,
       site: 'Royal Prince Alfred Hospital, Sydney',
-      patients: 550,
       url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
     },
     regulatoryStatus:

@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Software to reduce colonoscopy no-shows and cancellations at an ASC',
   description:
-    'Aescia for Clinics reduces colonoscopy no-shows and late cancellations at ambulatory surgery centers by getting more patients correctly prepped and confirmed before the procedure date. Clinician-authored prep pathways, GLP-1 / anticoagulant / diabetic overlays, prep-night photo confirmation. Pre-first-customer; design partners start free until it proves it saves more than it costs.',
+    'Aescia for Clinics reduces colonoscopy no-shows and late cancellations at ambulatory surgery centers by getting more patients correctly prepped and confirmed before the procedure date. Clinician-authored prep pathways, GLP-1 / anticoagulant / diabetic overlays, prep-night photo confirmation. Aescia for Clinics has no customers yet; design partners start free until it proves it saves more than it costs.',
   alternates: { canonical: '/colonoscopy-no-show-software' },
   openGraph: {
     title: 'Reduce colonoscopy no-shows at an ASC | Aescia for Clinics',
@@ -26,7 +26,7 @@ const pageSchema = webPageSchema({
   url: '/colonoscopy-no-show-software',
   name: 'Software to reduce colonoscopy no-shows and cancellations at an ASC',
   description:
-    'How Aescia for Clinics reduces colonoscopy no-shows and late cancellations at ambulatory surgery centers: clinician-authored prep pathways, medication overlays, prep-night photo confirmation, and prep-aware backfill. Pre-first-customer.',
+    'How Aescia for Clinics reduces colonoscopy no-shows and late cancellations at ambulatory surgery centers: clinician-authored prep pathways, medication overlays, prep-night photo confirmation, and prep-aware backfill. Aescia for Clinics has no customers yet.',
   isMedicalPage: true,
 })
 

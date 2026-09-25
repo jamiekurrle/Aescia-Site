@@ -6,12 +6,12 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 export const metadata: Metadata = {
   title: 'Privacy policy',
   description:
-    'How Aescia handles personal and health information: in-country hosting on Google Cloud, encryption in transit and at rest, named sub-processors, a signed data agreement before any patient data is exchanged, and alignment with the Australian Privacy Act, PIPEDA, and Quebec Law 25.',
+    'How Aescia handles personal and health information: trial data stored in Australia, encryption in transit and at rest, named sub-processors, a signed data agreement before any patient data is exchanged, and alignment with the Australian Privacy Act, the Personal Information Protection and Electronic Documents Act (PIPEDA), and Quebec Law 25.',
   alternates: { canonical: '/privacy' },
   openGraph: {
     title: 'Privacy policy | Aescia',
     description:
-      'In-country hosting, encryption, named sub-processors, signed data agreements, and privacy-law alignment across Australia and Canada.',
+      'Trial data stored in Australia, encryption, named sub-processors, signed data agreements, and privacy-law alignment across Australia and Canada.',
     url: '/privacy',
   },
 }
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
               .
             </p>
             <p className="mt-6 font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/60">
-              Effective date: 2 July 2026
+              Effective date: 25 September 2026
             </p>
           </div>
         </section>
@@ -88,8 +88,8 @@ export default function PrivacyPage() {
             <Section title="Who we are">
               <p>
                 The data controller is Aescia Pty Ltd (ABN 96 687 840 517), incorporated in Australia,
-                with Canadian affiliate entities. In this policy, "Aescia", "we", and "us" refer to
-                Aescia Pty Ltd and its affiliates.
+                with a Canadian affiliate, 9550-0708 Québec inc. In this policy, "Aescia", "we", and "us"
+                refer to Aescia Pty Ltd and its affiliate.
               </p>
               <p>
                 Aescia is developing pre-procedure pathway software and investigational post-discharge
@@ -112,21 +112,20 @@ export default function PrivacyPage() {
 
             <Section title="Where your data is hosted">
               <p>
-                Customer data is hosted on Google Cloud in region, in the australia-southeast (Sydney)
-                region, with per-tenant isolation so one customer's data is kept separate from another's.
+                Trial data is stored in Australia, in the Amazon Web Services Sydney region, through
+                Supabase.
               </p>
               <p>
-                Data is encrypted in transit using Transport Layer Security (TLS) 1.3 and at rest using
-                the Advanced Encryption Standard (AES-256). Access to systems that hold customer data
-                requires multi-factor authentication (MFA).
+                Our hosting providers encrypt data in transit and at rest.
               </p>
             </Section>
 
             <Section title="Sub-processors">
               <p>
-                We use a small set of sub-processors to run the service. These include Google Cloud
-                (hosting), Resend (email), Twilio (SMS), and PostHog (product analytics). Each is engaged
-                under terms that require appropriate handling of the data they process on our behalf.
+                We use a small set of sub-processors to run the service. These include Supabase
+                (database, in the Amazon Web Services Sydney region), Vercel (application hosting and
+                website analytics) and Resend (email). Each is engaged under terms that require
+                appropriate handling of the data they process on our behalf.
               </p>
             </Section>
 

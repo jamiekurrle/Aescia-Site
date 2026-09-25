@@ -76,15 +76,16 @@ export const organizationSchema = {
       '@id': `${SITE_URL}/team/james-kurrle#person`,
       name: 'James Kurrle',
       jobTitle: 'Founder and CEO',
-      description: 'Critical-care physician and founder of Aescia.',
+      description: 'A hospital doctor with critical care experience and the founder of Aescia.',
       url: `${SITE_URL}/team/james-kurrle`,
       sameAs: ['https://www.linkedin.com/in/jameskurrle/'],
     },
     {
       '@type': 'Person',
       name: 'Vasken Dermardiros',
-      jobTitle: 'Co-founder and CTO',
-      description: 'PhD in machine learning from Concordia University. Owns hosting, AI inference, EMR integration, and the pathway-authoring infrastructure.',
+      honorificPrefix: 'Dr',
+      jobTitle: 'Co-founder and Chief Technology Officer',
+      description: 'PhD in machine learning from Concordia University. Leads security, hosting, artificial intelligence inference, electronic medical record integration and the pathway-authoring infrastructure.',
       alumniOf: {
         '@type': 'CollegeOrUniversity',
         name: 'Concordia University',
@@ -186,8 +187,7 @@ export const medicalStudySchema = {
   '@id': `${SITE_URL}/evidence#safe-discharge-trial`,
   name: 'SAFE-Discharge: Post-cardiothoracic-surgery discharge monitoring',
   description:
-    'A prospective single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring across the 30-day post-discharge window. A 50-patient interim cohort is pre-specified, followed by a 500-patient main cohort, 550 patients total.',
-  // Recruiting since 21 June 2026 (enrolment opened at RPAH).
+    'A prospective single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring across the 30-day post-discharge window, live at Royal Prince Alfred Hospital since June 2026, with good early results.',
   status: 'Recruiting',
   studyLocation: {
     '@type': 'Hospital',
@@ -367,16 +367,16 @@ export const jamesKurrlePersonSchema = {
   familyName: 'Kurrle',
   jobTitle: 'Founder and CEO',
   description:
-    'Critical-care physician and founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
+    'A hospital doctor with critical care experience and the founder of Aescia, a continuous-care platform for structured patient follow-up and specialty-clinic workflow.',
   hasOccupation: {
     '@type': 'Occupation',
-    name: 'Critical-care physician',
+    name: 'Hospital doctor',
     occupationalCategory: 'Medical Doctor',
   },
   worksFor: { '@id': `${SITE_URL}#organization` },
   url: `${SITE_URL}/team/james-kurrle`,
   knowsAbout: [
-    'critical care medicine',
+    'critical care',
     'post-discharge monitoring',
     'clinical pathway authoring',
     'Software as a Medical Device',

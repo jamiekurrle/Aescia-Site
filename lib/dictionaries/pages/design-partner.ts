@@ -6,8 +6,8 @@
 export const dict: Record<string, Record<string, string>> = {
   en: {
     'designpartner.hero.eyebrow': 'Design-partner program',
-    'designpartner.hero.title': 'How Aescia works with its first customers.',
-    'designpartner.hero.subtitle': 'Aescia for Clinics is pre-first-customer. We\'re choosing a small number of US ambulatory surgery centres to deploy with first, on terms built for how much uncertainty being early carries.',
+    'designpartner.hero.title': 'How Aescia for Clinics works with its first customers.',
+    'designpartner.hero.subtitle': 'Aescia for Clinics has no customers yet. We\'re choosing a small number of US ambulatory surgery centres to deploy with first, on terms built for how much uncertainty being early carries.',
     'designpartner.hero.cta.primary': 'Apply as a design partner',
     'designpartner.hero.cta.secondary': 'Run your own ROI numbers',
 
@@ -17,7 +17,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': 'We don\'t mark our own homework.',
     'designpartner.principles.item2.desc': 'The result is measured on your data and signed off by your own QA committee, against a threshold written down before the pilot and calibrated to your volume so it\'s detectable inside the window.',
     'designpartner.principles.item3.title': 'What stays yours.',
-    'designpartner.principles.item3.desc': 'Your data, returned in full on exit. The prep pathways we co-author with your gastroenterologist. No lock-in. We\'re early, and we say so here, on the homepage, and in every conversation.',
+    'designpartner.principles.item3.desc': 'Your data, returned in full on exit. The prep pathways we co-author with your gastroenterologist. No lock-in.',
 
     'designpartner.cta.eyebrow': 'Apply',
     'designpartner.cta.title': 'Want the full terms?',
@@ -26,8 +26,8 @@ export const dict: Record<string, Record<string, string>> = {
   },
   fr: {
     'designpartner.hero.eyebrow': 'Programme de partenaires de conception',
-    'designpartner.hero.title': 'Comment Aescia travaille avec ses premiers clients.',
-    'designpartner.hero.subtitle': 'Aescia for Clinics est avant son premier client. Nous sélectionnons un petit nombre de centres de chirurgie ambulatoire américains pour un premier déploiement, selon des modalités conçues pour l\'incertitude que comporte le fait d\'être précurseur.',
+    'designpartner.hero.title': 'Comment Aescia for Clinics travaille avec ses premiers clients.',
+    'designpartner.hero.subtitle': 'Aescia for Clinics n\'a pas encore de clients. Nous sélectionnons un petit nombre de centres de chirurgie ambulatoire américains pour un premier déploiement, selon des modalités conçues pour l\'incertitude que comporte le fait d\'être précurseur.',
     'designpartner.hero.cta.primary': 'Postuler comme partenaire de conception',
     'designpartner.hero.cta.secondary': 'Calculez votre propre retour sur investissement',
 
@@ -37,7 +37,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': 'Nous ne corrigeons pas notre propre copie.',
     'designpartner.principles.item2.desc': 'Le résultat est mesuré sur vos données et validé par votre propre comité d\'assurance qualité (QA), par rapport à un seuil fixé par écrit avant le pilote et calibré sur votre volume afin qu\'il soit détectable dans la fenêtre.',
     'designpartner.principles.item3.title': 'Ce qui vous reste acquis.',
-    'designpartner.principles.item3.desc': 'Vos données, restituées intégralement à la sortie. Les parcours de préparation que nous coécrivons avec votre gastro-entérologue. Aucun verrouillage. Nous sommes à nos débuts, et nous le disons ici, sur la page d\'accueil et dans chaque conversation.',
+    'designpartner.principles.item3.desc': 'Vos données, restituées intégralement à la sortie. Les parcours de préparation que nous coécrivons avec votre gastro-entérologue. Aucun verrouillage.',
 
     'designpartner.cta.eyebrow': 'Postuler',
     'designpartner.cta.title': 'Vous voulez les modalités complètes ?',
@@ -46,8 +46,8 @@ export const dict: Record<string, Record<string, string>> = {
   },
   es: {
     'designpartner.hero.eyebrow': 'Programa de socios de diseño',
-    'designpartner.hero.title': 'Cómo trabaja Aescia con sus primeros clientes.',
-    'designpartner.hero.subtitle': 'Aescia for Clinics está en fase previa a su primer cliente. Estamos eligiendo un pequeño número de centros de cirugía ambulatoria de EE. UU. para implementar primero, con condiciones diseñadas para la incertidumbre que conlleva ser de los primeros.',
+    'designpartner.hero.title': 'Cómo trabaja Aescia for Clinics con sus primeros clientes.',
+    'designpartner.hero.subtitle': 'Aescia for Clinics aún no tiene clientes. Estamos eligiendo un pequeño número de centros de cirugía ambulatoria de EE. UU. para implementar primero, con condiciones diseñadas para la incertidumbre que conlleva ser de los primeros.',
     'designpartner.hero.cta.primary': 'Solicita ser socio de diseño',
     'designpartner.hero.cta.secondary': 'Calcula tu propio retorno de inversión',
 
@@ -57,7 +57,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': 'No calificamos nuestro propio trabajo.',
     'designpartner.principles.item2.desc': 'El resultado se mide sobre tus datos y lo valida tu propio comité de garantía de calidad (QA), frente a un umbral fijado por escrito antes del piloto y calibrado a tu volumen para que sea detectable dentro de la ventana.',
     'designpartner.principles.item3.title': 'Lo que sigue siendo tuyo.',
-    'designpartner.principles.item3.desc': 'Tus datos, devueltos íntegramente a la salida. Las rutas de preparación que coescribimos con tu gastroenterólogo. Sin permanencia. Estamos empezando, y lo decimos aquí, en la página de inicio y en cada conversación.',
+    'designpartner.principles.item3.desc': 'Tus datos, devueltos íntegramente a la salida. Las rutas de preparación que coescribimos con tu gastroenterólogo. Sin permanencia.',
 
     'designpartner.cta.eyebrow': 'Solicitar',
     'designpartner.cta.title': '¿Quieres las condiciones completas?',
@@ -66,8 +66,8 @@ export const dict: Record<string, Record<string, string>> = {
   },
   zh: {
     'designpartner.hero.eyebrow': '设计合作伙伴计划',
-    'designpartner.hero.title': 'Aescia 如何与首批客户合作。',
-    'designpartner.hero.subtitle': 'Aescia for Clinics 尚未有首位客户。我们正在挑选少数几家美国日间手术中心率先部署，合作条款专为应对率先尝试所带来的不确定性而设计。',
+    'designpartner.hero.title': 'Aescia for Clinics 如何与首批客户合作。',
+    'designpartner.hero.subtitle': 'Aescia for Clinics 目前还没有客户。我们正在挑选少数几家美国日间手术中心率先部署，合作条款专为应对率先尝试所带来的不确定性而设计。',
     'designpartner.hero.cta.primary': '申请成为设计合作伙伴',
     'designpartner.hero.cta.secondary': '计算您自己的投资回报',
 
@@ -77,7 +77,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': '我们不会自说自话。',
     'designpartner.principles.item2.desc': '结果以您的数据衡量，并由您自己的质量保证（QA）委员会签字确认，对照在试点前以书面形式确定、并根据您的业务量校准的阈值，以确保在该时间窗内可被检测到。',
     'designpartner.principles.item3.title': '始终归您所有。',
-    'designpartner.principles.item3.desc': '退出时全额返还您的数据。我们与您的胃肠科医生共同编写的准备流程。无锁定。我们尚处于早期阶段，我们在此处、在主页以及在每一次交流中都如实说明这一点。',
+    'designpartner.principles.item3.desc': '退出时全额返还您的数据。我们与您的胃肠科医生共同编写的准备流程。无锁定。',
 
     'designpartner.cta.eyebrow': '申请',
     'designpartner.cta.title': '想了解完整条款吗？',
@@ -86,8 +86,8 @@ export const dict: Record<string, Record<string, string>> = {
   },
   ar: {
     'designpartner.hero.eyebrow': 'برنامج شركاء التصميم',
-    'designpartner.hero.title': 'كيف تعمل Aescia مع عملائها الأوائل.',
-    'designpartner.hero.subtitle': 'Aescia for Clinics في مرحلة ما قبل العميل الأول. نختار عددًا صغيرًا من مراكز الجراحة النهارية في الولايات المتحدة للنشر معها أولًا، وفق شروط مصمَّمة لمقدار عدم اليقين الذي يحمله كونك من الأوائل.',
+    'designpartner.hero.title': 'كيف تعمل Aescia for Clinics مع عملائها الأوائل.',
+    'designpartner.hero.subtitle': 'ليس لدى Aescia for Clinics عملاء بعد. نختار عددًا صغيرًا من مراكز الجراحة النهارية في الولايات المتحدة للنشر معها أولًا، وفق شروط مصمَّمة لمقدار عدم اليقين الذي يحمله كونك من الأوائل.',
     'designpartner.hero.cta.primary': 'قدِّم كشريك تصميم',
     'designpartner.hero.cta.secondary': 'احسب العائد على الاستثمار الخاص بك',
 
@@ -97,7 +97,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': 'نحن لا نصحّح أوراقنا بأنفسنا.',
     'designpartner.principles.item2.desc': 'تُقاس النتيجة على بياناتك ويعتمدها فريق ضمان الجودة (QA) لديك، مقابل عتبة مكتوبة قبل التجربة ومعايَرة على حجمك بحيث تكون قابلة للكشف ضمن النافذة.',
     'designpartner.principles.item3.title': 'ما يبقى ملكًا لك.',
-    'designpartner.principles.item3.desc': 'بياناتك، تُعاد كاملةً عند الخروج. مسارات التحضير التي نشارك في كتابتها مع طبيب الجهاز الهضمي لديك. دون أي ارتباط إلزامي. نحن في بداياتنا، ونقول ذلك هنا وفي الصفحة الرئيسية وفي كل محادثة.',
+    'designpartner.principles.item3.desc': 'بياناتك، تُعاد كاملةً عند الخروج. مسارات التحضير التي نشارك في كتابتها مع طبيب الجهاز الهضمي لديك. دون أي ارتباط إلزامي.',
 
     'designpartner.cta.eyebrow': 'قدِّم',
     'designpartner.cta.title': 'هل تريد الشروط الكاملة؟',
@@ -106,8 +106,8 @@ export const dict: Record<string, Record<string, string>> = {
   },
   vi: {
     'designpartner.hero.eyebrow': 'Chương trình đối tác thiết kế',
-    'designpartner.hero.title': 'Cách Aescia làm việc với những khách hàng đầu tiên.',
-    'designpartner.hero.subtitle': 'Aescia for Clinics đang ở giai đoạn trước khách hàng đầu tiên. Chúng tôi đang chọn một số ít trung tâm phẫu thuật trong ngày tại Hoa Kỳ để triển khai trước, với các điều khoản được xây dựng cho mức độ bất định mà việc đi đầu mang lại.',
+    'designpartner.hero.title': 'Cách Aescia for Clinics làm việc với những khách hàng đầu tiên.',
+    'designpartner.hero.subtitle': 'Aescia for Clinics chưa có khách hàng nào. Chúng tôi đang chọn một số ít trung tâm phẫu thuật trong ngày tại Hoa Kỳ để triển khai trước, với các điều khoản được xây dựng cho mức độ bất định mà việc đi đầu mang lại.',
     'designpartner.hero.cta.primary': 'Đăng ký làm đối tác thiết kế',
     'designpartner.hero.cta.secondary': 'Tự tính toán lợi tức đầu tư của bạn',
 
@@ -117,7 +117,7 @@ export const dict: Record<string, Record<string, string>> = {
     'designpartner.principles.item2.title': 'Chúng tôi không tự chấm điểm cho mình.',
     'designpartner.principles.item2.desc': 'Kết quả được đo trên dữ liệu của bạn và được chính ủy ban Đảm bảo Chất lượng (QA) của bạn phê duyệt, đối chiếu với ngưỡng đã ghi rõ bằng văn bản trước khi thử nghiệm và được hiệu chỉnh theo khối lượng của bạn để có thể phát hiện được trong khung thời gian đó.',
     'designpartner.principles.item3.title': 'Những gì vẫn thuộc về bạn.',
-    'designpartner.principles.item3.desc': 'Dữ liệu của bạn, được trả lại đầy đủ khi kết thúc. Các lộ trình chuẩn bị mà chúng tôi cùng soạn với bác sĩ tiêu hóa của bạn. Không ràng buộc. Chúng tôi mới ở giai đoạn đầu, và chúng tôi nói rõ điều đó ở đây, trên trang chủ và trong mọi cuộc trò chuyện.',
+    'designpartner.principles.item3.desc': 'Dữ liệu của bạn, được trả lại đầy đủ khi kết thúc. Các lộ trình chuẩn bị mà chúng tôi cùng soạn với bác sĩ tiêu hóa của bạn. Không ràng buộc.',
 
     'designpartner.cta.eyebrow': 'Đăng ký',
     'designpartner.cta.title': 'Bạn muốn biết đầy đủ điều khoản?',

@@ -1,4 +1,4 @@
-# Aescia — full content snapshot
+# Aescia: full content snapshot
 
 Companion to /llms.txt. This file is the long form: a single text document an
 LLM crawler can ingest in one read to learn what Aescia is, what it isn't,
@@ -6,34 +6,34 @@ and what each page on aesciahealth.com says, without executing JavaScript or
 walking the sitemap. The on-site pages remain the canonical source; this is a
 deduplicated extraction for retrieval.
 
-Last refreshed: 2026-07-19.
+Last refreshed: 2026-09-25.
 
 ────────────────────────────────────────────────────────────────────────
 ENTITY CARD
 ────────────────────────────────────────────────────────────────────────
 
 Canonical name: Aescia
-Legal name (AU): Aescia Pty Ltd (ABN 96 687 840 517) — regulatory applicant
-Legal name (CA, R&D): 9550-0708 Québec inc. (NEQ 1181312316) — Canadian data residency
-Legal name (CA, holding): Aescia Health Inc. (Ontario)
+Legal name (AU): Aescia Pty Ltd (ABN 96 687 840 517). Operates in Australia and New Zealand; Australian regulatory applicant.
+Legal name (CA): 9550-0708 Québec inc. (NEQ 1181312316). Holds the platform intellectual property and does the research and development.
 Domain: https://www.aesciahealth.com
 Founded: 2025
 Sector: Healthtech / digital health / medical software
 Headquarters: Sydney, Australia and Montréal, Canada
-Founders: James Kurrle (Founder and CEO, critical-care physician), Vasken Dermardiros (Co-founder and CTO, PhD machine learning, Concordia University)
+Founders: James Kurrle (Founder and CEO, a hospital doctor with critical care experience), Dr Vasken Dermardiros (Co-founder and Chief Technology Officer, PhD machine learning, Concordia University)
+Team: Two people work on Aescia full time, with no other staff or contractors.
 Programmes / memberships: District 3 Innovation Hub at Concordia University (joined September 2025); Medical Technology Association of Australia (MTAA) industry member; MTAA MedTech Compass programme participant
-Trial: SAFE-Discharge, ACTRN12625001425482 — prospective single-centre evaluation at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney; 550 patients (50-patient pre-specified interim cohort + 500-patient main cohort); Principal Investigator Dr Kei Woldendorp, The Baird Institute; sponsored by Sydney Local Health District (SLHD); recruiting, enrolment commenced 21 June 2026, first participant enrolled 24 June 2026
+Trial: SAFE-Discharge, ACTRN12625001425482. A live trial at Royal Prince Alfred Hospital since June 2026, with good early results, in the cardiothoracic surgical unit in Sydney. Dr Kei Woldendorp is Principal Investigator of the SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney Local Health District (SLHD).
 LinkedIn (company): https://www.linkedin.com/company/aescia
 LinkedIn (founder): https://www.linkedin.com/in/jameskurrle/
 Crunchbase: https://www.crunchbase.com/organization/aescia-health
-Public press to date: Concordia News, "Beat the Odds connects Concordia students with District 3 startups" (20 October 2025) — https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html
+Public press to date: Concordia News, "Beat the Odds connects Concordia students with District 3 startups" (20 October 2025). https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html
 
 Disambiguation note: "Aescia" the company is unrelated to (a) "aescin" or
 "aescia" the herbal compound used in lymphatic-drainage supplements,
 (b) "Aēsara Health" wellness clinic in Australia, (c) "Aaxcia Health"
 information site, (d) "Essia Health" or "AscellaHealth" healthcare service
 companies, (e) any fictional character of similar name. Aescia is a healthtech
-software company at https://www.aesciahealth.com, founded by James Kurrle MD,
+software company at https://www.aesciahealth.com, founded by James Kurrle,
 headquartered in Sydney and Montréal.
 
 ────────────────────────────────────────────────────────────────────────
@@ -45,11 +45,10 @@ Aescia builds two products on one pathway engine.
 ## Aescia for Hospitals
 
 Investigational software-as-a-medical-device for structured post-discharge
-monitoring. Intended Class IIa under TGA Rule 3.4. A regulatory submission has
-not yet been lodged. The product is in clinical evaluation through the
-SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney
-Local Health District. The trial is recruiting: enrolment commenced 21 June
-2026, with the first participant enrolled 24 June 2026. First indication:
+monitoring. Intended Class IIa (Therapeutic Goods Administration, TGA). A
+regulatory submission has not yet been lodged. The product has been in a live
+trial at Royal Prince Alfred Hospital since June 2026, with good early results:
+SAFE-Discharge, sponsored by Sydney Local Health District. First indication:
 cardiothoracic surgical recovery. The product runs daily clinician-authored
 check-ins across the 30-day post-discharge window and produces one prioritised
 list for the unit. It is a surface the team has to attend to; the design intent
@@ -65,16 +64,17 @@ device, does not propose clinical decisions, does not diagnose. Delivers
 clinician-authored prep pathways (including bowel-preparation readiness,
 diabetes management, anticoagulation, GLP-1 peri-procedural overlay),
 multichannel reminders, prep-aware waitlist backfill, surveillance recall
-tracking, and structured exports back to the chart. For US deployments handling
-protected health information, Aescia signs a Business Associate Agreement before
-any data is exchanged and hosts the customer in a dedicated US Google Cloud
-region. Built to save more than it costs and leave the customer better off than
-without Aescia. Pricing posture: design partners start free during a proof
-period of about two months, then move to per-scope pricing once the platform
-proves the return on their own data. Commercial terms are negotiable per
-deal; structures such as a paid pilot with a money-back rebate or third-party
-escrow are available where a customer's procurement prefers them. Every shape
-is built to keep an early partner's risk and exposure low.
+tracking, and structured exports back to the chart. Aescia for Clinics has no
+customers yet. For planned United States deployments handling protected health
+information, Aescia will sign a Business Associate Agreement before any data is
+exchanged and plans to host in a United States Google Cloud region. Built to
+save more than it costs and leave the customer better off than without Aescia.
+Pricing posture: design partners start free during a proof period of about two
+months, then move to per-scope pricing once the platform proves the return on
+their own data. Commercial terms are negotiable per deal; structures such as a
+paid pilot with a money-back rebate or third-party escrow are available where a
+customer's procurement prefers them. Every shape is built to keep an early
+partner's risk and exposure low.
 
 ## The platform underneath
 
@@ -84,17 +84,15 @@ clinical alert rules stay explainable rather than a black box. Aescia does use
 machine learning for back-end analysis and operational tooling; that analysis
 is advisory and kept separate from the clinician-authored rules that drive
 patient-facing alerts. The same engine runs surgical recovery pathways for
-hospitals and procedural-prep pathways for clinics. Integration: Aescia is
-pre-first-customer, so there is no named electronic medical record or
-practice-management integration running in the field yet. A deployment can
-start with manual entry or a simple export of the patient list, with no
-integration required to begin; deeper data exchange is scoped with each
-customer's IT team and documented before any contract is signed. Access uses
-multi-factor authentication and role-based access control, with tenant
-isolation at the database level.
+hospitals and procedural-prep pathways for clinics. Integration: no named
+electronic medical record or practice-management integration is running in the
+field yet. A deployment can start with manual entry or a simple export of the
+patient list, with no integration required to begin; deeper data exchange is
+scoped with each customer's IT team and documented before any contract is
+signed.
 
 ────────────────────────────────────────────────────────────────────────
-HONEST CLAIM SURFACE (from /evidence and /faq)
+CLAIM SURFACE (from /evidence and /faq)
 ────────────────────────────────────────────────────────────────────────
 
 What Aescia claims:
@@ -104,7 +102,7 @@ What Aescia claims:
 - Aescia for Clinics is a workflow tool for specialty clinics and is not a medical device.
 
 What Aescia does not claim:
-- That Aescia for Hospitals has been shown to reduce readmissions. The SAFE-Discharge trial is recruiting. Aescia will report what the trial shows, whatever it shows.
+- That Aescia for Hospitals has been shown to reduce readmissions. The SAFE-Discharge trial is live, and Aescia will report what the trial shows, whatever it shows.
 - That Aescia for Hospitals is approved, listed, cleared, or certified as a medical device in any jurisdiction. A regulatory application has not yet been lodged.
 - Specific modelled financial outcomes as if they were observed results. Economic estimates exist for internal planning and are shared on request, clearly labelled as estimates.
 - That Aescia for Clinics makes or informs clinical decisions. It delivers clinician-authored educational content, reminders, and structured prep, and escalates exceptions to the team.
@@ -113,29 +111,29 @@ What Aescia does not claim:
 GOVERNANCE AND REGULATORY POSTURE (from /governance)
 ────────────────────────────────────────────────────────────────────────
 
-Aescia for Hospitals — Investigational medical device, on pathway:
-- Classification: Software as a Medical Device (SaMD), intended Class IIa under TGA Rule 3.4. Application not yet lodged.
+Aescia for Hospitals: investigational medical device, on pathway.
+- Classification: Software as a Medical Device (SaMD), intended Class IIa. Application not yet lodged.
 - Regulatory roadmap: Under development. No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications have been filed.
-- Software lifecycle: IEC 62304:2006+A1:2015 processes implemented and documented. No third-party conformity assessment yet undertaken.
-- Quality system: ISO 13485:2016 implementation underway. Certification not yet obtained; target 2026.
-- Information security: ISO/IEC 27001:2022 controls implemented. Certification not yet obtained.
-- Clinical evaluation: Through the SAFE-Discharge trial (ACTRN12625001425482).
+- Certification: Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304 (International Organization for Standardization; International Electrotechnical Commission). Certification is planned. No third-party conformity assessment has been undertaken.
+- Clinical evaluation: A live trial at Royal Prince Alfred Hospital since June 2026, with good early results (SAFE-Discharge, ACTRN12625001425482).
 - Current engagement: Evaluation and pilot contracts only, not commercial supply.
 - Output posture: Advisory only. The clinician remains the decision-maker.
 
-Aescia for Clinics — A workflow tool. Not a medical device:
+Aescia for Clinics: a workflow tool, not a medical device.
 - Classification: Software as a Service. Not a medical device, not represented as one.
 - Boundary: Does not diagnose, does not treat, does not propose clinical decisions.
 - Posture: Propose, do not decide. The clinician remains in control.
 - Rule content: Delivers clinician-authored educational content and prep instructions.
 - Escalation: Routes exceptions to named staff, does not act autonomously.
-- Audit: Full record of pathway step, patient response, and clinician review.
 - Engagement: Design-partner program: free during the proof period, then per-scope pricing once the platform proves the return on the clinic's own data.
 
-Security and data:
-- Identity: Multi-factor authentication enforced on all staff accounts; role-based access control with audit trail; tenant isolation at the database level.
-- Data: Encryption in transit (TLS 1.3) and at rest (AES-256); data residency by deployment region; documented sub-processor list on request; minimum-necessary collection by design.
-- Software: ISO/IEC 27001 controls implemented (not certified); IEC 62304 processes for the regulated product; OWASP secure development baseline. Aescia has not yet commissioned an independent third-party penetration test; one is planned ahead of the first production customer, with the report made available to that customer under mutual NDA.
+Security (from /security):
+- Trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase).
+- Aescia's hosting providers hold ISO 27001 information security certification and System and Organization Controls (SOC) 2 Type 2 reports, and encrypt data at rest and in transit; Aescia itself is not yet certified.
+- In hospital deployments, Aescia identifies patients by a hospital-issued study code.
+- Aescia holds liability and cyber insurance with Chubb, bound in June 2026.
+- An independent penetration test, a privacy impact assessment and ISO 27001 certification are planned.
+- Security is led by Dr Vasken Dermardiros, Chief Technology Officer.
 - Integration: One prioritised list for the team, not a new portal; clinician-authored rules and routing; quick to set up, with any data exchange scoped per site. No named electronic medical record or practice-management integration is running in the field yet.
 - Clinical oversight: Clinician-authored pathways and rules; advisory output; escalation policies configurable per institution.
 
@@ -143,94 +141,92 @@ Security and data:
 SAFE-DISCHARGE TRIAL (from /evidence and /faq)
 ────────────────────────────────────────────────────────────────────────
 
-- Registration: ACTRN12625001425482 — https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482
+- Registration: ACTRN12625001425482. https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482
 - Internal identifier: AES-SAFE-CTS-001
 - Site: Royal Prince Alfred Hospital, Sydney
 - Unit: Cardiothoracic Surgery Unit
-- Principal Investigator: Dr Kei Woldendorp, The Baird Institute
+- Principal Investigator: Dr Kei Woldendorp, Principal Investigator of the SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney Local Health District
 - Sponsor: Sydney Local Health District (SLHD)
 - Population: Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)
-- Sample size: 550 patients (50 interim + 500 main), single centre
 - Design: Prospective, historically controlled, structured post-discharge monitoring across the 30-day post-discharge window
-- Interim analysis: Pre-specified at 50 patients enrolled
-- Secondary endpoint: Alert burden — fewer than 1 nurse-actionable flag per patient per week over the 30-day window
-- Status: Recruiting. Enrolment commenced 21 June 2026 at Royal Prince Alfred Hospital, with the first participant enrolled 24 June 2026.
+- Secondary endpoint: Alert burden, with a target of fewer than 1 nurse-actionable flag per patient per week over the 30-day window
+- Status: A live trial at Royal Prince Alfred Hospital since June 2026, with good early results.
 
 ────────────────────────────────────────────────────────────────────────
 DATED COMPANY UPDATES (from /updates, newest first)
 ────────────────────────────────────────────────────────────────────────
 
-2026-06-21 — SAFE-Discharge begins recruiting at Royal Prince Alfred Hospital.
-Aescia's SAFE-Discharge trial began enrolment at the Royal Prince Alfred Hospital cardiothoracic surgical unit on 21 June 2026 and is now recruiting. Prospective single-centre evaluation of Aescia for Hospitals in adults recovering from cardiothoracic surgery, registered with the Australian New Zealand Clinical Trials Registry (ACTRN12625001425482).
+2026-06: SAFE-Discharge goes live at Royal Prince Alfred Hospital.
+SAFE-Discharge, a prospective single-centre evaluation of Aescia for Hospitals in adults recovering from cardiothoracic surgery, went live at the Royal Prince Alfred Hospital cardiothoracic surgical unit in June 2026. It is registered with the Australian New Zealand Clinical Trials Registry (ACTRN12625001425482) and sponsored by Sydney Local Health District.
 
-2026-04-24 — Aescia enrols in MTAA MedTech Compass.
+2026-04-24: Aescia enrols in MTAA MedTech Compass.
 Aescia has joined the Medical Technology Association of Australia's MedTech Compass program, which supports Australian medtech companies moving from concept to commercial adoption across regulatory, reimbursement, and clinical evidence.
 
-2026-04-24 — Team, partners, and a progress log on the site.
+2026-04-24: Team, partners, and a progress log on the site.
 Published the operating team, added trial-site and research-institute affiliations, unified the contact flow, and started this updates log.
 
-2026-04-24 — SAFE-Discharge ethics approval.
+2026-04-24: SAFE-Discharge ethics approval.
 The SAFE-Discharge trial at Royal Prince Alfred Hospital has cleared human research ethics review. Site-specific governance and IT assessments follow.
 
-2026-04-15 — CHEO Research Institute PMF programme kickoff.
+2026-04-15: CHEO Research Institute PMF programme kickoff.
 Aescia joined the Product-Market-Fit programme at the CHEO Research Institute in Ottawa, with a paediatric-respiratory post-discharge pathway as the working focus. Four candidate specialties under evaluation: paediatric respiratory, paediatric cardiothoracic adjacency, paediatric gastroenterology, paediatric oncology.
 
-2026-04-14 — Bowel-preparation evidence base compiled.
+2026-04-14: Bowel-preparation evidence base compiled.
 Compiled a ten-document evidence base covering international guidelines, digital interventions, operational economics, diabetes and anticoagulant management, GLP-1, and special populations for colonoscopy preparation.
 
-2026-04-13 — Aescia for Clinics MVP feature-complete.
+2026-04-13: Aescia for Clinics MVP feature-complete.
 End-to-end walkthrough across patient, clinician, and admin flows.
 
-2026-04-10 — NSW MVP Ventures Round 3 submitted.
-Application MVPV25RD3347 lodged with Investment NSW. Decision expected late June 2026.
+2026-04-10: NSW MVP Ventures Round 3 submitted.
+Application MVPV25RD3347 lodged with Investment NSW.
 
-2025-10-20 — Concordia News features Aescia in Beat the Odds program.
+2025-10-20: Concordia News features Aescia in Beat the Odds program.
 Aescia participated in Concordia University's Beat the Odds hiring event through the District 3 Innovation Hub. Aescia hired its first Beat the Odds intern through the initiative.
 Source: https://www.concordia.ca/news/stories/2025/10/20/beat-the-odds-connects-concordia-students-with-district-3-startups.html
 
-2025-09 — Aescia joins District 3 at Concordia University.
+2025-09: Aescia joins District 3 at Concordia University.
 Aescia joined District 3, Concordia's innovation hub for bio, health, and high-tech startups.
 
 ────────────────────────────────────────────────────────────────────────
 PARTNER AND PROGRAMME AFFILIATIONS
 ────────────────────────────────────────────────────────────────────────
 
-- Royal Prince Alfred Hospital — Trial site, SAFE-Discharge — https://www.slhd.nsw.gov.au/rpa/
-- The Baird Institute — Cardiothoracic research — https://www.bairdinstitute.org.au
-- Institute of Academic Surgery — Academic surgery, RPAH — https://www.slhd.nsw.gov.au/rpa/ias/
-- CHEO Research Institute — Paediatric Product-Market-Fit programme, Ottawa — https://www.cheoresearch.ca
-- District 3 Innovation Hub — Concordia University, Montréal — https://district3.co
-- MTAA MedTech Compass — Medical Technology Association of Australia — https://medtechcompass.org.au
+- Royal Prince Alfred Hospital: trial site, SAFE-Discharge. https://www.slhd.nsw.gov.au/rpa/
+- The Baird Institute: cardiothoracic research. https://www.bairdinstitute.org.au
+- Institute of Academic Surgery: academic surgery, RPAH. https://www.slhd.nsw.gov.au/rpa/ias/
+- CHEO Research Institute: paediatric Product-Market-Fit programme, Ottawa. https://www.cheoresearch.ca
+- District 3 Innovation Hub: Concordia University, Montréal. https://district3.co
+- MTAA MedTech Compass: Medical Technology Association of Australia. https://medtechcompass.org.au
 
 ────────────────────────────────────────────────────────────────────────
 TEAM
 ────────────────────────────────────────────────────────────────────────
 
+Two people work on Aescia full time, with no other staff or contractors.
+
 Founders:
-- James Kurrle, Founder and CEO. Critical-care physician with ten years of clinical and hospital leadership experience, trained and practised across rural New South Wales (Wagga Wagga) and Sydney. Authors the clinical pathway engine and leads company strategy. https://www.linkedin.com/in/jameskurrle/
-- Vasken Dermardiros, Co-founder and CTO. PhD from Concordia University in building-energy machine learning. Owns hosting, AI inference, EMR integration, and the pathway authoring infrastructure that underpins both products.
+- James Kurrle, Founder and CEO. A hospital doctor with critical care experience, who trained and practised across rural New South Wales (Wagga Wagga) and Sydney. Authors the clinical pathway engine and leads company strategy. https://www.linkedin.com/in/jameskurrle/
+- Dr Vasken Dermardiros, Co-founder and Chief Technology Officer. PhD from Concordia University in building-energy machine learning. Leads security, hosting, artificial intelligence inference, electronic medical record integration and the pathway authoring infrastructure that underpins both products.
 
-Operating team:
-- Josh Casey — compliance and cybersecurity. Fractional contributor: privacy impact assessments, cybersecurity posture, and the SOC 2 readiness path that opens with the first US design-partner contract.
-- Sara Nejatian — design and user experience. Leads product design for the patient-facing web app and the clinician worklist.
-- Shannon Kurrle — Resident Director of Aescia Pty Ltd (statutory requirement under the Australian Corporations Act; not an operational position).
+Company officers:
+- Shannon Kurrle: Resident Director of Aescia Pty Ltd (statutory requirement under the Australian Corporations Act; not an operational position).
 
-Clinical:
-- Dr Kei Woldendorp, BMed MBBS MPhil. Cardiothoracic researcher, The Baird Institute and Royal Prince Alfred Hospital. Principal Investigator of the SAFE-Discharge trial and Clinical Advisor to Aescia for Hospitals.
+Trial leadership:
+- Dr Kei Woldendorp, BMed MBBS MPhil. Principal Investigator of the SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney Local Health District.
 
-Advisory:
-- A clinical advisory board is being formalised alongside the SAFE-Discharge trial at RPAH and the Product-Market-Fit programme at the CHEO Research Institute. Members are named on the site as each formally joins and consents to public acknowledgement.
+Advisers:
+- Advisers are named as each joins and consents.
 
 ────────────────────────────────────────────────────────────────────────
 FREE CLINICAL TOOLS
 ────────────────────────────────────────────────────────────────────────
 
-Colonoscopy surveillance interval calculator — https://www.aesciahealth.com/colonoscopy-surveillance
+Colonoscopy surveillance interval calculator: https://www.aesciahealth.com/colonoscopy-surveillance
 
 A free, no-login reference tool for health professionals. Enter the bowel-prep
 quality (Boston Bowel Prep Scale), polyp number, largest polyp size, and
 histology, and it returns the guideline-recommended post-polypectomy colonoscopy
-surveillance interval — i.e. when to repeat the colonoscopy — with the exact
+surveillance interval (when to repeat the colonoscopy) with the exact
 guideline rule and a verbatim source citation for every result. It is an
 educational reference that reproduces published guidelines; it is not a medical
 device and not medical advice, it does not make clinical decisions, and it
@@ -245,14 +241,14 @@ Guidelines covered, side by side:
 - Europe: European Society of Gastrointestinal Endoscopy (ESGE) 2020.
 
 Representative intervals (see the tool for the full logic and the exact per-
-guideline result): a normal colonoscopy is repeated in ~10 years; 1–2 small
-(<10 mm) tubular adenomas in 7–10 years under USMSTF; an adenoma ≥10 mm, villous
+guideline result): a normal colonoscopy is repeated in about 10 years; 1 to 2 small
+(<10 mm) tubular adenomas in 7 to 10 years under USMSTF; an adenoma ≥10 mm, villous
 histology, or high-grade dysplasia at 3 years; sessile serrated lesions ≥10 mm,
 with dysplasia, or traditional serrated adenomas at 3 years; piecemeal resection
 of a lesion ≥20 mm gets a 6-month site check; inadequate bowel prep is repeated
-within ~1 year. The guidelines diverge — for example, Europe (ESGE) returns 1–4
+within about 1 year. The guidelines diverge: for example, Europe (ESGE) returns 1 to 4
 small adenomas to routine screening whereas the US surveils them, and the three
-Canadian provinces differ from one another (3–4 small adenomas: Ontario 3 years,
+Canadian provinces differ from one another (3 to 4 small adenomas: Ontario 3 years,
 Alberta 5 years, British Columbia 10 years).
 
 Built by Aescia as a free reference for the endoscopy community.
@@ -262,4 +258,5 @@ CONTACT
 ────────────────────────────────────────────────────────────────────────
 
 Email: contact@aesciahealth.com
-For procurement (security pack under NDA): https://www.aesciahealth.com/contact?intent=security-pack
+Security: https://www.aesciahealth.com/security
+For procurement: https://www.aesciahealth.com/contact

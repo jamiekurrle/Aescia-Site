@@ -19,7 +19,6 @@ const STATS = [
   { key: 's1', value: 54, suffix: '%' },
   { key: 's2', value: 15, suffix: '%' },
   { key: 's3', value: 8, suffix: '%' },
-  { key: 's4', value: 550, suffix: '', proof: true },
 ] as const
 
 export function InstrumentPanel() {
@@ -50,13 +49,11 @@ export function InstrumentPanel() {
           <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('ip.eyebrow')}</span>
           <span className="h-px w-10 bg-accent/50" aria-hidden="true" />
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-10">
           {STATS.map((s) => (
             <div key={s.key} className="border-l border-border pl-5">
               <div
-                className={`font-display text-[40px] lg:text-[52px] leading-none tracking-[-0.02em] tabular-nums ${
-                  'proof' in s && s.proof ? 'text-brass' : 'text-foreground'
-                }`}
+                className="font-display text-[40px] lg:text-[52px] leading-none tracking-[-0.02em] tabular-nums text-foreground"
                 style={{ fontVariationSettings: "'opsz' 120" }}
               >
                 <CountUp value={s.value} suffix={s.suffix} started={started} />

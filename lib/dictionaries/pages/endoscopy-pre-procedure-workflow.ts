@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Endoscopy ASC · Pre-procedure workflow',
     'endoworkflow.hero.title': 'What does endoscopy pre-procedure workflow software do?',
     'endoworkflow.hero.lede': 'Endoscopy pre-procedure workflow software automates the patient journey from booking confirmation to procedure day, so every patient gets the right bowel-prep instructions, completes the correct medication steps (GLP-1 cessation, anticoagulant hold or bridge, insulin and diabetes adjustment), gives consent, and arrives ready. Aescia for Clinics is a clinician-authored platform in this category that runs one pathway covering prep, medication overlays, reminders, consent, and prep-night confirmation, rather than a separate tool for each.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics is pre-first-customer and is not a medical device. It delivers clinician-authored steps; it does not propose or make clinical decisions.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics has no customers yet and is not a medical device. It delivers clinician-authored steps; it does not propose or make clinical decisions.',
 
     'endoworkflow.journey.eyebrow': 'The patient journey',
     'endoworkflow.journey.title': 'From booking to procedure day, one pathway.',
@@ -59,7 +59,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Centre d’endoscopie (ASC) · Flux de travail pré-procédural',
     'endoworkflow.hero.title': 'Que fait un logiciel de flux de travail pré-procédural pour l’endoscopie ?',
     'endoworkflow.hero.lede': 'Le logiciel de flux de travail pré-procédural pour l’endoscopie automatise le parcours du patient, de la confirmation de la réservation jusqu’au jour de la procédure, afin que chaque patient reçoive les bonnes instructions de préparation intestinale, réalise les bonnes étapes médicamenteuses (arrêt des GLP-1, suspension ou relais des anticoagulants, ajustement de l’insuline et du diabète), donne son consentement et arrive prêt. Aescia for Clinics est une plateforme rédigée par des cliniciens dans cette catégorie, qui exécute un seul parcours couvrant la préparation, les superpositions médicamenteuses, les rappels, le consentement et la confirmation la veille de la préparation, plutôt qu’un outil distinct pour chacun.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics est en phase pré-premier-client et n’est pas un dispositif médical. Il fournit des étapes rédigées par des cliniciens ; il ne propose pas et ne prend pas de décisions cliniques.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics n’a pas encore de clients et n’est pas un dispositif médical. Il fournit des étapes rédigées par des cliniciens ; il ne propose pas et ne prend pas de décisions cliniques.',
 
     'endoworkflow.journey.eyebrow': 'Le parcours du patient',
     'endoworkflow.journey.title': 'De la réservation au jour de la procédure, un seul parcours.',
@@ -115,7 +115,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Centro de endoscopia (ASC) · Flujo de trabajo previo al procedimiento',
     'endoworkflow.hero.title': '¿Qué hace el software de flujo de trabajo previo al procedimiento de endoscopia?',
     'endoworkflow.hero.lede': 'El software de flujo de trabajo previo al procedimiento de endoscopia automatiza el recorrido del paciente desde la confirmación de la reserva hasta el día del procedimiento, de modo que cada paciente reciba las instrucciones correctas de preparación intestinal, complete los pasos de medicación correctos (suspensión de GLP-1, suspensión o puente de anticoagulantes, ajuste de insulina y diabetes), dé su consentimiento y llegue preparado. Aescia for Clinics es una plataforma escrita por médicos en esta categoría que ejecuta un solo recorrido que cubre la preparación, las superposiciones de medicación, los recordatorios, el consentimiento y la confirmación la noche previa a la preparación, en lugar de una herramienta separada para cada uno.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics está en etapa previa al primer cliente y no es un dispositivo médico. Entrega pasos escritos por médicos; no propone ni toma decisiones clínicas.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics aún no tiene clientes y no es un dispositivo médico. Entrega pasos escritos por médicos; no propone ni toma decisiones clínicas.',
 
     'endoworkflow.journey.eyebrow': 'El recorrido del paciente',
     'endoworkflow.journey.title': 'De la reserva al día del procedimiento, un solo recorrido.',
@@ -171,7 +171,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': '内镜中心（ASC）· 术前流程',
     'endoworkflow.hero.title': '内镜术前流程软件有什么作用？',
     'endoworkflow.hero.lede': '内镜术前流程软件将患者旅程从预约确认到手术当天自动化，使每位患者都能获得正确的肠道准备说明、完成正确的用药步骤（停用GLP-1、停用或桥接抗凝药、胰岛素和糖尿病调整）、给予同意，并做好准备到达。Aescia for Clinics 是此类别中由临床医生编写的平台，它运行一条涵盖准备、用药叠加、提醒、同意和准备前夜确认的统一路径，而不是为每一项使用单独的工具。',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics 处于首个客户之前的阶段，且不是医疗器械。它提供由临床医生编写的步骤；它不提出也不作出临床决策。',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics 目前还没有客户，且不是医疗器械。它提供由临床医生编写的步骤；它不提出也不作出临床决策。',
 
     'endoworkflow.journey.eyebrow': '患者旅程',
     'endoworkflow.journey.title': '从预约到手术当天，一条路径。',
@@ -227,7 +227,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'مركز التنظير (ASC) · سير العمل قبل الإجراء',
     'endoworkflow.hero.title': 'ماذا يفعل برنامج سير العمل قبل إجراء التنظير؟',
     'endoworkflow.hero.lede': 'يقوم برنامج سير العمل قبل إجراء التنظير بأتمتة رحلة المريض من تأكيد الحجز حتى يوم الإجراء، بحيث يحصل كل مريض على تعليمات تحضير الأمعاء الصحيحة، ويكمل خطوات الدواء الصحيحة (إيقاف GLP-1، وإيقاف مضادات التخثر أو معاوضتها، وتعديل الأنسولين والسكري)، ويقدّم موافقته، ويصل جاهزًا. Aescia for Clinics منصة من تأليف الأطباء في هذه الفئة تشغّل مسارًا واحدًا يغطي التحضير، وطبقات الأدوية، والتذكيرات، والموافقة، والتأكيد ليلة التحضير، بدلًا من أداة منفصلة لكل منها.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics في مرحلة ما قبل أول عميل وليست جهازًا طبيًا. فهي تقدّم خطوات من تأليف الأطباء؛ ولا تقترح قرارات سريرية ولا تتخذها.',
+    'endoworkflow.hero.disclaimer': 'ليس لدى Aescia for Clinics عملاء بعد، وهي ليست جهازًا طبيًا. فهي تقدّم خطوات من تأليف الأطباء؛ ولا تقترح قرارات سريرية ولا تتخذها.',
 
     'endoworkflow.journey.eyebrow': 'رحلة المريض',
     'endoworkflow.journey.title': 'من الحجز إلى يوم الإجراء، مسار واحد.',
@@ -283,7 +283,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Trung tâm nội soi (ASC) · Quy trình trước thủ thuật',
     'endoworkflow.hero.title': 'Phần mềm quy trình trước thủ thuật nội soi làm gì?',
     'endoworkflow.hero.lede': 'Phần mềm quy trình trước thủ thuật nội soi tự động hóa hành trình của bệnh nhân từ khi xác nhận đặt lịch đến ngày thủ thuật, để mỗi bệnh nhân nhận được hướng dẫn chuẩn bị ruột đúng, hoàn thành đúng các bước về thuốc (ngừng GLP-1, ngừng hoặc bắc cầu thuốc chống đông, điều chỉnh insulin và đái tháo đường), đồng ý, và đến trong tình trạng sẵn sàng. Aescia for Clinics là một nền tảng do bác sĩ lâm sàng soạn thảo trong loại này, chạy một lộ trình duy nhất bao gồm chuẩn bị, các lớp phủ thuốc, nhắc nhở, đồng ý và xác nhận vào đêm trước khi chuẩn bị, thay vì một công cụ riêng cho từng việc.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics đang ở giai đoạn trước khách hàng đầu tiên và không phải là thiết bị y tế. Nó cung cấp các bước do bác sĩ lâm sàng soạn thảo; nó không đề xuất và không đưa ra quyết định lâm sàng.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics chưa có khách hàng nào và không phải là thiết bị y tế. Nó cung cấp các bước do bác sĩ lâm sàng soạn thảo; nó không đề xuất và không đưa ra quyết định lâm sàng.',
 
     'endoworkflow.journey.eyebrow': 'Hành trình của bệnh nhân',
     'endoworkflow.journey.title': 'Từ khi đặt lịch đến ngày thủ thuật, một lộ trình.',

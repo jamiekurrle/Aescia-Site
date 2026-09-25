@@ -35,7 +35,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Who founded Aescia?',
-        a: 'Aescia was founded by James Kurrle, a critical-care physician trained and practising across rural and metropolitan New South Wales (Wagga Wagga and Sydney), and Vasken Dermardiros, a machine-learning PhD from Concordia University. James is the CEO and authors the clinical pathway engine. Vasken is the CTO and owns hosting, AI inference, EMR integration, and pathway authoring infrastructure.',
+        a: 'Aescia was founded by James Kurrle, a hospital doctor with critical care experience who trained and practised across rural and metropolitan New South Wales (Wagga Wagga and Sydney), and Vasken Dermardiros, a machine-learning PhD from Concordia University. James is the Chief Executive Officer and authors the clinical pathway engine. Vasken is the Chief Technology Officer and leads hosting, AI inference, electronic medical record integration, and pathway authoring infrastructure.',
       },
       {
         q: 'When was Aescia founded?',
@@ -43,7 +43,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Where does Aescia operate?',
-        a: 'Aescia operates from Sydney, Australia and Montréal, Canada. The Australian regulatory applicant is Aescia Pty Ltd (ABN 96 687 840 517). The Canadian R&D entity is 9550-0708 Québec inc. (NEQ 1181312316), which anchors Canadian data residency. The holding entity is Aescia Health Inc. (Ontario, Canada).',
+        a: 'Aescia operates from Sydney, Australia and Montréal, Canada. 9550-0708 Québec inc. (NEQ 1181312316) holds the platform intellectual property and does the research and development. Aescia Pty Ltd (ABN 96 687 840 517) operates in Australia and New Zealand and is the Australian regulatory applicant.',
       },
       {
         q: 'Is Aescia in any accelerator or industry programmes?',
@@ -56,7 +56,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'What is Aescia for Hospitals?',
-        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring. It is intended to be classified Class IIa under TGA Rule 3.4. The product runs daily clinician-authored check-ins across the 30-day post-discharge window and produces one prioritised list for the unit, rather than a new inbox for the nurse. The first indication is cardiothoracic surgical recovery; clinical evaluation is running through the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
+        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring. It is intended to be classified Class IIa by the Australian Therapeutic Goods Administration (TGA). The product runs daily clinician-authored check-ins across the 30-day post-discharge window and produces one prioritised list for the unit, rather than a new inbox for the nurse. The first indication is cardiothoracic surgical recovery; clinical evaluation is running through the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
       },
       {
         q: 'What is Aescia for Clinics?',
@@ -77,7 +77,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'Is Aescia a medical device?',
-        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device intended for Class IIa classification under TGA Rule 3.4. A regulatory submission has not yet been lodged. Aescia for Clinics is explicitly not a medical device and is not represented as one.',
+        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device intended for Class IIa classification by the Australian Therapeutic Goods Administration (TGA). A regulatory submission has not yet been lodged. Aescia for Clinics is explicitly not a medical device and is not represented as one.',
       },
       {
         q: 'Has Aescia been approved by the TGA, FDA, Health Canada, or any other regulator?',
@@ -85,7 +85,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What is the SAFE-Discharge trial?',
-        a: 'SAFE-Discharge is a prospective single-centre evaluation of Aescia for Hospitals at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney. Sample size is 550 patients (a 50-patient pre-specified interim cohort followed by a 500-patient main cohort). Principal investigator is Dr Kei Woldendorp of The Baird Institute. The trial is registered with the Australian New Zealand Clinical Trials Registry as ACTRN12625001425482. Ethics approval has been granted; site-specific governance is in progress.',
+        a: 'SAFE-Discharge is a prospective single-centre evaluation of Aescia for Hospitals at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney. The trial has been live since June 2026, with good early results. Dr Kei Woldendorp is Principal Investigator, and the trial is sponsored by Sydney Local Health District. It is registered with the Australian New Zealand Clinical Trials Registry as ACTRN12625001425482.',
       },
       {
         q: 'What does the SAFE-Discharge trial measure?',
@@ -93,7 +93,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What quality-system frameworks does Aescia work to?',
-        a: 'IEC 62304:2006+A1:2015 software lifecycle processes are implemented and documented. ISO 13485:2016 quality management implementation is underway, with certification targeted for 2026. ISO/IEC 27001:2022 information security controls are implemented; certification has not yet been obtained. No third-party conformity assessment has been undertaken.',
+        a: 'The applicable standards come from the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC): ISO 13485 for quality management, ISO/IEC 27001 for information security and IEC 62304 for medical device software lifecycle processes. Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304. Certification is planned. No third-party conformity assessment has been undertaken.',
       },
     ],
   },
@@ -106,11 +106,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',
-        a: 'Aescia is designed to add one prioritised list for the team, not a new portal, and to be quick to set up. Aescia is pre-first-customer, so it does not yet have live integrations with specific electronic medical record or practice-management systems; any data exchange is scoped with each customer rather than claimed in advance. To start, data can be provided by manual entry or a simple export, with no integration required to begin. Access uses multi-factor authentication and role-based access control, with tenant-isolated data.',
+        a: 'Aescia is designed to add one prioritised list for the team, not a new portal, and to be quick to set up. Aescia for Clinics has no customers yet, and Aescia does not yet have live integrations with specific electronic medical record or practice-management systems; any data exchange is scoped with each customer rather than claimed in advance. To start, data can be provided by manual entry or a simple export, with no integration required to begin.',
       },
       {
         q: 'What is Aescia\'s data security and privacy posture?',
-        a: 'Encryption in transit (TLS 1.3) and at rest (AES-256), data residency by deployment region (a US region on Google Cloud for US deployments), multi-factor authentication enforced on staff accounts, a documented sub-processor list on request, and minimum-necessary collection by design. ISO/IEC 27001 controls are implemented (certification not yet obtained). The /security page documents the data-handling posture, the agreements signed before any patient data is exchanged, sub-processors, breach notification, data ownership, and exit terms in full.',
+        a: 'Trial data is stored in Australia, in the Amazon Web Services Sydney region through Supabase. For planned United States deployments, data would be hosted in a United States region on Google Cloud. The hosting providers encrypt data in transit and at rest. A documented sub-processor list is available on request, and collection is limited to the minimum necessary by design. The /security page sets out where trial data is stored, the hosting providers\' certifications, insurance and planned security work.',
       },
       {
         q: 'Does Aescia use AI or machine learning?',
@@ -118,7 +118,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'How can I evaluate Aescia for my hospital or clinic?',
-        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, current engagement is evaluation and pilot contracts. For Clinics, current customers are taken through the design-partner program documented at aesciahealth.com/design-partner.',
+        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, current engagement is evaluation and pilot contracts. For Clinics, new customers join through the design-partner program documented at aesciahealth.com/design-partner.',
       },
     ],
   },
@@ -127,7 +127,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How do I cut no-shows at an endoscopy ASC?',
-        a: 'At an endoscopy ambulatory surgery center, most no-shows are preparation failures rather than forgotten appointments. A patient who has not done the bowel prep, is confused about a GLP-1 or blood-thinner instruction, or is unsure about the prep will cancel late or not arrive. Cutting no-shows means getting more patients correctly prepared and confirmed before the date, not just reminding them to attend. Aescia for Clinics does this with clinician-authored prep pathways, medication overlays, timed reminders, and a prep-night photo confirmation. Inadequate bowel preparation alone affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024), so the prep gap is a large part of the problem.',
+        a: 'At an endoscopy ambulatory surgery center, most no-shows are preparation failures rather than forgotten appointments. A patient who has not done the bowel prep, is confused about a GLP-1 or blood-thinner instruction, or is unsure about the prep will cancel late or not arrive. Cutting no-shows means getting more patients correctly prepared and confirmed before the date, not just reminding them to attend. Aescia for Clinics does this with clinician-authored prep pathways, medication overlays, timed reminders, and a prep-night photo confirmation. Inadequate bowel preparation is common on its own, driven by identifiable and addressable risk factors (Beran 2024), so the prep gap is a large part of the problem.',
       },
       {
         q: 'Do GLP-1 patients need to stop their medication before a colonoscopy?',
@@ -143,11 +143,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'How can software reduce the inadequate bowel prep rate?',
-        a: 'Inadequate bowel preparation affects roughly 20 to 25 percent of colonoscopies at baseline (Beran 2024) and is associated with a higher adenoma miss rate (Lebwohl 2011). A single written instruction handed out at booking fails for ordinary reasons: it arrives weeks too early, in dense or non-native language, with misunderstood split-dose timing and no checkpoint until the patient arrives. Software reduces the rate by delivering a structured, timed, coached prep pathway in the patient\'s language, with reminders and a prep-night confirmation. Aescia for Clinics does this, aligned to a Boston Bowel Preparation standard. Better instructions raise prep adequacy but do not eliminate inadequate prep entirely.',
+        a: 'Inadequate bowel preparation is common, driven by identifiable and addressable risk factors (Beran 2024), and is associated with a higher adenoma miss rate (Lebwohl 2011). A single written instruction handed out at booking fails for ordinary reasons: it arrives weeks too early, in dense or non-native language, with misunderstood split-dose timing and no checkpoint until the patient arrives. Software reduces the rate by delivering a structured, timed, coached prep pathway in the patient\'s language, with reminders and a prep-night confirmation. Aescia for Clinics does this, aligned to a Boston Bowel Preparation standard. Better instructions raise prep adequacy but do not eliminate inadequate prep entirely.',
       },
       {
         q: 'Can software fill a cancelled colonoscopy slot, and what is prep-aware backfill?',
-        a: 'Generic waitlist auto-fill can offer a cancelled slot to the next patient, but for colonoscopy that often fails, because the replacement needs 1 to 2 days of bowel preparation and cannot attend prepared on short notice. Prep-aware backfill is the alternative: it routes a freed slot only to patients already confirmed prep-ready for that date. Aescia for Clinics tracks prep state across the active waitlist and produces that prep-aware routing signal; the slot is still booked in the clinic\'s own scheduling system. The ceiling is honest: prep-aware backfill can only draw from the pool of patients who are actively prepping, so it is most useful for ASCs with enough near-term volume to keep that pool full.',
+        a: 'Generic waitlist auto-fill can offer a cancelled slot to the next patient, but for colonoscopy that often fails, because the replacement needs 1 to 2 days of bowel preparation and cannot attend prepared on short notice. Prep-aware backfill is the alternative: it routes a freed slot only to patients already confirmed prep-ready for that date. Aescia for Clinics tracks prep state across the active waitlist and produces that prep-aware routing signal; the slot is still booked in the clinic\'s own scheduling system. The limit: prep-aware backfill can only draw from the pool of patients who are actively prepping, so it is most useful for ASCs with enough near-term volume to keep that pool full.',
       },
     ],
   },
@@ -156,15 +156,15 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'You have no clinical customers yet. Why should I be first?',
-        a: 'Aescia for Clinics is pre-first-customer; that is stated plainly. The design-partner program is the structured answer. The pilot runs free until Aescia has delivered measurable net benefit on the outcome costing your list the most, measured against your own ASC\'s historical baseline and signed off by your own QA committee. Commercial terms are negotiated per deal; in return, design partners provide reference and logo arrangements. The program is at aesciahealth.com/design-partner.',
+        a: 'Aescia for Clinics has no customers yet. The design-partner program is the structured answer. The pilot runs free until Aescia has delivered measurable net benefit on the outcome costing your list the most, measured against your own ASC\'s historical baseline and signed off by your own QA committee. Commercial terms are negotiated per deal; in return, design partners provide reference and logo arrangements. The program is at aesciahealth.com/design-partner.',
       },
       {
         q: 'What happens to my data if Aescia shuts down?',
-        a: 'Customer data is exported in a usable structured format (JSON and CSV) within 30 days of termination. Aescia-side copies are destroyed on a documented schedule after export confirmation, with a certificate of destruction issued. There is no PDF dump. Pathways co-authored with your clinician are returned in a re-deployable format. The /security page documents exit terms in writing and the design-partner contract pre-specifies them before the pilot starts.',
+        a: 'Customer data is exported in a usable structured format (JSON and CSV) within 30 days of termination. Aescia-side copies are destroyed on a documented schedule after export confirmation, with a certificate of destruction issued. There is no PDF dump. Pathways co-authored with your clinician are returned in a re-deployable format. The design-partner contract pre-specifies exit terms before the pilot starts.',
       },
       {
         q: 'Are you HIPAA compliant and will you sign a Business Associate Agreement?',
-        a: 'Aescia is not a HIPAA-covered entity and does not claim HIPAA certification. Aescia is pre-first-customer and does not have signed Business Associate Agreements in place today. For any US deployment that will handle PHI, a Business Associate Agreement is signed before any patient data is exchanged. PHI for US deployments is hosted in a US region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication), per-tenant. The /security page documents the full posture, including SOC 2 status, sub-processors, breach notification, and data ownership.',
+        a: 'Aescia is not a covered entity under the United States Health Insurance Portability and Accountability Act (HIPAA) and does not claim HIPAA certification. Aescia for Clinics has no United States customers yet, so no Business Associate Agreements have been signed. For any United States deployment that will handle protected health information (PHI), a Business Associate Agreement is signed before any patient data is exchanged. For planned United States deployments, PHI would be hosted in a United States region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication).',
       },
       {
         q: 'Is Aescia for Clinics regulated by the FDA?',

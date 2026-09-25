@@ -4,9 +4,9 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': 'Four answers, on the page. Long versions are one click away.',
 
     'credfacts.fact1.eyebrow': 'Data and privacy',
-    'credfacts.fact1.title': 'Data hosted in country with the relevant agreement in place.',
-    'credfacts.fact1.body': 'Customer data stays in your jurisdiction on Google Cloud, under the relevant agreement (Business Associate Agreement in the US, or the local equivalent) signed before any patient data moves.',
-    'credfacts.fact1.cta': 'Read the security pack',
+    'credfacts.fact1.title': 'Trial data stored in Australia. United States hosting planned.',
+    'credfacts.fact1.body': 'Trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase). For planned United States deployments, customer data would be hosted on Google Cloud in the United States, under a Business Associate Agreement (BAA) signed before any patient data moves.',
+    'credfacts.fact1.cta': 'Read the security page',
 
     'credfacts.fact2.eyebrow': 'Getting started',
     'credfacts.fact2.title': 'Designed to deploy quickly.',
@@ -20,7 +20,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': 'First customers',
     'credfacts.fact4.title': 'A structured first-customer program.',
-    'credfacts.fact4.body': 'Aescia is pre-first-customer and says so plainly. A small named set of ASCs, outcomes pre-specified in writing, measured against your own baseline, adjudicated by your QA committee.',
+    'credfacts.fact4.body': 'Aescia for Clinics has no customers yet. A small named set of ASCs, outcomes pre-specified in writing, measured against your own baseline, adjudicated by your QA committee.',
     'credfacts.fact4.cta': 'Read the program terms',
   },
   fr: {
@@ -28,13 +28,13 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': 'Quatre réponses, sur la page. Les versions longues sont à un clic.',
 
     'credfacts.fact1.eyebrow': 'Données et confidentialité',
-    'credfacts.fact1.title': 'Données hébergées dans le pays, avec l\'accord pertinent en place.',
-    'credfacts.fact1.body': 'Aescia héberge les données client dans la juridiction du client sur Google Cloud et signe l\'accord de données pertinent (BAA aux États-Unis, DPA selon le GDPR, l\'équivalent selon les Australian Privacy Principles ou PIPEDA) avant tout échange de données patient. Le parcours SOC 2 s\'ouvre avec le premier contrat de partenaire de conception.',
-    'credfacts.fact1.cta': 'Lire le dossier de sécurité',
+    'credfacts.fact1.title': 'Données de l\'essai stockées en Australie. Hébergement aux États-Unis prévu.',
+    'credfacts.fact1.body': 'Les données de l\'essai sont stockées en Australie (région Sydney d\'Amazon Web Services, via Supabase). Pour les déploiements prévus aux États-Unis, les données client seraient hébergées sur Google Cloud aux États-Unis, dans le cadre d\'un Business Associate Agreement (BAA) signé avant tout transfert de données patient.',
+    'credfacts.fact1.cta': 'Lire la page sécurité',
 
     'credfacts.fact2.eyebrow': 'Pour commencer',
     'credfacts.fact2.title': 'Conçu pour un déploiement rapide.',
-    'credfacts.fact2.body': 'Aescia est en phase pré-premier-client et le dit clairement. Une clinique peut commencer par une saisie manuelle des données ou un simple export, sans aucune intégration requise pour débuter. Tout échange de données plus approfondi avec vos systèmes est défini avec vous.',
+    'credfacts.fact2.body': 'Une clinique peut commencer par une saisie manuelle des données ou un simple export, sans aucune intégration requise pour débuter. Tout échange de données plus approfondi avec vos systèmes est défini avec vous.',
     'credfacts.fact2.cta': 'Comment nous commençons avec vous',
 
     'credfacts.fact3.eyebrow': 'Économie',
@@ -44,7 +44,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': 'Premiers clients',
     'credfacts.fact4.title': 'Un programme structuré de premiers clients.',
-    'credfacts.fact4.body': 'Un petit ensemble nommé d\'ASC. Les résultats sont pré-spécifiés par écrit avant le début du pilote, mesurés par rapport aux données historiques propres du client, et arbitrés par le comité QA du client. Les conditions commerciales sont négociées au cas par cas.',
+    'credfacts.fact4.body': 'Aescia for Clinics n\'a pas encore de clients. Un petit ensemble nommé d\'ASC. Les résultats sont pré-spécifiés par écrit avant le début du pilote, mesurés par rapport aux données historiques propres du client, et arbitrés par le comité QA du client. Les conditions commerciales sont négociées au cas par cas.',
     'credfacts.fact4.cta': 'Lire les conditions du programme',
   },
   es: {
@@ -52,13 +52,13 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': 'Cuatro respuestas, en la página. Las versiones largas están a un clic.',
 
     'credfacts.fact1.eyebrow': 'Datos y privacidad',
-    'credfacts.fact1.title': 'Datos alojados en el país, con el acuerdo correspondiente vigente.',
-    'credfacts.fact1.body': 'Aescia aloja los datos del cliente en la jurisdicción del cliente en Google Cloud y firma el acuerdo de datos correspondiente (BAA en EE. UU., DPA bajo el GDPR, el equivalente bajo los Australian Privacy Principles o PIPEDA) antes de intercambiar cualquier dato de paciente. La ruta hacia SOC 2 se abre con el primer contrato de socio de diseño.',
-    'credfacts.fact1.cta': 'Leer el paquete de seguridad',
+    'credfacts.fact1.title': 'Datos del ensayo almacenados en Australia. Alojamiento en Estados Unidos previsto.',
+    'credfacts.fact1.body': 'Los datos del ensayo se almacenan en Australia (región de Sydney de Amazon Web Services, a través de Supabase). Para los despliegues previstos en Estados Unidos, los datos del cliente se alojarían en Google Cloud en Estados Unidos, bajo un Business Associate Agreement (BAA) firmado antes de transferir cualquier dato de paciente.',
+    'credfacts.fact1.cta': 'Leer la página de seguridad',
 
     'credfacts.fact2.eyebrow': 'Para empezar',
-    'credfacts.fact2.title': 'Diseñado para implementarse rápidamente.',
-    'credfacts.fact2.body': 'Aescia está en etapa previa al primer cliente y lo dice con claridad. Una clínica puede comenzar con entrada manual de datos o una exportación sencilla, sin que se requiera ninguna integración para empezar. Cualquier intercambio de datos más profundo con sus sistemas se define junto con usted.',
+    'credfacts.fact2.title': 'Diseñado para ponerse en marcha rápidamente.',
+    'credfacts.fact2.body': 'Una clínica puede comenzar con entrada manual de datos o una exportación sencilla, sin que se requiera ninguna integración para empezar. Cualquier intercambio de datos más profundo con sus sistemas se define junto con usted.',
     'credfacts.fact2.cta': 'Cómo empezamos con usted',
 
     'credfacts.fact3.eyebrow': 'Economía',
@@ -68,7 +68,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': 'Primeros clientes',
     'credfacts.fact4.title': 'Un programa estructurado de primeros clientes.',
-    'credfacts.fact4.body': 'Un pequeño conjunto identificado de ASC. Los resultados se especifican por escrito antes de que comience el piloto, se miden frente a los datos históricos propios del cliente y los adjudica el comité QA del cliente. Los términos comerciales se negocian por cada acuerdo.',
+    'credfacts.fact4.body': 'Aescia for Clinics todavía no tiene clientes. Un pequeño conjunto identificado de ASC. Los resultados se especifican por escrito antes de que comience el piloto, se miden frente a los datos históricos propios del cliente y los adjudica el comité QA del cliente. Los términos comerciales se negocian por cada acuerdo.',
     'credfacts.fact4.cta': 'Leer los términos del programa',
   },
   zh: {
@@ -76,13 +76,13 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': '四个答案，就在本页。详细版本只需一次点击。',
 
     'credfacts.fact1.eyebrow': '数据与隐私',
-    'credfacts.fact1.title': '数据在所在国托管，并已签署相关协议。',
-    'credfacts.fact1.body': 'Aescia 在客户所在司法管辖区的 Google Cloud 上托管客户数据，并在交换任何患者数据之前签署相关的数据协议（在美国为 BAA，在 GDPR 下为 DPA，在 Australian Privacy Principles 或 PIPEDA 下为等效协议）。SOC 2 路径随第一份设计合作伙伴合同启动。',
-    'credfacts.fact1.cta': '阅读安全资料包',
+    'credfacts.fact1.title': '试验数据存储在澳大利亚。美国托管已在计划中。',
+    'credfacts.fact1.body': '试验数据存储在澳大利亚（Amazon Web Services Sydney 区域，通过 Supabase）。对于计划中的美国部署，客户数据将托管在美国的 Google Cloud 上，并在转移任何患者数据之前签署 Business Associate Agreement（BAA）。',
+    'credfacts.fact1.cta': '阅读安全页面',
 
     'credfacts.fact2.eyebrow': '快速上手',
     'credfacts.fact2.title': '专为快速部署而设计。',
-    'credfacts.fact2.body': 'Aescia 处于首位客户之前阶段，并对此直言不讳。诊所可以从手动录入数据或简单导出开始，无需任何集成即可起步。与您系统之间更深入的数据交换会与您共同界定范围。',
+    'credfacts.fact2.body': '诊所可以从手动录入数据或简单导出开始，无需任何集成即可起步。与您系统之间更深入的数据交换会与您共同界定范围。',
     'credfacts.fact2.cta': '我们如何与您一起起步',
 
     'credfacts.fact3.eyebrow': '经济效益',
@@ -92,7 +92,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': '首批客户',
     'credfacts.fact4.title': '结构化的首批客户计划。',
-    'credfacts.fact4.body': '一小批指定的 ASC。结果在试点开始前以书面形式预先设定，依据客户自身的历史数据进行衡量，并由客户的 QA 委员会裁定。商业条款按每笔交易单独协商。',
+    'credfacts.fact4.body': 'Aescia for Clinics 目前还没有客户。一小批指定的 ASC。结果在试点开始前以书面形式预先设定，依据客户自身的历史数据进行衡量，并由客户的 QA 委员会裁定。商业条款按每笔交易单独协商。',
     'credfacts.fact4.cta': '阅读计划条款',
   },
   ar: {
@@ -100,13 +100,13 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': 'أربع إجابات، على الصفحة. النسخ المطوّلة على بُعد نقرة واحدة.',
 
     'credfacts.fact1.eyebrow': 'البيانات والخصوصية',
-    'credfacts.fact1.title': 'بيانات مستضافة داخل البلد مع وجود الاتفاقية ذات الصلة.',
-    'credfacts.fact1.body': 'تستضيف Aescia بيانات العميل ضمن الولاية القضائية للعميل على Google Cloud وتوقّع اتفاقية البيانات ذات الصلة (BAA في الولايات المتحدة، وDPA بموجب GDPR، وما يعادلها بموجب Australian Privacy Principles أو PIPEDA) قبل تبادل أي بيانات للمرضى. يُفتح مسار SOC 2 مع أول عقد لشريك تصميم.',
-    'credfacts.fact1.cta': 'اقرأ حزمة الأمان',
+    'credfacts.fact1.title': 'بيانات التجربة مُخزَّنة في أستراليا. والاستضافة في الولايات المتحدة مُخطَّط لها.',
+    'credfacts.fact1.body': 'تُخزَّن بيانات التجربة في أستراليا (منطقة Sydney في Amazon Web Services، عبر Supabase). وفي عمليات النشر المُخطَّط لها في الولايات المتحدة، ستُستضاف بيانات العملاء على Google Cloud في الولايات المتحدة، بموجب Business Associate Agreement (BAA) يُوقَّع قبل نقل أي بيانات للمرضى.',
+    'credfacts.fact1.cta': 'اقرأ صفحة الأمن',
 
     'credfacts.fact2.eyebrow': 'البدء',
     'credfacts.fact2.title': 'مصمَّم للنشر السريع.',
-    'credfacts.fact2.body': 'Aescia في مرحلة ما قبل العميل الأول وتقول ذلك بوضوح. يمكن للعيادة أن تبدأ بإدخال البيانات يدويًا أو بتصدير بسيط، دون الحاجة إلى أي تكامل للبدء. ويُحدَّد نطاق أي تبادل أعمق للبيانات مع أنظمتك بالتعاون معك.',
+    'credfacts.fact2.body': 'يمكن للعيادة أن تبدأ بإدخال البيانات يدويًا أو بتصدير بسيط، دون الحاجة إلى أي تكامل للبدء. ويُحدَّد نطاق أي تبادل أعمق للبيانات مع أنظمتك بالتعاون معك.',
     'credfacts.fact2.cta': 'كيف نبدأ معك',
 
     'credfacts.fact3.eyebrow': 'الاقتصاديات',
@@ -116,7 +116,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': 'العملاء الأوائل',
     'credfacts.fact4.title': 'برنامج منظَّم للعملاء الأوائل.',
-    'credfacts.fact4.body': 'مجموعة صغيرة محدّدة الأسماء من مراكز ASC. تُحدَّد النتائج كتابيًا مسبقًا قبل بدء التجربة، وتُقاس مقابل البيانات التاريخية الخاصة بالعميل، ويفصل فيها لجنة QA لدى العميل. ويتم التفاوض على الشروط التجارية لكل صفقة على حدة.',
+    'credfacts.fact4.body': 'لا يوجد لدى Aescia for Clinics عملاء بعد. مجموعة صغيرة محدّدة الأسماء من مراكز ASC. تُحدَّد النتائج كتابيًا مسبقًا قبل بدء التجربة، وتُقاس مقابل البيانات التاريخية الخاصة بالعميل، ويفصل فيها لجنة QA لدى العميل. ويتم التفاوض على الشروط التجارية لكل صفقة على حدة.',
     'credfacts.fact4.cta': 'اقرأ شروط البرنامج',
   },
   vi: {
@@ -124,13 +124,13 @@ export const dict: Record<string, Record<string, string>> = {
     'credfacts.section.title': 'Bốn câu trả lời, ngay trên trang. Bản đầy đủ chỉ cách một cú nhấp.',
 
     'credfacts.fact1.eyebrow': 'Dữ liệu và quyền riêng tư',
-    'credfacts.fact1.title': 'Dữ liệu được lưu trữ trong nước với thỏa thuận liên quan đã có hiệu lực.',
-    'credfacts.fact1.body': 'Aescia lưu trữ dữ liệu khách hàng trong phạm vi tài phán của khách hàng trên Google Cloud và ký thỏa thuận dữ liệu liên quan (BAA tại Hoa Kỳ, DPA theo GDPR, văn bản tương đương theo Australian Privacy Principles hoặc PIPEDA) trước khi trao đổi bất kỳ dữ liệu bệnh nhân nào. Lộ trình SOC 2 bắt đầu cùng với hợp đồng đối tác thiết kế đầu tiên.',
-    'credfacts.fact1.cta': 'Đọc gói bảo mật',
+    'credfacts.fact1.title': 'Dữ liệu thử nghiệm được lưu trữ tại Úc. Đã lên kế hoạch lưu trữ tại Hoa Kỳ.',
+    'credfacts.fact1.body': 'Dữ liệu thử nghiệm được lưu trữ tại Úc (khu vực Sydney của Amazon Web Services, thông qua Supabase). Theo kế hoạch cho Hoa Kỳ, dữ liệu khách hàng sẽ được lưu trữ trên Google Cloud tại Hoa Kỳ, theo một Business Associate Agreement (BAA) được ký trước khi chuyển bất kỳ dữ liệu bệnh nhân nào.',
+    'credfacts.fact1.cta': 'Đọc trang bảo mật',
 
     'credfacts.fact2.eyebrow': 'Bắt đầu',
-    'credfacts.fact2.title': 'Được thiết kế để triển khai nhanh.',
-    'credfacts.fact2.body': 'Aescia đang ở giai đoạn trước khách hàng đầu tiên và nói rõ điều đó. Một phòng khám có thể bắt đầu bằng nhập dữ liệu thủ công hoặc xuất dữ liệu đơn giản, không cần tích hợp nào để khởi đầu. Mọi trao đổi dữ liệu sâu hơn với hệ thống của bạn đều được xác định phạm vi cùng với bạn.',
+    'credfacts.fact2.title': 'Được thiết kế để đưa vào sử dụng nhanh chóng.',
+    'credfacts.fact2.body': 'Một phòng khám có thể bắt đầu bằng nhập dữ liệu thủ công hoặc xuất dữ liệu đơn giản, không cần tích hợp nào để khởi đầu. Mọi trao đổi dữ liệu sâu hơn với hệ thống của bạn đều được xác định phạm vi cùng với bạn.',
     'credfacts.fact2.cta': 'Cách chúng tôi bắt đầu cùng bạn',
 
     'credfacts.fact3.eyebrow': 'Kinh tế',
@@ -140,7 +140,7 @@ export const dict: Record<string, Record<string, string>> = {
 
     'credfacts.fact4.eyebrow': 'Khách hàng đầu tiên',
     'credfacts.fact4.title': 'Một chương trình khách hàng đầu tiên có cấu trúc.',
-    'credfacts.fact4.body': 'Một nhóm nhỏ ASC được nêu tên cụ thể. Kết quả được quy định trước bằng văn bản trước khi chương trình thí điểm bắt đầu, được đo lường dựa trên chính dữ liệu lịch sử của khách hàng và do hội đồng QA của khách hàng phân xử. Điều khoản thương mại được đàm phán theo từng thỏa thuận.',
+    'credfacts.fact4.body': 'Aescia for Clinics chưa có khách hàng nào. Một nhóm nhỏ ASC được nêu tên cụ thể. Kết quả được quy định trước bằng văn bản trước khi chương trình thí điểm bắt đầu, được đo lường dựa trên chính dữ liệu lịch sử của khách hàng và do hội đồng QA của khách hàng phân xử. Điều khoản thương mại được đàm phán theo từng thỏa thuận.',
     'credfacts.fact4.cta': 'Đọc điều khoản chương trình',
   },
 }

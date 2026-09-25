@@ -13,13 +13,6 @@ export const updatesEntries: UpdatesEntry[] = [
     body: 'Dr Shuangbo Liu at St. Boniface Hospital in Winnipeg has won a St. Boniface cardiovascular seed grant, funded through the National Bank Cardiac Classic, for TPD-CONNECT. It is a 12-month study that co-designs and prototypes tailored post-discharge support for cardiac patients. Aescia is a named collaborator, configuring the platform and building the prototype. Dr Liu is the principal applicant and the work runs at St. Boniface.',
   },
   {
-    n: 14,
-    date: '2026-08-13',
-    title: 'SAFE-Discharge completes its 50-patient pilot cohort.',
-    body: 'Enrolment passed 50 participants in August 2026, completing the verification cohort that leads into the 500-patient trial. Recruitment continues at the Royal Prince Alfred Hospital cardiothoracic unit.',
-    url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
-  },
-  {
     n: 13,
     date: '2026-07-17',
     title: 'A free colonoscopy surveillance interval reference.',
@@ -27,16 +20,10 @@ export const updatesEntries: UpdatesEntry[] = [
     url: 'https://aesciahealth.com/colonoscopy-surveillance',
   },
   {
-    n: 12,
-    date: '2026-06-24',
-    title: 'First participants enrolled in SAFE-Discharge.',
-    body: 'The first participant was enrolled at the Royal Prince Alfred Hospital cardiothoracic unit on 24 June 2026, three days after recruitment opened, and the first participants completed the full 30-day monitoring window at the end of July. Sydney Local Health District is the trial sponsor and Dr Kei Woldendorp is the principal investigator.',
-  },
-  {
     n: 11,
-    date: '2026-06-21',
-    title: 'SAFE-Discharge begins recruiting at Royal Prince Alfred Hospital.',
-    body: "Aescia's SAFE-Discharge trial began enrolment at the Royal Prince Alfred Hospital cardiothoracic surgical unit on 21 June 2026 and is now recruiting. It is a prospective single-centre evaluation of Aescia for Hospitals in adults recovering from cardiothoracic surgery, registered with the Australian New Zealand Clinical Trials Registry.",
+    date: '2026-06-01',
+    title: 'SAFE-Discharge goes live at Royal Prince Alfred Hospital.',
+    body: 'SAFE-Discharge, a prospective single-centre evaluation of Aescia for Hospitals in adults recovering from cardiothoracic surgery, went live at the Royal Prince Alfred Hospital cardiothoracic surgical unit in June 2026. It is registered with the Australian New Zealand Clinical Trials Registry and sponsored by Sydney Local Health District.',
     url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
   },
   {
@@ -80,7 +67,7 @@ export const updatesEntries: UpdatesEntry[] = [
     n: 4,
     date: '2026-04-10',
     title: 'NSW MVP Ventures Round 3 submitted.',
-    body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for targeted commercialisation work. Recipients are expected to be announced later in 2026.',
+    body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for commercialisation work. Recipients are expected to be announced later in 2026.',
   },
   {
     n: 2,

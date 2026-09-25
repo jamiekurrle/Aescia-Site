@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'How we connect to your systems and workflows',
   description:
-    'Aescia is pre-first-customer and has no named EMR or practice-management integration live yet. A clinic can start with manual data or a simple export; any deeper data exchange is scoped with each customer and is designed to be a quick setup.',
+    'Aescia for Clinics has no customers yet, and no named electronic medical record (EMR) or practice-management integration is live yet. A clinic can start with manual data or a simple export; any deeper data exchange is scoped with each customer and is designed to be a quick setup.',
   alternates: { canonical: '/integrations' },
   openGraph: {
     title: 'Integration approach | Aescia',
@@ -25,7 +25,7 @@ const pageSchema = webPageSchema({
   url: '/integrations',
   name: 'How Aescia fits with your systems',
   description:
-    'Aescia\'s integration approach. Pre-first-customer: no named EMR or practice-management integration is live. Manual data to start; any deeper data exchange is scoped per customer.',
+    'Aescia\'s integration approach. Aescia for Clinics has no customers yet, and no named electronic medical record (EMR) or practice-management integration is live. Manual data to start; any deeper data exchange is scoped per customer.',
 })
 
 export default function IntegrationsPage() {

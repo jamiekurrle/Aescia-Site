@@ -5,14 +5,14 @@ import { breadcrumbSchema, webPageSchema } from '@/lib/schema'
 import { PageContent } from './content'
 
 export const metadata: Metadata = {
-  title: 'Aescia design-partner program for first customers',
+  title: 'Aescia for Clinics design-partner program for first customers',
   description:
     'Aescia\'s structured program for the first ambulatory surgery centres deploying the Clinics product. Success metric, baseline, and measurement method agreed in writing before the pilot starts. Commercial terms negotiated per deal.',
   alternates: { canonical: '/design-partner' },
   openGraph: {
     title: 'Design-partner program | Aescia',
     description:
-      'First-customer program for US GI ambulatory surgery centres. Pre-specified success metric measured against the customer\'s own historical data. Commercial structure negotiated per deal.',
+      'Design-partner program for the first US GI ambulatory surgery centres using Aescia for Clinics. Pre-specified success metric measured against the customer\'s own historical data. Commercial structure negotiated per deal.',
     url: '/design-partner',
   },
 }
