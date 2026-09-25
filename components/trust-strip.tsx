@@ -13,7 +13,6 @@ export function TrustStrip() {
     { value: t('trust.item1.value'), label: t('trust.item1.label') },
     { value: t('trust.item2.value'), label: t('trust.item2.label') },
     { value: t('trust.item3.value'), label: t('trust.item3.label') },
-    { value: t('trust.item4.value'), label: t('trust.item4.label') },
   ]
 
   return (
