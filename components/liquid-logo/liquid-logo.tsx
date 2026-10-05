@@ -6,7 +6,7 @@ import { defaultParams, type ShaderParams } from './params'
 import { LiquidCanvas } from './canvas'
 
 export function LiquidLogo({
-  src = '/icon.svg',
+  src = '/ae-liquid.svg',
   params,
   className,
 }: {

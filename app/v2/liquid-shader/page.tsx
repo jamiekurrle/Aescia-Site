@@ -69,7 +69,7 @@ export default function LiquidShaderDemo() {
         <div className="relative z-20 mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-6 text-center">
           <div className="mb-10 h-44 w-44 sm:h-56 sm:w-56 md:h-64 md:w-64">
             <LiquidLogo
-              src="/icon.svg"
+              src="/ae-liquid.svg"
               params={{ patternScale: 2.2, refraction: 0.02, edge: 0.42, liquid: 0.09, speed: 0.4 }}
               className="block h-full w-full object-contain"
             />

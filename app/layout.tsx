@@ -58,6 +58,15 @@ export const metadata: Metadata = {
       'Pre-procedure pathway software for endoscopy ASCs: bowel-prep readiness, GLP-1 handling, prep-aware backfill, and recall. Not a medical device. Aescia for Hospitals adds investigational post-discharge monitoring. Aescia for Clinics has no customers yet; US clinics join through design-partner pilots.',
     images: [`${SITE_URL}/aescia-logo.png`],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-light-32x32.png', type: 'image/png', sizes: '32x32', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-dark-32x32.png', type: 'image/png', sizes: '32x32', media: '(prefers-color-scheme: dark)' },
+    ],
+    apple: { url: '/apple-icon.png', sizes: '180x180' },
+  },
   robots: {
     index: true,
     follow: true,
