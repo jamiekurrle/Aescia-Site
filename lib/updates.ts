@@ -7,6 +7,18 @@ import type { UpdatesEntry } from '@/lib/schema'
 // English snapshot is the canonical machine-readable version.
 export const updatesEntries: UpdatesEntry[] = [
   {
+    n: 17,
+    date: '2026-09-28',
+    title: 'St. Boniface Hospital becomes our first paying client.',
+    body: 'After seeking quotes from several virtual care vendors, the TPD-CONNECT team at St. Boniface Hospital in Winnipeg chose Aescia and committed payment from its seed grant for co-design and a first prototype. Dr Shuangbo Liu has also costed Aescia into two national grant applications now under review.',
+  },
+  {
+    n: 16,
+    date: '2026-09-20',
+    title: 'SAFE-Discharge passes 100 participants.',
+    body: 'The SAFE-Discharge evaluation at the Royal Prince Alfred Hospital cardiothoracic surgical unit has enrolled 103 patients since it went live in June 2026. Patients who start checking in straight after discharge typically do so on 83% of days. Clinical results will come from the hospital when the study reports.',
+  },
+  {
     n: 15,
     date: '2026-08-17',
     title: 'St. Boniface seed grant awarded for the TPD-CONNECT study.',
@@ -62,12 +74,6 @@ export const updatesEntries: UpdatesEntry[] = [
     date: '2026-04-13',
     title: 'Aescia for Clinics MVP feature-complete.',
     body: 'End-to-end walkthrough across patient, clinician, and admin flows. Pathway authoring, multichannel reminders, GLP-1 overlay, diabetic and anticoagulant scenarios, recall tracking, and structured export.',
-  },
-  {
-    n: 4,
-    date: '2026-04-10',
-    title: 'NSW MVP Ventures Round 3 submitted.',
-    body: 'Application MVPV25RD3347 lodged with Investment NSW on 10 April 2026. Matched-funding programme for commercialisation work. Recipients are expected to be announced later in 2026.',
   },
   {
     n: 2,
