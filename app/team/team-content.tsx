@@ -21,6 +21,8 @@ const operating: Person[] = [
   { initials: 'SK', nameKey: 'team.shannon.name', roleKey: 'team.shannon.role', bioKey: 'team.shannon.bio' },
 ]
 
+const advisers = ['kei', 'chris', 'julie'] as const
+
 export function TeamContent() {
   const { t } = useI18n()
 
@@ -177,9 +179,19 @@ export function TeamContent() {
               </h2>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
-              <p className="text-[15px] lg:text-[16px] leading-[1.7] text-foreground/80 mb-5">
-                {t('team.advisory.body')}
-              </p>
+              <dl className="divide-y divide-border border-y border-border mb-6">
+                {advisers.map((slug) => (
+                  <div key={slug} className="py-5">
+                    <dt
+                      className="font-display text-[20px] lg:text-[22px] leading-[1.25] tracking-[-0.018em] mb-1"
+                      style={{ fontVariationSettings: "'opsz' 80" }}
+                    >
+                      {t(`team.advisory.${slug}.name`)}
+                    </dt>
+                    <dd className="text-[15px] leading-[1.65] text-foreground/80">{t(`team.advisory.${slug}.role`)}</dd>
+                  </div>
+                ))}
+              </dl>
               <p className="text-[14px] leading-[1.7] text-foreground/70">
                 {t('team.advisory.body2')}
               </p>
