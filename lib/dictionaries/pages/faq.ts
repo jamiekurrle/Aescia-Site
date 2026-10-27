@@ -23,7 +23,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': 'Where does Aescia operate?',
     'faq.company.q4.a': 'Aescia operates from Sydney, Australia and Montréal, Canada. 9550-0708 Québec inc. (NEQ 1181312316) holds the platform intellectual property and does the research and development. Aescia Pty Ltd (ABN 96 687 840 517) operates in Australia and New Zealand and is the Australian regulatory applicant.',
     'faq.company.q5.q': 'Is Aescia in any accelerator or industry programmes?',
-    'faq.company.q5.a': 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is an industry member of the Medical Technology Association of Australia (MTAA) through the MedTech Compass programme. Aescia is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), running from April 2026.',
+    'faq.company.q5.a': 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is an industry member of the Medical Technology Association of Australia (MTAA) through the MedTech Compass programme. Aescia is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), running from April 2026. Aescia is in Cicada Innovations’ Stride accelerator in Sydney from October 2026.',
 
     'faq.products.eyebrow': 'Products',
     'faq.products.q1.q': 'What is Aescia for Hospitals?',
@@ -103,7 +103,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': 'Où Aescia exerce-t-elle ses activités ?',
     'faq.company.q4.a': 'Aescia exerce ses activités depuis Sydney, en Australie, et Montréal, au Canada. 9550-0708 Québec inc. (NEQ 1181312316) détient la propriété intellectuelle de la plateforme et mène la recherche et le développement. Aescia Pty Ltd (ABN 96 687 840 517) exerce ses activités en Australie et en Nouvelle-Zélande et est le demandeur réglementaire australien.',
     'faq.company.q5.q': 'Aescia participe-t-elle à un accélérateur ou à des programmes sectoriels ?',
-    'faq.company.q5.a': 'Aescia est une entreprise du portefeuille de District 3, le centre d\'innovation de Concordia University pour les startups en bio, santé et haute technologie (intégrée en septembre 2025). Aescia est membre industriel de la Medical Technology Association of Australia (MTAA) par l\'intermédiaire du programme MedTech Compass. Aescia est sélectionnée pour le programme Product-Market-Fit du CHEO Research Institute (volet respiratoire pédiatrique), qui se déroule à partir d\'avril 2026.',
+    'faq.company.q5.a': 'Aescia est une entreprise du portefeuille de District 3, le centre d\'innovation de Concordia University pour les startups en bio, santé et haute technologie (intégrée en septembre 2025). Aescia est membre industriel de la Medical Technology Association of Australia (MTAA) par l\'intermédiaire du programme MedTech Compass. Aescia est sélectionnée pour le programme Product-Market-Fit du CHEO Research Institute (volet respiratoire pédiatrique), qui se déroule à partir d\'avril 2026. Aescia participe à l’accélérateur Stride de Cicada Innovations à Sydney depuis octobre 2026.',
 
     'faq.products.eyebrow': 'Produits',
     'faq.products.q1.q': 'Qu\'est-ce qu\'Aescia for Hospitals ?',
@@ -183,7 +183,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': '¿Dónde opera Aescia?',
     'faq.company.q4.a': 'Aescia opera desde Sydney, Australia, y Montréal, Canadá. 9550-0708 Québec inc. (NEQ 1181312316) es titular de la propiedad intelectual de la plataforma y realiza la investigación y el desarrollo. Aescia Pty Ltd (ABN 96 687 840 517) opera en Australia y Nueva Zelanda y es el solicitante regulatorio australiano.',
     'faq.company.q5.q': '¿Participa Aescia en alguna aceleradora o programa de la industria?',
-    'faq.company.q5.a': 'Aescia es una empresa del portafolio de District 3, el centro de innovación de Concordia University para startups de bio, salud y alta tecnología (se incorporó en septiembre de 2025). Aescia es miembro de la industria de la Medical Technology Association of Australia (MTAA) a través del programa MedTech Compass. Aescia fue seleccionada para el programa Product-Market-Fit del CHEO Research Institute (vía respiratoria pediátrica), que se desarrolla a partir de abril de 2026.',
+    'faq.company.q5.a': 'Aescia es una empresa del portafolio de District 3, el centro de innovación de Concordia University para startups de bio, salud y alta tecnología (se incorporó en septiembre de 2025). Aescia es miembro de la industria de la Medical Technology Association of Australia (MTAA) a través del programa MedTech Compass. Aescia fue seleccionada para el programa Product-Market-Fit del CHEO Research Institute (vía respiratoria pediátrica), que se desarrolla a partir de abril de 2026. Aescia participa en la aceleradora Stride de Cicada Innovations en Sídney desde octubre de 2026.',
 
     'faq.products.eyebrow': 'Productos',
     'faq.products.q1.q': '¿Qué es Aescia for Hospitals?',
@@ -263,7 +263,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': 'Aescia 在哪些地方运营？',
     'faq.company.q4.a': 'Aescia 在澳大利亚 Sydney 和加拿大 Montréal 运营。9550-0708 Québec inc.（NEQ 1181312316）持有平台知识产权并开展研发工作。Aescia Pty Ltd（ABN 96 687 840 517）在澳大利亚和新西兰运营，并且是澳大利亚的监管申请人。',
     'faq.company.q5.q': 'Aescia 是否参与任何加速器或行业计划？',
-    'faq.company.q5.a': 'Aescia 是 District 3 的投资组合公司，District 3 是 Concordia University 面向生物、健康与高科技初创企业的创新中心（于 2025 年 9 月加入）。Aescia 通过 MedTech Compass 计划成为 Medical Technology Association of Australia（MTAA）的行业会员。Aescia 入选 CHEO Research Institute 的 Product-Market-Fit 计划（儿科呼吸方向），自 2026 年 4 月起开展。',
+    'faq.company.q5.a': 'Aescia 是 District 3 的投资组合公司，District 3 是 Concordia University 面向生物、健康与高科技初创企业的创新中心（于 2025 年 9 月加入）。Aescia 通过 MedTech Compass 计划成为 Medical Technology Association of Australia（MTAA）的行业会员。Aescia 入选 CHEO Research Institute 的 Product-Market-Fit 计划（儿科呼吸方向），自 2026 年 4 月起开展。 自 2026 年 10 月起，Aescia 参加 Cicada Innovations 在悉尼的 Stride 加速器。',
 
     'faq.products.eyebrow': '产品',
     'faq.products.q1.q': 'Aescia for Hospitals 是什么？',
@@ -343,7 +343,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': 'أين تعمل Aescia؟',
     'faq.company.q4.a': 'تعمل Aescia انطلاقًا من Sydney بأستراليا وMontréal بكندا. تمتلك 9550-0708 Québec inc. (NEQ 1181312316) الملكية الفكرية للمنصة وتتولّى البحث والتطوير. وتعمل Aescia Pty Ltd (ABN 96 687 840 517) في أستراليا ونيوزيلندا، وهي الجهة المتقدّمة تنظيميًا في أستراليا.',
     'faq.company.q5.q': 'هل تشارك Aescia في أي مسرّعة أعمال أو برامج صناعية؟',
-    'faq.company.q5.a': 'Aescia شركة ضمن محفظة District 3، وهو مركز الابتكار في Concordia University للشركات الناشئة في مجالات الأحياء والصحة والتقنيات المتقدمة (انضمّت في سبتمبر 2025). وAescia عضو صناعي في Medical Technology Association of Australia (MTAA) من خلال برنامج MedTech Compass. كما تم اختيار Aescia لبرنامج Product-Market-Fit التابع لـ CHEO Research Institute (مسار الجهاز التنفسي للأطفال)، الذي يبدأ من أبريل 2026.',
+    'faq.company.q5.a': 'Aescia شركة ضمن محفظة District 3، وهو مركز الابتكار في Concordia University للشركات الناشئة في مجالات الأحياء والصحة والتقنيات المتقدمة (انضمّت في سبتمبر 2025). وAescia عضو صناعي في Medical Technology Association of Australia (MTAA) من خلال برنامج MedTech Compass. كما تم اختيار Aescia لبرنامج Product-Market-Fit التابع لـ CHEO Research Institute (مسار الجهاز التنفسي للأطفال)، الذي يبدأ من أبريل 2026. تشارك Aescia منذ أكتوبر 2026 في مسرّعة Stride التابعة لـ Cicada Innovations في سيدني.',
 
     'faq.products.eyebrow': 'المنتجات',
     'faq.products.q1.q': 'ما هي Aescia for Hospitals؟',
@@ -423,7 +423,7 @@ export const dict: Record<string, Record<string, string>> = {
     'faq.company.q4.q': 'Aescia hoạt động ở đâu?',
     'faq.company.q4.a': 'Aescia hoạt động từ Sydney, Australia và Montréal, Canada. 9550-0708 Québec inc. (NEQ 1181312316) nắm giữ quyền sở hữu trí tuệ của nền tảng và thực hiện hoạt động nghiên cứu và phát triển. Aescia Pty Ltd (ABN 96 687 840 517) hoạt động tại Australia và New Zealand và là bên nộp hồ sơ pháp quy tại Australia.',
     'faq.company.q5.q': 'Aescia có tham gia chương trình tăng tốc hay chương trình ngành nào không?',
-    'faq.company.q5.a': 'Aescia là một công ty trong danh mục của District 3, trung tâm đổi mới của Concordia University dành cho các công ty khởi nghiệp về sinh học, y tế và công nghệ cao (gia nhập tháng 9 năm 2025). Aescia là thành viên ngành của Medical Technology Association of Australia (MTAA) thông qua chương trình MedTech Compass. Aescia được chọn vào chương trình Product-Market-Fit của CHEO Research Institute (hướng hô hấp nhi khoa), diễn ra từ tháng 4 năm 2026.',
+    'faq.company.q5.a': 'Aescia là một công ty trong danh mục của District 3, trung tâm đổi mới của Concordia University dành cho các công ty khởi nghiệp về sinh học, y tế và công nghệ cao (gia nhập tháng 9 năm 2025). Aescia là thành viên ngành của Medical Technology Association of Australia (MTAA) thông qua chương trình MedTech Compass. Aescia được chọn vào chương trình Product-Market-Fit của CHEO Research Institute (hướng hô hấp nhi khoa), diễn ra từ tháng 4 năm 2026. Từ tháng 10 năm 2026, Aescia tham gia chương trình tăng tốc Stride của Cicada Innovations tại Sydney.',
 
     'faq.products.eyebrow': 'Sản phẩm',
     'faq.products.q1.q': 'Aescia for Hospitals là gì?',

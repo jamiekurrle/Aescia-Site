@@ -7,6 +7,19 @@ import type { UpdatesEntry } from '@/lib/schema'
 // English snapshot is the canonical machine-readable version.
 export const updatesEntries: UpdatesEntry[] = [
   {
+    n: 19,
+    date: '2026-10-27',
+    title: 'Three advisers named.',
+    body: 'Dr Kei Woldendorp (cardiothoracic surgeon, Royal Prince Alfred Hospital; pro bono clinical adviser), Chris Boyd-Skinner (digital health governance and standards) and Julie Frappier (health economist, Data 4 Actions) now advise Aescia.',
+    url: '/team',
+  },
+  {
+    n: 18,
+    date: '2026-10-22',
+    title: 'Aescia joins the Cicada Innovations Stride accelerator.',
+    body: 'Aescia started Stride, Cicada Innovations’ fully funded health-technology accelerator in Sydney, in October 2026.',
+  },
+  {
     n: 17,
     date: '2026-09-28',
     title: 'St. Boniface Hospital becomes our first paying client.',

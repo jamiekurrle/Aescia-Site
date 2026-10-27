@@ -47,7 +47,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Is Aescia in any accelerator or industry programmes?',
-        a: 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is an industry member of the Medical Technology Association of Australia (MTAA) through the MedTech Compass programme. Aescia is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), running from April 2026.',
+        a: 'Aescia is a portfolio company at District 3, Concordia University\'s innovation hub for bio, health, and high-tech startups (joined September 2025). Aescia is an industry member of the Medical Technology Association of Australia (MTAA) through the MedTech Compass programme. Aescia is selected for the CHEO Research Institute Product-Market-Fit programme (paediatric respiratory track), running from April 2026. Aescia is in Cicada Innovations’ Stride accelerator in Sydney from October 2026.',
       },
     ],
   },
