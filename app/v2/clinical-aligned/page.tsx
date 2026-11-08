@@ -121,8 +121,8 @@ function HeroAligned() {
             className="lg:col-span-4 space-y-8 border-t lg:border-t-0 lg:border-l border-foreground/15 pt-8 lg:pt-0 lg:pl-10"
           >
             {[
-              { k: 'Hospital Monitor', v: 'Investigational SaMD · TGA Class IIa pathway' },
-              { k: 'Specialty Clinic', v: 'Workflow software · CDSS-exempt' },
+              { k: 'Aescia for Hospitals', v: 'Check-ins and nurse alerts · not a medical device' },
+              { k: 'Aescia for Clinics', v: 'Workflow software · not a medical device' },
               { k: 'Sites', v: 'Sydney · Montréal · Ontario' },
             ].map((item, i) => (
               <motion.div
@@ -153,13 +153,13 @@ function ProductTiles() {
 
   const tiles = [
     {
-      kind: 'Hospital Monitor',
+      kind: 'Aescia for Hospitals',
       title: 'Cardiothoracic discharge.',
       status: 'Trial in preparation · RPAH',
-      desc: 'Daily check-ins, escalation triggers tuned to CTS, audit-grade documentation. 500-patient evaluation in preparation.',
+      desc: 'Daily check-ins, nurse alerts on rules the cardiothoracic team sets, audit-grade documentation. 500-patient evaluation in preparation.',
     },
     {
-      kind: 'Hospital Monitor',
+      kind: 'Aescia for Hospitals',
       title: 'Heart-failure follow-up.',
       status: 'In design · TRANSFORM HF',
       desc: 'HFpEF-specific pathway being developed in collaboration with University of Toronto cardiology.',
@@ -266,7 +266,7 @@ function PrincipleStrip() {
     {
       n: '04',
       head: 'Two paths, one platform.',
-      body: 'Class IIa software for hospitals. CDSS-exempt workflow for clinics. Same backend; different posture.',
+      body: 'Check-ins and nurse alerts for hospitals. Prep workflow for clinics. Same backend; neither is a medical device.',
     },
   ]
 

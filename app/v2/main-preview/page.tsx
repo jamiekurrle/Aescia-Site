@@ -407,7 +407,7 @@ function TownMap() {
       <g transform="translate(-260, 200)">
         <circle cx="0" cy="0" r="3" fill={BLUE} />
         <text x="8" y="3" fontSize="7" fill="rgba(255,255,255,0.55)" className="font-mono" style={{ letterSpacing: '0.14em' }}>
-          STABLE · MONITORED AT HOME
+          STABLE · CHECKING IN FROM HOME
         </text>
       </g>
       <g transform="translate(60, 200)">

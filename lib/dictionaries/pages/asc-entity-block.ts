@@ -5,15 +5,14 @@
 // share an identical key set.
 //
 // Preserve-list tokens (brand and product names — Aescia, Aescia for Clinics,
-// Aescia for Hospitals; ASC/ASCs; regulators and classes — TGA, Class IIa;
+// Aescia for Hospitals; ASC/ASCs;
 // trial/registration IDs — SAFE-Discharge, ACTRN12625001425482; institution and
 // place names — Royal Prince Alfred Hospital, Sydney, Montréal; integration
 // systems — Provation, EndoWorks, gGastro; numbers/currency — 50,000, 2025,
 // 30-day) are kept verbatim across every locale.
 //
-// Regulatory phrasing — "is not a medical device", "investigational software as
-// a medical device", "intended for Class IIa classification", "No device
-// application has been lodged", "pre-first-customer", "No integration is live
+// Regulatory phrasing — "Neither product is a medical device", "Your clinicians
+// make every clinical decision", "pre-first-customer", "No integration is live
 // yet" — is translated conservatively without softening, strengthening,
 // omitting, or inventing any claim. The clinicsSoftwareSchema JSON-LD emitted by
 // the component stays English; only the visible table is localised here.
@@ -34,10 +33,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': 'Sydney, Australia and Montréal, Canada.',
 
     'ascblock.regulatory.k': 'Regulatory status',
-    'ascblock.regulatory.v': 'Aescia for Clinics is not a medical device. Its sibling product, Aescia for Hospitals, is an investigational software as a medical device, intended for Class IIa classification under the Australian TGA. No device application has been lodged for either product.',
+    'ascblock.regulatory.v': 'Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision.',
 
     'ascblock.clinical.k': 'Clinical evidence',
-    'ascblock.clinical.v': 'SAFE-Discharge trial (ACTRN12625001425482) at Royal Prince Alfred Hospital, Sydney, evaluating the Hospitals product across the 30-day post-discharge window.',
+    'ascblock.clinical.v': 'SAFE-Discharge trial (ACTRN12625001425482) at Royal Prince Alfred Hospital, Sydney, run by the hospital\'s trial team and using the Hospitals product across the 30-day post-discharge window.',
 
     'ascblock.integration.k': 'Integration targets',
     'ascblock.integration.v': 'Designed to work alongside common endoscopy systems including Provation, EndoWorks, and gGastro. No integration is live yet. Aescia for Clinics has no customers yet, and any data exchange is scoped per customer.',
@@ -64,10 +63,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': 'Sydney, Australie et Montréal, Canada.',
 
     'ascblock.regulatory.k': 'Statut réglementaire',
-    'ascblock.regulatory.v': 'Aescia for Clinics n\'est pas un dispositif médical. Son produit frère, Aescia for Hospitals, est un logiciel dispositif médical en investigation, destiné à la classification Class IIa selon la TGA australienne. Aucune demande de dispositif n\'a été déposée pour l\'un ou l\'autre produit.',
+    'ascblock.regulatory.v': 'Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique.',
 
     'ascblock.clinical.k': 'Preuves cliniques',
-    'ascblock.clinical.v': 'Essai SAFE-Discharge (ACTRN12625001425482) au Royal Prince Alfred Hospital, Sydney, évaluant le produit Hospitals sur la fenêtre de 30-day après la sortie.',
+    'ascblock.clinical.v': 'Essai SAFE-Discharge (ACTRN12625001425482) au Royal Prince Alfred Hospital, Sydney, mené par l\'équipe d\'essai de l\'hôpital et utilisant le produit Hospitals sur la fenêtre de 30-day après la sortie.',
 
     'ascblock.integration.k': 'Cibles d\'intégration',
     'ascblock.integration.v': 'Conçu pour fonctionner aux côtés des systèmes d\'endoscopie courants, notamment Provation, EndoWorks et gGastro. Aucune intégration n\'est encore active ; Aescia for Clinics n\'a pas encore de clients, et tout échange de données est défini par client.',
@@ -94,10 +93,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': 'Sydney, Australia y Montréal, Canadá.',
 
     'ascblock.regulatory.k': 'Estado regulatorio',
-    'ascblock.regulatory.v': 'Aescia for Clinics no es un dispositivo médico. Su producto hermano, Aescia for Hospitals, es un software como dispositivo médico en investigación, destinado a la clasificación Class IIa según la TGA australiana. No se ha presentado ninguna solicitud de dispositivo para ninguno de los dos productos.',
+    'ascblock.regulatory.v': 'Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas.',
 
     'ascblock.clinical.k': 'Evidencia clínica',
-    'ascblock.clinical.v': 'Ensayo SAFE-Discharge (ACTRN12625001425482) en el Royal Prince Alfred Hospital, Sydney, que evalúa el producto Hospitals a lo largo de la ventana de 30-day posalta.',
+    'ascblock.clinical.v': 'Ensayo SAFE-Discharge (ACTRN12625001425482) en el Royal Prince Alfred Hospital, Sydney, dirigido por el equipo del ensayo del hospital y que utiliza el producto Hospitals a lo largo de la ventana de 30-day posalta.',
 
     'ascblock.integration.k': 'Objetivos de integración',
     'ascblock.integration.v': 'Diseñado para funcionar junto a los sistemas de endoscopia comunes, incluidos Provation, EndoWorks y gGastro. Aún no hay ninguna integración activa; Aescia for Clinics aún no tiene clientes, y cualquier intercambio de datos se define por cliente.',
@@ -124,10 +123,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': '澳大利亚 Sydney 和加拿大 Montréal。',
 
     'ascblock.regulatory.k': '监管状态',
-    'ascblock.regulatory.v': 'Aescia for Clinics 不是医疗器械。其姊妹产品 Aescia for Hospitals 是一款处于研究阶段的医疗器械软件，拟根据澳大利亚 TGA 归类为 Class IIa。两款产品均未提交任何器械申报。',
+    'ascblock.regulatory.v': '两款产品均不是医疗器械。两者都发送科室或医院自己的说明和问题，并按其设定的规则提醒其临床人员。每一项临床决定都由您的临床人员作出。',
 
     'ascblock.clinical.k': '临床证据',
-    'ascblock.clinical.v': '在 Sydney 的 Royal Prince Alfred Hospital 进行的 SAFE-Discharge 试验（ACTRN12625001425482），在出院后 30-day 窗口期内评估 Hospitals 产品。',
+    'ascblock.clinical.v': '在 Sydney 的 Royal Prince Alfred Hospital 进行的 SAFE-Discharge 试验（ACTRN12625001425482），由医院的试验团队开展，在出院后 30-day 窗口期内使用 Hospitals 产品。',
 
     'ascblock.integration.k': '集成目标',
     'ascblock.integration.v': '设计用于与常见内镜系统协同工作，包括 Provation、EndoWorks 和 gGastro。目前尚无任何集成处于实时运行状态；Aescia for Clinics 目前还没有客户，任何数据交换都按客户逐一界定。',
@@ -154,10 +153,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': 'Sydney بأستراليا وMontréal بكندا.',
 
     'ascblock.regulatory.k': 'الوضع التنظيمي',
-    'ascblock.regulatory.v': 'Aescia for Clinics ليست جهازًا طبيًا. ومنتجها الشقيق، Aescia for Hospitals، هو برمجية كجهاز طبي قيد البحث، مزمَع تصنيفها ضمن Class IIa بموجب TGA الأسترالية. ولم يُقدَّم أي طلب جهاز لأيٍّ من المنتجَين.',
+    'ascblock.regulatory.v': 'لا يُعدّ أيٌّ من المنتجَين جهازًا طبيًا. فكلاهما يرسل تعليمات الوحدة أو المستشفى وأسئلتها، وينبّه أطباءها وفق قواعد تضعها هي. ويتّخذ أطباؤكم كل قرار سريري.',
 
     'ascblock.clinical.k': 'الأدلة السريرية',
-    'ascblock.clinical.v': 'تجربة SAFE-Discharge (ACTRN12625001425482) في Royal Prince Alfred Hospital بـ Sydney، التي تُقيّم منتج Hospitals على امتداد نافذة الـ 30-day بعد الخروج.',
+    'ascblock.clinical.v': 'تجربة SAFE-Discharge (ACTRN12625001425482) في Royal Prince Alfred Hospital بـ Sydney، التي يديرها فريق التجربة في المستشفى وتستخدم منتج Hospitals على امتداد نافذة الـ 30-day بعد الخروج.',
 
     'ascblock.integration.k': 'أهداف التكامل',
     'ascblock.integration.v': 'مصمَّم للعمل جنبًا إلى جنب مع أنظمة التنظير الشائعة بما في ذلك Provation وEndoWorks وgGastro. ولا يوجد بعد أي تكامل نشط؛ وليس لدى Aescia for Clinics عملاء بعد، وأي تبادل للبيانات يُحدَّد نطاقه لكل عميل.',
@@ -184,10 +183,10 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.v': 'Sydney, Australia và Montréal, Canada.',
 
     'ascblock.regulatory.k': 'Tình trạng pháp quy',
-    'ascblock.regulatory.v': 'Aescia for Clinics không phải là thiết bị y tế. Sản phẩm anh em của nó, Aescia for Hospitals, là một phần mềm như một thiết bị y tế đang trong giai đoạn nghiên cứu, dự kiến được phân loại Class IIa theo TGA của Australia. Chưa có hồ sơ thiết bị nào được nộp cho cả hai sản phẩm.',
+    'ascblock.regulatory.v': 'Cả hai sản phẩm đều không phải là thiết bị y tế. Cả hai gửi hướng dẫn và câu hỏi riêng của đơn vị hoặc bệnh viện, và báo cho các bác sĩ của đơn vị đó theo các quy tắc do đơn vị đặt ra. Các bác sĩ của bạn đưa ra mọi quyết định lâm sàng.',
 
     'ascblock.clinical.k': 'Bằng chứng lâm sàng',
-    'ascblock.clinical.v': 'Thử nghiệm SAFE-Discharge (ACTRN12625001425482) tại Royal Prince Alfred Hospital, Sydney, đánh giá sản phẩm Hospitals trong suốt cửa sổ 30-day sau xuất viện.',
+    'ascblock.clinical.v': 'Thử nghiệm SAFE-Discharge (ACTRN12625001425482) tại Royal Prince Alfred Hospital, Sydney, do nhóm thử nghiệm của bệnh viện thực hiện và sử dụng sản phẩm Hospitals trong suốt cửa sổ 30-day sau xuất viện.',
 
     'ascblock.integration.k': 'Mục tiêu tích hợp',
     'ascblock.integration.v': 'Được thiết kế để hoạt động cùng các hệ thống nội soi phổ biến bao gồm Provation, EndoWorks và gGastro. Chưa có tích hợp nào đang hoạt động; Aescia for Clinics chưa có khách hàng nào, và mọi trao đổi dữ liệu được xác định phạm vi theo từng khách hàng.',

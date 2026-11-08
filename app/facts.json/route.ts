@@ -28,10 +28,10 @@ export function GET() {
     products: [
       {
         name: 'Aescia for Hospitals',
-        category: 'investigational Software as a Medical Device',
+        category: "post-discharge check-ins and nurse alerts, on each hospital's own rules; not a medical device",
         regulatory:
-          'Intended Therapeutic Goods Administration (TGA) Class IIa. No regulatory application has been lodged.',
-        status: 'In a live trial at Royal Prince Alfred Hospital since June 2026, with good early results (SAFE-Discharge).',
+          "Neither product is a medical device. Both deliver the unit's or hospital's own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia's own assessment: excluded from regulation as therapeutic goods under Schedule 1 of the Therapeutic Goods (Excluded Goods) Determination 2018 (items 14D, 14F, 14G, 14H, 14I, 14J). Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.",
+        status: 'Used in the SAFE-Discharge trial. Live at Royal Prince Alfred Hospital since June 2026. The SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication.',
         firstIndication: 'cardiothoracic surgical recovery',
         url: `${SITE_URL}/hospitals`,
       },

@@ -10,7 +10,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': 'Deeper data exchange is scoped with you',
     'integrations.approach.item2.desc': 'If you want Aescia to read from or write to an existing system, we scope that with your IT team for your specific environment, and document the work before any contract is signed. We do not claim a pre-built connector we have not run with a customer.',
     'integrations.approach.item3.term': 'Designed to be a quick setup',
-    'integrations.approach.item3.desc': 'The product is built to deploy in weeks, not quarters, and to add one prioritised list rather than a second portal your team has to log into.',
+    'integrations.approach.item3.desc': 'The product is built to deploy in weeks, not quarters, and to add one list for your team to work rather than a second portal your team has to log into.',
     'integrations.approach.item4.term': 'We will tell you the lift up front',
     'integrations.approach.item4.desc': 'If your environment means a manual path to begin with, the pilot memo says so before you commit. Discovering that mid-pilot is the kind of surprise that quietly eats the value, so we put it in writing first.',
 
@@ -28,7 +28,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': 'L\'échange de données plus poussé est cadré avec vous',
     'integrations.approach.item2.desc': 'Si vous voulez qu\'Aescia lise depuis un système existant ou y écrive, nous cadrons cela avec votre équipe informatique pour votre environnement précis, et documentons le travail avant la signature de tout contrat. Nous ne revendiquons pas un connecteur préconçu que nous n\'avons pas fait fonctionner avec un client.',
     'integrations.approach.item3.term': 'Conçu pour une mise en place rapide',
-    'integrations.approach.item3.desc': 'Le produit est conçu pour se déployer en semaines, pas en trimestres, et pour ajouter une seule liste priorisée plutôt qu\'un second portail dans lequel votre équipe doit se connecter.',
+    'integrations.approach.item3.desc': 'Le produit est conçu pour se déployer en semaines, pas en trimestres, et pour ajouter une seule liste de travail plutôt qu\'un second portail dans lequel votre équipe doit se connecter.',
     'integrations.approach.item4.term': 'Nous vous dirons l\'effort à fournir d\'emblée',
     'integrations.approach.item4.desc': 'Si votre environnement impose de commencer par une voie manuelle, la note du pilote le précise avant que vous ne vous engagiez. Le découvrir en cours de pilote est le genre de surprise qui ronge discrètement la valeur, alors nous le mettons par écrit d\'abord.',
 
@@ -46,7 +46,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': 'El intercambio de datos más profundo se acota con usted',
     'integrations.approach.item2.desc': 'Si quiere que Aescia lea desde un sistema existente o escriba en él, lo acotamos con su equipo de TI para su entorno específico y documentamos el trabajo antes de firmar cualquier contrato. No afirmamos tener un conector prediseñado que no hayamos puesto en marcha con un cliente.',
     'integrations.approach.item3.term': 'Diseñado para una puesta en marcha rápida',
-    'integrations.approach.item3.desc': 'El producto está hecho para implementarse en semanas, no en trimestres, y para añadir una sola lista priorizada en lugar de un segundo portal en el que su equipo tenga que iniciar sesión.',
+    'integrations.approach.item3.desc': 'El producto está hecho para implementarse en semanas, no en trimestres, y para añadir una sola lista de trabajo en lugar de un segundo portal en el que su equipo tenga que iniciar sesión.',
     'integrations.approach.item4.term': 'Le diremos el esfuerzo por adelantado',
     'integrations.approach.item4.desc': 'Si su entorno implica empezar por una vía manual, el memorando del piloto lo dice antes de que usted se comprometa. Descubrirlo a mitad del piloto es el tipo de sorpresa que consume el valor en silencio, así que lo ponemos por escrito primero.',
 
@@ -64,7 +64,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': '更深入的数据交换会与您共同界定范围',
     'integrations.approach.item2.desc': '如果您希望 Aescia 从现有系统读取数据或向其写入数据，我们会与您的 IT 团队针对您的具体环境界定范围，并在签署任何合同之前记录相关工作。我们不会声称拥有一个未曾与客户一起实际运行过的预建连接器。',
     'integrations.approach.item3.term': '为快速部署而设计',
-    'integrations.approach.item3.desc': '该产品旨在以数周而非数季度的时间完成部署，并且只增加一份按优先级排序的名单，而不是又一个需要您的团队登录的门户。',
+    'integrations.approach.item3.desc': '该产品旨在以数周而非数季度的时间完成部署，并且只增加一份供团队处理的名单，而不是又一个需要您的团队登录的门户。',
     'integrations.approach.item4.term': '我们会预先告知您的投入',
     'integrations.approach.item4.desc': '如果您的环境意味着需要先从手动方式起步，试点备忘录会在您做出承诺之前说明这一点。在试点进行到一半时才发现这一情况，正是那种会悄悄侵蚀价值的意外，所以我们会先把它写下来。',
 
@@ -82,7 +82,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': 'يُحدَّد نطاق التبادل الأعمق للبيانات بالتعاون معك',
     'integrations.approach.item2.desc': 'إذا أردت أن تقرأ Aescia من نظام قائم أو تكتب إليه، فإننا نحدّد نطاق ذلك مع فريق تقنية المعلومات لديك وفقًا لبيئتك المحددة، ونوثّق العمل قبل توقيع أي عقد. نحن لا ندّعي وجود موصّل جاهز مسبقًا لم نشغّله مع عميل.',
     'integrations.approach.item3.term': 'مصمَّم لإعداد سريع',
-    'integrations.approach.item3.desc': 'صُمِّم المنتج لينتشر خلال أسابيع لا أرباع سنة، ولإضافة قائمة واحدة مرتَّبة بالأولوية بدلًا من بوابة ثانية يضطر فريقك إلى تسجيل الدخول إليها.',
+    'integrations.approach.item3.desc': 'صُمِّم المنتج لينتشر خلال أسابيع لا أرباع سنة، ولإضافة قائمة عمل واحدة لفريقك بدلًا من بوابة ثانية يضطر فريقك إلى تسجيل الدخول إليها.',
     'integrations.approach.item4.term': 'سنخبرك بحجم الجهد مسبقًا',
     'integrations.approach.item4.desc': 'إذا كانت بيئتك تعني البدء بمسار يدوي، فإن مذكرة التجربة تذكر ذلك قبل أن تلتزم. اكتشاف ذلك في منتصف التجربة هو نوع المفاجآت التي تلتهم القيمة بهدوء، لذلك نضعه كتابيًا أولًا.',
 
@@ -100,7 +100,7 @@ export const dict: Record<string, Record<string, string>> = {
     'integrations.approach.item2.term': 'Việc trao đổi dữ liệu sâu hơn được xác định phạm vi cùng bạn',
     'integrations.approach.item2.desc': 'Nếu bạn muốn Aescia đọc từ một hệ thống hiện có hoặc ghi vào đó, chúng tôi xác định phạm vi việc này cùng đội ngũ CNTT của bạn theo môi trường cụ thể của bạn, và lập tài liệu về công việc trước khi ký bất kỳ hợp đồng nào. Chúng tôi không tuyên bố có một bộ kết nối dựng sẵn mà chúng tôi chưa từng vận hành với một khách hàng.',
     'integrations.approach.item3.term': 'Được thiết kế để thiết lập nhanh',
-    'integrations.approach.item3.desc': 'Sản phẩm được xây dựng để triển khai trong vài tuần, không phải vài quý, và để bổ sung một danh sách được ưu tiên thay vì một cổng thứ hai mà đội ngũ của bạn phải đăng nhập vào.',
+    'integrations.approach.item3.desc': 'Sản phẩm được xây dựng để triển khai trong vài tuần, không phải vài quý, và để bổ sung một danh sách công việc duy nhất cho đội ngũ của bạn thay vì một cổng thứ hai mà đội ngũ của bạn phải đăng nhập vào.',
     'integrations.approach.item4.term': 'Chúng tôi sẽ nói trước cho bạn biết khối lượng công việc',
     'integrations.approach.item4.desc': 'Nếu môi trường của bạn buộc phải bắt đầu bằng một lộ trình thủ công, bản ghi nhớ thử nghiệm sẽ nói rõ điều đó trước khi bạn cam kết. Phát hiện ra điều đó giữa chừng thử nghiệm là loại bất ngờ âm thầm bào mòn giá trị, vì vậy chúng tôi đưa nó vào văn bản trước.',
 

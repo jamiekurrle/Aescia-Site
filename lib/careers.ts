@@ -78,7 +78,7 @@ const seniorFrontendEngineer: Role = {
   applicantCountries: ['Canada'],
   mission: [
     'The role is a senior frontend / full-stack engineer who can work remotely and largely independently, in close partnership with our CTO. The job is to build the next versions of our patient-facing and clinician-facing apps. A native phone app is on the roadmap, but it is down the road, not the first job.',
-    'Aescia builds continuous-care software for the period between hospital discharge and the next appointment, the stretch where patients deteriorate and no one is watching. Two products run on one platform: a regulated post-discharge monitoring system for hospitals, and pre-admission patient engagement for specialty clinics.',
+    'Aescia builds continuous-care software for the period between hospital discharge and the next appointment, the stretch where patients are home and the care team hears little from them. Two products run on one platform: post-discharge check-ins and nurse alerts for hospitals, and pre-admission patient engagement for specialty clinics.',
   ],
   responsibilities: [
     {

@@ -25,7 +25,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'Aescia surfaces the recovered slot and who is covering it to staff in the morning, as a clear hand-off, not a midnight scramble.',
     'backfill.recovery.step6.title': 'The clinic books it in its own scheduler',
     'backfill.recovery.step6.desc': 'Staff confirm and book the recovered slot in your scheduling system. Aescia produces the signal and the prepped candidate; it does not write to your scheduler.',
-    'backfill.recovery.note.pre': 'To be precise about what this is and is not: Aescia does not predict cancellations with a model, and it does not book or write to your scheduler. It reads the attendance signals patients already give at check-in, finds and preps a suitable candidate, and hands the change to your staff. Recovery rests on the prep pathway existing first, see ',
+    'backfill.recovery.note.pre': 'To be precise about what this does: Aescia reads the attendance signals patients already give at check-in, finds and preps a suitable candidate, and hands the change to your staff, who make the booking in your scheduler. Recovery rests on the prep pathway existing first, see ',
     'backfill.recovery.note.link': 'how the prep pathway works',
     'backfill.recovery.note.post': '.',
 
@@ -90,7 +90,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'Aescia présente le créneau récupéré et qui le couvre au personnel le matin, comme une transmission claire, et non une course de minuit.',
     'backfill.recovery.step6.title': 'La clinique le réserve dans son propre agenda',
     'backfill.recovery.step6.desc': 'Le personnel confirme et réserve le créneau récupéré dans votre système de planification. Aescia produit le signal et le candidat préparé ; il n’écrit pas dans votre agenda.',
-    'backfill.recovery.note.pre': 'Pour être précis sur ce que c’est et ce que ce n’est pas : Aescia ne prédit pas les annulations avec un modèle, et il ne réserve ni n’écrit dans votre agenda. Il lit les signaux de présence que les patients donnent déjà au point de contrôle, trouve et prépare un candidat approprié, et transmet le changement à votre personnel. La récupération repose sur l’existence préalable du parcours de préparation, voir ',
+    'backfill.recovery.note.pre': 'Pour être précis sur ce que cela fait : Aescia lit les signaux de présence que les patients donnent déjà au point de contrôle, trouve et prépare un candidat approprié, et transmet le changement à votre personnel, qui effectue la réservation dans votre agenda. La récupération repose sur l’existence préalable du parcours de préparation, voir ',
     'backfill.recovery.note.link': 'comment fonctionne le parcours de préparation',
     'backfill.recovery.note.post': '.',
 
@@ -155,7 +155,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'Aescia presenta el espacio recuperado y quién lo cubre al personal por la mañana, como un traspaso claro, no como una carrera a medianoche.',
     'backfill.recovery.step6.title': 'La clínica lo reserva en su propio programador',
     'backfill.recovery.step6.desc': 'El personal confirma y reserva el espacio recuperado en su sistema de programación. Aescia produce la señal y el candidato preparado; no escribe en su programador.',
-    'backfill.recovery.note.pre': 'Para ser precisos sobre lo que esto es y lo que no es: Aescia no predice cancelaciones con un modelo, y no reserva ni escribe en su programador. Lee las señales de asistencia que los pacientes ya dan en el punto de control, encuentra y prepara a un candidato adecuado, y entrega el cambio a su personal. La recuperación depende de que la ruta de preparación exista primero, vea ',
+    'backfill.recovery.note.pre': 'Para ser precisos sobre lo que hace: Aescia lee las señales de asistencia que los pacientes ya dan en el punto de control, encuentra y prepara a un candidato adecuado, y entrega el cambio a su personal, que hace la reserva en su programador. La recuperación depende de que la ruta de preparación exista primero, vea ',
     'backfill.recovery.note.link': 'cómo funciona la ruta de preparación',
     'backfill.recovery.note.post': '.',
 
@@ -220,7 +220,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'Aescia 在早晨向工作人员呈现恢复的名额以及由谁补上，作为一次清晰的交接，而非半夜的手忙脚乱。',
     'backfill.recovery.step6.title': '诊所在自己的排程系统中预订它',
     'backfill.recovery.step6.desc': '工作人员在你们的排程系统中确认并预订恢复的名额。Aescia 产出信号和已准备好的候选人；它不会写入你们的排程系统。',
-    'backfill.recovery.note.pre': '为了准确说明这是什么、不是什么：Aescia 不会用模型预测取消，也不会预订或写入你们的排程系统。它读取患者在检查点已经给出的到诊信号，找到并准备一位合适的候选人，并把这一变动交给你们的工作人员。恢复以准备路径先行存在为前提，参见',
+    'backfill.recovery.note.pre': '准确地说，它的作用是：Aescia 读取患者在检查点已经给出的到诊信号，找到并准备一位合适的候选人，并把这一变动交给你们的工作人员，由他们在排程系统中完成预约。恢复以准备路径先行存在为前提，参见',
     'backfill.recovery.note.link': '准备路径如何运作',
     'backfill.recovery.note.post': '。',
 
@@ -285,7 +285,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'تعرض Aescia الموعد المسترد ومَن يغطّيه للموظفين في الصباح، بوصفه تسليماً واضحاً، لا هرجاً في منتصف الليل.',
     'backfill.recovery.step6.title': 'تحجزه العيادة في نظام الجدولة الخاص بها',
     'backfill.recovery.step6.desc': 'يؤكّد الموظفون الموعد المسترد ويحجزونه في نظام الجدولة لديكم. تنتج Aescia الإشارة والمرشّح المهيّأ، لكنها لا تكتب في نظام الجدولة لديكم.',
-    'backfill.recovery.note.pre': 'توخّياً للدقة بشأن ما هو هذا وما ليس عليه: لا تتنبّأ Aescia بالإلغاءات بنموذج، ولا تحجز أو تكتب في نظام الجدولة لديكم. إنها تقرأ إشارات الحضور التي يقدّمها المرضى أصلاً عند نقطة التحقّق، وتجد مرشّحاً مناسباً وتهيّئه، وتسلّم التغيير إلى موظفيكم. يقوم الاسترداد على وجود مسار التحضير أولاً، انظر ',
+    'backfill.recovery.note.pre': 'توخّياً للدقة بشأن ما تفعله: تقرأ Aescia إشارات الحضور التي يقدّمها المرضى أصلاً عند نقطة التحقّق، وتجد مرشّحاً مناسباً وتهيّئه، وتسلّم التغيير إلى موظفيكم الذين يُجرون الحجز في نظام الجدولة لديكم. يقوم الاسترداد على وجود مسار التحضير أولاً، انظر ',
     'backfill.recovery.note.link': 'كيف يعمل مسار التحضير',
     'backfill.recovery.note.post': '.',
 
@@ -350,7 +350,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.recovery.step5.desc': 'Aescia trình bày cho nhân viên vào buổi sáng về suất đã khôi phục và ai sẽ đảm nhận nó, như một sự bàn giao rõ ràng, chứ không phải một cuộc xoay xở lúc nửa đêm.',
     'backfill.recovery.step6.title': 'Phòng khám đặt lịch nó trong hệ thống lịch hẹn của chính mình',
     'backfill.recovery.step6.desc': 'Nhân viên xác nhận và đặt suất đã khôi phục trong hệ thống lịch hẹn của bạn. Aescia tạo ra tín hiệu và ứng viên đã chuẩn bị; nó không ghi vào hệ thống lịch hẹn của bạn.',
-    'backfill.recovery.note.pre': 'Để nói cho chính xác đây là gì và không phải là gì: Aescia không dự đoán hủy hẹn bằng một mô hình, và nó không đặt lịch hay ghi vào hệ thống lịch hẹn của bạn. Nó đọc các tín hiệu về việc đến của bệnh nhân mà họ vốn đã cung cấp tại điểm kiểm tra, tìm và chuẩn bị một ứng viên phù hợp, rồi bàn giao thay đổi cho nhân viên của bạn. Việc khôi phục dựa trên điều kiện lộ trình chuẩn bị phải tồn tại trước, xem ',
+    'backfill.recovery.note.pre': 'Để nói cho chính xác việc này làm gì: Aescia đọc các tín hiệu về việc đến của bệnh nhân mà họ vốn đã cung cấp tại điểm kiểm tra, tìm và chuẩn bị một ứng viên phù hợp, rồi bàn giao thay đổi cho nhân viên của bạn, những người sẽ đặt lịch trong hệ thống lịch hẹn của bạn. Việc khôi phục dựa trên điều kiện lộ trình chuẩn bị phải tồn tại trước, xem ',
     'backfill.recovery.note.link': 'lộ trình chuẩn bị hoạt động như thế nào',
     'backfill.recovery.note.post': '.',
 

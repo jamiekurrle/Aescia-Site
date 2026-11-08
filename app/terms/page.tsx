@@ -96,8 +96,9 @@ export default function TermsPage() {
                 is complete, current, or fit for a particular purpose.
               </p>
               <p>
-                Aescia for Clinics is a workflow tool that does not propose clinical decisions and is not
-                a medical device. Aescia for Hospitals is investigational. Any product descriptions on the
+                Neither Aescia for Clinics nor Aescia for Hospitals is a medical device. Both deliver the
+                unit&apos;s or hospital&apos;s own instructions and questions, and its clinicians make every clinical
+                decision. Any product descriptions on the
                 site are subject to change as the products develop.
               </p>
             </Section>

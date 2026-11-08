@@ -34,7 +34,7 @@ export const organizationSchema = {
     height: 512,
   },
   description:
-    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals is an investigational Software as a Medical Device in clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital. Aescia for Clinics is a workflow platform for specialty clinics.',
+    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals provides post-discharge check-ins and nurse alerts, on each hospital\'s own rules, and is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital. Aescia for Clinics is a workflow platform for specialty clinics. Neither product is a medical device.',
   email: 'contact@aesciahealth.com',
   foundingDate: '2025',
   slogan: 'A continuous-care platform for the weeks that matter.',
@@ -123,7 +123,7 @@ export const organizationSchema = {
   ],
   medicalSpecialty: ['Cardiovascular', 'CardiothoracicSurgery', 'Gastroenterologic'],
   knowsAbout: [
-    'post-discharge monitoring',
+    'post-discharge check-ins',
     'continuous care',
     'cardiothoracic surgery recovery',
     'hospital readmissions',
@@ -134,8 +134,7 @@ export const organizationSchema = {
     'GLP-1 peri-procedural management',
     'clinical pathway authoring',
     'patient-reported outcomes',
-    'Software as a Medical Device',
-    'TGA Class IIa pathway',
+    'Therapeutic Goods (Excluded Goods) Determination 2018',
     'IEC 62304',
     'ISO 13485',
     'ISO/IEC 27001',
@@ -147,19 +146,14 @@ export const organizationSchema = {
     'https://www.mtaa.org.au/industry-members',
     'https://buy.nsw.gov.au/supplier/profile/12460268',
   ],
-  // Authoritative external references for the regulatory and standards posture
-  // claimed in `knowsAbout`. Helps LLM citation tools verify the regulatory
-  // pathway claims by linking them to first-party government / standards URLs.
+  // Authoritative external references for the regulatory and standards claims
+  // in `knowsAbout`. Helps LLM citation tools verify them against first-party
+  // government and registry URLs.
   citation: [
     {
       '@type': 'CreativeWork',
       name: 'TGA: Regulating software-based medical devices',
       url: 'https://www.tga.gov.au/products/medical-devices/regulating-medical-devices/regulating-software-medical-devices',
-    },
-    {
-      '@type': 'CreativeWork',
-      name: 'TGA: Classification of medical devices',
-      url: 'https://www.tga.gov.au/products/medical-devices/manufacture-medical-device/classification-medical-devices',
     },
     {
       '@type': 'CreativeWork',
@@ -185,9 +179,9 @@ export const medicalStudySchema = {
   '@context': 'https://schema.org',
   '@type': 'MedicalStudy',
   '@id': `${SITE_URL}/evidence#safe-discharge-trial`,
-  name: 'SAFE-Discharge: Post-cardiothoracic-surgery discharge monitoring',
+  name: 'SAFE-Discharge: post-discharge check-ins and nurse alerts after cardiothoracic surgery',
   description:
-    'A prospective single-centre evaluation of Aescia for post-cardiothoracic-surgery discharge monitoring across the 30-day post-discharge window, live at Royal Prince Alfred Hospital since June 2026, with good early results.',
+    'A prospective single-centre clinical trial at Royal Prince Alfred Hospital, run by the hospital\'s trial team, using Aescia for post-discharge check-ins and nurse alerts across the 30-day window after cardiothoracic surgery. Live at Royal Prince Alfred Hospital since June 2026. The SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication.',
   status: 'Recruiting',
   studyLocation: {
     '@type': 'Hospital',
@@ -377,9 +371,8 @@ export const jamesKurrlePersonSchema = {
   url: `${SITE_URL}/team/james-kurrle`,
   knowsAbout: [
     'critical care',
-    'post-discharge monitoring',
+    'post-discharge check-ins',
     'clinical pathway authoring',
-    'Software as a Medical Device',
     'specialty clinic workflow',
   ],
   sameAs: [

@@ -13,7 +13,7 @@ export function SiteNav({
 }: {
   transparent?: boolean
   // Pages aimed at a known audience (e.g. /safe-discharge for trial
-  // participants) can pass `false` to hide the SaMD-classification band,
+  // participants) can pass `false` to hide the regulatory-notice band,
   // which is intended for general public visitors.
   showRegulatoryBand?: boolean
   // Patient-facing pages (e.g. /safe-discharge) can pass `true` to expose

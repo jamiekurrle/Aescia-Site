@@ -202,8 +202,8 @@ function HeroKinetic() {
             transition={{ duration: 0.7, delay: 0.85, ease }}
             className="mt-10 max-w-xl text-[17px] lg:text-[19px] leading-[1.6] text-background/80"
           >
-            Aescia is a continuous-care platform. Hospitals get structured
-            post-discharge monitoring. Specialty clinics get intake, prep, and
+            Aescia is a continuous-care platform. Hospitals get post-discharge
+            check-ins and nurse alerts. Specialty clinics get intake, prep, and
             follow-up workflow. Same engine. Same standard.
           </motion.p>
 
@@ -307,12 +307,12 @@ function StickyNarrative() {
     {
       label: '02',
       head: 'The pathway begins.',
-      sub: 'Aescia starts a clinician-authored monitoring pathway. Daily check-ins. Symptom thresholds. The schedule the service would run if it had the staffing.',
+      sub: 'Aescia starts the check-in pathway your clinicians wrote. Daily check-ins. Alert rules your team sets. The schedule the service would run if it had the staffing.',
     },
     {
       label: '03',
       head: 'Risk surfaces early.',
-      sub: 'When a check-in crosses a threshold, an escalation triggers. The clinical team sees it before the patient is back in ED.',
+      sub: 'When an answer meets a rule your team set, a nurse is alerted and the alert follows your escalation protocol. The clinical team reviews it and decides.',
     },
     {
       label: '04',
@@ -441,16 +441,16 @@ function ProductSurfaces() {
         <div className="grid md:grid-cols-2 gap-px bg-background/15">
           {[
             {
-              tag: 'Hospital Monitor',
-              status: 'Investigational SaMD · TGA Class IIa pathway',
-              title: 'Post-discharge monitoring, regulated.',
+              tag: 'Aescia for Hospitals',
+              status: 'Not a medical device',
+              title: 'Post-discharge follow-up, on your rules.',
               desc:
                 'For clinical teams running discharge follow-up at scale. Audit-grade, escalation-aware, designed to fit inside how a service already operates.',
               href: '/hospitals',
             },
             {
               tag: 'Specialty Clinic',
-              status: 'Workflow software · CDSS-exempt',
+              status: 'Workflow software · not a medical device',
               title: 'Intake, prep, follow-up — together.',
               desc:
                 'For specialty clinics that lose hours a week to phone tag and ad-hoc preparation. Pathways the clinical lead authors. No CDS classification baggage.',

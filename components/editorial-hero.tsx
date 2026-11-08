@@ -88,7 +88,7 @@ export function EditorialHero() {
       {/* Reuses each product page's own reviewed hero copy so the homepage
           gives both equal billing side by side, rather than leading with
           one and footnoting the other in a shared paragraph. */}
-      <h1 className="sr-only">Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge monitoring.</h1>
+      <h1 className="sr-only">Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge check-ins and nurse alerts.</h1>
 
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex items-center gap-4 mb-10 lg:mb-14">

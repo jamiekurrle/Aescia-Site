@@ -12,7 +12,7 @@ import { PageContent } from './content'
 // - No therapeutic claims about Aescia. The bed-day / capacity framing is an
 //   inference from the cited readmission literature, explicitly not an Aescia
 //   claim, and the disclaimer says so.
-// - Covers two literatures: post-discharge monitoring (Hospitals) and
+// - Covers two literatures: post-discharge follow-up (Hospitals) and
 //   pre-procedure preparation / prehabilitation (Clinics, a non-device tool).
 // - Literature-based content only, framed as observations about the
 //   published research, not as outcomes Aescia will deliver.
@@ -21,7 +21,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Clinical evidence and the SAFE-Discharge trial',
   description:
-    'The published evidence base for structured post-discharge monitoring and for pre-procedure preparation and prehabilitation, and Aescia\'s approach to generating product-specific evidence through the SAFE-Discharge clinical evaluation.',
+    'The published evidence base for structured post-discharge follow-up and for pre-procedure preparation and prehabilitation, and Aescia\'s approach to generating product-specific evidence through the SAFE-Discharge trial.',
   alternates: { canonical: '/evidence' },
   openGraph: {
     title: 'Clinical evidence | Aescia',

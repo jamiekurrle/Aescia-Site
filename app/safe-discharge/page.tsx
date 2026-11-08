@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 export default function SafeDischargeWelcomePage() {
   return (
     <>
-      {/* The regulatory band classifies the SaMD audience (hospitals vs.
-          clinics) for general public visitors. Trial participants reaching
+      {/* The regulatory band states both products' regulatory status
+          (hospitals and clinics) for general public visitors. Trial participants reaching
           this page already know the context, and the band visually competes
           with the partner-institution strip below — hide it here. */}
       <SiteNav showRegulatoryBand={false} showTextSize />

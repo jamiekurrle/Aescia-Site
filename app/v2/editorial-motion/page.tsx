@@ -208,11 +208,11 @@ function AudienceTiles() {
   const cards = [
     {
       eyebrow: 'For hospitals',
-      tag: 'Investigational SaMD',
+      tag: 'Not a medical device',
       title: 'Structured discharge follow-up that reads like a clinician wrote it.',
       desc:
-        'Continuous post-discharge monitoring with clinician-authored pathways, escalation triggers tuned to your service, and audit-grade documentation by default.',
-      cta: 'Hospital Monitor →',
+        "Post-discharge check-ins and nurse alerts, on your hospital's rules. Questions and alert rules written by your clinicians, alerts that follow your escalation protocol, and audit-grade documentation by default.",
+      cta: 'Aescia for Hospitals →',
       href: '/hospitals',
       dark: true,
     },
@@ -285,7 +285,7 @@ function PillarsV1() {
       n: '03',
       title: 'Two surfaces, one platform.',
       desc:
-        'Hospital Monitor is regulated software for post-discharge work. Specialty Clinic is a workflow tool that stays inside the CDSS exemption. Same engine.',
+        'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Same engine; neither is a medical device.',
     },
   ]
 

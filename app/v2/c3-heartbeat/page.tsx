@@ -238,7 +238,7 @@ export default function Page() {
         <PulseSection
           eyebrow="Day 0 · Discharge"
           title="The discharge summary lands. The pathway begins."
-          body="When the discharge is written, Aescia activates the matching clinician-authored monitoring schedule. The patient leaves with a check-in cadence already running."
+          body="When the discharge is written, Aescia starts the check-in schedule your clinicians wrote for that operation. The patient leaves with check-ins already running."
         />
         <PulseSection
           eyebrow="Day 1–2 · Quiet baseline"

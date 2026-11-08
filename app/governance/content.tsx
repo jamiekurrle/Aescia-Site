@@ -47,6 +47,7 @@ export function PageContent() {
             <dl className="divide-y divide-border border-y border-border text-[14px]">
               {([
                 ['gov.hospitals.classification.label', 'gov.hospitals.classification.value', t('gov.hospitals.classification.value')],
+                ['gov.hospitals.basis.label', 'gov.hospitals.basis.value', t('gov.hospitals.basis.value')],
                 ['gov.hospitals.roadmap.label', 'gov.hospitals.roadmap.value', t('gov.hospitals.roadmap.value')],
                 ['gov.hospitals.certification.label', 'gov.hospitals.certification.value', t('gov.hospitals.certification.value')],
                 [

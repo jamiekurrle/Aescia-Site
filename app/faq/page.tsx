@@ -31,7 +31,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'What is Aescia?',
-        a: 'Aescia is a continuous-care platform for the weeks between a high-acuity discharge and the next clinical appointment. It is a privately held healthtech company with operations in Sydney, Australia and Montréal, Canada. Aescia builds two products on one pathway engine: Aescia for Hospitals, an investigational software-as-a-medical-device for structured post-discharge monitoring, and Aescia for Clinics, a workflow and patient-preparation platform for specialty clinics.',
+        a: 'Aescia is a continuous-care platform for the weeks between a high-acuity discharge and the next clinical appointment. It is a privately held healthtech company with operations in Sydney, Australia and Montréal, Canada. Aescia builds two products on one pathway engine: Aescia for Hospitals, post-discharge check-ins and nurse alerts on each hospital\'s own rules, and Aescia for Clinics, a workflow and patient-preparation platform for specialty clinics. Neither product is a medical device.',
       },
       {
         q: 'Who founded Aescia?',
@@ -43,7 +43,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Where does Aescia operate?',
-        a: 'Aescia operates from Sydney, Australia and Montréal, Canada. 9550-0708 Québec inc. (NEQ 1181312316) holds the platform intellectual property and does the research and development. Aescia Pty Ltd (ABN 96 687 840 517) operates in Australia and New Zealand and is the Australian regulatory applicant.',
+        a: 'Aescia operates from Sydney, Australia and Montréal, Canada. 9550-0708 Québec inc. (NEQ 1181312316) holds the platform intellectual property and does the research and development. Aescia Pty Ltd (ABN 96 687 840 517) operates in Australia and New Zealand.',
       },
       {
         q: 'Is Aescia in any accelerator or industry programmes?',
@@ -56,7 +56,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'What is Aescia for Hospitals?',
-        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device for structured post-discharge monitoring. It is intended to be classified Class IIa by the Australian Therapeutic Goods Administration (TGA). The product runs daily clinician-authored check-ins across the 30-day post-discharge window and produces one prioritised list for the unit, rather than a new inbox for the nurse. The first indication is cardiothoracic surgical recovery; clinical evaluation is running through the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
+        a: 'Aescia for Hospitals sends patients the hospital\'s own check-in questions and education after discharge, and alerts the hospital\'s nurses when an answer meets a rule the hospital set. The nurses review the answers and decide what happens next. Check-ins run daily across the 30-day post-discharge window, and alerts arrive on one list for the unit rather than a new inbox for the nurse. The first use is cardiothoracic surgical recovery, and the product is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital. It is not a medical device. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.',
       },
       {
         q: 'What is Aescia for Clinics?',
@@ -64,7 +64,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'What is the difference between Aescia for Hospitals and Aescia for Clinics?',
-        a: 'They share one pathway engine but have different regulatory shapes. Aescia for Hospitals is an investigational software-as-a-medical-device intended for Class IIa classification under the TGA, designed for post-acute monitoring with advisory output. Aescia for Clinics is explicitly not a medical device, does not propose clinical decisions, and is designed for procedural-prep workflow in outpatient specialty clinics. The pricing model, intended buyer, and regulatory posture are all different.',
+        a: 'They share one pathway engine and the same regulatory status. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia for Hospitals runs post-discharge check-ins and nurse alerts for hospital surgical units. Aescia for Clinics runs procedural-prep workflow for outpatient specialty clinics. The pricing model and intended buyer are different.',
       },
       {
         q: 'What does the platform do underneath both products?',
@@ -77,19 +77,19 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'Is Aescia a medical device?',
-        a: 'Aescia for Hospitals is an investigational software-as-a-medical-device intended for Class IIa classification by the Australian Therapeutic Goods Administration (TGA). A regulatory submission has not yet been lodged. Aescia for Clinics is explicitly not a medical device and is not represented as one.',
+        a: 'No. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. This is Aescia\'s own assessment, and the /governance page sets out the regulatory basis.',
       },
       {
         q: 'Has Aescia been approved by the TGA, FDA, Health Canada, or any other regulator?',
-        a: 'No. No TGA, MDSAP, FDA, CE/UKCA, or Health Canada applications have been filed for either product. Aescia for Hospitals is investigational and pre-submission. Aescia for Clinics is non-device and does not require device approval.',
+        a: 'No. No Therapeutic Goods Administration (TGA), Medical Device Single Audit Program (MDSAP), US Food and Drug Administration (FDA), CE/UKCA, or Health Canada applications have been filed for either product. Neither product is a medical device, so neither requires device approval. This is Aescia\'s own assessment: both products fall within categories excluded from regulation as therapeutic goods under the Therapeutic Goods (Excluded Goods) Determination 2018, including patient surveys, communications, alerts to health professionals and clinical workflow management. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.',
       },
       {
         q: 'What is the SAFE-Discharge trial?',
-        a: 'SAFE-Discharge is a prospective single-centre evaluation of Aescia for Hospitals at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney. The trial has been live since June 2026, with good early results. Dr Kei Woldendorp is Principal Investigator, and the trial is sponsored by Sydney Local Health District. It is registered with the Australian New Zealand Clinical Trials Registry as ACTRN12625001425482.',
+        a: 'SAFE-Discharge is a prospective single-centre clinical trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney, run by the hospital\'s trial team under the trial\'s ethics approval. Aescia for Hospitals is used in the trial. The trial has been live since June 2026, and the SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication. Dr Kei Woldendorp is Principal Investigator, and the trial is sponsored by Sydney Local Health District. It is registered with the Australian New Zealand Clinical Trials Registry as ACTRN12625001425482.',
       },
       {
         q: 'What does the SAFE-Discharge trial measure?',
-        a: 'The trial measures structured post-discharge monitoring across the 30-day post-discharge window in adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures). The pre-specified secondary endpoint is alert burden: fewer than one nurse-actionable flag per patient per week over the 30-day window. Aescia will report what the trial shows, whatever it shows.',
+        a: 'The trial studies structured post-discharge check-ins and nurse alerts across the 30-day post-discharge window in adult patients after cardiothoracic surgery (coronary artery bypass grafting (CABG), valve and thoracic procedures). The pre-specified secondary endpoint is alert burden: fewer than one nurse-actionable flag per patient per week over the 30-day window. Aescia will report what the trial shows, whatever it shows.',
       },
       {
         q: 'What quality-system frameworks does Aescia work to?',
@@ -102,11 +102,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'How is Aescia priced?',
-        a: 'Aescia for Clinics is built to save you more than it costs and leave you better off than without Aescia. Design partners start free and pay nothing until the platform proves that on your own data. Run the ROI calculator at aesciahealth.com/clinics to see the return for your site, then talk to us for your number. Aescia for Hospitals is currently engaged through evaluation and pilot contracts, not commercial supply.',
+        a: 'Aescia for Clinics is built to save you more than it costs and leave you better off than without Aescia. Design partners start free and pay nothing until the platform proves that on your own data. Run the ROI calculator at aesciahealth.com/clinics to see the return for your site, then talk to us for your number. Aescia for Hospitals starts with a scoped pilot under the hospital\'s own clinical governance, run as quality improvement, then a yearly licence.',
       },
       {
         q: 'How does Aescia integrate with hospital and clinic information systems?',
-        a: 'Aescia is designed to add one prioritised list for the team, not a new portal, and to be quick to set up. Aescia for Clinics has no customers yet, and Aescia does not yet have live integrations with specific electronic medical record or practice-management systems; any data exchange is scoped with each customer rather than claimed in advance. To start, data can be provided by manual entry or a simple export, with no integration required to begin.',
+        a: 'Aescia is designed to add one list for the team, not a new portal, and to be quick to set up. Aescia for Clinics has no customers yet, and Aescia does not yet have live integrations with specific electronic medical record or practice-management systems; any data exchange is scoped with each customer rather than claimed in advance. To start, data can be provided by manual entry or a simple export, with no integration required to begin.',
       },
       {
         q: 'What is Aescia\'s data security and privacy posture?',
@@ -114,11 +114,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Does Aescia use AI or machine learning?',
-        a: 'Yes, but with a clear line. The clinical alert rules, the logic that decides whether to flag, remind, or escalate for a patient, are authored by practising clinicians and stay explainable; there is no black-box AI making or proposing patient care. Aescia does use machine learning for back-end analysis and operational tooling that is not patient-facing, for example a planned risk score that flags which colonoscopies are likely to run long so the list can be planned. That analysis is advisory, never replaces the clinician, and is kept separate from the clinician-authored rules. Output in the Hospitals product is advisory; the clinician remains the decision-maker. The Clinics product does not propose clinical decisions.',
+        a: 'Yes, with a clear line. The alert rules, the logic that decides whether to remind a patient or alert a clinician, are written and signed off by the hospital\'s or unit\'s own clinicians and stay explainable; no black-box AI makes or proposes patient care. Aescia uses machine learning for back-end analysis and operational tooling that is not patient-facing, for example a planned procedure-length estimate so a colonoscopy list can be planned before the day. That analysis is kept separate from the clinicians\' alert rules. In both products, the clinicians make every clinical decision.',
       },
       {
         q: 'How can I evaluate Aescia for my hospital or clinic?',
-        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, current engagement is evaluation and pilot contracts. For Clinics, new customers join through the design-partner program documented at aesciahealth.com/design-partner.',
+        a: 'Email contact@aesciahealth.com or use the form at aesciahealth.com/contact. For procurement, request the security pack with intent=security-pack. For Hospitals, engagement starts with a scoped pilot under the hospital\'s own clinical governance, run as quality improvement, then a yearly licence. For Clinics, new customers join through the design-partner program documented at aesciahealth.com/design-partner.',
       },
     ],
   },
@@ -168,7 +168,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Is Aescia for Clinics regulated by the FDA?',
-        a: 'No. Aescia for Clinics is explicitly not a medical device. It does not propose clinical decisions, it does not diagnose, it does not treat. The product delivers clinician-authored prep instructions, reminders, GLP-1 handling, and surveillance recall under a "propose, do not decide" design posture. Aescia for Hospitals (the surgical-recovery product) is investigational and intended to be classified Class IIa under the Australian TGA pathway; no FDA, MDSAP, CE/UKCA, or Health Canada applications have been filed for either product. The /governance page documents the regulatory posture in detail.',
+        a: 'No. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia for Clinics delivers clinician-authored prep instructions, reminders, GLP-1 handling and surveillance recall. No FDA, MDSAP, CE/UKCA or Health Canada applications have been filed for either product. The /governance page sets out the regulatory basis in detail.',
       },
       {
         q: 'What does the design-partner guarantee cover, and how do the commercial terms work?',
