@@ -1,6 +1,7 @@
 import { SiteNav } from '@/components/site-nav'
 import { EditorialHero } from '@/components/editorial-hero'
-import { ProblemSection } from '@/components/problem-section'
+import { QuestionField } from '@/components/question-field'
+import { HomeTrust } from '@/components/home-trust'
 import { Footer } from '@/components/footer'
 import { medicalStudySchema, softwareApplicationSchema, webPageSchema } from '@/lib/schema'
 
@@ -36,7 +37,8 @@ export default function Home() {
       />
       <SiteNav transparent />
       <EditorialHero />
-      <ProblemSection />
+      <QuestionField />
+      <HomeTrust />
       <Footer />
     </main>
   )

@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
-import { HeroDiagram } from './hero-diagram'
 import { TypewriterText } from './typewriter-text'
+import { HeroMetrics } from './hero-metrics'
 
 function Arrow() {
   return (
@@ -14,20 +14,13 @@ function Arrow() {
   )
 }
 
-const TITLE_SPEED_MS = 16
-const HOSPITALS_START_GAP_MS = 250
+const TITLE_SPEED_MS = 22
 
 export function EditorialHero() {
   const { t } = useI18n()
-  const [clinicsTitleDone, setClinicsTitleDone] = useState(false)
-  const [hospitalsTitleDone, setHospitalsTitleDone] = useState(false)
+  const [titleDone, setTitleDone] = useState(false)
   const [showVideo, setShowVideo] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
-
-  // Hospitals starts a quarter second after Clinics finishes typing, rather
-  // than both racing at once. Computed from Clinics' own length so the gap
-  // holds even if that copy changes length later.
-  const hospitalsStartDelayMs = t('clinics.title').length * TITLE_SPEED_MS + HOSPITALS_START_GAP_MS
 
   // The video element only mounts once we know the visitor has not asked for
   // reduced motion and is not on a data-saver connection, so those browsers
@@ -52,112 +45,109 @@ export function EditorialHero() {
     videoRef.current?.play().catch(() => {})
   }, [showVideo])
 
+  // The headline sits below the first screen and types out once it scrolls
+  // into view. Until then its text is in the page, invisible, so the layout
+  // is fixed and crawlers still read the h1.
+  const headlineRef = useRef<HTMLHeadingElement>(null)
+  const [headlineSeen, setHeadlineSeen] = useState(false)
+  useEffect(() => {
+    const el = headlineRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeadlineSeen(true)
+          observer.disconnect()
+        }
+      },
+      // Starts once the headline is clear of the bottom quarter of the screen.
+      { threshold: 1, rootMargin: '0px 0px -25% 0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <section className="relative overflow-hidden bg-foreground text-background pt-28 lg:pt-32 pb-24 lg:pb-32">
-      {/* Static first frame: present in the server HTML so no-JS, crawler,
-          reduced-motion, and pre-hydration renders all get the hero
-          background immediately. The video, when it mounts, paints over it. */}
-      {/* eslint-disable-next-line @next/next/no-img-element -- decorative
-          full-bleed background, same asset the video uses as its poster */}
-      <img
-        src="/hero-poster-v2.jpg"
-        alt=""
-        aria-hidden="true"
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      {showVideo && (
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/hero-poster-v2.jpg"
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        >
-          <source src="/hero-video-v2.webm" type="video/webm" />
-          <source src="/hero-video-v2.mp4" type="video/mp4" />
-        </video>
-      )}
-      <div className="absolute inset-0 bg-foreground/35" aria-hidden="true" />
-
-      {/* Reuses each product page's own reviewed hero copy so the homepage
-          gives both equal billing side by side, rather than leading with
-          one and footnoting the other in a shared paragraph. */}
-      <h1 className="sr-only">Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge check-ins and nurse alerts.</h1>
-
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex items-center gap-4 mb-10 lg:mb-14">
-          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('hero.eyebrow')}</span>
-          <span className="h-px w-10 bg-brass/60" aria-hidden="true" />
+    <section className="relative bg-[#1B2745] text-white">
+      {/* The video holds still behind the first screen and the headline
+          below it, which scrolls up over it. */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="sticky top-0 h-[100svh] overflow-hidden">
+          {/* Static first frame: present in the server HTML so no-JS, crawler,
+              reduced-motion, and pre-hydration renders all get the hero
+              background immediately. The video, when it mounts, paints over it. */}
+          {/* eslint-disable-next-line @next/next/no-img-element -- decorative
+              full-bleed background, same asset the video uses as its poster */}
+          <img
+            src="/hero-poster-v2.jpg"
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {showVideo && (
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/hero-poster-v2.jpg"
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/hero-video-v2.webm" type="video/webm" />
+              <source src="/hero-video-v2.mp4" type="video/mp4" />
+            </video>
+          )}
+          {/* Shade behind the centred questions so white text reads at full
+              contrast over any video frame. */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'radial-gradient(ellipse 75% 55% at 50% 50%, rgba(27, 39, 69, 0.55), transparent 75%), linear-gradient(to top, rgba(27, 39, 69, 0.6) 0%, rgba(27, 39, 69, 0.3) 40%, rgba(27, 39, 69, 0.3) 100%)',
+            }}
+          />
         </div>
+      </div>
 
-        <div className="divide-y divide-background/15">
-          <div className="max-w-3xl pb-12 lg:pb-14">
-            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-background/55">{t('clinics.eyebrow')}</span>
+      {/* First screen: questions answered by published figures. */}
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-8 min-h-[78svh] flex items-center justify-center">
+        <HeroMetrics />
+      </div>
 
-            <h2
-              className="font-display text-[32px] sm:text-[38px] lg:text-[42px] leading-[1.08] tracking-[-0.02em] text-background font-normal mt-3"
-              style={{ fontVariationSettings: "'opsz' 144" }}
+      {/* After a short scroll: the headline, over a deepening shade. */}
+      <div
+        className="relative"
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(27, 39, 69, 0) 0%, rgba(27, 39, 69, 0.85) 45%, rgba(27, 39, 69, 1) 100%)',
+        }}
+      >
+        <div
+          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-2 lg:pb-4 min-h-[40svh] flex flex-col items-center justify-center text-center"
+        >
+          <h1
+            ref={headlineRef}
+            className="font-display text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.04] tracking-[-0.03em] text-white font-normal"
+            style={{ fontVariationSettings: "'opsz' 144" }}
+          >
+            {headlineSeen ? (
+              <TypewriterText text={t('home.hero.title')} speedMs={TITLE_SPEED_MS} onDone={() => setTitleDone(true)} />
+            ) : (
+              <span className="invisible">{t('home.hero.title')}</span>
+            )}
+          </h1>
+
+          <div className={`hero-reveal mt-9 ${titleDone ? 'hero-reveal-in' : ''}`}>
+            <Link
+              href="/platform"
+              className="inline-flex items-center justify-center bg-white text-[#1B2745] px-7 py-4 text-[15px] font-medium tracking-wide hover:bg-white/90 transition-colors min-h-[48px]"
             >
-              <TypewriterText text={t('clinics.title')} speedMs={TITLE_SPEED_MS} onDone={() => setClinicsTitleDone(true)} />
-            </h2>
-
-            <p
-              className={`hero-reveal mt-6 max-w-md text-[15px] lg:text-[16px] leading-[1.6] text-background/80 font-sans ${clinicsTitleDone ? 'hero-reveal-in' : ''}`}
-            >
-              {t('clinics.subtitle')}
-            </p>
-
-            <div className={`hero-reveal hero-reveal-delay-1 mt-8 ${clinicsTitleDone ? 'hero-reveal-in' : ''}`}>
-              <Link
-                href="/clinics"
-                className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
-              >
-                {t('nav.clinics')}
-                <Arrow />
-              </Link>
-            </div>
-          </div>
-
-          <div className="max-w-3xl pt-12 lg:pt-14">
-            <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-background/55">{t('hospitals.eyebrow')}</span>
-
-            <h2
-              className="font-display text-[32px] sm:text-[38px] lg:text-[42px] leading-[1.08] tracking-[-0.02em] text-background font-normal mt-3"
-              style={{ fontVariationSettings: "'opsz' 144" }}
-            >
-              <TypewriterText
-                text={t('hospitals.title')}
-                speedMs={TITLE_SPEED_MS}
-                startDelayMs={hospitalsStartDelayMs}
-                onDone={() => setHospitalsTitleDone(true)}
-              />
-            </h2>
-
-            <p
-              className={`hero-reveal mt-6 max-w-md text-[15px] lg:text-[16px] leading-[1.6] text-background/80 font-sans ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}
-            >
-              {t('hospitals.subtitle')}
-            </p>
-
-            <div className={`hero-reveal hero-reveal-delay-1 mt-8 ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}>
-              <Link
-                href="/hospitals"
-                className="inline-flex items-center justify-center bg-background text-foreground px-6 py-3.5 text-[14px] font-medium tracking-wide hover:bg-background/90 transition-colors min-h-[44px]"
-              >
-                {t('nav.hospitals')}
-                <Arrow />
-              </Link>
-            </div>
-
-            <div className={`hero-reveal hero-reveal-delay-1 mt-10 lg:mt-12 ${hospitalsTitleDone ? 'hero-reveal-in' : ''}`}>
-              <HeroDiagram />
-            </div>
+              {t('home.hero.cta')}
+              <Arrow />
+            </Link>
           </div>
         </div>
       </div>
@@ -166,10 +156,7 @@ export function EditorialHero() {
         .hero-reveal {
           opacity: 0;
           transform: translateY(10px);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-        .hero-reveal-delay-1 {
-          transition-delay: 0.08s;
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .hero-reveal-in {
           opacity: 1;
