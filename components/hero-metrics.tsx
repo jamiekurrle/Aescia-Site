@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
+import { TypewriterText } from './typewriter-text'
 
 // Three questions over the hero video, each answered by a published figure.
 // Every figure carries its source line; keep them in step with
@@ -13,6 +14,8 @@ const SLIDES = [
   { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
 ]
 const FADE_MS = 400 // keep in step with the 400ms transitions below
+const TYPE_SPEED_MS = 22 // keep in step with TITLE_SPEED_MS in editorial-hero
+const AFTER_TYPED_MS = 1100 // pause on the finished question before the answer
 
 // Long enough to read the text once, and no longer. Chinese characters carry
 // about a word each, so they count triple.
@@ -28,6 +31,7 @@ export function HeroMetrics() {
   const [index, setIndex] = useState(0)
   const [phase, setPhase] = useState<Phase>('ask')
   const [paused, setPaused] = useState(false)
+  const [typed, setTyped] = useState(false)
 
   const slide = SLIDES[index]
   const ask = t(`home.ask.${slide.ask}`)
@@ -35,21 +39,27 @@ export function HeroMetrics() {
   const label = t(`home.metric.${slide.metric}.label`)
   const source = t(`home.metric.${slide.metric}.source`)
 
+  // A new question (next slide or a language switch) types out afresh.
+  useEffect(() => setTyped(false), [ask])
+
   useEffect(() => {
     if (paused) return
     let timer: ReturnType<typeof setTimeout>
     if (phase === 'ask') {
-      timer = setTimeout(() => setPhase('answer'), readMs(ask, 1800, 3000))
+      // The question types out first; the answer follows a beat after.
+      if (!typed) return
+      timer = setTimeout(() => setPhase('answer'), AFTER_TYPED_MS)
     } else if (phase === 'answer') {
       timer = setTimeout(() => setPhase('out'), readMs(value + label, 2600, 4400))
     } else {
       timer = setTimeout(() => {
         setIndex((i) => (i + 1) % SLIDES.length)
+        setTyped(false)
         setPhase('ask')
       }, FADE_MS)
     }
     return () => clearTimeout(timer)
-  }, [phase, paused, ask, value, label])
+  }, [phase, paused, typed, value, label])
 
   const answered = phase === 'answer'
   const shown = phase !== 'out'
@@ -68,7 +78,7 @@ export function HeroMetrics() {
           }`}
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
-          {ask}
+          <TypewriterText key={`${index}-${ask}`} text={ask} speedMs={TYPE_SPEED_MS} onDone={() => setTyped(true)} />
         </p>
 
         <div
