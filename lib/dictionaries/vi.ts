@@ -114,7 +114,7 @@ export const vi: Record<string, string> = {
   'home.metric.10.label': 'lịch nội soi kết thúc bằng việc bệnh nhân không đến hoặc bị hủy trong ngày.',
   'home.metric.10.source': 'Solonowicz và cộng sự, Journal of Clinical Gastroenterology 2022 (chăm sóc thông thường, 792 bệnh nhân nội soi tại Hoa Kỳ)',
   'home.story.7': 'Aescia hỏi bệnh nhân xem từng bước đã xong chưa, để nhóm của bạn biết vấn đề khi vẫn còn kịp xử lý.',
-  'home.metric.11.value': '6 đến 8 trên 10',
+  'home.metric.11.value': 'Hơn 6 trên 10',
   'home.metric.11.label': 'bệnh nhân từng giấu nhân viên y tế thông tin liên quan đến sức khỏe.',
   'home.metric.11.source': 'Levy và cộng sự, JAMA Network Open 2018 (hai khảo sát tại Hoa Kỳ, 4.510 người trưởng thành)',
   'home.trust.title': 'An toàn và riêng tư.',

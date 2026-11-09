@@ -114,7 +114,7 @@ export const ar: Record<string, string> = {
   'home.metric.10.label': 'من مواعيد التنظير تنتهي بعدم الحضور أو بالإلغاء في اليوم نفسه.',
   'home.metric.10.source': 'Solonowicz وآخرون، Journal of Clinical Gastroenterology 2022 (الرعاية المعتادة، 792 مريض تنظير في الولايات المتحدة)',
   'home.story.7': 'يسأل Aescia المرضى ما إذا كانت كل خطوة قد أُنجزت، ليعلم فريقك بأي مشكلة ما دام هناك وقت للتصرف.',
-  'home.metric.11.value': 'من 6 إلى 8 من كل 10',
+  'home.metric.11.value': 'أكثر من 6 من كل 10',
   'home.metric.11.label': 'مرضى أخفوا عن مقدّم الرعاية معلومة طبية مهمة.',
   'home.metric.11.source': 'Levy وآخرون، JAMA Network Open 2018 (استطلاعان في الولايات المتحدة، 4,510 بالغًا)',
   'home.trust.title': 'آمن وخاص.',
