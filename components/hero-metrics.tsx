@@ -8,7 +8,7 @@ import { useI18n } from '@/lib/i18n'
 // Business-Brain (tga-claims-guide, au-cardiac-surgery-readmission-benchmarks).
 const METRIC_COUNT = 8
 const HOLD_MS = 5600
-const FADE_MS = 700
+const FADE_MS = 700 // keep in step with the 700ms transition below
 
 export function HeroMetrics() {
   const { t } = useI18n()
@@ -67,7 +67,7 @@ export function HeroMetrics() {
 
       <style jsx>{`
         .metric-fade {
-          transition: opacity ${FADE_MS}ms ease, transform ${FADE_MS}ms ease;
+          transition: opacity 700ms ease, transform 700ms ease;
         }
         @media (prefers-reduced-motion: reduce) {
           .metric-fade {

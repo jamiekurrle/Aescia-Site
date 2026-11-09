@@ -12,7 +12,7 @@ const PHONE_AFTER = AFTER_KEYS.slice(0, 8)
 
 // Each question loops on the same cycle, offset so a new one appears every
 // second or so and four to five are on screen at once, overlapping.
-const CYCLE_S = 18
+const CYCLE_S = 18 // keep in step with the 18s in the q-pop rule below
 
 function frac(x: number) {
   return x - Math.floor(x)
@@ -100,7 +100,7 @@ export function QuestionField() {
       <style jsx global>{`
         .q-pop {
           opacity: 0;
-          animation: q-pop ${CYCLE_S}s ease-in-out infinite;
+          animation: q-pop 18s ease-in-out infinite;
           will-change: opacity, transform;
         }
         @keyframes q-pop {
