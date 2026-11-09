@@ -4,14 +4,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
 
-// Three questions over the hero video, each answered by a published figure.
+// Questions over the hero video, each answered by a published figure.
 // Every figure carries its source line; keep them in step with
 // Business-Brain (au-cardiac-surgery-readmission-benchmarks and the
 // 2026-11-08 homepage capture).
 const SLIDES = [
   { ask: 1, metric: 4 }, // forgot what the care team said -> 40 to 80% forgotten
-  { ask: 2, metric: 3 }, // anxious before the procedure -> more than half anxious
+  { ask: 4, metric: 8 }, // home and unsure whether to call -> about 1 in 10 readmitted urgently (Canada)
   { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
+  { ask: 5, metric: 7 }, // told to come back in a few years -> 54% no surveillance colonoscopy
+  { ask: 2, metric: 3 }, // anxious before the procedure -> more than half anxious
+  { ask: 6, metric: 5 }, // why the prep matters -> up to 42% of adenomas missed
 ]
 
 // Timings. The CSS transitions below use the same values as literals
