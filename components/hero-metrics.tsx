@@ -4,17 +4,20 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
 
-// Questions over the hero video, each answered by a published figure.
-// Every figure carries its source line; keep them in step with
-// Business-Brain (au-cardiac-surgery-readmission-benchmarks and the
-// 2026-11-08 homepage capture).
-const SLIDES = [
+// A short story over the hero video: three questions patients ask, each
+// answered by a published figure, then what Aescia does about them, one line
+// at a time. Every figure carries its source line; keep them in step with
+// Business-Brain (the 2026-11-08 homepage capture). Story lines follow the
+// TGA claims guide: Aescia delivers the team's content, the team decides.
+type Slide = { ask: number; metric: number } | { say: number }
+const SLIDES: Slide[] = [
   { ask: 1, metric: 4 }, // forgot what the care team said -> 40 to 80% forgotten
-  { ask: 4, metric: 8 }, // home and unsure whether to call -> about 1 in 10 readmitted urgently (Canada)
   { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
-  { ask: 5, metric: 7 }, // told to come back in a few years -> 54% no surveillance colonoscopy
-  { ask: 2, metric: 3 }, // anxious before the procedure -> more than half anxious
-  { ask: 6, metric: 5 }, // why the prep matters -> up to 42% of adenomas missed
+  { ask: 4, metric: 8 }, // home and unsure whether to call -> about 1 in 10 readmitted urgently (Canada)
+  { say: 1 }, // instructions when you need them
+  { say: 2 }, // check-ins with the team's questions
+  { say: 3 }, // nurses see the answers they asked to see
+  { say: 4 }, // no one left wondering what to do
 ]
 
 // Timings. The CSS transitions below use the same values as literals
@@ -49,10 +52,11 @@ export function HeroMetrics() {
   const askRef = useRef<HTMLParagraphElement>(null)
 
   const slide = SLIDES[index]
-  const ask = t(`home.ask.${slide.ask}`)
-  const value = t(`home.metric.${slide.metric}.value`)
-  const label = t(`home.metric.${slide.metric}.label`)
-  const source = t(`home.metric.${slide.metric}.source`)
+  const statement = 'say' in slide
+  const ask = 'say' in slide ? t(`home.story.${slide.say}`) : t(`home.ask.${slide.ask}`)
+  const value = 'say' in slide ? '' : t(`home.metric.${slide.metric}.value`)
+  const label = 'say' in slide ? '' : t(`home.metric.${slide.metric}.label`)
+  const source = 'say' in slide ? '' : t(`home.metric.${slide.metric}.source`)
 
   // A new slide (or a language switch) types out afresh.
   useEffect(() => {
@@ -66,6 +70,11 @@ export function HeroMetrics() {
     let timer: ReturnType<typeof setTimeout> | undefined
     if (phase === 'ask') {
       if (!askTyped) return
+      // A story line has no answer: read it, then it rolls away.
+      if (statement) {
+        timer = setTimeout(() => setPhase('out'), holdMs(ask))
+        return () => clearTimeout(timer)
+      }
       timer = setTimeout(() => {
         const el = askRef.current
         if (el) {
@@ -88,9 +97,9 @@ export function HeroMetrics() {
       }, OUT_MS)
     }
     return () => clearTimeout(timer)
-  }, [phase, paused, askTyped, labelTyped, ask, value, label])
+  }, [phase, paused, askTyped, labelTyped, statement, ask, value, label])
 
-  const answering = phase !== 'ask' // question small, answer block open
+  const answering = !statement && phase !== 'ask' // question small, answer block open
   const leaving = phase === 'out'
 
   return (
@@ -102,7 +111,7 @@ export function HeroMetrics() {
       {/* The question types out large, then shrinks above its answer in the same type. */}
       <p
         ref={askRef}
-        className={`hm-ask hm-roll mx-auto max-w-4xl font-display font-semibold tracking-[-0.02em] text-white text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
+        className={`hm-ask hm-roll mx-auto max-w-4xl font-display tracking-[-0.02em] ${statement ? 'font-normal' : 'font-semibold'} text-white text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
           answering ? 'text-[clamp(22px,2.6vw,38px)] leading-[1.12]' : 'text-[clamp(30px,4.6vw,68px)] leading-[1.05]'
         } ${leaving ? 'hm-gone hm-late' : ''}`}
         style={{
