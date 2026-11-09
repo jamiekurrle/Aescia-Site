@@ -4,19 +4,17 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
 
-// A short story over the hero video: a question patients ask, the published
-// figure behind it, then what Aescia does about it. Every figure carries its
+// A short story over the hero video. Each slide comes in threes: a question
+// patients ask, the published figure behind it, then what Aescia does about
+// it, typed beneath while the first two stay up. Every figure carries its
 // source line; keep them in step with Business-Brain (the 2026-11-08 and
 // 2026-11-09 homepage captures). Story lines follow the TGA claims guide:
 // Aescia delivers the team's content, the team decides.
-type Slide = { ask: number; metric: number } | { say: number }
+type Slide = { ask: number; metric: number; say: number } | { say: number }
 const SLIDES: Slide[] = [
-  { ask: 7, metric: 9 }, // unsure whether to tell the surgeon -> over 4 in 10 complications appear at home
-  { say: 5 }, // check-ins before and after; nurses see the answers they asked to see
-  { ask: 1, metric: 4 }, // forgot what the care team said -> 40 to 80% forgotten
-  { say: 1 }, // instructions when you need them
-  { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
-  { say: 6 }, // each prep step at the time you need it
+  { ask: 7, metric: 9, say: 5 }, // tell the surgeon? -> over 4 in 10 complications at home -> check-ins before and after
+  { ask: 1, metric: 4, say: 1 }, // forgot what the care team said -> 40 to 80% forgotten -> instructions when you need them
+  { ask: 3, metric: 1, say: 6 }, // unsure the prep worked -> up to 1 in 4 inadequate -> each prep step on time
   { say: 4 }, // no one left wondering what to do
 ]
 
@@ -36,7 +34,7 @@ function holdMs(text: string) {
   return Math.min(4200, Math.max(2200, 900 + text.length * weight * 22))
 }
 
-type Phase = 'ask' | 'answer' | 'out'
+type Phase = 'ask' | 'answer' | 'do' | 'out'
 
 export function HeroMetrics() {
   const { t } = useI18n()
@@ -46,24 +44,27 @@ export function HeroMetrics() {
   const [askTyped, setAskTyped] = useState(false)
   const [valueTyped, setValueTyped] = useState(false)
   const [labelTyped, setLabelTyped] = useState(false)
+  const [doTyped, setDoTyped] = useState(false)
   // While answered, the question's width is pinned in em so it shrinks with
   // its font size and keeps the same line breaks it had at full size.
   const [askWidthEm, setAskWidthEm] = useState<number | null>(null)
   const askRef = useRef<HTMLParagraphElement>(null)
 
   const slide = SLIDES[index]
-  const statement = 'say' in slide
-  const ask = 'say' in slide ? t(`home.story.${slide.say}`) : t(`home.ask.${slide.ask}`)
-  const value = 'say' in slide ? '' : t(`home.metric.${slide.metric}.value`)
-  const label = 'say' in slide ? '' : t(`home.metric.${slide.metric}.label`)
-  const source = 'say' in slide ? '' : t(`home.metric.${slide.metric}.source`)
+  const statement = !('ask' in slide)
+  const ask = 'ask' in slide ? t(`home.ask.${slide.ask}`) : t(`home.story.${slide.say}`)
+  const value = 'ask' in slide ? t(`home.metric.${slide.metric}.value`) : ''
+  const label = 'ask' in slide ? t(`home.metric.${slide.metric}.label`) : ''
+  const source = 'ask' in slide ? t(`home.metric.${slide.metric}.source`) : ''
+  const doLine = 'ask' in slide ? t(`home.story.${slide.say}`) : ''
 
   // A new slide (or a language switch) types out afresh.
   useEffect(() => {
     setAskTyped(false)
     setValueTyped(false)
     setLabelTyped(false)
-  }, [ask, value, label])
+    setDoTyped(false)
+  }, [ask, value, label, doLine])
 
   useEffect(() => {
     if (paused) return
@@ -84,22 +85,28 @@ export function HeroMetrics() {
         setPhase('answer')
       }, PAUSE_MS)
     } else if (phase === 'answer') {
+      // Read the figure and its label, then Aescia's line types beneath.
       if (!labelTyped) return
-      timer = setTimeout(() => setPhase('out'), holdMs(ask + value + label))
+      timer = setTimeout(() => setPhase('do'), holdMs(value + label))
+    } else if (phase === 'do') {
+      if (!doTyped) return
+      timer = setTimeout(() => setPhase('out'), holdMs(doLine))
     } else {
       timer = setTimeout(() => {
         setIndex((i) => (i + 1) % SLIDES.length)
         setAskTyped(false)
         setValueTyped(false)
         setLabelTyped(false)
+        setDoTyped(false)
         setAskWidthEm(null)
         setPhase('ask')
       }, OUT_MS)
     }
     return () => clearTimeout(timer)
-  }, [phase, paused, askTyped, labelTyped, statement, ask, value, label])
+  }, [phase, paused, askTyped, labelTyped, doTyped, statement, ask, value, label, doLine])
 
   const answering = !statement && phase !== 'ask' // question small, answer block open
+  const doing = !statement && (phase === 'do' || phase === 'out')
   const leaving = phase === 'out'
 
   return (
@@ -165,6 +172,18 @@ export function HeroMetrics() {
         </p>
         <p className="hm-source mt-3 text-[12px] lg:text-[13px] leading-[1.4] text-white/70" style={{ opacity: labelTyped ? 1 : 0 }}>
           {source}
+        </p>
+        {/* What Aescia does, typed beneath the question and figure. Its space
+            is held from the moment the answer opens so nothing shifts. */}
+        <p
+          className="mt-8 lg:mt-10 mx-auto max-w-3xl font-display font-normal text-[clamp(22px,2.4vw,34px)] leading-[1.15] tracking-[-0.01em] text-white text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)]"
+          style={{ fontVariationSettings: "'opsz' 144" }}
+        >
+          {doing ? (
+            <TypewriterText key={`d-${index}-${doLine}`} text={doLine} speedMs={TYPE_SPEED_MS} onDone={() => setDoTyped(true)} />
+          ) : (
+            <span className="invisible">{doLine}</span>
+          )}
         </p>
       </div>
 
