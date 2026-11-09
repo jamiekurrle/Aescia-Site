@@ -112,6 +112,9 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.metric.8.value': 'About 1 in 10',
     'home.metric.8.label': 'hospital patients in Canada is readmitted urgently within 30 days.',
     'home.metric.8.source': 'Canadian Institute for Health Information, 2025–26',
+    'home.ask.1': 'Ever felt anxious that you don\'t know what to do?',
+    'home.ask.2': 'Ever not known whether you should call your surgical team?',
+    'home.ask.3': 'Ever done the prep and not been sure it worked?',
 
     // Audience split
     'split.hospital.eyebrow': 'For Hospitals',
@@ -603,6 +606,9 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.metric.8.value': 'Environ 1 sur 10',
     'home.metric.8.label': 'des patients hospitalisés au Canada est réadmis en urgence dans les 30 jours.',
     'home.metric.8.source': 'Institut canadien d\'information sur la santé, 2025-2026',
+    'home.ask.1': 'Vous êtes-vous déjà senti anxieux de ne pas savoir quoi faire ?',
+    'home.ask.2': 'Vous êtes-vous déjà demandé s\'il fallait appeler votre équipe chirurgicale ?',
+    'home.ask.3': 'Avez-vous déjà fait la préparation sans savoir si elle avait marché ?',
 
     'split.hospital.eyebrow': 'Pour les hôpitaux',
     'split.hospital.title': 'Le suivi après la chirurgie, selon vos règles.',
@@ -1062,6 +1068,9 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.metric.8.value': 'Alrededor de 1 de cada 10',
     'home.metric.8.label': 'pacientes hospitalizados en Canadá reingresa de urgencia en 30 días.',
     'home.metric.8.source': 'Canadian Institute for Health Information, 2025-26',
+    'home.ask.1': '¿Alguna vez te has sentido ansioso sin saber qué hacer?',
+    'home.ask.2': '¿Alguna vez no supiste si debías llamar a tu equipo quirúrgico?',
+    'home.ask.3': '¿Alguna vez hiciste la preparación sin saber si había funcionado?',
 
     'split.hospital.eyebrow': 'Para Hospitales',
     'split.hospital.title': 'Seguimiento tras la cirugía, con sus reglas.',
