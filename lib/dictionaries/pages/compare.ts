@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': 'Endoscopy ASC · Comparison',
     'compare.hero.title': 'How does Aescia differ from patient-engagement and scheduling tools?',
     'compare.hero.lede': 'Aescia for Clinics does what patient-engagement tools do, the reminders, prep coaching, and recall that cut no-shows and late cancellations and keep the waitlist moving, and it adds a layer they lack: it tracks prep readiness and routes freed slots to patients who are actually prepped. So it can pay for itself on engagement alone, with prep-aware backfill as the edge on top. Where Aescia is genuinely behind today is deployment maturity and deep real-time electronic medical record integration, and the table shows both.',
-    'compare.hero.note': 'Categories are described by type rather than by brand. Aescia for Clinics has no customers yet and is not a medical device.',
+    'compare.hero.note': 'Categories are described by type rather than by brand. Aescia for Clinics has no customers yet.',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': 'Patient-engagement / scheduling tools',
@@ -35,7 +35,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': 'No.',
 
     'compare.row5.capability': 'Prep-night photo confirmation',
-    'compare.row5.aescia': 'Yes. Structured photo gate before the day of the list.',
+    'compare.row5.aescia': 'Yes. The patient sends a photo on prep night, and your nurse sees it before the day of the list.',
     'compare.row5.engagement': 'No.',
     'compare.row5.texting': 'No.',
     'compare.row5.block': 'No.',
@@ -47,7 +47,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': 'Not applicable.',
 
     'compare.row7.capability': 'Hospital post-discharge sibling product',
-    'compare.row7.aescia': 'Yes. Aescia for Hospitals: post-discharge check-ins and nurse alerts, on each hospital\'s own rules. Neither product is a medical device.',
+    'compare.row7.aescia': 'Yes. Aescia for Hospitals: post-discharge check-ins and nurse alerts, on each hospital\'s own rules.',
     'compare.row7.engagement': 'Rare.',
     'compare.row7.texting': 'No.',
     'compare.row7.block': 'Varies by vendor.',
@@ -94,7 +94,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': 'ASC d’endoscopie · Comparaison',
     'compare.hero.title': 'En quoi Aescia diffère-t-il des outils d’engagement patient et de planification ?',
     'compare.hero.lede': 'Aescia pour les cliniques fait ce que font les outils d’engagement patient, les rappels, l’accompagnement de la préparation et la relance qui réduisent les absences et les annulations tardives et font avancer la liste d’attente, et il ajoute une couche qui leur manque : il suit l’état de préparation et oriente les créneaux libérés vers les patients réellement préparés. Il peut donc se rentabiliser sur l’engagement seul, avec le remplissage tenant compte de la préparation comme avantage supplémentaire. Là où Aescia est réellement en retard aujourd’hui, c’est la maturité de déploiement et l’intégration approfondie et en temps réel au dossier médical électronique, et le tableau montre les deux.',
-    'compare.hero.note': 'Les catégories sont décrites par type plutôt que par marque. Aescia for Clinics n’a pas encore de clients et n’est pas un dispositif médical.',
+    'compare.hero.note': 'Les catégories sont décrites par type plutôt que par marque. Aescia for Clinics n’a pas encore de clients.',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': 'Outils d’engagement patient / de planification',
@@ -126,7 +126,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': 'Non.',
 
     'compare.row5.capability': 'Confirmation photo la veille de la préparation',
-    'compare.row5.aescia': 'Oui. Contrôle photo structuré avant le jour de la liste.',
+    'compare.row5.aescia': 'Oui. Le patient envoie une photo la veille, et votre infirmier la voit avant le jour de la liste.',
     'compare.row5.engagement': 'Non.',
     'compare.row5.texting': 'Non.',
     'compare.row5.block': 'Non.',
@@ -138,7 +138,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': 'Sans objet.',
 
     'compare.row7.capability': 'Produit frère pour le suivi hospitalier après la sortie',
-    'compare.row7.aescia': 'Oui. Aescia for Hospitals : suivis après la sortie et alertes infirmières, selon les règles propres à chaque hôpital. Aucun des deux produits n\'est un dispositif médical.',
+    'compare.row7.aescia': 'Oui. Aescia for Hospitals : suivis après la sortie et alertes infirmières, selon les règles propres à chaque hôpital.',
     'compare.row7.engagement': 'Rare.',
     'compare.row7.texting': 'Non.',
     'compare.row7.block': 'Variable selon le fournisseur.',
@@ -185,7 +185,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': 'ASC de endoscopia · Comparación',
     'compare.hero.title': '¿En qué se diferencia Aescia de las herramientas de interacción con el paciente y de programación?',
     'compare.hero.lede': 'Aescia for Clinics hace lo que hacen las herramientas de interacción con el paciente, los recordatorios, el acompañamiento de la preparación y la recitación que reducen las inasistencias y las cancelaciones tardías y mantienen en movimiento la lista de espera, y añade una capa que ellas no tienen: rastrea el estado de preparación y dirige los espacios liberados a los pacientes que realmente están preparados. Por eso puede pagarse a sí mismo solo con la interacción, con el rellenado consciente de la preparación como ventaja adicional. Donde Aescia realmente está atrasada hoy es en la madurez de despliegue y en la integración profunda y en tiempo real con el registro médico electrónico, y la tabla muestra ambas cosas.',
-    'compare.hero.note': 'Las categorías se describen por tipo en lugar de por marca. Aescia for Clinics aún no tiene clientes y no es un dispositivo médico.',
+    'compare.hero.note': 'Las categorías se describen por tipo en lugar de por marca. Aescia for Clinics aún no tiene clientes.',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': 'Herramientas de interacción con el paciente / programación',
@@ -217,7 +217,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': 'No.',
 
     'compare.row5.capability': 'Confirmación por foto la noche de la preparación',
-    'compare.row5.aescia': 'Sí. Control estructurado por foto antes del día de la lista.',
+    'compare.row5.aescia': 'Sí. El paciente envía una foto la noche de la preparación, y su equipo de enfermería la ve antes del día de la lista.',
     'compare.row5.engagement': 'No.',
     'compare.row5.texting': 'No.',
     'compare.row5.block': 'No.',
@@ -229,7 +229,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': 'No aplica.',
 
     'compare.row7.capability': 'Producto hermano para el seguimiento hospitalario tras el alta',
-    'compare.row7.aescia': 'Sí. Aescia for Hospitals: controles tras el alta y alertas para enfermería, según las reglas propias de cada hospital. Ninguno de los dos productos es un dispositivo médico.',
+    'compare.row7.aescia': 'Sí. Aescia for Hospitals: controles tras el alta y alertas para enfermería, según las reglas propias de cada hospital.',
     'compare.row7.engagement': 'Raro.',
     'compare.row7.texting': 'No.',
     'compare.row7.block': 'Varía según el proveedor.',
@@ -276,7 +276,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': '内镜日间手术中心 · 对比',
     'compare.hero.title': 'Aescia 与患者互动和排程工具有何不同？',
     'compare.hero.lede': 'Aescia for Clinics 做的是患者互动工具所做的事，即减少爽约和临时取消、让候补名单持续流转的提醒、准备指导与召回，而它还增加了这些工具所缺乏的一层：它追踪准备就绪状态，并把空出的时段分配给真正完成准备的患者。因此，仅凭互动它就能收回成本，而具准备意识的回填则是额外的优势。Aescia 当今真正落后之处在于部署成熟度以及与电子病历的深度实时集成，而该表格列出了这两点。',
-    'compare.hero.note': '各类别按类型而非品牌描述。Aescia for Clinics 目前还没有客户，且不是医疗器械。',
+    'compare.hero.note': '各类别按类型而非品牌描述。Aescia for Clinics 目前还没有客户。',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': '患者互动／排程工具',
@@ -308,7 +308,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': '否。',
 
     'compare.row5.capability': '准备当晚照片确认',
-    'compare.row5.aescia': '是。在排程当日之前设有结构化的照片审核环节。',
+    'compare.row5.aescia': '是。患者在准备当晚发送照片，您的护士在排程当日之前即可看到。',
     'compare.row5.engagement': '否。',
     'compare.row5.texting': '否。',
     'compare.row5.block': '否。',
@@ -320,7 +320,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': '不适用。',
 
     'compare.row7.capability': '医院出院后随访姊妹产品',
-    'compare.row7.aescia': '是。Aescia for Hospitals：按各医院自己的规则运行的出院后问询与护士提醒。两款产品均不是医疗器械。',
+    'compare.row7.aescia': '是。Aescia for Hospitals：按各医院自己的规则运行的出院后问询与护士提醒。',
     'compare.row7.engagement': '罕见。',
     'compare.row7.texting': '否。',
     'compare.row7.block': '因供应商而异。',
@@ -367,7 +367,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': 'مركز جراحة نهارية للتنظير · مقارنة',
     'compare.hero.title': 'كيف تختلف Aescia عن أدوات التفاعل مع المرضى وأدوات الجدولة؟',
     'compare.hero.lede': 'تقوم Aescia for Clinics بما تقوم به أدوات التفاعل مع المرضى، أي التذكيرات وإرشاد التحضير والاستدعاء التي تقلّل من حالات التغيّب والإلغاء المتأخر وتُبقي قائمة الانتظار متحركة، وتضيف طبقة تفتقر إليها تلك الأدوات: فهي تتتبّع جاهزية التحضير وتوجّه المواعيد التي تتحرّر إلى المرضى المهيّئين فعلًا. لذا يمكن أن تغطي تكلفتها بالاعتماد على التفاعل وحده، مع كون الملء الواعي بالتحضير ميزة إضافية. أما حيث تتأخر Aescia فعلًا اليوم فهو نضج النشر والتكامل العميق والآني مع السجل الطبي الإلكتروني، والجدول يبيّن كليهما.',
-    'compare.hero.note': 'تُوصف الفئات حسب النوع لا حسب العلامة التجارية. وليس لدى Aescia for Clinics عملاء بعد، وهي ليست جهازًا طبيًا.',
+    'compare.hero.note': 'تُوصف الفئات حسب النوع لا حسب العلامة التجارية. وليس لدى Aescia for Clinics عملاء بعد.',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': 'أدوات التفاعل مع المرضى / الجدولة',
@@ -399,7 +399,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': 'لا.',
 
     'compare.row5.capability': 'تأكيد بالصورة في ليلة التحضير',
-    'compare.row5.aescia': 'نعم. بوابة صور منظَّمة قبل يوم القائمة.',
+    'compare.row5.aescia': 'نعم. يرسل المريض صورة ليلة التحضير، ويطّلع عليها الممرض لديكم قبل يوم القائمة.',
     'compare.row5.engagement': 'لا.',
     'compare.row5.texting': 'لا.',
     'compare.row5.block': 'لا.',
@@ -411,7 +411,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': 'لا ينطبق.',
 
     'compare.row7.capability': 'منتج شقيق للمستشفيات لما بعد الخروج',
-    'compare.row7.aescia': 'نعم. Aescia for Hospitals: متابعات ما بعد الخروج وتنبيهات التمريض، وفق قواعد كل مستشفى. لا يُعدّ أيٌّ من المنتجَين جهازًا طبيًا.',
+    'compare.row7.aescia': 'نعم. Aescia for Hospitals: متابعات ما بعد الخروج وتنبيهات التمريض، وفق قواعد كل مستشفى.',
     'compare.row7.engagement': 'نادر.',
     'compare.row7.texting': 'لا.',
     'compare.row7.block': 'يتفاوت حسب المورِّد.',
@@ -458,7 +458,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.hero.eyebrow': 'Trung tâm phẫu thuật trong ngày về nội soi · So sánh',
     'compare.hero.title': 'Aescia khác với các công cụ tương tác bệnh nhân và lập lịch ở điểm nào?',
     'compare.hero.lede': 'Aescia for Clinics làm những gì các công cụ tương tác bệnh nhân làm, đó là nhắc lịch, hướng dẫn chuẩn bị và gọi tái khám giúp giảm vắng mặt và hủy hẹn muộn cũng như giữ cho danh sách chờ luôn vận hành, và nó bổ sung thêm một lớp mà chúng còn thiếu: nó theo dõi mức độ sẵn sàng chuẩn bị và điều phối các suất trống cho những bệnh nhân thực sự đã chuẩn bị xong. Nhờ vậy, chỉ riêng tương tác đã đủ để nó tự bù lại chi phí, còn việc lấp suất có ý thức về chuẩn bị là lợi thế bổ sung thêm. Nơi Aescia thực sự còn kém hôm nay là mức độ trưởng thành của việc triển khai và tích hợp sâu, theo thời gian thực với hồ sơ bệnh án điện tử, và bảng so sánh thể hiện cả hai điều này.',
-    'compare.hero.note': 'Các nhóm được mô tả theo loại hình chứ không theo thương hiệu. Aescia for Clinics chưa có khách hàng nào và không phải là thiết bị y tế.',
+    'compare.hero.note': 'Các nhóm được mô tả theo loại hình chứ không theo thương hiệu. Aescia for Clinics chưa có khách hàng nào.',
 
     'compare.col.aescia': 'Aescia for Clinics',
     'compare.col.engagement': 'Công cụ tương tác bệnh nhân / lập lịch',
@@ -490,7 +490,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row4.block': 'Không.',
 
     'compare.row5.capability': 'Xác nhận bằng ảnh trong đêm chuẩn bị',
-    'compare.row5.aescia': 'Có. Cổng kiểm tra ảnh có cấu trúc trước ngày trong danh sách.',
+    'compare.row5.aescia': 'Có. Bệnh nhân gửi ảnh vào đêm chuẩn bị, và điều dưỡng của bạn xem ảnh trước ngày trong danh sách.',
     'compare.row5.engagement': 'Không.',
     'compare.row5.texting': 'Không.',
     'compare.row5.block': 'Không.',
@@ -502,7 +502,7 @@ export const dict: Record<string, Record<string, string>> = {
     'compare.row6.block': 'Không áp dụng.',
 
     'compare.row7.capability': 'Sản phẩm cùng nhà cho bệnh viện sau xuất viện',
-    'compare.row7.aescia': 'Có. Aescia for Hospitals: hỏi thăm sau xuất viện và cảnh báo cho điều dưỡng, theo quy tắc riêng của từng bệnh viện. Cả hai sản phẩm đều không phải là thiết bị y tế.',
+    'compare.row7.aescia': 'Có. Aescia for Hospitals: hỏi thăm sau xuất viện và cảnh báo cho điều dưỡng, theo quy tắc riêng của từng bệnh viện.',
     'compare.row7.engagement': 'Hiếm.',
     'compare.row7.texting': 'Không.',
     'compare.row7.block': 'Tùy theo nhà cung cấp.',

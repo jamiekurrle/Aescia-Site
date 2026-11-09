@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/security' },
   openGraph: {
     title: 'Security | Aescia',
-    description: 'Trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase). Aescia is not yet certified; International Organization for Standardization (ISO) 27001 certification is planned.',
+    description: 'Trial data is stored in Australia (Amazon Web Services Sydney region, through Supabase). International Organization for Standardization (ISO) 27001 certification is planned.',
     url: '/security',
   },
 }

@@ -579,7 +579,6 @@ function AudienceSplit() {
   const cards = [
     {
       eyebrow: t('split.hospital.eyebrow'),
-      regtag: t('split.hospital.regtag'),
       title: t('split.hospital.title'),
       desc: t('split.hospital.desc'),
       cta: t('split.hospital.cta'),
@@ -588,7 +587,6 @@ function AudienceSplit() {
     },
     {
       eyebrow: t('split.clinic.eyebrow'),
-      regtag: t('split.clinic.regtag'),
       title: t('split.clinic.title'),
       desc: t('split.clinic.desc'),
       cta: t('split.clinic.cta'),
@@ -620,15 +618,6 @@ function AudienceSplit() {
                     style={{ color: card.dark ? 'var(--c-brass-soft)' : 'var(--c-mist-deep)' }}
                   >
                     {card.eyebrow}
-                  </span>
-                  <span
-                    className="font-mono text-[10px] uppercase tracking-[0.15em] border px-2 py-1"
-                    style={{
-                      borderColor: card.dark ? 'rgba(255,255,255,0.20)' : 'var(--c-border-cool)',
-                      color: card.dark ? 'var(--c-on-ink-70)' : 'var(--c-ink-60)',
-                    }}
-                  >
-                    {card.regtag}
                   </span>
                 </div>
                 <h3 className="text-[32px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mb-6 max-w-md">
@@ -784,7 +773,6 @@ function EvidenceRibbon() {
   const facts = [
     { value: t('evidence.fact1.value'), label: t('evidence.fact1.label'), mono: true },
     { value: t('evidence.fact2.value'), label: t('evidence.fact2.label'), mono: false },
-    { value: t('evidence.fact3.value'), label: t('evidence.fact3.label'), mono: false },
   ]
 
   return (

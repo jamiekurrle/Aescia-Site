@@ -119,7 +119,7 @@ function NumberedSpread() {
     {
       n: '01',
       t: 'TWO PRODUCTS, ONE PLATFORM',
-      d: 'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Neither is a medical device. They share an engine and a posture: clinician-authored, audit-aware, transparent.',
+      d: 'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. They share an engine and a posture: clinician-authored, audit-aware, transparent.',
     },
     {
       n: '02',

@@ -22,10 +22,10 @@ function useFaqT() {
 const SECTIONS: { eyebrow: string; items: string[] }[] = [
   { eyebrow: 'faq.company.eyebrow', items: ['faq.company.q1', 'faq.company.q2', 'faq.company.q3', 'faq.company.q4', 'faq.company.q5'] },
   { eyebrow: 'faq.products.eyebrow', items: ['faq.products.q1', 'faq.products.q2', 'faq.products.q3', 'faq.products.q4'] },
-  { eyebrow: 'faq.regulatory.eyebrow', items: ['faq.regulatory.q1', 'faq.regulatory.q2', 'faq.regulatory.q3', 'faq.regulatory.q4', 'faq.regulatory.q5'] },
+  { eyebrow: 'faq.trial.eyebrow', items: ['faq.trial.q1', 'faq.trial.q2'] },
   { eyebrow: 'faq.buying.eyebrow', items: ['faq.buying.q1', 'faq.buying.q2', 'faq.buying.q3', 'faq.buying.q4', 'faq.buying.q5'] },
   { eyebrow: 'faq.endoscopy.eyebrow', items: ['faq.endoscopy.q1', 'faq.endoscopy.q2', 'faq.endoscopy.q3', 'faq.endoscopy.q4', 'faq.endoscopy.q5', 'faq.endoscopy.q6'] },
-  { eyebrow: 'faq.diligence.eyebrow', items: ['faq.diligence.q1', 'faq.diligence.q2', 'faq.diligence.q3', 'faq.diligence.q4', 'faq.diligence.q5'] },
+  { eyebrow: 'faq.diligence.eyebrow', items: ['faq.diligence.q1', 'faq.diligence.q2', 'faq.diligence.q3', 'faq.diligence.q5'] },
 ]
 
 export function PageContent() {

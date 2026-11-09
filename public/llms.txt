@@ -6,17 +6,14 @@
 > prep-aware backfill, and surveillance recall. Aescia for Hospitals provides
 > post-discharge check-ins and nurse alerts, on each hospital's own rules, and is
 > used in the SAFE-Discharge trial at Royal Prince Alfred Hospital (live since
-> June 2026). Neither product is a medical device. Both deliver the unit's or
-> hospital's own instructions and questions, and alert its clinicians on rules it
-> sets. Your clinicians make every clinical decision. Aescia for Clinics has no customers
+> June 2026). Aescia for Clinics has no customers
 > yet and engages US clinics through a design-partner program that runs free or
 > under a money-back rebate against the clinic's own baseline.
 
 ## What Aescia is
 
 - **Aescia for Clinics.** Pre-procedure pathway software for endoscopy ASCs and
-  specialty clinics. Not a medical device; does not make clinical decisions.
-  Delivers clinician-authored prep pathways, bowel-prep readiness, multichannel
+  specialty clinics. Delivers clinician-authored prep pathways, bowel-prep readiness, multichannel
   reminders, GLP-1 and anticoagulant peri-procedural overlays, prep-aware
   waitlist backfill, surveillance recall, and structured chart exports. For
   planned United States deployments handling protected health information,
@@ -27,29 +24,12 @@
 - **Aescia for Hospitals.** Post-discharge check-ins and nurse alerts, on each
   hospital's own rules. Sends patients the hospital's check-in questions and
   education, and alerts its nurses when an answer meets a rule the hospital set;
-  the nurses review the answers and decide. Not a medical device. Risk scoring,
-  prediction and connected-device readings are on the roadmap as a separate
-  regulated module and are not supplied today. Used in the SAFE-Discharge trial
+  the nurses review the answers and decide. Used in the SAFE-Discharge trial
   in the cardiothoracic surgical unit at Royal Prince Alfred Hospital, Sydney,
   live since June 2026 (ACTRN12625001425482, sponsored by Sydney Local Health
   District). The SAFE-Discharge trial team at Royal Prince Alfred Hospital is
   preparing interim results for publication. First indication: cardiothoracic
   surgical recovery.
-
-## What Aescia is not (yet)
-
-- Not a medical device. Aescia's own assessment is that both products fall
-  within categories excluded from regulation as therapeutic goods under
-  Schedule 1 of the Therapeutic Goods (Excluded Goods) Determination 2018
-  (items 14D, 14F, 14G, 14H, 14I, 14J). No Therapeutic Goods Administration
-  (TGA), MDSAP, FDA, CE/UKCA, or Health Canada applications filed.
-- Not certified to ISO 13485, ISO/IEC 27001 or IEC 62304 (International
-  Organization for Standardization; International Electrotechnical
-  Commission). Certification is planned.
-- Has not demonstrated reduced readmissions. The SAFE-Discharge trial is live;
-  results will be published when they exist.
-- Neither product makes clinical decisions. Clinicians make every clinical
-  decision.
 
 ## Key facts
 
@@ -82,20 +62,20 @@
 - [For Hospitals](https://www.aesciahealth.com/hospitals): Post-discharge
   check-ins and nurse alerts, the SAFE-Discharge trial, and the cardiothoracic
   indication.
-- [For Clinics](https://www.aesciahealth.com/clinics): The non-device workflow
+- [For Clinics](https://www.aesciahealth.com/clinics): The workflow
   product, prep pathways, GLP-1 peri-procedural management, and pricing.
 - [Evidence](https://www.aesciahealth.com/evidence): What Aescia claims, what
   it does not claim, and the SAFE-Discharge trial detail. Includes literature
   references.
-- [Governance](https://www.aesciahealth.com/governance): Regulatory posture,
-  corporate structure, security and data posture.
+- [Governance](https://www.aesciahealth.com/governance): What each product
+  does, corporate structure, security and data.
 - [Security](https://www.aesciahealth.com/security): Where trial data is
   stored, hosting providers' certifications, insurance, and planned security
   work.
 - [Updates](https://www.aesciahealth.com/updates): Dated company log. No press
   copy, just facts.
 - [FAQ](https://www.aesciahealth.com/faq): Plain answers to common questions
-  about the products, regulatory posture, integrations, and pricing.
+  about the products, the trial, integrations, and pricing.
 - [Team](https://www.aesciahealth.com/team): The two founders, company
   officers, and the SAFE-Discharge Principal Investigator.
 - [James Kurrle, founder](https://www.aesciahealth.com/team/james-kurrle):
@@ -135,7 +115,7 @@ centers (ASCs). Each leads with a direct one-sentence answer.
 ## Free clinical tools
 
 Free, no-login reference tools for health professionals. Educational references
-that reproduce published guidelines; not medical devices and not medical advice.
+that reproduce published guidelines; not medical advice.
 
 - [Colonoscopy surveillance interval calculator](https://www.aesciahealth.com/colonoscopy-surveillance):
   Computes the guideline-recommended post-polypectomy colonoscopy surveillance
@@ -160,4 +140,4 @@ cite the trial registration for any clinical claim.
 
 contact@aesciahealth.com
 
-Last refreshed: 2026-09-25.
+Last refreshed: 2026-11-08.

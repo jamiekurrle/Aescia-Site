@@ -59,17 +59,6 @@ export default function ClinicsContent() {
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-4 lg:pt-8">
-            <div className="border-l border-accent/60 pl-6 py-2">
-              <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent mb-3">{t('clinics.posture.label')}</p>
-              <p className="font-display text-[20px] leading-[1.25] mb-4" style={{ fontVariationSettings: "'opsz' 80" }}>
-                {t('clinics.posture.title')}
-              </p>
-              <p className="text-[13px] text-foreground/70 leading-relaxed">
-                {t('clinics.posture.body')}
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 

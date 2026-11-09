@@ -49,7 +49,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': 'Where does my information go?',
     'safedischarge.faq.where.a': 'Your information is stored on secure servers in Australia. Only authorised members of the Royal Prince Alfred Hospital cardiothoracic clinical and research team can see information that identifies you. Aescia Pty Ltd, the company that provides the platform, only ever receives de-identified information, under a formal data sharing agreement.',
     'safedischarge.faq.harm.q': 'Could the study cause me harm?',
-    'safedischarge.faq.harm.a': 'The study has been reviewed and approved by the Sydney Local Health District Human Research Ethics Committee and is running under the TGA Clinical Trials Notification scheme. It is considered low risk. The most common thing to be aware of is that you may notice small changes in how you feel more than usual, which can occasionally cause mild anxiety. If that happens, please contact the team.',
+    'safedischarge.faq.harm.a': 'The study has been reviewed and approved by the Sydney Local Health District Human Research Ethics Committee. It is considered low risk. The most common thing to be aware of is that you may notice small changes in how you feel more than usual, which can occasionally cause mild anxiety. If that happens, please contact the team.',
     'safedischarge.faq.end.q': 'What happens at the end of 30 days?',
     'safedischarge.faq.end.a': 'The check-ins stop automatically and your account closes at the end of the 30 days. We will contact you for a short survey about your experience.',
     'safedischarge.faq.other.q': 'What if I have a question or concern that is not on this page?',
@@ -77,7 +77,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': 'Email:',
     'safedischarge.contacts.ethics.protocol': 'Protocol number: X26-0019',
 
-    'safedischarge.footernote.body': 'The formal Participant Information Sheet and Consent Form remains the authoritative document for this study. If anything on this page differs from the documents you signed, the signed documents apply. The study is sponsored by Sydney Local Health District and conducted under the TGA Clinical Trials Notification scheme; ethics approval is held by the Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
+    'safedischarge.footernote.body': 'The formal Participant Information Sheet and Consent Form remains the authoritative document for this study. If anything on this page differs from the documents you signed, the signed documents apply. The study is sponsored by Sydney Local Health District; ethics approval is held by the Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
     'safedischarge.footernote.home': '← Aescia home',
   },
   fr: {
@@ -123,7 +123,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': 'Où vont mes informations?',
     'safedischarge.faq.where.a': 'Vos informations sont stockées sur des serveurs sécurisés en Australie. Seuls les membres autorisés de l\'équipe clinique et de recherche cardiothoracique du Royal Prince Alfred Hospital peuvent voir les informations qui vous identifient. Aescia Pty Ltd, l\'entreprise qui fournit la plateforme, ne reçoit jamais que des informations dépersonnalisées, dans le cadre d\'un accord formel de partage de données.',
     'safedischarge.faq.harm.q': 'L\'étude pourrait-elle me causer du tort?',
-    'safedischarge.faq.harm.a': 'L\'étude a été examinée et approuvée par le Sydney Local Health District Human Research Ethics Committee et se déroule dans le cadre du dispositif de notification des essais cliniques de la TGA. Elle est considérée comme à faible risque. La chose la plus courante à savoir est que vous pourriez remarquer de petits changements dans votre état plus que d\'habitude, ce qui peut occasionnellement provoquer une légère anxiété. Si cela se produit, veuillez contacter l\'équipe.',
+    'safedischarge.faq.harm.a': 'L\'étude a été examinée et approuvée par le Sydney Local Health District Human Research Ethics Committee. Elle est considérée comme à faible risque. La chose la plus courante à savoir est que vous pourriez remarquer de petits changements dans votre état plus que d\'habitude, ce qui peut occasionnellement provoquer une légère anxiété. Si cela se produit, veuillez contacter l\'équipe.',
     'safedischarge.faq.end.q': 'Que se passe-t-il à la fin des 30 jours?',
     'safedischarge.faq.end.a': 'Les contrôles s\'arrêtent automatiquement et votre compte se ferme à la fin des 30 jours. Nous vous contacterons pour une courte enquête sur votre expérience.',
     'safedischarge.faq.other.q': 'Que faire si j\'ai une question ou une préoccupation qui ne figure pas sur cette page?',
@@ -151,7 +151,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': 'E-mail :',
     'safedischarge.contacts.ethics.protocol': 'Numéro de protocole : X26-0019',
 
-    'safedischarge.footernote.body': 'La Fiche d\'information du participant et le Formulaire de consentement officiels demeurent le document de référence pour cette étude. Si quelque chose sur cette page diffère des documents que vous avez signés, ce sont les documents signés qui s\'appliquent. L\'étude est parrainée par le Sydney Local Health District et menée dans le cadre du dispositif de notification des essais cliniques de la TGA; l\'approbation éthique est détenue par le Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
+    'safedischarge.footernote.body': 'La Fiche d\'information du participant et le Formulaire de consentement officiels demeurent le document de référence pour cette étude. Si quelque chose sur cette page diffère des documents que vous avez signés, ce sont les documents signés qui s\'appliquent. L\'étude est parrainée par le Sydney Local Health District; l\'approbation éthique est détenue par le Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
     'safedischarge.footernote.home': '← Accueil Aescia',
   },
   es: {
@@ -197,7 +197,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': '¿A dónde va mi información?',
     'safedischarge.faq.where.a': 'Su información se almacena en servidores seguros en Australia. Solo los miembros autorizados del equipo clínico y de investigación cardiotorácica del Royal Prince Alfred Hospital pueden ver la información que lo identifica. Aescia Pty Ltd, la empresa que proporciona la plataforma, solo recibe información desidentificada, en virtud de un acuerdo formal de intercambio de datos.',
     'safedischarge.faq.harm.q': '¿El estudio podría causarme daño?',
-    'safedischarge.faq.harm.a': 'El estudio ha sido revisado y aprobado por el Sydney Local Health District Human Research Ethics Committee y se lleva a cabo en el marco del esquema de notificación de ensayos clínicos de la TGA. Se considera de bajo riesgo. Lo más común a tener en cuenta es que podría notar pequeños cambios en cómo se siente más de lo habitual, lo que ocasionalmente puede causar una leve ansiedad. Si esto ocurre, por favor contacte al equipo.',
+    'safedischarge.faq.harm.a': 'El estudio ha sido revisado y aprobado por el Sydney Local Health District Human Research Ethics Committee. Se considera de bajo riesgo. Lo más común a tener en cuenta es que podría notar pequeños cambios en cómo se siente más de lo habitual, lo que ocasionalmente puede causar una leve ansiedad. Si esto ocurre, por favor contacte al equipo.',
     'safedischarge.faq.end.q': '¿Qué pasa al final de los 30 días?',
     'safedischarge.faq.end.a': 'Los controles se detienen automáticamente y su cuenta se cierra al final de los 30 días. Nos pondremos en contacto con usted para una breve encuesta sobre su experiencia.',
     'safedischarge.faq.other.q': '¿Qué pasa si tengo una pregunta o inquietud que no figura en esta página?',
@@ -225,7 +225,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': 'Correo electrónico:',
     'safedischarge.contacts.ethics.protocol': 'Número de protocolo: X26-0019',
 
-    'safedischarge.footernote.body': 'La Hoja de información para el participante y el Formulario de consentimiento oficiales siguen siendo el documento que prevalece para este estudio. Si algo en esta página difiere de los documentos que firmó, se aplican los documentos firmados. El estudio está patrocinado por el Sydney Local Health District y se lleva a cabo en el marco del esquema de notificación de ensayos clínicos de la TGA; la aprobación ética la tiene el Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
+    'safedischarge.footernote.body': 'La Hoja de información para el participante y el Formulario de consentimiento oficiales siguen siendo el documento que prevalece para este estudio. Si algo en esta página difiere de los documentos que firmó, se aplican los documentos firmados. El estudio está patrocinado por el Sydney Local Health District; la aprobación ética la tiene el Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
     'safedischarge.footernote.home': '← Inicio de Aescia',
   },
   zh: {
@@ -271,7 +271,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': '我的信息会去往何处？',
     'safedischarge.faq.where.a': '您的信息存储在位于澳大利亚的安全服务器上。只有 Royal Prince Alfred Hospital 心胸临床和研究团队的获授权成员才能查看可识别您身份的信息。提供该平台的公司 Aescia Pty Ltd 仅在正式数据共享协议下接收去标识化的信息。',
     'safedischarge.faq.harm.q': '该研究会对我造成伤害吗？',
-    'safedischarge.faq.harm.a': '该研究已由 Sydney Local Health District Human Research Ethics Committee 审查并批准，并在 TGA 临床试验通报方案下进行。它被认为是低风险的。最常见需要注意的一点是，您可能比平时更多地察觉到自己感受上的细微变化，这偶尔可能引起轻微的焦虑。如果发生这种情况，请联系团队。',
+    'safedischarge.faq.harm.a': '该研究已由 Sydney Local Health District Human Research Ethics Committee 审查并批准。它被认为是低风险的。最常见需要注意的一点是，您可能比平时更多地察觉到自己感受上的细微变化，这偶尔可能引起轻微的焦虑。如果发生这种情况，请联系团队。',
     'safedischarge.faq.end.q': '30 天结束时会发生什么？',
     'safedischarge.faq.end.a': '在 30 天结束时，问询会自动停止，您的账户将关闭。我们会就一份关于您体验的简短调查与您联系。',
     'safedischarge.faq.other.q': '如果我有本页面上没有的问题或顾虑怎么办？',
@@ -299,7 +299,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': '电子邮件：',
     'safedischarge.contacts.ethics.protocol': '方案编号：X26-0019',
 
-    'safedischarge.footernote.body': '正式的《参与者信息表》和《知情同意书》仍是本研究的权威文件。如果本页面上的任何内容与您所签署的文件不一致，以签署的文件为准。本研究的申办方为 Sydney Local Health District，并在 TGA 临床试验通报方案下开展；伦理批准由 Sydney Local Health District (RPAH Zone) Human Research Ethics Committee 持有。',
+    'safedischarge.footernote.body': '正式的《参与者信息表》和《知情同意书》仍是本研究的权威文件。如果本页面上的任何内容与您所签署的文件不一致，以签署的文件为准。本研究的申办方为 Sydney Local Health District；伦理批准由 Sydney Local Health District (RPAH Zone) Human Research Ethics Committee 持有。',
     'safedischarge.footernote.home': '← Aescia 主页',
   },
   ar: {
@@ -345,7 +345,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': 'إلى أين تذهب معلوماتي؟',
     'safedischarge.faq.where.a': 'تُخزَّن معلوماتك على خوادم آمنة في أستراليا. ولا يستطيع الاطلاع على المعلومات التي تحدد هويتك سوى الأعضاء المخوَّلين في فريق القلب والصدر السريري والبحثي في Royal Prince Alfred Hospital. أما Aescia Pty Ltd، وهي الشركة التي تُقدّم المنصة، فلا تتلقى سوى معلومات منزوعة الهوية، بموجب اتفاقية رسمية لمشاركة البيانات.',
     'safedischarge.faq.harm.q': 'هل يمكن أن تسبب لي الدراسة أذى؟',
-    'safedischarge.faq.harm.a': 'تمت مراجعة الدراسة والموافقة عليها من قِبل Sydney Local Health District Human Research Ethics Committee، وتُجرى في إطار مخطط الإخطار بالتجارب السريرية التابع لـ TGA. وتُعتبر منخفضة الخطورة. وأكثر ما ينبغي الانتباه إليه شيوعًا هو أنك قد تلاحظ تغيرات صغيرة في شعورك أكثر من المعتاد، وهو ما قد يسبب أحيانًا قلقًا خفيفًا. وإذا حدث ذلك، فيُرجى الاتصال بالفريق.',
+    'safedischarge.faq.harm.a': 'تمت مراجعة الدراسة والموافقة عليها من قِبل Sydney Local Health District Human Research Ethics Committee. وتُعتبر منخفضة الخطورة. وأكثر ما ينبغي الانتباه إليه شيوعًا هو أنك قد تلاحظ تغيرات صغيرة في شعورك أكثر من المعتاد، وهو ما قد يسبب أحيانًا قلقًا خفيفًا. وإذا حدث ذلك، فيُرجى الاتصال بالفريق.',
     'safedischarge.faq.end.q': 'ماذا يحدث في نهاية الثلاثين يومًا؟',
     'safedischarge.faq.end.a': 'تتوقف عمليات التحقق تلقائيًا ويُغلق حسابك في نهاية الثلاثين يومًا. وسنتواصل معك لإجراء استطلاع قصير حول تجربتك.',
     'safedischarge.faq.other.q': 'ماذا لو كان لديّ سؤال أو شاغل غير موجود في هذه الصفحة؟',
@@ -373,7 +373,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': 'البريد الإلكتروني:',
     'safedischarge.contacts.ethics.protocol': 'رقم البروتوكول: X26-0019',
 
-    'safedischarge.footernote.body': 'تظل ورقة معلومات المشارك ونموذج الموافقة الرسميان هما الوثيقة المعتمدة لهذه الدراسة. وإذا اختلف أي شيء في هذه الصفحة عن الوثائق التي وقّعتها، فإن الوثائق الموقّعة هي التي تُطبَّق. الجهة الراعية للدراسة هي Sydney Local Health District، وتُجرى في إطار مخطط الإخطار بالتجارب السريرية التابع لـ TGA؛ والموافقة الأخلاقية بحوزة Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
+    'safedischarge.footernote.body': 'تظل ورقة معلومات المشارك ونموذج الموافقة الرسميان هما الوثيقة المعتمدة لهذه الدراسة. وإذا اختلف أي شيء في هذه الصفحة عن الوثائق التي وقّعتها، فإن الوثائق الموقّعة هي التي تُطبَّق. الجهة الراعية للدراسة هي Sydney Local Health District؛ والموافقة الأخلاقية بحوزة Sydney Local Health District (RPAH Zone) Human Research Ethics Committee.',
     'safedischarge.footernote.home': '← الصفحة الرئيسية لـ Aescia',
   },
   vi: {
@@ -419,7 +419,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.faq.where.q': 'Thông tin của tôi đi về đâu?',
     'safedischarge.faq.where.a': 'Thông tin của bạn được lưu trữ trên các máy chủ an toàn tại Úc. Chỉ những thành viên được ủy quyền của nhóm lâm sàng và nghiên cứu tim lồng ngực tại Royal Prince Alfred Hospital mới có thể xem thông tin nhận dạng bạn. Aescia Pty Ltd, công ty cung cấp nền tảng, chỉ luôn nhận được thông tin đã được khử nhận dạng, theo một thỏa thuận chia sẻ dữ liệu chính thức.',
     'safedischarge.faq.harm.q': 'Nghiên cứu có thể gây hại cho tôi không?',
-    'safedischarge.faq.harm.a': 'Nghiên cứu đã được xem xét và phê duyệt bởi Sydney Local Health District Human Research Ethics Committee và đang được tiến hành theo cơ chế Thông báo Thử nghiệm Lâm sàng của TGA. Nó được coi là rủi ro thấp. Điều phổ biến nhất cần lưu ý là bạn có thể để ý thấy những thay đổi nhỏ trong cảm giác của mình nhiều hơn bình thường, điều này đôi khi có thể gây lo âu nhẹ. Nếu điều đó xảy ra, vui lòng liên hệ với nhóm.',
+    'safedischarge.faq.harm.a': 'Nghiên cứu đã được xem xét và phê duyệt bởi Sydney Local Health District Human Research Ethics Committee. Nó được coi là rủi ro thấp. Điều phổ biến nhất cần lưu ý là bạn có thể để ý thấy những thay đổi nhỏ trong cảm giác của mình nhiều hơn bình thường, điều này đôi khi có thể gây lo âu nhẹ. Nếu điều đó xảy ra, vui lòng liên hệ với nhóm.',
     'safedischarge.faq.end.q': 'Điều gì xảy ra khi kết thúc 30 ngày?',
     'safedischarge.faq.end.a': 'Các lần kiểm tra tự động dừng lại và tài khoản của bạn đóng lại khi kết thúc 30 ngày. Chúng tôi sẽ liên hệ với bạn để thực hiện một khảo sát ngắn về trải nghiệm của bạn.',
     'safedischarge.faq.other.q': 'Nếu tôi có câu hỏi hoặc băn khoăn không có trên trang này thì sao?',
@@ -447,7 +447,7 @@ export const dict: Record<string, Record<string, string>> = {
     'safedischarge.contacts.ethics.email.label': 'Email:',
     'safedischarge.contacts.ethics.protocol': 'Số protocol: X26-0019',
 
-    'safedischarge.footernote.body': 'Bản thông tin dành cho người tham gia và Mẫu chấp thuận chính thức vẫn là tài liệu có hiệu lực cho nghiên cứu này. Nếu bất cứ điều gì trên trang này khác với các tài liệu bạn đã ký, thì các tài liệu đã ký được áp dụng. Nghiên cứu được tài trợ bởi Sydney Local Health District và được tiến hành theo cơ chế Thông báo Thử nghiệm Lâm sàng của TGA; phê duyệt đạo đức do Sydney Local Health District (RPAH Zone) Human Research Ethics Committee nắm giữ.',
+    'safedischarge.footernote.body': 'Bản thông tin dành cho người tham gia và Mẫu chấp thuận chính thức vẫn là tài liệu có hiệu lực cho nghiên cứu này. Nếu bất cứ điều gì trên trang này khác với các tài liệu bạn đã ký, thì các tài liệu đã ký được áp dụng. Nghiên cứu được tài trợ bởi Sydney Local Health District; phê duyệt đạo đức do Sydney Local Health District (RPAH Zone) Human Research Ethics Committee nắm giữ.',
     'safedischarge.footernote.home': '← Trang chủ Aescia',
   },
 }

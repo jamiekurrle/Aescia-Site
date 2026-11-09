@@ -15,7 +15,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': 'Before the procedure',
     'evidence.page.prep.title': 'What happens before shapes what happens after.',
     'evidence.page.prep.p1': 'A second body of published research looks at the period before a procedure or operation. Systematic reviews of prehabilitation in higher-risk patients before major surgery have reported associations with shorter hospital stays and fewer severe complications, though the evidence is still developing and not every study finds the same effect. In endoscopy, inadequate bowel preparation has been associated with longer inpatient stays and higher hospitalisation costs.',
-    'evidence.page.prep.p2': 'Aescia for Clinics is a workflow and patient-preparation platform. It delivers clinician-authored preparation pathways, medication-hold guidance, and timed reminders into a patient web app, in the patient\'s own language. It is not a medical device and does not propose clinical decisions. The studies below describe the published evidence on preparation and prehabilitation; Aescia\'s role is to deliver those clinician-authored steps reliably and at scale, not to claim a clinical outcome of its own.',
+    'evidence.page.prep.p2': 'Aescia for Clinics is a workflow and patient-preparation platform. It delivers clinician-authored preparation pathways, medication-hold guidance, and timed reminders into a patient web app, in the patient\'s own language. The studies below describe the published evidence on preparation and prehabilitation; Aescia\'s role is to deliver those clinician-authored steps reliably and at scale, not to claim a clinical outcome of its own.',
     'evidence.page.prep.disclaimer': 'These are observations about the published literature on preparation and prehabilitation. They are not statements about the performance or expected outcomes of Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Active programme',
@@ -49,12 +49,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Independent oversight',
     'evidence.page.approach.oversight.desc': 'Sponsor responsibility sits with the trial-sponsoring institution. Aescia does not arbitrate clinical interpretation of trial outcomes.',
 
-    'evidence.page.regulatory.eyebrow': 'Regulatory posture',
-    'evidence.page.regulatory.title': 'Regulatory status.',
-    'evidence.page.regulatory.p1': 'Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.',
-    'evidence.page.regulatory.p2': 'Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304, standards of the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). Certification is planned.',
-    'evidence.page.regulatory.p3': 'Aescia for Hospitals alerts the hospital\'s nurses when an answer meets a rule the hospital set. The nurses review the answers and decide what happens next, under the hospital\'s own escalation protocol.',
-    'evidence.page.regulatory.cta': 'Read full governance and security posture',
 
     'evidence.page.references.eyebrow': 'References',
     'evidence.page.references.title': 'Published references.',
@@ -78,7 +72,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'For the regulatory and security posture in detail:',
+    'evidence.page.footercta.text': 'For governance and security in detail:',
     'evidence.page.footercta.button': 'Read governance',
   },
   fr: {
@@ -97,7 +91,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': 'Avant la procédure',
     'evidence.page.prep.title': 'Ce qui se passe avant façonne ce qui se passe après.',
     'evidence.page.prep.p1': 'Un second corpus de recherche publiée examine la période précédant une procédure ou une opération. Les revues systématiques de la préhabilitation chez les patients à risque plus élevé avant une chirurgie majeure ont rapporté des associations avec des séjours hospitaliers plus courts et moins de complications graves, bien que les preuves soient encore en développement et que toutes les études ne trouvent pas le même effet. En endoscopie, une préparation intestinale inadéquate a été associée à des séjours hospitaliers plus longs et à des coûts d\'hospitalisation plus élevés.',
-    'evidence.page.prep.p2': 'Aescia for Clinics est une plateforme de flux de travail et de préparation des patients. Elle délivre des parcours de préparation rédigés par des cliniciens, des consignes de suspension des médicaments et des rappels programmés dans une appli web patient, dans la langue propre du patient. Ce n\'est pas un dispositif médical et elle ne propose pas de décisions cliniques. Les études ci-dessous décrivent les preuves publiées sur la préparation et la préhabilitation ; le rôle d\'Aescia est de délivrer ces étapes rédigées par des cliniciens de manière fiable et à grande échelle, et non de revendiquer un résultat clinique qui lui soit propre.',
+    'evidence.page.prep.p2': 'Aescia for Clinics est une plateforme de flux de travail et de préparation des patients. Elle délivre des parcours de préparation rédigés par des cliniciens, des consignes de suspension des médicaments et des rappels programmés dans une appli web patient, dans la langue propre du patient. Les études ci-dessous décrivent les preuves publiées sur la préparation et la préhabilitation ; le rôle d\'Aescia est de délivrer ces étapes rédigées par des cliniciens de manière fiable et à grande échelle, et non de revendiquer un résultat clinique qui lui soit propre.',
     'evidence.page.prep.disclaimer': 'Ce sont des observations sur la littérature publiée concernant la préparation et la préhabilitation. Ce ne sont pas des affirmations sur la performance ou les résultats attendus d\'Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Programme actif',
@@ -131,12 +125,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Supervision indépendante',
     'evidence.page.approach.oversight.desc': 'La responsabilité de promoteur incombe à l\'institution promotrice de l\'essai. Aescia n\'arbitre pas l\'interprétation clinique des résultats de l\'essai.',
 
-    'evidence.page.regulatory.eyebrow': 'Posture réglementaire',
-    'evidence.page.regulatory.title': 'Statut réglementaire.',
-    'evidence.page.regulatory.p1': 'Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique. La notation du risque, la prédiction et les relevés d\'appareils connectés figurent sur la feuille de route sous la forme d\'un module réglementé distinct et ne sont pas fournis aujourd\'hui.',
-    'evidence.page.regulatory.p2': 'Aescia n\'est pas certifiée ISO 13485, ISO/IEC 27001 ni IEC 62304, normes de l\'Organisation internationale de normalisation (ISO) et de la Commission électrotechnique internationale (IEC). La certification est prévue.',
-    'evidence.page.regulatory.p3': 'Aescia for Hospitals alerte les infirmiers de l\'hôpital lorsqu\'une réponse remplit une règle fixée par l\'hôpital. Les infirmiers examinent les réponses et décident de la suite, selon le protocole d\'escalade propre à l\'hôpital.',
-    'evidence.page.regulatory.cta': 'Lire la posture complète de gouvernance et de sécurité',
 
     'evidence.page.references.eyebrow': 'Références',
     'evidence.page.references.title': 'Références publiées.',
@@ -160,7 +148,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Pour la posture réglementaire et de sécurité en détail :',
+    'evidence.page.footercta.text': 'Pour la gouvernance et la sécurité en détail :',
     'evidence.page.footercta.button': 'Lire la gouvernance',
   },
   es: {
@@ -179,7 +167,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': 'Antes del procedimiento',
     'evidence.page.prep.title': 'Lo que ocurre antes da forma a lo que ocurre después.',
     'evidence.page.prep.p1': 'Un segundo cuerpo de investigación publicada examina el período previo a un procedimiento u operación. Las revisiones sistemáticas de la prehabilitación en pacientes de mayor riesgo antes de una cirugía mayor han informado asociaciones con estancias hospitalarias más cortas y menos complicaciones graves, aunque la evidencia aún se está desarrollando y no todos los estudios encuentran el mismo efecto. En endoscopia, una preparación intestinal inadecuada se ha asociado con estancias hospitalarias más largas y mayores costos de hospitalización.',
-    'evidence.page.prep.p2': 'Aescia for Clinics es una plataforma de flujo de trabajo y preparación del paciente. Entrega vías de preparación redactadas por clínicos, orientación sobre la suspensión de medicamentos y recordatorios programados en una aplicación web para el paciente, en el propio idioma del paciente. No es un dispositivo médico y no propone decisiones clínicas. Los estudios a continuación describen la evidencia publicada sobre preparación y prehabilitación; el papel de Aescia es entregar esos pasos redactados por clínicos de manera confiable y a escala, no reclamar un resultado clínico propio.',
+    'evidence.page.prep.p2': 'Aescia for Clinics es una plataforma de flujo de trabajo y preparación del paciente. Entrega vías de preparación redactadas por clínicos, orientación sobre la suspensión de medicamentos y recordatorios programados en una aplicación web para el paciente, en el propio idioma del paciente. Los estudios a continuación describen la evidencia publicada sobre preparación y prehabilitación; el papel de Aescia es entregar esos pasos redactados por clínicos de manera confiable y a escala, no reclamar un resultado clínico propio.',
     'evidence.page.prep.disclaimer': 'Estas son observaciones sobre la literatura publicada acerca de la preparación y la prehabilitación. No son afirmaciones sobre el desempeño ni los resultados esperados de Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Programa activo',
@@ -213,12 +201,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Supervisión independiente',
     'evidence.page.approach.oversight.desc': 'La responsabilidad de patrocinador recae en la institución patrocinadora del ensayo. Aescia no arbitra la interpretación clínica de los resultados del ensayo.',
 
-    'evidence.page.regulatory.eyebrow': 'Postura regulatoria',
-    'evidence.page.regulatory.title': 'Situación regulatoria.',
-    'evidence.page.regulatory.p1': 'Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas. La puntuación de riesgo, la predicción y las lecturas de dispositivos conectados están en la hoja de ruta como un módulo regulado independiente y no se suministran hoy.',
-    'evidence.page.regulatory.p2': 'Aescia no está certificada en ISO 13485, ISO/IEC 27001 ni IEC 62304, normas de la Organización Internacional de Normalización (ISO) y de la Comisión Electrotécnica Internacional (IEC). La certificación está prevista.',
-    'evidence.page.regulatory.p3': 'Aescia for Hospitals alerta al personal de enfermería del hospital cuando una respuesta cumple una regla que el hospital ha definido. El personal de enfermería revisa las respuestas y decide qué hacer a continuación, según el protocolo de escalada propio del hospital.',
-    'evidence.page.regulatory.cta': 'Leer la postura completa de gobernanza y seguridad',
 
     'evidence.page.references.eyebrow': 'Referencias',
     'evidence.page.references.title': 'Referencias publicadas.',
@@ -242,7 +224,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Para la postura regulatoria y de seguridad en detalle:',
+    'evidence.page.footercta.text': 'Para la gobernanza y la seguridad en detalle:',
     'evidence.page.footercta.button': 'Leer gobernanza',
   },
   zh: {
@@ -261,7 +243,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': '在手术之前',
     'evidence.page.prep.title': '之前发生的事，塑造着之后发生的事。',
     'evidence.page.prep.p1': '第二类已发表研究关注的是手术或操作之前的时段。针对较高风险患者在重大手术前进行预康复的系统综述，报告了与更短住院时间和更少严重并发症相关的关联，尽管证据仍在发展中，且并非每项研究都得出相同的效应。在内镜检查中，肠道准备不充分与更长的住院时间和更高的住院费用相关。',
-    'evidence.page.prep.p2': 'Aescia for Clinics 是一个工作流程与患者准备平台。它将由临床医生撰写的准备路径、药物停用指导和定时提醒，以患者本人的语言投递到患者网页应用中。它不是医疗器械，也不提出临床决策。下方的研究描述的是关于准备与预康复的已发表证据；Aescia 的作用是可靠地、大规模地投递这些由临床医生撰写的步骤，而非主张其自身的某项临床结果。',
+    'evidence.page.prep.p2': 'Aescia for Clinics 是一个工作流程与患者准备平台。它将由临床医生撰写的准备路径、药物停用指导和定时提醒，以患者本人的语言投递到患者网页应用中。下方的研究描述的是关于准备与预康复的已发表证据；Aescia 的作用是可靠地、大规模地投递这些由临床医生撰写的步骤，而非主张其自身的某项临床结果。',
     'evidence.page.prep.disclaimer': '这些是对关于准备与预康复的已发表文献的观察。它们并非关于 Aescia for Clinics 的性能或预期结果的陈述。',
 
     'evidence.page.programme.eyebrow': '进行中的项目',
@@ -295,12 +277,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': '独立监督',
     'evidence.page.approach.oversight.desc': '申办方责任由试验申办机构承担。Aescia 不对试验结果的临床解读进行裁决。',
 
-    'evidence.page.regulatory.eyebrow': '监管立场',
-    'evidence.page.regulatory.title': '监管状态。',
-    'evidence.page.regulatory.p1': '两款产品均不是医疗器械。两者都发送科室或医院自己的说明和问题，并按其设定的规则提醒其临床人员。每一项临床决定都由您的临床人员作出。风险评分、预测和联网设备读数已列入路线图，将作为一个单独的受监管模块，目前不提供。',
-    'evidence.page.regulatory.p2': 'Aescia 未获得 ISO 13485、ISO/IEC 27001 或 IEC 62304 认证，这些标准由国际标准化组织（ISO）和国际电工委员会（IEC）制定。已计划开展认证。',
-    'evidence.page.regulatory.p3': '当某个回答符合医院设定的规则时，Aescia for Hospitals 会提醒医院的护士。护士审阅回答，并按照医院自己的升级处理流程决定下一步。',
-    'evidence.page.regulatory.cta': '阅读完整的治理与安全立场',
 
     'evidence.page.references.eyebrow': '参考文献',
     'evidence.page.references.title': '已发表的参考文献。',
@@ -324,7 +300,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': '如需了解监管与安全立场的细节：',
+    'evidence.page.footercta.text': '如需了解治理与安全的细节：',
     'evidence.page.footercta.button': '阅读治理',
   },
   ar: {
@@ -343,7 +319,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': 'قبل الإجراء',
     'evidence.page.prep.title': 'ما يحدث قبلًا يشكّل ما يحدث بعدًا.',
     'evidence.page.prep.p1': 'تنظر مجموعة ثانية من الأبحاث المنشورة في الفترة السابقة لإجراء أو عملية. وقد أفادت المراجعات المنهجية لإعادة التأهيل المسبق لدى المرضى الأعلى خطورة قبل الجراحة الكبرى بوجود ارتباطات مع إقامات أقصر في المستشفى ومضاعفات شديدة أقل، وإن كانت الأدلة لا تزال في طور التطور وليست كل دراسة تجد الأثر نفسه. وفي التنظير الداخلي، ارتبط التحضير المعوي غير الكافي بإقامات أطول داخل المستشفى وتكاليف استشفاء أعلى.',
-    'evidence.page.prep.p2': 'إن Aescia for Clinics منصّة لسير العمل وتحضير المريض. فهي تقدّم مسارات تحضير من تأليف الأطباء، وإرشادات حول إيقاف الأدوية، وتذكيرات موقوتة إلى تطبيق ويب للمريض، بلغة المريض نفسه. وهي ليست جهازًا طبيًا ولا تقترح قرارات سريرية. تصف الدراسات أدناه الأدلة المنشورة حول التحضير وإعادة التأهيل المسبق؛ ودور Aescia هو تقديم تلك الخطوات المؤلَّفة من قِبل الأطباء بموثوقية وعلى نطاق واسع، لا ادّعاء نتيجة سريرية خاصة بها.',
+    'evidence.page.prep.p2': 'إن Aescia for Clinics منصّة لسير العمل وتحضير المريض. فهي تقدّم مسارات تحضير من تأليف الأطباء، وإرشادات حول إيقاف الأدوية، وتذكيرات موقوتة إلى تطبيق ويب للمريض، بلغة المريض نفسه. تصف الدراسات أدناه الأدلة المنشورة حول التحضير وإعادة التأهيل المسبق؛ ودور Aescia هو تقديم تلك الخطوات المؤلَّفة من قِبل الأطباء بموثوقية وعلى نطاق واسع، لا ادّعاء نتيجة سريرية خاصة بها.',
     'evidence.page.prep.disclaimer': 'هذه ملاحظات حول الأدبيات المنشورة بشأن التحضير وإعادة التأهيل المسبق. وهي ليست تصريحات حول أداء Aescia for Clinics أو نتائجه المتوقعة.',
 
     'evidence.page.programme.eyebrow': 'برنامج نشط',
@@ -377,12 +353,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'إشراف مستقل',
     'evidence.page.approach.oversight.desc': 'تقع مسؤولية الرعاية على المؤسسة الراعية للتجربة. ولا تفصل Aescia في التفسير السريري لنتائج التجربة.',
 
-    'evidence.page.regulatory.eyebrow': 'الموقف التنظيمي',
-    'evidence.page.regulatory.title': 'الوضع التنظيمي.',
-    'evidence.page.regulatory.p1': 'لا يُعدّ أيٌّ من المنتجَين جهازًا طبيًا. فكلاهما يرسل تعليمات الوحدة أو المستشفى وأسئلتها، وينبّه أطباءها وفق قواعد تضعها هي. ويتّخذ أطباؤكم كل قرار سريري. إن تقييم المخاطر والتنبؤ وقراءات الأجهزة المتصلة مدرجة في خارطة الطريق كوحدة منظَّمة منفصلة، ولا تُقدَّم اليوم.',
-    'evidence.page.regulatory.p2': 'Aescia غير حاصلة على شهادة ISO 13485 أو ISO/IEC 27001 أو IEC 62304، وهي معايير صادرة عن المنظمة الدولية للتوحيد القياسي (ISO) واللجنة الكهروتقنية الدولية (IEC). الحصول على الشهادة مُخطَّط له.',
-    'evidence.page.regulatory.p3': 'ينبّه Aescia for Hospitals ممرضي المستشفى عندما تستوفي إجابةٌ قاعدةً وضعها المستشفى. ويراجع الممرضون الإجابات ويقرّرون الخطوة التالية وفق بروتوكول التصعيد الخاص بالمستشفى.',
-    'evidence.page.regulatory.cta': 'اقرأ الموقف الكامل للحوكمة والأمن',
 
     'evidence.page.references.eyebrow': 'المراجع',
     'evidence.page.references.title': 'المراجع المنشورة.',
@@ -406,7 +376,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'للاطلاع على الموقف التنظيمي والأمني بالتفصيل:',
+    'evidence.page.footercta.text': 'للاطلاع على الحوكمة والأمن بالتفصيل:',
     'evidence.page.footercta.button': 'اقرأ الحوكمة',
   },
   vi: {
@@ -425,7 +395,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.prep.eyebrow': 'Trước thủ thuật',
     'evidence.page.prep.title': 'Những gì xảy ra trước định hình những gì xảy ra sau.',
     'evidence.page.prep.p1': 'Một nhóm nghiên cứu đã công bố thứ hai xem xét giai đoạn trước một thủ thuật hay ca mổ. Các tổng quan hệ thống về phục hồi chức năng tiền phẫu (prehabilitation) ở những bệnh nhân nguy cơ cao hơn trước phẫu thuật lớn đã báo cáo mối liên quan với thời gian nằm viện ngắn hơn và ít biến chứng nặng hơn, mặc dù bằng chứng vẫn đang phát triển và không phải nghiên cứu nào cũng tìm thấy cùng một hiệu quả. Trong nội soi, việc chuẩn bị ruột không đầy đủ đã được ghi nhận có liên quan đến thời gian nằm viện dài hơn và chi phí nhập viện cao hơn.',
-    'evidence.page.prep.p2': 'Aescia for Clinics là một nền tảng quy trình làm việc và chuẩn bị cho bệnh nhân. Nó cung cấp các lộ trình chuẩn bị do bác sĩ biên soạn, hướng dẫn ngừng thuốc và lời nhắc theo thời điểm đến một ứng dụng web cho bệnh nhân, bằng chính ngôn ngữ của bệnh nhân. Nó không phải là thiết bị y tế và không đề xuất các quyết định lâm sàng. Các nghiên cứu bên dưới mô tả bằng chứng đã công bố về chuẩn bị và phục hồi chức năng tiền phẫu; vai trò của Aescia là thực hiện những bước do bác sĩ biên soạn đó một cách đáng tin cậy và ở quy mô lớn, chứ không phải tuyên bố một kết quả lâm sàng của riêng mình.',
+    'evidence.page.prep.p2': 'Aescia for Clinics là một nền tảng quy trình làm việc và chuẩn bị cho bệnh nhân. Nó cung cấp các lộ trình chuẩn bị do bác sĩ biên soạn, hướng dẫn ngừng thuốc và lời nhắc theo thời điểm đến một ứng dụng web cho bệnh nhân, bằng chính ngôn ngữ của bệnh nhân. Các nghiên cứu bên dưới mô tả bằng chứng đã công bố về chuẩn bị và phục hồi chức năng tiền phẫu; vai trò của Aescia là thực hiện những bước do bác sĩ biên soạn đó một cách đáng tin cậy và ở quy mô lớn, chứ không phải tuyên bố một kết quả lâm sàng của riêng mình.',
     'evidence.page.prep.disclaimer': 'Đây là những quan sát về tài liệu đã công bố liên quan đến chuẩn bị và phục hồi chức năng tiền phẫu. Chúng không phải là những tuyên bố về hiệu năng hay kết quả kỳ vọng của Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Chương trình đang hoạt động',
@@ -459,12 +429,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Giám sát độc lập',
     'evidence.page.approach.oversight.desc': 'Trách nhiệm của nhà tài trợ thuộc về cơ sở tài trợ thử nghiệm. Aescia không phân xử việc diễn giải lâm sàng các kết quả của thử nghiệm.',
 
-    'evidence.page.regulatory.eyebrow': 'Lập trường pháp lý',
-    'evidence.page.regulatory.title': 'Tình trạng pháp lý.',
-    'evidence.page.regulatory.p1': 'Cả hai sản phẩm đều không phải là thiết bị y tế. Cả hai gửi hướng dẫn và câu hỏi riêng của đơn vị hoặc bệnh viện, và báo cho các bác sĩ của đơn vị đó theo các quy tắc do đơn vị đặt ra. Các bác sĩ của bạn đưa ra mọi quyết định lâm sàng. Chấm điểm nguy cơ, dự đoán và chỉ số từ thiết bị kết nối nằm trong lộ trình dưới dạng một mô-đun riêng có quản lý và hiện chưa được cung cấp.',
-    'evidence.page.regulatory.p2': 'Aescia chưa được chứng nhận ISO 13485, ISO/IEC 27001 hay IEC 62304, là các tiêu chuẩn của Tổ chức Tiêu chuẩn hóa Quốc tế (ISO) và Ủy ban Kỹ thuật Điện Quốc tế (IEC). Việc chứng nhận đã được lên kế hoạch.',
-    'evidence.page.regulatory.p3': 'Aescia for Hospitals báo cho điều dưỡng của bệnh viện khi một câu trả lời khớp với quy tắc do bệnh viện đặt ra. Điều dưỡng xem xét các câu trả lời và quyết định bước tiếp theo theo quy trình chuyển cấp riêng của bệnh viện.',
-    'evidence.page.regulatory.cta': 'Đọc toàn bộ lập trường quản trị và an ninh',
 
     'evidence.page.references.eyebrow': 'Tài liệu tham khảo',
     'evidence.page.references.title': 'Tài liệu tham khảo đã công bố.',
@@ -488,7 +452,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Để biết chi tiết về lập trường pháp lý và an ninh:',
+    'evidence.page.footercta.text': 'Để biết chi tiết về quản trị và an ninh:',
     'evidence.page.footercta.button': 'Đọc quản trị',
   },
 }

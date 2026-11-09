@@ -30,11 +30,7 @@ export const metadata: Metadata = {
 export default function SafeDischargeWelcomePage() {
   return (
     <>
-      {/* The regulatory band states both products' regulatory status
-          (hospitals and clinics) for general public visitors. Trial participants reaching
-          this page already know the context, and the band visually competes
-          with the partner-institution strip below — hide it here. */}
-      <SiteNav showRegulatoryBand={false} showTextSize />
+      <SiteNav showTextSize />
       {/* PartnerLogos sits OUTSIDE main so the text-size zoom does not
           scale partner branding — the logos should stay a fixed size
           regardless of the participant's chosen text scale. */}

@@ -54,7 +54,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: 'Is this colonoscopy surveillance calculator free?',
-    a: 'Yes. It is a free educational reference for health professionals that reproduces published post-polypectomy surveillance guidelines and shows the guideline rule and source behind every interval or discretionary result. It is not medical advice and not a medical device, and it stores no patient information.',
+    a: 'Yes. It is a free educational reference for health professionals that reproduces published post-polypectomy surveillance guidelines and shows the guideline rule and source behind every interval or discretionary result. It is not medical advice, and it stores no patient information.',
   },
   {
     q: 'How current is this calculator, and how do I report an error?',

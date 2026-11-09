@@ -16,7 +16,7 @@ import { PageContent } from './content'
 //   pre-procedure preparation / prehabilitation (Clinics, a non-device tool).
 // - Literature-based content only, framed as observations about the
 //   published research, not as outcomes Aescia will deliver.
-// - Same nav, same footer, same regulatory band as /hospitals.
+// - Same nav and footer as /hospitals.
 
 export const metadata: Metadata = {
   title: 'Clinical evidence and the SAFE-Discharge trial',

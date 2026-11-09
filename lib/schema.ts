@@ -34,7 +34,7 @@ export const organizationSchema = {
     height: 512,
   },
   description:
-    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals provides post-discharge check-ins and nurse alerts, on each hospital\'s own rules, and is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital. Aescia for Clinics is a workflow platform for specialty clinics. Neither product is a medical device.',
+    'A continuous-care platform for structured patient follow-up and specialty-clinic workflow. Aescia for Hospitals provides post-discharge check-ins and nurse alerts, on each hospital\'s own rules, and is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital. Aescia for Clinics is a workflow platform for specialty clinics.',
   email: 'contact@aesciahealth.com',
   foundingDate: '2025',
   slogan: 'A continuous-care platform for the weeks that matter.',
@@ -134,10 +134,6 @@ export const organizationSchema = {
     'GLP-1 peri-procedural management',
     'clinical pathway authoring',
     'patient-reported outcomes',
-    'Therapeutic Goods (Excluded Goods) Determination 2018',
-    'IEC 62304',
-    'ISO 13485',
-    'ISO/IEC 27001',
   ],
   sameAs: [
     'https://www.linkedin.com/company/aescia',
@@ -146,15 +142,9 @@ export const organizationSchema = {
     'https://www.mtaa.org.au/industry-members',
     'https://buy.nsw.gov.au/supplier/profile/12460268',
   ],
-  // Authoritative external references for the regulatory and standards claims
-  // in `knowsAbout`. Helps LLM citation tools verify them against first-party
-  // government and registry URLs.
+  // Authoritative external reference for the trial. Helps LLM citation tools
+  // verify it against the first-party registry URL.
   citation: [
-    {
-      '@type': 'CreativeWork',
-      name: 'TGA: Regulating software-based medical devices',
-      url: 'https://www.tga.gov.au/products/medical-devices/regulating-medical-devices/regulating-software-medical-devices',
-    },
     {
       '@type': 'CreativeWork',
       name: 'ANZCTR registration: SAFE-Discharge (ACTRN12625001425482)',
@@ -236,13 +226,13 @@ export const clinicsSoftwareSchema = {
     'Pre-procedure patient-pathway software for endoscopy ambulatory surgery centers',
   operatingSystem: 'Web',
   description:
-    'A clinician-authored pre-procedure patient-pathway platform for endoscopy ambulatory surgery centers (ASCs). Delivers structured bowel-prep instructions, GLP-1 / anticoagulant / diabetic peri-procedural overlays, timed multichannel reminders, prep-night photo confirmation, surveillance recall, and a prep-aware waitlist-backfill signal. Not a medical device.',
+    'A clinician-authored pre-procedure patient-pathway platform for endoscopy ambulatory surgery centers (ASCs). Delivers structured bowel-prep instructions, GLP-1 / anticoagulant / diabetic peri-procedural overlays, timed multichannel reminders, prep-night photo upload, surveillance recall, and a prep-aware waitlist-backfill signal.',
   featureList: [
     'Structured colonoscopy and endoscopy bowel-prep pathways',
     'GLP-1 peri-procedural cessation overlay (2024 multi-society guidance)',
     'Anticoagulant and antiplatelet hold / bridge overlay (per clinic protocol)',
     'Diabetic and insulin peri-procedural adjustment overlay',
-    'Prep-night photo confirmation gate',
+    'Prep-night photo upload for nurse review',
     'Prep-aware waitlist-backfill routing signal',
     'Multichannel patient reminders with consent capture (TCPA-aware for US SMS)',
     'Surveillance and recall tracking',

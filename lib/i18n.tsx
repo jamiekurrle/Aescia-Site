@@ -25,18 +25,6 @@ const translations: Record<Locale, Record<string, string>> = {
     // Brand
     'brand.name': 'Aescia',
 
-    // Regulatory safe-harbor band (persistent)
-    'regband.eyebrow': 'Regulatory notice',
-    'regband.monitor.label': 'Hospitals',
-    'regband.monitor.body': 'Aescia for Hospitals sends patients the hospital\'s own check-in questions and alerts its nurses on rules the hospital sets. Nurses make every clinical decision. It is not a medical device.',
-    'regband.clinic.label': 'Clinics',
-    'regband.clinic.body': 'Aescia for Clinics is a workflow and patient-preparation tool. It does not propose clinical decisions and is not a medical device.',
-    'regband.body': 'Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision.',
-    'regband.dismiss': 'Dismiss',
-    'regband.short': 'Neither Aescia product is a medical device.',
-    'regband.more': 'Read the full regulatory notice',
-    'regband.less': 'Show less',
-
     // Nav
     'nav.platform': 'Platform',
     'nav.hospitals': 'For Hospitals',
@@ -59,20 +47,16 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.subtitle': 'Pre-procedure pathway software for endoscopy ASCs. Prep, medications, backfill, recall. Aescia for Hospitals adds post-discharge check-ins and nurse alerts on the same engine.',
     'hero.cta.primary': 'See Aescia for Clinics',
     'hero.cta.secondary': 'Talk to our team',
-    'hero.note.label': 'For US endoscopy ASCs',
-    'hero.note.body': 'Pre-procedure prep, prep-aware backfill, and recall. Not a medical device.',
     'hero.trial.label': 'Clinical programme',
     'hero.trial.brief': 'SAFE-Discharge, live since June 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
     // Audience split
     'split.hospital.eyebrow': 'For Hospitals',
-    'split.hospital.regtag': 'Not a medical device',
     'split.hospital.title': 'Follow-up after surgery, on your rules.',
     'split.hospital.desc': 'Daily check-ins after cardiothoracic surgery. Your clinicians set the questions and the answers that raise an alert. Your nurses review one list and decide.',
     'split.hospital.cta': 'Aescia for Hospitals',
     'split.clinic.eyebrow': 'For Clinics',
-    'split.clinic.regtag': 'Not a medical device',
     'split.clinic.title': 'Better prep. Lists that run on time.',
     'split.clinic.desc': 'Pre-procedure pathways by text and email. Diabetic, anticoagulant, and GLP-1 overlays. Fewer phone calls to the front desk.',
     'split.clinic.cta': 'Aescia for Clinics',
@@ -112,8 +96,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'evidence.fact1.label': 'Trial registration',
     'evidence.fact2.value': 'Live',
     'evidence.fact2.label': 'Since June 2026, Royal Prince Alfred Hospital',
-    'evidence.fact3.value': 'Not a medical device',
-    'evidence.fact3.label': 'Both products',
     'evidence.cta': 'Read the evidence page',
 
     // CTA
@@ -135,7 +117,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.contact': 'Contact',
     'footer.rights': 'All rights reserved.',
     'footer.health': 'A continuous-care platform.',
-    'footer.disclosure': 'Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia for Hospitals is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
+    'footer.disclosure': 'Aescia for Hospitals is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
     'footer.integrations': 'Integrations',
     'footer.buy': 'Buy',
     'footer.design_partner': 'Design-partner program',
@@ -163,8 +145,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.cta.primary': 'Request a health-system briefing',
     'hospitals.cta.secondary': 'Read the trial summary',
     'hospitals.status.label': 'Status',
-    'hospitals.status.title': 'Used in the SAFE-Discharge trial. Not a medical device.',
-    'hospitals.status.body': 'Aescia for Hospitals sends patients your hospital\'s check-in questions and education, and alerts your nurses when an answer meets a rule your hospital set. Your nurses review the answers and decide. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today. This page does not recruit trial participants.',
+    'hospitals.status.title': 'Used in the SAFE-Discharge trial.',
+    'hospitals.status.body': 'Aescia for Hospitals sends patients your hospital\'s check-in questions and education, and alerts your nurses when an answer meets a rule your hospital set. This page does not recruit trial participants.',
 
     // Trial leadership (single PI, publicly cleared)
     'hospitals.leadership.eyebrow': 'Trial leadership',
@@ -176,7 +158,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.leadership.woldendorp.role': 'Principal Investigator of the SAFE-Discharge trial at Royal Prince Alfred Hospital, sponsored by Sydney Local Health District.',
 
     'hospitals.complications.title': 'What your team wants to know after cardiothoracic surgery.',
-    'hospitals.complications.body': 'Your hospital chooses the questions and the answers that raise an alert, and its surgeons and nurses write and sign off each rule. Each alert shows the rule that raised it and follows your escalation protocol. Your nurses review the answers and decide.',
+    'hospitals.complications.body': 'Your hospital chooses the questions and the answers that raise an alert, and its surgeons and nurses write and sign off each rule. Each alert shows the rule that raised it and follows your escalation protocol.',
     'hospitals.complications.item1.title': 'Wound concerns',
     'hospitals.complications.item1.desc': 'Questions about redness, discharge, pain or opening at the wound, with a photo on set days. Your team chooses which answers raise an alert.',
     'hospitals.complications.item2.title': 'Breathlessness',
@@ -259,12 +241,9 @@ const translations: Record<Locale, Record<string, string>> = {
     // Clinics page
     'clinics.eyebrow': 'For Clinics',
     'clinics.title': 'Better prep. Fewer no-shows. Less phone work.',
-    'clinics.subtitle': 'Pre-procedure pathways by text and email, with endoscopy as the first home. Diabetic, anticoagulant, and GLP-1 overlays. Recall that stops slipping. It does not propose clinical decisions and is not a medical device.',
+    'clinics.subtitle': 'Pre-procedure pathways by text and email, with endoscopy as the first home. Diabetic, anticoagulant, and GLP-1 overlays. Recall that stops slipping.',
     'clinics.cta.primary': 'See a clinic demo',
     'clinics.cta.secondary': 'See pricing posture',
-    'clinics.posture.label': 'Posture',
-    'clinics.posture.title': 'Not a medical device. Not a decision tool.',
-    'clinics.posture.body': 'A workflow and patient-preparation platform. Does not diagnose, does not treat, does not propose clinical decisions.',
 
     'clinics.features.title': 'Nine things that run the day-to-day.',
     'clinics.features.item1.title': 'Prep pathways that adapt',
@@ -272,11 +251,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item2.title': 'No-show reduction',
     'clinics.features.item2.desc': 'Timed reminders in the patient language, a confirm-and-reschedule path built in, a same-day flag your front desk can actually act on. When a slot opens, a prep-ready backfill shortlist for the clinic to offer.',
     'clinics.features.item3.title': 'GLP-1 handling',
-    'clinics.features.item3.desc': 'Patient self-reports the medication and the dose. The pathway delivers the clinician-authored instruction that corresponds to the patient\'s report, aligned with the 2024 multi-society guidance and the 2025 international consensus. Decisions remain with the proceduralist.',
+    'clinics.features.item3.desc': 'Patient self-reports the medication and the dose. The pathway delivers the clinician-authored instruction that corresponds to the patient\'s report, aligned with the 2024 multi-society guidance and the 2025 international consensus.',
     'clinics.features.item4.title': 'Diabetic and anticoagulant overlays',
     'clinics.features.item4.desc': 'SGLT2, metformin, DOAC, and warfarin scenarios delivered as clinician-authored instructions, generated from the patient\'s answers. The clinician signs off the rule set, not the vendor.',
     'clinics.features.item5.title': 'Prep-night photo review',
-    'clinics.features.item5.desc': 'The evening before, the patient can upload a toilet-bowl photo through the web-app. The pathway checks it against a clinician-set rubric and flags whether the prep looks on track, so the clinic can confirm or reschedule before the patient leaves home.',
+    'clinics.features.item5.desc': 'The evening before, the patient can upload a toilet-bowl photo through the web-app. The photo goes to your nurse alongside the patient\'s answers, so the clinic can confirm or reschedule before the patient leaves home.',
     'clinics.features.item6.title': 'Call deflection',
     'clinics.features.item6.desc': 'Two-way messaging by SMS and email answers the top twenty prep questions before they reach the front desk, using templated clinician-authored responses. The clinic sees the exceptions, not every message.',
     'clinics.features.item7.title': 'Surveillance and recall',
@@ -315,9 +294,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'platformpg.ls.body': 'The engine delivers each unit\'s own medicine instructions (GLP-1, SGLT2, DOAC, warfarin). Any clinician-authored pathway extends it. The same primitives (structured collection, clinician-authored alerts, SMS delivery, structured export) are the primitives that underpin modern patient support programs, registries, and real-world evidence collection. We design for this extensibility; we do not name therapies we have not deployed.',
 
     // Governance page
-    'governance.eyebrow': 'Governance',
-    'governance.title': 'Regulatory status, documented.',
-    'governance.body': 'Aescia runs two products. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. This page states what each is, and what each is not.',
 
     // Partners strip (home page)
     'partners.eyebrow': 'Where we work',
@@ -336,7 +312,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Quebec\'s leading bio/health/tech startup incubator at Concordia University, Montréal. Aescia portfolio company since September 2025.',
     'partners.item6.name': 'MTAA MedTech Compass',
-    'partners.item6.role': 'Medical Technology Association of Australia capability programme for emerging medical-device companies. Aescia industry member.',
+    'partners.item6.role': 'Medical Technology Association of Australia capability programme for emerging medtech companies. Aescia industry member.',
 
     // Team page
     'team.eyebrow': 'Team',
@@ -408,7 +384,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry10.date': '24 April 2026',
     'updates.entry10.tag': 'Programme',
     'updates.entry10.title': 'Aescia enrols in MTAA MedTech Compass.',
-    'updates.entry10.body': 'Aescia has joined the Medical Technology Association of Australia\'s MedTech Compass program, which supports Australian medtech companies moving from concept to commercial adoption across regulatory, reimbursement, and clinical evidence.',
+    'updates.entry10.body': 'Aescia has joined the Medical Technology Association of Australia\'s MedTech Compass program, which supports Australian medtech companies moving from concept to commercial adoption.',
     'updates.entry9.date': '24 April 2026',
     'updates.entry9.tag': 'Site',
     'updates.entry9.title': 'Team, partners, and a progress log on the site.',
@@ -479,16 +455,6 @@ const translations: Record<Locale, Record<string, string>> = {
   fr: {
     'brand.name': 'Aescia',
 
-    'regband.eyebrow': 'Avis réglementaire',
-    'regband.monitor.label': 'Hôpitaux',
-    'regband.monitor.body': 'Aescia pour les hôpitaux envoie aux patients les questions de suivi propres à l\'hôpital et alerte ses infirmiers selon les règles que l\'hôpital fixe. Les infirmiers prennent chaque décision clinique. Ce n\'est pas un dispositif médical.',
-    'regband.clinic.label': 'Cliniques',
-    'regband.clinic.body': 'Aescia pour les cliniques est un outil de flux de travail et de préparation patient. Il ne propose pas de décision clinique et n\'est pas un dispositif médical.',
-    'regband.body': 'Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique.',
-    'regband.dismiss': 'Fermer',
-    'regband.short': 'Aucun des deux produits Aescia n\'est un dispositif médical.',
-    'regband.more': 'Lire l\'avis réglementaire complet',
-    'regband.less': 'Réduire',
 
     'nav.platform': 'Plateforme',
     'nav.hospitals': 'Pour les hôpitaux',
@@ -510,19 +476,15 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.subtitle': 'Logiciel de parcours pré-procédure pour les centres de chirurgie ambulatoire (ASC) d\'endoscopie. Préparation, médicaments, remplacement de créneaux, rappel. Aescia pour les hôpitaux ajoute des suivis après la sortie et des alertes infirmières sur le même moteur.',
     'hero.cta.primary': 'Voir Aescia for Clinics',
     'hero.cta.secondary': 'Contacter notre équipe',
-    'hero.note.label': 'Pour les ASC d\'endoscopie aux États-Unis',
-    'hero.note.body': 'Préparation pré-procédurale, remplissage tenant compte de la préparation, et rappels. Pas un dispositif médical.',
     'hero.trial.label': 'Programme clinique',
     'hero.trial.brief': 'SAFE-Discharge, en cours depuis juin 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
 
     'split.hospital.eyebrow': 'Pour les hôpitaux',
-    'split.hospital.regtag': 'Pas un dispositif médical',
     'split.hospital.title': 'Le suivi après la chirurgie, selon vos règles.',
     'split.hospital.desc': 'Des suivis quotidiens après une chirurgie cardiothoracique. Vos cliniciens fixent les questions et les réponses qui déclenchent une alerte. Vos infirmiers examinent une seule liste et décident.',
     'split.hospital.cta': 'Aescia pour les hôpitaux',
     'split.clinic.eyebrow': 'Pour les cliniques',
-    'split.clinic.regtag': 'Pas un dispositif médical',
     'split.clinic.title': 'Mieux préparer. Des listes qui tiennent.',
     'split.clinic.desc': 'Parcours pré-procéduraux pour l\'endoscopie et d\'autres cliniques spécialisées. Portée multicanal par SMS et courriel vers une appli web patient, superpositions diabète, anticoagulants et GLP-1, gestion des rappels, moins d\'appels au secrétariat.',
     'split.clinic.cta': 'Aescia pour les cliniques',
@@ -558,8 +520,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'evidence.fact1.label': 'Enregistrement',
     'evidence.fact2.value': 'En cours',
     'evidence.fact2.label': 'Depuis juin 2026, Royal Prince Alfred Hospital',
-    'evidence.fact3.value': 'Pas un dispositif médical',
-    'evidence.fact3.label': 'Les deux produits',
     'evidence.cta': 'Lire la page preuves',
 
     'cta.title': 'Prêt à voir la plateforme ?',
@@ -579,7 +539,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.contact': 'Contact',
     'footer.rights': 'Tous droits réservés.',
     'footer.health': 'Une plateforme de soins continus.',
-    'footer.disclosure': 'Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique. Aescia pour les hôpitaux est utilisé dans l\'essai SAFE-Discharge au Royal Prince Alfred Hospital.',
+    'footer.disclosure': 'Aescia pour les hôpitaux est utilisé dans l\'essai SAFE-Discharge au Royal Prince Alfred Hospital.',
     'footer.integrations': 'Intégrations',
     'footer.buy': 'Acheter',
     'footer.design_partner': 'Programme de partenaires de conception',
@@ -606,8 +566,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.cta.primary': 'Demander un briefing hospitalier',
     'hospitals.cta.secondary': 'Lire le résumé de l\'essai',
     'hospitals.status.label': 'Statut',
-    'hospitals.status.title': 'Utilisé dans l\'essai SAFE-Discharge. Pas un dispositif médical.',
-    'hospitals.status.body': 'Aescia pour les hôpitaux envoie aux patients les questions de suivi et les contenus d\'éducation de votre hôpital, et alerte vos infirmiers lorsqu\'une réponse correspond à une règle fixée par votre hôpital. Vos infirmiers examinent les réponses et décident. La notation du risque, la prédiction et les relevés d\'appareils connectés figurent sur la feuille de route sous la forme d\'un module réglementé distinct et ne sont pas fournis aujourd\'hui. Cette page ne recrute pas de participants à l\'essai.',
+    'hospitals.status.title': 'Utilisé dans l\'essai SAFE-Discharge.',
+    'hospitals.status.body': 'Aescia pour les hôpitaux envoie aux patients les questions de suivi et les contenus d\'éducation de votre hôpital, et alerte vos infirmiers lorsqu\'une réponse correspond à une règle fixée par votre hôpital. Cette page ne recrute pas de participants à l\'essai.',
 
     'hospitals.leadership.eyebrow': 'Direction de l\'essai',
     'hospitals.leadership.title': 'L\'investigateur principal de SAFE-Discharge.',
@@ -618,7 +578,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.leadership.woldendorp.role': 'Investigateur principal de l\'essai SAFE-Discharge au Royal Prince Alfred Hospital, promu par le Sydney Local Health District.',
 
     'hospitals.complications.title': 'Ce que votre équipe veut savoir après une chirurgie cardiothoracique.',
-    'hospitals.complications.body': 'Votre hôpital choisit les questions et les réponses qui déclenchent une alerte, et ses chirurgiens et infirmiers rédigent et valident chaque règle. Chaque alerte indique la règle qui l\'a déclenchée et suit votre protocole d\'escalade. Vos infirmiers examinent les réponses et décident.',
+    'hospitals.complications.body': 'Votre hôpital choisit les questions et les réponses qui déclenchent une alerte, et ses chirurgiens et infirmiers rédigent et valident chaque règle. Chaque alerte indique la règle qui l\'a déclenchée et suit votre protocole d\'escalade.',
     'hospitals.complications.item1.title': 'Inquiétudes au niveau de la plaie',
     'hospitals.complications.item1.desc': 'Des questions sur la rougeur, l\'écoulement, la douleur ou l\'ouverture de la plaie, avec une photo à des jours fixés. Votre équipe choisit les réponses qui déclenchent une alerte.',
     'hospitals.complications.item2.title': 'Essoufflement',
@@ -693,12 +653,9 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'clinics.eyebrow': 'Pour les cliniques',
     'clinics.title': 'Meilleure préparation. Moins d\'absents. Moins de téléphone.',
-    'clinics.subtitle': 'Aescia pour les cliniques est une plateforme de flux de travail pour cliniques spécialisées, l\'endoscopie étant le premier foyer. Parcours pré-procédure livrés par SMS et courriel vers une appli web patient. Superpositions diabète, anticoagulants et GLP-1. Suivi des rappels. Ne propose pas de décision clinique. N\'est pas un dispositif médical.',
+    'clinics.subtitle': 'Aescia pour les cliniques est une plateforme de flux de travail pour cliniques spécialisées, l\'endoscopie étant le premier foyer. Parcours pré-procédure livrés par SMS et courriel vers une appli web patient. Superpositions diabète, anticoagulants et GLP-1. Suivi des rappels.',
     'clinics.cta.primary': 'Voir une démo clinique',
     'clinics.cta.secondary': 'Voir la posture tarifaire',
-    'clinics.posture.label': 'Posture',
-    'clinics.posture.title': 'Pas un dispositif médical. Pas un outil de décision.',
-    'clinics.posture.body': 'Une plateforme de flux de travail et de préparation patient. Ne diagnostique pas, ne traite pas, ne propose pas de décision clinique.',
 
     'clinics.features.title': 'Neuf choses qui tiennent la semaine.',
     'clinics.features.item1.title': 'Des parcours de préparation qui s\'adaptent',
@@ -706,11 +663,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item2.title': 'Réduction des absences',
     'clinics.features.item2.desc': 'Rappels chronométrés dans la langue du patient, parcours confirmer-et-reprogrammer intégré, un signal jour-même exploitable par votre secrétariat. À l\'ouverture d\'un créneau, une liste restreinte de patients prêts pour la préparation, que la clinique propose.',
     'clinics.features.item3.title': 'Gestion des GLP-1',
-    'clinics.features.item3.desc': 'Le patient déclare le médicament et la dose. Le parcours délivre l\'instruction rédigée par le clinicien qui correspond à la déclaration, alignée avec les recommandations multi-sociétés de 2024 et le consensus international de 2025. Les décisions restent avec le proceduralist.',
+    'clinics.features.item3.desc': 'Le patient déclare le médicament et la dose. Le parcours délivre l\'instruction rédigée par le clinicien qui correspond à la déclaration, alignée avec les recommandations multi-sociétés de 2024 et le consensus international de 2025.',
     'clinics.features.item4.title': 'Superpositions diabète et anticoagulants',
     'clinics.features.item4.desc': 'Scénarios SGLT2, metformine, AOD et warfarine délivrés comme instructions rédigées par le clinicien, générées depuis les réponses du patient. Le clinicien valide l\'ensemble de règles, pas l\'éditeur.',
     'clinics.features.item5.title': 'Revue photo la veille',
-    'clinics.features.item5.desc': 'La veille, le patient peut téléverser une photo de la cuvette via l\'appli web. Le parcours la compare à une grille fixée par le clinicien et signale si la préparation semble en bonne voie, afin que la clinique confirme ou reprogramme avant que le patient ne quitte la maison.',
+    'clinics.features.item5.desc': 'La veille, le patient peut téléverser une photo de la cuvette via l\'appli web. La photo parvient à votre infirmier avec les réponses du patient, afin que la clinique confirme ou reprogramme avant que le patient ne quitte la maison.',
     'clinics.features.item6.title': 'Déflexion d\'appels',
     'clinics.features.item6.desc': 'La messagerie bidirectionnelle par SMS et courriel répond aux vingt premières questions de préparation avant qu\'elles n\'atteignent le secrétariat, avec des réponses rédigées par le clinicien. La clinique voit les exceptions, pas chaque message.',
     'clinics.features.item7.title': 'Surveillance et rappels',
@@ -747,9 +704,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'platformpg.ls.title': 'Un moteur de parcours, extensible à un usage spécifique à la thérapie.',
     'platformpg.ls.body': 'Le moteur transmet les instructions médicamenteuses propres à chaque unité (GLP-1, SGLT2, AOD, warfarine). Tout parcours rédigé par des cliniciens l\'enrichit. Les mêmes briques (collecte structurée, alertes rédigées par des cliniciens, envoi par SMS, export structuré) sont celles qui sous-tendent les programmes modernes de soutien aux patients, les registres et la collecte de données de vie réelle. Nous concevons pour cette extensibilité ; nous ne nommons pas de thérapies que nous n\'avons pas déployées.',
 
-    'governance.eyebrow': 'Gouvernance',
-    'governance.title': 'Statut réglementaire, documenté.',
-    'governance.body': 'Aescia exploite deux produits. Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique. Cette page indique ce que chacun est, et ce que chacun n\'est pas.',
 
     // Partenaires (accueil)
     'partners.eyebrow': 'Où nous travaillons',
@@ -768,7 +722,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'Principal incubateur bio/santé/tech du Québec à l\'Université Concordia, Montréal. Aescia est entreprise du portefeuille depuis septembre 2025.',
     'partners.item6.name': 'MTAA MedTech Compass',
-    'partners.item6.role': 'Programme de capacité de la Medical Technology Association of Australia pour les entreprises émergentes de dispositifs médicaux. Aescia est membre industriel.',
+    'partners.item6.role': 'Programme de capacité de la Medical Technology Association of Australia pour les entreprises émergentes de technologies médicales. Aescia est membre industriel.',
 
     // Équipe
     'team.eyebrow': 'Équipe',
@@ -840,7 +794,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry10.date': '24 avril 2026',
     'updates.entry10.tag': 'Programme',
     'updates.entry10.title': 'Aescia rejoint MedTech Compass de la MTAA.',
-    'updates.entry10.body': 'Aescia a rejoint le programme MedTech Compass de la Medical Technology Association of Australia, qui accompagne les entreprises medtech australiennes du concept à l\'adoption commerciale sur les volets réglementaire, remboursement et preuves cliniques.',
+    'updates.entry10.body': 'Aescia a rejoint le programme MedTech Compass de la Medical Technology Association of Australia, qui accompagne les entreprises medtech australiennes du concept à l\'adoption commerciale.',
     'updates.entry9.date': '24 avril 2026',
     'updates.entry9.tag': 'Site',
     'updates.entry9.title': 'Équipe, partenaires et journal sur le site.',
@@ -898,16 +852,6 @@ const translations: Record<Locale, Record<string, string>> = {
   es: {
     'brand.name': 'Aescia',
 
-    'regband.eyebrow': 'Aviso regulatorio',
-    'regband.monitor.label': 'Hospitales',
-    'regband.monitor.body': 'Aescia para Hospitales envía a los pacientes las preguntas de control propias del hospital y alerta a su personal de enfermería según las reglas que el hospital define. Enfermería toma todas las decisiones clínicas. No es un dispositivo médico.',
-    'regband.clinic.label': 'Clínicas',
-    'regband.clinic.body': 'Aescia para Clínicas es una herramienta de flujo de trabajo y preparación del paciente. No propone decisiones clínicas y no es un dispositivo médico.',
-    'regband.body': 'Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas.',
-    'regband.dismiss': 'Cerrar',
-    'regband.short': 'Ninguno de los dos productos de Aescia es un dispositivo médico.',
-    'regband.more': 'Leer el aviso regulatorio completo',
-    'regband.less': 'Mostrar menos',
 
     'nav.platform': 'Plataforma',
     'nav.hospitals': 'Para Hospitales',
@@ -929,19 +873,15 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.subtitle': 'Software de vías pre-procedimiento para ASC de endoscopia. Preparación, medicación, relleno de huecos, llamadas de seguimiento. Aescia para Hospitales añade controles tras el alta y alertas para enfermería sobre el mismo motor.',
     'hero.cta.primary': 'Ver Aescia for Clinics',
     'hero.cta.secondary': 'Hablar con nuestro equipo',
-    'hero.note.label': 'Para ASC de endoscopia en EE. UU.',
-    'hero.note.body': 'Preparación pre-procedimiento, relleno según la preparación, y recitación. No es un dispositivo médico.',
     'hero.trial.label': 'Programa clínico',
     'hero.trial.brief': 'SAFE-Discharge, en marcha desde junio de 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sídney',
 
     'split.hospital.eyebrow': 'Para Hospitales',
-    'split.hospital.regtag': 'No es un dispositivo médico',
     'split.hospital.title': 'Seguimiento tras la cirugía, con sus reglas.',
     'split.hospital.desc': 'Controles diarios tras la cirugía cardiotorácica. Sus clínicos definen las preguntas y las respuestas que generan una alerta. Su equipo de enfermería revisa una sola lista y decide.',
     'split.hospital.cta': 'Aescia para Hospitales',
     'split.clinic.eyebrow': 'Para Clínicas',
-    'split.clinic.regtag': 'No es un dispositivo médico',
     'split.clinic.title': 'Mejor preparación. Listas que cumplen el horario.',
     'split.clinic.desc': 'Vías previas al procedimiento para endoscopia y otras clínicas especializadas. Alcance multicanal por SMS y correo electrónico hacia una aplicación web del paciente; superposiciones para diabetes, anticoagulantes y GLP-1; gestión de recordatorios; menos llamadas a recepción.',
     'split.clinic.cta': 'Aescia para Clínicas',
@@ -977,8 +917,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'evidence.fact1.label': 'Registro del ensayo',
     'evidence.fact2.value': 'En marcha',
     'evidence.fact2.label': 'Desde junio de 2026, Royal Prince Alfred Hospital',
-    'evidence.fact3.value': 'No es un dispositivo médico',
-    'evidence.fact3.label': 'Ambos productos',
     'evidence.cta': 'Leer la página de evidencia',
 
     'cta.title': '¿Listo para ver la plataforma?',
@@ -998,7 +936,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'footer.contact': 'Contacto',
     'footer.rights': 'Todos los derechos reservados.',
     'footer.health': 'Una plataforma de cuidado continuo.',
-    'footer.disclosure': 'Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas. Aescia para Hospitales se utiliza en el ensayo SAFE-Discharge en el Royal Prince Alfred Hospital.',
+    'footer.disclosure': 'Aescia para Hospitales se utiliza en el ensayo SAFE-Discharge en el Royal Prince Alfred Hospital.',
     'footer.integrations': 'Integraciones',
     'footer.buy': 'Comprar',
     'footer.design_partner': 'Programa de socios de diseño',
@@ -1025,8 +963,8 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.cta.primary': 'Solicitar una sesión informativa para sistemas de salud',
     'hospitals.cta.secondary': 'Leer el resumen del ensayo',
     'hospitals.status.label': 'Estado',
-    'hospitals.status.title': 'Se utiliza en el ensayo SAFE-Discharge. No es un dispositivo médico.',
-    'hospitals.status.body': 'Aescia para Hospitales envía a los pacientes las preguntas de control y la educación de su hospital, y alerta a su equipo de enfermería cuando una respuesta cumple una regla que su hospital definió. Su equipo de enfermería revisa las respuestas y decide. La puntuación de riesgo, la predicción y las lecturas de dispositivos conectados están en la hoja de ruta como un módulo regulado independiente y no se suministran hoy. Esta página no recluta participantes para el ensayo.',
+    'hospitals.status.title': 'Se utiliza en el ensayo SAFE-Discharge.',
+    'hospitals.status.body': 'Aescia para Hospitales envía a los pacientes las preguntas de control y la educación de su hospital, y alerta a su equipo de enfermería cuando una respuesta cumple una regla que su hospital definió. Esta página no recluta participantes para el ensayo.',
 
     'hospitals.leadership.eyebrow': 'Dirección del ensayo',
     'hospitals.leadership.title': 'El investigador principal de SAFE-Discharge.',
@@ -1037,7 +975,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'hospitals.leadership.woldendorp.role': 'Investigador principal del ensayo SAFE-Discharge en el Royal Prince Alfred Hospital, promovido por el Sydney Local Health District.',
 
     'hospitals.complications.title': 'Lo que su equipo quiere saber tras la cirugía cardiotorácica.',
-    'hospitals.complications.body': 'Su hospital elige las preguntas y las respuestas que generan una alerta, y sus cirujanos y enfermeros redactan y aprueban cada regla. Cada alerta muestra la regla que la generó y sigue su protocolo de escalada. Su equipo de enfermería revisa las respuestas y decide.',
+    'hospitals.complications.body': 'Su hospital elige las preguntas y las respuestas que generan una alerta, y sus cirujanos y enfermeros redactan y aprueban cada regla. Cada alerta muestra la regla que la generó y sigue su protocolo de escalada.',
     'hospitals.complications.item1.title': 'Inquietudes sobre la herida',
     'hospitals.complications.item1.desc': 'Preguntas sobre enrojecimiento, secreción, dolor o apertura de la herida, con una foto en días fijados. Su equipo elige qué respuestas generan una alerta.',
     'hospitals.complications.item2.title': 'Falta de aire',
@@ -1112,12 +1050,9 @@ const translations: Record<Locale, Record<string, string>> = {
 
     'clinics.eyebrow': 'Para Clínicas',
     'clinics.title': 'Mejor preparación. Menos ausencias. Menos trabajo telefónico.',
-    'clinics.subtitle': 'Aescia para Clínicas es una plataforma de flujo de trabajo para clínicas especializadas, con la endoscopia como primer hogar. Vías previas al procedimiento entregadas por SMS y correo electrónico hacia una aplicación web del paciente. Superposiciones para diabetes, anticoagulantes y GLP-1. Seguimiento de recordatorios que deja de escaparse. No propone decisiones clínicas. No es un dispositivo médico.',
+    'clinics.subtitle': 'Aescia para Clínicas es una plataforma de flujo de trabajo para clínicas especializadas, con la endoscopia como primer hogar. Vías previas al procedimiento entregadas por SMS y correo electrónico hacia una aplicación web del paciente. Superposiciones para diabetes, anticoagulantes y GLP-1. Seguimiento de recordatorios que deja de escaparse.',
     'clinics.cta.primary': 'Ver una demostración para clínicas',
     'clinics.cta.secondary': 'Ver la postura de precios',
-    'clinics.posture.label': 'Postura',
-    'clinics.posture.title': 'No es un dispositivo médico. No es una herramienta de decisión.',
-    'clinics.posture.body': 'Una plataforma de flujo de trabajo y preparación del paciente. No diagnostica, no trata, no propone decisiones clínicas.',
 
     'clinics.features.title': 'Nueve cosas que mantienen el día a día.',
     'clinics.features.item1.title': 'Vías de preparación que se adaptan',
@@ -1125,11 +1060,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'clinics.features.item2.title': 'Reducción de ausencias',
     'clinics.features.item2.desc': 'Recordatorios programados en el idioma del paciente, una vía de confirmar y reprogramar integrada, y un aviso del mismo día sobre el que su recepción sí puede actuar. Cuando se abre un hueco, una lista corta de pacientes con la preparación lista para que la clínica la ofrezca.',
     'clinics.features.item3.title': 'Manejo de GLP-1',
-    'clinics.features.item3.desc': 'El paciente informa por sí mismo el medicamento y la dosis. La vía entrega la instrucción redactada por clínicos que corresponde al informe del paciente, alineada con la guía multisocietaria de 2024 y el consenso internacional de 2025. Las decisiones siguen en manos de quien realiza el procedimiento.',
+    'clinics.features.item3.desc': 'El paciente informa por sí mismo el medicamento y la dosis. La vía entrega la instrucción redactada por clínicos que corresponde al informe del paciente, alineada con la guía multisocietaria de 2024 y el consenso internacional de 2025.',
     'clinics.features.item4.title': 'Superposiciones de diabetes y anticoagulantes',
     'clinics.features.item4.desc': 'Escenarios de SGLT2, metformina, DOAC y warfarina entregados como instrucciones redactadas por clínicos, generadas a partir de las respuestas del paciente. El clínico aprueba el conjunto de reglas, no el proveedor.',
     'clinics.features.item5.title': 'Revisión de la foto la noche de la preparación',
-    'clinics.features.item5.desc': 'La noche anterior, el paciente puede subir una foto del inodoro a través de la aplicación web. La vía la coteja con una rúbrica fijada por clínicos y señala si la preparación parece ir bien, para que la clínica confirme o reprograme antes de que el paciente salga de casa.',
+    'clinics.features.item5.desc': 'La noche anterior, el paciente puede subir una foto del inodoro a través de la aplicación web. La foto llega a su equipo de enfermería junto con las respuestas del paciente, para que la clínica confirme o reprograme antes de que el paciente salga de casa.',
     'clinics.features.item6.title': 'Desvío de llamadas',
     'clinics.features.item6.desc': 'La mensajería bidireccional por SMS y correo electrónico responde las veinte preguntas más frecuentes sobre la preparación antes de que lleguen a recepción, con respuestas plantilladas redactadas por clínicos. La clínica ve las excepciones, no cada mensaje.',
     'clinics.features.item7.title': 'Vigilancia y recordatorios',
@@ -1166,9 +1101,6 @@ const translations: Record<Locale, Record<string, string>> = {
     'platformpg.ls.title': 'Un motor de vías adaptado por área terapéutica.',
     'platformpg.ls.body': 'El motor envía las instrucciones de medicación propias de cada unidad (GLP-1, SGLT2, ACOD, warfarina). Cualquier vía redactada por clínicos lo amplía. Las mismas piezas (recogida estructurada, alertas redactadas por clínicos, envío por SMS, exportación estructurada) son las que sustentan los programas modernos de apoyo al paciente, los registros y la recogida de evidencia del mundo real. Diseñamos para esta extensibilidad; no nombramos terapias que no hayamos desplegado.',
 
-    'governance.eyebrow': 'Gobernanza',
-    'governance.title': 'Estado regulatorio, documentado.',
-    'governance.body': 'Aescia opera dos productos. Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas. Esta página explica qué es cada uno y qué no es.',
 
     'partners.eyebrow': 'Dónde trabajamos',
     'partners.title': 'Sitios de ensayo y programas asociados.',
@@ -1186,7 +1118,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'partners.item5.name': 'District 3',
     'partners.item5.role': 'La principal incubadora de startups de bio/salud/tecnología de Quebec en la Universidad Concordia, Montreal. Aescia es empresa de su portafolio desde septiembre de 2025.',
     'partners.item6.name': 'MTAA MedTech Compass',
-    'partners.item6.role': 'Programa de capacidades de la Medical Technology Association of Australia para empresas emergentes de dispositivos médicos. Aescia es miembro de la industria.',
+    'partners.item6.role': 'Programa de capacidades de la Medical Technology Association of Australia para empresas emergentes de tecnología médica. Aescia es miembro de la industria.',
 
     'team.eyebrow': 'Equipo',
     'team.title': 'Clínicos que construyen para clínicos.',
@@ -1248,7 +1180,7 @@ const translations: Record<Locale, Record<string, string>> = {
     'updates.entry10.date': '24 de abril de 2026',
     'updates.entry10.tag': 'Programa',
     'updates.entry10.title': 'Aescia se inscribe en MTAA MedTech Compass.',
-    'updates.entry10.body': 'Aescia se ha unido al programa MedTech Compass de la Medical Technology Association of Australia, que apoya a las empresas australianas de tecnología médica en su paso del concepto a la adopción comercial en materia de regulación, reembolso y evidencia clínica.',
+    'updates.entry10.body': 'Aescia se ha unido al programa MedTech Compass de la Medical Technology Association of Australia, que apoya a las empresas australianas de tecnología médica en su paso del concepto a la adopción comercial.',
     'updates.entry9.date': '24 de abril de 2026',
     'updates.entry9.tag': 'Sitio',
     'updates.entry9.title': 'Equipo, socios y un registro de avances en el sitio.',

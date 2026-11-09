@@ -11,9 +11,8 @@
 // systems — Provation, EndoWorks, gGastro; numbers/currency — 50,000, 2025,
 // 30-day) are kept verbatim across every locale.
 //
-// Regulatory phrasing — "Neither product is a medical device", "Your clinicians
-// make every clinical decision", "pre-first-customer", "No integration is live
-// yet" — is translated conservatively without softening, strengthening,
+// Claim phrasing — "pre-first-customer", "No integration is live yet" — is
+// translated conservatively without softening, strengthening,
 // omitting, or inventing any claim. The clinicsSoftwareSchema JSON-LD emitted by
 // the component stays English; only the visible table is localised here.
 export const dict: Record<string, Record<string, string>> = {
@@ -32,8 +31,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': 'Headquarters',
     'ascblock.headquarters.v': 'Sydney, Australia and Montréal, Canada.',
 
-    'ascblock.regulatory.k': 'Regulatory status',
-    'ascblock.regulatory.v': 'Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision.',
 
     'ascblock.clinical.k': 'Clinical evidence',
     'ascblock.clinical.v': 'SAFE-Discharge trial (ACTRN12625001425482) at Royal Prince Alfred Hospital, Sydney, run by the hospital\'s trial team and using the Hospitals product across the 30-day post-discharge window.',
@@ -62,8 +59,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': 'Siège',
     'ascblock.headquarters.v': 'Sydney, Australie et Montréal, Canada.',
 
-    'ascblock.regulatory.k': 'Statut réglementaire',
-    'ascblock.regulatory.v': 'Aucun des deux produits n\'est un dispositif médical. Tous deux transmettent les instructions et les questions propres à l\'unité ou à l\'hôpital, et alertent ses cliniciens selon les règles qu\'il fixe. Vos cliniciens prennent chaque décision clinique.',
 
     'ascblock.clinical.k': 'Preuves cliniques',
     'ascblock.clinical.v': 'Essai SAFE-Discharge (ACTRN12625001425482) au Royal Prince Alfred Hospital, Sydney, mené par l\'équipe d\'essai de l\'hôpital et utilisant le produit Hospitals sur la fenêtre de 30-day après la sortie.',
@@ -92,8 +87,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': 'Sede',
     'ascblock.headquarters.v': 'Sydney, Australia y Montréal, Canadá.',
 
-    'ascblock.regulatory.k': 'Estado regulatorio',
-    'ascblock.regulatory.v': 'Ninguno de los dos productos es un dispositivo médico. Ambos envían las instrucciones y preguntas propias de la unidad o del hospital, y alertan a sus clínicos según las reglas que este define. Sus clínicos toman todas las decisiones clínicas.',
 
     'ascblock.clinical.k': 'Evidencia clínica',
     'ascblock.clinical.v': 'Ensayo SAFE-Discharge (ACTRN12625001425482) en el Royal Prince Alfred Hospital, Sydney, dirigido por el equipo del ensayo del hospital y que utiliza el producto Hospitals a lo largo de la ventana de 30-day posalta.',
@@ -122,8 +115,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': '总部',
     'ascblock.headquarters.v': '澳大利亚 Sydney 和加拿大 Montréal。',
 
-    'ascblock.regulatory.k': '监管状态',
-    'ascblock.regulatory.v': '两款产品均不是医疗器械。两者都发送科室或医院自己的说明和问题，并按其设定的规则提醒其临床人员。每一项临床决定都由您的临床人员作出。',
 
     'ascblock.clinical.k': '临床证据',
     'ascblock.clinical.v': '在 Sydney 的 Royal Prince Alfred Hospital 进行的 SAFE-Discharge 试验（ACTRN12625001425482），由医院的试验团队开展，在出院后 30-day 窗口期内使用 Hospitals 产品。',
@@ -152,8 +143,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': 'المقر',
     'ascblock.headquarters.v': 'Sydney بأستراليا وMontréal بكندا.',
 
-    'ascblock.regulatory.k': 'الوضع التنظيمي',
-    'ascblock.regulatory.v': 'لا يُعدّ أيٌّ من المنتجَين جهازًا طبيًا. فكلاهما يرسل تعليمات الوحدة أو المستشفى وأسئلتها، وينبّه أطباءها وفق قواعد تضعها هي. ويتّخذ أطباؤكم كل قرار سريري.',
 
     'ascblock.clinical.k': 'الأدلة السريرية',
     'ascblock.clinical.v': 'تجربة SAFE-Discharge (ACTRN12625001425482) في Royal Prince Alfred Hospital بـ Sydney، التي يديرها فريق التجربة في المستشفى وتستخدم منتج Hospitals على امتداد نافذة الـ 30-day بعد الخروج.',
@@ -182,8 +171,6 @@ export const dict: Record<string, Record<string, string>> = {
     'ascblock.headquarters.k': 'Trụ sở',
     'ascblock.headquarters.v': 'Sydney, Australia và Montréal, Canada.',
 
-    'ascblock.regulatory.k': 'Tình trạng pháp quy',
-    'ascblock.regulatory.v': 'Cả hai sản phẩm đều không phải là thiết bị y tế. Cả hai gửi hướng dẫn và câu hỏi riêng của đơn vị hoặc bệnh viện, và báo cho các bác sĩ của đơn vị đó theo các quy tắc do đơn vị đặt ra. Các bác sĩ của bạn đưa ra mọi quyết định lâm sàng.',
 
     'ascblock.clinical.k': 'Bằng chứng lâm sàng',
     'ascblock.clinical.v': 'Thử nghiệm SAFE-Discharge (ACTRN12625001425482) tại Royal Prince Alfred Hospital, Sydney, do nhóm thử nghiệm của bệnh viện thực hiện và sử dụng sản phẩm Hospitals trong suốt cửa sổ 30-day sau xuất viện.',

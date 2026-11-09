@@ -442,7 +442,7 @@ function ProductSurfaces() {
           {[
             {
               tag: 'Aescia for Hospitals',
-              status: 'Not a medical device',
+              status: 'Check-ins and nurse alerts',
               title: 'Post-discharge follow-up, on your rules.',
               desc:
                 'For clinical teams running discharge follow-up at scale. Audit-grade, escalation-aware, designed to fit inside how a service already operates.',
@@ -450,7 +450,7 @@ function ProductSurfaces() {
             },
             {
               tag: 'Specialty Clinic',
-              status: 'Workflow software · not a medical device',
+              status: 'Workflow software',
               title: 'Intake, prep, follow-up — together.',
               desc:
                 'For specialty clinics that lose hours a week to phone tag and ad-hoc preparation. Pathways the clinical lead authors. No CDS classification baggage.',

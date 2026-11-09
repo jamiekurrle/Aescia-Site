@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Endoscopy ASC · Pre-procedure workflow',
     'endoworkflow.hero.title': 'What does endoscopy pre-procedure workflow software do?',
     'endoworkflow.hero.lede': 'Endoscopy pre-procedure workflow software automates the patient journey from booking confirmation to procedure day, so every patient gets the right bowel-prep instructions, completes the correct medication steps (GLP-1 cessation, anticoagulant hold or bridge, insulin and diabetes adjustment), gives consent, and arrives ready. Aescia for Clinics is a clinician-authored platform in this category that runs one pathway covering prep, medication overlays, reminders, consent, and prep-night confirmation, rather than a separate tool for each.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics has no customers yet and is not a medical device. It delivers clinician-authored steps; it does not propose or make clinical decisions.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics has no customers yet. It delivers clinician-authored steps.',
 
     'endoworkflow.journey.eyebrow': 'The patient journey',
     'endoworkflow.journey.title': 'From booking to procedure day, one pathway.',
@@ -47,7 +47,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': 'How the rules are built',
     'endoworkflow.authored.title': 'Clinician-authored, explainable, and guideline-traced.',
     'endoworkflow.authored.para1': 'Each pathway runs on your unit’s protocol, written and signed off by your clinicians. Where no written protocol exists, we draft one from your current practice and published guidance for your clinicians to approve: USMSTF and NHMRC for surveillance intervals, the 2024 multi-society guidance for GLP-1 peri-procedural handling, regional bowel-preparation protocols, and society anticoagulation guidance. Every pathway carries a named clinical author and a documented guideline trail.',
-    'endoworkflow.authored.para2': 'Before go-live, the rules are run against test patients so your clinicians can check edge cases, such as a diabetic patient on insulin who is also on a GLP-1 agonist, and settle them in the rule editor rather than in the front-desk call queue. The alerts a patient or clinician sees run on these clinician-authored, explainable rules, which is part of why Aescia for Clinics is not a medical device. Aescia does use machine learning for back-end analysis and operational tooling, like the procedure-length estimate on the roadmap below, but that analysis is advisory and is never the patient-facing clinical logic.',
+    'endoworkflow.authored.para2': 'Before go-live, the rules are run against test patients so your clinicians can check edge cases, such as a diabetic patient on insulin who is also on a GLP-1 agonist, and settle them in the rule editor rather than in the front-desk call queue. The alerts a patient or clinician sees run on these clinician-authored, explainable rules. Aescia does use machine learning for back-end analysis and operational tooling, like the procedure-length estimate on the roadmap below, but that analysis is advisory and is never the patient-facing clinical logic.',
 
     'endoworkflow.roadmap.eyebrow': 'On the roadmap',
     'endoworkflow.roadmap.title': 'A procedure-length estimate, to plan the list before the day.',
@@ -59,7 +59,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Centre d’endoscopie (ASC) · Flux de travail pré-procédural',
     'endoworkflow.hero.title': 'Que fait un logiciel de flux de travail pré-procédural pour l’endoscopie ?',
     'endoworkflow.hero.lede': 'Le logiciel de flux de travail pré-procédural pour l’endoscopie automatise le parcours du patient, de la confirmation de la réservation jusqu’au jour de la procédure, afin que chaque patient reçoive les bonnes instructions de préparation intestinale, réalise les bonnes étapes médicamenteuses (arrêt des GLP-1, suspension ou relais des anticoagulants, ajustement de l’insuline et du diabète), donne son consentement et arrive prêt. Aescia for Clinics est une plateforme rédigée par des cliniciens dans cette catégorie, qui exécute un seul parcours couvrant la préparation, les superpositions médicamenteuses, les rappels, le consentement et la confirmation la veille de la préparation, plutôt qu’un outil distinct pour chacun.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics n’a pas encore de clients et n’est pas un dispositif médical. Il fournit des étapes rédigées par des cliniciens ; il ne propose pas et ne prend pas de décisions cliniques.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics n’a pas encore de clients. Il fournit des étapes rédigées par des cliniciens.',
 
     'endoworkflow.journey.eyebrow': 'Le parcours du patient',
     'endoworkflow.journey.title': 'De la réservation au jour de la procédure, un seul parcours.',
@@ -103,7 +103,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': 'Comment les règles sont construites',
     'endoworkflow.authored.title': 'Rédigées par des cliniciens, explicables et tracées aux recommandations.',
     'endoworkflow.authored.para1': 'Chaque parcours repose sur le protocole de votre unité, rédigé et validé par vos cliniciens. En l’absence de protocole écrit, nous en rédigeons un à partir de votre pratique actuelle et des recommandations publiées, que vos cliniciens approuvent : USMSTF et NHMRC pour les intervalles de surveillance, les recommandations multisociétés de 2024 pour la prise en charge péri-procédurale des GLP-1, les protocoles régionaux de préparation intestinale et les recommandations des sociétés savantes sur l’anticoagulation. Chaque parcours porte le nom d’un auteur clinique et une traçabilité documentée des recommandations.',
-    'endoworkflow.authored.para2': 'Avant la mise en service, les règles sont exécutées sur des patients de test afin que vos cliniciens puissent vérifier les cas limites, comme un patient diabétique sous insuline qui prend aussi un agoniste des GLP-1, et les régler dans l’éditeur de règles plutôt que dans la file d’appels de l’accueil. Les alertes que voit un patient ou un clinicien reposent sur ces règles explicables, rédigées par des cliniciens, ce qui explique en partie pourquoi Aescia for Clinics n’est pas un dispositif médical. Aescia utilise l’apprentissage automatique pour l’analyse en arrière-plan et les outils opérationnels, comme l’estimation de la durée des procédures présentée dans la feuille de route ci-dessous, mais cette analyse reste indicative et ne constitue jamais la logique clinique vue par le patient.',
+    'endoworkflow.authored.para2': 'Avant la mise en service, les règles sont exécutées sur des patients de test afin que vos cliniciens puissent vérifier les cas limites, comme un patient diabétique sous insuline qui prend aussi un agoniste des GLP-1, et les régler dans l’éditeur de règles plutôt que dans la file d’appels de l’accueil. Les alertes que voit un patient ou un clinicien reposent sur ces règles explicables, rédigées par des cliniciens. Aescia utilise l’apprentissage automatique pour l’analyse en arrière-plan et les outils opérationnels, comme l’estimation de la durée des procédures présentée dans la feuille de route ci-dessous, mais cette analyse reste indicative et ne constitue jamais la logique clinique vue par le patient.',
 
     'endoworkflow.roadmap.eyebrow': 'Sur la feuille de route',
     'endoworkflow.roadmap.title': 'Une estimation de la durée des procédures, pour planifier la liste avant le jour J.',
@@ -115,7 +115,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Centro de endoscopia (ASC) · Flujo de trabajo previo al procedimiento',
     'endoworkflow.hero.title': '¿Qué hace el software de flujo de trabajo previo al procedimiento de endoscopia?',
     'endoworkflow.hero.lede': 'El software de flujo de trabajo previo al procedimiento de endoscopia automatiza el recorrido del paciente desde la confirmación de la reserva hasta el día del procedimiento, de modo que cada paciente reciba las instrucciones correctas de preparación intestinal, complete los pasos de medicación correctos (suspensión de GLP-1, suspensión o puente de anticoagulantes, ajuste de insulina y diabetes), dé su consentimiento y llegue preparado. Aescia for Clinics es una plataforma escrita por médicos en esta categoría que ejecuta un solo recorrido que cubre la preparación, las superposiciones de medicación, los recordatorios, el consentimiento y la confirmación la noche previa a la preparación, en lugar de una herramienta separada para cada uno.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics aún no tiene clientes y no es un dispositivo médico. Entrega pasos escritos por médicos; no propone ni toma decisiones clínicas.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics aún no tiene clientes. Entrega pasos escritos por médicos.',
 
     'endoworkflow.journey.eyebrow': 'El recorrido del paciente',
     'endoworkflow.journey.title': 'De la reserva al día del procedimiento, un solo recorrido.',
@@ -159,7 +159,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': 'Cómo se construyen las reglas',
     'endoworkflow.authored.title': 'Escritas por médicos, explicables y trazadas a las guías.',
     'endoworkflow.authored.para1': 'Cada vía funciona con el protocolo de su unidad, redactado y aprobado por sus clínicos. Cuando no existe un protocolo escrito, redactamos uno a partir de su práctica actual y de las guías publicadas para que sus clínicos lo aprueben: USMSTF y NHMRC para los intervalos de vigilancia, la guía multisociedad de 2024 para el manejo periprocedimiento de los GLP-1, los protocolos regionales de preparación intestinal y las guías de anticoagulación de las sociedades científicas. Cada vía lleva un autor clínico identificado y una trazabilidad documentada de las guías.',
-    'endoworkflow.authored.para2': 'Antes de la puesta en marcha, las reglas se ejecutan con pacientes de prueba para que sus clínicos puedan revisar los casos límite, como un paciente diabético con insulina que también toma un agonista de GLP-1, y resolverlos en el editor de reglas y no en la cola de llamadas de recepción. Las alertas que ve un paciente o un clínico funcionan con estas reglas explicables redactadas por clínicos, lo que en parte explica por qué Aescia for Clinics no es un dispositivo médico. Aescia utiliza aprendizaje automático para el análisis interno y las herramientas operativas, como la estimación de la duración del procedimiento que aparece en la hoja de ruta más abajo, pero ese análisis es orientativo y nunca es la lógica clínica que ve el paciente.',
+    'endoworkflow.authored.para2': 'Antes de la puesta en marcha, las reglas se ejecutan con pacientes de prueba para que sus clínicos puedan revisar los casos límite, como un paciente diabético con insulina que también toma un agonista de GLP-1, y resolverlos en el editor de reglas y no en la cola de llamadas de recepción. Las alertas que ve un paciente o un clínico funcionan con estas reglas explicables redactadas por clínicos. Aescia utiliza aprendizaje automático para el análisis interno y las herramientas operativas, como la estimación de la duración del procedimiento que aparece en la hoja de ruta más abajo, pero ese análisis es orientativo y nunca es la lógica clínica que ve el paciente.',
 
     'endoworkflow.roadmap.eyebrow': 'En la hoja de ruta',
     'endoworkflow.roadmap.title': 'Una estimación de la duración del procedimiento, para planificar la lista antes del día.',
@@ -171,7 +171,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': '内镜中心（ASC）· 术前流程',
     'endoworkflow.hero.title': '内镜术前流程软件有什么作用？',
     'endoworkflow.hero.lede': '内镜术前流程软件将患者旅程从预约确认到手术当天自动化，使每位患者都能获得正确的肠道准备说明、完成正确的用药步骤（停用GLP-1、停用或桥接抗凝药、胰岛素和糖尿病调整）、给予同意，并做好准备到达。Aescia for Clinics 是此类别中由临床医生编写的平台，它运行一条涵盖准备、用药叠加、提醒、同意和准备前夜确认的统一路径，而不是为每一项使用单独的工具。',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics 目前还没有客户，且不是医疗器械。它提供由临床医生编写的步骤；它不提出也不作出临床决策。',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics 目前还没有客户。它提供由临床医生编写的步骤。',
 
     'endoworkflow.journey.eyebrow': '患者旅程',
     'endoworkflow.journey.title': '从预约到手术当天，一条路径。',
@@ -215,7 +215,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': '规则是如何构建的',
     'endoworkflow.authored.title': '由临床医生编写、可解释，并可追溯至指南。',
     'endoworkflow.authored.para1': '每条路径都依据贵科室的规程运行，规程由您的临床人员撰写并签批。若尚无书面规程，我们会根据您目前的做法和已发表的指南起草一份，交由您的临床人员批准：监测间隔参照 USMSTF 和 NHMRC，GLP-1 围操作期处理参照 2024 年多学会指南，另有地区性肠道准备规程以及各学会的抗凝指南。每条路径都标明临床作者，并附有记录在案的指南溯源。',
-    'endoworkflow.authored.para2': '上线前，规则会在测试患者身上运行，让您的临床人员检查各种边缘情况，例如正在使用胰岛素、同时又在使用 GLP-1 激动剂的糖尿病患者，并在规则编辑器中解决，而不是留到前台的电话队列里。患者或临床人员看到的提醒都基于这些由临床人员撰写、可解释的规则，这也是 Aescia for Clinics 不是医疗器械的原因之一。Aescia 会将机器学习用于后台分析和运营工具，例如下方路线图中的操作时长估算，但这类分析仅供参考，绝不会成为面向患者的临床逻辑。',
+    'endoworkflow.authored.para2': '上线前，规则会在测试患者身上运行，让您的临床人员检查各种边缘情况，例如正在使用胰岛素、同时又在使用 GLP-1 激动剂的糖尿病患者，并在规则编辑器中解决，而不是留到前台的电话队列里。患者或临床人员看到的提醒都基于这些由临床人员撰写、可解释的规则。Aescia 会将机器学习用于后台分析和运营工具，例如下方路线图中的操作时长估算，但这类分析仅供参考，绝不会成为面向患者的临床逻辑。',
 
     'endoworkflow.roadmap.eyebrow': '在路线图上',
     'endoworkflow.roadmap.title': '操作时长估算，在当天之前规划好清单。',
@@ -227,7 +227,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'مركز التنظير (ASC) · سير العمل قبل الإجراء',
     'endoworkflow.hero.title': 'ماذا يفعل برنامج سير العمل قبل إجراء التنظير؟',
     'endoworkflow.hero.lede': 'يقوم برنامج سير العمل قبل إجراء التنظير بأتمتة رحلة المريض من تأكيد الحجز حتى يوم الإجراء، بحيث يحصل كل مريض على تعليمات تحضير الأمعاء الصحيحة، ويكمل خطوات الدواء الصحيحة (إيقاف GLP-1، وإيقاف مضادات التخثر أو معاوضتها، وتعديل الأنسولين والسكري)، ويقدّم موافقته، ويصل جاهزًا. Aescia for Clinics منصة من تأليف الأطباء في هذه الفئة تشغّل مسارًا واحدًا يغطي التحضير، وطبقات الأدوية، والتذكيرات، والموافقة، والتأكيد ليلة التحضير، بدلًا من أداة منفصلة لكل منها.',
-    'endoworkflow.hero.disclaimer': 'ليس لدى Aescia for Clinics عملاء بعد، وهي ليست جهازًا طبيًا. فهي تقدّم خطوات من تأليف الأطباء؛ ولا تقترح قرارات سريرية ولا تتخذها.',
+    'endoworkflow.hero.disclaimer': 'ليس لدى Aescia for Clinics عملاء بعد. فهي تقدّم خطوات من تأليف الأطباء.',
 
     'endoworkflow.journey.eyebrow': 'رحلة المريض',
     'endoworkflow.journey.title': 'من الحجز إلى يوم الإجراء، مسار واحد.',
@@ -271,7 +271,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': 'كيف تُبنى القواعد',
     'endoworkflow.authored.title': 'من تأليف الأطباء، قابلة للتفسير، ومتتبَّعة إلى الإرشادات.',
     'endoworkflow.authored.para1': 'يعمل كل مسار وفق بروتوكول وحدتكم، الذي يكتبه أطباؤكم ويعتمدونه. وحيث لا يوجد بروتوكول مكتوب، نُعدّ مسودة له انطلاقًا من ممارستكم الحالية والإرشادات المنشورة ليعتمدها أطباؤكم: USMSTF وNHMRC لفترات المتابعة الدورية، وإرشادات الجمعيات المتعددة لعام 2024 للتعامل مع GLP-1 حول الإجراء، وبروتوكولات تحضير الأمعاء الإقليمية، وإرشادات الجمعيات بشأن مضادات التخثر. ويحمل كل مسار اسم مؤلف سريري وسجلًا موثّقًا للإرشادات.',
-    'endoworkflow.authored.para2': 'قبل التشغيل، تُجرَّب القواعد على مرضى اختباريين ليتحقق أطباؤكم من الحالات الحدّية، مثل مريض سكري يتناول الإنسولين ويتناول أيضًا ناهض GLP-1، ويحسموها في محرّر القواعد بدلًا من طابور مكالمات الاستقبال. وتعمل التنبيهات التي يراها المريض أو الطبيب وفق هذه القواعد القابلة للتفسير التي يكتبها الأطباء، وهذا جزء من سبب كون Aescia for Clinics ليست جهازًا طبيًا. وتستخدم Aescia التعلّم الآلي في التحليل الخلفي والأدوات التشغيلية، مثل تقدير مدة الإجراء المدرج في خارطة الطريق أدناه، لكن هذا التحليل استرشادي ولا يكون أبدًا المنطق السريري الموجَّه إلى المريض.',
+    'endoworkflow.authored.para2': 'قبل التشغيل، تُجرَّب القواعد على مرضى اختباريين ليتحقق أطباؤكم من الحالات الحدّية، مثل مريض سكري يتناول الإنسولين ويتناول أيضًا ناهض GLP-1، ويحسموها في محرّر القواعد بدلًا من طابور مكالمات الاستقبال. وتعمل التنبيهات التي يراها المريض أو الطبيب وفق هذه القواعد القابلة للتفسير التي يكتبها الأطباء. وتستخدم Aescia التعلّم الآلي في التحليل الخلفي والأدوات التشغيلية، مثل تقدير مدة الإجراء المدرج في خارطة الطريق أدناه، لكن هذا التحليل استرشادي ولا يكون أبدًا المنطق السريري الموجَّه إلى المريض.',
 
     'endoworkflow.roadmap.eyebrow': 'على خارطة الطريق',
     'endoworkflow.roadmap.title': 'تقدير لمدة الإجراء، لتخطيط القائمة قبل اليوم المحدد.',
@@ -283,7 +283,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.hero.eyebrow': 'Trung tâm nội soi (ASC) · Quy trình trước thủ thuật',
     'endoworkflow.hero.title': 'Phần mềm quy trình trước thủ thuật nội soi làm gì?',
     'endoworkflow.hero.lede': 'Phần mềm quy trình trước thủ thuật nội soi tự động hóa hành trình của bệnh nhân từ khi xác nhận đặt lịch đến ngày thủ thuật, để mỗi bệnh nhân nhận được hướng dẫn chuẩn bị ruột đúng, hoàn thành đúng các bước về thuốc (ngừng GLP-1, ngừng hoặc bắc cầu thuốc chống đông, điều chỉnh insulin và đái tháo đường), đồng ý, và đến trong tình trạng sẵn sàng. Aescia for Clinics là một nền tảng do bác sĩ lâm sàng soạn thảo trong loại này, chạy một lộ trình duy nhất bao gồm chuẩn bị, các lớp phủ thuốc, nhắc nhở, đồng ý và xác nhận vào đêm trước khi chuẩn bị, thay vì một công cụ riêng cho từng việc.',
-    'endoworkflow.hero.disclaimer': 'Aescia for Clinics chưa có khách hàng nào và không phải là thiết bị y tế. Nó cung cấp các bước do bác sĩ lâm sàng soạn thảo; nó không đề xuất và không đưa ra quyết định lâm sàng.',
+    'endoworkflow.hero.disclaimer': 'Aescia for Clinics chưa có khách hàng nào. Nó cung cấp các bước do bác sĩ lâm sàng soạn thảo.',
 
     'endoworkflow.journey.eyebrow': 'Hành trình của bệnh nhân',
     'endoworkflow.journey.title': 'Từ khi đặt lịch đến ngày thủ thuật, một lộ trình.',
@@ -327,7 +327,7 @@ export const dict: Record<string, Record<string, string>> = {
     'endoworkflow.authored.eyebrow': 'Cách các quy tắc được xây dựng',
     'endoworkflow.authored.title': 'Do bác sĩ lâm sàng soạn thảo, có thể giải thích, và truy vết đến hướng dẫn.',
     'endoworkflow.authored.para1': 'Mỗi lộ trình chạy theo quy trình của đơn vị bạn, do các bác sĩ của bạn soạn và phê duyệt. Khi chưa có quy trình bằng văn bản, chúng tôi soạn thảo một quy trình từ cách làm hiện tại của bạn và các hướng dẫn đã công bố để các bác sĩ của bạn phê duyệt: USMSTF và NHMRC cho khoảng thời gian tái khám nội soi, hướng dẫn liên hiệp hội năm 2024 về xử lý GLP-1 quanh thủ thuật, các quy trình chuẩn bị đại tràng theo khu vực và hướng dẫn chống đông của các hội chuyên môn. Mỗi lộ trình đều ghi tên tác giả lâm sàng và có hồ sơ truy nguyên hướng dẫn.',
-    'endoworkflow.authored.para2': 'Trước khi đi vào hoạt động, các quy tắc được chạy thử trên bệnh nhân giả lập để các bác sĩ của bạn kiểm tra các trường hợp đặc biệt, chẳng hạn một bệnh nhân tiểu đường dùng insulin đồng thời dùng thuốc chủ vận GLP-1, và xử lý chúng trong trình soạn quy tắc thay vì trong hàng đợi cuộc gọi ở quầy lễ tân. Các cảnh báo mà bệnh nhân hoặc bác sĩ nhìn thấy đều chạy trên các quy tắc có thể giải thích do bác sĩ soạn, đây là một phần lý do Aescia for Clinics không phải là thiết bị y tế. Aescia có dùng học máy cho phân tích hậu trường và công cụ vận hành, như ước tính thời lượng thủ thuật trong lộ trình phát triển bên dưới, nhưng phân tích đó chỉ mang tính tham khảo và không bao giờ là logic lâm sàng hướng tới bệnh nhân.',
+    'endoworkflow.authored.para2': 'Trước khi đi vào hoạt động, các quy tắc được chạy thử trên bệnh nhân giả lập để các bác sĩ của bạn kiểm tra các trường hợp đặc biệt, chẳng hạn một bệnh nhân tiểu đường dùng insulin đồng thời dùng thuốc chủ vận GLP-1, và xử lý chúng trong trình soạn quy tắc thay vì trong hàng đợi cuộc gọi ở quầy lễ tân. Các cảnh báo mà bệnh nhân hoặc bác sĩ nhìn thấy đều chạy trên các quy tắc có thể giải thích do bác sĩ soạn. Aescia có dùng học máy cho phân tích hậu trường và công cụ vận hành, như ước tính thời lượng thủ thuật trong lộ trình phát triển bên dưới, nhưng phân tích đó chỉ mang tính tham khảo và không bao giờ là logic lâm sàng hướng tới bệnh nhân.',
 
     'endoworkflow.roadmap.eyebrow': 'Trong lộ trình',
     'endoworkflow.roadmap.title': 'Ước tính thời lượng thủ thuật, để lên kế hoạch danh sách trước ngày thực hiện.',

@@ -12,28 +12,24 @@ export function AudienceSplit() {
   const cards = [
     {
       eyebrow: t('split.clinic.eyebrow'),
-      regtag: t('split.clinic.regtag'),
       title: t('split.clinic.title'),
       desc: t('split.clinic.desc'),
       cta: t('split.clinic.cta'),
       href: '/clinics',
       accent: 'bg-foreground text-background',
       eyebrowClass: 'text-brass',
-      regClass: 'text-background/60 border-background/20',
       descClass: 'text-background/80',
       border: 'border-transparent',
       arrowColor: 'text-background',
     },
     {
       eyebrow: t('split.hospital.eyebrow'),
-      regtag: t('split.hospital.regtag'),
       title: t('split.hospital.title'),
       desc: t('split.hospital.desc'),
       cta: t('split.hospital.cta'),
       href: '/hospitals',
       accent: 'bg-secondary text-foreground',
       eyebrowClass: 'text-accent',
-      regClass: 'text-foreground/60 border-foreground/20',
       descClass: 'text-foreground/80',
       border: 'border-border',
       arrowColor: 'text-foreground',
@@ -50,16 +46,9 @@ export function AudienceSplit() {
               href={card.href}
               className={`group relative ${card.accent} ${card.border} border-b md:border-r md:last:border-r-0 px-8 lg:px-12 py-16 lg:py-20 block transition-colors`}
             >
-              <div className="flex items-center justify-between mb-10 gap-3 flex-wrap">
-                <div className="flex items-center gap-3">
-                  <span className={`font-mono text-[13px] uppercase tracking-[0.22em] ${card.eyebrowClass}`}>{card.eyebrow}</span>
-                  <span className={`h-px w-8 ${card.eyebrowClass} opacity-60 bg-current`} aria-hidden="true" />
-                </div>
-                <span
-                  className={`font-mono text-[13px] uppercase tracking-[0.15em] ${card.regClass} border px-2 py-1`}
-                >
-                  {card.regtag}
-                </span>
+              <div className="flex items-center gap-3 mb-10">
+                <span className={`font-mono text-[13px] uppercase tracking-[0.22em] ${card.eyebrowClass}`}>{card.eyebrow}</span>
+                <span className={`h-px w-8 ${card.eyebrowClass} opacity-60 bg-current`} aria-hidden="true" />
               </div>
 
               <h3

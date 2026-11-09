@@ -103,11 +103,6 @@ export function ClinicalFooter() {
           <span>© 2026 Aescia Pty Ltd · ABN 96 687 840 517</span>
           <span>9550-0708 Québec inc · NEQ 1181312316</span>
         </div>
-        <p className="mt-6 text-[11px] leading-[1.6] max-w-3xl" style={{ color: 'var(--c-ink-40)' }}>
-          Neither product is a medical device. Both deliver the unit&apos;s or
-          hospital&apos;s own instructions and questions, and alert its clinicians on
-          rules it sets. Your clinicians make every clinical decision.
-        </p>
       </div>
     </footer>
   )

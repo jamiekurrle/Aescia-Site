@@ -240,7 +240,7 @@ function ProductPair() {
           {[
             {
               tag: 'Aescia for Hospitals',
-              status: 'Not a medical device',
+              status: 'Check-ins and nurse alerts',
               t: 'Post-discharge follow-up, on your rules.',
               d: 'For clinical teams running discharge follow-up at scale. Check-ins and nurse alerts on your hospital\'s rules, audit-grade.',
               href: '/hospitals',

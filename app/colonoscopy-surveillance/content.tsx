@@ -538,8 +538,8 @@ export function PageContent({ initialJur = 'US', faqItems = [] }: { initialJur?:
       <section className="px-6 lg:px-10 py-14">
         <div className="max-w-4xl mx-auto">
           <p className="text-[12px] leading-relaxed text-foreground/72 mb-4">
-            Reference tool for health professionals. Not medical advice, not a medical device, and does
-            not make or replace a clinical decision. The calculation runs in your browser; the findings
+            Reference tool for health professionals. Not medical advice. The calculation runs in your
+            browser; the findings
             you enter are not transmitted or stored. The Aescia clinical team reviews this tool
             periodically against the source guidelines and updates it when they change, but guidelines
             are revised without notice; verify against the current version before acting. If you notice

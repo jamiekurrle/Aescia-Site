@@ -7,11 +7,11 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Frequently asked questions about the platform',
   description:
-    'Plain answers about Aescia: what each product is, regulatory posture, the SAFE-Discharge trial, integrations, pricing, and how to engage.',
+    'Plain answers about Aescia: what each product does, the SAFE-Discharge trial, integrations, pricing, and how to engage.',
   alternates: { canonical: '/faq' },
   openGraph: {
     title: 'FAQ | Aescia',
-    description: 'Plain answers about Aescia for Hospitals, Aescia for Clinics, regulatory posture, and the SAFE-Discharge trial.',
+    description: 'Plain answers about Aescia for Hospitals, Aescia for Clinics, and the SAFE-Discharge trial.',
     url: '/faq',
   },
 }
@@ -31,7 +31,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'What is Aescia?',
-        a: 'Aescia is a continuous-care platform for the weeks between a high-acuity discharge and the next clinical appointment. It is a privately held healthtech company with operations in Sydney, Australia and Montréal, Canada. Aescia builds two products on one pathway engine: Aescia for Hospitals, post-discharge check-ins and nurse alerts on each hospital\'s own rules, and Aescia for Clinics, a workflow and patient-preparation platform for specialty clinics. Neither product is a medical device.',
+        a: 'Aescia is a continuous-care platform for the weeks between a high-acuity discharge and the next clinical appointment. It is a privately held healthtech company with operations in Sydney, Australia and Montréal, Canada. Aescia builds two products on one pathway engine: Aescia for Hospitals, post-discharge check-ins and nurse alerts on each hospital\'s own rules, and Aescia for Clinics, a workflow and patient-preparation platform for specialty clinics.',
       },
       {
         q: 'Who founded Aescia?',
@@ -56,15 +56,15 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     items: [
       {
         q: 'What is Aescia for Hospitals?',
-        a: 'Aescia for Hospitals sends patients the hospital\'s own check-in questions and education after discharge, and alerts the hospital\'s nurses when an answer meets a rule the hospital set. The nurses review the answers and decide what happens next. Check-ins run daily across the 30-day post-discharge window, and alerts arrive on one list for the unit rather than a new inbox for the nurse. The first use is cardiothoracic surgical recovery, and the product is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital. It is not a medical device. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.',
+        a: 'Aescia for Hospitals sends patients the hospital\'s own check-in questions and education after discharge, and alerts the hospital\'s nurses when an answer meets a rule the hospital set. The nurses review the answers and decide what happens next. Check-ins run daily across the 30-day post-discharge window, and alerts arrive on one list for the unit rather than a new inbox for the nurse. The first use is cardiothoracic surgical recovery, and the product is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
       },
       {
         q: 'What is Aescia for Clinics?',
-        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. It is not a medical device. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. Design partners start free and pay nothing until the platform proves it saves more than it costs on your own data.',
+        a: 'Aescia for Clinics is a workflow and patient-preparation platform for specialty clinics. The product delivers clinician-authored prep pathways (including bowel preparation, diabetes management, anticoagulation, and GLP-1 peri-procedural overlay), multichannel reminders, recall tracking, and structured exports back to the chart. Design partners start free and pay nothing until the platform proves it saves more than it costs on your own data.',
       },
       {
         q: 'What is the difference between Aescia for Hospitals and Aescia for Clinics?',
-        a: 'They share one pathway engine and the same regulatory status. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia for Hospitals runs post-discharge check-ins and nurse alerts for hospital surgical units. Aescia for Clinics runs procedural-prep workflow for outpatient specialty clinics. The pricing model and intended buyer are different.',
+        a: 'They share one pathway engine. Aescia for Hospitals runs post-discharge check-ins and nurse alerts for hospital surgical units. Aescia for Clinics runs procedural-prep workflow for outpatient specialty clinics. The pricing model and intended buyer are different.',
       },
       {
         q: 'What does the platform do underneath both products?',
@@ -73,16 +73,8 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
     ],
   },
   {
-    eyebrow: 'Regulatory',
+    eyebrow: 'Clinical trial',
     items: [
-      {
-        q: 'Is Aescia a medical device?',
-        a: 'No. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. This is Aescia\'s own assessment, and the /governance page sets out the regulatory basis.',
-      },
-      {
-        q: 'Has Aescia been approved by the TGA, FDA, Health Canada, or any other regulator?',
-        a: 'No. No Therapeutic Goods Administration (TGA), Medical Device Single Audit Program (MDSAP), US Food and Drug Administration (FDA), CE/UKCA, or Health Canada applications have been filed for either product. Neither product is a medical device, so neither requires device approval. This is Aescia\'s own assessment: both products fall within categories excluded from regulation as therapeutic goods under the Therapeutic Goods (Excluded Goods) Determination 2018, including patient surveys, communications, alerts to health professionals and clinical workflow management. Risk scoring, prediction and connected-device readings are on the roadmap as a separate regulated module and are not supplied today.',
-      },
       {
         q: 'What is the SAFE-Discharge trial?',
         a: 'SAFE-Discharge is a prospective single-centre clinical trial at the Royal Prince Alfred Hospital cardiothoracic surgical unit in Sydney, run by the hospital\'s trial team under the trial\'s ethics approval. Aescia for Hospitals is used in the trial. The trial has been live since June 2026, and the SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication. Dr Kei Woldendorp is Principal Investigator, and the trial is sponsored by Sydney Local Health District. It is registered with the Australian New Zealand Clinical Trials Registry as ACTRN12625001425482.',
@@ -90,10 +82,6 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       {
         q: 'What does the SAFE-Discharge trial measure?',
         a: 'The trial studies structured post-discharge check-ins and nurse alerts across the 30-day post-discharge window in adult patients after cardiothoracic surgery (coronary artery bypass grafting (CABG), valve and thoracic procedures). The pre-specified secondary endpoint is alert burden: fewer than one nurse-actionable flag per patient per week over the 30-day window. Aescia will report what the trial shows, whatever it shows.',
-      },
-      {
-        q: 'What quality-system frameworks does Aescia work to?',
-        a: 'The applicable standards come from the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC): ISO 13485 for quality management, ISO/IEC 27001 for information security and IEC 62304 for medical device software lifecycle processes. Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304. Certification is planned. No third-party conformity assessment has been undertaken.',
       },
     ],
   },
@@ -114,7 +102,7 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Does Aescia use AI or machine learning?',
-        a: 'Yes, with a clear line. The alert rules, the logic that decides whether to remind a patient or alert a clinician, are written and signed off by the hospital\'s or unit\'s own clinicians and stay explainable; no black-box AI makes or proposes patient care. Aescia uses machine learning for back-end analysis and operational tooling that is not patient-facing, for example a planned procedure-length estimate so a colonoscopy list can be planned before the day. That analysis is kept separate from the clinicians\' alert rules. In both products, the clinicians make every clinical decision.',
+        a: 'Yes, with a clear line. The alert rules, the logic that decides whether to remind a patient or alert a clinician, are written and signed off by the hospital\'s or unit\'s own clinicians and stay explainable; no black-box AI makes or proposes patient care. Aescia uses machine learning for back-end analysis and operational tooling that is not patient-facing, for example a planned procedure-length estimate so a colonoscopy list can be planned before the day. That analysis is kept separate from the clinicians\' alert rules.',
       },
       {
         q: 'How can I evaluate Aescia for my hospital or clinic?',
@@ -131,11 +119,11 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       },
       {
         q: 'Do GLP-1 patients need to stop their medication before a colonoscopy?',
-        a: 'It depends on the clinic\'s protocol, and the guidance has changed. GLP-1 agonists such as semaglutide, tirzepatide, and liraglutide slow gastric emptying, which prompted 2023 American Society of Anesthesiologists guidance suggesting they be held before sedated procedures. In 2024, multi-society guidance moved toward an individualized, risk-stratified approach rather than a blanket hold, noting that the clear-liquid colonoscopy prep may itself reduce residual stomach contents. The decision is the gastroenterologist\'s. Software\'s role is to apply the clinic\'s chosen rule consistently to every GLP-1 patient, not to make the clinical decision.',
+        a: 'It depends on the clinic\'s protocol, and the guidance has changed. GLP-1 agonists such as semaglutide, tirzepatide, and liraglutide slow gastric emptying, which prompted 2023 American Society of Anesthesiologists guidance suggesting they be held before sedated procedures. In 2024, multi-society guidance moved toward an individualized, risk-stratified approach rather than a blanket hold, noting that the clear-liquid colonoscopy prep may itself reduce residual stomach contents. The decision is the gastroenterologist\'s. Software\'s role is to apply the clinic\'s chosen rule consistently to every GLP-1 patient.',
       },
       {
         q: 'What software flags GLP-1 patients and adjusts endoscopy prep?',
-        a: 'Aescia for Clinics flags every patient on a GLP-1 medication at intake and applies the clinic\'s authored peri-procedural protocol to them automatically, then resurfaces and confirms it before the procedure date. It does not decide the protocol; the gastroenterologist sets it, and Aescia delivers it consistently rather than relying on front-desk memory. Aescia for Clinics is not a medical device.',
+        a: 'Aescia for Clinics flags every patient on a GLP-1 medication at intake and applies the clinic\'s authored peri-procedural protocol to them automatically, then resurfaces and confirms it before the procedure date. The gastroenterologist sets the protocol, and Aescia delivers it consistently rather than relying on front-desk memory.',
       },
       {
         q: 'How should blood thinners be managed before a colonoscopy?',
@@ -165,10 +153,6 @@ const sections: { eyebrow: string; items: FAQItem[] }[] = [
       {
         q: 'Are you HIPAA compliant and will you sign a Business Associate Agreement?',
         a: 'Aescia is not a covered entity under the United States Health Insurance Portability and Accountability Act (HIPAA) and does not claim HIPAA certification. Aescia for Clinics has no United States customers yet, so no Business Associate Agreements have been signed. For any United States deployment that will handle protected health information (PHI), a Business Associate Agreement is signed before any patient data is exchanged. For planned United States deployments, PHI would be hosted in a United States region on Google Cloud (Firebase Hosting, Cloud Run, Firebase Authentication).',
-      },
-      {
-        q: 'Is Aescia for Clinics regulated by the FDA?',
-        a: 'No. Neither product is a medical device. Both deliver the unit\'s or hospital\'s own instructions and questions, and alert its clinicians on rules it sets. Your clinicians make every clinical decision. Aescia for Clinics delivers clinician-authored prep instructions, reminders, GLP-1 handling and surveillance recall. No FDA, MDSAP, CE/UKCA or Health Canada applications have been filed for either product. The /governance page sets out the regulatory basis in detail.',
       },
       {
         q: 'What does the design-partner guarantee cover, and how do the commercial terms work?',

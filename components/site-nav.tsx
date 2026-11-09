@@ -3,19 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useI18n, LanguageSwitcher } from '@/lib/i18n'
-import { RegulatoryBand } from '@/components/regulatory-band'
 import { TextSizeControls } from '@/components/text-size-controls'
 
 export function SiteNav({
   transparent = false,
-  showRegulatoryBand = true,
   showTextSize = false,
 }: {
   transparent?: boolean
-  // Pages aimed at a known audience (e.g. /safe-discharge for trial
-  // participants) can pass `false` to hide the regulatory-notice band,
-  // which is intended for general public visitors.
-  showRegulatoryBand?: boolean
   // Patient-facing pages (e.g. /safe-discharge) can pass `true` to expose
   // the A / A+ / A++ text-size controls beside the language switcher.
   showTextSize?: boolean
@@ -43,7 +37,6 @@ export function SiteNav({
 
   return (
     <div className="fixed top-0 inset-x-0 z-50">
-      {showRegulatoryBand && <RegulatoryBand />}
       <nav
         aria-label={t('nav.primary')}
         className={`transition-colors duration-500 ${wrapperClass}`}

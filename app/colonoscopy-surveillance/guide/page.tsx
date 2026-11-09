@@ -144,8 +144,8 @@ export default function SurveillanceGuidePage() {
             </div>
             <p className="text-[13px] leading-relaxed text-foreground/72 mb-6">A free reference from Aescia for the endoscopy community, reviewed and periodically updated by the Aescia clinical team.</p>
             <p className="text-[12px] leading-relaxed text-foreground/72">
-              Reference for health professionals. Not medical advice. Not a medical device. Does not
-              make or replace clinical decisions. We review this reference periodically against the
+              Reference for health professionals. Not medical advice. We review this reference
+              periodically against the
               source guidelines and update it when they change, but guidelines are revised without
               notice; verify against the current version before acting. If you notice an error, please
               tell us at{' '}

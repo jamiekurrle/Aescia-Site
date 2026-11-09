@@ -121,8 +121,8 @@ function HeroAligned() {
             className="lg:col-span-4 space-y-8 border-t lg:border-t-0 lg:border-l border-foreground/15 pt-8 lg:pt-0 lg:pl-10"
           >
             {[
-              { k: 'Aescia for Hospitals', v: 'Check-ins and nurse alerts · not a medical device' },
-              { k: 'Aescia for Clinics', v: 'Workflow software · not a medical device' },
+              { k: 'Aescia for Hospitals', v: 'Check-ins and nurse alerts' },
+              { k: 'Aescia for Clinics', v: 'Workflow software' },
               { k: 'Sites', v: 'Sydney · Montréal · Ontario' },
             ].map((item, i) => (
               <motion.div
@@ -266,7 +266,7 @@ function PrincipleStrip() {
     {
       n: '04',
       head: 'Two paths, one platform.',
-      body: 'Check-ins and nurse alerts for hospitals. Prep workflow for clinics. Same backend; neither is a medical device.',
+      body: 'Check-ins and nurse alerts for hospitals. Prep workflow for clinics. Same backend.',
     },
   ]
 

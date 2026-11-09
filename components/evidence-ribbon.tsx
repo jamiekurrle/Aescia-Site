@@ -9,7 +9,6 @@ export function EvidenceRibbon() {
   const facts = [
     { value: t('evidence.fact1.value'), label: t('evidence.fact1.label'), mono: true },
     { value: t('evidence.fact2.value'), label: t('evidence.fact2.label'), mono: false },
-    { value: t('evidence.fact3.value'), label: t('evidence.fact3.label'), mono: false },
   ]
 
   return (

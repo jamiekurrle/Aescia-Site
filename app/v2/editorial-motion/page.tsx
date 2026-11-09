@@ -208,7 +208,7 @@ function AudienceTiles() {
   const cards = [
     {
       eyebrow: 'For hospitals',
-      tag: 'Not a medical device',
+      tag: 'Check-ins and nurse alerts',
       title: 'Structured discharge follow-up that reads like a clinician wrote it.',
       desc:
         "Post-discharge check-ins and nurse alerts, on your hospital's rules. Questions and alert rules written by your clinicians, alerts that follow your escalation protocol, and audit-grade documentation by default.",
@@ -221,7 +221,7 @@ function AudienceTiles() {
       tag: 'Workflow software',
       title: 'Specialty intake, preparation, and follow-up — one place.',
       desc:
-        'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. No clinical decision-support classification. Quick to deploy, slow to break.',
+        'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. Quick to deploy, slow to break.',
       cta: 'Specialty Clinic →',
       href: '/clinics',
       dark: false,
@@ -285,7 +285,7 @@ function PillarsV1() {
       n: '03',
       title: 'Two surfaces, one platform.',
       desc:
-        'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Same engine; neither is a medical device.',
+        'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Same engine.',
     },
   ]
 

@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': 'Endoscopy ASC · Cancellation recovery',
     'backfill.hero.title': 'What is prep-aware waitlist backfill for endoscopy?',
     'backfill.hero.lede': 'Prep-aware waitlist backfill recovers a cancelled colonoscopy slot by routing it to a patient who can actually be prep-ready for that date, not just the next person on the list who says yes. It matters because an empty endoscopy room is lost revenue, and generic backfill cannot recover it: the replacement needs 1 to 2 days of bowel preparation, so offering them tomorrow’s freed slot just produces another no-show. Aescia for Clinics tracks prep state across the active list, so when a slot frees up it can find someone genuinely ready to take it.',
-    'backfill.hero.sub': 'Generic waitlist auto-fill is table-stakes parity that many tools offer. Prep-aware backfill is the genuine differentiator, and Aescia only claims the version it actually builds. Aescia for Clinics has no customers yet and is not a medical device.',
+    'backfill.hero.sub': 'Generic waitlist auto-fill is table-stakes parity that many tools offer. Prep-aware backfill is the genuine differentiator, and Aescia only claims the version it actually builds. Aescia for Clinics has no customers yet.',
 
     'backfill.problem.eyebrow': 'The core problem',
     'backfill.problem.title': 'Why prep-blind backfill fails for colonoscopy.',
@@ -68,7 +68,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': 'ASC d’endoscopie · Récupération des annulations',
     'backfill.hero.title': 'Qu’est-ce que le remplissage de liste d’attente tenant compte de la préparation en endoscopie ?',
     'backfill.hero.lede': 'Le remplissage de liste d’attente tenant compte de la préparation récupère un créneau de coloscopie annulé en l’attribuant à un patient qui peut réellement être prêt en préparation pour cette date, et non simplement à la personne suivante sur la liste qui dit oui. Cela compte parce qu’une salle d’endoscopie vide représente des revenus perdus, et le remplissage générique ne peut pas la récupérer : le remplaçant a besoin de 1 à 2 jours de préparation intestinale, donc lui offrir le créneau libéré de demain ne produit qu’une autre absence. Aescia pour les cliniques suit l’état de préparation sur l’ensemble de la liste active, de sorte que lorsqu’un créneau se libère, il peut trouver quelqu’un de vraiment prêt à le prendre.',
-    'backfill.hero.sub': 'Le remplissage automatique générique de la liste d’attente est une parité de base que de nombreux outils proposent. Le remplissage tenant compte de la préparation est le véritable élément différenciateur, et Aescia ne revendique que la version qu’il construit réellement. Aescia for Clinics n’a pas encore de clients et n’est pas un dispositif médical.',
+    'backfill.hero.sub': 'Le remplissage automatique générique de la liste d’attente est une parité de base que de nombreux outils proposent. Le remplissage tenant compte de la préparation est le véritable élément différenciateur, et Aescia ne revendique que la version qu’il construit réellement. Aescia for Clinics n’a pas encore de clients.',
 
     'backfill.problem.eyebrow': 'Le problème central',
     'backfill.problem.title': 'Pourquoi le remplissage aveugle à la préparation échoue pour la coloscopie.',
@@ -133,7 +133,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': 'ASC de endoscopia · Recuperación de cancelaciones',
     'backfill.hero.title': '¿Qué es el relleno de lista de espera consciente de la preparación para endoscopia?',
     'backfill.hero.lede': 'El relleno de lista de espera consciente de la preparación recupera un espacio de colonoscopia cancelado dirigiéndolo a un paciente que realmente puede estar listo con la preparación para esa fecha, no simplemente a la siguiente persona de la lista que dice que sí. Importa porque una sala de endoscopia vacía son ingresos perdidos, y el relleno genérico no puede recuperarla: el reemplazo necesita de 1 a 2 días de preparación intestinal, así que ofrecerle el espacio liberado de mañana solo produce otra ausencia. Aescia para las clínicas rastrea el estado de preparación en toda la lista activa, de modo que cuando un espacio se libera puede encontrar a alguien genuinamente listo para tomarlo.',
-    'backfill.hero.sub': 'El relleno automático genérico de lista de espera es una paridad básica que muchas herramientas ofrecen. El relleno consciente de la preparación es el verdadero diferenciador, y Aescia solo reclama la versión que realmente construye. Aescia for Clinics aún no tiene clientes y no es un dispositivo médico.',
+    'backfill.hero.sub': 'El relleno automático genérico de lista de espera es una paridad básica que muchas herramientas ofrecen. El relleno consciente de la preparación es el verdadero diferenciador, y Aescia solo reclama la versión que realmente construye. Aescia for Clinics aún no tiene clientes.',
 
     'backfill.problem.eyebrow': 'El problema central',
     'backfill.problem.title': 'Por qué el relleno ciego a la preparación falla para la colonoscopia.',
@@ -198,7 +198,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': '内镜门诊手术中心 · 取消名额恢复',
     'backfill.hero.title': '什么是面向内镜检查的、考虑肠道准备的候补名额回填？',
     'backfill.hero.lede': '考虑肠道准备的候补名额回填，会把一个被取消的结肠镜名额分配给真正能在该日期完成准备的患者，而不仅仅是名单上下一个说愿意的人。这一点很重要，因为空置的内镜检查室意味着收入损失，而通用的回填无法挽回它：替补患者需要1至2天的肠道准备，所以把明天空出的名额给他们，只会再产生一次爽约。Aescia for Clinics 在整个活动名单中跟踪准备状态，因此当一个名额空出时，它能找到真正准备好接手的人。',
-    'backfill.hero.sub': '通用的候补名额自动回填只是许多工具都提供的基础同等功能。考虑肠道准备的回填才是真正的差异化优势，而 Aescia 只主张它实际构建的那个版本。Aescia for Clinics 目前还没有客户，并且不是医疗器械。',
+    'backfill.hero.sub': '通用的候补名额自动回填只是许多工具都提供的基础同等功能。考虑肠道准备的回填才是真正的差异化优势，而 Aescia 只主张它实际构建的那个版本。Aescia for Clinics 目前还没有客户。',
 
     'backfill.problem.eyebrow': '核心问题',
     'backfill.problem.title': '为什么不考虑准备的回填对结肠镜检查行不通。',
@@ -263,7 +263,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': 'مركز جراحة المنظار النهارية · استرداد المواعيد الملغاة',
     'backfill.hero.title': 'ما هو ملء قائمة الانتظار المراعي للتحضير لتنظير القولون؟',
     'backfill.hero.lede': 'يستردّ ملء قائمة الانتظار المراعي للتحضير موعد تنظير قولون ملغى عبر توجيهه إلى مريض يمكنه فعلاً أن يكون جاهزاً بالتحضير لذلك التاريخ، وليس فقط الشخص التالي في القائمة الذي يوافق. وهذا مهم لأن غرفة التنظير الفارغة تعني إيراداً ضائعاً، والملء العام لا يستطيع استردادها: فالبديل يحتاج إلى يوم أو يومين من تحضير الأمعاء، لذا فإن منحه الموعد الذي شغر للغد لا ينتج سوى تغيّب آخر. تتتبّع Aescia for Clinics حالة التحضير عبر القائمة النشطة بأكملها، بحيث إنه عندما يشغر موعد يمكنها أن تجد شخصاً جاهزاً فعلاً لأخذه.',
-    'backfill.hero.sub': 'الملء التلقائي العام لقائمة الانتظار هو تكافؤ أساسي تقدّمه أدوات كثيرة. أما الملء المراعي للتحضير فهو عامل التميّز الحقيقي، ولا تدّعي Aescia سوى النسخة التي تبنيها فعلاً. ليس لدى Aescia for Clinics عملاء بعد، وهي ليست جهازاً طبياً.',
+    'backfill.hero.sub': 'الملء التلقائي العام لقائمة الانتظار هو تكافؤ أساسي تقدّمه أدوات كثيرة. أما الملء المراعي للتحضير فهو عامل التميّز الحقيقي، ولا تدّعي Aescia سوى النسخة التي تبنيها فعلاً. ليس لدى Aescia for Clinics عملاء بعد.',
 
     'backfill.problem.eyebrow': 'المشكلة الجوهرية',
     'backfill.problem.title': 'لماذا يفشل الملء غير المراعي للتحضير في تنظير القولون.',
@@ -328,7 +328,7 @@ export const dict: Record<string, Record<string, string>> = {
     'backfill.hero.eyebrow': 'Trung tâm phẫu thuật nội soi ngoại trú · Khôi phục suất bị hủy',
     'backfill.hero.title': 'Điền danh sách chờ có tính đến chuẩn bị cho nội soi là gì?',
     'backfill.hero.lede': 'Điền danh sách chờ có tính đến chuẩn bị khôi phục một suất nội soi đại tràng bị hủy bằng cách định tuyến nó đến một bệnh nhân thực sự có thể sẵn sàng chuẩn bị cho ngày đó, chứ không chỉ là người tiếp theo trong danh sách nói đồng ý. Điều này quan trọng vì một phòng nội soi trống là doanh thu bị mất, và việc điền chung chung không thể khôi phục nó: người thay thế cần 1 đến 2 ngày chuẩn bị ruột, nên trao cho họ suất trống của ngày mai chỉ tạo ra thêm một lần vắng mặt. Aescia for Clinics theo dõi trạng thái chuẩn bị trên toàn danh sách đang hoạt động, nên khi một suất trống ra, nó có thể tìm được người thực sự sẵn sàng nhận nó.',
-    'backfill.hero.sub': 'Điền tự động danh sách chờ chung chung là mức ngang bằng cơ bản mà nhiều công cụ cung cấp. Điền có tính đến chuẩn bị mới là yếu tố khác biệt thực sự, và Aescia chỉ tuyên bố phiên bản mà nó thực sự xây dựng. Aescia for Clinics chưa có khách hàng nào và không phải là thiết bị y tế.',
+    'backfill.hero.sub': 'Điền tự động danh sách chờ chung chung là mức ngang bằng cơ bản mà nhiều công cụ cung cấp. Điền có tính đến chuẩn bị mới là yếu tố khác biệt thực sự, và Aescia chỉ tuyên bố phiên bản mà nó thực sự xây dựng. Aescia for Clinics chưa có khách hàng nào.',
 
     'backfill.problem.eyebrow': 'Vấn đề cốt lõi',
     'backfill.problem.title': 'Vì sao điền không tính đến chuẩn bị lại thất bại với nội soi đại tràng.',

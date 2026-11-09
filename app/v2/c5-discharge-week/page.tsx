@@ -195,8 +195,8 @@ function ProductPair() {
         </motion.div>
         <div className="grid md:grid-cols-2 gap-px" style={{ background: 'var(--c-border-cool)' }}>
           {[
-            { tag: 'Aescia for Hospitals', t: 'Discharge follow-up, on your rules.', d: 'Post-discharge check-ins and nurse alerts for clinical teams. Not a medical device.', href: '/hospitals' },
-            { tag: 'Specialty Clinic', t: 'Intake, prep, follow-up.', d: 'Workflow software for specialty clinics. Not a medical device. Quick to deploy.', href: '/clinics' },
+            { tag: 'Aescia for Hospitals', t: 'Discharge follow-up, on your rules.', d: 'Post-discharge check-ins and nurse alerts for clinical teams.', href: '/hospitals' },
+            { tag: 'Specialty Clinic', t: 'Intake, prep, follow-up.', d: 'Workflow software for specialty clinics. Quick to deploy.', href: '/clinics' },
           ].map((p) => (
             <Link key={p.tag} href={p.href} className="group block p-10 lg:p-14 transition-opacity hover:opacity-95" style={{ background: 'var(--c-paper)' }}>
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold block mb-8" style={{ color: 'var(--c-mist-deep)' }}>

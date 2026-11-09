@@ -35,7 +35,6 @@ const FACTS: string[] = [
   'ascblock.category',
   'ascblock.founded',
   'ascblock.headquarters',
-  'ascblock.regulatory',
   'ascblock.clinical',
   'ascblock.integration',
   'ascblock.pricing',
