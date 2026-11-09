@@ -62,7 +62,7 @@ export function QuestionField() {
   }, [])
 
   const bubbleClass =
-    'max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_8px_24px_rgba(27,39,69,0.07)] will-change-transform'
+    'max-w-[300px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2 text-[14px] leading-[1.35] shadow-[0_8px_24px_rgba(27,39,69,0.07)] will-change-transform'
 
   let n = 0
   const bubble = (key: string, side: 'left' | 'right', offset = 0) => {
@@ -111,12 +111,12 @@ export function QuestionField() {
     <section className="relative bg-background text-foreground overflow-hidden">
       {/* Wide screens: questions before a procedure on the left, after surgery
           on the right, the text between them. */}
-      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-24">
-        <div className="flex flex-col items-end gap-2.5" aria-hidden="true">
+      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-16">
+        <div className="flex flex-col items-end gap-2" aria-hidden="true">
           {BEFORE_KEYS.map((k, i) => bubble(k, 'left', OFFSETS[i]))}
         </div>
         {centre}
-        <div className="flex flex-col items-start gap-2.5" aria-hidden="true">
+        <div className="flex flex-col items-start gap-2" aria-hidden="true">
           {AFTER_KEYS.map((k, i) => bubble(k, 'right', OFFSETS[(i + 5) % OFFSETS.length]))}
         </div>
       </div>
