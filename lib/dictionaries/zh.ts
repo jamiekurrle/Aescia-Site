@@ -22,7 +22,7 @@ export const zh: Record<string, string> = {
   'hero.trial.label': '临床项目',
   'hero.trial.brief': 'SAFE-Discharge，自 2026 年 6 月起进行中',
   'hero.trial.site': 'Royal Prince Alfred Hospital，Sydney',
-  'home.problem.title': '手术前后，患者大多时间都在家中。',
+  'home.problem.title': 'Aescia 在患者术前术后居家期间为他们提供支持。',
   'home.problem.before': '结肠镜检查前一晚，他们照着一张打印的说明：何时停止进食、如何服用肠道准备药、哪些药物需要暂停。一旦出错，检查就会取消或重做，排期也随之浪费。',
   'home.problem.after': '手术后的几周里，他们手上只有一封出院信和一个电话号码。问题得不到回答时，他们只能等待，或者回到急诊科。',
   'home.problem.tagline': '有了 Aescia，您不再孤单。',

@@ -161,14 +161,14 @@ export function QuestionField() {
     <section className="relative bg-[#1B2745] text-white overflow-hidden">
       {/* Wide screens: questions before a procedure pile up on the left, after
           surgery on the right, the text between them. */}
-      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-20">
+      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 pt-4 pb-20">
         <QuestionPile keys={BEFORE_KEYS} seed={0.11} maxLeft={42} start={10} max={16} firstDelayMs={300} className="h-[640px]" />
         {centre}
         <QuestionPile keys={AFTER_KEYS} seed={0.47} maxLeft={42} start={10} max={16} firstDelayMs={700} className="h-[640px]" />
       </div>
 
       {/* Phones and tablets: a pile above and below the text. */}
-      <div className="xl:hidden max-w-2xl mx-auto px-6 py-16">
+      <div className="xl:hidden max-w-2xl mx-auto px-6 pt-4 pb-16">
         <QuestionPile keys={BEFORE_KEYS} seed={0.11} maxLeft={34} start={6} max={9} firstDelayMs={300} className="h-[260px] mb-10" />
         {centre}
         <QuestionPile keys={AFTER_KEYS} seed={0.47} maxLeft={34} start={6} max={9} firstDelayMs={700} className="h-[260px] mt-12" />

@@ -22,7 +22,7 @@ export const ar: Record<string, string> = {
   'hero.trial.label': 'البرنامج السريري',
   'hero.trial.brief': 'SAFE-Discharge، جارية منذ يونيو 2026',
   'hero.trial.site': 'Royal Prince Alfred Hospital، Sydney',
-  'home.problem.title': 'قبل الإجراء الطبي وبعده، يقضي المرضى معظم الوقت في منازلهم.',
+  'home.problem.title': 'يدعم Aescia المرضى في منازلهم، قبل الإجراء وبعده.',
   'home.problem.before': 'في الليلة التي تسبق تنظير القولون، يتبعون ورقة مطبوعة: متى يتوقفون عن الأكل، وكيف يتناولون مستحضر التحضير، وأي الأدوية يوقفون. إذا حدث خطأ، يُلغى الإجراء أو يُعاد، ويضيع الموعد.',
   'home.problem.after': 'في الأسابيع التي تلي الجراحة، يكون لديهم خطاب خروج ورقم هاتف. عندما يبقى سؤال دون إجابة، ينتظرون، أو يعودون عبر قسم الطوارئ.',
   'home.problem.tagline': 'مع Aescia، لن تكون وحدك.',

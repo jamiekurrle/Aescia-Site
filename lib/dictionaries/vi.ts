@@ -22,7 +22,7 @@ export const vi: Record<string, string> = {
   'hero.trial.label': 'Chương trình lâm sàng',
   'hero.trial.brief': 'SAFE-Discharge, đang diễn ra từ tháng 6 năm 2026',
   'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
-  'home.problem.title': 'Trước và sau một thủ thuật, bệnh nhân phần lớn ở nhà.',
+  'home.problem.title': 'Aescia đồng hành cùng bệnh nhân tại nhà, trước và sau thủ thuật.',
   'home.problem.before': 'Đêm trước khi nội soi đại tràng, họ làm theo một tờ hướng dẫn in sẵn: khi nào ngừng ăn, cách uống thuốc làm sạch ruột, thuốc nào cần tạm ngưng. Nếu có sai sót, thủ thuật bị hủy hoặc phải làm lại, và lịch hẹn bị bỏ phí.',
   'home.problem.after': 'Trong những tuần sau phẫu thuật, họ có một giấy ra viện và một số điện thoại. Khi một câu hỏi không được trả lời, họ chờ đợi, hoặc quay lại qua khoa cấp cứu.',
   'home.problem.tagline': 'Với Aescia, bạn sẽ không đơn độc.',

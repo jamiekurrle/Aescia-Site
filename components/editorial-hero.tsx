@@ -126,7 +126,7 @@ export function EditorialHero() {
         }}
       >
         <div
-          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-12 lg:pb-16 min-h-[56svh] flex flex-col items-center justify-center text-center"
+          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-2 lg:pb-4 min-h-[40svh] flex flex-col items-center justify-center text-center"
         >
           <h1
             ref={headlineRef}
