@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
+import { HeroMetrics } from './hero-metrics'
 
 function Arrow() {
   return (
@@ -86,10 +87,15 @@ export function EditorialHero() {
         }}
       />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-36 pb-20 lg:pb-28">
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-28 lg:pt-32 pb-16 lg:pb-24 min-h-[100svh] flex flex-col">
+        {/* Published figures, one at a time, in the middle of the frame. */}
+        <div className="flex-1 flex items-center lg:justify-end py-10">
+          <HeroMetrics />
+        </div>
+
         <div className="max-w-3xl">
           <h1
-            className="font-display text-[44px] sm:text-[60px] lg:text-[80px] leading-[1.02] tracking-[-0.03em] text-white font-normal"
+            className="font-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.02] tracking-[-0.03em] text-white font-normal"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
             <TypewriterText text={t('home.hero.title')} speedMs={TITLE_SPEED_MS} onDone={() => setTitleDone(true)} />

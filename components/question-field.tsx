@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 
@@ -8,15 +7,23 @@ import { useI18n } from '@/lib/i18n'
 // before a procedure, keys 11-20 and 27-32 to the weeks after it.
 const BEFORE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26].map((n) => `home.q.${n}`)
 const AFTER_KEYS = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 28, 29, 30, 31, 32].map((n) => `home.q.${n}`)
+const PHONE_BEFORE = BEFORE_KEYS.slice(0, 8)
+const PHONE_AFTER = AFTER_KEYS.slice(0, 8)
 
-// Small fixed offsets so each column's edge is uneven rather than ruled.
-const OFFSETS = [0, 36, 12, 52, 4, 28, 60, 16, 44, 8, 32, 0, 48, 20, 56, 24]
+// Each question loops on the same cycle, offset so a new one appears every
+// second or so and four to five are on screen at once, overlapping.
+const CYCLE_S = 18
 
-// Phones: a shorter mix, alternating before and after.
-const PHONE_KEYS = BEFORE_KEYS.slice(0, 6).flatMap((k, i) => [k, AFTER_KEYS[i]])
+function frac(x: number) {
+  return x - Math.floor(x)
+}
 
-function clamp(v: number, lo: number, hi: number) {
-  return Math.min(hi, Math.max(lo, v))
+// Quasi-random but fixed positions (no layout shift between renders).
+function spot(i: number, seed: number, maxLeft: number) {
+  return {
+    top: `${(frac(i * 0.6180339 + seed) * 86).toFixed(1)}%`,
+    left: `${(frac(i * 0.7548776 + seed * 1.7) * maxLeft).toFixed(1)}%`,
+  }
 }
 
 function Arrow() {
@@ -29,60 +36,26 @@ function Arrow() {
 
 export function QuestionField() {
   const { t } = useI18n()
-  const bubbles = useRef<(HTMLElement | null)[]>([])
 
-  // Each question is fully visible through the middle of the screen and fades
-  // towards the top and bottom edges as the page scrolls.
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let frame = 0
-    const paint = () => {
-      frame = 0
-      const vh = window.innerHeight
-      for (const el of bubbles.current) {
-        if (!el || el.offsetParent === null) continue
-        const r = el.getBoundingClientRect()
-        const d = Math.abs((r.top + r.height / 2) / vh - 0.5)
-        const o = clamp(1 - (d - 0.28) / 0.24, 0, 1)
-        el.style.opacity = String(reduce.matches ? Math.max(o, 0.35) : o)
-        el.style.transform = reduce.matches ? 'none' : `translateY(${(((r.top + r.height / 2) / vh - 0.5) * -24).toFixed(1)}px)`
-      }
-    }
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(paint)
-    }
-    paint()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      if (frame) cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
-  }, [])
-
-  const bubbleClass =
-    'max-w-[300px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2 text-[14px] leading-[1.35] shadow-[0_8px_24px_rgba(27,39,69,0.07)] will-change-transform'
-
-  let n = 0
-  const bubble = (key: string, side: 'left' | 'right', offset = 0) => {
-    const i = n++
-    return (
-      <p
-        key={`${side}-${key}-${i}`}
-        ref={(el) => {
-          bubbles.current[i] = el
-        }}
-        className={`${bubbleClass} ${side === 'left' ? 'rounded-br-md' : 'rounded-bl-md'}`}
-        style={offset ? (side === 'left' ? { marginRight: offset } : { marginLeft: offset }) : undefined}
-      >
-        {t(key)}
-      </p>
-    )
-  }
+  const cloud = (keys: string[], seed: number, maxLeft: number, offsetS: number, className: string) => (
+    <div className={`relative ${className}`} aria-hidden="true">
+      {keys.map((key, i) => (
+        <p
+          key={key}
+          className="q-pop absolute max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_10px_30px_rgba(27,39,69,0.10)]"
+          style={{
+            ...spot(i, seed, maxLeft),
+            animationDelay: `${-(i * (CYCLE_S / keys.length) + offsetS).toFixed(2)}s`,
+          }}
+        >
+          {t(key)}
+        </p>
+      ))}
+    </div>
+  )
 
   const centre = (
-    <div>
+    <div className="relative z-10">
       <h2
         className="font-display text-[34px] lg:text-[44px] leading-[1.08] tracking-[-0.02em] font-normal"
         style={{ fontVariationSettings: "'opsz' 144" }}
@@ -109,28 +82,55 @@ export function QuestionField() {
 
   return (
     <section className="relative bg-background text-foreground overflow-hidden">
-      {/* Wide screens: questions before a procedure on the left, after surgery
-          on the right, the text between them. */}
-      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-16">
-        <div className="flex flex-col items-end gap-2" aria-hidden="true">
-          {BEFORE_KEYS.map((k, i) => bubble(k, 'left', OFFSETS[i]))}
-        </div>
+      {/* Wide screens: questions before a procedure appear on the left, after
+          surgery on the right, the text between them. */}
+      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-20">
+        {cloud(BEFORE_KEYS, 0.11, 42, 0, 'h-[640px]')}
         {centre}
-        <div className="flex flex-col items-start gap-2" aria-hidden="true">
-          {AFTER_KEYS.map((k, i) => bubble(k, 'right', OFFSETS[(i + 5) % OFFSETS.length]))}
-        </div>
+        {cloud(AFTER_KEYS, 0.47, 42, CYCLE_S / 32, 'h-[640px]')}
       </div>
 
-      {/* Phones and tablets: the text, then a shorter set of questions. */}
-      <div className="xl:hidden max-w-2xl mx-auto px-6 py-20">
-        <div className="flex flex-wrap gap-2 mb-12" aria-hidden="true">
-          {PHONE_KEYS.slice(0, 6).map((k) => bubble(k, 'right'))}
-        </div>
+      {/* Phones and tablets: a band of questions above and below the text. */}
+      <div className="xl:hidden max-w-2xl mx-auto px-6 py-16">
+        {cloud(PHONE_BEFORE, 0.11, 34, 0, 'h-[260px] mb-10')}
         {centre}
-        <div className="flex flex-wrap justify-end gap-2 mt-12" aria-hidden="true">
-          {PHONE_KEYS.slice(6).map((k) => bubble(k, 'left'))}
-        </div>
+        {cloud(PHONE_AFTER, 0.47, 34, CYCLE_S / 16, 'h-[260px] mt-12')}
       </div>
+
+      <style jsx global>{`
+        .q-pop {
+          opacity: 0;
+          animation: q-pop ${CYCLE_S}s ease-in-out infinite;
+          will-change: opacity, transform;
+        }
+        @keyframes q-pop {
+          0% {
+            opacity: 0;
+            transform: translateY(10px) scale(0.97);
+          }
+          4% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          26% {
+            opacity: 1;
+            transform: translateY(-4px) scale(1);
+          }
+          31% {
+            opacity: 0;
+            transform: translateY(-10px) scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-10px) scale(1);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .q-pop {
+            transform: none !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }
