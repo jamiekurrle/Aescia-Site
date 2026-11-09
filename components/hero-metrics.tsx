@@ -12,7 +12,7 @@ import { TypewriterText } from './typewriter-text'
 // Aescia delivers the team's content, the team decides.
 type Slide = { ask: number; metric: number; say: number } | { say: number }
 const SLIDES: Slide[] = [
-  { ask: 7, metric: 9, say: 5 }, // talk to the surgeon, before or after? -> over 4 in 10 complications at home -> check-ins before and after
+  { ask: 7, metric: 11, say: 5 }, // talk to the surgeon, before or after? -> 6 to 8 in 10 have held something back (Levy 2018) -> check-ins before and after
   { ask: 8, metric: 10, say: 7 }, // called off on the day -> about 1 in 6 no-show or same-day cancellation -> each step done in time
   { ask: 3, metric: 1, say: 6 }, // unsure the prep worked -> up to 1 in 4 inadequate -> each prep step on time
   { say: 4 }, // no one left wondering what to do
