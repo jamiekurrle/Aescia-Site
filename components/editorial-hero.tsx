@@ -93,7 +93,7 @@ export function EditorialHero() {
           <HeroMetrics />
         </div>
 
-        <div className="max-w-3xl">
+        <div className="max-w-3xl mx-auto text-center">
           <h1
             className="font-display text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.04] tracking-[-0.03em] text-white font-normal"
             style={{ fontVariationSettings: "'opsz' 144" }}
@@ -102,7 +102,7 @@ export function EditorialHero() {
           </h1>
 
           <p
-            className={`hero-reveal mt-5 max-w-xl text-[17px] lg:text-[19px] leading-[1.55] text-white/90 font-sans ${titleDone ? 'hero-reveal-in' : ''}`}
+            className={`hero-reveal mt-5 mx-auto max-w-xl text-[17px] lg:text-[19px] leading-[1.55] text-white/90 font-sans ${titleDone ? 'hero-reveal-in' : ''}`}
           >
             {t('home.hero.subtitle')}
           </p>

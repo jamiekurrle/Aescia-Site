@@ -115,6 +115,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.ask.1': 'Ever felt anxious that you don\'t know what to do?',
     'home.ask.2': 'Ever not known whether you should call your surgical team?',
     'home.ask.3': 'Ever done the prep and not been sure it worked?',
+    'home.trust.title': 'Secure and private.',
+    'home.trust.iso': 'certified hosting providers',
+    'home.trust.app.value': 'Australian Privacy Principles',
+    'home.trust.app.label': 'guide how we handle personal information',
+    'home.trust.link': 'Read about security',
 
     // Audience split
     'split.hospital.eyebrow': 'For Hospitals',
@@ -609,6 +614,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.ask.1': 'Vous êtes-vous déjà senti anxieux de ne pas savoir quoi faire ?',
     'home.ask.2': 'Vous êtes-vous déjà demandé s\'il fallait appeler votre équipe chirurgicale ?',
     'home.ask.3': 'Avez-vous déjà fait la préparation sans savoir si elle avait marché ?',
+    'home.trust.title': 'Sécurisé et confidentiel.',
+    'home.trust.iso': 'hébergeurs certifiés',
+    'home.trust.app.value': 'Principes australiens de protection de la vie privée',
+    'home.trust.app.label': 'guident notre traitement des données personnelles',
+    'home.trust.link': 'En savoir plus sur la sécurité',
 
     'split.hospital.eyebrow': 'Pour les hôpitaux',
     'split.hospital.title': 'Le suivi après la chirurgie, selon vos règles.',
@@ -1071,6 +1081,11 @@ const translations: Record<Locale, Record<string, string>> = {
     'home.ask.1': '¿Alguna vez te has sentido ansioso sin saber qué hacer?',
     'home.ask.2': '¿Alguna vez no supiste si debías llamar a tu equipo quirúrgico?',
     'home.ask.3': '¿Alguna vez hiciste la preparación sin saber si había funcionado?',
+    'home.trust.title': 'Seguro y privado.',
+    'home.trust.iso': 'proveedores de alojamiento certificados',
+    'home.trust.app.value': 'Principios Australianos de Privacidad',
+    'home.trust.app.label': 'guían cómo tratamos los datos personales',
+    'home.trust.link': 'Más sobre seguridad',
 
     'split.hospital.eyebrow': 'Para Hospitales',
     'split.hospital.title': 'Seguimiento tras la cirugía, con sus reglas.',
