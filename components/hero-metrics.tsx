@@ -7,8 +7,17 @@ import { useI18n } from '@/lib/i18n'
 // Every figure carries its source line; keep them in step with
 // Business-Brain (tga-claims-guide, au-cardiac-surgery-readmission-benchmarks).
 const METRIC_COUNT = 8
-const HOLD_MS = 5600
-const FADE_MS = 700 // keep in step with the 700ms transition below
+// Display order, strongest first: forgetting, readmission, prep, wrong
+// hospital, anxiety, missed adenomas, lost surveillance, Canada.
+const ORDER = [4, 2, 1, 6, 3, 5, 7, 8]
+const FADE_MS = 400 // keep in step with the 400ms transition below
+
+// Long enough to read the figure and its line once, and no longer.
+// Chinese characters carry about a word each, so they count triple.
+function holdMs(text: string) {
+  const weight = /[぀-鿿]/.test(text) ? 3 : 1
+  return Math.min(4600, Math.max(2400, 900 + text.length * weight * 32))
+}
 
 export function HeroMetrics() {
   const { t } = useI18n()
@@ -25,14 +34,14 @@ export function HeroMetrics() {
         setIndex((i) => (i + 1) % METRIC_COUNT)
         setVisible(true)
       }, FADE_MS)
-    }, HOLD_MS)
+    }, holdMs(t(`home.metric.${ORDER[index]}.value`) + t(`home.metric.${ORDER[index]}.label`)))
     return () => {
       clearTimeout(hold)
       clearTimeout(swap)
     }
-  }, [index, paused])
+  }, [index, paused, t])
 
-  const n = index + 1
+  const n = ORDER[index]
 
   return (
     <div
@@ -67,7 +76,7 @@ export function HeroMetrics() {
 
       <style jsx>{`
         .metric-fade {
-          transition: opacity 700ms ease, transform 700ms ease;
+          transition: opacity 400ms ease, transform 400ms ease;
         }
         @media (prefers-reduced-motion: reduce) {
           .metric-fade {
