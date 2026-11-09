@@ -27,6 +27,7 @@ export const vi: Record<string, string> = {
   'home.problem.after': 'Trong những tuần sau phẫu thuật, họ có một giấy ra viện và một số điện thoại. Khi một câu hỏi không được trả lời, họ chờ đợi, hoặc quay lại qua khoa cấp cứu.',
   'home.problem.tagline': 'Với Aescia, bạn sẽ không đơn độc.',
   'home.hero.title': 'Chúng ta cần chăm sóc tốt hơn trước và sau khi nằm viện.',
+  'home.hero.cta': 'Tìm hiểu cách thực hiện',
   'home.hero.subtitle': 'Bệnh nhân nhận hướng dẫn và các lần hỏi thăm của đội ngũ chăm sóc đúng lúc, qua tin nhắn và email. Điều dưỡng thấy những câu trả lời cần họ xử lý.',
   'home.q.1': 'Khi nào tôi phải ngừng ăn?',
   'home.q.2': 'Tôi có được tiếp tục uống thuốc chống đông không?',

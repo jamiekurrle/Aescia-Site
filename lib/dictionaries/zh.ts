@@ -27,6 +27,7 @@ export const zh: Record<string, string> = {
   'home.problem.after': '手术后的几周里，他们手上只有一封出院信和一个电话号码。问题得不到回答时，他们只能等待，或者回到急诊科。',
   'home.problem.tagline': '有了 Aescia，您不再孤单。',
   'home.hero.title': '我们需要住院前后更好的照护。',
+  'home.hero.cta': '了解如何做到',
   'home.hero.subtitle': '患者通过短信和电子邮件，在合适的时间收到医护团队的指导和随访问询。护士能看到需要他们处理的回答。',
   'home.q.1': '我什么时候开始禁食？',
   'home.q.2': '我还能继续吃抗凝药吗？',

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
 
@@ -18,7 +18,7 @@ const SLIDES = [
 // (styled-jsx cannot take interpolated constants).
 const TYPE_SPEED_MS = 22 // question and label; keep in step with TITLE_SPEED_MS in editorial-hero
 const VALUE_SPEED_MS = 55 // the large figure types more slowly
-const PAUSE_MS = 880 // beat on the finished question before it shrinks
+const PAUSE_MS = 1380 // time to read the finished question before it shrinks
 const SQUEEZE_MS = 320 // question shrinks and the answer opens (320ms below)
 const OUT_MS = 640 // both parts roll down and go (480ms + 160ms stagger below)
 
@@ -40,6 +40,10 @@ export function HeroMetrics() {
   const [askTyped, setAskTyped] = useState(false)
   const [valueTyped, setValueTyped] = useState(false)
   const [labelTyped, setLabelTyped] = useState(false)
+  // While answered, the question's width is pinned in em so it shrinks with
+  // its font size and keeps the same line breaks it had at full size.
+  const [askWidthEm, setAskWidthEm] = useState<number | null>(null)
+  const askRef = useRef<HTMLParagraphElement>(null)
 
   const slide = SLIDES[index]
   const ask = t(`home.ask.${slide.ask}`)
@@ -59,7 +63,14 @@ export function HeroMetrics() {
     let timer: ReturnType<typeof setTimeout> | undefined
     if (phase === 'ask') {
       if (!askTyped) return
-      timer = setTimeout(() => setPhase('answer'), PAUSE_MS)
+      timer = setTimeout(() => {
+        const el = askRef.current
+        if (el) {
+          const fontPx = parseFloat(getComputedStyle(el).fontSize)
+          if (fontPx > 0) setAskWidthEm(el.getBoundingClientRect().width / fontPx)
+        }
+        setPhase('answer')
+      }, PAUSE_MS)
     } else if (phase === 'answer') {
       if (!labelTyped) return
       timer = setTimeout(() => setPhase('out'), holdMs(ask + value + label))
@@ -69,6 +80,7 @@ export function HeroMetrics() {
         setAskTyped(false)
         setValueTyped(false)
         setLabelTyped(false)
+        setAskWidthEm(null)
         setPhase('ask')
       }, OUT_MS)
     }
@@ -86,10 +98,14 @@ export function HeroMetrics() {
     >
       {/* The question types out large, then shrinks above its answer in the same type. */}
       <p
+        ref={askRef}
         className={`hm-ask hm-roll mx-auto max-w-4xl font-display font-semibold tracking-[-0.02em] text-white text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
           answering ? 'text-[clamp(22px,2.6vw,38px)] leading-[1.12]' : 'text-[clamp(30px,4.6vw,68px)] leading-[1.05]'
         } ${leaving ? 'hm-gone hm-late' : ''}`}
-        style={{ fontVariationSettings: "'opsz' 144" }}
+        style={{
+          fontVariationSettings: "'opsz' 144",
+          maxWidth: answering && askWidthEm ? `${askWidthEm}em` : undefined,
+        }}
       >
         <TypewriterText key={`q-${index}-${ask}`} text={ask} speedMs={TYPE_SPEED_MS} onDone={() => setAskTyped(true)} />
       </p>
