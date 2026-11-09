@@ -1,14 +1,6 @@
 import { SiteNav } from '@/components/site-nav'
 import { EditorialHero } from '@/components/editorial-hero'
-import { InstrumentPanel } from '@/components/instrument-panel'
-import { CredibilityFacts } from '@/components/credibility-facts'
-import { AudienceSplit } from '@/components/audience-split'
-import { TrustStrip } from '@/components/trust-strip'
-import { PlatformBlurb } from '@/components/platform-blurb'
-import { Pillars } from '@/components/pillars'
-import { EvidenceRibbon } from '@/components/evidence-ribbon'
-import { PartnersStrip } from '@/components/partners-strip'
-import { CTASection } from '@/components/cta-section'
+import { ProblemSection } from '@/components/problem-section'
 import { Footer } from '@/components/footer'
 import { medicalStudySchema, softwareApplicationSchema, webPageSchema } from '@/lib/schema'
 
@@ -44,15 +36,7 @@ export default function Home() {
       />
       <SiteNav transparent />
       <EditorialHero />
-      <InstrumentPanel />
-      <CredibilityFacts />
-      <AudienceSplit />
-      <TrustStrip />
-      <PlatformBlurb />
-      <Pillars />
-      <EvidenceRibbon />
-      <PartnersStrip />
-      <CTASection />
+      <ProblemSection />
       <Footer />
     </main>
   )

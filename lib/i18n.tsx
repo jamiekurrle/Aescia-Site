@@ -50,6 +50,10 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.trial.label': 'Clinical programme',
     'hero.trial.brief': 'SAFE-Discharge, live since June 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
+    'home.problem.title': 'Before and after a procedure, patients are mostly at home.',
+    'home.problem.before': 'The night before a colonoscopy, they follow a printed sheet: when to stop eating, how to take the prep, which medicines to hold. If something goes wrong, the procedure is cancelled or repeated and the slot is lost.',
+    'home.problem.after': 'In the weeks after surgery, they have a discharge letter and a phone number. When a question goes unanswered, they wait, or they come back through the emergency department.',
+    'home.problem.tagline': 'With Aescia, you won\'t be alone.',
 
     // Audience split
     'split.hospital.eyebrow': 'For Hospitals',
@@ -479,6 +483,10 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.trial.label': 'Programme clinique',
     'hero.trial.brief': 'SAFE-Discharge, en cours depuis juin 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sydney',
+    'home.problem.title': 'Avant et après une intervention, les patients sont surtout chez eux.',
+    'home.problem.before': 'La veille d\'une coloscopie, ils suivent une feuille imprimée : quand arrêter de manger, comment prendre la préparation, quels médicaments suspendre. Si quelque chose se passe mal, l\'examen est annulé ou à refaire, et le créneau est perdu.',
+    'home.problem.after': 'Dans les semaines qui suivent une chirurgie, ils ont une lettre de sortie et un numéro de téléphone. Quand une question reste sans réponse, ils attendent, ou ils reviennent par les urgences.',
+    'home.problem.tagline': 'Avec Aescia, vous ne serez pas seul.',
 
     'split.hospital.eyebrow': 'Pour les hôpitaux',
     'split.hospital.title': 'Le suivi après la chirurgie, selon vos règles.',
@@ -876,6 +884,10 @@ const translations: Record<Locale, Record<string, string>> = {
     'hero.trial.label': 'Programa clínico',
     'hero.trial.brief': 'SAFE-Discharge, en marcha desde junio de 2026',
     'hero.trial.site': 'Royal Prince Alfred Hospital, Sídney',
+    'home.problem.title': 'Antes y después de un procedimiento, los pacientes están casi siempre en casa.',
+    'home.problem.before': 'La noche antes de una colonoscopia, siguen una hoja impresa: cuándo dejar de comer, cómo tomar la preparación, qué medicamentos suspender. Si algo sale mal, el procedimiento se cancela o se repite, y el turno se pierde.',
+    'home.problem.after': 'En las semanas posteriores a la cirugía, tienen una carta de alta y un número de teléfono. Cuando una pregunta queda sin respuesta, esperan, o vuelven por urgencias.',
+    'home.problem.tagline': 'Con Aescia, no estarás solo.',
 
     'split.hospital.eyebrow': 'Para Hospitales',
     'split.hospital.title': 'Seguimiento tras la cirugía, con sus reglas.',
