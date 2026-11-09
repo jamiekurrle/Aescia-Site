@@ -107,7 +107,7 @@ export const vi: Record<string, string> = {
   'home.metric.9.value': 'Hơn 4 trên 10',
   'home.metric.9.label': 'biến chứng sau phẫu thuật xuất hiện khi bệnh nhân đã về nhà.',
   'home.metric.9.source': 'Kazaure và cộng sự, Archives of Surgery 2012 (551.510 bệnh nhân phẫu thuật tại Hoa Kỳ)',
-  'home.story.5': 'Aescia hỏi thăm bạn trước và sau, và điều dưỡng của bạn thấy những câu trả lời họ đã yêu cầu được xem.',
+  'home.story.5': 'Aescia hỏi thăm bệnh nhân để vấn đề đến được đội ngũ chăm sóc sớm, khi vẫn còn khắc phục được.',
   'home.story.6': 'Aescia gửi từng bước chuẩn bị đúng lúc bạn cần thực hiện.',
   'home.ask.8': 'Bạn đã bao giờ mất một khung giờ thủ thuật vì bệnh nhân chưa sẵn sàng?',
   'home.metric.10.value': 'Khoảng 1 trên 6',

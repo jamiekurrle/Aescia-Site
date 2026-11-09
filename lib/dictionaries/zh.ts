@@ -107,7 +107,7 @@ export const zh: Record<string, string> = {
   'home.metric.9.value': '超过十分之四',
   'home.metric.9.label': '的术后并发症在患者回家后才出现。',
   'home.metric.9.source': 'Kazaure 等，《Archives of Surgery》2012（美国 551,510 名手术患者）',
-  'home.story.5': 'Aescia 在术前术后都会询问你的情况，你的护士能看到他们要求查看的回答。',
+  'home.story.5': 'Aescia 定期询问患者情况，让问题尽早传到医护团队，趁还来得及处理。',
   'home.story.6': 'Aescia 会在你需要进行每一步肠道准备时，及时发送该步骤的说明。',
   'home.ask.8': '你是否曾因患者没有准备好而损失一个手术时段？',
   'home.metric.10.value': '约六分之一',
