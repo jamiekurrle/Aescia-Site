@@ -11,7 +11,7 @@ export function HomeTrust() {
   const items = [
     { value: t('trust.item1.value'), label: t('trust.item1.label') },
     { value: t('trust.item2.value'), label: t('trust.item2.label') },
-    { value: 'ISO 27001 · SOC 2', label: t('home.trust.iso') },
+    { value: t('home.trust.host.value'), label: t('home.trust.host.label') },
     { value: t('home.trust.app.value'), label: t('home.trust.app.label') },
     { value: t('trust.item3.value'), label: t('trust.item3.label') },
   ]
