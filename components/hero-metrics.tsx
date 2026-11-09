@@ -36,7 +36,7 @@ export function HeroMetrics() {
 
   return (
     <div
-      className="max-w-md"
+      className="w-full max-w-5xl mx-auto text-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -44,19 +44,19 @@ export function HeroMetrics() {
     >
       <div
         className="metric-fade"
-        style={{ opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(6px)' }}
+        style={{ opacity: visible ? 1 : 0, transform: visible ? 'none' : 'translateY(10px) scale(0.98)' }}
       >
         <p
-          className="font-display text-[48px] sm:text-[60px] lg:text-[72px] leading-[1] tracking-[-0.03em] text-white"
+          className="font-display font-semibold text-[clamp(56px,11vw,180px)] text-balance leading-[0.92] tracking-[-0.04em] text-white [text-shadow:0_4px_40px_rgba(15,26,51,0.55)]"
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
           {t(`home.metric.${n}.value`)}
         </p>
-        <p className="mt-3 text-[17px] lg:text-[19px] leading-[1.45] text-white/90">{t(`home.metric.${n}.label`)}</p>
-        <p className="mt-3 text-[12px] leading-[1.4] text-white/60">{t(`home.metric.${n}.source`)}</p>
+        <p className="mt-5 lg:mt-7 mx-auto max-w-3xl text-[clamp(19px,2.2vw,32px)] leading-[1.3] font-medium text-white [text-shadow:0_2px_24px_rgba(15,26,51,0.6)]">{t(`home.metric.${n}.label`)}</p>
+        <p className="mt-4 text-[12px] lg:text-[13px] leading-[1.4] text-white/70">{t(`home.metric.${n}.source`)}</p>
       </div>
 
-      <div className="mt-6 flex gap-1.5" aria-hidden="true">
+      <div className="mt-8 flex justify-center gap-1.5" aria-hidden="true">
         {Array.from({ length: METRIC_COUNT }, (_, i) => (
           <span
             key={i}

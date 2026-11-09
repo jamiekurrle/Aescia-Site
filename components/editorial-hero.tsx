@@ -76,38 +76,38 @@ export function EditorialHero() {
           <source src="/hero-video-v2.mp4" type="video/mp4" />
         </video>
       )}
-      {/* Shade weighted to the lower left, where the text sits, so the copy
-          reads at full contrast while the right of the frame stays bright. */}
+      {/* Shade behind the centred figures and the headline at the foot of the
+          frame, so white text reads at full contrast over any video frame. */}
       <div
         className="absolute inset-0"
         aria-hidden="true"
         style={{
           background:
-            'linear-gradient(to top, rgba(27, 39, 69, 0.88) 0%, rgba(27, 39, 69, 0.55) 40%, rgba(27, 39, 69, 0.15) 75%), linear-gradient(to right, rgba(27, 39, 69, 0.55) 0%, transparent 65%)',
+            'radial-gradient(ellipse 75% 55% at 50% 45%, rgba(27, 39, 69, 0.55), transparent 75%), linear-gradient(to top, rgba(27, 39, 69, 0.92) 0%, rgba(27, 39, 69, 0.5) 35%, rgba(27, 39, 69, 0.3) 100%)',
         }}
       />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-28 lg:pt-32 pb-16 lg:pb-24 min-h-[100svh] flex flex-col">
         {/* Published figures, one at a time, in the middle of the frame. */}
-        <div className="flex-1 flex items-center lg:justify-end py-10">
+        <div className="flex-1 flex items-center justify-center py-10 lg:py-14">
           <HeroMetrics />
         </div>
 
         <div className="max-w-3xl">
           <h1
-            className="font-display text-[40px] sm:text-[56px] lg:text-[72px] leading-[1.02] tracking-[-0.03em] text-white font-normal"
+            className="font-display text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.04] tracking-[-0.03em] text-white font-normal"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
             <TypewriterText text={t('home.hero.title')} speedMs={TITLE_SPEED_MS} onDone={() => setTitleDone(true)} />
           </h1>
 
           <p
-            className={`hero-reveal mt-8 max-w-xl text-[18px] lg:text-[21px] leading-[1.55] text-white/90 font-sans ${titleDone ? 'hero-reveal-in' : ''}`}
+            className={`hero-reveal mt-5 max-w-xl text-[17px] lg:text-[19px] leading-[1.55] text-white/90 font-sans ${titleDone ? 'hero-reveal-in' : ''}`}
           >
             {t('home.hero.subtitle')}
           </p>
 
-          <div className={`hero-reveal hero-reveal-delay-1 mt-10 ${titleDone ? 'hero-reveal-in' : ''}`}>
+          <div className={`hero-reveal hero-reveal-delay-1 mt-8 ${titleDone ? 'hero-reveal-in' : ''}`}>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center bg-white text-[#1B2745] px-7 py-4 text-[15px] font-medium tracking-wide hover:bg-white/90 transition-colors min-h-[48px]"
