@@ -4,26 +4,16 @@ import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { useI18n } from '@/lib/i18n'
 
-// Questions patients ask at home. The first ten belong to the days before a
-// procedure, the last ten to the weeks after it, so they scroll past in the
-// same order as the two paragraphs in the pinned centre column.
-const BEFORE_COUNT = 10
-const AFTER_COUNT = 10
-const QUESTION_KEYS = Array.from({ length: BEFORE_COUNT + AFTER_COUNT }, (_, i) => `home.q.${i + 1}`)
+// Questions patients ask at home. Keys 1-10 and 21-26 belong to the days
+// before a procedure, keys 11-20 and 27-32 to the weeks after it.
+const BEFORE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26].map((n) => `home.q.${n}`)
+const AFTER_KEYS = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 28, 29, 30, 31, 32].map((n) => `home.q.${n}`)
 
-// Desktop placement: alternate sides, each half of the scroll holds its own
-// ten questions, and a small fixed inset pattern keeps the edges uneven.
-const INSETS = [2, 6, 3.5, 8, 1.5, 5, 7, 3, 6.5, 2.5]
-function placement(i: number) {
-  const half = i < BEFORE_COUNT ? 0 : 1
-  const j = half === 0 ? i : i - BEFORE_COUNT
-  const count = half === 0 ? BEFORE_COUNT : AFTER_COUNT
-  const start = half === 0 ? 5 : 53
-  const span = 40
-  const top = start + (j / (count - 1)) * span
-  const side: 'left' | 'right' = i % 2 === 0 ? 'left' : 'right'
-  return { top, side, inset: INSETS[j % INSETS.length] }
-}
+// Small fixed offsets so each column's edge is uneven rather than ruled.
+const OFFSETS = [0, 36, 12, 52, 4, 28, 60, 16, 44, 8, 32, 0, 48, 20, 56, 24]
+
+// Phones: a shorter mix, alternating before and after.
+const PHONE_KEYS = BEFORE_KEYS.slice(0, 6).flatMap((k, i) => [k, AFTER_KEYS[i]])
 
 function clamp(v: number, lo: number, hi: number) {
   return Math.min(hi, Math.max(lo, v))
@@ -39,159 +29,107 @@ function Arrow() {
 
 export function QuestionField() {
   const { t } = useI18n()
-  const fieldRef = useRef<HTMLDivElement>(null)
-  const bubbleRefs = useRef<(HTMLElement | null)[]>([])
-  const beforeRef = useRef<HTMLParagraphElement>(null)
-  const afterRef = useRef<HTMLParagraphElement>(null)
+  const bubbles = useRef<(HTMLElement | null)[]>([])
 
+  // Each question is fully visible through the middle of the screen and fades
+  // towards the top and bottom edges as the page scrolls.
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
-
     const paint = () => {
       frame = 0
       const vh = window.innerHeight
-      const still = reduce.matches
-
-      // Each question is fully visible through the middle of the screen and
-      // fades out towards the top and bottom edges.
-      for (const el of bubbleRefs.current) {
+      for (const el of bubbles.current) {
         if (!el || el.offsetParent === null) continue
         const r = el.getBoundingClientRect()
-        const c = (r.top + r.height / 2) / vh
-        const d = Math.abs(c - 0.5)
-        const o = clamp(1 - (d - 0.14) / 0.3, 0, 1)
-        el.style.opacity = String(still ? Math.max(o, 0.25) : o)
-        el.style.transform = still ? 'none' : `translateY(${((c - 0.5) * -36).toFixed(1)}px)`
-      }
-
-      // Pinned centre column: the "before" paragraph is bright for the first
-      // half of the scroll, the "after" paragraph for the second.
-      const field = fieldRef.current
-      if (field && field.offsetParent !== null && beforeRef.current && afterRef.current) {
-        const r = field.getBoundingClientRect()
-        const p = clamp(-r.top / Math.max(1, r.height - vh), 0, 1)
-        const b = clamp((0.56 - p) / 0.12, 0, 1)
-        const a = clamp((p - 0.44) / 0.12, 0, 1)
-        beforeRef.current.style.opacity = String(0.3 + 0.7 * b)
-        afterRef.current.style.opacity = String(0.3 + 0.7 * a)
+        const d = Math.abs((r.top + r.height / 2) / vh - 0.5)
+        const o = clamp(1 - (d - 0.28) / 0.24, 0, 1)
+        el.style.opacity = String(reduce.matches ? Math.max(o, 0.35) : o)
+        el.style.transform = reduce.matches ? 'none' : `translateY(${(((r.top + r.height / 2) / vh - 0.5) * -24).toFixed(1)}px)`
       }
     }
-
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(paint)
     }
-
     paint()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
-    reduce.addEventListener('change', onScroll)
     return () => {
       if (frame) cancelAnimationFrame(frame)
       window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onScroll)
-      reduce.removeEventListener('change', onScroll)
     }
   }, [])
 
   const bubbleClass =
-    'max-w-[280px] rounded-2xl bg-card text-card-foreground border border-border px-5 py-3.5 text-[15px] leading-[1.45] shadow-[0_10px_30px_rgba(27,39,69,0.08)] will-change-transform transition-opacity duration-150'
+    'max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_8px_24px_rgba(27,39,69,0.07)] will-change-transform'
 
-  const title = (
-    <h2
-      className="font-display text-[34px] lg:text-[46px] leading-[1.08] tracking-[-0.02em] font-normal"
-      style={{ fontVariationSettings: "'opsz' 144" }}
-    >
-      {t('home.problem.title')}
-    </h2>
+  let n = 0
+  const bubble = (key: string, side: 'left' | 'right', offset = 0) => {
+    const i = n++
+    return (
+      <p
+        key={`${side}-${key}-${i}`}
+        ref={(el) => {
+          bubbles.current[i] = el
+        }}
+        className={`${bubbleClass} ${side === 'left' ? 'rounded-br-md' : 'rounded-bl-md'}`}
+        style={offset ? (side === 'left' ? { marginRight: offset } : { marginLeft: offset }) : undefined}
+      >
+        {t(key)}
+      </p>
+    )
+  }
+
+  const centre = (
+    <div>
+      <h2
+        className="font-display text-[34px] lg:text-[44px] leading-[1.08] tracking-[-0.02em] font-normal"
+        style={{ fontVariationSettings: "'opsz' 144" }}
+      >
+        {t('home.problem.title')}
+      </h2>
+      <p className="mt-8 text-[17px] lg:text-[18px] leading-[1.65] text-foreground/85">{t('home.problem.before')}</p>
+      <p className="mt-5 text-[17px] lg:text-[18px] leading-[1.65] text-foreground/85">{t('home.problem.after')}</p>
+      <p
+        className="mt-12 font-display text-[30px] lg:text-[38px] leading-[1.1] tracking-[-0.02em]"
+        style={{ fontVariationSettings: "'opsz' 144" }}
+      >
+        {t('home.problem.tagline')}
+      </p>
+      <Link
+        href="/contact"
+        className="mt-8 inline-flex items-center gap-3 bg-foreground text-background font-medium px-7 py-4 text-[15px] tracking-wide hover:bg-foreground/90 transition-colors min-h-[48px]"
+      >
+        {t('cta.button')}
+        <Arrow />
+      </Link>
+    </div>
   )
 
   return (
-    <section className="relative bg-background text-foreground">
-      {/* Wide screens: tall scroll field, pinned centre text, questions drifting
-          through the side gutters. */}
-      <div ref={fieldRef} className="relative hidden xl:block" style={{ height: '280vh' }}>
-        <div className="sticky top-0 h-screen flex items-center justify-center">
-          <div className="max-w-xl px-6">
-            {title}
-            <p ref={beforeRef} className="mt-10 text-[19px] leading-[1.65] text-foreground/85 transition-opacity duration-300">
-              {t('home.problem.before')}
-            </p>
-            <p ref={afterRef} className="mt-6 text-[19px] leading-[1.65] text-foreground/85 transition-opacity duration-300" style={{ opacity: 0.3 }}>
-              {t('home.problem.after')}
-            </p>
-          </div>
+    <section className="relative bg-background text-foreground overflow-hidden">
+      {/* Wide screens: questions before a procedure on the left, after surgery
+          on the right, the text between them. */}
+      <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-24">
+        <div className="flex flex-col items-end gap-2.5" aria-hidden="true">
+          {BEFORE_KEYS.map((k, i) => bubble(k, 'left', OFFSETS[i]))}
         </div>
-
-        <div className="absolute inset-0 pointer-events-none max-w-[1600px] mx-auto" aria-hidden="true">
-          {QUESTION_KEYS.map((key, i) => {
-            const { top, side, inset } = placement(i)
-            return (
-              <p
-                key={key}
-                ref={(el) => {
-                  bubbleRefs.current[i] = el
-                }}
-                className={`absolute ${bubbleClass} ${side === 'left' ? 'rounded-bl-md' : 'rounded-br-md'}`}
-                style={{ top: `${top}%`, [side]: `${inset}%`, opacity: 0 }}
-              >
-                {t(key)}
-              </p>
-            )
-          })}
+        {centre}
+        <div className="flex flex-col items-start gap-2.5" aria-hidden="true">
+          {AFTER_KEYS.map((k, i) => bubble(k, 'right', OFFSETS[(i + 5) % OFFSETS.length]))}
         </div>
       </div>
 
-      {/* Phones and tablets: the same text, then the questions as a
-          conversation that fades in and out as it scrolls past. */}
-      <div className="xl:hidden max-w-2xl mx-auto px-6 pt-24 pb-8">
-        {title}
-        <p className="mt-8 text-[17px] leading-[1.65] text-foreground/85">{t('home.problem.before')}</p>
-        <div className="mt-10 space-y-4">
-          {QUESTION_KEYS.slice(0, BEFORE_COUNT).map((key, i) => (
-            <div key={key} className={`flex ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-              <p
-                ref={(el) => {
-                  bubbleRefs.current[BEFORE_COUNT + AFTER_COUNT + i] = el
-                }}
-                className={`${bubbleClass} ${i % 2 === 0 ? 'rounded-bl-md' : 'rounded-br-md'}`}
-              >
-                {t(key)}
-              </p>
-            </div>
-          ))}
+      {/* Phones and tablets: the text, then a shorter set of questions. */}
+      <div className="xl:hidden max-w-2xl mx-auto px-6 py-20">
+        <div className="flex flex-wrap gap-2 mb-12" aria-hidden="true">
+          {PHONE_KEYS.slice(0, 6).map((k) => bubble(k, 'right'))}
         </div>
-        <p className="mt-14 text-[17px] leading-[1.65] text-foreground/85">{t('home.problem.after')}</p>
-        <div className="mt-10 space-y-4">
-          {QUESTION_KEYS.slice(BEFORE_COUNT).map((key, i) => (
-            <div key={key} className={`flex ${i % 2 === 0 ? 'justify-start' : 'justify-end'}`}>
-              <p
-                ref={(el) => {
-                  bubbleRefs.current[2 * BEFORE_COUNT + AFTER_COUNT + i] = el
-                }}
-                className={`${bubbleClass} ${i % 2 === 0 ? 'rounded-bl-md' : 'rounded-br-md'}`}
-              >
-                {t(key)}
-              </p>
-            </div>
-          ))}
+        {centre}
+        <div className="flex flex-wrap justify-end gap-2 mt-12" aria-hidden="true">
+          {PHONE_KEYS.slice(6).map((k) => bubble(k, 'left'))}
         </div>
-      </div>
-
-      <div className="max-w-3xl mx-auto px-6 pt-16 xl:pt-8 pb-28 lg:pb-36 text-center">
-        <p
-          className="font-display text-[34px] lg:text-[54px] leading-[1.08] tracking-[-0.02em] text-foreground"
-          style={{ fontVariationSettings: "'opsz' 144" }}
-        >
-          {t('home.problem.tagline')}
-        </p>
-        <Link
-          href="/contact"
-          className="mt-12 inline-flex items-center gap-3 bg-foreground text-background font-medium px-8 py-4 text-[15px] tracking-wide hover:bg-foreground/90 transition-colors min-h-[48px]"
-        >
-          {t('cta.button')}
-          <Arrow />
-        </Link>
       </div>
     </section>
   )
