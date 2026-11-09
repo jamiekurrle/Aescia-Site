@@ -12,8 +12,8 @@ import { TypewriterText } from './typewriter-text'
 // Aescia delivers the team's content, the team decides.
 type Slide = { ask: number; metric: number; say: number } | { say: number }
 const SLIDES: Slide[] = [
-  { ask: 7, metric: 9, say: 5 }, // tell the surgeon? -> over 4 in 10 complications at home -> check-ins before and after
-  { ask: 1, metric: 4, say: 1 }, // forgot what the care team said -> 40 to 80% forgotten -> instructions when you need them
+  { ask: 7, metric: 9, say: 5 }, // talk to the surgeon, before or after? -> over 4 in 10 complications at home -> check-ins before and after
+  { ask: 8, metric: 10, say: 7 }, // called off on the day -> about 1 in 6 no-show or same-day cancellation -> each step done in time
   { ask: 3, metric: 1, say: 6 }, // unsure the prep worked -> up to 1 in 4 inadequate -> each prep step on time
   { say: 4 }, // no one left wondering what to do
 ]
