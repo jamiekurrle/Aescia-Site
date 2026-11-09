@@ -83,9 +83,6 @@ export default function HospitalsContent() {
       {/* Complications */}
       <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[12.5px] lg:text-[13px] leading-[1.65] text-foreground/65 italic font-display max-w-3xl mb-10 border-l-2 border-brass/40 pl-4">
-            The following describes the investigational intended use of Aescia for Hospitals, which is not yet TGA-registered and not available for commercial supply.
-          </p>
           <div className="grid lg:grid-cols-12 gap-16 mb-20">
             <div className="lg:col-span-5">
               <h2
@@ -186,28 +183,24 @@ export default function HospitalsContent() {
               </div>
               <ul className="divide-y divide-border">
                 {[
-                  { level: 5, name: 'Patient, P.', reason: 'Wound image flagged · Day 8', ago: '6m' },
-                  { level: 4, name: 'Patient, K.', reason: 'New palpitations · AF window', ago: '22m' },
-                  { level: 3, name: 'Patient, M.', reason: 'Weight gain > 1.5 kg over 48h', ago: '1h' },
-                  { level: 2, name: 'Patient, L.', reason: 'Mild breathlessness on stairs', ago: '2h' },
-                  { level: 1, name: 'Patient, S.', reason: 'Within expected recovery range', ago: '3h' },
+                  { alert: true, name: 'Patient, P.', reason: 'Reported wound redness · photo attached · Day 8', ago: '6m' },
+                  { alert: true, name: 'Patient, K.', reason: 'Reported a racing heartbeat · Day 4', ago: '22m' },
+                  { alert: true, name: 'Patient, M.', reason: 'Reported weight up 1.5 kg in two days', ago: '1h' },
+                  { alert: true, name: 'Patient, L.', reason: 'Reported breathlessness on stairs', ago: '2h' },
+                  { alert: false, name: 'Patient, S.', reason: 'Check-in complete · no alert rule met', ago: '3h' },
                 ].map((row, i) => (
-                  <li key={i} className="grid grid-cols-[44px_1fr_auto] items-center gap-4 px-5 py-4">
+                  <li key={i} className="grid grid-cols-[56px_1fr_auto] items-center gap-4 px-5 py-4">
                     <div
-                      className={`font-mono text-[12px] text-center py-1 font-medium ${
-                        row.level >= 4
-                          ? 'bg-destructive/15 text-destructive'
-                          : row.level === 3
-                          ? 'bg-brass/25 text-foreground'
-                          : 'bg-secondary text-foreground/75'
+                      className={`font-mono text-[11px] text-center py-1 font-medium ${
+                        row.alert ? 'bg-brass/25 text-foreground' : 'bg-secondary text-foreground/75'
                       }`}
                       aria-hidden="true"
                     >
-                      L{row.level}
+                      {row.alert ? 'Alert' : 'Done'}
                     </div>
                     <div>
                       <div className="text-[14px] text-foreground">
-                        <span className="sr-only">Urgency level {row.level}. </span>
+                        <span className="sr-only">{row.alert ? 'Alert rule met. ' : 'No alert. '}</span>
                         {row.name}
                       </div>
                       <div className="text-[12px] text-foreground/70 mt-0.5">{row.reason}</div>
@@ -358,7 +351,7 @@ export default function HospitalsContent() {
               </div>
               <div className="grid grid-cols-[150px_1fr] gap-6 py-6">
                 <dt className="font-mono text-[13px] uppercase tracking-[0.18em] text-foreground/65">Status</dt>
-                <dd className="text-[15px] text-foreground">Live at Royal Prince Alfred Hospital since June 2026, with good early results.</dd>
+                <dd className="text-[15px] text-foreground">Live at Royal Prince Alfred Hospital since June 2026. The SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication.</dd>
               </div>
             </dl>
           </div>

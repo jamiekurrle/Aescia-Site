@@ -208,11 +208,11 @@ function AudienceTiles() {
   const cards = [
     {
       eyebrow: 'For hospitals',
-      tag: 'Investigational SaMD',
+      tag: 'Check-ins and nurse alerts',
       title: 'Structured discharge follow-up that reads like a clinician wrote it.',
       desc:
-        'Continuous post-discharge monitoring with clinician-authored pathways, escalation triggers tuned to your service, and audit-grade documentation by default.',
-      cta: 'Hospital Monitor →',
+        "Post-discharge check-ins and nurse alerts, on your hospital's rules. Questions and alert rules written by your clinicians, alerts that follow your escalation protocol, and audit-grade documentation by default.",
+      cta: 'Aescia for Hospitals →',
       href: '/hospitals',
       dark: true,
     },
@@ -221,7 +221,7 @@ function AudienceTiles() {
       tag: 'Workflow software',
       title: 'Specialty intake, preparation, and follow-up — one place.',
       desc:
-        'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. No clinical decision-support classification. Quick to deploy, slow to break.',
+        'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. Quick to deploy, slow to break.',
       cta: 'Specialty Clinic →',
       href: '/clinics',
       dark: false,
@@ -285,7 +285,7 @@ function PillarsV1() {
       n: '03',
       title: 'Two surfaces, one platform.',
       desc:
-        'Hospital Monitor is regulated software for post-discharge work. Specialty Clinic is a workflow tool that stays inside the CDSS exemption. Same engine.',
+        'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Same engine.',
     },
   ]
 

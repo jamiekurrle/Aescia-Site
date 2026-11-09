@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': 'Endoscopy ASC · Bowel preparation',
     'bowelprep.hero.title': 'How do I reduce the inadequate bowel prep rate at my ASC?',
     'bowelprep.hero.lede': 'Reduce inadequate bowel preparation by replacing the single written instruction handed out at booking with a structured, timed, coached prep pathway, which the published literature associates with better preparation quality. Aescia for Clinics delivers exactly that: clinician-authored prep instructions for your protocol, in the patient’s language, timed to their procedure date, with reminders and a prep-night confirmation, so more patients arrive adequately prepared.',
-    'bowelprep.hero.disclaimer': 'Aescia for Clinics has no customers yet and is not a medical device. The figures below are from the published literature on the problem; they are not outcomes Aescia has delivered for a named customer.',
+    'bowelprep.hero.disclaimer': 'Aescia for Clinics has no customers yet. The figures below are from the published literature on the problem; they are not outcomes Aescia has delivered for a named customer.',
 
     'bowelprep.problem.eyebrow': 'The problem',
     'bowelprep.problem.title': 'Why a written instruction at booking is not enough.',
@@ -42,7 +42,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': 'ASC d’endoscopie · Préparation intestinale',
     'bowelprep.hero.title': 'Comment réduire le taux de préparation intestinale inadéquate dans mon ASC ?',
     'bowelprep.hero.lede': 'Réduisez la préparation intestinale inadéquate en remplaçant l’unique instruction écrite remise à la prise de rendez-vous par un parcours de préparation structuré, planifié et accompagné, que la littérature publiée associe à une meilleure qualité de préparation. Aescia for Clinics fait exactement cela : des instructions de préparation rédigées par des cliniciens pour votre protocole, dans la langue du patient, planifiées selon sa date de procédure, avec des rappels et une confirmation le soir de la préparation, afin que davantage de patients arrivent adéquatement préparés.',
-    'bowelprep.hero.disclaimer': 'Aescia for Clinics n’a pas encore de clients et n’est pas un dispositif médical. Les chiffres ci-dessous proviennent de la littérature publiée sur le problème ; ce ne sont pas des résultats qu’Aescia a obtenus pour un client nommé.',
+    'bowelprep.hero.disclaimer': 'Aescia for Clinics n’a pas encore de clients. Les chiffres ci-dessous proviennent de la littérature publiée sur le problème ; ce ne sont pas des résultats qu’Aescia a obtenus pour un client nommé.',
 
     'bowelprep.problem.eyebrow': 'Le problème',
     'bowelprep.problem.title': 'Pourquoi une instruction écrite à la prise de rendez-vous ne suffit pas.',
@@ -81,7 +81,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': 'ASC de endoscopia · Preparación intestinal',
     'bowelprep.hero.title': '¿Cómo reduzco la tasa de preparación intestinal inadecuada en mi ASC?',
     'bowelprep.hero.lede': 'Reduzca la preparación intestinal inadecuada reemplazando la única instrucción escrita que se entrega al reservar por una vía de preparación estructurada, programada y guiada, que la literatura publicada asocia con una mejor calidad de preparación. Aescia for Clinics ofrece exactamente eso: instrucciones de preparación redactadas por médicos para su protocolo, en el idioma del paciente, programadas según la fecha de su procedimiento, con recordatorios y una confirmación la noche de la preparación, de modo que más pacientes lleguen adecuadamente preparados.',
-    'bowelprep.hero.disclaimer': 'Aescia for Clinics aún no tiene clientes y no es un dispositivo médico. Las cifras a continuación provienen de la literatura publicada sobre el problema; no son resultados que Aescia haya logrado para un cliente nombrado.',
+    'bowelprep.hero.disclaimer': 'Aescia for Clinics aún no tiene clientes. Las cifras a continuación provienen de la literatura publicada sobre el problema; no son resultados que Aescia haya logrado para un cliente nombrado.',
 
     'bowelprep.problem.eyebrow': 'El problema',
     'bowelprep.problem.title': 'Por qué una instrucción escrita al reservar no es suficiente.',
@@ -120,7 +120,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': '内镜日间手术中心 · 肠道准备',
     'bowelprep.hero.title': '我该如何降低本中心的肠道准备不充分率？',
     'bowelprep.hero.lede': '通过用一条结构化、按时间安排、有指导的准备路径取代预约时发放的那一份书面说明，来降低肠道准备不充分的情况，已发表的文献将这种做法与更好的准备质量相关联。Aescia for Clinics 提供的正是如此：由临床医生编写、针对您方案的准备说明，以患者的语言呈现，按其手术日期定时发送，并附有提醒和准备当晚的确认，从而让更多患者在到达时已得到充分准备。',
-    'bowelprep.hero.disclaimer': 'Aescia for Clinics 目前还没有客户，并非医疗器械。下方的数据来自有关该问题的已发表文献；它们并非 Aescia 为某位具名客户取得的结果。',
+    'bowelprep.hero.disclaimer': 'Aescia for Clinics 目前还没有客户。下方的数据来自有关该问题的已发表文献；它们并非 Aescia 为某位具名客户取得的结果。',
 
     'bowelprep.problem.eyebrow': '问题所在',
     'bowelprep.problem.title': '为什么预约时的一份书面说明并不足够。',
@@ -159,7 +159,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': 'مركز جراحة المرضى الخارجيين للتنظير · تحضير الأمعاء',
     'bowelprep.hero.title': 'كيف أخفّض معدل التحضير غير الكافي للأمعاء في مركزي؟',
     'bowelprep.hero.lede': 'قلّل من التحضير غير الكافي للأمعاء عبر استبدال التعليمة المكتوبة الوحيدة التي تُسلَّم عند الحجز بمسار تحضير منظَّم ومجدوَل ومصحوب بالإرشاد، وهو ما تربطه الأدبيات المنشورة بجودة تحضير أفضل. تقدّم Aescia for Clinics ذلك تحديدًا: تعليمات تحضير من تأليف الأطباء وفقًا لبروتوكولكم، بلغة المريض، مجدوَلة وفق تاريخ إجرائه، مع تذكيرات وتأكيد ليلة التحضير، بحيث يصل المزيد من المرضى وهم مُحضَّرون على نحوٍ كافٍ.',
-    'bowelprep.hero.disclaimer': 'ليس لدى Aescia for Clinics عملاء بعد، وهي ليست جهازًا طبيًا. الأرقام الواردة أدناه مأخوذة من الأدبيات المنشورة حول المشكلة؛ وهي ليست نتائج حقّقتها Aescia لعميل مُسمّى.',
+    'bowelprep.hero.disclaimer': 'ليس لدى Aescia for Clinics عملاء بعد. الأرقام الواردة أدناه مأخوذة من الأدبيات المنشورة حول المشكلة؛ وهي ليست نتائج حقّقتها Aescia لعميل مُسمّى.',
 
     'bowelprep.problem.eyebrow': 'المشكلة',
     'bowelprep.problem.title': 'لماذا لا تكفي تعليمة مكتوبة عند الحجز.',
@@ -198,7 +198,7 @@ export const dict: Record<string, Record<string, string>> = {
     'bowelprep.hero.eyebrow': 'Trung tâm phẫu thuật ngoại trú nội soi · Chuẩn bị ruột',
     'bowelprep.hero.title': 'Làm thế nào để tôi giảm tỷ lệ chuẩn bị ruột không đầy đủ tại ASC của mình?',
     'bowelprep.hero.lede': 'Hãy giảm tình trạng chuẩn bị ruột không đầy đủ bằng cách thay thế một bản hướng dẫn viết duy nhất phát ra lúc đặt lịch bằng một lộ trình chuẩn bị có cấu trúc, được hẹn giờ và có hướng dẫn kèm theo, điều mà y văn đã công bố gắn liền với chất lượng chuẩn bị tốt hơn. Aescia for Clinics mang lại đúng điều đó: các hướng dẫn chuẩn bị do bác sĩ lâm sàng soạn theo phác đồ của bạn, bằng ngôn ngữ của bệnh nhân, được hẹn giờ theo ngày thủ thuật của họ, kèm nhắc nhở và xác nhận vào đêm chuẩn bị, để nhiều bệnh nhân đến nơi đã được chuẩn bị đầy đủ hơn.',
-    'bowelprep.hero.disclaimer': 'Aescia for Clinics chưa có khách hàng nào và không phải là thiết bị y tế. Các số liệu dưới đây lấy từ y văn đã công bố về vấn đề này; chúng không phải là kết quả mà Aescia đã đạt được cho một khách hàng cụ thể.',
+    'bowelprep.hero.disclaimer': 'Aescia for Clinics chưa có khách hàng nào. Các số liệu dưới đây lấy từ y văn đã công bố về vấn đề này; chúng không phải là kết quả mà Aescia đã đạt được cho một khách hàng cụ thể.',
 
     'bowelprep.problem.eyebrow': 'Vấn đề',
     'bowelprep.problem.title': 'Vì sao một bản hướng dẫn viết lúc đặt lịch là chưa đủ.',

@@ -12,7 +12,7 @@ const DAYS = [
     day: 'Day 0',
     sub: 'Discharge',
     title: 'The patient walks out the door.',
-    body: 'The discharge summary is filed. The cardiothoracic monitoring pathway activates. A first contact-window opens.',
+    body: 'The discharge summary is filed. The cardiothoracic check-in pathway starts. A first contact-window opens.',
     status: 'green',
     note: 'Pathway: AES-CTS-001',
   },
@@ -20,22 +20,22 @@ const DAYS = [
     day: 'Day 1',
     sub: 'First check-in',
     title: 'A symptom and obs prompt arrives by SMS.',
-    body: 'Pain score, breathing, swelling, sleep. Three minutes. Auto-scored against thresholds the surgical team set.',
+    body: 'Pain, breathing, swelling, sleep. Three minutes. Answers checked against the alert rules the surgical team set.',
     status: 'green',
     note: '8 of 8 patients responded',
   },
   {
     day: 'Day 2',
     sub: 'Escalation',
-    title: 'One patient crosses a respiratory threshold.',
-    body: 'The pathway escalates: the on-call CTS registrar sees the patient on top of the worklist within 12 minutes. Phone contact within the hour.',
+    title: 'One patient reports breathlessness that meets an alert rule.',
+    body: 'The alert follows the hospital\'s escalation protocol: the on-call cardiothoracic surgery (CTS) registrar sees it on the list within 12 minutes. Phone contact within the hour.',
     status: 'red',
     note: '1 escalation · 0 missed',
   },
   {
     day: 'Day 3',
     sub: 'Resolved',
-    title: 'Issue triaged. No readmission. Note in the chart.',
+    title: 'Clinician reviews. No readmission. Note in the chart.',
     body: 'The escalation closes with documented clinician decision. The patient continues the pathway. The chart updates as a side-effect, not a separate task.',
     status: 'amber',
     note: 'Time-to-decision: 47 min',
@@ -195,8 +195,8 @@ function ProductPair() {
         </motion.div>
         <div className="grid md:grid-cols-2 gap-px" style={{ background: 'var(--c-border-cool)' }}>
           {[
-            { tag: 'Hospital Monitor', t: 'Discharge follow-up, regulated.', d: 'Audit-grade post-discharge monitoring for clinical teams. TGA Class IIa pathway.', href: '/hospitals' },
-            { tag: 'Specialty Clinic', t: 'Intake, prep, follow-up.', d: 'Workflow software for specialty clinics. CDSS-exempt. Quick to deploy.', href: '/clinics' },
+            { tag: 'Aescia for Hospitals', t: 'Discharge follow-up, on your rules.', d: 'Post-discharge check-ins and nurse alerts for clinical teams.', href: '/hospitals' },
+            { tag: 'Specialty Clinic', t: 'Intake, prep, follow-up.', d: 'Workflow software for specialty clinics. Quick to deploy.', href: '/clinics' },
           ].map((p) => (
             <Link key={p.tag} href={p.href} className="group block p-10 lg:p-14 transition-opacity hover:opacity-95" style={{ background: 'var(--c-paper)' }}>
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] font-semibold block mb-8" style={{ color: 'var(--c-mist-deep)' }}>

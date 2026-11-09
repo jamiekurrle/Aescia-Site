@@ -1,22 +1,14 @@
 import { SiteNav } from '@/components/site-nav'
 import { EditorialHero } from '@/components/editorial-hero'
-import { InstrumentPanel } from '@/components/instrument-panel'
-import { CredibilityFacts } from '@/components/credibility-facts'
-import { AudienceSplit } from '@/components/audience-split'
-import { TrustStrip } from '@/components/trust-strip'
-import { PlatformBlurb } from '@/components/platform-blurb'
-import { Pillars } from '@/components/pillars'
-import { EvidenceRibbon } from '@/components/evidence-ribbon'
-import { PartnersStrip } from '@/components/partners-strip'
-import { CTASection } from '@/components/cta-section'
+import { ProblemSection } from '@/components/problem-section'
 import { Footer } from '@/components/footer'
 import { medicalStudySchema, softwareApplicationSchema, webPageSchema } from '@/lib/schema'
 
 const homePageSchema = webPageSchema({
   url: '/',
-  name: 'Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge monitoring.',
+  name: 'Aescia. Pre-procedure software for endoscopy ASCs, plus post-discharge check-ins and nurse alerts.',
   description:
-    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, medication and GLP-1 handling, prep-aware backfill, and surveillance recall. Explicitly not a medical device and does not make clinical decisions. Aescia for Hospitals adds investigational post-discharge monitoring (intended TGA Class IIa) on the same pathway engine. Aescia for Clinics has no customers yet; US clinics engage through a design-partner program that starts free during a two-month proof period, measured against their own baseline, with terms negotiable per deal.',
+    'Aescia for Clinics is pre-procedure pathway software for endoscopy ambulatory surgery centers (ASCs) and specialty clinics: bowel-prep readiness, medication and GLP-1 handling, prep-aware backfill, and surveillance recall. Aescia for Hospitals adds post-discharge check-ins and nurse alerts, on each hospital\'s own rules, on the same pathway engine. Aescia for Clinics has no customers yet; US clinics engage through a design-partner program that starts free during a two-month proof period, measured against their own baseline, with terms negotiable per deal.',
   primaryImage: 'https://www.aesciahealth.com/aescia-logo.png',
 })
 
@@ -44,15 +36,7 @@ export default function Home() {
       />
       <SiteNav transparent />
       <EditorialHero />
-      <InstrumentPanel />
-      <CredibilityFacts />
-      <AudienceSplit />
-      <TrustStrip />
-      <PlatformBlurb />
-      <Pillars />
-      <EvidenceRibbon />
-      <PartnersStrip />
-      <CTASection />
+      <ProblemSection />
       <Footer />
     </main>
   )

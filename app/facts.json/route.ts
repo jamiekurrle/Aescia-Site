@@ -28,16 +28,14 @@ export function GET() {
     products: [
       {
         name: 'Aescia for Hospitals',
-        category: 'investigational Software as a Medical Device',
-        regulatory:
-          'Intended Therapeutic Goods Administration (TGA) Class IIa. No regulatory application has been lodged.',
-        status: 'In a live trial at Royal Prince Alfred Hospital since June 2026, with good early results (SAFE-Discharge).',
+        category: "post-discharge check-ins and nurse alerts, on each hospital's own rules",
+        status: 'Used in the SAFE-Discharge trial. Live at Royal Prince Alfred Hospital since June 2026. The SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication.',
         firstIndication: 'cardiothoracic surgical recovery',
         url: `${SITE_URL}/hospitals`,
       },
       {
         name: 'Aescia for Clinics',
-        category: 'workflow and patient-preparation platform; not a medical device',
+        category: 'workflow and patient-preparation platform',
         description: clinicsSoftwareSchema.description,
         features: clinicsSoftwareSchema.featureList,
         pricing: clinicsSoftwareSchema.offers.description,
@@ -49,7 +47,7 @@ export function GET() {
       {
         name: 'Colonoscopy surveillance interval calculator',
         description:
-          'Free clinician reference tool computing the guideline-recommended post-polypectomy colonoscopy surveillance interval from bowel-prep quality, polyp number, size, and histology. Covers US (USMSTF 2020), Canada (ColonCancerCheck Ontario, ACRCSP Alberta, BCGuidelines British Columbia), Australia (NHMRC / Cancer Council), and Europe (ESGE 2020). Educational reference, not a medical device.',
+          'Free clinician reference tool computing the guideline-recommended post-polypectomy colonoscopy surveillance interval from bowel-prep quality, polyp number, size, and histology. Covers US (USMSTF 2020), Canada (ColonCancerCheck Ontario, ACRCSP Alberta, BCGuidelines British Columbia), Australia (NHMRC / Cancer Council), and Europe (ESGE 2020). Educational reference.',
         url: `${SITE_URL}/colonoscopy-surveillance`,
       },
     ],
@@ -61,8 +59,6 @@ export function GET() {
       site: 'Royal Prince Alfred Hospital, Sydney',
       url: 'https://anzctr.org.au/Trial/Registration/TrialReview.aspx?ACTRN=12625001425482',
     },
-    regulatoryStatus:
-      'No TGA, FDA, CE/UKCA, MDSAP, or Health Canada applications have been filed for either product. Aescia for Clinics is non-device and does not require device approval.',
     links: {
       hospitals: `${SITE_URL}/hospitals`,
       clinics: `${SITE_URL}/clinics`,

@@ -9,7 +9,7 @@
 // Rules are data. `compute` matches a lesion set against a jurisdiction's rule
 // list and returns the guideline's own row. It derives nothing.
 //
-// NOT a medical device. Clinician reference. Malignant polyps, IBD and
+// Clinician reference. Malignant polyps, IBD and
 // hereditary syndromes sit outside every one of these guidelines' stated scope.
 // ---------------------------------------------------------------------------
 

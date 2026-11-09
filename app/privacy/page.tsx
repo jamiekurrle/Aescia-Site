@@ -92,8 +92,8 @@ export default function PrivacyPage() {
                 refer to Aescia Pty Ltd and its affiliate.
               </p>
               <p>
-                Aescia is developing pre-procedure pathway software and investigational post-discharge
-                monitoring. This policy will be updated as the products reach commercial availability.
+                Aescia provides pre-procedure pathway software and post-discharge check-ins and nurse
+                alerts. This policy will be updated as the products develop.
               </p>
             </Section>
 

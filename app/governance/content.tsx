@@ -47,8 +47,6 @@ export function PageContent() {
             <dl className="divide-y divide-border border-y border-border text-[14px]">
               {([
                 ['gov.hospitals.classification.label', 'gov.hospitals.classification.value', t('gov.hospitals.classification.value')],
-                ['gov.hospitals.roadmap.label', 'gov.hospitals.roadmap.value', t('gov.hospitals.roadmap.value')],
-                ['gov.hospitals.certification.label', 'gov.hospitals.certification.value', t('gov.hospitals.certification.value')],
                 [
                   'gov.hospitals.clinical.label',
                   'gov.hospitals.clinical.value',
@@ -87,9 +85,6 @@ export function PageContent() {
             </h2>
             <dl className="divide-y divide-border border-y border-border text-[14px]">
               {[
-                ['gov.clinics.classification.label', 'gov.clinics.classification.value'],
-                ['gov.clinics.boundary.label', 'gov.clinics.boundary.value'],
-                ['gov.clinics.posture.label', 'gov.clinics.posture.value'],
                 ['gov.clinics.rule.label', 'gov.clinics.rule.value'],
                 ['gov.clinics.escalation.label', 'gov.clinics.escalation.value'],
                 ['gov.clinics.engagement.label', 'gov.clinics.engagement.value'],
@@ -118,7 +113,7 @@ export function PageContent() {
             {t('gov.security.title')}
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-px bg-border">
+          <div className="grid md:grid-cols-3 gap-px bg-border">
             {[
               {
                 titleKey: 'gov.security.data.title',
@@ -131,10 +126,6 @@ export function PageContent() {
               {
                 titleKey: 'gov.security.oversight.title',
                 itemKeys: ['gov.security.oversight.item1', 'gov.security.oversight.item2', 'gov.security.oversight.item3'],
-              },
-              {
-                titleKey: 'gov.security.regulatory.title',
-                itemKeys: ['gov.security.regulatory.item1', 'gov.security.regulatory.item2', 'gov.security.regulatory.item3'],
               },
             ].map((block) => (
               <div key={block.titleKey} className="bg-secondary p-7 lg:p-8">

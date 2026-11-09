@@ -102,7 +102,7 @@ export default function PlatformContent() {
                 className="font-display text-[22px] mt-4 leading-[1.25] text-background"
                 style={{ fontVariationSettings: "'opsz' 80" }}
               >
-                Post-surgical recovery monitoring for cardiothoracic and other high-acuity discharges.
+                Post-discharge check-ins and nurse alerts, on your hospital&apos;s rules.
               </p>
               <span className="inline-flex items-center gap-2 mt-8 text-[13px] text-background/85 group-hover:gap-4 transition-all">
                 Explore

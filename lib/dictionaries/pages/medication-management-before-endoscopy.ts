@@ -3,7 +3,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'Endoscopy ASC · Blood thinners and diabetes',
     'medmgmt.hero.title': 'What software manages blood thinners and diabetes before a colonoscopy?',
     'medmgmt.hero.lede': 'Aescia for Clinics flags anticoagulants, antiplatelets, and diabetes medications at intake and applies your clinic’s authored peri-procedural rule to each patient automatically. Blood thinners drive bleeding risk at polypectomy and a long tail of late cancellations when patients stop the wrong drug or none at all, and diabetes medications interact with the fasting and bowel-prep window, so both need the right instruction delivered at the right time rather than left to a front-desk call.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics is not a medical device. It delivers the clinician-authored rule your clinic has set; it does not decide whether to bridge, hold, or adjust a dose. The treating clinician remains the decision-maker. Aescia for Clinics has no customers yet.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics delivers the clinician-authored rule your clinic has set. It has no customers yet.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulants and antiplatelets',
     'medmgmt.bt.title': 'Blood thinners: the right hold, for the right drug, at the right time.',
@@ -43,7 +43,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': 'The instruction reaches the patient when it is actionable, across their channels, with consent captured up front.',
     'medmgmt.does.item4.title': 'Confirm before the day of the list',
     'medmgmt.does.item4.desc': 'The medication steps are checked again in the prep-night confirmation, so staff see who has acknowledged them before the procedure date.',
-    'medmgmt.does.footnote': 'The clinical decision stays with the gastroenterologist. Aescia delivers the authored rule consistently, with a named clinical author and a documented guideline trail behind every overlay. This “propose, do not decide” posture is part of why Aescia for Clinics is not a medical device.',
+    'medmgmt.does.footnote': 'Aescia delivers the authored rule consistently, with a named clinical author and a documented guideline trail behind every overlay.',
 
     'medmgmt.cta.line': 'If medication confusion is causing day-of cancellations, the design-partner pilot runs free or under a money-back rebate until Aescia delivers measurable net benefit against your own baseline.',
   },
@@ -51,7 +51,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'ASC d’endoscopie · Anticoagulants et diabète',
     'medmgmt.hero.title': 'Quel logiciel gère les anticoagulants et le diabète avant une coloscopie ?',
     'medmgmt.hero.lede': 'Aescia for Clinics signale les anticoagulants, les antiplaquettaires et les médicaments du diabète dès l’admission et applique automatiquement à chaque patient la règle péri-procédurale rédigée par votre clinique. Les anticoagulants entraînent un risque hémorragique lors de la polypectomie et une longue série d’annulations tardives lorsque les patients arrêtent le mauvais médicament ou n’en arrêtent aucun, et les médicaments du diabète interagissent avec la période de jeûne et de préparation intestinale ; les deux exigent donc la bonne consigne délivrée au bon moment plutôt que laissée à un appel au secrétariat.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics n’est pas un dispositif médical. Il délivre la règle rédigée par le clinicien que votre clinique a définie ; il ne décide pas s’il faut faire un relais, suspendre ou ajuster une dose. Le clinicien traitant reste le décideur. Aescia for Clinics n’a pas encore de clients.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics délivre la règle rédigée par le clinicien que votre clinique a définie. Il n’a pas encore de clients.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulants et antiplaquettaires',
     'medmgmt.bt.title': 'Anticoagulants : la bonne suspension, pour le bon médicament, au bon moment.',
@@ -91,7 +91,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': 'La consigne atteint le patient lorsqu’elle est exploitable, sur ses différents canaux, avec le consentement recueilli en amont.',
     'medmgmt.does.item4.title': 'Confirmer avant le jour de la liste',
     'medmgmt.does.item4.desc': 'Les étapes médicamenteuses sont vérifiées de nouveau lors de la confirmation la veille de la préparation, afin que le personnel voie qui les a confirmées avant la date de la procédure.',
-    'medmgmt.does.footnote': 'La décision clinique demeure celle du gastroentérologue. Aescia délivre la règle rédigée de façon constante, avec un auteur clinique nommé et une traçabilité documentée des recommandations derrière chaque superposition. Cette posture « proposer, sans décider » fait partie des raisons pour lesquelles Aescia for Clinics n’est pas un dispositif médical.',
+    'medmgmt.does.footnote': 'Aescia délivre la règle rédigée de façon constante, avec un auteur clinique nommé et une traçabilité documentée des recommandations derrière chaque superposition.',
 
     'medmgmt.cta.line': 'Si la confusion liée aux médicaments provoque des annulations le jour même, le pilote de partenariat de conception est gratuit ou assorti d’une garantie de remboursement jusqu’à ce qu’Aescia apporte un bénéfice net mesurable par rapport à votre propre référence.',
   },
@@ -99,7 +99,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'ASC de endoscopia · Anticoagulantes y diabetes',
     'medmgmt.hero.title': '¿Qué software gestiona los anticoagulantes y la diabetes antes de una colonoscopia?',
     'medmgmt.hero.lede': 'Aescia for Clinics identifica los anticoagulantes, los antiplaquetarios y los medicamentos para la diabetes en el momento de la admisión y aplica automáticamente a cada paciente la regla periprocedimiento redactada por su clínica. Los anticoagulantes generan riesgo de sangrado en la polipectomía y una larga cola de cancelaciones tardías cuando los pacientes suspenden el medicamento equivocado o ninguno, y los medicamentos para la diabetes interactúan con la ventana de ayuno y de preparación intestinal, por lo que ambos requieren la indicación correcta entregada en el momento correcto, en lugar de quedar en manos de una llamada de recepción.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics no es un dispositivo médico. Entrega la regla redactada por el clínico que su clínica ha establecido; no decide si hacer puente, suspender o ajustar una dosis. El clínico tratante sigue siendo quien toma las decisiones. Aescia for Clinics aún no tiene clientes.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics entrega la regla redactada por el clínico que su clínica ha establecido. Aún no tiene clientes.',
 
     'medmgmt.bt.eyebrow': 'Anticoagulantes y antiplaquetarios',
     'medmgmt.bt.title': 'Anticoagulantes: la suspensión correcta, para el medicamento correcto, en el momento correcto.',
@@ -139,7 +139,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': 'La indicación llega al paciente cuando es accionable, a través de sus canales, con el consentimiento registrado de antemano.',
     'medmgmt.does.item4.title': 'Confirmar antes del día de la lista',
     'medmgmt.does.item4.desc': 'Los pasos de la medicación se vuelven a verificar en la confirmación de la noche previa a la preparación, de modo que el personal vea quién los ha confirmado antes de la fecha del procedimiento.',
-    'medmgmt.does.footnote': 'La decisión clínica sigue siendo del gastroenterólogo. Aescia entrega la regla redactada de forma constante, con un autor clínico nombrado y una trazabilidad documentada de la guía detrás de cada superposición. Esta postura de “proponer, no decidir” es parte de por qué Aescia for Clinics no es un dispositivo médico.',
+    'medmgmt.does.footnote': 'Aescia entrega la regla redactada de forma constante, con un autor clínico nombrado y una trazabilidad documentada de la guía detrás de cada superposición.',
 
     'medmgmt.cta.line': 'Si la confusión con los medicamentos está provocando cancelaciones el mismo día, el piloto de socio de diseño es gratuito o se realiza con una garantía de reembolso hasta que Aescia aporte un beneficio neto medible frente a su propia línea base.',
   },
@@ -147,7 +147,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': '内镜门诊手术中心 · 抗凝药与糖尿病',
     'medmgmt.hero.title': '哪种软件能在结肠镜检查前管理抗凝药和糖尿病用药？',
     'medmgmt.hero.lede': 'Aescia for Clinics 在登记时标记抗凝药、抗血小板药和糖尿病用药，并自动为每位患者应用贵诊所撰写的围操作期规则。抗凝药会带来息肉切除时的出血风险，并在患者停用错误的药物或根本不停药时造成大量临近时刻的取消，而糖尿病用药则与禁食和肠道准备的时间窗相互影响，因此两者都需要在恰当的时间送达正确的指示，而不是交由前台的一通电话来处理。',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics 不是医疗器械。它传递贵诊所所设定的、由临床医生撰写的规则；它不决定是否进行桥接、暂停或调整剂量。主治临床医生仍然是决策者。Aescia for Clinics 目前还没有客户。',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics 传递贵诊所所设定的、由临床医生撰写的规则。它目前还没有客户。',
 
     'medmgmt.bt.eyebrow': '抗凝药与抗血小板药',
     'medmgmt.bt.title': '抗凝药：为正确的药物，在正确的时间，作出正确的暂停。',
@@ -187,7 +187,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': '指示会在可付诸行动时通过患者使用的各个渠道送达他们，并在事先采集同意。',
     'medmgmt.does.item4.title': '在排单日之前确认',
     'medmgmt.does.item4.desc': '在准备前一晚的确认中会再次核查用药步骤，从而让工作人员在操作日期之前看到谁已经确认。',
-    'medmgmt.does.footnote': '临床决定仍由消化科医生作出。Aescia 一致地传递所撰写的规则，每一条覆盖规则背后都有具名的临床作者和有据可查的指南溯源记录。这种“提出建议，而非作出决定”的立场，正是 Aescia for Clinics 不是医疗器械的原因之一。',
+    'medmgmt.does.footnote': 'Aescia 一致地传递所撰写的规则，每一条覆盖规则背后都有具名的临床作者和有据可查的指南溯源记录。',
 
     'medmgmt.cta.line': '如果用药混乱正在导致当天的取消，设计合作伙伴试点将免费进行，或在退款保证下进行，直到 Aescia 相对于您自己的基线带来可衡量的净收益为止。',
   },
@@ -195,7 +195,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'مركز جراحة التنظير الداخلي للمرضى المتنقلين · مميّعات الدم والسكري',
     'medmgmt.hero.title': 'ما البرنامج الذي يدير مميّعات الدم والسكري قبل تنظير القولون؟',
     'medmgmt.hero.lede': 'يرصد Aescia for Clinics مضادات التخثر ومضادات الصفيحات وأدوية السكري عند الاستقبال، ويطبّق تلقائيًا على كل مريض القاعدة المحيطة بالإجراء التي صاغتها عيادتك. تسبّب مميّعات الدم خطر النزف عند استئصال السليلة وذيلًا طويلًا من الإلغاءات المتأخرة حين يوقف المرضى الدواء الخاطئ أو لا يوقفون أيًا منها، كما تتفاعل أدوية السكري مع فترة الصيام وتحضير الأمعاء، لذا يحتاج كلاهما إلى التعليمة الصحيحة المُسلَّمة في الوقت الصحيح بدلًا من تركها لمكالمة من موظف الاستقبال.',
-    'medmgmt.hero.disclaimer': 'إن Aescia for Clinics ليس جهازًا طبيًا. فهو يقدّم القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك؛ وهو لا يقرّر ما إذا كان ينبغي إجراء جسر علاجي أو إيقاف أو تعديل جرعة. ويظلّ الطبيب المعالج هو صاحب القرار. وليس لدى Aescia for Clinics عملاء بعد.',
+    'medmgmt.hero.disclaimer': 'يقدّم Aescia for Clinics القاعدة التي صاغها الطبيب والتي حدّدتها عيادتك. وليس لديه عملاء بعد.',
 
     'medmgmt.bt.eyebrow': 'مضادات التخثر ومضادات الصفيحات',
     'medmgmt.bt.title': 'مميّعات الدم: الإيقاف الصحيح، للدواء الصحيح، في الوقت الصحيح.',
@@ -235,7 +235,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': 'تصل التعليمة إلى المريض حين تكون قابلة للتنفيذ، عبر قنواته المختلفة، مع أخذ الموافقة مسبقًا.',
     'medmgmt.does.item4.title': 'التأكيد قبل يوم القائمة',
     'medmgmt.does.item4.desc': 'يُعاد التحقق من خطوات الدواء في تأكيد ليلة التحضير، حتى يرى الموظفون من أقرّ بها قبل تاريخ الإجراء.',
-    'medmgmt.does.footnote': 'يبقى القرار السريري لدى طبيب الجهاز الهضمي. يقدّم Aescia القاعدة المصاغة باتساق، مع مؤلف سريري مذكور بالاسم وسجل موثّق لتتبّع التوجيهات خلف كل طبقة. وهذا الموقف القائم على «الاقتراح لا اتخاذ القرار» جزء من سبب كون Aescia for Clinics ليس جهازًا طبيًا.',
+    'medmgmt.does.footnote': 'يقدّم Aescia القاعدة المصاغة باتساق، مع مؤلف سريري مذكور بالاسم وسجل موثّق لتتبّع التوجيهات خلف كل طبقة.',
 
     'medmgmt.cta.line': 'إذا كان الالتباس المتعلق بالأدوية يتسبب في إلغاءات في اليوم نفسه، فإن برنامج شريك التصميم التجريبي يُجرى مجانًا أو في إطار ضمان استرداد الأموال إلى أن يحقّق Aescia فائدة صافية قابلة للقياس مقارنةً بخط الأساس الخاص بك.',
   },
@@ -243,7 +243,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.hero.eyebrow': 'Trung tâm phẫu thuật nội soi ngoại trú · Thuốc chống đông và đái tháo đường',
     'medmgmt.hero.title': 'Phần mềm nào quản lý thuốc chống đông và đái tháo đường trước khi nội soi đại tràng?',
     'medmgmt.hero.lede': 'Aescia for Clinics đánh dấu thuốc chống đông, thuốc chống kết tập tiểu cầu và thuốc đái tháo đường ngay khi tiếp nhận và tự động áp dụng cho mỗi bệnh nhân quy tắc quanh thủ thuật do phòng khám của bạn soạn thảo. Thuốc chống đông gây nguy cơ chảy máu khi cắt polyp và một chuỗi dài các trường hợp hủy lịch muộn khi bệnh nhân ngừng sai thuốc hoặc không ngừng thuốc nào, còn thuốc đái tháo đường thì tương tác với khoảng thời gian nhịn ăn và chuẩn bị ruột, nên cả hai đều cần chỉ dẫn đúng được gửi đến vào đúng thời điểm thay vì để mặc cho một cuộc gọi của lễ tân.',
-    'medmgmt.hero.disclaimer': 'Aescia for Clinics không phải là thiết bị y tế. Nó cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập; nó không quyết định có nên bắc cầu, ngừng hay điều chỉnh liều. Bác sĩ điều trị vẫn là người ra quyết định. Aescia for Clinics chưa có khách hàng nào.',
+    'medmgmt.hero.disclaimer': 'Aescia for Clinics cung cấp quy tắc do bác sĩ soạn thảo mà phòng khám của bạn đã thiết lập. Nó chưa có khách hàng nào.',
 
     'medmgmt.bt.eyebrow': 'Thuốc chống đông và thuốc chống kết tập tiểu cầu',
     'medmgmt.bt.title': 'Thuốc chống đông: ngừng đúng cách, đúng thuốc, đúng thời điểm.',
@@ -283,7 +283,7 @@ export const dict: Record<string, Record<string, string>> = {
     'medmgmt.does.item3.desc': 'Chỉ dẫn đến với bệnh nhân khi có thể hành động được, qua các kênh của họ, với sự đồng ý được thu thập từ trước.',
     'medmgmt.does.item4.title': 'Xác nhận trước ngày của danh sách',
     'medmgmt.does.item4.desc': 'Các bước dùng thuốc được kiểm tra lại trong lần xác nhận vào tối trước khi chuẩn bị, để nhân viên thấy ai đã xác nhận chúng trước ngày thủ thuật.',
-    'medmgmt.does.footnote': 'Quyết định lâm sàng vẫn thuộc về bác sĩ tiêu hóa. Aescia cung cấp quy tắc đã soạn thảo một cách nhất quán, với một tác giả lâm sàng được nêu tên và một vết truy nguyên hướng dẫn được lập thành tài liệu phía sau mỗi lớp phủ. Lập trường “đề xuất, không quyết định” này là một phần lý do vì sao Aescia for Clinics không phải là thiết bị y tế.',
+    'medmgmt.does.footnote': 'Aescia cung cấp quy tắc đã soạn thảo một cách nhất quán, với một tác giả lâm sàng được nêu tên và một vết truy nguyên hướng dẫn được lập thành tài liệu phía sau mỗi lớp phủ.',
 
     'medmgmt.cta.line': 'Nếu sự nhầm lẫn về thuốc đang gây ra việc hủy lịch trong ngày, chương trình thử nghiệm đối tác thiết kế được vận hành miễn phí hoặc theo hình thức hoàn tiền cho đến khi Aescia mang lại lợi ích ròng có thể đo lường được so với mốc cơ sở của chính bạn.',
   },

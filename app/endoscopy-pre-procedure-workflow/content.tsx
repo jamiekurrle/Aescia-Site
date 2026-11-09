@@ -135,7 +135,7 @@ export function PageContent() {
         </div>
       </section>
 
-      {/* On the roadmap: procedure-length risk score. Planned, not built. ML is
+      {/* On the roadmap: procedure-length estimate. Planned, not built. ML is
           used here for back-end/operational analysis (list planning), kept
           separate from the clinician-authored patient-facing alert rules, and
           framed as operational (not a clinical decision) to stay non-device. */}

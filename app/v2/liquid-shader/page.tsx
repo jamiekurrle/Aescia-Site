@@ -196,7 +196,7 @@ export default function LiquidShaderDemo() {
               A single signal, rotating through the week that matters.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-[1.6] text-white/75">
-              Rule-based prioritisation, authored by clinicians. No opaque models. Every alert
+              Alert rules written and signed off by clinicians. No opaque models. Every alert
               traces back to a person and a sentence.
             </p>
             <div className="mt-8 flex items-center gap-3">

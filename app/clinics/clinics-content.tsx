@@ -59,17 +59,6 @@ export default function ClinicsContent() {
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-4 lg:pt-8">
-            <div className="border-l border-accent/60 pl-6 py-2">
-              <p className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent mb-3">{t('clinics.posture.label')}</p>
-              <p className="font-display text-[20px] leading-[1.25] mb-4" style={{ fontVariationSettings: "'opsz' 80" }}>
-                {t('clinics.posture.title')}
-              </p>
-              <p className="text-[13px] text-foreground/70 leading-relaxed">
-                {t('clinics.posture.body')}
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -236,7 +225,7 @@ export default function ClinicsContent() {
                   },
                   {
                     title: 'Patient education and adherence between visits',
-                    body: 'Specialties where the weeks before or after an appointment carry risk: chronic disease, procedural prep, post-treatment monitoring, rehabilitation, lifestyle-dependent outcomes.',
+                    body: 'Specialties where the weeks before or after an appointment carry risk: chronic disease, procedural prep, post-treatment follow-up, rehabilitation, lifestyle-dependent outcomes.',
                   },
                   {
                     title: 'Direct clinician oversight, or hands-off',
@@ -346,7 +335,7 @@ export default function ClinicsContent() {
               <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>Aescia for Clinics has no customers yet</h3>
               <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80">
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Aescia for Clinics has not published its own outcomes yet.</span></li>
-                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The Hospitals product is in clinical evaluation (SAFE-Discharge, Royal Prince Alfred Hospital), though that is cardiothoracic recovery, not endoscopy prep.</span></li>
+                <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The Hospitals product is used in the SAFE-Discharge trial at Royal Prince Alfred Hospital, though that is cardiothoracic recovery, not endoscopy prep.</span></li>
                 <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>The calculator scales category literature to your site. Aescia-specific outcomes come from the design-partner pilots, measured against your own baseline.</span></li>
               </ul>
             </div>
@@ -355,11 +344,11 @@ export default function ClinicsContent() {
           {/* Pathway-authoring methodology: what makes Aescia's clinician-authored
               rule sets different from a generic SMS reminder tool. */}
           <div className="mt-12 pt-10 border-t border-border">
-            <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>How Aescia builds its pathways</h3>
+            <h3 className="font-display text-[18px] mb-4" style={{ fontVariationSettings: "'opsz' 72" }}>How the pathways are built</h3>
             <ul className="space-y-2.5 text-[14px] leading-[1.55] text-foreground/80 max-w-3xl">
-              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Start from published guidelines: USMSTF and NHMRC (surveillance), multi-society guidance (GLP-1 peri-procedure), regional bowel-prep protocols, society anticoagulation guidance.</span></li>
-              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>A practising clinician authors the rule set against those guidelines.</span></li>
-              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Rules are stress-tested on synthetic-patient cohorts before any real patient. Edge cases (diabetic and anticoagulated overlays, prior inadequate prep, GLP-1 with insulin) get resolved in the editor, not the front-desk queue.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Each pathway runs on your unit’s protocol, written and signed off by your clinicians.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Where no written protocol exists, we draft one from your current practice and published guidance for your clinicians to approve: USMSTF and NHMRC (surveillance), multi-society guidance (GLP-1 peri-procedure), regional bowel-prep protocols, society anticoagulation guidance.</span></li>
+              <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Before go-live, the rules are run against test patients so your clinicians can check edge cases (diabetic and anticoagulated overlays, prior inadequate prep, GLP-1 with insulin) in the editor, not the front-desk queue.</span></li>
               <li className="flex gap-3"><span className="mt-[9px] h-1 w-1 rounded-full bg-brass shrink-0" aria-hidden="true" /><span>Every pathway carries a named clinical author and a documented guideline trail.</span></li>
             </ul>
           </div>

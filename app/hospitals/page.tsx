@@ -3,14 +3,14 @@ import { breadcrumbSchema } from '@/lib/schema'
 import HospitalsContent from './hospitals-content'
 
 export const metadata: Metadata = {
-  title: 'Post-surgical recovery monitoring for cardiothoracic surgery',
+  title: "Post-discharge check-ins and nurse alerts, on your hospital's rules",
   description:
-    'Aescia for Hospitals is a structured post-discharge monitoring platform for cardiothoracic and other high-acuity surgical recovery. In clinical evaluation through the SAFE-Discharge trial at Royal Prince Alfred Hospital.',
+    "Aescia for Hospitals sends patients your hospital's check-in questions and education after discharge, and alerts your nurses when an answer meets a rule your hospital set. Used in the SAFE-Discharge trial at Royal Prince Alfred Hospital.",
   alternates: { canonical: '/hospitals' },
   openGraph: {
-    title: 'Aescia for Hospitals | Post-surgical recovery monitoring',
+    title: 'Aescia for Hospitals | Post-discharge check-ins and nurse alerts',
     description:
-      'A structured follow-up layer for cardiothoracic recovery. Clinician-authored pathways, transparent rule-based prioritisation, in clinical evaluation.',
+      "Post-discharge check-ins and nurse alerts, on your hospital's rules. Questions and alert rules written by your clinicians.",
     url: '/hospitals',
   },
 }

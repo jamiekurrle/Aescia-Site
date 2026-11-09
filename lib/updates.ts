@@ -55,7 +55,7 @@ export const updatesEntries: UpdatesEntry[] = [
     n: 10,
     date: '2026-04-24',
     title: 'Aescia enrols in MTAA MedTech Compass.',
-    body: "Aescia has joined the Medical Technology Association of Australia's MedTech Compass program, which supports Australian medtech companies moving from concept to commercial adoption across regulatory, reimbursement, and clinical evidence.",
+    body: "Aescia has joined the Medical Technology Association of Australia's MedTech Compass program, which supports Australian medtech companies moving from concept to commercial adoption.",
     url: 'https://medtechcompass.org.au/',
   },
   {

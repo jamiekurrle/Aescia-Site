@@ -42,7 +42,7 @@ export default function ContactPage() {
             Tell us which conversation matches your team:
           </p>
           <ul style={{ margin: '0 0 1rem 1.25rem', lineHeight: 1.6 }}>
-            <li>Hospital evaluation, for post-discharge monitoring and the SAFE-Discharge programme.</li>
+            <li>Hospital evaluation, for post-discharge check-ins and nurse alerts and the SAFE-Discharge programme.</li>
             <li>Clinic demo, for pre-procedure pathway software at endoscopy centres and specialty clinics.</li>
           </ul>
           <p style={{ lineHeight: 1.6 }}>

@@ -177,43 +177,8 @@ export function PageContent() {
         </div>
       </section>
 
-      {/* Regulatory posture */}
-      <section className="py-24 lg:py-32 px-6 lg:px-10 bg-secondary">
-        <div className="max-w-4xl mx-auto">
-          <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-accent">{t('evidence.page.regulatory.eyebrow')}</span>
-          <h2
-            className="font-display text-[30px] lg:text-[42px] leading-[1.1] tracking-[-0.025em] mt-6 mb-10"
-            style={{ fontVariationSettings: "'opsz' 120" }}
-          >
-            {t('evidence.page.regulatory.title')}
-          </h2>
-          <div className="space-y-5 text-[15px] lg:text-[16px] leading-[1.7] text-foreground/85 max-w-3xl">
-            <p>
-              {t('evidence.page.regulatory.p1')}
-            </p>
-            <p>
-              {t('evidence.page.regulatory.p2')}
-            </p>
-            <p>
-              {t('evidence.page.regulatory.p3')}
-            </p>
-          </div>
-          <div className="mt-10">
-            <Link
-              href="/governance"
-              className="inline-flex items-center gap-2.5 text-[13px] text-foreground font-medium tracking-wide border-b border-brass pb-1.5 hover:border-foreground transition-colors"
-            >
-              {t('evidence.page.regulatory.cta')}
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14m-5-5l5 5-5 5" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* Published references */}
-      <section className="py-24 lg:py-32 px-6 lg:px-10">
+      <section className="py-24 lg:py-32 px-6 lg:px-10 border-t border-border">
         <div className="max-w-4xl mx-auto">
           <span className="font-mono text-[13px] uppercase tracking-[0.22em] text-brass">{t('evidence.page.references.eyebrow')}</span>
           <h2

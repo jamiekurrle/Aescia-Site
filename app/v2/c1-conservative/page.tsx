@@ -158,10 +158,10 @@ function AudienceTiles() {
   const cards = [
     {
       eyebrow: 'For hospitals',
-      tag: 'Investigational SaMD',
+      tag: 'Check-ins and nurse alerts',
       title: 'Structured discharge follow-up that reads like a clinician wrote it.',
-      desc: 'Continuous post-discharge monitoring with clinician-authored pathways, escalation triggers tuned to your service, and audit-grade documentation by default.',
-      cta: 'Hospital Monitor →',
+      desc: "Post-discharge check-ins and nurse alerts, on your hospital's rules. Questions and alert rules written by your clinicians, alerts that follow your escalation protocol, and audit-grade documentation by default.",
+      cta: 'Aescia for Hospitals →',
       href: '/hospitals',
       dark: true,
     },
@@ -169,7 +169,7 @@ function AudienceTiles() {
       eyebrow: 'For specialty clinics',
       tag: 'Workflow software',
       title: 'Specialty intake, preparation, and follow-up — one place.',
-      desc: 'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. No clinical decision-support classification. Quick to deploy, slow to break.',
+      desc: 'Pathway templates for endoscopy, anaesthetics preadmission, and other specialty workflows. Quick to deploy, slow to break.',
       cta: 'Specialty Clinic →',
       href: '/clinics',
       dark: false,
@@ -255,7 +255,7 @@ function Pillars() {
   const items = [
     { n: '01', t: 'Transparent by construction.', d: 'Every recommendation traces back to a clinician-authored rule. Every patient interaction lands in the audit trail.' },
     { n: '02', t: 'Clinician at the centre.', d: 'The platform proposes; clinicians decide. Pathways are written by the people who run the service.' },
-    { n: '03', t: 'Two surfaces, one platform.', d: 'Hospital Monitor is regulated software. Specialty Clinic is a workflow tool. Same engine, different posture.' },
+    { n: '03', t: 'Two surfaces, one platform.', d: 'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. Same engine.' },
   ]
 
   return (

@@ -49,9 +49,9 @@ function MorphHero() {
             </h1>
 
             <p className="mt-8 text-[16px] lg:text-[18px] leading-[1.65] max-w-md" style={{ color: 'var(--c-ink-70)' }}>
-              Aescia carries the clinical eye home with the patient. Daily check-ins,
-              escalation triggers, audit-grade documentation — the discharge week,
-              treated as the work it actually is.
+              Your hospital&apos;s questions go home with the patient. Daily check-ins,
+              nurse alerts on your rules, audit-grade documentation. The discharge
+              week, treated as the work it is.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -156,7 +156,7 @@ function MorphHero() {
                   className="font-mono"
                   style={{ letterSpacing: '0.18em', textTransform: 'uppercase' }}
                 >
-                  Home, monitored
+                  Home, checking in
                 </text>
               </motion.svg>
             </div>
@@ -239,10 +239,10 @@ function ProductPair() {
         <div className="grid md:grid-cols-2 gap-px" style={{ background: 'var(--c-border-cool)' }}>
           {[
             {
-              tag: 'Hospital Monitor',
-              status: 'Investigational SaMD',
-              t: 'Post-discharge monitoring, regulated.',
-              d: 'For clinical teams running discharge follow-up at scale. Audit-grade, escalation-aware.',
+              tag: 'Aescia for Hospitals',
+              status: 'Check-ins and nurse alerts',
+              t: 'Post-discharge follow-up, on your rules.',
+              d: 'For clinical teams running discharge follow-up at scale. Check-ins and nurse alerts on your hospital\'s rules, audit-grade.',
               href: '/hospitals',
             },
             {

@@ -7,7 +7,7 @@ import { PageContent } from './content'
 export const metadata: Metadata = {
   title: 'Reduce the inadequate bowel prep rate at an ASC with software',
   description:
-    'Inadequate bowel preparation is common, with addressable risk factors (Beran 2024, n=358,257). Aescia for Clinics delivers clinician-authored, timed, coached prep pathways. Not a medical device.',
+    'Inadequate bowel preparation is common, with addressable risk factors (Beran 2024, n=358,257). Aescia for Clinics delivers clinician-authored, timed, coached prep pathways.',
   alternates: { canonical: '/bowel-prep-software' },
   openGraph: {
     title: 'Reduce inadequate bowel prep at an ASC | Aescia for Clinics',

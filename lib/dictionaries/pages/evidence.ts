@@ -2,20 +2,20 @@ export const dict: Record<string, Record<string, string>> = {
   en: {
     'evidence.page.hero.eyebrow': 'Clinical evidence',
     'evidence.page.hero.title': 'The published base, and how we add to it.',
-    'evidence.page.hero.subtitle': 'The published evidence base for structured post-discharge monitoring, and Aescia\'s approach to generating product-specific evidence through rigorous clinical evaluation.',
+    'evidence.page.hero.subtitle': 'The published evidence base for structured post-discharge follow-up, and Aescia\'s approach to generating product-specific evidence through rigorous clinical evaluation.',
 
     'evidence.page.base.eyebrow': 'Published literature',
-    'evidence.page.base.title': 'The evidence base for post-discharge monitoring.',
+    'evidence.page.base.title': 'The evidence base for post-discharge follow-up.',
     'evidence.page.base.p1': 'The published literature on early hospital readmission has been consistent across two decades of analysis. Jencks and colleagues, working in the United States Medicare population, established that a meaningful fraction of inpatient discharges are followed by readmission within 30 days. Van Walraven and colleagues, in a systematic review across multiple countries, reported that a substantial proportion of those readmissions are judged avoidable by treating clinicians on retrospective review.',
     'evidence.page.base.p2': 'Leppin and colleagues, in a meta-analysis of randomised trials, reported that interventions involving structured patient contact during the post-discharge window are associated with reduced readmission rates. Hansen and colleagues, in a parallel systematic review, classified the interventions that have been studied and noted that combinations of pre-discharge and post-discharge components tend to outperform single-element approaches.',
-    'evidence.page.base.p3': 'This bears on hospital capacity as much as on the patient. Because an avoided readmission is an inpatient stay that does not happen, the readmission literature is, in effect, also a literature about bed-days: in high-acuity surgical units, where the bed is the binding constraint, fewer avoidable readmissions and a smoother recovery mean bed-days returned to the service. Whether any particular monitoring approach achieves that, and to what degree, is an empirical question that each product must answer in its own trial.',
+    'evidence.page.base.p3': 'This bears on hospital capacity as much as on the patient. Because an avoided readmission is an inpatient stay that does not happen, the readmission literature is, in effect, also a literature about bed-days: in high-acuity surgical units, where the bed is the binding constraint, fewer avoidable readmissions and a smoother recovery mean bed-days returned to the service. Whether any particular follow-up approach achieves that, and to what degree, is an empirical question that each product must answer in its own trial.',
     'evidence.page.base.p4': 'The literature describes the territory; it does not characterise any specific software product, including Aescia. Citations are listed below.',
     'evidence.page.base.disclaimer': 'The findings above are observations about the published literature on post-discharge care. They are not statements about the performance, intended use, or expected outcomes of Aescia for Hospitals. Aescia makes no claim to reduce readmissions, length of stay, or bed-days; that is precisely what the SAFE-Discharge trial is designed to evaluate.',
 
     'evidence.page.prep.eyebrow': 'Before the procedure',
     'evidence.page.prep.title': 'What happens before shapes what happens after.',
     'evidence.page.prep.p1': 'A second body of published research looks at the period before a procedure or operation. Systematic reviews of prehabilitation in higher-risk patients before major surgery have reported associations with shorter hospital stays and fewer severe complications, though the evidence is still developing and not every study finds the same effect. In endoscopy, inadequate bowel preparation has been associated with longer inpatient stays and higher hospitalisation costs.',
-    'evidence.page.prep.p2': 'Aescia for Clinics is a workflow and patient-preparation platform. It delivers clinician-authored preparation pathways, medication-hold guidance, and timed reminders into a patient web app, in the patient\'s own language. It is not a medical device and does not propose clinical decisions. The studies below describe the published evidence on preparation and prehabilitation; Aescia\'s role is to deliver those clinician-authored steps reliably and at scale, not to claim a clinical outcome of its own.',
+    'evidence.page.prep.p2': 'Aescia for Clinics is a workflow and patient-preparation platform. It delivers clinician-authored preparation pathways, medication-hold guidance, and timed reminders into a patient web app, in the patient\'s own language. The studies below describe the published evidence on preparation and prehabilitation; Aescia\'s role is to deliver those clinician-authored steps reliably and at scale, not to claim a clinical outcome of its own.',
     'evidence.page.prep.disclaimer': 'These are observations about the published literature on preparation and prehabilitation. They are not statements about the performance or expected outcomes of Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Active programme',
@@ -34,7 +34,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': 'Population',
     'evidence.page.programme.row.population.value': 'Adult patients post cardiothoracic surgery (CABG, valve, thoracic procedures)',
     'evidence.page.programme.row.status.label': 'Status',
-    'evidence.page.programme.row.status.value': 'Live at Royal Prince Alfred Hospital since June 2026, with good early results',
+    'evidence.page.programme.row.status.value': 'Live at Royal Prince Alfred Hospital since June 2026. The SAFE-Discharge trial team at Royal Prince Alfred Hospital is preparing interim results for publication.',
 
     'evidence.page.approach.eyebrow': 'Approach',
     'evidence.page.approach.title': 'How we evaluate.',
@@ -49,12 +49,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Independent oversight',
     'evidence.page.approach.oversight.desc': 'Sponsor responsibility sits with the trial-sponsoring institution. Aescia does not arbitrate clinical interpretation of trial outcomes.',
 
-    'evidence.page.regulatory.eyebrow': 'Regulatory posture',
-    'evidence.page.regulatory.title': 'Where we are with regulators.',
-    'evidence.page.regulatory.p1': 'Aescia for Hospitals is an investigational Software as a Medical Device. The intended classification is Class IIa. A regulatory submission for inclusion in the Australian Register of Therapeutic Goods (ARTG) is in preparation; the product has not been submitted, is not registered, and is not available for commercial supply.',
-    'evidence.page.regulatory.p2': 'Aescia is not certified to ISO 13485, ISO/IEC 27001 or IEC 62304, standards of the International Organization for Standardization (ISO) and the International Electrotechnical Commission (IEC). Certification is planned.',
-    'evidence.page.regulatory.p3': 'Clinical outputs from Aescia for Hospitals are advisory and require clinician review. The product does not autonomously act on patient responses; the treating clinical team remains the decision-maker for any change in care.',
-    'evidence.page.regulatory.cta': 'Read full governance and security posture',
 
     'evidence.page.references.eyebrow': 'References',
     'evidence.page.references.title': 'Published references.',
@@ -78,26 +72,26 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'For the regulatory and security posture in detail:',
+    'evidence.page.footercta.text': 'For governance and security in detail:',
     'evidence.page.footercta.button': 'Read governance',
   },
   fr: {
     'evidence.page.hero.eyebrow': 'Preuves cliniques',
     'evidence.page.hero.title': 'La base publiée, et comment nous y ajoutons.',
-    'evidence.page.hero.subtitle': 'La base de preuves publiée sur la surveillance structurée après la sortie, et l\'approche d\'Aescia pour générer des preuves propres au produit grâce à une évaluation clinique rigoureuse.',
+    'evidence.page.hero.subtitle': 'La base de preuves publiée sur le suivi structuré après la sortie, et l\'approche d\'Aescia pour produire des preuves propres au produit par une évaluation clinique rigoureuse.',
 
     'evidence.page.base.eyebrow': 'Littérature publiée',
-    'evidence.page.base.title': 'La base de preuves pour la surveillance après la sortie.',
+    'evidence.page.base.title': 'La base de preuves du suivi après la sortie.',
     'evidence.page.base.p1': 'La littérature publiée sur la réadmission hospitalière précoce est restée cohérente au fil de deux décennies d\'analyse. Jencks et ses collègues, travaillant sur la population Medicare des États-Unis, ont établi qu\'une fraction notable des sorties d\'hospitalisation est suivie d\'une réadmission dans les 30 jours. Van Walraven et ses collègues, dans une revue systématique portant sur plusieurs pays, ont rapporté qu\'une proportion substantielle de ces réadmissions est jugée évitable par les cliniciens traitants lors d\'une revue rétrospective.',
     'evidence.page.base.p2': 'Leppin et ses collègues, dans une méta-analyse d\'essais randomisés, ont rapporté que les interventions impliquant un contact structuré avec le patient pendant la fenêtre post-sortie sont associées à des taux de réadmission réduits. Hansen et ses collègues, dans une revue systématique parallèle, ont classé les interventions étudiées et ont noté que les combinaisons de composants avant la sortie et après la sortie tendent à surpasser les approches à élément unique.',
-    'evidence.page.base.p3': 'Cela concerne la capacité hospitalière autant que le patient. Parce qu\'une réadmission évitée est une hospitalisation qui n\'a pas lieu, la littérature sur la réadmission est, en effet, aussi une littérature sur les journées-lits : dans les unités chirurgicales à haute acuité, où le lit est la contrainte limitante, moins de réadmissions évitables et une récupération plus douce signifient des journées-lits rendues au service. Qu\'une approche de surveillance particulière y parvienne, et dans quelle mesure, est une question empirique à laquelle chaque produit doit répondre dans son propre essai.',
+    'evidence.page.base.p3': 'Cela concerne la capacité hospitalière autant que le patient. Parce qu\'une réadmission évitée est une hospitalisation qui n\'a pas lieu, la littérature sur la réadmission est, en effet, aussi une littérature sur les journées-lits : dans les unités chirurgicales à haute acuité, où le lit est la contrainte limitante, moins de réadmissions évitables et une récupération plus douce signifient des journées-lits rendues au service. Qu\'une approche de suivi particulière y parvienne, et dans quelle mesure, est une question empirique à laquelle chaque produit doit répondre dans son propre essai.',
     'evidence.page.base.p4': 'La littérature décrit le territoire ; elle ne caractérise aucun produit logiciel spécifique, y compris Aescia. Les citations sont listées ci-dessous.',
     'evidence.page.base.disclaimer': 'Les constats ci-dessus sont des observations sur la littérature publiée concernant les soins après la sortie. Ce ne sont pas des affirmations sur la performance, l\'usage prévu ou les résultats attendus d\'Aescia for Hospitals. Aescia ne revendique aucune réduction des réadmissions, de la durée de séjour ou des journées-lits ; c\'est précisément ce que l\'essai SAFE-Discharge est conçu pour évaluer.',
 
     'evidence.page.prep.eyebrow': 'Avant la procédure',
     'evidence.page.prep.title': 'Ce qui se passe avant façonne ce qui se passe après.',
     'evidence.page.prep.p1': 'Un second corpus de recherche publiée examine la période précédant une procédure ou une opération. Les revues systématiques de la préhabilitation chez les patients à risque plus élevé avant une chirurgie majeure ont rapporté des associations avec des séjours hospitaliers plus courts et moins de complications graves, bien que les preuves soient encore en développement et que toutes les études ne trouvent pas le même effet. En endoscopie, une préparation intestinale inadéquate a été associée à des séjours hospitaliers plus longs et à des coûts d\'hospitalisation plus élevés.',
-    'evidence.page.prep.p2': 'Aescia for Clinics est une plateforme de flux de travail et de préparation des patients. Elle délivre des parcours de préparation rédigés par des cliniciens, des consignes de suspension des médicaments et des rappels programmés dans une appli web patient, dans la langue propre du patient. Ce n\'est pas un dispositif médical et elle ne propose pas de décisions cliniques. Les études ci-dessous décrivent les preuves publiées sur la préparation et la préhabilitation ; le rôle d\'Aescia est de délivrer ces étapes rédigées par des cliniciens de manière fiable et à grande échelle, et non de revendiquer un résultat clinique qui lui soit propre.',
+    'evidence.page.prep.p2': 'Aescia for Clinics est une plateforme de flux de travail et de préparation des patients. Elle délivre des parcours de préparation rédigés par des cliniciens, des consignes de suspension des médicaments et des rappels programmés dans une appli web patient, dans la langue propre du patient. Les études ci-dessous décrivent les preuves publiées sur la préparation et la préhabilitation ; le rôle d\'Aescia est de délivrer ces étapes rédigées par des cliniciens de manière fiable et à grande échelle, et non de revendiquer un résultat clinique qui lui soit propre.',
     'evidence.page.prep.disclaimer': 'Ce sont des observations sur la littérature publiée concernant la préparation et la préhabilitation. Ce ne sont pas des affirmations sur la performance ou les résultats attendus d\'Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Programme actif',
@@ -116,7 +110,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': 'Population',
     'evidence.page.programme.row.population.value': 'Patients adultes après chirurgie cardiothoracique (CABG, valve, procédures thoraciques)',
     'evidence.page.programme.row.status.label': 'Statut',
-    'evidence.page.programme.row.status.value': 'En cours au Royal Prince Alfred Hospital depuis juin 2026, avec de bons premiers résultats',
+    'evidence.page.programme.row.status.value': 'En cours au Royal Prince Alfred Hospital depuis juin 2026. L\'équipe de l\'essai SAFE-Discharge au Royal Prince Alfred Hospital prépare la publication de résultats intermédiaires.',
 
     'evidence.page.approach.eyebrow': 'Approche',
     'evidence.page.approach.title': 'Comment nous évaluons.',
@@ -131,12 +125,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Supervision indépendante',
     'evidence.page.approach.oversight.desc': 'La responsabilité de promoteur incombe à l\'institution promotrice de l\'essai. Aescia n\'arbitre pas l\'interprétation clinique des résultats de l\'essai.',
 
-    'evidence.page.regulatory.eyebrow': 'Posture réglementaire',
-    'evidence.page.regulatory.title': 'Où nous en sommes avec les régulateurs.',
-    'evidence.page.regulatory.p1': 'Aescia for Hospitals est un logiciel dispositif médical en investigation. La classification prévue est Classe IIa. Une demande réglementaire d\'inscription à l\'Australian Register of Therapeutic Goods (ARTG) est en préparation ; le produit n\'a pas été soumis, n\'est pas enregistré et n\'est pas disponible pour la fourniture commerciale.',
-    'evidence.page.regulatory.p2': 'Aescia n\'est pas certifiée ISO 13485, ISO/IEC 27001 ni IEC 62304, normes de l\'Organisation internationale de normalisation (ISO) et de la Commission électrotechnique internationale (IEC). La certification est prévue.',
-    'evidence.page.regulatory.p3': 'Les sorties cliniques d\'Aescia for Hospitals sont consultatives et nécessitent une revue par un clinicien. Le produit n\'agit pas de manière autonome sur les réponses du patient ; l\'équipe clinique traitante reste le décideur pour tout changement de soins.',
-    'evidence.page.regulatory.cta': 'Lire la posture complète de gouvernance et de sécurité',
 
     'evidence.page.references.eyebrow': 'Références',
     'evidence.page.references.title': 'Références publiées.',
@@ -160,26 +148,26 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Pour la posture réglementaire et de sécurité en détail :',
+    'evidence.page.footercta.text': 'Pour la gouvernance et la sécurité en détail :',
     'evidence.page.footercta.button': 'Lire la gouvernance',
   },
   es: {
     'evidence.page.hero.eyebrow': 'Evidencia clínica',
     'evidence.page.hero.title': 'La base publicada, y cómo le sumamos.',
-    'evidence.page.hero.subtitle': 'La base de evidencia publicada sobre la monitorización estructurada tras el alta, y el enfoque de Aescia para generar evidencia propia del producto mediante una evaluación clínica rigurosa.',
+    'evidence.page.hero.subtitle': 'La base de evidencia publicada sobre el seguimiento estructurado tras el alta, y el enfoque de Aescia para generar evidencia propia del producto mediante una evaluación clínica rigurosa.',
 
     'evidence.page.base.eyebrow': 'Literatura publicada',
-    'evidence.page.base.title': 'La base de evidencia para la monitorización tras el alta.',
+    'evidence.page.base.title': 'La base de evidencia del seguimiento tras el alta.',
     'evidence.page.base.p1': 'La literatura publicada sobre el reingreso hospitalario temprano se ha mantenido coherente a lo largo de dos décadas de análisis. Jencks y colaboradores, trabajando con la población de Medicare de los Estados Unidos, establecieron que una fracción significativa de las altas hospitalarias va seguida de un reingreso dentro de los 30 días. Van Walraven y colaboradores, en una revisión sistemática que abarcó varios países, informaron que una proporción sustancial de esos reingresos se considera evitable por los clínicos tratantes en una revisión retrospectiva.',
     'evidence.page.base.p2': 'Leppin y colaboradores, en un metaanálisis de ensayos aleatorizados, informaron que las intervenciones que implican un contacto estructurado con el paciente durante la ventana posterior al alta se asocian con tasas de reingreso reducidas. Hansen y colaboradores, en una revisión sistemática paralela, clasificaron las intervenciones que se han estudiado y señalaron que las combinaciones de componentes previos al alta y posteriores al alta tienden a superar a los enfoques de un solo elemento.',
-    'evidence.page.base.p3': 'Esto incide tanto en la capacidad hospitalaria como en el paciente. Como un reingreso evitado es una estancia hospitalaria que no ocurre, la literatura sobre reingresos es, en efecto, también una literatura sobre días-cama: en las unidades quirúrgicas de alta agudeza, donde la cama es la restricción limitante, menos reingresos evitables y una recuperación más fluida significan días-cama devueltos al servicio. Si un enfoque de monitorización en particular logra eso, y en qué grado, es una cuestión empírica que cada producto debe responder en su propio ensayo.',
+    'evidence.page.base.p3': 'Esto incide tanto en la capacidad hospitalaria como en el paciente. Como un reingreso evitado es una estancia hospitalaria que no ocurre, la literatura sobre reingresos es, en efecto, también una literatura sobre días-cama: en las unidades quirúrgicas de alta agudeza, donde la cama es la restricción limitante, menos reingresos evitables y una recuperación más fluida significan días-cama devueltos al servicio. Si un enfoque de seguimiento en particular logra eso, y en qué grado, es una cuestión empírica que cada producto debe responder en su propio ensayo.',
     'evidence.page.base.p4': 'La literatura describe el territorio; no caracteriza ningún producto de software específico, incluido Aescia. Las citas se enumeran a continuación.',
     'evidence.page.base.disclaimer': 'Los hallazgos anteriores son observaciones sobre la literatura publicada acerca de la atención tras el alta. No son afirmaciones sobre el desempeño, el uso previsto ni los resultados esperados de Aescia for Hospitals. Aescia no afirma reducir los reingresos, la duración de la estancia ni los días-cama; eso es precisamente lo que el ensayo SAFE-Discharge está diseñado para evaluar.',
 
     'evidence.page.prep.eyebrow': 'Antes del procedimiento',
     'evidence.page.prep.title': 'Lo que ocurre antes da forma a lo que ocurre después.',
     'evidence.page.prep.p1': 'Un segundo cuerpo de investigación publicada examina el período previo a un procedimiento u operación. Las revisiones sistemáticas de la prehabilitación en pacientes de mayor riesgo antes de una cirugía mayor han informado asociaciones con estancias hospitalarias más cortas y menos complicaciones graves, aunque la evidencia aún se está desarrollando y no todos los estudios encuentran el mismo efecto. En endoscopia, una preparación intestinal inadecuada se ha asociado con estancias hospitalarias más largas y mayores costos de hospitalización.',
-    'evidence.page.prep.p2': 'Aescia for Clinics es una plataforma de flujo de trabajo y preparación del paciente. Entrega vías de preparación redactadas por clínicos, orientación sobre la suspensión de medicamentos y recordatorios programados en una aplicación web para el paciente, en el propio idioma del paciente. No es un dispositivo médico y no propone decisiones clínicas. Los estudios a continuación describen la evidencia publicada sobre preparación y prehabilitación; el papel de Aescia es entregar esos pasos redactados por clínicos de manera confiable y a escala, no reclamar un resultado clínico propio.',
+    'evidence.page.prep.p2': 'Aescia for Clinics es una plataforma de flujo de trabajo y preparación del paciente. Entrega vías de preparación redactadas por clínicos, orientación sobre la suspensión de medicamentos y recordatorios programados en una aplicación web para el paciente, en el propio idioma del paciente. Los estudios a continuación describen la evidencia publicada sobre preparación y prehabilitación; el papel de Aescia es entregar esos pasos redactados por clínicos de manera confiable y a escala, no reclamar un resultado clínico propio.',
     'evidence.page.prep.disclaimer': 'Estas son observaciones sobre la literatura publicada acerca de la preparación y la prehabilitación. No son afirmaciones sobre el desempeño ni los resultados esperados de Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Programa activo',
@@ -198,7 +186,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': 'Población',
     'evidence.page.programme.row.population.value': 'Pacientes adultos tras cirugía cardiotorácica (CABG, válvula, procedimientos torácicos)',
     'evidence.page.programme.row.status.label': 'Estado',
-    'evidence.page.programme.row.status.value': 'En marcha en el Royal Prince Alfred Hospital desde junio de 2026, con buenos resultados iniciales',
+    'evidence.page.programme.row.status.value': 'En marcha en el Royal Prince Alfred Hospital desde junio de 2026. El equipo del ensayo SAFE-Discharge en el Royal Prince Alfred Hospital está preparando resultados intermedios para su publicación.',
 
     'evidence.page.approach.eyebrow': 'Enfoque',
     'evidence.page.approach.title': 'Cómo evaluamos.',
@@ -213,12 +201,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Supervisión independiente',
     'evidence.page.approach.oversight.desc': 'La responsabilidad de patrocinador recae en la institución patrocinadora del ensayo. Aescia no arbitra la interpretación clínica de los resultados del ensayo.',
 
-    'evidence.page.regulatory.eyebrow': 'Postura regulatoria',
-    'evidence.page.regulatory.title': 'Dónde estamos con los reguladores.',
-    'evidence.page.regulatory.p1': 'Aescia for Hospitals es un software como dispositivo médico en investigación. La clasificación prevista es Clase IIa. Una solicitud regulatoria para la inclusión en el Australian Register of Therapeutic Goods (ARTG) está en preparación; el producto no se ha presentado, no está registrado y no está disponible para el suministro comercial.',
-    'evidence.page.regulatory.p2': 'Aescia no está certificada en ISO 13485, ISO/IEC 27001 ni IEC 62304, normas de la Organización Internacional de Normalización (ISO) y de la Comisión Electrotécnica Internacional (IEC). La certificación está prevista.',
-    'evidence.page.regulatory.p3': 'Los resultados clínicos de Aescia for Hospitals son de carácter consultivo y requieren revisión por un clínico. El producto no actúa de forma autónoma sobre las respuestas del paciente; el equipo clínico tratante sigue siendo quien toma las decisiones ante cualquier cambio en la atención.',
-    'evidence.page.regulatory.cta': 'Leer la postura completa de gobernanza y seguridad',
 
     'evidence.page.references.eyebrow': 'Referencias',
     'evidence.page.references.title': 'Referencias publicadas.',
@@ -242,26 +224,26 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Para la postura regulatoria y de seguridad en detalle:',
+    'evidence.page.footercta.text': 'Para la gobernanza y la seguridad en detalle:',
     'evidence.page.footercta.button': 'Leer gobernanza',
   },
   zh: {
     'evidence.page.hero.eyebrow': '临床证据',
     'evidence.page.hero.title': '已发表的基础，以及我们如何在其上添砖加瓦。',
-    'evidence.page.hero.subtitle': '关于结构化出院后监测的已发表证据基础，以及 Aescia 通过严谨临床评估生成产品专属证据的方法。',
+    'evidence.page.hero.subtitle': '关于结构化出院后随访的已发表证据基础，以及 Aescia 通过严谨的临床评估生成产品特定证据的方法。',
 
     'evidence.page.base.eyebrow': '已发表文献',
-    'evidence.page.base.title': '出院后监测的证据基础。',
+    'evidence.page.base.title': '出院后随访的证据基础。',
     'evidence.page.base.p1': '关于早期再入院的已发表文献，在二十年的分析中始终保持一致。Jencks 及其同事在美国 Medicare 人群中开展研究，确认有相当一部分住院出院后会在 30 天内再次入院。Van Walraven 及其同事在一项涵盖多个国家的系统综述中报告，那些再入院中有相当比例在回顾性审查中被治疗临床医生判定为可避免。',
     'evidence.page.base.p2': 'Leppin 及其同事在一项随机试验的荟萃分析中报告，在出院后窗口期涉及结构化患者接触的干预措施与再入院率降低相关。Hansen 及其同事在一项平行的系统综述中，对已研究的干预措施进行了分类，并指出出院前与出院后组件的组合往往优于单一要素的方法。',
-    'evidence.page.base.p3': '这既关乎患者，也同样关乎医院的承载能力。由于一次被避免的再入院就是一次未发生的住院，再入院文献实际上也是一部关于床日的文献：在高危外科病房，床位是约束性瓶颈，更少的可避免再入院与更顺畅的康复意味着把床日归还给该科室。某种特定的监测方法是否能做到这一点、能做到何种程度，是一个经验性问题，每款产品都必须在各自的试验中作答。',
+    'evidence.page.base.p3': '这既关乎患者，也同样关乎医院的承载能力。由于一次被避免的再入院就是一次未发生的住院，再入院文献实际上也是一部关于床日的文献：在高危外科病房，床位是约束性瓶颈，更少的可避免再入院与更顺畅的康复意味着把床日归还给该科室。某种特定的随访方法是否能做到这一点、能做到何种程度，是一个经验性问题，每款产品都必须在各自的试验中作答。',
     'evidence.page.base.p4': '文献描绘的是版图；它并不刻画任何具体的软件产品，包括 Aescia。引用列于下方。',
     'evidence.page.base.disclaimer': '上述发现是对出院后照护已发表文献的观察。它们并非关于 Aescia for Hospitals 的性能、预期用途或预期结果的陈述。Aescia 不主张减少再入院、住院时长或床日；这恰恰正是 SAFE-Discharge 试验旨在评估的内容。',
 
     'evidence.page.prep.eyebrow': '在手术之前',
     'evidence.page.prep.title': '之前发生的事，塑造着之后发生的事。',
     'evidence.page.prep.p1': '第二类已发表研究关注的是手术或操作之前的时段。针对较高风险患者在重大手术前进行预康复的系统综述，报告了与更短住院时间和更少严重并发症相关的关联，尽管证据仍在发展中，且并非每项研究都得出相同的效应。在内镜检查中，肠道准备不充分与更长的住院时间和更高的住院费用相关。',
-    'evidence.page.prep.p2': 'Aescia for Clinics 是一个工作流程与患者准备平台。它将由临床医生撰写的准备路径、药物停用指导和定时提醒，以患者本人的语言投递到患者网页应用中。它不是医疗器械，也不提出临床决策。下方的研究描述的是关于准备与预康复的已发表证据；Aescia 的作用是可靠地、大规模地投递这些由临床医生撰写的步骤，而非主张其自身的某项临床结果。',
+    'evidence.page.prep.p2': 'Aescia for Clinics 是一个工作流程与患者准备平台。它将由临床医生撰写的准备路径、药物停用指导和定时提醒，以患者本人的语言投递到患者网页应用中。下方的研究描述的是关于准备与预康复的已发表证据；Aescia 的作用是可靠地、大规模地投递这些由临床医生撰写的步骤，而非主张其自身的某项临床结果。',
     'evidence.page.prep.disclaimer': '这些是对关于准备与预康复的已发表文献的观察。它们并非关于 Aescia for Clinics 的性能或预期结果的陈述。',
 
     'evidence.page.programme.eyebrow': '进行中的项目',
@@ -280,7 +262,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': '人群',
     'evidence.page.programme.row.population.value': '心胸外科术后成年患者（CABG、瓣膜、胸科手术）',
     'evidence.page.programme.row.status.label': '状态',
-    'evidence.page.programme.row.status.value': '自 2026 年 6 月起在 Royal Prince Alfred Hospital 开展，早期结果良好',
+    'evidence.page.programme.row.status.value': '自 2026 年 6 月起在 Royal Prince Alfred Hospital 进行。Royal Prince Alfred Hospital 的 SAFE-Discharge 试验团队正在准备发表中期结果。',
 
     'evidence.page.approach.eyebrow': '方法',
     'evidence.page.approach.title': '我们如何评估。',
@@ -295,12 +277,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': '独立监督',
     'evidence.page.approach.oversight.desc': '申办方责任由试验申办机构承担。Aescia 不对试验结果的临床解读进行裁决。',
 
-    'evidence.page.regulatory.eyebrow': '监管立场',
-    'evidence.page.regulatory.title': '我们与监管机构的进展。',
-    'evidence.page.regulatory.p1': 'Aescia for Hospitals 是一款处于研究阶段的医疗器械软件。预期归类为 Class IIa。用于纳入 Australian Register of Therapeutic Goods（ARTG）的监管申报正在准备中；该产品尚未提交、尚未注册，也不可用于商业供应。',
-    'evidence.page.regulatory.p2': 'Aescia 未获得 ISO 13485、ISO/IEC 27001 或 IEC 62304 认证，这些标准由国际标准化组织（ISO）和国际电工委员会（IEC）制定。已计划开展认证。',
-    'evidence.page.regulatory.p3': 'Aescia for Hospitals 的临床输出仅供参考，需经临床医生审阅。该产品不会就患者的回应自主采取行动；对于任何照护上的更改，治疗临床团队仍是决策者。',
-    'evidence.page.regulatory.cta': '阅读完整的治理与安全立场',
 
     'evidence.page.references.eyebrow': '参考文献',
     'evidence.page.references.title': '已发表的参考文献。',
@@ -324,26 +300,26 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': '如需了解监管与安全立场的细节：',
+    'evidence.page.footercta.text': '如需了解治理与安全的细节：',
     'evidence.page.footercta.button': '阅读治理',
   },
   ar: {
     'evidence.page.hero.eyebrow': 'الأدلة السريرية',
     'evidence.page.hero.title': 'الأساس المنشور، وكيف نضيف إليه.',
-    'evidence.page.hero.subtitle': 'قاعدة الأدلة المنشورة للمراقبة المنظَّمة بعد الخروج من المستشفى، ونهج Aescia في توليد أدلة خاصة بالمنتج من خلال تقييم سريري صارم.',
+    'evidence.page.hero.subtitle': 'قاعدة الأدلة المنشورة حول المتابعة المنظَّمة بعد الخروج، ونهج Aescia في توليد أدلة خاصة بالمنتج من خلال تقييم سريري صارم.',
 
     'evidence.page.base.eyebrow': 'الأدبيات المنشورة',
-    'evidence.page.base.title': 'قاعدة الأدلة للمراقبة بعد الخروج من المستشفى.',
+    'evidence.page.base.title': 'قاعدة الأدلة الخاصة بالمتابعة بعد الخروج من المستشفى.',
     'evidence.page.base.p1': 'ظلت الأدبيات المنشورة حول إعادة الدخول المبكر إلى المستشفى متسقة على مدى عقدين من التحليل. أثبت Jencks وزملاؤه، بالعمل على فئة Medicare في الولايات المتحدة، أن نسبة معتبرة من حالات الخروج من المستشفى تتبعها إعادة دخول خلال 30 يومًا. وأفاد Van Walraven وزملاؤه، في مراجعة منهجية شملت عدة دول، بأن نسبة كبيرة من حالات إعادة الدخول تلك يُحكم على إمكانية تجنبها من قِبل الأطباء المعالجين عند المراجعة بأثر رجعي.',
     'evidence.page.base.p2': 'أفاد Leppin وزملاؤه، في تحليل تلوي لتجارب عشوائية، بأن التدخلات التي تتضمن تواصلًا منظَّمًا مع المريض خلال نافذة ما بعد الخروج ترتبط بانخفاض معدلات إعادة الدخول. وصنَّف Hansen وزملاؤه، في مراجعة منهجية موازية، التدخلات التي جرت دراستها وأشاروا إلى أن مجموعات المكونات قبل الخروج وبعد الخروج تميل إلى التفوق على النهج ذات العنصر الواحد.',
-    'evidence.page.base.p3': 'يمسّ هذا بقدرة المستشفى بقدر ما يمسّ المريض. ولأن إعادة الدخول المتجنَّبة هي إقامة داخلية لم تحدث، فإن أدبيات إعادة الدخول هي في الواقع أيضًا أدبيات عن أيام الأسرّة: في الوحدات الجراحية عالية الحدّة، حيث يكون السرير هو القيد الملزم، فإن عددًا أقل من حالات إعادة الدخول القابلة للتجنب وتعافيًا أكثر سلاسة يعنيان إعادة أيام أسرّة إلى الخدمة. أما ما إذا كان نهج مراقبة بعينه يحقق ذلك، وإلى أي درجة، فهو سؤال تجريبي يجب أن يجيب عنه كل منتج في تجربته الخاصة.',
+    'evidence.page.base.p3': 'يمسّ هذا بقدرة المستشفى بقدر ما يمسّ المريض. ولأن إعادة الدخول المتجنَّبة هي إقامة داخلية لم تحدث، فإن أدبيات إعادة الدخول هي في الواقع أيضًا أدبيات عن أيام الأسرّة: في الوحدات الجراحية عالية الحدّة، حيث يكون السرير هو القيد الملزم، فإن عددًا أقل من حالات إعادة الدخول القابلة للتجنب وتعافيًا أكثر سلاسة يعنيان إعادة أيام أسرّة إلى الخدمة. أما ما إذا كان نهج متابعة بعينه يحقق ذلك، وإلى أي درجة، فهو سؤال تجريبي يجب أن يجيب عنه كل منتج في تجربته الخاصة.',
     'evidence.page.base.p4': 'تصف الأدبيات المجال؛ وهي لا تصف أي منتج برمجي محدد، بما في ذلك Aescia. الاستشهادات مدرجة أدناه.',
     'evidence.page.base.disclaimer': 'النتائج أعلاه هي ملاحظات حول الأدبيات المنشورة بشأن الرعاية بعد الخروج. وهي ليست تصريحات حول أداء Aescia for Hospitals أو استخدامه المقصود أو نتائجه المتوقعة. لا تدّعي Aescia خفض حالات إعادة الدخول أو مدة الإقامة أو أيام الأسرّة؛ وهذا بالضبط ما صُمِّمت تجربة SAFE-Discharge لتقييمه.',
 
     'evidence.page.prep.eyebrow': 'قبل الإجراء',
     'evidence.page.prep.title': 'ما يحدث قبلًا يشكّل ما يحدث بعدًا.',
     'evidence.page.prep.p1': 'تنظر مجموعة ثانية من الأبحاث المنشورة في الفترة السابقة لإجراء أو عملية. وقد أفادت المراجعات المنهجية لإعادة التأهيل المسبق لدى المرضى الأعلى خطورة قبل الجراحة الكبرى بوجود ارتباطات مع إقامات أقصر في المستشفى ومضاعفات شديدة أقل، وإن كانت الأدلة لا تزال في طور التطور وليست كل دراسة تجد الأثر نفسه. وفي التنظير الداخلي، ارتبط التحضير المعوي غير الكافي بإقامات أطول داخل المستشفى وتكاليف استشفاء أعلى.',
-    'evidence.page.prep.p2': 'إن Aescia for Clinics منصّة لسير العمل وتحضير المريض. فهي تقدّم مسارات تحضير من تأليف الأطباء، وإرشادات حول إيقاف الأدوية، وتذكيرات موقوتة إلى تطبيق ويب للمريض، بلغة المريض نفسه. وهي ليست جهازًا طبيًا ولا تقترح قرارات سريرية. تصف الدراسات أدناه الأدلة المنشورة حول التحضير وإعادة التأهيل المسبق؛ ودور Aescia هو تقديم تلك الخطوات المؤلَّفة من قِبل الأطباء بموثوقية وعلى نطاق واسع، لا ادّعاء نتيجة سريرية خاصة بها.',
+    'evidence.page.prep.p2': 'إن Aescia for Clinics منصّة لسير العمل وتحضير المريض. فهي تقدّم مسارات تحضير من تأليف الأطباء، وإرشادات حول إيقاف الأدوية، وتذكيرات موقوتة إلى تطبيق ويب للمريض، بلغة المريض نفسه. تصف الدراسات أدناه الأدلة المنشورة حول التحضير وإعادة التأهيل المسبق؛ ودور Aescia هو تقديم تلك الخطوات المؤلَّفة من قِبل الأطباء بموثوقية وعلى نطاق واسع، لا ادّعاء نتيجة سريرية خاصة بها.',
     'evidence.page.prep.disclaimer': 'هذه ملاحظات حول الأدبيات المنشورة بشأن التحضير وإعادة التأهيل المسبق. وهي ليست تصريحات حول أداء Aescia for Clinics أو نتائجه المتوقعة.',
 
     'evidence.page.programme.eyebrow': 'برنامج نشط',
@@ -362,7 +338,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': 'الفئة',
     'evidence.page.programme.row.population.value': 'مرضى بالغون بعد جراحة القلب والصدر (CABG، صمام، إجراءات صدرية)',
     'evidence.page.programme.row.status.label': 'الحالة',
-    'evidence.page.programme.row.status.value': 'جارية في Royal Prince Alfred Hospital منذ يونيو 2026، مع نتائج أولية جيدة',
+    'evidence.page.programme.row.status.value': 'قيد التشغيل في Royal Prince Alfred Hospital منذ يونيو 2026. ويُعدّ فريق تجربة SAFE-Discharge في Royal Prince Alfred Hospital نتائج مرحلية للنشر.',
 
     'evidence.page.approach.eyebrow': 'النهج',
     'evidence.page.approach.title': 'كيف نُقيِّم.',
@@ -377,12 +353,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'إشراف مستقل',
     'evidence.page.approach.oversight.desc': 'تقع مسؤولية الرعاية على المؤسسة الراعية للتجربة. ولا تفصل Aescia في التفسير السريري لنتائج التجربة.',
 
-    'evidence.page.regulatory.eyebrow': 'الموقف التنظيمي',
-    'evidence.page.regulatory.title': 'أين نحن مع الجهات التنظيمية.',
-    'evidence.page.regulatory.p1': 'إن Aescia for Hospitals برمجية كجهاز طبي قيد البحث. والتصنيف المقصود هو Class IIa. ويجري إعداد طلب تنظيمي للإدراج في Australian Register of Therapeutic Goods (ARTG)؛ ولم يُقدَّم المنتج، وهو غير مسجَّل، وغير متاح للتوريد التجاري.',
-    'evidence.page.regulatory.p2': 'Aescia غير حاصلة على شهادة ISO 13485 أو ISO/IEC 27001 أو IEC 62304، وهي معايير صادرة عن المنظمة الدولية للتوحيد القياسي (ISO) واللجنة الكهروتقنية الدولية (IEC). الحصول على الشهادة مُخطَّط له.',
-    'evidence.page.regulatory.p3': 'إن المخرجات السريرية من Aescia for Hospitals استشارية وتتطلب مراجعة من طبيب. ولا يتصرف المنتج تلقائيًا بناءً على ردود المريض؛ ويظل الفريق السريري المعالج هو صاحب القرار في أي تغيير في الرعاية.',
-    'evidence.page.regulatory.cta': 'اقرأ الموقف الكامل للحوكمة والأمن',
 
     'evidence.page.references.eyebrow': 'المراجع',
     'evidence.page.references.title': 'المراجع المنشورة.',
@@ -406,26 +376,26 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'للاطلاع على الموقف التنظيمي والأمني بالتفصيل:',
+    'evidence.page.footercta.text': 'للاطلاع على الحوكمة والأمن بالتفصيل:',
     'evidence.page.footercta.button': 'اقرأ الحوكمة',
   },
   vi: {
     'evidence.page.hero.eyebrow': 'Bằng chứng lâm sàng',
     'evidence.page.hero.title': 'Nền tảng đã công bố, và cách chúng tôi bổ sung vào đó.',
-    'evidence.page.hero.subtitle': 'Cơ sở bằng chứng đã công bố cho việc theo dõi có cấu trúc sau xuất viện, và cách tiếp cận của Aescia trong việc tạo ra bằng chứng riêng cho sản phẩm thông qua đánh giá lâm sàng nghiêm ngặt.',
+    'evidence.page.hero.subtitle': 'Cơ sở bằng chứng đã công bố về chăm sóc tiếp nối sau xuất viện có cấu trúc, và cách Aescia tạo ra bằng chứng riêng cho sản phẩm thông qua đánh giá lâm sàng chặt chẽ.',
 
     'evidence.page.base.eyebrow': 'Tài liệu đã công bố',
-    'evidence.page.base.title': 'Cơ sở bằng chứng cho việc theo dõi sau xuất viện.',
+    'evidence.page.base.title': 'Cơ sở bằng chứng cho chăm sóc tiếp nối sau xuất viện.',
     'evidence.page.base.p1': 'Tài liệu đã công bố về tái nhập viện sớm vẫn nhất quán qua hai thập kỷ phân tích. Jencks và cộng sự, làm việc trên quần thể Medicare của Hoa Kỳ, đã xác lập rằng một tỷ lệ đáng kể các trường hợp xuất viện nội trú được tiếp nối bởi tái nhập viện trong vòng 30 ngày. Van Walraven và cộng sự, trong một tổng quan hệ thống trên nhiều quốc gia, đã báo cáo rằng một tỷ lệ đáng kể trong số các ca tái nhập viện đó được các bác sĩ điều trị đánh giá là có thể tránh được khi rà soát hồi cứu.',
     'evidence.page.base.p2': 'Leppin và cộng sự, trong một phân tích gộp các thử nghiệm ngẫu nhiên, đã báo cáo rằng các can thiệp có liên hệ với bệnh nhân một cách có cấu trúc trong khoảng thời gian sau xuất viện có liên quan đến việc giảm tỷ lệ tái nhập viện. Hansen và cộng sự, trong một tổng quan hệ thống song song, đã phân loại các can thiệp đã được nghiên cứu và lưu ý rằng việc kết hợp các thành phần trước xuất viện và sau xuất viện có xu hướng vượt trội hơn các cách tiếp cận đơn lẻ.',
-    'evidence.page.base.p3': 'Điều này liên quan đến năng lực của bệnh viện không kém gì liên quan đến bệnh nhân. Bởi một lần tái nhập viện được tránh là một đợt nằm viện không xảy ra, nên tài liệu về tái nhập viện trên thực tế cũng là tài liệu về số ngày-giường: ở các đơn vị phẫu thuật cấp tính cao, nơi giường bệnh là ràng buộc chặt, ít ca tái nhập viện có thể tránh được hơn và sự hồi phục suôn sẻ hơn đồng nghĩa với việc trả lại ngày-giường cho dịch vụ. Liệu một phương pháp theo dõi cụ thể nào đó có đạt được điều đó hay không, và đạt đến mức nào, là một câu hỏi thực nghiệm mà mỗi sản phẩm phải tự trả lời trong thử nghiệm của riêng mình.',
+    'evidence.page.base.p3': 'Điều này liên quan đến năng lực của bệnh viện không kém gì liên quan đến bệnh nhân. Bởi một lần tái nhập viện được tránh là một đợt nằm viện không xảy ra, nên tài liệu về tái nhập viện trên thực tế cũng là tài liệu về số ngày-giường: ở các đơn vị phẫu thuật cấp tính cao, nơi giường bệnh là ràng buộc chặt, ít ca tái nhập viện có thể tránh được hơn và sự hồi phục suôn sẻ hơn đồng nghĩa với việc trả lại ngày-giường cho dịch vụ. Liệu một phương pháp chăm sóc tiếp nối cụ thể nào đó có đạt được điều đó hay không, và đạt đến mức nào, là một câu hỏi thực nghiệm mà mỗi sản phẩm phải tự trả lời trong thử nghiệm của riêng mình.',
     'evidence.page.base.p4': 'Tài liệu mô tả địa hạt; nó không mô tả đặc tính của bất kỳ sản phẩm phần mềm cụ thể nào, kể cả Aescia. Các trích dẫn được liệt kê bên dưới.',
     'evidence.page.base.disclaimer': 'Các phát hiện ở trên là những quan sát về tài liệu đã công bố liên quan đến chăm sóc sau xuất viện. Chúng không phải là những tuyên bố về hiệu năng, mục đích sử dụng dự kiến hay kết quả kỳ vọng của Aescia for Hospitals. Aescia không tuyên bố làm giảm tái nhập viện, thời gian nằm viện hay số ngày-giường; đó chính xác là điều mà thử nghiệm SAFE-Discharge được thiết kế để đánh giá.',
 
     'evidence.page.prep.eyebrow': 'Trước thủ thuật',
     'evidence.page.prep.title': 'Những gì xảy ra trước định hình những gì xảy ra sau.',
     'evidence.page.prep.p1': 'Một nhóm nghiên cứu đã công bố thứ hai xem xét giai đoạn trước một thủ thuật hay ca mổ. Các tổng quan hệ thống về phục hồi chức năng tiền phẫu (prehabilitation) ở những bệnh nhân nguy cơ cao hơn trước phẫu thuật lớn đã báo cáo mối liên quan với thời gian nằm viện ngắn hơn và ít biến chứng nặng hơn, mặc dù bằng chứng vẫn đang phát triển và không phải nghiên cứu nào cũng tìm thấy cùng một hiệu quả. Trong nội soi, việc chuẩn bị ruột không đầy đủ đã được ghi nhận có liên quan đến thời gian nằm viện dài hơn và chi phí nhập viện cao hơn.',
-    'evidence.page.prep.p2': 'Aescia for Clinics là một nền tảng quy trình làm việc và chuẩn bị cho bệnh nhân. Nó cung cấp các lộ trình chuẩn bị do bác sĩ biên soạn, hướng dẫn ngừng thuốc và lời nhắc theo thời điểm đến một ứng dụng web cho bệnh nhân, bằng chính ngôn ngữ của bệnh nhân. Nó không phải là thiết bị y tế và không đề xuất các quyết định lâm sàng. Các nghiên cứu bên dưới mô tả bằng chứng đã công bố về chuẩn bị và phục hồi chức năng tiền phẫu; vai trò của Aescia là thực hiện những bước do bác sĩ biên soạn đó một cách đáng tin cậy và ở quy mô lớn, chứ không phải tuyên bố một kết quả lâm sàng của riêng mình.',
+    'evidence.page.prep.p2': 'Aescia for Clinics là một nền tảng quy trình làm việc và chuẩn bị cho bệnh nhân. Nó cung cấp các lộ trình chuẩn bị do bác sĩ biên soạn, hướng dẫn ngừng thuốc và lời nhắc theo thời điểm đến một ứng dụng web cho bệnh nhân, bằng chính ngôn ngữ của bệnh nhân. Các nghiên cứu bên dưới mô tả bằng chứng đã công bố về chuẩn bị và phục hồi chức năng tiền phẫu; vai trò của Aescia là thực hiện những bước do bác sĩ biên soạn đó một cách đáng tin cậy và ở quy mô lớn, chứ không phải tuyên bố một kết quả lâm sàng của riêng mình.',
     'evidence.page.prep.disclaimer': 'Đây là những quan sát về tài liệu đã công bố liên quan đến chuẩn bị và phục hồi chức năng tiền phẫu. Chúng không phải là những tuyên bố về hiệu năng hay kết quả kỳ vọng của Aescia for Clinics.',
 
     'evidence.page.programme.eyebrow': 'Chương trình đang hoạt động',
@@ -444,7 +414,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.programme.row.population.label': 'Quần thể',
     'evidence.page.programme.row.population.value': 'Bệnh nhân người lớn sau phẫu thuật tim-lồng ngực (CABG, van tim, thủ thuật lồng ngực)',
     'evidence.page.programme.row.status.label': 'Trạng thái',
-    'evidence.page.programme.row.status.value': 'Đang diễn ra tại Royal Prince Alfred Hospital từ tháng 6 năm 2026, với kết quả ban đầu khả quan',
+    'evidence.page.programme.row.status.value': 'Đang triển khai tại Royal Prince Alfred Hospital từ tháng 6 năm 2026. Nhóm thử nghiệm SAFE-Discharge tại Royal Prince Alfred Hospital đang chuẩn bị công bố kết quả giữa kỳ.',
 
     'evidence.page.approach.eyebrow': 'Cách tiếp cận',
     'evidence.page.approach.title': 'Cách chúng tôi đánh giá.',
@@ -459,12 +429,6 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.approach.oversight.title': 'Giám sát độc lập',
     'evidence.page.approach.oversight.desc': 'Trách nhiệm của nhà tài trợ thuộc về cơ sở tài trợ thử nghiệm. Aescia không phân xử việc diễn giải lâm sàng các kết quả của thử nghiệm.',
 
-    'evidence.page.regulatory.eyebrow': 'Lập trường pháp lý',
-    'evidence.page.regulatory.title': 'Chúng tôi đang ở đâu với các cơ quan quản lý.',
-    'evidence.page.regulatory.p1': 'Aescia for Hospitals là một Phần mềm như một Thiết bị Y tế đang trong giai đoạn nghiên cứu. Phân loại dự kiến là Class IIa. Một hồ sơ pháp lý để đưa vào Australian Register of Therapeutic Goods (ARTG) đang được chuẩn bị; sản phẩm chưa được nộp, chưa được đăng ký, và chưa có sẵn cho việc cung ứng thương mại.',
-    'evidence.page.regulatory.p2': 'Aescia chưa được chứng nhận ISO 13485, ISO/IEC 27001 hay IEC 62304, là các tiêu chuẩn của Tổ chức Tiêu chuẩn hóa Quốc tế (ISO) và Ủy ban Kỹ thuật Điện Quốc tế (IEC). Việc chứng nhận đã được lên kế hoạch.',
-    'evidence.page.regulatory.p3': 'Các đầu ra lâm sàng từ Aescia for Hospitals mang tính tư vấn và cần được bác sĩ rà soát. Sản phẩm không tự động hành động dựa trên phản hồi của bệnh nhân; nhóm lâm sàng điều trị vẫn là người ra quyết định đối với bất kỳ thay đổi nào trong chăm sóc.',
-    'evidence.page.regulatory.cta': 'Đọc toàn bộ lập trường quản trị và an ninh',
 
     'evidence.page.references.eyebrow': 'Tài liệu tham khảo',
     'evidence.page.references.title': 'Tài liệu tham khảo đã công bố.',
@@ -488,7 +452,7 @@ export const dict: Record<string, Record<string, string>> = {
     'evidence.page.ref6.title': 'Predictors of inadequate inpatient colonoscopy preparation and its association with hospital length of stay and costs.',
     'evidence.page.ref6.journal': 'Digestive Diseases and Sciences',
 
-    'evidence.page.footercta.text': 'Để biết chi tiết về lập trường pháp lý và an ninh:',
+    'evidence.page.footercta.text': 'Để biết chi tiết về quản trị và an ninh:',
     'evidence.page.footercta.button': 'Đọc quản trị',
   },
 }

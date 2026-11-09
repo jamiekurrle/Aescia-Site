@@ -73,7 +73,7 @@ function MegaHero() {
           >
             <div className="label-eyebrow mb-3">Filed under</div>
             <ul className="text-[14px] space-y-1" style={{ color: 'var(--c-ink-90)' }}>
-              <li>Hospital Monitor — TGA Class IIa</li>
+              <li>Aescia for Hospitals: check-ins and nurse alerts</li>
               <li>Specialty Clinic — workflow</li>
               <li>RPAH cardiothoracic trial</li>
               <li>Sydney · Montréal</li>
@@ -119,7 +119,7 @@ function NumberedSpread() {
     {
       n: '01',
       t: 'TWO PRODUCTS, ONE PLATFORM',
-      d: 'Hospital Monitor is regulated software for post-discharge work. Specialty Clinic is a workflow tool that stays inside the CDSS exemption. They share an engine and a posture: clinician-authored, audit-aware, transparent.',
+      d: 'Aescia for Hospitals runs post-discharge check-ins and nurse alerts. Aescia for Clinics runs pre-procedure prep. They share an engine and a posture: clinician-authored, audit-aware, transparent.',
     },
     {
       n: '02',
