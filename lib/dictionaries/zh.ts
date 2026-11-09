@@ -99,6 +99,8 @@ export const zh: Record<string, string> = {
   'home.trust.title': '安全，私密。',
   'home.trust.host.value': '我们的托管服务商',
   'home.trust.host.label': '持有 ISO 27001 和 SOC 2 认证',
+  'home.trust.insured.value': '已投保',
+  'home.trust.insured.label': '责任险和网络安全险',
   'home.trust.app.value': '澳大利亚隐私原则',
   'home.trust.app.label': '指导我们处理个人信息的方式',
   'home.trust.link': '了解安全措施',

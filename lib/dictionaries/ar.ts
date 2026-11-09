@@ -99,6 +99,8 @@ export const ar: Record<string, string> = {
   'home.trust.title': 'آمن وخاص.',
   'home.trust.host.value': 'مزودو الاستضافة لدينا',
   'home.trust.host.label': 'حاصلون على شهادتي ISO 27001 وSOC 2',
+  'home.trust.insured.value': 'مؤمَّنون',
+  'home.trust.insured.label': 'تأمين المسؤولية والتأمين السيبراني',
   'home.trust.app.value': 'مبادئ الخصوصية الأسترالية',
   'home.trust.app.label': 'توجّه طريقة تعاملنا مع المعلومات الشخصية',
   'home.trust.link': 'اقرأ عن الأمان',

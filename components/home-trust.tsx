@@ -10,10 +10,8 @@ export function HomeTrust() {
 
   const items = [
     { value: t('trust.item1.value'), label: t('trust.item1.label') },
-    { value: t('trust.item2.value'), label: t('trust.item2.label') },
     { value: t('home.trust.host.value'), label: t('home.trust.host.label') },
-    { value: t('home.trust.app.value'), label: t('home.trust.app.label') },
-    { value: t('trust.item3.value'), label: t('trust.item3.label') },
+    { value: t('home.trust.insured.value'), label: t('home.trust.insured.label') },
   ]
 
   return (
@@ -25,7 +23,7 @@ export function HomeTrust() {
         >
           {t('home.trust.title')}
         </h2>
-        <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8">
+        <ul className="mt-10 grid grid-cols-1 sm:grid-cols-3 max-w-4xl mx-auto gap-x-8 gap-y-8">
           {items.map((item) => (
             <li key={item.value}>
               <p className="text-[17px] lg:text-[18px] font-semibold text-foreground">{item.value}</p>

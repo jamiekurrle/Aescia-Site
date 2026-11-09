@@ -99,6 +99,8 @@ export const vi: Record<string, string> = {
   'home.trust.title': 'An toàn và riêng tư.',
   'home.trust.host.value': 'Nhà cung cấp lưu trữ của chúng tôi',
   'home.trust.host.label': 'có chứng nhận ISO 27001 và SOC 2',
+  'home.trust.insured.value': 'Có bảo hiểm',
+  'home.trust.insured.label': 'bảo hiểm trách nhiệm và an ninh mạng',
   'home.trust.app.value': 'Nguyên tắc Quyền riêng tư của Úc',
   'home.trust.app.label': 'định hướng cách chúng tôi xử lý thông tin cá nhân',
   'home.trust.link': 'Tìm hiểu về bảo mật',
