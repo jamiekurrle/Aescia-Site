@@ -48,7 +48,7 @@ export function EditorialHero() {
   // The headline sits below the first screen and types out once it scrolls
   // into view. Until then its text is in the page, invisible, so the layout
   // is fixed and crawlers still read the h1.
-  const headlineRef = useRef<HTMLDivElement>(null)
+  const headlineRef = useRef<HTMLHeadingElement>(null)
   const [headlineSeen, setHeadlineSeen] = useState(false)
   useEffect(() => {
     const el = headlineRef.current
@@ -60,7 +60,8 @@ export function EditorialHero() {
           observer.disconnect()
         }
       },
-      { threshold: 0.35 }
+      // Starts once the headline is clear of the bottom quarter of the screen.
+      { threshold: 1, rootMargin: '0px 0px -25% 0px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -112,7 +113,7 @@ export function EditorialHero() {
       </div>
 
       {/* First screen: questions answered by published figures. */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-12 min-h-[100svh] flex items-center justify-center">
+      <div className="relative w-full max-w-7xl mx-auto px-6 lg:px-10 pt-24 lg:pt-28 pb-8 min-h-[78svh] flex items-center justify-center">
         <HeroMetrics />
       </div>
 
@@ -125,10 +126,10 @@ export function EditorialHero() {
         }}
       >
         <div
-          ref={headlineRef}
-          className="max-w-3xl mx-auto px-6 lg:px-10 pt-16 lg:pt-24 pb-24 lg:pb-32 min-h-[60svh] flex flex-col items-center justify-center text-center"
+          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-24 lg:pb-32 min-h-[56svh] flex flex-col items-center justify-center text-center"
         >
           <h1
+            ref={headlineRef}
             className="font-display text-[34px] sm:text-[44px] lg:text-[56px] leading-[1.04] tracking-[-0.03em] text-white font-normal"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >

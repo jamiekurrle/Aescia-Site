@@ -10,7 +10,7 @@ import { TypewriterText } from './typewriter-text'
 // 2026-11-08 homepage capture).
 const SLIDES = [
   { ask: 1, metric: 4 }, // anxious, not knowing what to do -> 40 to 80% forgotten
-  { ask: 2, metric: 2 }, // whether to call the surgical team -> 1 in 8 back in hospital
+  { ask: 2, metric: 3 }, // anxious before the procedure -> more than half anxious
   { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
 ]
 
@@ -92,7 +92,7 @@ export function HeroMetrics() {
 
   return (
     <div
-      className="w-full max-w-5xl mx-auto text-center h-[clamp(300px,44vh,420px)] flex flex-col justify-center"
+      className="w-full max-w-5xl mx-auto text-center flex flex-col justify-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >

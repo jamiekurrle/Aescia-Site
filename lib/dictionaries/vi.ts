@@ -94,7 +94,7 @@ export const vi: Record<string, string> = {
   'home.metric.8.label': 'bệnh nhân nằm viện ở Canada phải tái nhập viện cấp cứu trong 30 ngày.',
   'home.metric.8.source': 'Viện Thông tin Y tế Canada, 2025–26',
   'home.ask.1': 'Bạn đã bao giờ lo lắng vì không biết phải làm gì chưa?',
-  'home.ask.2': 'Bạn đã bao giờ phân vân có nên gọi cho đội phẫu thuật chưa?',
+  'home.ask.2': 'Bạn đã bao giờ thấy lo lắng trước khi làm thủ thuật chưa?',
   'home.ask.3': 'Bạn đã bao giờ làm sạch ruột xong mà không chắc nó có hiệu quả chưa?',
   'home.trust.title': 'An toàn và riêng tư.',
   'home.trust.host.value': 'Nhà cung cấp lưu trữ của chúng tôi',
