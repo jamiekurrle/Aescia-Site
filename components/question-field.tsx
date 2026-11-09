@@ -108,7 +108,7 @@ function QuestionPile({
       {cards.map((card) => (
         <p
           key={card.id}
-          className={`q-card absolute max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_10px_30px_rgba(27,39,69,0.12)] ${
+          className={`q-card absolute max-w-[260px] rounded-2xl bg-[#26365e] text-white border border-white/15 px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_10px_30px_rgba(8,14,30,0.45)] ${
             card.leaving ? 'q-card-leaving' : ''
           }`}
           style={{ top: `${card.top.toFixed(1)}%`, left: `${card.left.toFixed(1)}%` }}
@@ -139,8 +139,8 @@ export function QuestionField() {
       >
         {t('home.problem.title')}
       </h2>
-      <p className="mt-8 text-[17px] lg:text-[18px] leading-[1.65] text-foreground/85">{t('home.problem.before')}</p>
-      <p className="mt-5 text-[17px] lg:text-[18px] leading-[1.65] text-foreground/85">{t('home.problem.after')}</p>
+      <p className="mt-8 text-[17px] lg:text-[18px] leading-[1.65] text-white/85">{t('home.problem.before')}</p>
+      <p className="mt-5 text-[17px] lg:text-[18px] leading-[1.65] text-white/85">{t('home.problem.after')}</p>
       <p
         className="mt-12 font-display text-[30px] lg:text-[38px] leading-[1.1] tracking-[-0.02em]"
         style={{ fontVariationSettings: "'opsz' 144" }}
@@ -149,7 +149,7 @@ export function QuestionField() {
       </p>
       <Link
         href="/contact"
-        className="mt-8 inline-flex items-center gap-3 bg-foreground text-background font-medium px-7 py-4 text-[15px] tracking-wide hover:bg-foreground/90 transition-colors min-h-[48px]"
+        className="mt-8 inline-flex items-center gap-3 bg-white text-[#1B2745] font-medium px-7 py-4 text-[15px] tracking-wide hover:bg-white/90 transition-colors min-h-[48px]"
       >
         {t('cta.button')}
         <Arrow />
@@ -158,7 +158,7 @@ export function QuestionField() {
   )
 
   return (
-    <section className="relative bg-background text-foreground overflow-hidden">
+    <section className="relative bg-[#1B2745] text-white overflow-hidden">
       {/* Wide screens: questions before a procedure pile up on the left, after
           surgery on the right, the text between them. */}
       <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-20">

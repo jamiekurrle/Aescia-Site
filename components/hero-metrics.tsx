@@ -4,19 +4,19 @@ import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 import { TypewriterText } from './typewriter-text'
 
-// A short story over the hero video: three questions patients ask, each
-// answered by a published figure, then what Aescia does about them, one line
-// at a time. Every figure carries its source line; keep them in step with
-// Business-Brain (the 2026-11-08 homepage capture). Story lines follow the
-// TGA claims guide: Aescia delivers the team's content, the team decides.
+// A short story over the hero video: a question patients ask, the published
+// figure behind it, then what Aescia does about it. Every figure carries its
+// source line; keep them in step with Business-Brain (the 2026-11-08 and
+// 2026-11-09 homepage captures). Story lines follow the TGA claims guide:
+// Aescia delivers the team's content, the team decides.
 type Slide = { ask: number; metric: number } | { say: number }
 const SLIDES: Slide[] = [
+  { ask: 7, metric: 9 }, // unsure whether to tell the surgeon -> over 4 in 10 complications appear at home
+  { say: 5 }, // check-ins before and after; nurses see the answers they asked to see
   { ask: 1, metric: 4 }, // forgot what the care team said -> 40 to 80% forgotten
-  { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
-  { ask: 4, metric: 8 }, // home and unsure whether to call -> about 1 in 10 readmitted urgently (Canada)
   { say: 1 }, // instructions when you need them
-  { say: 2 }, // check-ins with the team's questions
-  { say: 3 }, // nurses see the answers they asked to see
+  { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
+  { say: 6 }, // each prep step at the time you need it
   { say: 4 }, // no one left wondering what to do
 ]
 

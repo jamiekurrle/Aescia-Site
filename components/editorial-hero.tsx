@@ -122,11 +122,11 @@ export function EditorialHero() {
         className="relative"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(27, 39, 69, 0) 0%, rgba(27, 39, 69, 0.78) 45%, rgba(27, 39, 69, 0.95) 100%)',
+            'linear-gradient(to bottom, rgba(27, 39, 69, 0) 0%, rgba(27, 39, 69, 0.85) 45%, rgba(27, 39, 69, 1) 100%)',
         }}
       >
         <div
-          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-24 lg:pb-32 min-h-[56svh] flex flex-col items-center justify-center text-center"
+          className="max-w-3xl mx-auto px-6 lg:px-10 pt-10 lg:pt-14 pb-12 lg:pb-16 min-h-[56svh] flex flex-col items-center justify-center text-center"
         >
           <h1
             ref={headlineRef}
