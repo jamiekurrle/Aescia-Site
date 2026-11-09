@@ -56,7 +56,7 @@ export function HeroMetrics() {
 
   return (
     <div
-      className="w-full max-w-5xl mx-auto text-center"
+      className="w-full max-w-5xl mx-auto text-center h-[clamp(300px,44vh,420px)] flex flex-col justify-center"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -65,8 +65,8 @@ export function HeroMetrics() {
         <p
           className={`hm-ask mx-auto max-w-4xl font-display text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
             answered
-              ? 'text-[clamp(18px,2vw,28px)] leading-[1.3] text-white/80'
-              : 'text-[clamp(34px,5.6vw,84px)] leading-[1.05] tracking-[-0.02em] font-semibold text-white'
+              ? 'text-[clamp(16px,1.7vw,24px)] leading-[1.3] text-white/80'
+              : 'text-[clamp(30px,4.6vw,68px)] leading-[1.05] tracking-[-0.02em] font-semibold text-white'
           }`}
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
@@ -83,19 +83,19 @@ export function HeroMetrics() {
           aria-hidden={!answered}
         >
           <p
-            className="mt-4 lg:mt-6 font-display font-semibold text-[clamp(56px,11vw,180px)] leading-[0.92] tracking-[-0.04em] text-white text-balance [text-shadow:0_4px_40px_rgba(15,26,51,0.55)]"
+            className="mt-4 lg:mt-6 font-display font-semibold text-[clamp(56px,9vw,150px)] leading-[0.92] tracking-[-0.04em] text-white text-balance [text-shadow:0_4px_40px_rgba(15,26,51,0.55)]"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
             {value}
           </p>
-          <p className="mt-5 lg:mt-7 mx-auto max-w-3xl text-[clamp(19px,2.2vw,32px)] leading-[1.3] font-medium text-white [text-shadow:0_2px_24px_rgba(15,26,51,0.6)]">
+          <p className="mt-4 lg:mt-5 mx-auto max-w-3xl text-[clamp(17px,1.8vw,26px)] leading-[1.3] font-medium text-white [text-shadow:0_2px_24px_rgba(15,26,51,0.6)]">
             {label}
           </p>
-          <p className="mt-4 text-[12px] lg:text-[13px] leading-[1.4] text-white/70">{source}</p>
+          <p className="mt-3 text-[12px] lg:text-[13px] leading-[1.4] text-white/70">{source}</p>
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center gap-1.5" aria-hidden="true">
+      <div className="mt-6 flex justify-center gap-1.5" aria-hidden="true">
         {SLIDES.map((_, i) => (
           <span
             key={i}
