@@ -93,7 +93,7 @@ export const zh: Record<string, string> = {
   'home.metric.8.value': '约十分之一',
   'home.metric.8.label': '的加拿大住院患者在 30 天内紧急再入院。',
   'home.metric.8.source': '加拿大卫生信息研究所，2025–26',
-  'home.ask.1': '你是否曾出院回家后不知道该怎么办？',
+  'home.ask.1': '你是否曾回到家就忘了医护团队交代的事？',
   'home.ask.2': '你在检查或手术前感到过焦虑吗？',
   'home.ask.3': '你是否做完肠道准备，却不确定是否有效？',
   'home.trust.title': '安全，私密。',

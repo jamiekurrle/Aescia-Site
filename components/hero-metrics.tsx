@@ -9,7 +9,7 @@ import { TypewriterText } from './typewriter-text'
 // Business-Brain (au-cardiac-surgery-readmission-benchmarks and the
 // 2026-11-08 homepage capture).
 const SLIDES = [
-  { ask: 1, metric: 4 }, // home from hospital, not knowing what to do -> 40 to 80% forgotten
+  { ask: 1, metric: 4 }, // forgot what the care team said -> 40 to 80% forgotten
   { ask: 2, metric: 3 }, // anxious before the procedure -> more than half anxious
   { ask: 3, metric: 1 }, // unsure the prep worked -> up to 1 in 4 inadequate
 ]
