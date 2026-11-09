@@ -61,12 +61,10 @@ export function HeroMetrics() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="hm-fade" style={{ opacity: shown ? 1 : 0 }}>
-        {/* The question starts large, then steps back above its answer. */}
+        {/* The question starts large, then shrinks above its answer in the same type. */}
         <p
-          className={`hm-ask mx-auto max-w-4xl font-display text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
-            answered
-              ? 'text-[clamp(16px,1.7vw,24px)] leading-[1.3] text-white/80'
-              : 'text-[clamp(30px,4.6vw,68px)] leading-[1.05] tracking-[-0.02em] font-semibold text-white'
+          className={`hm-ask mx-auto max-w-4xl font-display font-semibold tracking-[-0.02em] text-white text-balance [text-shadow:0_2px_30px_rgba(15,26,51,0.6)] ${
+            answered ? 'text-[clamp(22px,2.6vw,38px)] leading-[1.12]' : 'text-[clamp(30px,4.6vw,68px)] leading-[1.05]'
           }`}
           style={{ fontVariationSettings: "'opsz' 144" }}
         >
@@ -83,7 +81,7 @@ export function HeroMetrics() {
           aria-hidden={!answered}
         >
           <p
-            className="mt-4 lg:mt-6 font-display font-semibold text-[clamp(56px,9vw,150px)] leading-[0.92] tracking-[-0.04em] text-white text-balance [text-shadow:0_4px_40px_rgba(15,26,51,0.55)]"
+            className="mt-4 lg:mt-6 font-display font-semibold text-[clamp(56px,8vw,130px)] leading-[0.92] tracking-[-0.04em] text-white text-balance [text-shadow:0_4px_40px_rgba(15,26,51,0.55)]"
             style={{ fontVariationSettings: "'opsz' 144" }}
           >
             {value}
@@ -109,7 +107,7 @@ export function HeroMetrics() {
           transition: opacity 400ms ease;
         }
         .hm-ask {
-          transition: font-size 400ms ease, color 400ms ease;
+          transition: font-size 400ms ease;
         }
         .hm-answer {
           overflow: hidden;
