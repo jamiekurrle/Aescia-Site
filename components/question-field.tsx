@@ -1,29 +1,123 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 import { useI18n } from '@/lib/i18n'
 
 // Questions patients ask at home. Keys 1-10 and 21-26 belong to the days
-// before a procedure, keys 11-20 and 27-32 to the weeks after it.
-const BEFORE_KEYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26].map((n) => `home.q.${n}`)
-const AFTER_KEYS = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 27, 28, 29, 30, 31, 32].map((n) => `home.q.${n}`)
-const PHONE_BEFORE = BEFORE_KEYS.slice(0, 8)
-const PHONE_AFTER = AFTER_KEYS.slice(0, 8)
+// before a procedure, keys 11-20 and 27-32 to the weeks after it, and 33-40
+// are the worries that run through both. Key 33 ("I don't know what to do.")
+// sits on top of each pile when the page loads.
+const BEFORE_KEYS = [1, 34, 2, 3, 37, 4, 5, 39, 6, 7, 8, 9, 10, 21, 22, 23, 24, 25, 26, 33].map((n) => `home.q.${n}`)
+const AFTER_KEYS = [11, 35, 12, 13, 36, 14, 15, 38, 16, 17, 40, 18, 19, 20, 27, 28, 29, 30, 31, 32, 33].map((n) => `home.q.${n}`)
 
-// Each question loops on the same cycle, offset so a new one appears every
-// second or so and four to five are on screen at once, overlapping.
-const CYCLE_S = 18 // keep in step with the 18s in the q-pop rule below
+// Each pile starts with a handful already there, then a new question lands on
+// top every EVERY_MS. With two piles on screen that is 2 to 3 a second. The
+// oldest fades out once a pile holds `max`.
+const EVERY_MS = 850
+const FADE_OUT_MS = 700 // keep in step with the 700ms rule below
 
 function frac(x: number) {
   return x - Math.floor(x)
 }
 
-// Quasi-random but fixed positions (no layout shift between renders).
+// Fixed positions for the starting pile (identical on server and client).
 function spot(i: number, seed: number, maxLeft: number) {
   return {
-    top: `${(frac(i * 0.6180339 + seed) * 86).toFixed(1)}%`,
-    left: `${(frac(i * 0.7548776 + seed * 1.7) * maxLeft).toFixed(1)}%`,
+    top: frac(i * 0.6180339 + seed) * 86,
+    left: frac(i * 0.7548776 + seed * 1.7) * maxLeft,
   }
+}
+
+type Card = { id: number; key: string; top: number; left: number; leaving: boolean }
+
+function QuestionPile({
+  keys,
+  seed,
+  maxLeft,
+  start,
+  max,
+  firstDelayMs,
+  className,
+}: {
+  keys: string[]
+  seed: number
+  maxLeft: number
+  start: number
+  max: number
+  firstDelayMs: number
+  className: string
+}) {
+  const { t } = useI18n()
+  const ref = useRef<HTMLDivElement>(null)
+  // The starting pile ends with the last key, so "I don't know what to do."
+  // is on top.
+  const [cards, setCards] = useState<Card[]>(() =>
+    keys.slice(-start).map((key, i) => ({ id: i, key, ...spot(i, seed, maxLeft), leaving: false }))
+  )
+  const next = useRef({ id: start, key: 0 })
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    let visible = false
+    let interval: ReturnType<typeof setInterval> | undefined
+    let kickoff: ReturnType<typeof setTimeout> | undefined
+
+    const add = () => {
+      if (!visible || document.hidden) return
+      const id = next.current.id++
+      const key = keys[next.current.key++ % keys.length]
+      setCards((prev) => {
+        const card: Card = { id, key, top: Math.random() * 86, left: Math.random() * maxLeft, leaving: false }
+        // Retire the oldest cards beyond `max`, and any card already showing
+        // this question, so no text appears twice.
+        const settled = prev.filter((c) => !c.leaving)
+        const retire = new Set(settled.filter((c) => c.key === key).map((c) => c.id))
+        const remaining = settled.filter((c) => !retire.has(c.id))
+        remaining.slice(0, Math.max(0, remaining.length + 1 - max)).forEach((c) => retire.add(c.id))
+        return [...prev.map((c) => (retire.has(c.id) ? { ...c, leaving: true } : c)), card]
+      })
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting
+    })
+    if (ref.current) observer.observe(ref.current)
+    kickoff = setTimeout(() => {
+      add()
+      interval = setInterval(add, EVERY_MS)
+    }, firstDelayMs)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(kickoff)
+      clearInterval(interval)
+    }
+  }, [keys, max, maxLeft, firstDelayMs])
+
+  // Cards that have finished fading are removed here rather than in add(),
+  // so a retired card always gets its full fade.
+  useEffect(() => {
+    if (!cards.some((c) => c.leaving)) return
+    const timer = setTimeout(() => setCards((prev) => prev.filter((c) => !c.leaving)), FADE_OUT_MS)
+    return () => clearTimeout(timer)
+  }, [cards])
+
+  return (
+    <div ref={ref} className={`relative ${className}`} aria-hidden="true">
+      {cards.map((card) => (
+        <p
+          key={card.id}
+          className={`q-card absolute max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_10px_30px_rgba(27,39,69,0.12)] ${
+            card.leaving ? 'q-card-leaving' : ''
+          }`}
+          style={{ top: `${card.top.toFixed(1)}%`, left: `${card.left.toFixed(1)}%` }}
+        >
+          {t(card.key)}
+        </p>
+      ))}
+    </div>
+  )
 }
 
 function Arrow() {
@@ -36,23 +130,6 @@ function Arrow() {
 
 export function QuestionField() {
   const { t } = useI18n()
-
-  const cloud = (keys: string[], seed: number, maxLeft: number, offsetS: number, className: string) => (
-    <div className={`relative ${className}`} aria-hidden="true">
-      {keys.map((key, i) => (
-        <p
-          key={key}
-          className="q-pop absolute max-w-[260px] rounded-2xl bg-card text-card-foreground border border-border px-4 py-2.5 text-[14px] leading-[1.4] shadow-[0_10px_30px_rgba(27,39,69,0.10)]"
-          style={{
-            ...spot(i, seed, maxLeft),
-            animationDelay: `${-(i * (CYCLE_S / keys.length) + offsetS).toFixed(2)}s`,
-          }}
-        >
-          {t(key)}
-        </p>
-      ))}
-    </div>
-  )
 
   const centre = (
     <div className="relative z-10">
@@ -82,52 +159,42 @@ export function QuestionField() {
 
   return (
     <section className="relative bg-background text-foreground overflow-hidden">
-      {/* Wide screens: questions before a procedure appear on the left, after
+      {/* Wide screens: questions before a procedure pile up on the left, after
           surgery on the right, the text between them. */}
       <div className="hidden xl:grid grid-cols-[1fr_minmax(0,34rem)_1fr] gap-12 items-center max-w-[1500px] mx-auto px-10 py-20">
-        {cloud(BEFORE_KEYS, 0.11, 42, 0, 'h-[640px]')}
+        <QuestionPile keys={BEFORE_KEYS} seed={0.11} maxLeft={42} start={10} max={16} firstDelayMs={300} className="h-[640px]" />
         {centre}
-        {cloud(AFTER_KEYS, 0.47, 42, CYCLE_S / 32, 'h-[640px]')}
+        <QuestionPile keys={AFTER_KEYS} seed={0.47} maxLeft={42} start={10} max={16} firstDelayMs={700} className="h-[640px]" />
       </div>
 
-      {/* Phones and tablets: a band of questions above and below the text. */}
+      {/* Phones and tablets: a pile above and below the text. */}
       <div className="xl:hidden max-w-2xl mx-auto px-6 py-16">
-        {cloud(PHONE_BEFORE, 0.11, 34, 0, 'h-[260px] mb-10')}
+        <QuestionPile keys={BEFORE_KEYS} seed={0.11} maxLeft={34} start={6} max={9} firstDelayMs={300} className="h-[260px] mb-10" />
         {centre}
-        {cloud(PHONE_AFTER, 0.47, 34, CYCLE_S / 16, 'h-[260px] mt-12')}
+        <QuestionPile keys={AFTER_KEYS} seed={0.47} maxLeft={34} start={6} max={9} firstDelayMs={700} className="h-[260px] mt-12" />
       </div>
 
       <style jsx global>{`
-        .q-pop {
-          opacity: 0;
-          animation: q-pop 18s ease-in-out infinite;
-          will-change: opacity, transform;
+        .q-card {
+          animation: q-land 380ms ease-out both;
+          transition: opacity 700ms ease;
         }
-        @keyframes q-pop {
-          0% {
+        .q-card-leaving {
+          opacity: 0;
+        }
+        @keyframes q-land {
+          from {
             opacity: 0;
-            transform: translateY(10px) scale(0.97);
+            transform: translateY(10px) scale(0.96);
           }
-          4% {
+          to {
             opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-          26% {
-            opacity: 1;
-            transform: translateY(-4px) scale(1);
-          }
-          31% {
-            opacity: 0;
-            transform: translateY(-10px) scale(1);
-          }
-          100% {
-            opacity: 0;
-            transform: translateY(-10px) scale(1);
+            transform: none;
           }
         }
         @media (prefers-reduced-motion: reduce) {
-          .q-pop {
-            transform: none !important;
+          .q-card {
+            animation: none;
           }
         }
       `}</style>
